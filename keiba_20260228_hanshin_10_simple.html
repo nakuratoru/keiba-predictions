@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マーガレットS 2026/02/28 HANSHIN 10R (02/27 20:01 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .change-badge {
+    display: inline-block; background: #FF3B30; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .keep-badge {
+    display: inline-block; background: #8E8E93; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>マーガレットS 2026/02/28 HANSHIN 10R (02/27 20:01 予想 馬体重なし)</h1>
+  <div class="meta">芝1200m（右 A） | 良 | 9頭立て | 1回 阪神 3日目 サラ系３歳 オープン (国際)(特指) 別定 9頭 本賞金:2100,840,530,320,210万円</div>
+  <div class="cc-trust">CC最終信頼度: <strong>13.2%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">2. タマモイカロス</div>
+      <div class="pick-jockey">藤岡佑 / 栗東藤岡</div>
+    </div>
+    <div class="pick-prob">24.0%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">5. ヒシアイラ</div>
+      <div class="pick-jockey">荻野極 / 栗東池江</div>
+    </div>
+    <div class="pick-prob">19.3%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">8. フォーゲル</div>
+      <div class="pick-jockey">西村淳 / 栗東斉藤崇</div>
+    </div>
+    <div class="pick-prob">14.7%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">9頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ウォーターデライト</td><td>牡3</td><td>57</td><td>吉村</td><td>栗東高柳大</td><td>ロードカナロア</td><td>マンハッタンカフェ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">タマモイカロス</td><td>牡3</td><td>57</td><td>藤岡佑</td><td>栗東藤岡</td><td>デクラレーションオブウォー</td><td>ダンスインザダーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">フィオラーノ</td><td>牡3</td><td>57</td><td>浜中</td><td>栗東吉田</td><td>インディチャンプ</td><td>エンパイアメーカー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ケールハイム</td><td>牝3</td><td>55</td><td>高杉</td><td>栗東福永</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ヒシアイラ</td><td>牡3</td><td>57</td><td>荻野極</td><td>栗東池江</td><td>モーリス</td><td>ロックオブジブラルタル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ミスバレンシア</td><td>牝3</td><td>55</td><td>岩田望</td><td>美浦武井</td><td>ロジャーバローズ</td><td>サクラバクシンオー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">マーブルパレス</td><td>牝3</td><td>55</td><td>酒井</td><td>栗東西園正</td><td>アドマイヤマーズ</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">フォーゲル</td><td>牡3</td><td>57</td><td>西村淳</td><td>栗東斉藤崇</td><td>アルアイン</td><td>ロードカナロア</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">アスミル</td><td>牡3</td><td>57</td><td>団野</td><td>栗東本田</td><td>ダノンプレミアム</td><td>グラスワンダー</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>エージェント分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">まずレース情報ファイルを読み込みます。データ確認完了。近走成績を精査して分析します。 近走: 2戦1勝 [1-1-0-0] - 2026/02/07 3歳未勝利 1着 芝1200 1:08.9 上がり35.3 (-0.2秒) 前走で3歳未勝利を芝1200m 1:08.9で勝利。着差はハナ差相当の-0.2秒ではなく0.2秒差先着。通過順1-1の逃げから上がり35.3は平凡。タイムは1:08.9と悪くはないが、未勝利戦での数字であり、今回はオープン初挑戦。キャリア2戦目のOPは壁が高い。調教評価B。前走タイムがOP水準に届くかが焦点で、実績の裏付けが乏しい。 評価: 低 近走: 6戦2勝 [2-3-0-1] - 2025/12/20 報知杯クリスマスRS(OP) 2着 芝1200 1:09.2 上がり34.5 (+0.2秒差) - 2025/11/16 福島2歳S(OP) 1着 芝1200 1...</div><h3>血統派</h3>
+<div class="analysis-text">阪神芝1200m（右回りAコース）は、スタートから3コーナーまで下り坂が続き、全体的にスピード持続力が問われるコース。前半からハイペースになりやすく、純粋なスプリント能力と瞬発力のバランスが求められる。3歳オープンという条件から、底力と素質の高さが問われる。 **1番 ウォーターデライト（父ロードカナロア / 母父マンハッタンカフェ）** 父ロードカナロアは日本最高峰のスプリンター。芝1200mの最強血統の一つであり、産駒は阪神芝1200mで特に高い好走率を誇る。母父マンハッタンカフェはステイヤー系だが、ロードカナロアの圧倒的なスプリント適性が前面に出やすい。距離1200mは父の申し子的な適性。ただし通算2戦1勝と経験が浅い。前走1:08.9の未勝利勝ちで実力は未知数の部分も大きいが、血統的には本コースへの適性は高い。 **2番 タマモイカロス（父デクラレーションオブウォー / 母父ダンス...</div><h3>展開派</h3>
+<div class="analysis-text">阪神芝1200m（右回り・Aコース）。内回りコースで、スタートから3コーナーまでの直線が約440m、最後の直線は約356m。スプリント戦としてはコーナーまでの助走区間が長く、序盤のポジション争いが激しくなりやすいコース。ゴール前に急坂があるため、スピードだけでは持たず、最後のひと踏ん張りが求められる。良馬場であれば、内枠の先行馬が有利な傾向がある。 近走の通過順位から脚質を整理する。 |------|------|------|------| これがこのレースの最大のポイントだ。 **逃げ候補が複数いる。** 1番ウォーターデライト、5番ヒシアイラ、そして7番マーブルパレスの3頭がハナを主張しうる。さらに6番ミスバレンシアも新馬で逃げている。 9頭立ての少頭数でこれだけ前に行きたい馬がいると、序盤のペースが速くなる可能性が高い。しかし、以下の点を考慮する。 - ウォーターデライト（1枠1番...</div><h3>陣営派</h3>
+<div class="analysis-text">- 2026/02/28 阪神10R 芝1200m 右 Aコース 良 9頭立て - 3歳オープン別定（マーガレットS） - 賞金体系：2100万円筆頭 - 通算2戦1勝、前走2026/02/07の3歳未勝利戦を芝1200mで1着（タイム1:08.9、差-0.2） - **距離条件**：芝1200mで1着の実績あり。今回も同距離で条件適合。 - **騎手**：吉村誠之助は栗東所属。阪神芝1200mでの統計は上位騎手と比べ実績数が少なく、回収率面では不透明。 - **厩舎**：高柳大輔厩舎は中堅厩舎。特定距離での際立つ成績データなし。 - **前走パターン**：未勝利戦からOP初挑戦。クラス壁が最大の懸念。 - **確信度評価**：2戦2連対と安定しているが、OP特有の相手強化で評価は抑えめ。 - 通算6戦2勝、福島2歳S（OP）1着の実績あり。**父子厩舎コンビ**（藤岡佑介×藤岡健一厩舎）...</div><h3>体調派</h3>
+<div class="analysis-text">まずレースデータを読み込みます。内容を把握しました。各馬を丁寧に分析します。 3歳オープン、芝1200m、9頭立て。当日馬体重は全馬未発表のため、近走の体重推移パターンと出走間隔、斤量バランスを軸に評価する。 出走間隔: 2026/02/07 から 2026/02/28 = 中3週 (21日) → 標準的な間隔 近走体重推移: - 10/19 444kg(0) → 2着 - 02/07 452kg(+8) → 1着 体重は+8kgで勝利しており、452kgが現状の走れる体重域と見てよい。前走が未勝利勝ち上がりで、今回が初オープン挑戦。叩き2走目に相当し、前走から3週間後は体調面で上積みが期待できる局面。ただし452kgという馬格に57kgは比率として決して軽くない。調教評価Bで「出来安定」は現状維持を示す表現で、爆発的な上昇感はない。通算2戦1勝と経験不足が懸念材料。 コンディション評価:...</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度C / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>先行馬が複数おりテンの先行争いが激化、ヒシアイラが前走のように楽にハナを切れず脚を消耗し直線で失速</li><li>1200mOP級の経験がたった1戦で、前走1勝クラスの好時計がクラス上昇で通用しない底力不足が露呈</li><li>父モーリスの中距離志向の血統が短距離OPの厳しい流れで裏目に出て、スプリント血統の馬に差し切られる</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,322円（信頼度13.2% × 100）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">2 タマモイカロス</td><td>6.1</td><td>2</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>単勝</td><td class="left">5 ヒシアイラ</td><td>269.6</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝○</td></tr><tr><td>3連複</td><td class="left">2 タマモイカロス-5 ヒシアイラ-8 フォーゲル</td><td>9.8</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>馬単</td><td class="left">2 タマモイカロス→7 マーブルパレス</td><td>99999.9</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3, 全馬Top(EV≥2.0)</td></tr><tr><td>ワイド</td><td class="left">2 タマモイカロス-5 ヒシアイラ</td><td>9999.9</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3, 券種別◎</td></tr><tr><td>馬単</td><td class="left">7 マーブルパレス→2 タマモイカロス</td><td>99999.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>複勝</td><td class="left">2 タマモイカロス</td><td>1.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">券種別◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,300円
+</p>
+</div></div>
+
+<div class="agent-section" style="border-left: 4px solid #ff9500;">
+<div class="round-header diff"><span>前回レポートとの差分</span></div>
+<div class="section-body">
+<div class="diff-row">
+  <div class="diff-card">
+    <div class="label">◎ 本命</div>
+    <div class="value">タマモイカロス</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">○ 対抗</div>
+    <div class="value">ヒシアイラ</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">▲ 単穴</div>
+    <div class="value">フォーゲル</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">CC信頼度</div>
+    <div class="value trust-high">13.2%</div>
+    <div class="sub">前回: 13.2%</div>
+    <div style="margin-top:6px;font-size:12px;"><span class="trust-high">+0.0%</span></div>
+  </div>
+</div>
+</div></div>
+
+</div>
+</body>
+</html>

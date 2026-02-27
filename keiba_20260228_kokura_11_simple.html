@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>別府特別 2026/02/28 KOKURA 11R (02/27 20:01 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .change-badge {
+    display: inline-block; background: #FF3B30; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .keep-badge {
+    display: inline-block; background: #8E8E93; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>別府特別 2026/02/28 KOKURA 11R (02/27 20:01 予想 馬体重なし)</h1>
+  <div class="meta">芝2000m（右 B） |  | 15頭立て | 1回 小倉 11日目 サラ系４歳以上 ２勝クラス (混)(特指) 定量 15頭 本賞金:1580,630,400,240,158万円</div>
+  <div class="cc-trust">CC最終信頼度: <strong>12.9%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">4. バルティカ</div>
+      <div class="pick-jockey">小沢 / 栗東高橋亮</div>
+    </div>
+    <div class="pick-prob">15.4%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">14. クラヴァンス</div>
+      <div class="pick-jockey">西塚 / 栗東友道</div>
+    </div>
+    <div class="pick-prob">13.1%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">7. タイセイリコルド</div>
+      <div class="pick-jockey">丹内 / 栗東小栗</div>
+    </div>
+    <div class="pick-prob">11.7%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">15頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">オメガインペリアル</td><td>牡5</td><td>58</td><td>松本</td><td>栗東安田</td><td>Kingman</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">プリズマジコ</td><td>牡5</td><td>58</td><td>秋山稔</td><td>栗東高橋忠</td><td>キズナ</td><td>グランデラ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ニホンピロホリデー</td><td>牝5</td><td>56</td><td>和田陽</td><td>栗東緒方</td><td>ニューイヤーズデイ</td><td>サクラプレジデント</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">バルティカ</td><td>牡4</td><td>57</td><td>小沢</td><td>栗東高橋亮</td><td>ルーラーシップ</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ファミリーツリー</td><td>牝5</td><td>56</td><td>古川奈</td><td>栗東河嶋</td><td>ワンアンドオンリー</td><td>Street Cry</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">マイネルフーガ</td><td>牡4</td><td>57</td><td>斎藤</td><td>美浦鈴木慎</td><td>ダノンバラード</td><td>タイキシャトル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">タイセイリコルド</td><td>牡4</td><td>57</td><td>丹内</td><td>栗東小栗</td><td>ゴールドシップ</td><td>ヴィクトワールピサ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">シンゼンカガ</td><td>牡4</td><td>57</td><td>吉田隼</td><td>栗東荒川</td><td>トーセンラー</td><td>Smart Strike</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">ホウオウアートマン</td><td>牡4</td><td>57</td><td>菱田</td><td>栗東矢作</td><td>ドゥラメンテ</td><td>ストリートセンス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">プラニスフェリオ</td><td>牡6</td><td>58</td><td>国分恭</td><td>栗東牧浦</td><td>ドゥラメンテ</td><td>Galileo</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">フナデ</td><td>牡5</td><td>58</td><td>丸山</td><td>美浦嘉藤</td><td>ゴールドシップ</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">ワザモノ</td><td>牡8</td><td>58</td><td>黛</td><td>美浦尾関</td><td>マツリダゴッホ</td><td>ショウナンカンプ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">ヤマニンループ</td><td>牡7</td><td>58</td><td>古川吉</td><td>栗東松永幹</td><td>ディープインパクト</td><td>チチカステナンゴ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">クラヴァンス</td><td>牡4</td><td>57</td><td>西塚</td><td>栗東友道</td><td>ロードカナロア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">レッセパッセ</td><td>牝5</td><td>56</td><td>菊沢</td><td>美浦柄崎</td><td>ダノンバラード</td><td>コンデュイット</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>エージェント分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">直近の有効レースは2025年6月の洞爺湖特別（2勝クラス）11着、その前も11着と低迷。1月の初日の出賞は取消。2勝目は2025/03/02の芝2000m・1着だが、上がり37.0秒という遅い上がりで1勝クラスを勝ち抜いたもの。2勝クラスでは3走して6着・11着・11着と完全に通用していない。調教評価Cも付いており、状態面も懸念。 **評価：完全に壁にぶつかっている。消し。** 直近5走は8着・4着・3着・3着・5着。安定して2勝クラスを走っているが、勝ち切れていない。浜名湖特別（芝2000m）4着・猪苗代特別（芝2000m）3着と2000mでの実績はある。上がりは34.1〜36.2秒と幅がある。最新走（2025/10/25）の芝1800m・8着は距離が合わなかった可能性があり、芝2000mに戻ることは好材料。ただし最後の勝利から年単位が経過しており、勝ち切る裏付けが不足。 **評価：連続...</div><h3>血統派</h3>
+<div class="analysis-text">小倉芝2000m（右回りBコース）。小倉の芝2000mは1コーナーまでの距離が短く、スタート後すぐにコーナーを回る形態が特徴だ。持続力と器用さが求められ、大型のステイヤー血統より機動力のある中距離血統が活きるコース。冬の小倉は洋芝の影響もあり、タフな馬場になりやすい。 **1番 オメガインペリアル（父Kingman・母父ハーツクライ）** Kingmanはガリレオ系の欧州マイラー。日本での産駒は芝の中距離で一定の実績があるが、基本的にはスピード寄りの血統。母父ハーツクライがスタミナと持続力を補完する構成で、2000mは守備範囲。ただし小倉の急坂のない持続コースよりも、上がりの速い展開が得意な印象で、コース適性は中程度。近走は2勝クラスで苦しんでおり、急仕上げ（評価C）も不安材料。 **2番 プリズマジコ（父キズナ・母父グランデラ）** キズナはディープインパクト系の中距離血統。芝1800〜...</div><h3>展開派</h3>
+<div class="analysis-text">小倉芝2000mは、2コーナー奥のポケットからスタートし、向正面からコーナー4つを回るコース。直線は約293mと短い。このコースの特徴として、**直線が短いため前有利**であり、差し・追込馬は道中で好位につけていないと届かない。坂もなく、最後の直線での逆転が起きにくいコース形態である。馬場状態はBコースで、開催11日目ということから内側がやや荒れてきている可能性がある。ただし芝のBコース替わりにより、内の傷みはある程度回避されている。 近走の通過順位から脚質を判定する。 |------|------|------| 明確な逃げ馬候補は以下の3頭: - **14 クラヴァンス**: 未勝利・1勝クラスで1-1-1-1と逃げて勝ち上がった馬。前走1勝クラスもハナを切って押し切り。逃げにこだわるタイプ。8枠14番と外枠。 - **9 ホウオウアートマン**: ダービーで1-1-1-1の逃げ経験。...</div><h3>陣営派</h3>
+<div class="analysis-text">小倉芝2000mは小倉競馬場の代表コース。右回りで内回りコースを使用し、スタートから最初のコーナーまでが短く、先行争いが激化しやすい。コース形態上、先行・差し両タイプが活躍できるが、上がり勝負になりやすい。2勝クラスは1勝クラス昇格組とクラス在籍組が混在する構成。 **1番 オメガインペリアル（松本 / 栗東安田）** 通算11戦2勝 [2-1-1-7]。前走が取消で実質7ヶ月以上の休養明け。2勝クラスでは25年3月に1勝クラス昇格後、洞爺湖特別・恋路ケ浜特別で掲示板外が続いている。2勝クラスでは6着が最高で、着差も0.4差以上ついており通用の目途が立っていない。松本騎手はローカル中堅騎手で小倉との特別な相性データは見えない。調教評価Cは不安材料。長期休養明け＋クラス実績薄で評価しにくい。 **好走確信度：低位** **2番 プリズマジコ（秋山稔 / 栗東高橋忠）** 通算16戦2勝 [2...</div><h3>体調派</h3>
+<div class="analysis-text">当日の馬体重は全馬未発表。近走の体重推移パターン、出走間隔、叩き何走目かを軸に評価する。 **出走間隔:** 2026/01/05 取消。実質前走は2025/06/28、約8ヶ月の休養明けに相当する。1月取消の影響でレース間隔は事実上の長期休養明け。 **体重推移:** 474(0) → 474(0) → 474(0) → 468(-6) → 取消。長らく474kg前後で安定していたが、直近の出走取消前後の状態が不透明。1勝クラスを勝った時が474(+20)と太め残りで勝ち切ったタイプ。 **斤量:** 58kg。牡5歳の定量。問題なし。 **調教:** 評価C「急仕上げ」。これは大きなマイナス材料。取消明けで仕上がり途上の可能性が高い。近走2勝クラスで11着・11着と結果も出ておらず、現状のクラス適性にも疑問。 **総評:** 取消明けの実質長期休養明け+調教C評価の急仕上げ。コンディシ...</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>先行馬多数による先行激化でバルティカが消耗し末脚不発、外差し馬(ヤマニンループ・フナデ)に差し切られるシナリオ</li><li>2勝クラスの壁: バルティカは昇級後5戦未勝利(最高3着・0.7秒差)で能力の天井が露呈、タイセイリコルドやクラヴァンスなど4歳の成長力ある馬に逆転されるシナリオ</li><li>小倉Bコース後半の荒れた内側馬場を通らされる内枠3番のバルティカが不利を受け、外枠の差し馬に展開が向くシナリオ</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,285円（信頼度12.9% × 100）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">4 バルティカ</td><td>124.8</td><td>3</td><td style='text-align:right;font-weight:600;'>300円</td><td style="font-size:11px;color:#8E8E93;">単勝◎, 券種別◎</td></tr><tr><td>単勝</td><td class="left">14 クラヴァンス</td><td>45.3</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝○</td></tr><tr><td>3連複</td><td class="left">4 バルティカ-7 タイセイリコルド-14 クラヴァンス</td><td>83.5</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲, 券種別◎</td></tr><tr><td>馬単</td><td class="left">4 バルティカ→3 ニホンピロホリデー</td><td>99999.9</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3, 全馬Top(EV≥2.0)</td></tr><tr><td>馬単</td><td class="left">3 ニホンピロホリデー→4 バルティカ</td><td>99999.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>馬単</td><td class="left">14 クラヴァンス→3 ニホンピロホリデー</td><td>99999.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>複勝</td><td class="left">4 バルティカ</td><td>5.2</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">券種別◎</td></tr><tr><td>馬連</td><td class="left">4 バルティカ-14 クラヴァンス</td><td>97.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">券種別◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,200円
+</p>
+</div></div>
+
+<div class="agent-section" style="border-left: 4px solid #ff9500;">
+<div class="round-header diff"><span>前回レポートとの差分</span></div>
+<div class="section-body">
+<div class="diff-row">
+  <div class="diff-card">
+    <div class="label">◎ 本命</div>
+    <div class="value">バルティカ</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">○ 対抗</div>
+    <div class="value">クラヴァンス</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">▲ 単穴</div>
+    <div class="value">タイセイリコルド</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">CC信頼度</div>
+    <div class="value trust-high">12.9%</div>
+    <div class="sub">前回: 12.9%</div>
+    <div style="margin-top:6px;font-size:12px;"><span class="trust-high">+0.0%</span></div>
+  </div>
+</div>
+</div></div>
+
+</div>
+</body>
+</html>
