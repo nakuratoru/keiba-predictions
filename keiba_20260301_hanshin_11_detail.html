@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第33回チューリップ賞 2026/03/01 HANSHIN 11R (03/01 03:03 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .change-badge {
+    display: inline-block; background: #FF3B30; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .keep-badge {
+    display: inline-block; background: #8E8E93; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第33回チューリップ賞 2026/03/01 HANSHIN 11R (03/01 03:03 予想 馬体重なし)</h1>
+  <div class="meta">芝1600m（右 外） |  | 15頭立て | 1回 阪神 4日目 サラ系3歳 オープン （国際）牝（指定） 馬齢 15頭</div>
+  <div class="cc-trust">CC最終信頼度: <strong>11.6%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">13. タイセイボーグ</div>
+      <div class="pick-jockey">西村 淳也 / 松下 武士</div>
+    </div>
+    <div class="pick-prob">17.5%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">12. アランカール</div>
+      <div class="pick-jockey">武 豊 / 斉藤 崇史</div>
+    </div>
+    <div class="pick-prob">16.8%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">5. ソルパッサーレ</div>
+      <div class="pick-jockey">浜中 俊 / 四位 洋文</div>
+    </div>
+    <div class="pick-prob">15.3%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">15頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">エレガンスアスク</td><td>牝3</td><td>55</td><td>坂井 瑠星</td><td>田中 克典</td><td>ポエティックフレア</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">グレースジェンヌ</td><td>牝3</td><td>55</td><td>岩田 望来</td><td>上村 洋行</td><td>モーリス</td><td>アグネスデジタル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">アンディムジーク</td><td>牝3</td><td>55</td><td>団野 大成</td><td>渡辺 薫彦</td><td>アドマイヤマーズ</td><td>ノヴェリスト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">スマートプリエール</td><td>牝3</td><td>55</td><td>吉村 誠之助</td><td>大久保 龍志</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ソルパッサーレ</td><td>牝3</td><td>55</td><td>浜中 俊</td><td>四位 洋文</td><td>キズナ</td><td>Footstepsinthesand</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">グランドオーパス</td><td>牝3</td><td>55</td><td>高杉 吏麒</td><td>橋口 慎介</td><td>キズナ</td><td>ノヴェリスト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">サキドリトッケン</td><td>牝3</td><td>55</td><td>飛田 愛斗</td><td></td><td>トゥザワールド</td><td>シーキングザダイヤ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">エイズルブルーム</td><td>牝3</td><td>55</td><td>池添 謙一</td><td>坂口 智康</td><td>リオンディーズ</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">ホワイトオーキッド</td><td>牝3</td><td>55</td><td>松山 弘平</td><td>藤原 英昭</td><td>キズナ</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">コニーアイランド</td><td>牝3</td><td>55</td><td>川田 将雅</td><td>中内田 充正</td><td>コントレイル</td><td>All American</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">ダンデノン</td><td>牝3</td><td>55</td><td>北村 友一</td><td>田中 克典</td><td>シルバーステート</td><td>Exceed And Excel</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">アランカール</td><td>牝3</td><td>55</td><td>武 豊</td><td>斉藤 崇史</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">タイセイボーグ</td><td>牝3</td><td>55</td><td>西村 淳也</td><td>松下 武士</td><td>インディチャンプ</td><td>Azamour</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">ナムラコスモス</td><td>牝3</td><td>55</td><td>田口 貫太</td><td>大橋 勇樹</td><td>ダノンプレミアム</td><td>ジョーカプチーノ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">ダンシングドール</td><td>牝3</td><td>55</td><td>森田 誠也</td><td>牧田 和弥</td><td>ヴァンセンヌ</td><td>スタチューオブリバティ</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 1 — 各エージェント確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>12</td><td class="left horse-name">アランカール</td><td>22.0</td><td>18.0</td><td>14.0</td><td>18.0</td><td>17.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:47px;"></div><span class="conf-val trust-high">17.8</span></div></td></tr><tr><td>13</td><td class="left horse-name">タイセイボーグ</td><td>28.0</td><td>12.0</td><td>22.0</td><td>14.0</td><td>13.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:47px;"></div><span class="conf-val trust-high">17.8</span></div></td></tr><tr><td>5</td><td class="left horse-name">ソルパッサーレ</td><td>9.0</td><td>14.0</td><td>18.0</td><td>11.0</td><td>24.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:40px;"></div><span class="conf-val trust-high">15.2</span></div></td></tr><tr><td>4</td><td class="left horse-name">スマートプリエール</td><td>7.0</td><td>8.0</td><td>8.0</td><td>7.0</td><td>12.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:22px;"></div><span class="conf-val trust-mid">8.4</span></div></td></tr><tr><td>9</td><td class="left horse-name">ホワイトオーキッド</td><td>5.0</td><td>8.0</td><td>7.0</td><td>13.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:18px;"></div><span class="conf-val trust-low">7.0</span></div></td></tr><tr><td>14</td><td class="left horse-name">ナムラコスモス</td><td>14.0</td><td>5.0</td><td>3.0</td><td>4.0</td><td>7.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:17px;"></div><span class="conf-val trust-low">6.6</span></div></td></tr><tr><td>10</td><td class="left horse-name">コニーアイランド</td><td>2.0</td><td>7.0</td><td>6.0</td><td>10.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:14px;"></div><span class="conf-val trust-low">5.6</span></div></td></tr><tr><td>8</td><td class="left horse-name">エイズルブルーム</td><td>4.0</td><td>5.0</td><td>4.0</td><td>6.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:12px;"></div><span class="conf-val trust-low">4.8</span></div></td></tr><tr><td>1</td><td class="left horse-name">エレガンスアスク</td><td>1.0</td><td>4.0</td><td>7.0</td><td>5.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:11px;"></div><span class="conf-val trust-low">4.2</span></div></td></tr><tr><td>11</td><td class="left horse-name">ダンデノン</td><td>1.0</td><td>5.0</td><td>2.0</td><td>3.0</td><td>6.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.4</span></div></td></tr><tr><td>6</td><td class="left horse-name">グランドオーパス</td><td>4.0</td><td>4.0</td><td>3.0</td><td>2.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:7px;"></div><span class="conf-val trust-low">2.8</span></div></td></tr><tr><td>3</td><td class="left horse-name">アンディムジーク</td><td>3.0</td><td>3.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.2</span></div></td></tr><tr><td>2</td><td class="left horse-name">グレースジェンヌ</td><td>1.0</td><td>3.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.0</span></div></td></tr><tr><td>7</td><td class="left horse-name">サキドリトッケン</td><td>1.0</td><td>1.0</td><td>2.0</td><td>1.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr><tr><td>15</td><td class="left horse-name">ダンシングドール</td><td>1.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 1 — エージェント分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">タイセイボーグがGI阪神JF3着(1:32.9)・GIII連続3着と重賞実績で断然。上がり33.1〜35.0秒台で安定し軸本命。アランカールは野路菊S制覇時の上がり33.3が今回メンバー最速クラス、GI阪神JF5着(差0.5)も高評価。ナムラコスモスは前走こぶし賞の上がり33.6が直近最高の末脚。ソルパッサーレは河津桜賞1着1:33.7だが上がり35.9と末脚の遅さが気がかり。サキドリトッケン・ダンシングドールは芝1600mデータなしで軽視。</div><h3>血統派</h3>
+<div class="analysis-text">アランカールはエピファネイア×ディープインパクトの黄金配合で阪神外回り長い直線に最適。野路菊S圧勝・JF5着で同コース実績もあり血統面で最上位。ソルパッサーレはキズナ×Footstepsinthesandで母父のスプリンター血統がマイル方向にスピードを補正し好配合。タイセイボーグはインディチャンプ(マイラー)×Azamour(スタミナ)で芝マイルにフィット。スマートプリエールもエピファネイア×ディープインパクトだが本質は中距離志向。サキドリトッケンはトゥザワールド×シーキングザダイヤでダート色強く芝不適。</div><h3>展開派</h3>
+<div class="analysis-text">逃げ馬3頭(スマートプリエール・グランドオーパス・ダンデノン)の主張でミドル〜ややハイペース予想。好位差しのソルパッサーレが3枠5番の内枠から展開利を得る。タイセイボーグは中団6番手あたりから安定した差し脚で最上位。アランカールは大外追込で距離ロスのリスクあり。エレガンスアスクは1枠1番の内枠からロスなく立ち回れる穴候補。外枠のナムラコスモスは距離ロスが展開面で不利。</div><h3>陣営派</h3>
+<div class="analysis-text">アランカールは武豊継続騎乗×阪神JF5着×野路菊S(阪神1600m)勝利の三拍子で陣営最高評価。タイセイボーグはGI3着の実績は認めるが西村淳也×松下武士の陣営格ではアランカールに一歩譲る。ホワイトオーキッドは藤原英昭×松山弘平という業界最強クラスの陣営で高評価。コニーアイランドは川田将雅×中内田充正の超強力タッグで実績薄でも陣営力を評価。ソルパッサーレは浜中俊の重賞対応力と前走完勝が好材料。</div><h3>体調派</h3>
+<div class="analysis-text">ソルパッサーレの体重推移450→452→456kgが全馬中最安定で理想的な微増パターン、体調面で最高評価。アランカールは438kgで安定、JF5着からの叩き3走目で上積み期待。タイセイボーグはJF時+16kgの太め残りが最大の課題、絞れれば最大上昇候補。スマートプリエールは成長型の体重推移で叩き2走目。ナムラコスモスは中2週の連戦消耗リスクが懸念。アンディムジークは体重乱高下+調教C評価で最低評価。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 2 — 再考後の確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>13</td><td class="left horse-name">タイセイボーグ</td><td>26.0</td><td>15.0</td><td>20.0</td><td>16.0</td><td>15.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:49px;"></div><span class="conf-val trust-high">18.4</span></div></td></tr><tr><td>12</td><td class="left horse-name">アランカール</td><td>20.0</td><td>16.0</td><td>14.0</td><td>18.0</td><td>19.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:46px;"></div><span class="conf-val trust-high">17.4</span></div></td></tr><tr><td>5</td><td class="left horse-name">ソルパッサーレ</td><td>11.0</td><td>14.0</td><td>18.0</td><td>13.0</td><td>22.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:41px;"></div><span class="conf-val trust-high">15.6</span></div></td></tr><tr><td>9</td><td class="left horse-name">ホワイトオーキッド</td><td>6.0</td><td>8.0</td><td>9.0</td><td>13.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:21px;"></div><span class="conf-val trust-mid">8.0</span></div></td></tr><tr><td>4</td><td class="left horse-name">スマートプリエール</td><td>6.0</td><td>7.0</td><td>9.0</td><td>7.0</td><td>10.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:20px;"></div><span class="conf-val trust-low">7.8</span></div></td></tr><tr><td>14</td><td class="left horse-name">ナムラコスモス</td><td>11.0</td><td>8.0</td><td>4.0</td><td>4.0</td><td>6.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:17px;"></div><span class="conf-val trust-low">6.6</span></div></td></tr><tr><td>10</td><td class="left horse-name">コニーアイランド</td><td>4.0</td><td>6.0</td><td>6.0</td><td>10.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:15px;"></div><span class="conf-val trust-low">5.8</span></div></td></tr><tr><td>8</td><td class="left horse-name">エイズルブルーム</td><td>4.0</td><td>5.0</td><td>4.0</td><td>6.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:12px;"></div><span class="conf-val trust-low">4.6</span></div></td></tr><tr><td>1</td><td class="left horse-name">エレガンスアスク</td><td>1.0</td><td>4.0</td><td>6.0</td><td>5.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">4.0</span></div></td></tr><tr><td>11</td><td class="left horse-name">ダンデノン</td><td>1.0</td><td>5.0</td><td>2.0</td><td>3.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:8px;"></div><span class="conf-val trust-low">3.2</span></div></td></tr><tr><td>6</td><td class="left horse-name">グランドオーパス</td><td>4.0</td><td>4.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:6px;"></div><span class="conf-val trust-low">2.6</span></div></td></tr><tr><td>3</td><td class="left horse-name">アンディムジーク</td><td>3.0</td><td>3.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.0</span></div></td></tr><tr><td>2</td><td class="left horse-name">グレースジェンヌ</td><td>1.0</td><td>3.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:4px;"></div><span class="conf-val trust-low">1.8</span></div></td></tr><tr><td>15</td><td class="left horse-name">ダンシングドール</td><td>1.0</td><td>1.0</td><td>2.0</td><td>1.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr><tr><td>7</td><td class="left horse-name">サキドリトッケン</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:2px;"></div><span class="conf-val trust-low">1.0</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 2 — エージェント再考</span></div>
+<div class="section-body">
+<h3>実績派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">ソルパッサーレを9%→11%に修正。体調派の体重安定評価を部分採用するも上がり35.9の遅さは維持。コニーアイランドを2%→4%に修正、新馬上がり33.9を再評価。ナムラコスモスを14%→11%に修正、外枠不利を展開派から部分採用。タイセイボーグ28%→26%、アランカール22%→20%は全体調整で微減。</div><h3>血統派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">タイセイボーグを12%→15%に引き上げ。インディチャンプ産駒のマイル切れ味と阪神JF3着の重みを再評価。ナムラコスモスを5%→8%に引き上げ、ダノンプレミアム産駒のマイル適性とこぶし賞上がり33.6を評価。アランカール18%→16%に微減、タイセイボーグへの配分確保。スマートプリエール8%→7%、距離適性への懸念を反映。</div><h3>展開派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">ホワイトオーキッドを7%→9%に上方修正。5枠9番の中枠と松山騎手の器用さで好位確保シナリオを評価。スマートプリエールを8%→9%に微増、内枠から控える選択肢を加味。ナムラコスモスは3%→4%に微増するも外枠の物理的不利は変わらず。タイセイボーグは22%→20%に微減、他馬への配分調整。</div><h3>陣営派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">タイセイボーグを14%→16%に引き上げ。GI3着の実績は陣営派でも無視できない客観的事実。ソルパッサーレを11%→13%に引き上げ、浜中×四位コンビの陣営力と体重安定を陣営管理能力として評価。下位馬(グレースジェンヌ・アンディムジーク・グランドオーパス・ダンシングドール)を各1%に整理。</div><h3>体調派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">ソルパッサーレを24%→22%に微調整、格上挑戦への実績派指摘を1割取り込む。ホワイトオーキッドを2%→4%に引き上げ、藤原厩舎の仕上げ力を一定評価。スマートプリエールを12%→10%に下方修正、体重の乱高下パターンをより厳しく評価。アランカールを17%→19%に微修正、叩き3走目の上積み評価。タイセイボーグを13%→15%、太め残り解消の可能性を加点。ナムラコスモスを7%→6%、中2週消耗リスクを再強調。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>Round 2.5 — 批判者分析</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>5人平均</th><th>批判者</th><th>差</th></tr></thead>
+<tbody>
+<tr><td>13</td><td class="left horse-name">タイセイボーグ</td><td>18.4</td><td>13.0</td><td><span class="trust-low">-5.4</span></td></tr><tr><td>12</td><td class="left horse-name">アランカール</td><td>17.4</td><td>14.0</td><td><span class="trust-low">-3.4</span></td></tr><tr><td>5</td><td class="left horse-name">ソルパッサーレ</td><td>15.6</td><td>14.0</td><td><span class="trust-low">-1.6</span></td></tr><tr><td>9</td><td class="left horse-name">ホワイトオーキッド</td><td>8.0</td><td>8.0</td><td><span style="color:#8E8E93;">0</span></td></tr><tr><td>4</td><td class="left horse-name">スマートプリエール</td><td>7.8</td><td>9.0</td><td><span class="trust-high">+1.2</span></td></tr><tr><td>14</td><td class="left horse-name">ナムラコスモス</td><td>6.6</td><td>7.0</td><td><span class="trust-high">+0.4</span></td></tr><tr><td>10</td><td class="left horse-name">コニーアイランド</td><td>5.8</td><td>8.0</td><td><span class="trust-high">+2.2</span></td></tr><tr><td>8</td><td class="left horse-name">エイズルブルーム</td><td>4.6</td><td>5.0</td><td><span class="trust-high">+0.4</span></td></tr><tr><td>1</td><td class="left horse-name">エレガンスアスク</td><td>4.0</td><td>7.0</td><td><span class="trust-high">+3.0</span></td></tr><tr><td>11</td><td class="left horse-name">ダンデノン</td><td>3.2</td><td>4.0</td><td><span class="trust-high">+0.8</span></td></tr><tr><td>6</td><td class="left horse-name">グランドオーパス</td><td>2.6</td><td>4.0</td><td><span class="trust-high">+1.4</span></td></tr><tr><td>3</td><td class="left horse-name">アンディムジーク</td><td>2.0</td><td>2.0</td><td><span style="color:#8E8E93;">0</span></td></tr><tr><td>2</td><td class="left horse-name">グレースジェンヌ</td><td>1.8</td><td>2.0</td><td><span class="trust-high">+0.2</span></td></tr><tr><td>15</td><td class="left horse-name">ダンシングドール</td><td>1.2</td><td>2.0</td><td><span class="trust-high">+0.8</span></td></tr><tr><td>7</td><td class="left horse-name">サキドリトッケン</td><td>1.0</td><td>1.0</td><td><span style="color:#8E8E93;">0</span></td></tr>
+</tbody></table>
+
+<div style="margin-top:16px;background:#F9F0FF;border-radius:8px;padding:12px;">
+  <div style="font-size:12px;font-weight:700;color:#AF52DE;margin-bottom:6px;">敗因シナリオ（批判者）</div>
+  <ol style="font-size:12px;color:#3A3A3C;margin-left:16px;"><li>タイセイボーグが勝ち切れないパターン継続（5戦で1勝のみ、重賞3戦全て2-3着止まり）＋休み明けの馬体変動リスク</li><li>アランカールが出遅れて後方からの競馬を強いられ、前残り展開で届かない（阪神JFの18-9通過の再現）</li><li>全員が低評価のコニーアイランドやエレガンスアスクが、底を見せていない強みを発揮して上位人気馬を逆転するシナリオ</li></ol>
+</div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者分析全文</span></div>
+<div class="section-body">
+<div class="agent-text"><p>タイセイボーグは5戦1勝で「勝ち切れない天井」の懸念あり、実績派26%は確証バイアスで過大。アランカールは全員14-20%で一致しており「誰も弱点を深掘りしていない」シグナル、出遅れ癖と間隔の不安が死角。ソルパッサーレはマイル実績1戦のみで22%は攻めすぎ。盲点馬はコニーアイランド（川田×中内田の仕上げ力）とエレガンスアスク（底を見せていない1戦1勝馬の上振れ余地）。死角リスクは高く、上位3頭に収束した予想は荒れたときの被害が大きい。</p></div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>13</td><td class="left horse-name">タイセイボーグ</td><td class="trust-high">17.5%</td><td>26.0</td><td>15.0</td><td>20.0</td><td>16.0</td><td>15.0</td><td>13.0</td></tr><tr><td>2</td><td>12</td><td class="left horse-name">アランカール</td><td class="trust-high">16.8%</td><td>20.0</td><td>16.0</td><td>14.0</td><td>18.0</td><td>19.0</td><td>14.0</td></tr><tr><td>3</td><td>5</td><td class="left horse-name">ソルパッサーレ</td><td class="trust-high">15.3%</td><td>11.0</td><td>14.0</td><td>18.0</td><td>13.0</td><td>22.0</td><td>14.0</td></tr><tr><td>4</td><td>4</td><td class="left horse-name">スマートプリエール</td><td class="trust-mid">8.0%</td><td>6.0</td><td>7.0</td><td>9.0</td><td>7.0</td><td>10.0</td><td>9.0</td></tr><tr><td>5</td><td>9</td><td class="left horse-name">ホワイトオーキッド</td><td class="trust-mid">8.0%</td><td>6.0</td><td>8.0</td><td>9.0</td><td>13.0</td><td>4.0</td><td>8.0</td></tr><tr><td>6</td><td>14</td><td class="left horse-name">ナムラコスモス</td><td class="trust-low">6.7%</td><td>11.0</td><td>8.0</td><td>4.0</td><td>4.0</td><td>6.0</td><td>7.0</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">コニーアイランド</td><td class="trust-low">6.2%</td><td>4.0</td><td>6.0</td><td>6.0</td><td>10.0</td><td>3.0</td><td>8.0</td></tr><tr><td>8</td><td>8</td><td class="left horse-name">エイズルブルーム</td><td class="trust-low">4.7%</td><td>4.0</td><td>5.0</td><td>4.0</td><td>6.0</td><td>4.0</td><td>5.0</td></tr><tr><td>9</td><td>1</td><td class="left horse-name">エレガンスアスク</td><td class="trust-low">4.5%</td><td>1.0</td><td>4.0</td><td>6.0</td><td>5.0</td><td>4.0</td><td>7.0</td></tr><tr><td>10</td><td>11</td><td class="left horse-name">ダンデノン</td><td class="trust-low">3.3%</td><td>1.0</td><td>5.0</td><td>2.0</td><td>3.0</td><td>5.0</td><td>4.0</td></tr><tr><td>11</td><td>6</td><td class="left horse-name">グランドオーパス</td><td class="trust-low">2.8%</td><td>4.0</td><td>4.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>4.0</td></tr><tr><td>12</td><td>3</td><td class="left horse-name">アンディムジーク</td><td class="trust-low">2.0%</td><td>3.0</td><td>3.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td>2.0</td></tr><tr><td>13</td><td>2</td><td class="left horse-name">グレースジェンヌ</td><td class="trust-low">1.8%</td><td>1.0</td><td>3.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>2.0</td></tr><tr><td>14</td><td>15</td><td class="left horse-name">ダンシングドール</td><td class="trust-low">1.3%</td><td>1.0</td><td>1.0</td><td>2.0</td><td>1.0</td><td>1.0</td><td>2.0</td></tr><tr><td>15</td><td>7</td><td class="left horse-name">サキドリトッケン</td><td class="trust-low">1.0%</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>市場推定勝率</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>13</td><td class="left horse-name">タイセイボーグ</td><td>17.5%</td><td>4.4</td><td>22.7%</td><td class="ev-low">0.77</td></tr><tr><td>2</td><td>12</td><td class="left horse-name">アランカール</td><td>16.8%</td><td>2.8</td><td>35.7%</td><td class="ev-low">0.47</td></tr><tr><td>3</td><td>5</td><td class="left horse-name">ソルパッサーレ</td><td>15.3%</td><td>8.0</td><td>12.5%</td><td class="ev-low">1.23</td></tr><tr><td>4</td><td>4</td><td class="left horse-name">スマートプリエール</td><td>8.0%</td><td>14.8</td><td>6.8%</td><td class="ev-low">1.18</td></tr><tr><td>5</td><td>9</td><td class="left horse-name">ホワイトオーキッド</td><td>8.0%</td><td>15.0</td><td>6.7%</td><td class="ev-low">1.20</td></tr><tr><td>6</td><td>14</td><td class="left horse-name">ナムラコスモス</td><td>6.7%</td><td>18.4</td><td>5.4%</td><td class="ev-low">1.23</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">コニーアイランド</td><td>6.2%</td><td>6.2</td><td>16.1%</td><td class="ev-low">0.38</td></tr><tr><td>8</td><td>8</td><td class="left horse-name">エイズルブルーム</td><td>4.7%</td><td>38.1</td><td>2.6%</td><td class="ev-mid">1.78</td></tr><tr><td>9</td><td>1</td><td class="left horse-name">エレガンスアスク</td><td>4.5%</td><td>12.6</td><td>7.9%</td><td class="ev-low">0.57</td></tr><tr><td>10</td><td>11</td><td class="left horse-name">ダンデノン</td><td>3.3%</td><td>86.1</td><td>1.2%</td><td class="ev-mid">2.87</td></tr><tr><td>11</td><td>6</td><td class="left horse-name">グランドオーパス</td><td>2.8%</td><td>28.2</td><td>3.5%</td><td class="ev-low">0.80</td></tr><tr><td>12</td><td>3</td><td class="left horse-name">アンディムジーク</td><td>2.0%</td><td>143.5</td><td>0.7%</td><td class="ev-mid">2.87</td></tr><tr><td>13</td><td>2</td><td class="left horse-name">グレースジェンヌ</td><td>1.8%</td><td>120.2</td><td>0.8%</td><td class="ev-mid">2.20</td></tr><tr><td>14</td><td>15</td><td class="left horse-name">ダンシングドール</td><td>1.3%</td><td>154.8</td><td>0.6%</td><td class="ev-mid">2.06</td></tr><tr><td>15</td><td>7</td><td class="left horse-name">サキドリトッケン</td><td>1.0%</td><td>31.4</td><td>3.2%</td><td class="ev-low">0.31</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別 期待値トップ3</span></div>
+<div class="section-body">
+<h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>単勝</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">13 タイセイボーグ</td><td>24.0%</td><td>4.4</td><td class="ev-low">1.06</td></tr><tr><td>1</td><td class="left">5 ソルパッサーレ</td><td>19.4%</td><td>8.0</td><td class="ev-mid">1.55</td></tr><tr><td>2</td><td class="left">11 ダンデノン</td><td>1.7%</td><td>86.1</td><td class="ev-low">1.46</td></tr><tr><td>3</td><td class="left">8 エイズルブルーム</td><td>2.9%</td><td>38.1</td><td class="ev-low">1.10</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>複勝</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">13 タイセイボーグ</td><td>63.4%</td><td>1.5</td><td class="ev-low">0.95</td></tr><tr><td>1</td><td class="left">5 ソルパッサーレ</td><td>55.6%</td><td>2.3</td><td class="ev-low">1.28</td></tr><tr style="background:#E8F5E9;"><td>2</td><td class="left">13 タイセイボーグ</td><td>63.4%</td><td>1.5</td><td class="ev-low">0.95</td></tr><tr><td>3</td><td class="left">12 アランカール</td><td>61.2%</td><td>1.3</td><td class="ev-low">0.80</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>馬連</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">12 アランカール-13 タイセイボーグ</td><td>14.1%</td><td>5.0</td><td class="ev-low">0.71</td></tr><tr><td>1</td><td class="left">5 ソルパッサーレ-8 エイズルブルーム</td><td>1.3%</td><td>134.3</td><td class="ev-mid">1.72</td></tr><tr><td>2</td><td class="left">5 ソルパッサーレ-13 タイセイボーグ</td><td>11.9%</td><td>13.9</td><td class="ev-mid">1.66</td></tr><tr><td>3</td><td class="left">5 ソルパッサーレ-9 ホワイトオーキッド</td><td>3.1%</td><td>49.3</td><td class="ev-mid">1.52</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>ワイド</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">12 アランカール-13 タイセイボーグ</td><td>35.5%</td><td>2.5</td><td class="ev-low">0.89</td></tr><tr><td>1</td><td class="left">5 ソルパッサーレ-11 ダンデノン</td><td>2.5%</td><td>61.2</td><td class="ev-mid">1.50</td></tr><tr><td>2</td><td class="left">5 ソルパッサーレ-13 タイセイボーグ</td><td>31.7%</td><td>4.6</td><td class="ev-low">1.46</td></tr><tr><td>3</td><td class="left">5 ソルパッサーレ-9 ホワイトオーキッド</td><td>9.9%</td><td>14.5</td><td class="ev-low">1.44</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>馬単</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">13 タイセイボーグ→12 アランカール</td><td>7.1%</td><td>11.7</td><td class="ev-low">0.83</td></tr><tr><td>1</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ</td><td>5.8%</td><td>30.1</td><td class="ev-mid">1.74</td></tr><tr><td>2</td><td class="left">13 タイセイボーグ→5 ソルパッサーレ</td><td>6.1%</td><td>25.5</td><td class="ev-mid">1.56</td></tr><tr><td>3</td><td class="left">5 ソルパッサーレ→9 ホワイトオーキッド</td><td>1.7%</td><td>93.8</td><td class="ev-mid">1.55</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>3連複</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 ソルパッサーレ-12 アランカール-13 タイセイボーグ</td><td>14.5%</td><td>10.5</td><td class="ev-mid">1.52</td></tr><tr><td>1</td><td class="left">5 ソルパッサーレ-9 ホワイトオーキッド-13 タイセイボーグ</td><td>3.6%</td><td>50.6</td><td class="ev-mid">1.80</td></tr><tr><td>2</td><td class="left">5 ソルパッサーレ-8 エイズルブルーム-12 アランカール</td><td>1.3%</td><td>128.6</td><td class="ev-mid">1.70</td></tr><tr><td>3</td><td class="left">5 ソルパッサーレ-9 ホワイトオーキッド-12 アランカール</td><td>3.3%</td><td>50.2</td><td class="ev-mid">1.64</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>3連単</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">13 タイセイボーグ→12 アランカール→5 ソルパッサーレ</td><td>2.6%</td><td>44.1</td><td class="ev-low">1.14</td></tr><tr><td>1</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ→12 アランカール</td><td>2.3%</td><td>81.4</td><td class="ev-mid">1.88</td></tr><tr><td>2</td><td class="left">5 ソルパッサーレ→12 アランカール→13 タイセイボーグ</td><td>2.2%</td><td>75.9</td><td class="ev-mid">1.71</td></tr><tr><td>3</td><td class="left">13 タイセイボーグ→5 ソルパッサーレ→12 アランカール</td><td>2.4%</td><td>63.5</td><td class="ev-mid">1.55</td></tr></tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:12px;">※ハーヴィル公式による的中確率（EV_POWER=1.6乗補正適用）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>期待値大馬券（上位4馬）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>券種</th><th>組合せ</th><th>CC推定確率</th><th>オッズ</th><th>期待値</th></tr></thead>
+<tbody>
+<tr style="background:#E8F5E9;"><td>1</td><td>3連単</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ→12 アランカール</td><td>2.3%</td><td>81.4</td><td class="ev-mid">1.88</td></tr><tr style="background:#E8F5E9;"><td>2</td><td>馬単</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ</td><td>5.8%</td><td>30.1</td><td class="ev-mid">1.74</td></tr><tr style="background:#E8F5E9;"><td>3</td><td>3連単</td><td class="left">5 ソルパッサーレ→12 アランカール→13 タイセイボーグ</td><td>2.2%</td><td>75.9</td><td class="ev-mid">1.71</td></tr><tr><td>4</td><td>馬連</td><td class="left">5 ソルパッサーレ-13 タイセイボーグ</td><td>11.9%</td><td>13.9</td><td class="ev-mid">1.66</td></tr><tr><td>5</td><td>馬単</td><td class="left">13 タイセイボーグ→5 ソルパッサーレ</td><td>6.1%</td><td>25.5</td><td class="ev-mid">1.56</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定1-4位馬対象（EV_POWER=1.6乗補正）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>期待値大馬券（全馬）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>券種</th><th>組合せ</th><th>CC推定確率</th><th>オッズ</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>3連単</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ→12 アランカール</td><td>2.3%</td><td>81.4</td><td class="ev-mid">1.88</td></tr><tr><td>2</td><td>3連複</td><td class="left">5 ソルパッサーレ-9 ホワイトオーキッド-13 タイセイボーグ</td><td>3.6%</td><td>50.6</td><td class="ev-mid">1.80</td></tr><tr><td>3</td><td>馬単</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ</td><td>5.8%</td><td>30.1</td><td class="ev-mid">1.74</td></tr><tr><td>4</td><td>馬連</td><td class="left">5 ソルパッサーレ-8 エイズルブルーム</td><td>1.3%</td><td>134.3</td><td class="ev-mid">1.72</td></tr><tr><td>5</td><td>3連単</td><td class="left">5 ソルパッサーレ→12 アランカール→13 タイセイボーグ</td><td>2.2%</td><td>75.9</td><td class="ev-mid">1.71</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※全馬対象（EV_POWER=1.6乗補正）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,159円（信頼度11.6% × 100）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">13 タイセイボーグ</td><td>4.4</td><td>4</td><td style='text-align:right;font-weight:600;'>400円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>単勝</td><td class="left">12 アランカール</td><td>2.8</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝○</td></tr><tr><td>3連複</td><td class="left">5 ソルパッサーレ-12 アランカール-13 タイセイボーグ</td><td>10.5</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">13 タイセイボーグ→12 アランカール→5 ソルパッサーレ</td><td>44.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎○▲</td></tr><tr><td>3連単</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ→12 アランカール</td><td>81.4</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>馬単</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ</td><td>30.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>3連単</td><td class="left">5 ソルパッサーレ→12 アランカール→13 タイセイボーグ</td><td>75.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,100円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>関門橋ステークス 2026/03/01 KOKURA 11R (03/01 03:14 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .change-badge {
+    display: inline-block; background: #FF3B30; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .keep-badge {
+    display: inline-block; background: #8E8E93; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>関門橋ステークス 2026/03/01 KOKURA 11R (03/01 03:14 予想 馬体重なし)</h1>
+  <div class="meta">芝2000m（右） |  | 17頭立て | 1回 小倉 12日目 サラ系4歳以上 3勝クラス （混合）（特指） 定量 17頭</div>
+  <div class="cc-trust">CC最終信頼度: <strong>9.4%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">11. ミッキーゴールド</div>
+      <div class="pick-jockey">丹内 祐次 / 池江 泰寿</div>
+    </div>
+    <div class="pick-prob">14.5%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">8. バルナバ</div>
+      <div class="pick-jockey">斎藤 新 / 浜田 多実雄</div>
+    </div>
+    <div class="pick-prob">13.0%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">16. サクソンジェンヌ</div>
+      <div class="pick-jockey">横山 琉人 / 高橋 義忠</div>
+    </div>
+    <div class="pick-prob">11.0%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">17頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ピンクジン</td><td>牝6</td><td>56</td><td>嶋田 純次</td><td>南田 美知雄</td><td>ダノンバラード</td><td>キャプテンスティーヴ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">ロワンディシー</td><td>牡8</td><td>58</td><td>菊沢 一樹</td><td>北出 成人</td><td>リオンディーズ</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ドラゴンヘッド</td><td>牡6</td><td>58</td><td>武藤 雅</td><td>武藤 善則</td><td>ラブリーデイ</td><td>アドマイヤムーン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">サトノクローク</td><td>牡6</td><td>58</td><td>菱田 裕二</td><td>橋口 慎介</td><td>サトノクラウン</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">アイスグリーン</td><td>牡6</td><td>58</td><td>亀田 温心</td><td>池添 学</td><td>モーリス</td><td>スペシャルウィーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ホルトバージ</td><td>牡5</td><td>58</td><td>小崎 綾也</td><td>寺島 良</td><td>キンシャサノキセキ</td><td>Zensational</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">マイネルニコラス</td><td>牡7</td><td>58</td><td>国分 恭介</td><td>畠山 吉宏</td><td>キングカメハメハ</td><td>ダンスインザダーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">バルナバ</td><td>牡4</td><td>57</td><td>斎藤 新</td><td>浜田 多実雄</td><td>ハービンジャー</td><td>マンハッタンカフェ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">アルトゥーム</td><td>牡5</td><td>58</td><td>鮫島 克駿</td><td>藤岡 健一</td><td>モーリス</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">モズロックンロール</td><td>牡6</td><td>58</td><td>西塚 洸二</td><td>藤岡 健一</td><td>ビーチパトロール</td><td>マンハッタンカフェ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">ミッキーゴールド</td><td>せん4</td><td>57</td><td>丹内 祐次</td><td>池江 泰寿</td><td>リアルスティール</td><td>Global Hunter</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">バリアントバイオ</td><td>牡6</td><td>58</td><td>松若 風馬</td><td>今野 貞一</td><td>トーセンジョーダン</td><td>アルデバランII</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">クレバーテースト</td><td>せん7</td><td>58</td><td>小沢 大仁</td><td>佐藤 悠太</td><td>オルフェーヴル</td><td>サクラバクシンオー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">トーアライデン</td><td>牡6</td><td>58</td><td>中井 裕二</td><td>河嶋 宏樹</td><td>マインドユアビスケッツ</td><td>アグネスデジタル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">パワーホール</td><td>せん5</td><td>58</td><td>古川 吉洋</td><td>昆 貢</td><td>スワーヴリチャード</td><td>コマンズ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">サクソンジェンヌ</td><td>牝5</td><td>56</td><td>横山 琉人</td><td>高橋 義忠</td><td>Saxon Warrior</td><td>Dark Angel</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">17</span></td><td>17</td><td class="left horse-name">タイキラフター</td><td>牡6</td><td>58</td><td>富田 暁</td><td>大竹 正博</td><td>ハーツクライ</td><td>Any Given Saturday</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 1 — 各エージェント確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>11</td><td class="left horse-name">ミッキーゴールド</td><td>18.0</td><td>13.0</td><td>16.0</td><td>16.0</td><td>9.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:38px;"></div><span class="conf-val trust-mid">14.4</span></div></td></tr><tr><td>8</td><td class="left horse-name">バルナバ</td><td>14.0</td><td>11.0</td><td>10.0</td><td>14.0</td><td>14.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:33px;"></div><span class="conf-val trust-mid">12.6</span></div></td></tr><tr><td>16</td><td class="left horse-name">サクソンジェンヌ</td><td>8.0</td><td>12.0</td><td>7.0</td><td>12.0</td><td>15.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:28px;"></div><span class="conf-val trust-mid">10.8</span></div></td></tr><tr><td>5</td><td class="left horse-name">アイスグリーン</td><td>10.0</td><td>12.0</td><td>12.0</td><td>8.0</td><td>10.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:27px;"></div><span class="conf-val trust-mid">10.4</span></div></td></tr><tr><td>14</td><td class="left horse-name">トーアライデン</td><td>6.0</td><td>8.0</td><td>8.0</td><td>9.0</td><td>13.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:23px;"></div><span class="conf-val trust-mid">8.8</span></div></td></tr><tr><td>17</td><td class="left horse-name">タイキラフター</td><td>13.0</td><td>14.0</td><td>6.0</td><td>5.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:21px;"></div><span class="conf-val trust-mid">8.2</span></div></td></tr><tr><td>13</td><td class="left horse-name">クレバーテースト</td><td>9.0</td><td>7.0</td><td>10.0</td><td>7.0</td><td>7.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:21px;"></div><span class="conf-val trust-mid">8.0</span></div></td></tr><tr><td>1</td><td class="left horse-name">ピンクジン</td><td>4.0</td><td>6.0</td><td>9.0</td><td>3.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:14px;"></div><span class="conf-val trust-low">5.4</span></div></td></tr><tr><td>15</td><td class="left horse-name">パワーホール</td><td>3.0</td><td>2.0</td><td>5.0</td><td>8.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:11px;"></div><span class="conf-val trust-low">4.4</span></div></td></tr><tr><td>9</td><td class="left horse-name">アルトゥーム</td><td>2.0</td><td>5.0</td><td>2.0</td><td>5.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.6</span></div></td></tr><tr><td>4</td><td class="left horse-name">サトノクローク</td><td>3.0</td><td>2.0</td><td>4.0</td><td>4.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:8px;"></div><span class="conf-val trust-low">3.2</span></div></td></tr><tr><td>10</td><td class="left horse-name">モズロックンロール</td><td>3.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:8px;"></div><span class="conf-val trust-low">3.0</span></div></td></tr><tr><td>3</td><td class="left horse-name">ドラゴンヘッド</td><td>3.0</td><td>2.0</td><td>2.0</td><td>3.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:6px;"></div><span class="conf-val trust-low">2.6</span></div></td></tr><tr><td>7</td><td class="left horse-name">マイネルニコラス</td><td>1.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:4px;"></div><span class="conf-val trust-low">1.6</span></div></td></tr><tr><td>2</td><td class="left horse-name">ロワンディシー</td><td>1.0</td><td>1.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.4</span></div></td></tr><tr><td>6</td><td class="left horse-name">ホルトバージ</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr><tr><td>12</td><td class="left horse-name">バリアントバイオ</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:2px;"></div><span class="conf-val trust-low">1.0</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 1 — エージェント分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">ミッキーゴールドが7戦3勝の高勝率で最上位、若駒S2着・若葉S3着とリステッド好走歴が底力を証明。2勝クラス圧勝のタイム(1:59.2、上がり34.2)は3勝クラスでも通用水準。バルナバは前走八坂S(3勝クラス)で上がり33.3秒と圧巻の末脚、昇級初戦4着は本物。アイスグリーンは大原S2着(上がり34.2)で芝2000mの好走実績が直接の根拠。タイキラフターは魚沼Sの上がり32.7秒が異次元だが前走13着と大敗。トーアライデンは前走2勝クラス圧勝の勢いはあるが2000m実績が16着と致命的。</div><h3>血統派</h3>
+<div class="analysis-text">タイキラフターが父ハーツクライの小倉芝2000m適性で最上位評価。母父Any Given Saturdayとの配合でスタミナと機動力を両立。ミッキーゴールドは父リアルスティール(ディープ系)で芝中距離に高い適性。アイスグリーンは父モーリス×母父スペシャルウィークの持続力型で小倉2000mに非常に合う。サクソンジェンヌは父Saxon Warrior(Galileo系)の欧州型スタミナ血統で距離適性明確。ホルトバージは父キンシャサノキセキのスプリンター血統で2000mは完全に守備範囲外。アルトゥームは父モーリス×母父ディープの黄金配合で距離延長での一変を警戒すべき穴馬。</div><h3>展開派</h3>
+<div class="analysis-text">最大の鍵は外枠に逃げ馬3頭(クレバーテースト13番・トーアライデン14番・サクソンジェンヌ16番)が集中した点。1コーナーまでの短い距離で外からハナを争えばハイペース濃厚。内枠の先行馬が漁夫の利を得る構図で、6枠11番ミッキーゴールドが好位インをロスなく取れる絶好枠。アイスグリーン(3枠5番)もイン先行で展開利。ピンクジン(1枠1番)は最内から脚を溜められる。ハイペースなら後方のタイキラフターに出番があるが小倉の直線293mでは届くか微妙。</div><h3>陣営派</h3>
+<div class="analysis-text">池江泰寿厩舎のミッキーゴールドが仕上げ精度と通算勝率43%で最有力。斎藤新×バルナバは勝率27%の若馬に今最も乗れる若手騎手の組み合わせで期待値高。サクソンジェンヌは横山琉人騎手の成長と56kg軽量が武器。パワーホールは昆貢厩舎の仕上げ力と古川吉洋の小倉コース巧者ぶりで穴として注目。トーアライデンは前走2勝クラス圧勝で昇級直後の勢いがある。嶋田純次×ピンクジンは小倉メイン戦で信頼度が低い。</div><h3>体調派</h3>
+<div class="analysis-text">サクソンジェンヌが体重470kg前後で安定推移、調教B「仕上上々」、56kg軽斤量で体調面トップ評価。バルナバは502→504→506kgと成長パターンの体重推移、叩き3走目で上昇局面。トーアライデンは体重が508→500kgと右肩下がりで絞れており仕上がり良好。アイスグリーンは体重482-484kgで最も安定。タイキラフターは前走536kg(+12)の太め残りが最大懸念、調教B「上積十分」でも体重未確認のリスク。ロワンディシーは前走+14kgの太め残り大敗後の中1週連戦で疲労リスク極大。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 2 — 再考後の確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>11</td><td class="left horse-name">ミッキーゴールド</td><td>18.0</td><td>14.0</td><td>16.0</td><td>15.0</td><td>12.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:40px;"></div><span class="conf-val trust-high">15.0</span></div></td></tr><tr><td>8</td><td class="left horse-name">バルナバ</td><td>16.0</td><td>12.0</td><td>12.0</td><td>14.0</td><td>14.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:36px;"></div><span class="conf-val trust-mid">13.6</span></div></td></tr><tr><td>16</td><td class="left horse-name">サクソンジェンヌ</td><td>10.0</td><td>10.0</td><td>10.0</td><td>11.0</td><td>12.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:28px;"></div><span class="conf-val trust-mid">10.6</span></div></td></tr><tr><td>5</td><td class="left horse-name">アイスグリーン</td><td>10.0</td><td>11.0</td><td>10.0</td><td>10.0</td><td>10.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:27px;"></div><span class="conf-val trust-mid">10.2</span></div></td></tr><tr><td>17</td><td class="left horse-name">タイキラフター</td><td>11.0</td><td>14.0</td><td>8.0</td><td>8.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:24px;"></div><span class="conf-val trust-mid">9.2</span></div></td></tr><tr><td>13</td><td class="left horse-name">クレバーテースト</td><td>9.0</td><td>8.0</td><td>10.0</td><td>7.0</td><td>7.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:21px;"></div><span class="conf-val trust-mid">8.2</span></div></td></tr><tr><td>14</td><td class="left horse-name">トーアライデン</td><td>4.0</td><td>5.0</td><td>6.0</td><td>7.0</td><td>11.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:17px;"></div><span class="conf-val trust-low">6.6</span></div></td></tr><tr><td>1</td><td class="left horse-name">ピンクジン</td><td>3.0</td><td>7.0</td><td>9.0</td><td>3.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:14px;"></div><span class="conf-val trust-low">5.4</span></div></td></tr><tr><td>15</td><td class="left horse-name">パワーホール</td><td>2.0</td><td>5.0</td><td>4.0</td><td>7.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:11px;"></div><span class="conf-val trust-low">4.4</span></div></td></tr><tr><td>9</td><td class="left horse-name">アルトゥーム</td><td>4.0</td><td>5.0</td><td>2.0</td><td>4.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">3.8</span></div></td></tr><tr><td>10</td><td class="left horse-name">モズロックンロール</td><td>3.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:8px;"></div><span class="conf-val trust-low">3.0</span></div></td></tr><tr><td>4</td><td class="left horse-name">サトノクローク</td><td>3.0</td><td>2.0</td><td>3.0</td><td>3.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:7px;"></div><span class="conf-val trust-low">2.8</span></div></td></tr><tr><td>3</td><td class="left horse-name">ドラゴンヘッド</td><td>3.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.2</span></div></td></tr><tr><td>7</td><td class="left horse-name">マイネルニコラス</td><td>1.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:4px;"></div><span class="conf-val trust-low">1.6</span></div></td></tr><tr><td>2</td><td class="left horse-name">ロワンディシー</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr><tr><td>6</td><td class="left horse-name">ホルトバージ</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr><tr><td>12</td><td class="left horse-name">バリアントバイオ</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:2px;"></div><span class="conf-val trust-low">1.0</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 2 — エージェント再考</span></div>
+<div class="section-body">
+<h3>実績派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">バルナバを14→16%に上方修正。前走3勝クラス八坂Sで上がり33.3は実績として最も信頼できる数字。サクソンジェンヌを8→10%に修正、グレイトフルS4着と先行型の距離実績を再評価。トーアライデンは6→4%に下方修正、芝2000m唯一の実績が16着大敗で距離の壁は致命的。タイキラフターは13→11%、前走13着の大敗は重い。</div><h3>血統派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">トーアライデンを8→5%に下方修正。マインドユアビスケッツ産駒の2000m延長は血統的に疑問。パワーホールを2→5%に上方修正、陣営派の指摘を受けスワーヴリチャードの2000m適性を再評価。サクソンジェンヌを12→10%に微修正、他視点の低評価を部分的に反映。タイキラフター14%は維持、調教B「上積十分」で前走太めは5週前の話。</div><h3>展開派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">バルナバを10→12%に上方修正、ハイペースの恩恵を受ける好枠好位差し。サクソンジェンヌを7→10%に上方修正、番手に控える選択肢があり3人の高評価に追随。タイキラフターを6→8%に上方修正、ハイペース恩恵を素直に評価。トーアライデンを8→6%に下方修正、逃げ争い+距離不安。アイスグリーンを12→10%に微修正、休み明け懸念。</div><h3>陣営派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">タイキラフターを5→8%に引き上げ、調教B「上積十分」と前走大敗からの一変パターンを加点。トーアライデンを9→7%に下方修正、2000m距離適性の統計的不安を再評価。ミッキーゴールドを16→15%に微調整、体調派9%を踏まえた均衡点。アイスグリーンを8→10%に引き上げ、池添学厩舎の仕上げの質を再評価。</div><h3>体調派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">ミッキーゴールドを9→12%に上方修正、体重安定・調教良好で体調面の懸念なし。サクソンジェンヌを15→12%に下方修正、展開派の逃げ馬競合懸念を一部反映。タイキラフターを3→5%に微修正、調教B「上積十分」は太め解消の示唆だが体重未確認リスクは残る。トーアライデンを13→11%に修正、2000m距離不確実性を反映。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>Round 2.5 — 批判者分析</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>5人平均</th><th>批判者</th><th>差</th></tr></thead>
+<tbody>
+<tr><td>11</td><td class="left horse-name">ミッキーゴールド</td><td>15.0</td><td>12.0</td><td><span class="trust-low">-3.0</span></td></tr><tr><td>8</td><td class="left horse-name">バルナバ</td><td>13.6</td><td>10.0</td><td><span class="trust-low">-3.6</span></td></tr><tr><td>16</td><td class="left horse-name">サクソンジェンヌ</td><td>10.6</td><td>13.0</td><td><span class="trust-high">+2.4</span></td></tr><tr><td>5</td><td class="left horse-name">アイスグリーン</td><td>10.2</td><td>8.0</td><td><span class="trust-low">-2.2</span></td></tr><tr><td>17</td><td class="left horse-name">タイキラフター</td><td>9.2</td><td>16.0</td><td><span class="trust-high">+6.8</span></td></tr><tr><td>13</td><td class="left horse-name">クレバーテースト</td><td>8.2</td><td>10.0</td><td><span class="trust-high">+1.8</span></td></tr><tr><td>14</td><td class="left horse-name">トーアライデン</td><td>6.6</td><td>9.0</td><td><span class="trust-high">+2.4</span></td></tr><tr><td>1</td><td class="left horse-name">ピンクジン</td><td>5.4</td><td>4.0</td><td><span class="trust-low">-1.4</span></td></tr><tr><td>15</td><td class="left horse-name">パワーホール</td><td>4.4</td><td>5.0</td><td><span class="trust-high">+0.6</span></td></tr><tr><td>9</td><td class="left horse-name">アルトゥーム</td><td>3.8</td><td>3.0</td><td><span class="trust-low">-0.8</span></td></tr><tr><td>10</td><td class="left horse-name">モズロックンロール</td><td>3.0</td><td>2.0</td><td><span class="trust-low">-1.0</span></td></tr><tr><td>4</td><td class="left horse-name">サトノクローク</td><td>2.8</td><td>2.0</td><td><span class="trust-low">-0.8</span></td></tr><tr><td>3</td><td class="left horse-name">ドラゴンヘッド</td><td>2.2</td><td>2.0</td><td><span class="trust-low">-0.2</span></td></tr><tr><td>7</td><td class="left horse-name">マイネルニコラス</td><td>1.6</td><td>1.0</td><td><span class="trust-low">-0.6</span></td></tr><tr><td>2</td><td class="left horse-name">ロワンディシー</td><td>1.2</td><td>1.0</td><td><span class="trust-low">-0.2</span></td></tr><tr><td>6</td><td class="left horse-name">ホルトバージ</td><td>1.2</td><td>1.0</td><td><span class="trust-low">-0.2</span></td></tr><tr><td>12</td><td class="left horse-name">バリアントバイオ</td><td>1.0</td><td>1.0</td><td><span style="color:#8E8E93;">0</span></td></tr>
+</tbody></table>
+
+<div style="margin-top:16px;background:#F9F0FF;border-radius:8px;padding:12px;">
+  <div style="font-size:12px;font-weight:700;color:#AF52DE;margin-bottom:6px;">敗因シナリオ（批判者）</div>
+  <ol style="font-size:12px;color:#3A3A3C;margin-left:16px;"><li>休み明け2ヶ月半+前走3勝クラス5着敗退の勢い停滞。昇級2戦目でも壁を越えられない</li><li>先行馬4頭以上の密集でハイペース化。好位のミッキーゴールドが巻き込まれ、後方のタイキラフターに差し切られる</li><li>小倉芝2000m小回りコースへの適性未知。直線293mでは好位からの差し切りが間に合わず、逃げ残りのサクソンジェンヌやクレバーテーストに粘られる</li></ol>
+</div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者分析全文</span></div>
+<div class="section-body">
+<div class="agent-text"><p>ミッキーゴールドへの全員一致評価は「盲目的合意」のシグナル。敗因として休み明け2.5ヶ月・先行馬密集のハイペース巻き込まれ・小倉適性未知の3リスクを指摘。最大の盲点馬はタイキラフター、上がり32.7秒の末脚はメンバー中抜けており前走太め解消なら一変の余地。サクソンジェンヌも逃げ粘り+56kg軽量で過小評価。バルナバは3勝クラス実績が4着1回のみで過大評価の疑い。信頼度B（混戦模様で突き抜けた馬なし）、死角リスク高（展開激化・人気馬休み明け・後方差し台頭の可能性）。</p></div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>11</td><td class="left horse-name">ミッキーゴールド</td><td class="trust-mid">14.5%</td><td>18.0</td><td>14.0</td><td>16.0</td><td>15.0</td><td>12.0</td><td>12.0</td></tr><tr><td>2</td><td>8</td><td class="left horse-name">バルナバ</td><td class="trust-mid">13.0%</td><td>16.0</td><td>12.0</td><td>12.0</td><td>14.0</td><td>14.0</td><td>10.0</td></tr><tr><td>3</td><td>16</td><td class="left horse-name">サクソンジェンヌ</td><td class="trust-mid">11.0%</td><td>10.0</td><td>10.0</td><td>10.0</td><td>11.0</td><td>12.0</td><td>13.0</td></tr><tr><td>4</td><td>17</td><td class="left horse-name">タイキラフター</td><td class="trust-mid">10.3%</td><td>11.0</td><td>14.0</td><td>8.0</td><td>8.0</td><td>5.0</td><td>16.0</td></tr><tr><td>5</td><td>5</td><td class="left horse-name">アイスグリーン</td><td class="trust-mid">9.8%</td><td>10.0</td><td>11.0</td><td>10.0</td><td>10.0</td><td>10.0</td><td>8.0</td></tr><tr><td>6</td><td>13</td><td class="left horse-name">クレバーテースト</td><td class="trust-mid">8.5%</td><td>9.0</td><td>8.0</td><td>10.0</td><td>7.0</td><td>7.0</td><td>10.0</td></tr><tr><td>7</td><td>14</td><td class="left horse-name">トーアライデン</td><td class="trust-low">7.0%</td><td>4.0</td><td>5.0</td><td>6.0</td><td>7.0</td><td>11.0</td><td>9.0</td></tr><tr><td>8</td><td>1</td><td class="left horse-name">ピンクジン</td><td class="trust-low">5.2%</td><td>3.0</td><td>7.0</td><td>9.0</td><td>3.0</td><td>5.0</td><td>4.0</td></tr><tr><td>9</td><td>15</td><td class="left horse-name">パワーホール</td><td class="trust-low">4.5%</td><td>2.0</td><td>5.0</td><td>4.0</td><td>7.0</td><td>4.0</td><td>5.0</td></tr><tr><td>10</td><td>9</td><td class="left horse-name">アルトゥーム</td><td class="trust-low">3.7%</td><td>4.0</td><td>5.0</td><td>2.0</td><td>4.0</td><td>4.0</td><td>3.0</td></tr><tr><td>11</td><td>10</td><td class="left horse-name">モズロックンロール</td><td class="trust-low">2.8%</td><td>3.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td>3.0</td><td>2.0</td></tr><tr><td>12</td><td>4</td><td class="left horse-name">サトノクローク</td><td class="trust-low">2.7%</td><td>3.0</td><td>2.0</td><td>3.0</td><td>3.0</td><td>3.0</td><td>2.0</td></tr><tr><td>13</td><td>3</td><td class="left horse-name">ドラゴンヘッド</td><td class="trust-low">2.2%</td><td>3.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td>3.0</td><td>2.0</td></tr><tr><td>14</td><td>7</td><td class="left horse-name">マイネルニコラス</td><td class="trust-low">1.5%</td><td>1.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td>1.0</td></tr><tr><td>15</td><td>2</td><td class="left horse-name">ロワンディシー</td><td class="trust-low">1.2%</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td>1.0</td></tr><tr><td>16</td><td>6</td><td class="left horse-name">ホルトバージ</td><td class="trust-low">1.2%</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td>1.0</td></tr><tr><td>17</td><td>12</td><td class="left horse-name">バリアントバイオ</td><td class="trust-low">1.0%</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>市場推定勝率</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>11</td><td class="left horse-name">ミッキーゴールド</td><td>14.5%</td><td>2.8</td><td>35.7%</td><td class="ev-low">0.41</td></tr><tr><td>2</td><td>8</td><td class="left horse-name">バルナバ</td><td>13.0%</td><td>6.7</td><td>14.9%</td><td class="ev-low">0.87</td></tr><tr><td>3</td><td>16</td><td class="left horse-name">サクソンジェンヌ</td><td>11.0%</td><td>17.9</td><td>5.6%</td><td class="ev-mid">1.97</td></tr><tr><td>4</td><td>17</td><td class="left horse-name">タイキラフター</td><td>10.3%</td><td>7.7</td><td>13.0%</td><td class="ev-low">0.80</td></tr><tr><td>5</td><td>5</td><td class="left horse-name">アイスグリーン</td><td>9.8%</td><td>9.1</td><td>11.0%</td><td class="ev-low">0.89</td></tr><tr><td>6</td><td>13</td><td class="left horse-name">クレバーテースト</td><td>8.5%</td><td>20.9</td><td>4.8%</td><td class="ev-mid">1.78</td></tr><tr><td>7</td><td>14</td><td class="left horse-name">トーアライデン</td><td>7.0%</td><td>28.0</td><td>3.6%</td><td class="ev-mid">1.96</td></tr><tr><td>8</td><td>1</td><td class="left horse-name">ピンクジン</td><td>5.2%</td><td>22.9</td><td>4.4%</td><td class="ev-low">1.18</td></tr><tr><td>9</td><td>15</td><td class="left horse-name">パワーホール</td><td>4.5%</td><td>11.8</td><td>8.5%</td><td class="ev-low">0.53</td></tr><tr><td>10</td><td>9</td><td class="left horse-name">アルトゥーム</td><td>3.7%</td><td>24.3</td><td>4.1%</td><td class="ev-low">0.89</td></tr><tr><td>11</td><td>10</td><td class="left horse-name">モズロックンロール</td><td>2.8%</td><td>29.9</td><td>3.3%</td><td class="ev-low">0.85</td></tr><tr><td>12</td><td>4</td><td class="left horse-name">サトノクローク</td><td>2.7%</td><td>36.7</td><td>2.7%</td><td class="ev-low">0.98</td></tr><tr><td>13</td><td>3</td><td class="left horse-name">ドラゴンヘッド</td><td>2.2%</td><td>23.0</td><td>4.3%</td><td class="ev-low">0.50</td></tr><tr><td>14</td><td>7</td><td class="left horse-name">マイネルニコラス</td><td>1.5%</td><td>55.7</td><td>1.8%</td><td class="ev-low">0.84</td></tr><tr><td>15</td><td>2</td><td class="left horse-name">ロワンディシー</td><td>1.2%</td><td>45.1</td><td>2.2%</td><td class="ev-low">0.53</td></tr><tr><td>16</td><td>6</td><td class="left horse-name">ホルトバージ</td><td>1.2%</td><td>22.5</td><td>4.4%</td><td class="ev-low">0.26</td></tr><tr><td>17</td><td>12</td><td class="left horse-name">バリアントバイオ</td><td>1.0%</td><td>61.0</td><td>1.6%</td><td class="ev-low">0.61</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別 期待値トップ3</span></div>
+<div class="section-body">
+<h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>単勝</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">11 ミッキーゴールド</td><td>19.8%</td><td>2.8</td><td class="ev-low">0.55</td></tr><tr><td>1</td><td class="left">16 サクソンジェンヌ</td><td>12.7%</td><td>17.9</td><td class="ev-mid">2.27</td></tr><tr><td>2</td><td class="left">13 クレバーテースト</td><td>8.4%</td><td>20.9</td><td class="ev-mid">1.76</td></tr><tr><td>3</td><td class="left">14 トーアライデン</td><td>6.2%</td><td>28.0</td><td class="ev-mid">1.73</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>複勝</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">11 ミッキーゴールド</td><td>53.1%</td><td>1.5</td><td class="ev-low">0.80</td></tr><tr><td>1</td><td class="left">16 サクソンジェンヌ</td><td>37.9%</td><td>7.5</td><td class="ev-mid">2.84</td></tr><tr><td>2</td><td class="left">13 クレバーテースト</td><td>26.6%</td><td>4.5</td><td class="ev-low">1.20</td></tr><tr><td>3</td><td class="left">5 アイスグリーン</td><td>32.6%</td><td>2.9</td><td class="ev-low">0.95</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>馬連</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">8 バルナバ-11 ミッキーゴールド</td><td>8.0%</td><td>8.8</td><td class="ev-low">0.71</td></tr><tr><td>1</td><td class="left">1 ピンクジン-16 サクソンジェンヌ</td><td>1.1%</td><td>291.4</td><td class="ev-high">3.07</td></tr><tr><td>2</td><td class="left">13 クレバーテースト-16 サクソンジェンヌ</td><td>2.4%</td><td>119.1</td><td class="ev-mid">2.85</td></tr><tr><td>3</td><td class="left">13 クレバーテースト-17 タイキラフター</td><td>2.1%</td><td>131.5</td><td class="ev-mid">2.83</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>ワイド</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">8 バルナバ-11 ミッキーゴールド</td><td>21.3%</td><td>4.3</td><td class="ev-low">0.92</td></tr><tr><td>1</td><td class="left">13 クレバーテースト-17 タイキラフター</td><td>6.7%</td><td>39.3</td><td class="ev-mid">2.64</td></tr><tr><td>2</td><td class="left">13 クレバーテースト-16 サクソンジェンヌ</td><td>7.4%</td><td>33.4</td><td class="ev-mid">2.47</td></tr><tr><td>3</td><td class="left">8 バルナバ-13 クレバーテースト</td><td>9.6%</td><td>23.5</td><td class="ev-mid">2.25</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>馬単</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">11 ミッキーゴールド→8 バルナバ</td><td>4.1%</td><td>12.4</td><td class="ev-low">0.51</td></tr><tr><td>1</td><td class="left">13 クレバーテースト→16 サクソンジェンヌ</td><td>1.2%</td><td>411.7</td><td class="ev-high">4.80</td></tr><tr><td>2</td><td class="left">16 サクソンジェンヌ→13 クレバーテースト</td><td>1.2%</td><td>346.2</td><td class="ev-high">4.24</td></tr><tr><td>3</td><td class="left">13 クレバーテースト→17 タイキラフター</td><td>1.1%</td><td>390.6</td><td class="ev-high">4.12</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>3連複</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">8 バルナバ-11 ミッキーゴールド-16 サクソンジェンヌ</td><td>4.5%</td><td>29.5</td><td class="ev-low">1.32</td></tr><tr><td>1</td><td class="left">13 クレバーテースト-16 サクソンジェンヌ-17 タイキラフター</td><td>1.1%</td><td>496.6</td><td class="ev-high">5.25</td></tr><tr><td>2</td><td class="left">8 バルナバ-13 クレバーテースト-17 タイキラフター</td><td>1.5%</td><td>293.1</td><td class="ev-high">4.27</td></tr><tr><td>3</td><td class="left">8 バルナバ-13 クレバーテースト-16 サクソンジェンヌ</td><td>1.6%</td><td>250.6</td><td class="ev-high">4.09</td></tr></tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:12px;">※ハーヴィル公式による的中確率（EV_POWER=1.6乗補正適用）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>期待値大馬券（上位4馬）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>券種</th><th>組合せ</th><th>CC推定確率</th><th>オッズ</th><th>期待値</th></tr></thead>
+<tbody>
+<tr style="background:#E8F5E9;"><td>1</td><td>馬単</td><td class="left">16 サクソンジェンヌ→17 タイキラフター</td><td>1.7%</td><td>205.8</td><td class="ev-high">3.44</td></tr><tr style="background:#E8F5E9;"><td>2</td><td>3連複</td><td class="left">8 バルナバ-16 サクソンジェンヌ-17 タイキラフター</td><td>2.3%</td><td>139.1</td><td class="ev-high">3.22</td></tr><tr style="background:#E8F5E9;"><td>3</td><td>複勝</td><td class="left">16 サクソンジェンヌ</td><td>37.9%</td><td>7.5</td><td class="ev-mid">2.84</td></tr><tr><td>4</td><td>馬単</td><td class="left">17 タイキラフター→16 サクソンジェンヌ</td><td>1.7%</td><td>149.3</td><td class="ev-mid">2.46</td></tr><tr><td>5</td><td>馬連</td><td class="left">16 サクソンジェンヌ-17 タイキラフター</td><td>3.3%</td><td>73.5</td><td class="ev-mid">2.44</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定1-4位馬対象（EV_POWER=1.6乗補正）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>期待値大馬券（全馬）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>券種</th><th>組合せ</th><th>CC推定確率</th><th>オッズ</th><th>期待値</th></tr></thead>
+<tbody>
+<tr style="background:#E8F5E9;"><td>1</td><td>3連複</td><td class="left">13 クレバーテースト-16 サクソンジェンヌ-17 タイキラフター</td><td>1.1%</td><td>496.6</td><td class="ev-high">5.25</td></tr><tr><td>2</td><td>馬単</td><td class="left">13 クレバーテースト→16 サクソンジェンヌ</td><td>1.2%</td><td>411.7</td><td class="ev-high">4.80</td></tr><tr><td>3</td><td>3連複</td><td class="left">8 バルナバ-13 クレバーテースト-17 タイキラフター</td><td>1.5%</td><td>293.1</td><td class="ev-high">4.27</td></tr><tr><td>4</td><td>馬単</td><td class="left">16 サクソンジェンヌ→13 クレバーテースト</td><td>1.2%</td><td>346.2</td><td class="ev-high">4.24</td></tr><tr><td>5</td><td>馬単</td><td class="left">13 クレバーテースト→17 タイキラフター</td><td>1.1%</td><td>390.6</td><td class="ev-high">4.12</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※全馬対象（EV_POWER=1.6乗補正）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 944円（信頼度9.4% × 100）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">11 ミッキーゴールド</td><td>2.8</td><td>3</td><td style='text-align:right;font-weight:600;'>300円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>単勝</td><td class="left">8 バルナバ</td><td>6.7</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝○</td></tr><tr><td>3連複</td><td class="left">8 バルナバ-11 ミッキーゴールド-16 サクソンジェンヌ</td><td>29.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>馬単</td><td class="left">16 サクソンジェンヌ→17 タイキラフター</td><td>205.8</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>3連複</td><td class="left">8 バルナバ-16 サクソンジェンヌ-17 タイキラフター</td><td>139.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>馬単</td><td class="left">17 タイキラフター→16 サクソンジェンヌ</td><td>149.3</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>3連複</td><td class="left">13 クレバーテースト-16 サクソンジェンヌ-17 タイキラフター</td><td>496.6</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">全馬Top(EV≥2.0)</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 900円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>

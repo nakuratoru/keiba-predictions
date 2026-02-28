@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第100回中山記念 2026/03/01 NAKAYAMA 11R (03/01 03:01 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .change-badge {
+    display: inline-block; background: #FF3B30; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .keep-badge {
+    display: inline-block; background: #8E8E93; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第100回中山記念 2026/03/01 NAKAYAMA 11R (03/01 03:01 予想 馬体重なし)</h1>
+  <div class="meta">芝1800m（右） |  | 14頭立て | 2回 中山 2日目 サラ系4歳以上 オープン （国際）（指定） 別定 14頭</div>
+  <div class="cc-trust">CC最終信頼度: <strong>18.1%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">5. レーベンスティール</div>
+      <div class="pick-jockey">戸崎 圭太 / 田中 博康</div>
+    </div>
+    <div class="pick-prob">22.3%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">9. カラマティアノス</div>
+      <div class="pick-jockey">津村 明秀 / 奥村 武</div>
+    </div>
+    <div class="pick-prob">17.1%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">10. エコロヴァルツ</div>
+      <div class="pick-jockey">横山 武史 / 牧浦 充徳</div>
+    </div>
+    <div class="pick-prob">12.0%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">14頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">セイウンハーデス</td><td>牡7</td><td>57</td><td>幸 英明</td><td>橋口 慎介</td><td>シルバーステート</td><td>マンハッタンカフェ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">オニャンコポン</td><td>せん7</td><td>57</td><td>菅原 明良</td><td>小島 茂之</td><td>エイシンフラッシュ</td><td>ヴィクトワールピサ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">マジックサンズ</td><td>牡4</td><td>56</td><td>横山 和生</td><td>須貝 尚介</td><td>キズナ</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">スパークリシャール</td><td>せん5</td><td>57</td><td>柴田 善臣</td><td>小島 茂之</td><td>スワーヴリチャード</td><td>シンボリクリスエス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">レーベンスティール</td><td>牡6</td><td>58</td><td>戸崎 圭太</td><td>田中 博康</td><td>リアルスティール</td><td>トウカイテイオー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">チェルヴィニア</td><td>牝5</td><td>55</td><td>C.ルメール</td><td>木村 哲也</td><td>ハービンジャー</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">マイネルモーント</td><td>牡6</td><td>57</td><td>石川 裕紀人</td><td>高木 登</td><td>ゴールドシップ</td><td>ロージズインメイ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ショウナンマグマ</td><td>せん7</td><td>57</td><td>吉田 豊</td><td>尾関 知人</td><td>ザファクター</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">カラマティアノス</td><td>牡4</td><td>56</td><td>津村 明秀</td><td>奥村 武</td><td>レイデオロ</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">エコロヴァルツ</td><td>牡5</td><td>57</td><td>横山 武史</td><td>牧浦 充徳</td><td>ブラックタイド</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">サイルーン</td><td>せん7</td><td>57</td><td>佐々木 大輔</td><td>堀 宣行</td><td>ディープインパクト</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">サンストックトン</td><td>牡7</td><td>57</td><td>松岡 正海</td><td>堀内 岳志</td><td>ワールドエース</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">ニシノエージェント</td><td>牡4</td><td>56</td><td>三浦 皇成</td><td>千葉 直人</td><td>イスラボニータ</td><td>ノヴェリスト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">シャンパンカラー</td><td>牡6</td><td>58</td><td>岩田 康誠</td><td>田中 剛</td><td>ドゥラメンテ</td><td>Reckless Abandon</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 1 — 各エージェント確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>5</td><td class="left horse-name">レーベンスティール</td><td>26.0</td><td>20.0</td><td>22.0</td><td>24.0</td><td>20.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:59px;"></div><span class="conf-val trust-high">22.4</span></div></td></tr><tr><td>9</td><td class="left horse-name">カラマティアノス</td><td>18.0</td><td>22.0</td><td>16.0</td><td>12.0</td><td>22.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:48px;"></div><span class="conf-val trust-high">18.0</span></div></td></tr><tr><td>1</td><td class="left horse-name">セイウンハーデス</td><td>12.0</td><td>15.0</td><td>14.0</td><td>9.0</td><td>9.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:31px;"></div><span class="conf-val trust-mid">11.8</span></div></td></tr><tr><td>10</td><td class="left horse-name">エコロヴァルツ</td><td>11.0</td><td>9.0</td><td>12.0</td><td>15.0</td><td>10.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:30px;"></div><span class="conf-val trust-mid">11.4</span></div></td></tr><tr><td>6</td><td class="left horse-name">チェルヴィニア</td><td>7.0</td><td>6.0</td><td>10.0</td><td>16.0</td><td>12.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:27px;"></div><span class="conf-val trust-mid">10.2</span></div></td></tr><tr><td>14</td><td class="left horse-name">シャンパンカラー</td><td>8.0</td><td>4.0</td><td>6.0</td><td>2.0</td><td>8.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:14px;"></div><span class="conf-val trust-low">5.6</span></div></td></tr><tr><td>8</td><td class="left horse-name">ショウナンマグマ</td><td>5.0</td><td>4.0</td><td>4.0</td><td>3.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">3.8</span></div></td></tr><tr><td>11</td><td class="left horse-name">サイルーン</td><td>4.0</td><td>5.0</td><td>4.0</td><td>4.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.6</span></div></td></tr><tr><td>3</td><td class="left horse-name">マジックサンズ</td><td>1.0</td><td>3.0</td><td>3.0</td><td>4.0</td><td>6.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.4</span></div></td></tr><tr><td>2</td><td class="left horse-name">オニャンコポン</td><td>2.0</td><td>3.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:7px;"></div><span class="conf-val trust-low">2.8</span></div></td></tr><tr><td>7</td><td class="left horse-name">マイネルモーント</td><td>1.0</td><td>3.0</td><td>3.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.2</span></div></td></tr><tr><td>12</td><td class="left horse-name">サンストックトン</td><td>3.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.0</span></div></td></tr><tr><td>4</td><td class="left horse-name">スパークリシャール</td><td>1.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:4px;"></div><span class="conf-val trust-low">1.6</span></div></td></tr><tr><td>13</td><td class="left horse-name">ニシノエージェント</td><td>1.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>0.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 1 — エージェント分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">レーベンスティールが毎日王冠G2制覇（芝1800m・差-0.1・上がり33.3）で同距離実績が直接の裏付け、調教Aで最有力。カラマティアノスは中山金杯G3を1着、同じ中山で直前実績があり4歳上昇期・調教A。セイウンハーデスはエプソムC（G3）芝1800mを差-0.3で快勝、JC惨敗は逃げ馬のG1で度外視可。エコロヴァルツは福島記念2着・大阪杯4着と上がり33.8が安定。シャンパンカラーは前走上がり32.8が際立つが1800m未経験がリスク。チェルヴィニアはG1実績あるも毎日王冠7着・調教Cで近走データが支持しない。</div><h3>血統派</h3>
+<div class="analysis-text">カラマティアノスはレイデオロ×ハーツクライで中山2000m実績あり、1800m短縮でさらに斬れが出やすい配合。レーベンスティールはリアルスティール×トウカイテイオーで中山コース適性と1800m実績が高水準、オールカマー勝ちで中山特性を熟知。セイウンハーデスはシルバーステート産駒の1800m中山が理想的条件、母父マンハッタンカフェがスタミナ補強。エコロヴァルツはブラックタイド産駒で中山内回り適性が高い。チェルヴィニアはハービンジャー産駒でベスト距離2200m以上、1800mはやや短い。シャンパンカラーは母父Reckless Abandonがマイラー血統で距離延長に疑問。</div><h3>展開派</h3>
+<div class="analysis-text">ショウナンマグマの単騎逃げ・ミドルペース・好位差し有利の展開を想定。レーベンスティールは4番枠から戸崎騎手がインで脚を溜め直線で抜け出す形が理想的、調教A。カラマティアノスは中山金杯を好位差しで勝利した同舞台実績、6枠9番は許容範囲。セイウンハーデスは最内1番枠で中山1800mの最大アドバンテージ、内をロスなく回って粘り込むシナリオ。エコロヴァルツは中団からの差しで展開次第。チェルヴィニアはルメール騎手で好位を取れるが中山の短い直線で末脚が甘くなるリスク。追込馬（マジックサンズ・シャンパンカラー等）は直線310mでは構造的に不利。</div><h3>陣営派</h3>
+<div class="analysis-text">レーベンスティールは戸崎圭太×中山の黄金コンビ、G2連勝実績、調教Aで陣営最上位の信頼度。チェルヴィニアはルメール×木村哲也厩舎の格は最高だが調教C・近走不振が減点。エコロヴァルツは横山武史×牧浦厩舎で中山1800m優勝実績あり、近走G1で安定成績。カラマティアノスは調教A・中山金杯直前優勝の実績を高評価、ただし津村騎手のG2での信頼度は戸崎・ルメールに劣る。セイウンハーデスは内枠と1800m実績で中位、幸英明騎手・橋口厩舎は上位馬に格で劣る。</div><h3>体調派</h3>
+<div class="analysis-text">カラマティアノスは462→478kgの成長曲線が理想的、中山金杯1着時478kgがベスト体重、調教A「態勢万全」＋56kg軽量＋叩き2走目で最高評価。レーベンスティールは484kg前後で安定推移、調教A「馬体充実」が休み明け不安を払拭、ただし58kgの最重量タイが課題。チェルヴィニアは体重乱高下が激しく毎日王冠+16kg太め残り、調教C「前走並み」で仕上がり不安。サイルーンは289日の超長期休養明けが最大リスク。ショウナンマグマは体重乱高下＋調教C「テン飛す」でテンション面の不安。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 2 — 再考後の確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>5</td><td class="left horse-name">レーベンスティール</td><td>28.0</td><td>22.0</td><td>22.0</td><td>26.0</td><td>20.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:62px;"></div><span class="conf-val trust-high">23.6</span></div></td></tr><tr><td>9</td><td class="left horse-name">カラマティアノス</td><td>16.0</td><td>18.0</td><td>17.0</td><td>13.0</td><td>24.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:46px;"></div><span class="conf-val trust-high">17.6</span></div></td></tr><tr><td>10</td><td class="left horse-name">エコロヴァルツ</td><td>12.0</td><td>11.0</td><td>12.0</td><td>15.0</td><td>11.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:32px;"></div><span class="conf-val trust-mid">12.2</span></div></td></tr><tr><td>1</td><td class="left horse-name">セイウンハーデス</td><td>13.0</td><td>13.0</td><td>14.0</td><td>11.0</td><td>9.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:32px;"></div><span class="conf-val trust-mid">12.0</span></div></td></tr><tr><td>6</td><td class="left horse-name">チェルヴィニア</td><td>7.0</td><td>8.0</td><td>9.0</td><td>10.0</td><td>13.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:25px;"></div><span class="conf-val trust-mid">9.4</span></div></td></tr><tr><td>14</td><td class="left horse-name">シャンパンカラー</td><td>7.0</td><td>4.0</td><td>6.0</td><td>4.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:13px;"></div><span class="conf-val trust-low">5.2</span></div></td></tr><tr><td>11</td><td class="left horse-name">サイルーン</td><td>4.0</td><td>5.0</td><td>4.0</td><td>4.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">3.8</span></div></td></tr><tr><td>8</td><td class="left horse-name">ショウナンマグマ</td><td>4.0</td><td>4.0</td><td>4.0</td><td>3.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.4</span></div></td></tr><tr><td>3</td><td class="left horse-name">マジックサンズ</td><td>1.0</td><td>3.0</td><td>3.0</td><td>4.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:8px;"></div><span class="conf-val trust-low">3.2</span></div></td></tr><tr><td>2</td><td class="left horse-name">オニャンコポン</td><td>2.0</td><td>3.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:7px;"></div><span class="conf-val trust-low">2.8</span></div></td></tr><tr><td>7</td><td class="left horse-name">マイネルモーント</td><td>1.0</td><td>3.0</td><td>3.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.2</span></div></td></tr><tr><td>12</td><td class="left horse-name">サンストックトン</td><td>3.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td>1.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.0</span></div></td></tr><tr><td>4</td><td class="left horse-name">スパークリシャール</td><td>1.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:4px;"></div><span class="conf-val trust-low">1.6</span></div></td></tr><tr><td>13</td><td class="left horse-name">ニシノエージェント</td><td>1.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>0.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:3px;"></div><span class="conf-val trust-low">1.2</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Round 2 — エージェント再考</span></div>
+<div class="section-body">
+<h3>実績派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">レーベンスティールを26%→28%に引き上げ。全馬中最も実績と距離が一致し、調教A。カラマティアノスは18%→16%に修正、距離短縮（2000→1800m）が若干のマイナス。セイウンハーデスは12%→13%に微増、同距離実績と天皇賞秋7着の健闘を再評価。チェルヴィニア7%は据え置き、毎日王冠7着と調教Cが陣営派の高評価を支持しない。シャンパンカラーは8%→7%に微減、距離延長の不安。</div><h3>血統派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">レーベンスティールを20%→22%に引き上げ、リアルスティール×トウカイテイオーの1800m適性は全派閥一致で支持。エコロヴァルツを9%→11%に修正、ブラックタイド産駒の中山適性とディセンバーS勝ち鞍を再評価。チェルヴィニアを6%→8%に微修正、全くダメではなく低すぎた点を認め小幅修正。セイウンハーデスを15%→13%に下方修正、陣営派の騎手格指摘を部分採用。カラマティアノスを22%→18%に修正、G2格上げへの懸念を反映。</div><h3>展開派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">チェルヴィニアを10%→9%に微減、血統派・体調派の低評価と調教C・近走凡走を踏まえ。カラマティアノスを16%→17%に微増、血統派・体調派の高評価と中山金杯勝ちの舞台適性・調教A評価を反映。他は据え置き。展開分析は他派と大筋一致、スロー前残りでレーベンスティールが好位から抜け出すシナリオを維持。</div><h3>陣営派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">チェルヴィニアを16%→10%に大幅減。調教C・近走不振を重く見て修正、ルメール格の補正値を満額計上不可と判断。レーベンスティールを24%→26%に引き上げ、全派合意の最上位。セイウンハーデスを9%→11%に修正、血統派・展開派が高評価する先行力と芝1800m実績を部分採用。シャンパンカラーを2%→4%に引き上げ、東京新聞杯上がり32.8秒を一部評価。エコロヴァルツ15%は据え置き。</div><h3>体調派 Round 2 <span class="change-badge">変更</span></h3>
+<div class="analysis-text">カラマティアノスを22%→24%に上方修正、調教Aと叩き2走目の理想パターンが揃い体調派最高評価。チェルヴィニアを12%→13%に微修正、陣営派の評価を一部考慮するも調教Cが重枷。エコロヴァルツを10%→11%に微修正、調教B「動き軽快」を再評価。サイルーンを1%→2%に修正、超長期休養は最大懸念だが調教Bを踏まえ。シャンパンカラーを8%→5%に引き下げ、58kgの重斤量と距離不安を改めて考慮。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>Round 2.5 — 批判者分析</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>5人平均</th><th>批判者</th><th>差</th></tr></thead>
+<tbody>
+<tr><td>5</td><td class="left horse-name">レーベンスティール</td><td>23.6</td><td>16.0</td><td><span class="trust-low">-7.6</span></td></tr><tr><td>9</td><td class="left horse-name">カラマティアノス</td><td>17.6</td><td>15.0</td><td><span class="trust-low">-2.6</span></td></tr><tr><td>10</td><td class="left horse-name">エコロヴァルツ</td><td>12.2</td><td>11.0</td><td><span class="trust-low">-1.2</span></td></tr><tr><td>1</td><td class="left horse-name">セイウンハーデス</td><td>12.0</td><td>10.0</td><td><span class="trust-low">-2.0</span></td></tr><tr><td>6</td><td class="left horse-name">チェルヴィニア</td><td>9.4</td><td>11.0</td><td><span class="trust-high">+1.6</span></td></tr><tr><td>14</td><td class="left horse-name">シャンパンカラー</td><td>5.2</td><td>9.0</td><td><span class="trust-high">+3.8</span></td></tr><tr><td>11</td><td class="left horse-name">サイルーン</td><td>3.8</td><td>5.0</td><td><span class="trust-high">+1.2</span></td></tr><tr><td>8</td><td class="left horse-name">ショウナンマグマ</td><td>3.4</td><td>3.0</td><td><span class="trust-low">-0.4</span></td></tr><tr><td>3</td><td class="left horse-name">マジックサンズ</td><td>3.2</td><td>7.0</td><td><span class="trust-high">+3.8</span></td></tr><tr><td>2</td><td class="left horse-name">オニャンコポン</td><td>2.8</td><td>4.0</td><td><span class="trust-high">+1.2</span></td></tr><tr><td>7</td><td class="left horse-name">マイネルモーント</td><td>2.2</td><td>3.0</td><td><span class="trust-high">+0.8</span></td></tr><tr><td>12</td><td class="left horse-name">サンストックトン</td><td>2.0</td><td>2.0</td><td><span style="color:#8E8E93;">0</span></td></tr><tr><td>4</td><td class="left horse-name">スパークリシャール</td><td>1.6</td><td>2.0</td><td><span class="trust-high">+0.4</span></td></tr><tr><td>13</td><td class="left horse-name">ニシノエージェント</td><td>1.2</td><td>2.0</td><td><span class="trust-high">+0.8</span></td></tr>
+</tbody></table>
+
+<div style="margin-top:16px;background:#F9F0FF;border-radius:8px;padding:12px;">
+  <div style="font-size:12px;font-weight:700;color:#AF52DE;margin-bottom:6px;">敗因シナリオ（批判者）</div>
+  <ol style="font-size:12px;color:#3A3A3C;margin-left:16px;"><li>休み明け3ヶ月+中山替わり+58kg最重量の三重苦で実戦勘が戻らず、中団から差し届かない</li><li>マイルCS12着・AJCC12着とG1級で二桁着順が続いており、能力の天井がG2勝ちレベルに留まる可能性。毎日王冠が上振れだった場合、このメンバーでも取りこぼす</li><li>ショウナンマグマ・セイウンハーデスが前を固め、カラマティアノスが好位から早めに抜け出す先行有利の展開になり、差し脚が届かない</li></ol>
+</div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者分析全文</span></div>
+<div class="section-body">
+<div class="agent-text"><p>レーベンスティールへの5人全員最高評価は盲目的合意の典型で、休み明け・中山替わり・58kgの三重苦が織り込み不足。最大の盲点はマジックサンズ（皐月賞6着の地力＋マイル不振からの距離延長プラス＋56kg軽量）とシャンパンカラー（東京新聞杯4着・上がり32.8秒のG1馬復活兆候）。カラマティアノスは中山金杯の1勝以外は惨敗続きで一発屋の可能性を排除できない。チェルヴィニアはルメール＋55kg軽量＋オークス馬の底力を軽視すべきでない。信頼度B、死角リスク中。</p></div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>5</td><td class="left horse-name">レーベンスティール</td><td class="trust-high">22.3%</td><td>28.0</td><td>22.0</td><td>22.0</td><td>26.0</td><td>20.0</td><td>16.0</td></tr><tr><td>2</td><td>9</td><td class="left horse-name">カラマティアノス</td><td class="trust-high">17.1%</td><td>16.0</td><td>18.0</td><td>17.0</td><td>13.0</td><td>24.0</td><td>15.0</td></tr><tr><td>3</td><td>10</td><td class="left horse-name">エコロヴァルツ</td><td class="trust-mid">12.0%</td><td>12.0</td><td>11.0</td><td>12.0</td><td>15.0</td><td>11.0</td><td>11.0</td></tr><tr><td>4</td><td>1</td><td class="left horse-name">セイウンハーデス</td><td class="trust-mid">11.6%</td><td>13.0</td><td>13.0</td><td>14.0</td><td>11.0</td><td>9.0</td><td>10.0</td></tr><tr><td>5</td><td>6</td><td class="left horse-name">チェルヴィニア</td><td class="trust-mid">9.7%</td><td>7.0</td><td>8.0</td><td>9.0</td><td>10.0</td><td>13.0</td><td>11.0</td></tr><tr><td>6</td><td>14</td><td class="left horse-name">シャンパンカラー</td><td class="trust-low">5.8%</td><td>7.0</td><td>4.0</td><td>6.0</td><td>4.0</td><td>5.0</td><td>9.0</td></tr><tr><td>7</td><td>11</td><td class="left horse-name">サイルーン</td><td class="trust-low">4.0%</td><td>4.0</td><td>5.0</td><td>4.0</td><td>4.0</td><td>2.0</td><td>5.0</td></tr><tr><td>8</td><td>3</td><td class="left horse-name">マジックサンズ</td><td class="trust-low">3.8%</td><td>1.0</td><td>3.0</td><td>3.0</td><td>4.0</td><td>5.0</td><td>7.0</td></tr><tr><td>9</td><td>8</td><td class="left horse-name">ショウナンマグマ</td><td class="trust-low">3.3%</td><td>4.0</td><td>4.0</td><td>4.0</td><td>3.0</td><td>2.0</td><td>3.0</td></tr><tr><td>10</td><td>2</td><td class="left horse-name">オニャンコポン</td><td class="trust-low">3.0%</td><td>2.0</td><td>3.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td>4.0</td></tr><tr><td>11</td><td>7</td><td class="left horse-name">マイネルモーント</td><td class="trust-low">2.3%</td><td>1.0</td><td>3.0</td><td>3.0</td><td>2.0</td><td>2.0</td><td>3.0</td></tr><tr><td>12</td><td>12</td><td class="left horse-name">サンストックトン</td><td class="trust-low">2.0%</td><td>3.0</td><td>2.0</td><td>2.0</td><td>2.0</td><td>1.0</td><td>2.0</td></tr><tr><td>13</td><td>4</td><td class="left horse-name">スパークリシャール</td><td class="trust-low">1.7%</td><td>1.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td>2.0</td></tr><tr><td>14</td><td>13</td><td class="left horse-name">ニシノエージェント</td><td class="trust-low">1.3%</td><td>1.0</td><td>2.0</td><td>1.0</td><td>2.0</td><td>0.0</td><td>2.0</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>市場推定勝率</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>5</td><td class="left horse-name">レーベンスティール</td><td>22.3%</td><td>4.5</td><td>22.2%</td><td class="ev-low">1.00</td></tr><tr><td>2</td><td>9</td><td class="left horse-name">カラマティアノス</td><td>17.1%</td><td>7.2</td><td>13.9%</td><td class="ev-low">1.23</td></tr><tr><td>3</td><td>10</td><td class="left horse-name">エコロヴァルツ</td><td>12.0%</td><td>4.1</td><td>24.4%</td><td class="ev-low">0.49</td></tr><tr><td>4</td><td>1</td><td class="left horse-name">セイウンハーデス</td><td>11.6%</td><td>3.8</td><td>26.3%</td><td class="ev-low">0.44</td></tr><tr><td>5</td><td>6</td><td class="left horse-name">チェルヴィニア</td><td>9.7%</td><td>6.8</td><td>14.7%</td><td class="ev-low">0.66</td></tr><tr><td>6</td><td>14</td><td class="left horse-name">シャンパンカラー</td><td>5.8%</td><td>15.4</td><td>6.5%</td><td class="ev-low">0.90</td></tr><tr><td>7</td><td>11</td><td class="left horse-name">サイルーン</td><td>4.0%</td><td>100.2</td><td>1.0%</td><td class="ev-high">4.00</td></tr><tr><td>8</td><td>3</td><td class="left horse-name">マジックサンズ</td><td>3.8%</td><td>14.4</td><td>6.9%</td><td class="ev-low">0.55</td></tr><tr><td>9</td><td>8</td><td class="left horse-name">ショウナンマグマ</td><td>3.3%</td><td>39.1</td><td>2.6%</td><td class="ev-low">1.30</td></tr><tr><td>10</td><td>2</td><td class="left horse-name">オニャンコポン</td><td>3.0%</td><td>40.8</td><td>2.5%</td><td class="ev-low">1.22</td></tr><tr><td>11</td><td>7</td><td class="left horse-name">マイネルモーント</td><td>2.3%</td><td>52.0</td><td>1.9%</td><td class="ev-low">1.21</td></tr><tr><td>12</td><td>12</td><td class="left horse-name">サンストックトン</td><td>2.0%</td><td>128.8</td><td>0.8%</td><td class="ev-mid">2.57</td></tr><tr><td>13</td><td>4</td><td class="left horse-name">スパークリシャール</td><td>1.7%</td><td>173.1</td><td>0.6%</td><td class="ev-mid">2.88</td></tr><tr><td>14</td><td>13</td><td class="left horse-name">ニシノエージェント</td><td>1.3%</td><td>58.0</td><td>1.7%</td><td class="ev-low">0.77</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別 期待値トップ3</span></div>
+<div class="section-body">
+<h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>単勝</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 レーベンスティール</td><td>32.8%</td><td>4.5</td><td class="ev-low">1.48</td></tr><tr><td>1</td><td class="left">11 サイルーン</td><td>2.1%</td><td>100.2</td><td class="ev-mid">2.10</td></tr><tr><td>2</td><td class="left">9 カラマティアノス</td><td>21.6%</td><td>7.2</td><td class="ev-mid">1.55</td></tr><tr style="background:#E8F5E9;"><td>3</td><td class="left">5 レーベンスティール</td><td>32.8%</td><td>4.5</td><td class="ev-low">1.48</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>複勝</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 レーベンスティール</td><td>76.5%</td><td>1.8</td><td class="ev-low">1.38</td></tr><tr style="background:#E8F5E9;"><td>1</td><td class="left">5 レーベンスティール</td><td>76.5%</td><td>1.8</td><td class="ev-low">1.38</td></tr><tr><td>2</td><td class="left">9 カラマティアノス</td><td>61.9%</td><td>2.1</td><td class="ev-low">1.30</td></tr><tr><td>3</td><td class="left">11 サイルーン</td><td>8.0%</td><td>11.6</td><td class="ev-low">0.93</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>馬連</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 レーベンスティール-9 カラマティアノス</td><td>19.6%</td><td>14.5</td><td class="ev-mid">2.84</td></tr><tr><td>1</td><td class="left">5 レーベンスティール-11 サイルーン</td><td>1.7%</td><td>235.6</td><td class="ev-high">4.07</td></tr><tr><td>2</td><td class="left">9 カラマティアノス-11 サイルーン</td><td>1.0%</td><td>353.2</td><td class="ev-high">3.66</td></tr><tr style="background:#E8F5E9;"><td>3</td><td class="left">5 レーベンスティール-9 カラマティアノス</td><td>19.6%</td><td>14.5</td><td class="ev-mid">2.84</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>ワイド</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 レーベンスティール-9 カラマティアノス</td><td>44.8%</td><td>5.8</td><td class="ev-mid">2.60</td></tr><tr><td>1</td><td class="left">5 レーベンスティール-11 サイルーン</td><td>5.1%</td><td>57.2</td><td class="ev-mid">2.93</td></tr><tr><td>2</td><td class="left">9 カラマティアノス-11 サイルーン</td><td>3.7%</td><td>75.8</td><td class="ev-mid">2.77</td></tr><tr style="background:#E8F5E9;"><td>3</td><td class="left">5 レーベンスティール-9 カラマティアノス</td><td>44.8%</td><td>5.8</td><td class="ev-mid">2.60</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>馬単</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 レーベンスティール→9 カラマティアノス</td><td>10.5%</td><td>26.1</td><td class="ev-mid">2.75</td></tr><tr><td>1</td><td class="left">5 レーベンスティール→11 サイルーン</td><td>1.0%</td><td>347.8</td><td class="ev-high">3.56</td></tr><tr><td>2</td><td class="left">9 カラマティアノス→5 レーベンスティール</td><td>9.0%</td><td>32.5</td><td class="ev-mid">2.93</td></tr><tr style="background:#E8F5E9;"><td>3</td><td class="left">5 レーベンスティール→9 カラマティアノス</td><td>10.5%</td><td>26.1</td><td class="ev-mid">2.75</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>3連複</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 レーベンスティール-9 カラマティアノス-10 エコロヴァルツ</td><td>12.5%</td><td>14.8</td><td class="ev-mid">1.84</td></tr><tr><td>1</td><td class="left">5 レーベンスティール-9 カラマティアノス-11 サイルーン</td><td>1.9%</td><td>440.4</td><td class="ev-high">8.45</td></tr><tr><td>2</td><td class="left">2 オニャンコポン-5 レーベンスティール-9 カラマティアノス</td><td>1.2%</td><td>273.1</td><td class="ev-high">3.28</td></tr><tr><td>3</td><td class="left">5 レーベンスティール-9 カラマティアノス-14 シャンパンカラー</td><td>3.6%</td><td>82.4</td><td class="ev-mid">2.94</td></tr></tbody></table><h4 style='margin:16px 0 8px;font-size:13px;color:#3A3A3C;'>3連単</h4><table><thead><tr><th style='width:32px;'>#</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>期待値</th></tr></thead><tbody><tr style="background:#FFF8E1;"><td style="color:#FF9500;font-weight:700;">◎</td><td class="left">5 レーベンスティール→9 カラマティアノス→10 エコロヴァルツ</td><td>2.8%</td><td>75.1</td><td class="ev-mid">2.11</td></tr><tr><td>1</td><td class="left">9 カラマティアノス→5 レーベンスティール→6 チェルヴィニア</td><td>1.7%</td><td>207.7</td><td class="ev-high">3.53</td></tr><tr><td>2</td><td class="left">9 カラマティアノス→5 レーベンスティール→1 セイウンハーデス</td><td>2.3%</td><td>152.1</td><td class="ev-high">3.50</td></tr><tr><td>3</td><td class="left">5 レーベンスティール→9 カラマティアノス→1 セイウンハーデス</td><td>2.7%</td><td>127.5</td><td class="ev-high">3.42</td></tr></tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:12px;">※ハーヴィル公式による的中確率（EV_POWER=1.6乗補正適用）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>期待値大馬券（上位4馬）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>券種</th><th>組合せ</th><th>CC推定確率</th><th>オッズ</th><th>期待値</th></tr></thead>
+<tbody>
+<tr style="background:#E8F5E9;"><td>1</td><td>3連単</td><td class="left">9 カラマティアノス→5 レーベンスティール→1 セイウンハーデス</td><td>2.3%</td><td>152.1</td><td class="ev-high">3.50</td></tr><tr style="background:#E8F5E9;"><td>2</td><td>3連単</td><td class="left">5 レーベンスティール→9 カラマティアノス→1 セイウンハーデス</td><td>2.7%</td><td>127.5</td><td class="ev-high">3.42</td></tr><tr style="background:#E8F5E9;"><td>3</td><td>馬単</td><td class="left">9 カラマティアノス→5 レーベンスティール</td><td>9.0%</td><td>32.5</td><td class="ev-mid">2.93</td></tr><tr><td>4</td><td>馬連</td><td class="left">5 レーベンスティール-9 カラマティアノス</td><td>19.6%</td><td>14.5</td><td class="ev-mid">2.84</td></tr><tr><td>5</td><td>3連複</td><td class="left">1 セイウンハーデス-5 レーベンスティール-9 カラマティアノス</td><td>11.8%</td><td>23.3</td><td class="ev-mid">2.76</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定1-4位馬対象（EV_POWER=1.6乗補正）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>期待値大馬券（全馬）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>券種</th><th>組合せ</th><th>CC推定確率</th><th>オッズ</th><th>期待値</th></tr></thead>
+<tbody>
+<tr style="background:#E8F5E9;"><td>1</td><td>3連複</td><td class="left">5 レーベンスティール-9 カラマティアノス-11 サイルーン</td><td>1.9%</td><td>440.4</td><td class="ev-high">8.45</td></tr><tr><td>2</td><td>馬連</td><td class="left">5 レーベンスティール-11 サイルーン</td><td>1.7%</td><td>235.6</td><td class="ev-high">4.07</td></tr><tr><td>3</td><td>馬連</td><td class="left">9 カラマティアノス-11 サイルーン</td><td>1.0%</td><td>353.2</td><td class="ev-high">3.66</td></tr><tr><td>4</td><td>馬単</td><td class="left">5 レーベンスティール→11 サイルーン</td><td>1.0%</td><td>347.8</td><td class="ev-high">3.56</td></tr><tr><td>5</td><td>3連単</td><td class="left">9 カラマティアノス→5 レーベンスティール→6 チェルヴィニア</td><td>1.7%</td><td>207.7</td><td class="ev-high">3.53</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※全馬対象（EV_POWER=1.6乗補正）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,805円（信頼度18.1% × 100）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">5 レーベンスティール</td><td>4.5</td><td>6</td><td style='text-align:right;font-weight:600;'>600円</td><td style="font-size:11px;color:#8E8E93;">単勝◎, 券種別◎</td></tr><tr><td>単勝</td><td class="left">9 カラマティアノス</td><td>7.2</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝○</td></tr><tr><td>3連複</td><td class="left">5 レーベンスティール-9 カラマティアノス-10 エコロヴァルツ</td><td>14.8</td><td>3</td><td style='text-align:right;font-weight:600;'>300円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">5 レーベンスティール→9 カラマティアノス→10 エコロヴァルツ</td><td>75.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎○▲</td></tr><tr><td>3連単</td><td class="left">9 カラマティアノス→5 レーベンスティール→1 セイウンハーデス</td><td>152.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>3連単</td><td class="left">5 レーベンスティール→9 カラマティアノス→1 セイウンハーデス</td><td>127.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>馬単</td><td class="left">9 カラマティアノス→5 レーベンスティール</td><td>32.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>3連複</td><td class="left">5 レーベンスティール-9 カラマティアノス-11 サイルーン</td><td>440.4</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">全馬Top(EV≥2.0)</td></tr><tr><td>馬連</td><td class="left">5 レーベンスティール-9 カラマティアノス</td><td>14.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">券種別◎</td></tr><tr><td>ワイド</td><td class="left">5 レーベンスティール-9 カラマティアノス</td><td>5.8</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">券種別◎</td></tr><tr><td>馬単</td><td class="left">5 レーベンスティール→9 カラマティアノス</td><td>26.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">券種別◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,800円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
