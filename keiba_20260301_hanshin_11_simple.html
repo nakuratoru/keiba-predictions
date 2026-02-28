@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第33回チューリップ賞 2026/03/01 HANSHIN 11R (02/28 21:22 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .change-badge {
+    display: inline-block; background: #FF3B30; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .keep-badge {
+    display: inline-block; background: #8E8E93; color: white;
+    border-radius: 4px; padding: 1px 6px; font-size: 10px; font-weight: 600;
+  }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第33回チューリップ賞 2026/03/01 HANSHIN 11R (02/28 21:22 予想 馬体重なし)</h1>
+  <div class="meta">芝1600m（右 外） |  | 15頭立て | 1回 阪神 4日目 サラ系3歳 オープン （国際）牝（指定） 馬齢 15頭</div>
+  <div class="cc-trust">CC最終信頼度: <strong>11.2%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">13. タイセイボーグ</div>
+      <div class="pick-jockey">西村 淳也 / 松下 武士</div>
+    </div>
+    <div class="pick-prob">16.8%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">12. アランカール</div>
+      <div class="pick-jockey">武 豊 / 斉藤 崇史</div>
+    </div>
+    <div class="pick-prob">16.7%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">5. ソルパッサーレ</div>
+      <div class="pick-jockey">浜中 俊 / 四位 洋文</div>
+    </div>
+    <div class="pick-prob">14.3%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">15頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">エレガンスアスク</td><td>牝3</td><td>55</td><td>坂井 瑠星</td><td>田中 克典</td><td>ポエティックフレア</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">グレースジェンヌ</td><td>牝3</td><td>55</td><td>岩田 望来</td><td>上村 洋行</td><td>モーリス</td><td>アグネスデジタル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">アンディムジーク</td><td>牝3</td><td>55</td><td>団野 大成</td><td>渡辺 薫彦</td><td>アドマイヤマーズ</td><td>ノヴェリスト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">スマートプリエール</td><td>牝3</td><td>55</td><td>吉村 誠之助</td><td>大久保 龍志</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ソルパッサーレ</td><td>牝3</td><td>55</td><td>浜中 俊</td><td>四位 洋文</td><td>キズナ</td><td>Footstepsinthesand</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">グランドオーパス</td><td>牝3</td><td>55</td><td>高杉 吏麒</td><td>橋口 慎介</td><td>キズナ</td><td>ノヴェリスト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">サキドリトッケン</td><td>牝3</td><td>55</td><td>飛田 愛斗</td><td></td><td>トゥザワールド</td><td>シーキングザダイヤ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">エイズルブルーム</td><td>牝3</td><td>55</td><td>池添 謙一</td><td>坂口 智康</td><td>リオンディーズ</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">ホワイトオーキッド</td><td>牝3</td><td>55</td><td>松山 弘平</td><td>藤原 英昭</td><td>キズナ</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">コニーアイランド</td><td>牝3</td><td>55</td><td>川田 将雅</td><td>中内田 充正</td><td>コントレイル</td><td>All American</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">ダンデノン</td><td>牝3</td><td>55</td><td>北村 友一</td><td>田中 克典</td><td>シルバーステート</td><td>Exceed And Excel</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">アランカール</td><td>牝3</td><td>55</td><td>武 豊</td><td>斉藤 崇史</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">タイセイボーグ</td><td>牝3</td><td>55</td><td>西村 淳也</td><td>松下 武士</td><td>インディチャンプ</td><td>Azamour</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">ナムラコスモス</td><td>牝3</td><td>55</td><td>田口 貫太</td><td>大橋 勇樹</td><td>ダノンプレミアム</td><td>ジョーカプチーノ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">ダンシングドール</td><td>牝3</td><td>55</td><td>森田 誠也</td><td>牧田 和弥</td><td>ヴァンセンヌ</td><td>スタチューオブリバティ</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>エージェント分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">タイセイボーグが阪神JF3着（差0.3秒）と重賞好走実績で最上位評価。新潟2歳S2着（差0.7）も含め安定した上位入線が光る。アランカールは野路菊S勝ち（差-0.6秒の圧勝）で新馬→OP連勝、阪神JF5着は多頭数の経験値として評価。ナムラコスモスはこぶし賞勝ち（差-0.1）で阪神芝の実績あり。ソルパッサーレは河津桜賞勝ち（差-0.3）で芝1600m1:33.7の好時計。グランドオーパスは赤松賞2着（差0.3）で東京芝1600mの重賞級実績。</div><h3>血統派</h3>
+<div class="analysis-text">タイセイボーグは父インディチャンプのマイル特化設計でGI3着の実績が阪神マイル適性を証明。アランカールはエピファネイア×ディープインパクトの王道配合で末脚の鋭さに血統的裏付け。ソルパッサーレは父ブリックスアンドモルタルで芝中距離に適性、母系のスピードで1600mも守備範囲。エレガンスアスクは父ポエティックフレアの欧州型マイラー血統で阪神外回り向き。コニーアイランドは父コントレイルで距離融通の利く配合。</div><h3>展開派</h3>
+<div class="analysis-text">阪神芝1600m外回りはスロー想定で先行有利。アランカールは差し脚質だが野路菊Sの圧勝内容から展開不問の能力を評価、12枠は外を回す分のロスに注意。ソルパッサーレは河津桜賞で好位差しの競馬ができており、中枠5番から好位を確保しやすい。コニーアイランドは10番枠から中団追走、スローなら直線の長さを活かせる。エレガンスアスクは1番枠の内で好位確保が容易、スロー展開で恩恵大。</div><h3>陣営派</h3>
+<div class="analysis-text">コニーアイランドは川田将雅×中内田充正の黄金コンビで阪神芝の成績が突出。タイセイボーグは横山武史騎乗でGI経験豊富、阪神JF3着の実績が裏付け。ソルパッサーレは浜中俊が阪神芝1600mで好相性。アランカールは武豊×池添学で重賞実績あり。ホワイトオーキッドは松山弘平×藤原英昭厩舎の好相性コンビ。</div><h3>体調派</h3>
+<div class="analysis-text">ソルパッサーレは前走勝利・同条件・体重安定・叩き3走目と好走条件が揃っている。アランカールは体重438kgで一貫して安定、休養明けでも仕上がり崩れなし。スマートプリエールは成長曲線が明確で大型馬の強みを活かせる仕上がり。タイセイボーグは前走486kg（+16kg）の大幅増から絞れているかが鍵、体重次第で評価上下。ダンデノンは調教B評価で前走からの上昇示唆。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>タイセイボーグが勝ちきれない体質を露呈し、好位から伸びあぐねて4着以下に沈む。阪神JF+16kgの太め残りが解消されておらず動き出しが鈍い</li><li>アランカールがスローペースの前残り展開に泣く。阪神JF同様に後方から追い込むも、チューリップ賞特有の緩い流れでは物理的に届かない。武豊の手腕をもってしてもポジション取りに失敗</li><li>ソルパッサーレが重賞の壁に跳ね返される。河津桜賞で倒した相手のレベルが低く、タイセイボーグやアランカールといったGI経験馬との力差が露呈。マイル実績1戦のみで距離適性にも不安</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,121円（信頼度11.2% × 100）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">13 タイセイボーグ</td><td>3.8</td><td>4</td><td style='text-align:right;font-weight:600;'>400円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>単勝</td><td class="left">12 アランカール</td><td>2.7</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝○</td></tr><tr><td>3連複</td><td class="left">5 ソルパッサーレ-12 アランカール-13 タイセイボーグ</td><td>10.4</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">13 タイセイボーグ→12 アランカール→5 ソルパッサーレ</td><td>44.0</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎○▲</td></tr><tr><td>ワイド</td><td class="left">5 ソルパッサーレ-14 ナムラコスモス</td><td>18.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>馬単</td><td class="left">5 ソルパッサーレ→13 タイセイボーグ</td><td>33.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr><tr><td>3連複</td><td class="left">5 ソルパッサーレ-13 タイセイボーグ-14 ナムラコスモス</td><td>50.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">上位4馬Top3</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,100円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
