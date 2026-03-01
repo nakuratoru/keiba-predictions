@@ -12,10 +12,21 @@ li { margin-bottom: 8px; }
 a { color: #64D2FF; text-decoration: none; font-size: 16px; }
 a:hover { text-decoration: underline; }
 .updated { font-size: 12px; color: #EBEBF5; opacity: 0.6; margin-top: 24px; }
+#lock { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:60vh; }
+#lock input { background:#2C2C2E; border:1px solid #48484A; color:#F5F5F7; padding:8px 12px; border-radius:8px; font-size:16px; margin-bottom:8px; text-align:center; }
+#lock button { background:#0A84FF; color:#fff; border:none; padding:8px 24px; border-radius:8px; font-size:16px; cursor:pointer; }
+#content { display:none; }
 </style>
 </head>
 <body>
+<div id="lock">
 <h1>CC競馬予想</h1>
+<input type="password" id="pw" placeholder="パスワード" autofocus>
+<button onclick="unlock()">Enter</button>
+</div>
+<div id="content">
+<h1>CC競馬予想</h1>
+<p style="font-size:13px;color:#EBEBF5;opacity:0.6;margin:0 0 16px;">nw: no weight, ww: with weight</p>
 <ul>
   <li><a href="20260301_win5.html">20260301_win5</a></li>
   <li><a href="20260301_nakayama_11_ww_simple.html">20260301_nakayama_11_ww</a></li>
@@ -24,6 +35,12 @@ a:hover { text-decoration: underline; }
   <li><a href="20260301_hanshin_11_ww_simple.html">20260301_hanshin_11_ww</a></li>
   <li><a href="20260301_hanshin_10_ww_simple.html">20260301_hanshin_10_ww</a></li>
 </ul>
-<div class="updated">Updated: 2026-03-01 20:37</div>
+<div class="updated">Updated: 2026-03-01 20:38</div>
+</div>
+<script>
+function unlock(){if(document.getElementById('pw').value==='1234'){document.getElementById('lock').style.display='none';document.getElementById('content').style.display='block';sessionStorage.setItem('ok','1')}}
+document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')unlock()});
+if(sessionStorage.getItem('ok')==='1'){document.getElementById('lock').style.display='none';document.getElementById('content').style.display='block'}
+</script>
 </body>
 </html>
