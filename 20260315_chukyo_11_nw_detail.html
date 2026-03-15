@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第62回東海テレビ杯金鯱賞 2026/03/15 CHUKYO 11R (03/14 22:34 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第62回東海テレビ杯金鯱賞 2026/03/15 CHUKYO 11R (03/14 22:34 予想 馬体重なし)</h1>
+  <div class="meta">芝2000m（左） |  | 14頭立て | 1回 中京 2日目 サラ系4歳以上 オープン （国際）（指定） 別定 14頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>14.6%</strong>
+   / 3連信頼度: <strong>12.1%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">2. ジューンテイク</div>
+      <div class="pick-jockey">武 豊 / 武 英智</div>
+    </div>
+    <div class="pick-prob">14.6%</div>
+    <div class="pick-pop">5人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">12. クイーンズウォーク</div>
+      <div class="pick-jockey">川田 将雅 / 中内田 充正</div>
+    </div>
+    <div class="pick-prob">14.6%</div>
+    <div class="pick-pop">1人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">1. ドゥラドーレス</div>
+      <div class="pick-jockey">戸崎 圭太 / 宮田 敬介</div>
+    </div>
+    <div class="pick-prob">12.1%</div>
+    <div class="pick-pop">2人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">14頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ドゥラドーレス</td><td>牡7</td><td>57</td><td>戸崎 圭太</td><td>宮田 敬介</td><td>ドゥラメンテ</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">ジューンテイク</td><td>牡5</td><td>58</td><td>武 豊</td><td>武 英智</td><td>キズナ</td><td>シンボリクリスエス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ジョバンニ</td><td>牡4</td><td>57</td><td>松山 弘平</td><td>杉山 晴紀</td><td>エピファネイア</td><td>Footstepsinthesand</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">アーバンシック</td><td>牡5</td><td>58</td><td>三浦 皇成</td><td>武井 亮</td><td>スワーヴリチャード</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ディマイザキッド</td><td>牡5</td><td>57</td><td>柴田 善臣</td><td>清水 英克</td><td>ディーマジェスティ</td><td>ファスリエフ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ヴィレム</td><td>牡5</td><td>57</td><td>M.ディー</td><td>藤原 英昭</td><td>キズナ</td><td>Mizzen Mast</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">ニシノレヴナント</td><td>せん6</td><td>57</td><td>野中 悠太郎</td><td>上原 博之</td><td>ネロ</td><td>コンデュイット</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">アラタ</td><td>牡9</td><td>57</td><td>横山 典弘</td><td>和田 勇介</td><td>キングカメハメハ</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">シェイクユアハート</td><td>牡6</td><td>57</td><td>古川 吉洋</td><td>宮 徹</td><td>ハーツクライ</td><td>Sri Pekan</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">セキトバイースト</td><td>牝5</td><td>55</td><td>浜中 俊</td><td>四位 洋文</td><td>デクラレーションオブウォー</td><td>Footstepsinthesand</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">キングズパレス</td><td>牡7</td><td>57</td><td>菊沢 一樹</td><td>戸田 博文</td><td>キングカメハメハ</td><td>Dubawi</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">クイーンズウォーク</td><td>牝5</td><td>56</td><td>川田 将雅</td><td>中内田 充正</td><td>キズナ</td><td>Harlington</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td>牡6</td><td>57</td><td>岩田 望来</td><td>奥村 武</td><td>マインドユアビスケッツ</td><td>ルーラーシップ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">サフィラ</td><td>牝5</td><td>55</td><td>丸山 元気</td><td>池添 学</td><td>ハーツクライ</td><td>Lomitas</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Run 1 — 各派確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>2</td><td class="left horse-name">ジューンテイク</td><td>16.0</td><td>12.0</td><td>18.0</td><td>16.0</td><td>13.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:40px;"></div><span class="conf-val trust-high">15.0</span></div></td></tr><tr><td>1</td><td class="left horse-name">ドゥラドーレス</td><td>9.0</td><td>18.0</td><td>12.0</td><td>12.0</td><td>16.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:35px;"></div><span class="conf-val trust-mid">13.4</span></div></td></tr><tr><td>12</td><td class="left horse-name">クイーンズウォーク</td><td>15.0</td><td>13.0</td><td>16.0</td><td>17.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:34px;"></div><span class="conf-val trust-mid">13.0</span></div></td></tr><tr><td>6</td><td class="left horse-name">ヴィレム</td><td>9.0</td><td>7.0</td><td>8.0</td><td>18.0</td><td>17.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:31px;"></div><span class="conf-val trust-mid">11.8</span></div></td></tr><tr><td>9</td><td class="left horse-name">シェイクユアハート</td><td>13.0</td><td>14.0</td><td>9.0</td><td>11.0</td><td>11.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:30px;"></div><span class="conf-val trust-mid">11.6</span></div></td></tr><tr><td>4</td><td class="left horse-name">アーバンシック</td><td>11.0</td><td>6.0</td><td>10.0</td><td>5.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:19px;"></div><span class="conf-val trust-low">7.2</span></div></td></tr><tr><td>3</td><td class="left horse-name">ジョバンニ</td><td>5.0</td><td>7.0</td><td>4.0</td><td>5.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:13px;"></div><span class="conf-val trust-low">5.2</span></div></td></tr><tr><td>5</td><td class="left horse-name">ディマイザキッド</td><td>4.0</td><td>4.0</td><td>4.0</td><td>4.0</td><td>8.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:12px;"></div><span class="conf-val trust-low">4.8</span></div></td></tr><tr><td>10</td><td class="left horse-name">セキトバイースト</td><td>3.0</td><td>4.0</td><td>3.0</td><td>6.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:11px;"></div><span class="conf-val trust-low">4.2</span></div></td></tr><tr><td>11</td><td class="left horse-name">キングズパレス</td><td>3.0</td><td>5.0</td><td>3.0</td><td>5.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:11px;"></div><span class="conf-val trust-low">4.2</span></div></td></tr><tr><td>14</td><td class="left horse-name">サフィラ</td><td>6.0</td><td>4.0</td><td>3.0</td><td>4.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">3.8</span></div></td></tr><tr><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td>1.0</td><td>2.0</td><td>6.0</td><td>4.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.4</span></div></td></tr><tr><td>7</td><td class="left horse-name">ニシノレヴナント</td><td>3.0</td><td>2.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:7px;"></div><span class="conf-val trust-low">2.8</span></div></td></tr><tr><td>8</td><td class="left horse-name">アラタ</td><td>2.0</td><td>2.0</td><td>2.0</td><td>3.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.2</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Run 1 — 各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">ドゥラドーレスはGII4戦連続2着で安定感抜群だが勝ちきれない。ジューンテイクは京都記念1着・上がり33.9の充実内容、距離短縮もプラス。シェイクユアハートは中日新聞杯(中京2000m)1着・上がり33.2でコース実績が直結。クイーンズウォークは昨年同レース優勝、天皇賞(秋)上がり32.8の切れ味。アーバンシックは天皇賞(秋)上がり32.2が圧倒的だが調教C・ムラが大きい。ヴィレムは調教A評価で芝2000m連続好走、上がり33秒台安定。</div><h3>血統派</h3>
+<div class="analysis-text">ドゥラドーレス(父ドゥラメンテ/母父ハービンジャー)は中京芝2000mに最適な万能配合、安定度トップ。シェイクユアハート(父ハーツクライ/母父Sri Pekan)は持続力型で中京左回り2000mとの相性が非常に高い。クイーンズウォーク(父キズナ/母父Harlington)は昨年覇者でコース適性実証済み。ジューンテイク(父キズナ/母父シンボリクリスエス)は距離短縮プラス。ホウオウビスケッツの父マインドユアビスケッツは芝適性に疑問。</div><h3>展開派</h3>
+<div class="analysis-text">ホウオウビスケッツが外枠から単騎逃げ、スロー〜ミドルペースを想定。内枠先行馬が有利な構図で、ジューンテイク(2枠2番)が最も恵まれる。クイーンズウォークは外枠でも先行力と川田騎手の腕で3-4番手を確保。ドゥラドーレスは1枠1番だが差し脚質でスロー展開は不利。アーバンシックは差し脚質で展開向かず取りこぼす可能性。シェイクユアハートは中団から差し込むが前が止まりきらない懸念。</div><h3>陣営派</h3>
+<div class="analysis-text">ヴィレムは藤原英昭厩舎の格上げ戦略+調教A評価で陣営期待度最高。クイーンズウォークは川田将雅×中内田充正の最強コンビで昨年覇者。ジューンテイクは武豊×中京の高い期待値。シェイクユアハートは宮徹厩舎の中京相性と中日新聞杯勝ち馬としてのコース実績。アーバンシックは調教評価Cで割引。</div><h3>体調派</h3>
+<div class="analysis-text">ヴィレムは唯一の調教A評価、叩き2走目で前走の太め解消期待。ドゥラドーレスは502kg前後で体重最安定、崩れる要素なし。シェイクユアハートは458kgで3走連続安定、調教「上積十分」。クイーンズウォークは4.5ヶ月休養明け+体重右肩上がり542kgで太め残り懸念。アーバンシック・アラタは調教C評価で仕上がり不安。ジューンテイクは体重乱高下(490→504)が不安定要因。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>Run 2 — 各派確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>12</td><td class="left horse-name">クイーンズウォーク</td><td>14.0</td><td>20.0</td><td>22.0</td><td>26.0</td><td>9.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:48px;"></div><span class="conf-val trust-high">18.2</span></div></td></tr><tr><td>2</td><td class="left horse-name">ジューンテイク</td><td>22.0</td><td>15.0</td><td>16.0</td><td>18.0</td><td>10.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:43px;"></div><span class="conf-val trust-high">16.2</span></div></td></tr><tr><td>1</td><td class="left horse-name">ドゥラドーレス</td><td>10.0</td><td>10.0</td><td>12.0</td><td>11.0</td><td>14.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:30px;"></div><span class="conf-val trust-mid">11.4</span></div></td></tr><tr><td>9</td><td class="left horse-name">シェイクユアハート</td><td>13.0</td><td>10.0</td><td>10.0</td><td>12.0</td><td>12.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:30px;"></div><span class="conf-val trust-mid">11.4</span></div></td></tr><tr><td>6</td><td class="left horse-name">ヴィレム</td><td>9.0</td><td>8.0</td><td>8.0</td><td>7.0</td><td>13.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:24px;"></div><span class="conf-val trust-mid">9.0</span></div></td></tr><tr><td>4</td><td class="left horse-name">アーバンシック</td><td>8.0</td><td>8.0</td><td>11.0</td><td>7.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:20px;"></div><span class="conf-val trust-low">7.6</span></div></td></tr><tr><td>3</td><td class="left horse-name">ジョバンニ</td><td>5.0</td><td>5.0</td><td>2.0</td><td>5.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:11px;"></div><span class="conf-val trust-low">4.4</span></div></td></tr><tr><td>10</td><td class="left horse-name">セキトバイースト</td><td>3.0</td><td>4.0</td><td>3.0</td><td>5.0</td><td>7.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:11px;"></div><span class="conf-val trust-low">4.4</span></div></td></tr><tr><td>5</td><td class="left horse-name">ディマイザキッド</td><td>4.0</td><td>5.0</td><td>1.5</td><td>2.0</td><td>8.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">4.1</span></div></td></tr><tr><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td>3.0</td><td>3.0</td><td>7.0</td><td>3.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">4.0</span></div></td></tr><tr><td>11</td><td class="left horse-name">キングズパレス</td><td>4.0</td><td>4.0</td><td>1.0</td><td>1.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:8px;"></div><span class="conf-val trust-low">3.0</span></div></td></tr><tr><td>7</td><td class="left horse-name">ニシノレヴナント</td><td>2.0</td><td>3.0</td><td>0.5</td><td>2.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:6px;"></div><span class="conf-val trust-low">2.3</span></div></td></tr><tr><td>14</td><td class="left horse-name">サフィラ</td><td>1.0</td><td>2.0</td><td>5.0</td><td>0.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.2</span></div></td></tr><tr><td>8</td><td class="left horse-name">アラタ</td><td>2.0</td><td>3.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:4px;"></div><span class="conf-val trust-low">1.8</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>Run 3 — 各派確信度比較</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>平均</th></tr></thead>
+<tbody>
+<tr><td>12</td><td class="left horse-name">クイーンズウォーク</td><td>8.0</td><td>22.0</td><td>20.0</td><td>22.0</td><td>8.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:42px;"></div><span class="conf-val trust-high">16.0</span></div></td></tr><tr><td>2</td><td class="left horse-name">ジューンテイク</td><td>22.0</td><td>12.0</td><td>16.0</td><td>16.0</td><td>12.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:41px;"></div><span class="conf-val trust-high">15.6</span></div></td></tr><tr><td>9</td><td class="left horse-name">シェイクユアハート</td><td>16.0</td><td>18.0</td><td>10.0</td><td>11.0</td><td>11.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:35px;"></div><span class="conf-val trust-mid">13.2</span></div></td></tr><tr><td>1</td><td class="left horse-name">ドゥラドーレス</td><td>9.0</td><td>15.0</td><td>12.0</td><td>9.0</td><td>10.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:29px;"></div><span class="conf-val trust-mid">11.0</span></div></td></tr><tr><td>6</td><td class="left horse-name">ヴィレム</td><td>10.0</td><td>8.0</td><td>8.0</td><td>8.0</td><td>14.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:25px;"></div><span class="conf-val trust-mid">9.6</span></div></td></tr><tr><td>4</td><td class="left horse-name">アーバンシック</td><td>9.0</td><td>6.0</td><td>13.0</td><td>5.0</td><td>3.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:19px;"></div><span class="conf-val trust-low">7.2</span></div></td></tr><tr><td>14</td><td class="left horse-name">サフィラ</td><td>3.0</td><td>5.0</td><td>5.0</td><td>5.0</td><td>7.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:13px;"></div><span class="conf-val trust-low">5.0</span></div></td></tr><tr><td>11</td><td class="left horse-name">キングズパレス</td><td>3.0</td><td>4.0</td><td>2.0</td><td>5.0</td><td>9.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:12px;"></div><span class="conf-val trust-low">4.6</span></div></td></tr><tr><td>5</td><td class="left horse-name">ディマイザキッド</td><td>4.0</td><td>4.0</td><td>2.0</td><td>4.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:10px;"></div><span class="conf-val trust-low">3.8</span></div></td></tr><tr><td>3</td><td class="left horse-name">ジョバンニ</td><td>6.0</td><td>1.0</td><td>3.0</td><td>3.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.6</span></div></td></tr><tr><td>10</td><td class="left horse-name">セキトバイースト</td><td>3.0</td><td>2.0</td><td>4.0</td><td>4.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:9px;"></div><span class="conf-val trust-low">3.6</span></div></td></tr><tr><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td>2.0</td><td>1.0</td><td>3.0</td><td>4.0</td><td>5.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:8px;"></div><span class="conf-val trust-low">3.0</span></div></td></tr><tr><td>7</td><td class="left horse-name">ニシノレヴナント</td><td>3.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td>4.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:5px;"></div><span class="conf-val trust-low">2.2</span></div></td></tr><tr><td>8</td><td class="left horse-name">アラタ</td><td>2.0</td><td>1.0</td><td>1.0</td><td>2.0</td><td>2.0</td><td><div class="conf-bar"><div class="conf-fill" style="width:4px;"></div><span class="conf-val trust-low">1.6</span></div></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者分析</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>5人平均</th><th>批判者</th><th>差</th></tr></thead>
+<tbody>
+<tr><td>2</td><td class="left horse-name">ジューンテイク</td><td>15.0</td><td>10.3</td><td><span class="trust-low">-4.7</span></td></tr><tr><td>1</td><td class="left horse-name">ドゥラドーレス</td><td>13.4</td><td>13.7</td><td><span class="trust-high">+0.3</span></td></tr><tr><td>12</td><td class="left horse-name">クイーンズウォーク</td><td>13.0</td><td>9.7</td><td><span class="trust-low">-3.3</span></td></tr><tr><td>6</td><td class="left horse-name">ヴィレム</td><td>11.8</td><td>10.3</td><td><span class="trust-low">-1.5</span></td></tr><tr><td>9</td><td class="left horse-name">シェイクユアハート</td><td>11.6</td><td>13.0</td><td><span class="trust-high">+1.4</span></td></tr><tr><td>4</td><td class="left horse-name">アーバンシック</td><td>7.2</td><td>9.3</td><td><span class="trust-high">+2.1</span></td></tr><tr><td>3</td><td class="left horse-name">ジョバンニ</td><td>5.2</td><td>4.3</td><td><span class="trust-low">-0.9</span></td></tr><tr><td>5</td><td class="left horse-name">ディマイザキッド</td><td>4.8</td><td>3.7</td><td><span class="trust-low">-1.1</span></td></tr><tr><td>10</td><td class="left horse-name">セキトバイースト</td><td>4.2</td><td>6.3</td><td><span class="trust-high">+2.1</span></td></tr><tr><td>11</td><td class="left horse-name">キングズパレス</td><td>4.2</td><td>5.7</td><td><span class="trust-high">+1.5</span></td></tr><tr><td>14</td><td class="left horse-name">サフィラ</td><td>3.8</td><td>3.3</td><td><span class="trust-low">-0.5</span></td></tr><tr><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td>3.4</td><td>5.7</td><td><span class="trust-high">+2.3</span></td></tr><tr><td>7</td><td class="left horse-name">ニシノレヴナント</td><td>2.8</td><td>2.3</td><td><span class="trust-low">-0.5</span></td></tr><tr><td>8</td><td class="left horse-name">アラタ</td><td>2.2</td><td>2.3</td><td><span class="trust-high">+0.1</span></td></tr>
+</tbody></table>
+
+<div style="margin-top:16px;background:#F9F0FF;border-radius:8px;padding:12px;">
+  <div style="font-size:12px;font-weight:700;color:#AF52DE;margin-bottom:6px;">敗因シナリオ（批判者）</div>
+  <ol style="font-size:12px;color:#3A3A3C;margin-left:16px;"><li>中京未経験かつ先行激化でポジション取れず凡走（ムラ駆け体質が露呈）</li><li>中京2000mのコース適性欠如 -- 勝ち鞍は全て京都で、左回り・直線坂のある中京で同じ走りができる保証なし</li><li>別定58kgの斤量負担と京都記念からの反動 -- 重い斤量のGI級レースでは宝塚記念16着の前科あり</li><li>約4.5ヶ月の長期休養明けで仕上がり途上、馬体重542kg超の大型牝馬がさらに増加し切れ味を欠く</li><li>先行馬多数(ホウオウビスケッツ・ジューンテイク等)との好位争い激化で中京内回りの3-4角で揉まれ追い出しが遅れる</li><li>昨年の勝利は重馬場の特殊条件であり良馬場の2000mではマイラー寄りの適性が露呈し末脚が甘くなる</li><li>約5ヶ月の実戦ブランクにより仕上がり不十分で叩き台となり、先行策も良馬場の高速決着では鈍る</li><li>ホウオウビスケッツの逃げにより番手競馬を強いられ、直線でジューンテイク・シェイクユアハートら差し馬に交わされる</li><li>昨年より明確にメンバーレベルが上がっており、重馬場の昨年とは条件が異なる中でGI級馬複数に力負けする</li></ol>
+</div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者分析全文</span></div>
+<div class="section-body">
+<div class="agent-text"><p>ジューンテイクは京都記念勝利に引きずられた近時バイアスの典型で、17戦中10回掲示板外のムラ馬。ホウオウビスケッツは毎日王冠2着の実力がありGII級なら通用、過小評価。キングズパレスは複勝率72%の堅実さ。セキトバイーストは55kg斤量利で穴候補。ヴィレムは調教A評価だが重賞未勝利で期待先行の可能性。</p></div>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>2</td><td class="left horse-name">ジューンテイク</td><td class="trust-mid">14.6%</td><td>20.0</td><td>13.0</td><td>16.7</td><td>16.7</td><td>11.7</td><td>10.3</td></tr><tr><td>2</td><td>12</td><td class="left horse-name">クイーンズウォーク</td><td class="trust-mid">14.6%</td><td>12.3</td><td>18.3</td><td>19.3</td><td>21.7</td><td>7.0</td><td>9.7</td></tr><tr><td>3</td><td>1</td><td class="left horse-name">ドゥラドーレス</td><td class="trust-mid">12.1%</td><td>9.3</td><td>14.3</td><td>12.0</td><td>10.7</td><td>13.3</td><td>13.7</td></tr><tr><td>4</td><td>9</td><td class="left horse-name">シェイクユアハート</td><td class="trust-mid">12.1%</td><td>14.0</td><td>14.0</td><td>9.7</td><td>11.3</td><td>11.3</td><td>13.0</td></tr><tr><td>5</td><td>6</td><td class="left horse-name">ヴィレム</td><td class="trust-mid">10.1%</td><td>9.3</td><td>7.7</td><td>8.0</td><td>11.0</td><td>14.7</td><td>10.3</td></tr><tr><td>6</td><td>4</td><td class="left horse-name">アーバンシック</td><td class="trust-low">7.6%</td><td>9.3</td><td>6.7</td><td>11.3</td><td>5.7</td><td>3.7</td><td>9.3</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">セキトバイースト</td><td class="trust-low">4.4%</td><td>3.0</td><td>3.3</td><td>3.3</td><td>5.0</td><td>5.7</td><td>6.3</td></tr><tr><td>8</td><td>3</td><td class="left horse-name">ジョバンニ</td><td class="trust-low">4.4%</td><td>5.3</td><td>4.3</td><td>3.0</td><td>4.3</td><td>5.0</td><td>4.3</td></tr><tr><td>9</td><td>11</td><td class="left horse-name">キングズパレス</td><td class="trust-low">4.2%</td><td>3.3</td><td>4.3</td><td>2.0</td><td>3.7</td><td>6.3</td><td>5.7</td></tr><tr><td>10</td><td>5</td><td class="left horse-name">ディマイザキッド</td><td class="trust-low">4.1%</td><td>4.0</td><td>4.3</td><td>2.5</td><td>3.3</td><td>7.0</td><td>3.7</td></tr><tr><td>11</td><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td class="trust-low">3.8%</td><td>2.0</td><td>2.0</td><td>5.3</td><td>3.7</td><td>4.3</td><td>5.7</td></tr><tr><td>12</td><td>14</td><td class="left horse-name">サフィラ</td><td class="trust-low">3.6%</td><td>3.3</td><td>3.7</td><td>4.3</td><td>3.0</td><td>4.0</td><td>3.3</td></tr><tr><td>13</td><td>7</td><td class="left horse-name">ニシノレヴナント</td><td class="trust-low">2.4%</td><td>2.7</td><td>2.0</td><td>1.2</td><td>2.3</td><td>4.0</td><td>2.3</td></tr><tr><td>14</td><td>8</td><td class="left horse-name">アラタ</td><td class="trust-low">1.9%</td><td>2.0</td><td>2.0</td><td>1.3</td><td>2.0</td><td>2.0</td><td>2.3</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>2</td><td class="left horse-name">ジューンテイク</td><td>14.6%</td><td>8.0</td><td>5</td><td class="ev-mid">1.17</td></tr><tr><td>2</td><td>12</td><td class="left horse-name">クイーンズウォーク</td><td>14.6%</td><td>4.0</td><td>1</td><td class="ev-low">0.58</td></tr><tr><td>3</td><td>1</td><td class="left horse-name">ドゥラドーレス</td><td>12.1%</td><td>5.6</td><td>2</td><td class="ev-low">0.68</td></tr><tr><td>4</td><td>9</td><td class="left horse-name">シェイクユアハート</td><td>12.1%</td><td>12.2</td><td>8</td><td class="ev-mid">1.48</td></tr><tr><td>5</td><td>6</td><td class="left horse-name">ヴィレム</td><td>10.1%</td><td>6.5</td><td>3</td><td class="ev-low">0.66</td></tr><tr><td>6</td><td>4</td><td class="left horse-name">アーバンシック</td><td>7.6%</td><td>8.9</td><td>6</td><td class="ev-low">0.68</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">セキトバイースト</td><td>4.4%</td><td>18.6</td><td>9</td><td class="ev-low">0.82</td></tr><tr><td>8</td><td>3</td><td class="left horse-name">ジョバンニ</td><td>4.4%</td><td>7.9</td><td>4</td><td class="ev-low">0.34</td></tr><tr><td>9</td><td>11</td><td class="left horse-name">キングズパレス</td><td>4.2%</td><td>59.4</td><td>11</td><td class="ev-high">2.49</td></tr><tr><td>10</td><td>5</td><td class="left horse-name">ディマイザキッド</td><td>4.1%</td><td>34.3</td><td>10</td><td class="ev-mid">1.41</td></tr><tr><td>11</td><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td>3.8%</td><td>11.3</td><td>7</td><td class="ev-low">0.43</td></tr><tr><td>12</td><td>14</td><td class="left horse-name">サフィラ</td><td>3.6%</td><td>65.0</td><td>12</td><td class="ev-high">2.33</td></tr><tr><td>13</td><td>7</td><td class="left horse-name">ニシノレヴナント</td><td>2.4%</td><td>70.9</td><td>13</td><td class="ev-mid">1.70</td></tr><tr><td>14</td><td>8</td><td class="left horse-name">アラタ</td><td>1.9%</td><td>82.7</td><td>14</td><td class="ev-mid">1.60</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">2 ジューンテイク</td><td>14.7%</td><td>8.0</td><td class="ev-low">0.97</td></tr><tr><td>複勝</td><td class="left">2 ジューンテイク</td><td>41.4%</td><td>2.4</td><td class="ev-low">0.88</td></tr><tr><td>馬連</td><td class="left">2 ジューンテイク-12 クイーンズウォーク</td><td>5.1%</td><td>15.1</td><td class="ev-low">0.62</td></tr><tr><td>ワイド</td><td class="left">2 ジューンテイク-12 クイーンズウォーク</td><td>14.0%</td><td>6.4</td><td class="ev-low">0.75</td></tr><tr><td>馬単</td><td class="left">2 ジューンテイク→12 クイーンズウォーク</td><td>2.5%</td><td>35.3</td><td class="ev-low">0.72</td></tr><tr><td>3連複</td><td class="left">1 ドゥラドーレス-2 ジューンテイク-12 クイーンズウォーク</td><td>2.5%</td><td>19.7</td><td class="ev-low">0.40</td></tr><tr><td>3連単</td><td class="left">2 ジューンテイク→12 クイーンズウォーク→1 ドゥラドーレス</td><td>0.4%</td><td>106.7</td><td class="ev-low">0.37</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円（信頼度 12.1%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連単</td><td class="left">2 ジューンテイク→12 クイーンズウォーク→1 ドゥラドーレス</td><td>106.7</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr><tr><td>3連複</td><td class="left">1 ドゥラドーレス-2 ジューンテイク-12 クイーンズウォーク</td><td>19.7</td><td>4</td><td style='text-align:right;font-weight:600;'>400円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+
+<div class="agent-section" style="border-left:4px solid #FF3B30;">
+<div class="round-header" style="background:#FF3B30;">
+<span>レース結果検証</span></div>
+<div class="section-body">
+<h3>レース結果</h3>
+<table>
+<thead><tr>
+<th>着順</th><th>馬番</th><th>馬名</th><th>CC予想</th><th>人気</th><th>単勝オッズ</th>
+</tr></thead>
+<tbody>
+<tr><td>1</td><td>9</td><td class="left horse-name">シェイクユアハート</td><td>4</td><td>8</td><td>-</td></tr><tr><td>2</td><td>3</td><td class="left horse-name">ジョバンニ</td><td>8</td><td>6</td><td>-</td></tr><tr style="background:#90CAF9;"><td>3</td><td>12</td><td class="left horse-name">クイーンズウォーク</td><td>○2</td><td>1</td><td>-</td></tr><tr style="background:#42A5F5;"><td>4</td><td>2</td><td class="left horse-name">ジューンテイク</td><td>◎1</td><td>5</td><td>-</td></tr><tr style="background:#BBDEFB;"><td>5</td><td>1</td><td class="left horse-name">ドゥラドーレス</td><td>▲3</td><td>2</td><td>-</td></tr><tr><td>6</td><td>6</td><td class="left horse-name">ヴィレム</td><td>5</td><td>3</td><td>-</td></tr><tr><td>7</td><td>5</td><td class="left horse-name">ディマイザキッド</td><td>10</td><td>10</td><td>-</td></tr><tr><td>8</td><td>11</td><td class="left horse-name">キングズパレス</td><td>9</td><td>11</td><td>-</td></tr><tr><td>9</td><td>14</td><td class="left horse-name">サフィラ</td><td>12</td><td>12</td><td>-</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">アラタ</td><td>14</td><td>14</td><td>-</td></tr><tr><td>11</td><td>10</td><td class="left horse-name">セキトバイースト</td><td>7</td><td>9</td><td>-</td></tr><tr><td>12</td><td>7</td><td class="left horse-name">ニシノレヴナント</td><td>13</td><td>13</td><td>-</td></tr><tr><td>12</td><td>13</td><td class="left horse-name">ホウオウビスケッツ</td><td>11</td><td>4</td><td>-</td></tr><tr><td>14</td><td>4</td><td class="left horse-name">アーバンシック</td><td>6</td><td>7</td><td>-</td></tr>
+</tbody></table>
+
+<h3 style="margin-top:20px;">払戻金</h3>
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>配当</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">9 シェイクユアハート</td><td style='text-align:right;white-space:nowrap;'>1,350円</td></tr><tr><td>複勝</td><td class="left">9 シェイクユアハート</td><td style='text-align:right;white-space:nowrap;'>300円</td></tr><tr><td>複勝</td><td class="left">3 ジョバンニ</td><td style='text-align:right;white-space:nowrap;'>270円</td></tr><tr><td>複勝</td><td class="left">12 クイーンズウォーク</td><td style='text-align:right;white-space:nowrap;'>150円</td></tr><tr><td>馬連</td><td class="left">3 ジョバンニ-9 シェイクユアハート</td><td style='text-align:right;white-space:nowrap;'>4,870円</td></tr><tr><td>ワイド</td><td class="left">3 ジョバンニ-9 シェイクユアハート</td><td style='text-align:right;white-space:nowrap;'>1,360円</td></tr><tr><td>ワイド</td><td class="left">9 シェイクユアハート-12 クイーンズウォーク</td><td style='text-align:right;white-space:nowrap;'>640円</td></tr><tr><td>ワイド</td><td class="left">3 ジョバンニ-12 クイーンズウォーク</td><td style='text-align:right;white-space:nowrap;'>670円</td></tr><tr><td>馬単</td><td class="left">9 シェイクユアハート→3 ジョバンニ</td><td style='text-align:right;white-space:nowrap;'>12,480円</td></tr><tr><td>3連複</td><td class="left">3 ジョバンニ-9 シェイクユアハート-12 クイーンズウォーク</td><td style='text-align:right;white-space:nowrap;'>5,180円</td></tr><tr><td>3連単</td><td class="left">9 シェイクユアハート→3 ジョバンニ→12 クイーンズウォーク</td><td style='text-align:right;white-space:nowrap;'>51,310円</td></tr>
+</tbody></table>
+
+<h3 style="margin-top:20px;">「私はこう買う」結果</h3>
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th>
+<th>投資額</th><th>結果</th><th>配当</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連単</td><td class="left">2 ジューンテイク→12 クイーンズウォーク→1 ドゥラドーレス</td><td>106.7</td><td>1</td><td style='text-align:right;font-weight:600;white-space:nowrap;'>100円</td><td><span style="color:#FF3B30;">不的中</span></td><td style='text-align:right;font-weight:600;white-space:nowrap;'>0円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr><tr><td>3連複</td><td class="left">1 ドゥラドーレス-2 ジューンテイク-12 クイーンズウォーク</td><td>19.7</td><td>4</td><td style='text-align:right;font-weight:600;white-space:nowrap;'>400円</td><td><span style="color:#FF3B30;">不的中</span></td><td style='text-align:right;font-weight:600;white-space:nowrap;'>0円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<div style="margin-top:16px;padding:16px;background:#F2F2F7;border-radius:10px;text-align:center;">
+<span style="font-size:16px;font-weight:700;">
+投資: 500円 → 回収: 0円
+</span>
+<span style="font-size:18px;font-weight:700;color:#FF3B30;margin-left:12px;">
+回収率: 0.0%
+</span>
+</div>
+
+</div></div>
+</div>
+</body>
+</html>
