@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>館山特別 2026/03/21 NAKAYAMA 9R (03/21 00:58 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>館山特別 2026/03/21 NAKAYAMA 9R (03/21 00:58 予想 馬体重なし)</h1>
+  <div class="meta">芝1800m（右） |  | 16頭立て | 2回 中山 7日目 サラ系4歳以上 2勝クラス （混合）［指定］ ハンデ 16頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>19.3%</strong>
+   / 3連信頼度: <strong>26.0%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">13. フォルラニーニ</div>
+      <div class="pick-jockey">C.ルメール / 手塚 貴久</div>
+    </div>
+    <div class="pick-prob">15.4%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">6. ビーオンザカバー</div>
+      <div class="pick-jockey">戸崎 圭太 / 伊藤 圭三</div>
+    </div>
+    <div class="pick-prob">14.1%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">10. コムユンプリュム</div>
+      <div class="pick-jockey">荻野 極 / 鹿戸 雄一</div>
+    </div>
+    <div class="pick-prob">13.6%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">16. ペッレグリーニ</div>
+      <div class="pick-jockey">木幡 巧也 / 手塚 貴久</div>
+    </div>
+    <div class="pick-prob">5.6%</div>
+    <div class="pick-pop">12番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">グランカンタンテ</td><td>牝5</td><td>53</td><td>柴田 善臣</td><td>鹿戸 雄一</td><td>リアルスティール</td><td>First Dude</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">コスモアバンサ</td><td>牡6</td><td>55</td><td>津村 明秀</td><td>清水 英克</td><td>リオンディーズ</td><td>マヤノトップガン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">レッセパッセ</td><td>牝5</td><td>52</td><td>原 優介</td><td>柄崎 将寿</td><td>ダノンバラード</td><td>コンデュイット</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ダノンジャイアン</td><td>牡4</td><td>55</td><td>鮫島 克駿</td><td>茶木 太樹</td><td>ブリックスアンドモルタル</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ウインシャーガス</td><td>牝4</td><td>53</td><td>石川 裕紀人</td><td>杉山 晴紀</td><td>キズナ</td><td>コンデュイット</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ビーオンザカバー</td><td>牡4</td><td>57</td><td>戸崎 圭太</td><td>伊藤 圭三</td><td>ハービンジャー</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">ダイシンバースディ</td><td>牡5</td><td>52</td><td>武藤 雅</td><td>戸田 博文</td><td>マインドユアビスケッツ</td><td>ダンスインザダーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ミーントゥビー</td><td>牝4</td><td>54</td><td>松岡 正海</td><td>堀内 岳志</td><td>リアルインパクト</td><td>フジキセキ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">0</span></td><td>0</td><td class="left horse-name">コスモスプモーニ</td><td>牡6</td><td>54</td><td>菊沢 一樹</td><td>松山 将樹</td><td>リアルインパクト</td><td>サクラバクシンオー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">コムユンプリュム</td><td>牝4</td><td>54</td><td>荻野 極</td><td>鹿戸 雄一</td><td>ブリックスアンドモルタル</td><td>Le Havre</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">エリム</td><td>牝6</td><td>52</td><td>原田 和真</td><td>上原 博之</td><td>ダイワメジャー</td><td>Kalatos</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">キーウェーブ</td><td>牡5</td><td>54</td><td>柴田 大知</td><td>宮地 貴稔</td><td>ミッキーロケット</td><td>スクリーンヒーロー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">フォルラニーニ</td><td>牡5</td><td>57</td><td>C.ルメール</td><td>手塚 貴久</td><td>エピファネイア</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">トレミニョン</td><td>牝5</td><td>53</td><td>佐々木 大輔</td><td>和田 勇介</td><td>リアルインパクト</td><td>Anabaa Blue</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">レッドバレンティア</td><td>牡6</td><td>53</td><td>長浜 鴻緒</td><td>矢嶋 大樹</td><td>リオンディーズ</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">ペッレグリーニ</td><td>せん5</td><td>55</td><td>木幡 巧也</td><td>手塚 貴久</td><td>レイデオロ</td><td>ネオユニヴァース</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">フォルラニーニは指数75-80台で安定し2勝クラスで連続連対圏、ルメール騎乗で最上位評価。ビーオンザカバーは指数83-89の高水準でGII経験馬が2勝クラスに収まっている格上の存在、前走上がり33.3秒の決め手はメンバー最上位。コムユンプリュムは前走同コース2着(指数82.0)で厩舎◎印、中山適性実証済み。グランカンタンテは前走重馬場で参考外、五色沼特別2着(差ゼロ・指数83.1)が本来の実力。ウインシャーガスは前走1着・ブリンカー効果で完勝、53kgの軽量も利点。コスモスプモーニとレッドバレンティアは指数・成績ともに信用できず評価外。</div><h3>血統派</h3>
+<div class="analysis-text">コムユンプリュムはブリックスアンドモルタル×Le Havreで中山適性が抜群、前走2着・厩舎◎で最有力。ビーオンザカバーはハービンジャー×キングカメハメハで中山小回り適性は最上位だが57kgが壁。フォルラニーニはエピファネイア×ステイゴールドで中山コーナリング血統、距離延長もプラスだが57kgが課題。グランカンタンテはリアルスティール産駒で中山中距離との親和性あり、53kgが武器。ウインシャーガスはキズナ産駒で内回り適性も高く、ブリンカー効果と53kgが魅力。ダイシンバースディはマインドユアビスケッツのダート系で芝不向き。</div><h3>展開派</h3>
+<div class="analysis-text">逃げ馬3頭(コスモアバンサ・ダイシンバースディ・コスモスプモーニ)がペースを引き上げ、ミドル〜ややハイの流れに。好位差し(中団前目)が最も有利な展開。フォルラニーニはルメール騎乗で位置取り自在、ペースが流れれば差し脚が活きる。ビーオンザカバーは3枠6番で中団から脚をためやすく、指数最高値の決め手が武器。コムユンプリュムは先行力があり好位を取れるが、ペースが速いと粘り込みが苦しい。ウインシャーガスは3枠5番の好枠で中団前目から立ち回れる。ペッレグリーニは前崩れなら浮上余地あり。</div><h3>陣営派</h3>
+<div class="analysis-text">フォルラニーニはルメール×手塚厩舎の◎評価で最上位、中山芝でのルメール勝率はトップクラス。ビーオンザカバーは戸崎騎手の中山適性が高く、指数83.2は中山1800mで特化した数字。コムユンプリュムは鹿戸師の◎印で中山巧者と明言、指数82-85は高水準。グランカンタンテは同じ鹿戸厩舎の2頭出しだが1番枠・53kgで恵まれた条件。ダノンジャイアンは前走勝利の勢いと距離短縮適性、鮫島騎手の中山安定成績も後押し。ペッレグリーニは手塚厩舎がフォルラニーニと「力差なし」と言及。</div><h3>体調派</h3>
+<div class="analysis-text">ウインシャーガスは体重474kgで5走連続安定、叩き2走目で53kgの斤量恩恵が大きく体調面で最上位。コムユンプリュムは428kg×4走の安定から前走+8kgで成長を示し、厩舎◎・調教上向き。ビーオンザカバーは能力最上位だが57kgのコストが体調派としては懸念。フォルラニーニは前走+8kgの太め残り(512kg)と57kgの二重苦、叩き2走目で絞れれば上昇だが不確定。ダノンジャイアンは体重安定・調教良・厩舎ポジティブで昇級初戦も状態は万全。コスモスプモーニは9ヶ月超の長期休養明けで仕上がり途上。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>距離1800mへの対応不安: 近2走が1600mで好走しており、半年以上走っていない1800mでスタミナ負けする可能性</li><li>57kgトップハンデ+ルメール人気集中: 勝ちきれない体質(13戦2勝)に最重量ハンデ、オッズ妙味も消失</li><li>後方一気が届かない中山310m直線: 16頭立てで外枠から後方に回ると物理的に届かず、先行勢の粘り込みを許す</li><li>57kgハンデ+マイルからの距離延長+後方脚質で16頭立ての中山1800mでは物理的に届かない</li><li>物見癖が中山の小回りで再発し追い出しが遅れる（前走も1番枠でスターターを見て後方に）</li><li>前走+8kgの太め残りが解消されていない場合、1800mの持久力勝負で末脚が鈍る</li><li>距離適性疑問 -- 直近2走が1600mでマイラー寄りの可能性。2勝クラスの1800mでは3着4着止まりで勝ち切れていない</li><li>後方脚質と中山内回りの構造的不利 -- 直線310mの16頭立てで後方から差すのは至難。ルメールでも覆せないコース形態</li><li>太め残り再発リスク -- 前走+8kgで512kg、物見癖あり。2か月の間隔で更に増える可能性。ホライゾネット装着は集中力の課題を示唆</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円（信頼度 26.0%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連単</td><td class="left">13 フォルラニーニ→6 ビーオンザカバー→10 コムユンプリュム</td><td>40.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr><tr><td>3連複</td><td class="left">6 ビーオンザカバー-10 コムユンプリュム-13 フォルラニーニ</td><td>10.1</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連複</td><td class="left">10 コムユンプリュム-13 フォルラニーニ-16 ペッレグリーニ</td><td>70.6</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎▲☆</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
