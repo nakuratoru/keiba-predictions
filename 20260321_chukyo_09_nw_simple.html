@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>岡崎特別 2026/03/21 CHUKYO 9R (03/21 01:16 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>岡崎特別 2026/03/21 CHUKYO 9R (03/21 01:16 予想 馬体重なし)</h1>
+  <div class="meta">芝1400m（左） |  | 10頭立て | 1回 中京 3日目 サラ系4歳以上 2勝クラス （混合）（特指） 定量 10頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>46.4%</strong>
+   / 3連信頼度: <strong>12.4%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">5. ホーリーブラッサム</div>
+      <div class="pick-jockey">団野 大成 / 斉藤 崇史</div>
+    </div>
+    <div class="pick-prob">21.1%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">10. ダノンキラウェア</div>
+      <div class="pick-jockey">川田 将雅 / 中内田 充正</div>
+    </div>
+    <div class="pick-prob">12.7%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">9. タイキヴァンクール</div>
+      <div class="pick-jockey">小崎 綾也 / 中尾 秀正</div>
+    </div>
+    <div class="pick-prob">12.1%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">4. ミクストベリーズ</div>
+      <div class="pick-jockey">横山 武史 / 伊藤 圭三</div>
+    </div>
+    <div class="pick-prob">11.9%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">10頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ミトノオルフェ</td><td>牡4</td><td>58</td><td>三浦 皇成</td><td>前川 恭子</td><td>オルフェーヴル</td><td>Invincible Spirit</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">ラーテル</td><td>せん6</td><td>58</td><td>嶋田 純次</td><td>室井 潔</td><td>ビッグアーサー</td><td>コマンダーインチーフ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ワース</td><td>牡4</td><td>58</td><td>吉村 誠之助</td><td>上原 佑紀</td><td>キズナ</td><td>Alamosa</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ミクストベリーズ</td><td>牡4</td><td>58</td><td>横山 武史</td><td>伊藤 圭三</td><td>Iffraaj</td><td>Kodiac</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ホーリーブラッサム</td><td>牝4</td><td>56</td><td>団野 大成</td><td>斉藤 崇史</td><td>ロゴタイプ</td><td>Cape Cross</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">パルティクラール</td><td>牝6</td><td>56</td><td>国分 恭介</td><td>牧浦 充徳</td><td>ヴィクトワールピサ</td><td>Holy Roman Emperor</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">ガンマジーティーピ</td><td>牡4</td><td>58</td><td>松若 風馬</td><td>渡辺 薫彦</td><td>カレンブラックヒル</td><td>シンボリクリスエス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">メイケイバートン</td><td>牡7</td><td>58</td><td>柴田 裕一郎</td><td>中竹 和也</td><td>ミッキーアイル</td><td>ジャングルポケット</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">タイキヴァンクール</td><td>牡5</td><td>58</td><td>小崎 綾也</td><td>中尾 秀正</td><td>エイシンヒカリ</td><td>キングヘイロー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">ダノンキラウェア</td><td>牡5</td><td>58</td><td>川田 将雅</td><td>中内田 充正</td><td>ロードカナロア</td><td>Sligo Bay</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">ホーリーブラッサムが中京芝1400m直接勝利実績(賢島特別1:19.4)とSP指数81-82台の安定感で最上位。ダノンキラウェアは芝1400mで指数78-82台と高い安定性、川田騎乗で2番手評価。タイキヴァンクールは直近指数81.1で上昇トレンド、中京1400m3着実績あり。ミクストベリーズは芝1400m1着実績(指数81.6)と上がり32.9の切れ味が魅力、チークピーシズ装着で前走課題に対応。ガンマジーティーピは中京1400m直近勝利(1勝クラス)で同舞台実績が強み。ワースは素質高いが10ヶ月休養明けで信用できず、ラーテルは42戦2勝で除外レベル。</div><h3>血統派</h3>
+<div class="analysis-text">ミクストベリーズ(Iffraaj×Kodiac)とダノンキラウェア(ロードカナロア×Sligo Bay)が1400m特化血統のニックスとして最適。ホーリーブラッサム(ロゴタイプ×Cape Cross)は1400m適性が高く中京実績と血統が一致。ガンマジーティーピ(カレンブラックヒル×シンボリクリスエス)は左回り1400m最適配合で中京勝ち実績あり。ワースはキズナ産駒で1400mはやや短い印象、パルティクラールは父ヴィクトワールピサの中距離志向が1400mに向かない。</div><h3>展開派</h3>
+<div class="analysis-text">ホーリーブラッサムが内枠から楽にハナを切りスローに落とせる展開が最有力(55%)。逃げ馬実質1頭で10頭立て少頭数のためペースは落ち着く。タイキヴァンクールが外から2番手、メイケイバートンが3番手。ミトノオルフェは最内1枠でロスなく立ち回れる利点あり。ペースが流れればダノンキラウェア・ミクストベリーズに出番。馬場が渋れば内前有利の構図が崩れ差し馬台頭の可能性。</div><h3>陣営派</h3>
+<div class="analysis-text">ダノンキラウェアは川田将雅×中内田充正の最強コンビで期待値最高。ホーリーブラッサムは厩舎◎印と中京1400m好相性発言で信頼度高い。ミクストベリーズは横山武史起用+馬具変更で陣営の本気度が見える。ガンマジーティーピは中京1400m勝利実績と渡辺薫彦厩舎の積極姿勢。タイキヴァンクールは舞台適性フィットだが騎手の小崎綾也がやや弱い。</div><h3>体調派</h3>
+<div class="analysis-text">ホーリーブラッサムは調教「仕上がり良好」・厩舎◎・体重480kgと理想レンジで全馬中最高の仕上がり。ガンマジーティーピは調教の終い1F11.2秒が抜群で「以前のような硬さがない」と好気配。タイキヴァンクール・ダノンキラウェアは体重安定で指数上位だが中2週の疲労リスクあり。ワースは脚部不安からの10ヶ月休養明けで厩舎が「良化途上」と認める。メイケイバートンは前走+14kgの太め残りが最大懸念。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>休み明け4か月超+前走9着凡走の未解消リスク。厩舎は回復を主張するが実戦証明なし</li><li>先行馬密集（タイキヴァンクール・メイケイバートン等）によるハイペース化で先行勢総崩れ</li><li>父ロゴタイプ産駒の古馬での成長力限界。4歳以降勝ち星なく、スピード指数も81-82で頭打ち</li><li>4ヶ月半の休養明けで前走の『ダラッとした走り』が解消されておらず、直線で伸びを欠く</li><li>先行争いが激化し、タイキヴァンクール・メイケイバートンとの前残り消耗戦で直線甘くなる</li><li>スピード指数的に飛び抜けた優位がなく、パルティクラールやダノンキラウェアなど好指数馬に差される</li><li>休み明け4か月+前走9着時の終い甘さが体質的弱点として再発し、直線で伸びを欠く</li><li>先行馬5頭密集によるハイペース化で先行勢共倒れ、差し馬に漁夫の利</li><li>スピード指数最高82.2は2勝クラスで突出しておらず、ミクストベリーズ・ダノンキラウェアと僅差の力関係で人気を裏切る</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">信頼度 12.4%</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>淡路特別 2026/03/21 HANSHIN 9R (03/21 01:15 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>淡路特別 2026/03/21 HANSHIN 9R (03/21 01:15 予想 馬体重なし)</h1>
+  <div class="meta">芝2600m（右 外） |  | 8頭立て | 1回 阪神 9日目 サラ系4歳以上 2勝クラス （混合）（特指） 定量 8頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>34.9%</strong>
+   / 3連信頼度: <strong>40.4%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">2. タイセイリコルド</div>
+      <div class="pick-jockey">坂井 瑠星 / 小栗 実</div>
+    </div>
+    <div class="pick-prob">23.8%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">3. ファームツエンティ</div>
+      <div class="pick-jockey">武 豊 / 北出 成人</div>
+    </div>
+    <div class="pick-prob">20.1%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">5. ウインデイジー</div>
+      <div class="pick-jockey">横山 和生 / 宮 徹</div>
+    </div>
+    <div class="pick-prob">18.9%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">8. サトノソティラス</div>
+      <div class="pick-jockey">丹内 祐次 / 池江 泰寿</div>
+    </div>
+    <div class="pick-prob">11.8%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">8頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">コリカンチャ</td><td>せん4</td><td>57</td><td>北村 友一</td><td>井上 智史</td><td>ブリックスアンドモルタル</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">タイセイリコルド</td><td>牡4</td><td>57</td><td>坂井 瑠星</td><td>小栗 実</td><td>ゴールドシップ</td><td>ヴィクトワールピサ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ファームツエンティ</td><td>せん6</td><td>58</td><td>武 豊</td><td>北出 成人</td><td>キズナ</td><td>ブライアンズタイム</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ライフセービング</td><td>牡5</td><td>58</td><td>古川 吉洋</td><td>宮 徹</td><td>ビーチパトロール</td><td>ダンスインザダーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ウインデイジー</td><td>牝5</td><td>56</td><td>横山 和生</td><td>宮 徹</td><td>ゴールドシップ</td><td>コンデュイット</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ゴージョニーゴー</td><td>牡5</td><td>58</td><td>松山 弘平</td><td>四位 洋文</td><td>キズナ</td><td>Dance Brightly</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">ハイラント</td><td>せん5</td><td>58</td><td>幸 英明</td><td>伊藤 大士</td><td>バゴ</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">サトノソティラス</td><td>牡4</td><td>57</td><td>丹内 祐次</td><td>池江 泰寿</td><td>サトノダイヤモンド</td><td>Street Boss</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">タイセイリコルドが指数83.4/83.2と安定して最上位、近3走2着・4着・3着で掲示板確保の堅実さが突出。ウインデイジーは2600m経験2回(3着・5着)で指数82.8、距離適性が全馬中最も高い。ファームツエンティは前走1勝クラス2400mを差し切り勝ち(指数77.5)で昇級、武豊起用だが指数水準は上位より一段劣る。サトノソティラスは芝2600m2着(指数81.9)の直接実績が光るが安定感に欠ける。コリカンチャは近2走10着続きで2600m実績なし、ライフセービングは前走指数68.1と急落。</div><h3>血統派</h3>
+<div class="analysis-text">ウインデイジー(ゴールドシップ×コンデュイット)がスタミナ二重補強で2600m最適性、タイセイリコルド(ゴールドシップ×ヴィクトワールピサ)も距離延長歓迎の配合。ハイラント(バゴ×ステイゴールド)は血統的スタミナがトップクラスで去勢効果次第の一発あり。ファームツエンティ(キズナ×ブライアンズタイム)は母父ロベルト系で阪神相性良好。コリカンチャ(ブリックスアンドモルタル)はマイラー血統で2600m疑問。</div><h3>展開派</h3>
+<div class="analysis-text">8頭立てで明確な逃げ馬不在、スローペース濃厚。前で運べるタイセイリコルドが好位から押し切るシナリオが本線。サトノソティラスが先行粘り込みで2番手評価。ウインデイジーは後方からで届かないリスクあるが指数裏付けあり。ファームツエンティは追込一辺倒でスロー少頭数では不利、武豊が向正面から動く判断次第。馬場が渋ればゴールドシップ産駒2頭に追い風。</div><h3>陣営派</h3>
+<div class="analysis-text">ファームツエンティを前走阪神2400m差し切り+武豊+馬なり余力の三拍子で最上位評価。タイセイリコルドは坂井瑠星+指数83台で対抗。サトノソティラスは池江泰寿厩舎の管理力と2600m実績で3番手。ウインデイジーは距離経験と指数82.8で堅実評価。ライフセービングは厩舎「変わり身無」で最低評価。</div><h3>体調派</h3>
+<div class="analysis-text">ファームツエンティは体重444kg前後で安定、叩き2走目+調教「好気配保つ」でA評価。ウインデイジーは調教時計53.5秒がメンバー最速で56kg軽量、前走体重減(-8)が唯一の懸念。タイセイリコルドは叩き3走目で体重480kgに絞れてきたが初2600m+鼻革着用の不安。ライフセービングは中2週疲労+「変わり身無」でD評価、ハイラントは去勢術後の休養明けで不確実性大。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>初の2600mで未知の距離不安が露呈し、残り400mで失速する</li><li>超スロー+クロス鼻革でも折り合いを欠き、早めに脚を使い切って直線で止まる</li><li>馬体重の大幅変動(直近4走で466-494kg)が示す体調不安定さが距離延長で裏目に出る</li><li>初の2600mでスタミナ切れ。クロス鼻革新装着が示す折り合い不安も距離延長で顕在化し、直線で失速する</li><li>馬体重の乱高下(+24→-6→-8)が体調不安定を示唆。消耗戦で粘りを欠く</li><li>8頭立てスローの前残り展開で、好位差しの脚質では先行馬を捕まえきれず3-4着に終わる</li><li>初の2600mで折り合い欠く。クロス鼻革着用が示す通り制御不安があり、スロー長距離で掛かって末脚消耗</li><li>馬体重が直近4走で466→494→488→480と大幅変動。体調が安定せず、距離延長に耐えるスタミナが不足</li><li>スロー展開で自ら動いて中途半端に消耗。2600mの長い直線で後方待機のファームツエンティやゴージョニーゴーに差される</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円（信頼度 40.4%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連単</td><td class="left">2 タイセイリコルド→3 ファームツエンティ→5 ウインデイジー</td><td>20.8</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr><tr><td>3連複</td><td class="left">2 タイセイリコルド-3 ファームツエンティ-5 ウインデイジー</td><td>8.7</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連複</td><td class="left">2 タイセイリコルド-5 ウインデイジー-8 サトノソティラス</td><td>11.9</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎▲☆</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
