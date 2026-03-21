@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第63回愛知杯 2026/03/22 CHUKYO 11R (03/21 20:07 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第63回愛知杯 2026/03/22 CHUKYO 11R (03/21 20:07 予想 馬体重なし)</h1>
+  <div class="meta">芝1400m（左） |  | 18頭立て | 1回 中京 4日目 サラ系4歳以上 オープン （国際）牝（特指） 別定 18頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>24.7%</strong>
+   / 3連信頼度: <strong>12.8%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">16. ドロップオブライト</div>
+      <div class="pick-jockey">松若 風馬 / 福永 祐一</div>
+    </div>
+    <div class="pick-prob">14.4%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">5. ウイントワイライト</div>
+      <div class="pick-jockey">横山 典弘 / 西園 翔太</div>
+    </div>
+    <div class="pick-prob">11.0%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">15. ワイドラトゥール</div>
+      <div class="pick-jockey">西塚 洸二 / 藤原 英昭</div>
+    </div>
+    <div class="pick-prob">10.4%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">17. リラボニート</div>
+      <div class="pick-jockey">田山 旺佑 / 須貝 尚介</div>
+    </div>
+    <div class="pick-prob">7.8%</div>
+    <div class="pick-pop">12番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">18頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">マピュース</td><td>牝4</td><td>56</td><td>田辺 裕信</td><td>和田 勇介</td><td>マインドユアビスケッツ</td><td>シンボリクリスエス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">レディマリオン</td><td>牝5</td><td>55</td><td>吉村 誠之助</td><td>長谷川 浩大</td><td>ハービンジャー</td><td>サンデーサイレンス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">モリノドリーム</td><td>牝7</td><td>55</td><td>小林 美駒</td><td>鈴木 伸尋</td><td>モーリス</td><td>アドマイヤムーン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">カンパニョーラ</td><td>牝7</td><td>55</td><td>嶋田 純次</td><td>伊坂 重信</td><td>ジャスタウェイ</td><td>Lizard Island</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ウイントワイライト</td><td>牝4</td><td>55</td><td>横山 典弘</td><td>西園 翔太</td><td>レイデオロ</td><td>ダイワメジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ナムラクララ</td><td>牝4</td><td>55</td><td>浜中 俊</td><td>長谷川 浩大</td><td>アドマイヤマーズ</td><td>Storm Cat</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">チェルビアット</td><td>牝4</td><td>55</td><td>西村 淳也</td><td>高野 友和</td><td>ロードカナロア</td><td>フレンチデピュティ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ソルトクィーン</td><td>牝5</td><td>55</td><td>富田 暁</td><td>武 英智</td><td>シルバーステート</td><td>ストロングリターン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">マサノカナリア</td><td>牝5</td><td>55</td><td>古川 吉洋</td><td>藤野 健太</td><td>シルバーステート</td><td>メイショウボーラー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">セフィロ</td><td>牝6</td><td>55</td><td>吉田 隼人</td><td>菊沢 隆徳</td><td>イスラボニータ</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">スリールミニョン</td><td>牝4</td><td>55</td><td>丸山 元気</td><td>高橋 康之</td><td>ミスターメロディ</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">カルプスペルシュ</td><td>牝4</td><td>55</td><td>横山 武史</td><td>石坂 公一</td><td>シュヴァルグラン</td><td>ロードカナロア</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">アブキールベイ</td><td>牝4</td><td>56</td><td>小崎 綾也</td><td>坂口 智康</td><td>ファインニードル</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">シンバーシア</td><td>牝5</td><td>55</td><td>団野 大成</td><td>萩原 清</td><td>ロードカナロア</td><td>Street Sense</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">ワイドラトゥール</td><td>牝5</td><td>56</td><td>西塚 洸二</td><td>藤原 英昭</td><td>カリフォルニアクローム</td><td>アグネスタキオン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">ドロップオブライト</td><td>牝7</td><td>56</td><td>松若 風馬</td><td>福永 祐一</td><td>トーセンラー</td><td>フレンチデピュティ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">17</span></td><td>17</td><td class="left horse-name">リラボニート</td><td>牝5</td><td>55</td><td>田山 旺佑</td><td>須貝 尚介</td><td>スクリーンヒーロー</td><td>アグネスデジタル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">18</span></td><td>18</td><td class="left horse-name">アイサンサン</td><td>牝4</td><td>55</td><td>幸 英明</td><td>橋田 宜長</td><td>キズナ</td><td>シンボリクリスエス</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">ワイドラトゥール(15)がスワンSGII2着(指数94.9)・昨年愛知杯1着(90.0)と同コース実績トップ。前走マイルCS17着は距離・相手ともに参考外。ドロップオブライト(16)はターコイズS1着・阪急杯3着と重賞安定、中京巧者の厩舎コメントも一致。チェルビアット(7)はNHKマイルGI3着(94.3)+洛陽S2着(90.9)と安定高水準。ウイントワイライト(5)は節分S1着・上がり33.1で左回り1400m無敗に近い。レディマリオン(2)は中京芝1400m飛騨S1着だがOP初挑戦でクラス差あり。</div><h3>血統派</h3>
+<div class="analysis-text">ドロップオブライト(16)は父トーセンラー×母父フレンチデピュティで中京外回り持続型スピードに最適、CBC賞勝ちで中京実績あり。ワイドラトゥール(15)は父カリフォルニアクローム×母父アグネスタキオンで持続力血統、昨年同コース覇者。チェルビアット(7)は父ロードカナロア×母父フレンチデピュティで中京1400m最適血統。ウイントワイライト(5)は父レイデオロ×母父ダイワメジャーで左回り1400mベスト配合。カルプスペルシュ(12)は父シュヴァルグラン×母父ロードカナロアで距離延長で変身の可能性。</div><h3>展開派</h3>
+<div class="analysis-text">先行馬9頭以上がひしめく18頭立てでミドル〜ややハイペース想定。前が止まりやすい展開で差し馬有利。ワイドラトゥール(15)が最も恩恵を受ける展開、ウイントワイライト(5)の内枠差しも好材料。ドロップオブライト(16)は先行力・地力で粘り込みも8枠16番は距離ロスリスク。リラボニート(17)も中団から伸びる。マピュース(1)は1枠1番で経済コース確定、中京記念勝ちの先行力活きる。</div><h3>陣営派</h3>
+<div class="analysis-text">ドロップオブライト(16)は福永師が唯一の◎印、「中京巧者」「GI以外では崩れていない」と最大の自信。ウイントワイライト(5)は横山典弘騎手起用+「左回り1400mがベスト」宣言、調教↗で上昇。ワイドラトゥール(15)は藤原英昭厩舎「連覇を狙える状態」。ソルトクィーン(8)は武英智師「中京1400mがベストの条件」と明言。カルプスペルシュ(12)は横山武史騎手起用でシルクロード4着(92.9)の高指数。</div><h3>体調派</h3>
+<div class="analysis-text">ドロップオブライト(16)は調教↗+中京巧者+叩き2走目で体調面最上位。ウイントワイライト(5)は叩き2走目・左回り1400mベスト・調教↗で死角なし。リラボニート(17)は体重推移462-468kgでメンバー最安定、調教↗+終い11.6の鋭さ。マピュース(1)は調教ハツラツ↗だが体重496kgはやや重め+56kg。ワイドラトゥール(15)は4ヶ月休養明け+430kgに56kgの重斤量で体調面リスク大。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>7歳30戦目でスピード指数が右肩下がり。ピークは2025年夏~秋に過ぎており、前走87.8は全盛期の92.6から大幅低下。加齢による衰えが顕在化する</li><li>8枠16番の大外枠から18頭フルゲートで外を回される展開不利。スロー前残りになれば差し届かず、内枠先行馬に出し抜かれる</li><li>1400mはベスト距離ではなく、前走阪急杯で初めてこなしただけ。1600mの持続力も1200mの絶対スピードも中途半端になり、距離適性で専門家に負ける</li><li>大外8枠16番+ゲート不安定で外々を回され、18頭立ての1400mで位置取り悪化し脚を余す</li><li>7歳牝馬30戦消化の疲弊蓄積により、阪急杯3着(0.7秒差)に続く更なるパフォーマンス低下で馬券圏外へ</li><li>先行馬多数(スリールミニョン・アイサンサン・マピュース等)によるハイペース形成で先行勢が総崩れし、差し追い込み馬に差し切られる</li><li>7歳牝馬の加齢による能力減退 -- 前走阪急杯の指数87.8はターコイズS時90.2から下降。ピークを過ぎた可能性</li><li>ゲート不安定+大外8枠16番 -- 福永師も認めるゲート難。18頭立て16番枠から出遅れればコーナーで外を回され脚を使えない</li><li>牝馬限定戦の荒れパターン+別定56kg -- 4歳55kg勢との1kg差が1400mで効き、揉まれて末脚不発に終わる</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円（信頼度 12.8%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">16 ドロップオブライト</td><td>7.9</td><td>5</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
