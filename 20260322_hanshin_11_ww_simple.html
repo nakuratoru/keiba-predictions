@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第74回阪神大賞典 2026/03/22 HANSHIN 11R (03/22 15:06 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第74回阪神大賞典 2026/03/22 HANSHIN 11R (03/22 15:06 予想)</h1>
+  <div class="meta">芝3000m（右） |  | 10頭立て | 1回 阪神 10日目 サラ系4歳以上 オープン （国際）（指定） 別定 10頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>33.0%</strong>
+   / 3連信頼度: <strong>19.2%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">5. ダノンシーマ</div>
+      <div class="pick-jockey">川田 将雅 / 中内田 充正</div>
+    </div>
+    <div class="pick-prob">22.2%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">4. アクアヴァーナル</div>
+      <div class="pick-jockey">坂井 瑠星 / 四位 洋文</div>
+    </div>
+    <div class="pick-prob">18.7%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">1. アドマイヤテラ</div>
+      <div class="pick-jockey">武 豊 / 友道 康夫</div>
+    </div>
+    <div class="pick-prob">15.5%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">10頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">アドマイヤテラ</td><td>牡5</td><td>58</td><td>武 豊</td><td>友道 康夫</td><td>レイデオロ</td><td>ハーツクライ</td><td>504(+6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">シュヴァリエローズ</td><td>牡8</td><td>57</td><td>北村 友一</td><td>清水 久詞</td><td>ディープインパクト</td><td>Sevres Rose</td><td>466(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ファミリータイム</td><td>牡5</td><td>57</td><td>松山 弘平</td><td>石坂 公一</td><td>リアルスティール</td><td>Galileo</td><td>482(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">アクアヴァーナル</td><td>牝5</td><td>55</td><td>坂井 瑠星</td><td>四位 洋文</td><td>エピファネイア</td><td>ディープインパクト</td><td>478(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ダノンシーマ</td><td>牡4</td><td>56</td><td>川田 将雅</td><td>中内田 充正</td><td>キタサンブラック</td><td>Include</td><td>492(-2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">レッドバンデ</td><td>牡4</td><td>56</td><td>佐々木 大輔</td><td>大竹 正博</td><td>キズナ</td><td>Lord of England</td><td>480(-12)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">マイネルエンペラー</td><td>牡6</td><td>58</td><td>丹内 祐次</td><td>清水 久詞</td><td>ゴールドシップ</td><td>ロージズインメイ</td><td>490(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">メイショウブレゲ</td><td>牡7</td><td>57</td><td>酒井 学</td><td>本田 優</td><td>ゴールドシップ</td><td>パイロ</td><td>476(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">サンライズソレイユ</td><td>牡5</td><td>57</td><td>岩田 望来</td><td>矢作 芳人</td><td>キズナ</td><td>Scat Daddy</td><td>530(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">ダンディズム</td><td>せん10</td><td>57</td><td>松本 大輝</td><td>野中 賢二</td><td>マンハッタンカフェ</td><td>Singspiel</td><td>478(-2)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">ダノンシーマが指数94.4で全馬最高値、近5走4勝の安定感で最上位評価。アクアヴァーナルは3000m同距離2連続好走（万葉S1着・古都S2着）で距離実績が最も確か。アドマイヤテラは目黒記念GII勝ち・指数93.7だが有馬11着後の立て直しが焦点。ファミリータイムは指数93.0で上昇トレンドが明確、日経新春杯GII2着の実力だが逃げ脚質・3000m未知がリスク。レッドバンデは菊花賞5着という3000m実績があるが2勝クラスからの格差が課題。7番以下は近走の数字が現状を正直に語っており過去の勝鞍に依拠した評価は避ける。</div><h3>血統派</h3>
+<div class="analysis-text">アクアヴァーナルはエピファネイア×ディープインパクトの長距離最適配合で3000m実績も最充実。アドマイヤテラはレイデオロ×ハーツクライで母父のスタミナ補完により3000mも許容範囲、指数93.7も高水準。ファミリータイムは母父Galileoの強烈なスタミナ血統が距離延長で真価を発揮する可能性大。ダノンシーマはキタサンブラック産駒で能力最高だが母父Includeのスピード血統が3000mへの絶対的裏付けに欠ける。マイネルエンペラーはゴールドシップ産駒で血統的適性最高だが近走不振。</div><h3>展開派</h3>
+<div class="analysis-text">スローペース濃厚。ファミリータイムの単騎逃げに誰も突きにいかない展開。好位からの瞬発力勝負でダノンシーマの上がり32.7秒が最も活きる。川田騎手の好位差しが理想的。アクアヴァーナルは2番手追走で粘り込み狙い、スローの前残りなら差しに回ったダノンシーマでも捕まえきれない可能性がある。1枠1番のアドマイヤテラはインベタ立ち回りで有利。後方組のシュヴァリエローズ・メイショウブレゲ・ダンディズムは展開的に厳しい。</div><h3>陣営派</h3>
+<div class="analysis-text">川田将雅×中内田充正は近年JRAトップクラスの重賞コンビで連勝中の馬との組み合わせは統計的に高い信頼度。武豊×友道康夫は長距離G系での実績が長く阪神コースとの親和性が高い。松山弘平は近年のGII戦線で成績安定。アクアヴァーナルは3000m直接実績と55kg斤量が強みだが騎手・厩舎の重賞実績がやや物足りない。マイネルエンペラーは丹内祐次の重賞勝率の低さが統計的不安材料。</div><h3>体調派</h3>
+<div class="analysis-text">ダノンシーマは馬体充実・前走状態評価最高・適度な体重減492(-2)・調教評価最良で体調面は出走馬中最高水準。ファミリータイムは体重が476→482と安定した右肩上がり推移で成長を感じさせる理想的パターン、叩き2走目で上積み期待。アクアヴァーナルは55kg斤量恩恵と3000m実績だが478(+6)はやや増。アドマイヤテラは504(+6)で近走最重量の太め残り懸念と58kg最重量斤量がマイナス。レッドバンデは480(-12)の大幅馬体減が最大懸念。サンライズソレイユは骨折明け530(+8)で仕上がり途上。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>3000m未経験+母父Include米国ダート血統でスタミナ切れ。残り1Fで失速し、先行馬に差し返される</li><li>10頭立てスローペースで先行決着。中団追走のダノンシーマは直線で前が壁になり、仕掛けが遅れて届かない</li><li>馬体重-2kg+調教時計が平凡。短期放牧明けの仕上げが甘く、2周目の3角から手応えが怪しくなり、坂で脚が止まる</li><li>3000m未経験の壁 -- 母父Includeの短距離血統が災いしスタミナ切れで直線失速</li><li>10頭立てスローペースで前残り展開 -- 中団追走のダノンシーマが差し届かず</li><li>馬体重-2kgの仕上がり過ぎと休み明け2戦目の反動で余力不足</li><li>3000m未経験の壁 -- 母父Include(米国ダート血統)でスタミナ限界が露呈し、残り1Fで失速</li><li>10頭立てスローペースでファミリータイム・アクアヴァーナルの前残り展開に嵌まり、阪神内回りの短い直線で届かない</li><li>重賞初挑戦・約2ヶ月ぶりの実戦でキャリア不足が露呈し、3角からの仕掛けどころで経験馬に後手を踏む</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円（信頼度 19.2%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">5 ダノンシーマ</td><td>3.5</td><td>5</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連単</td><td class="left">5 ダノンシーマ→4 アクアヴァーナル→1 アドマイヤテラ</td><td>61.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr><tr><td>3連複</td><td class="left">1 アドマイヤテラ-4 アクアヴァーナル-5 ダノンシーマ</td><td>13.4</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連複</td><td class="left">1 アドマイヤテラ-4 アクアヴァーナル-5 ダノンシーマ</td><td>13.4</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎▲☆</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+<div class="agent-section" style="border-left: 4px solid #ff9500;">
+<div class="round-header diff"><span>馬体重発表前との相違</span></div>
+<div class="section-body">
+<div class="diff-row">
+  <div class="diff-card">
+    <div class="label">◎ 本命</div>
+    <div class="value">ダノンシーマ</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">○ 対抗</div>
+    <div class="value">アクアヴァーナル</div>
+    <div class="sub">変更（体重前: アドマイヤテラ）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">▲ 単穴</div>
+    <div class="value">アドマイヤテラ</div>
+    <div class="sub">変更（体重前: アクアヴァーナル）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">☆ 方式A</div>
+    <div class="value">アクアヴァーナル</div>
+    <div class="sub">変更（体重前: ファミリータイム）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">CC信頼度</div>
+    <div class="value trust-high">33.0%</div>
+    <div class="sub">体重前: 28.7%</div>
+    <div style="margin-top:6px;font-size:12px;"><span class="trust-high">+4.3%</span></div>
+  </div>
+</div>
+</div></div>
+
+</div>
+</body>
+</html>
