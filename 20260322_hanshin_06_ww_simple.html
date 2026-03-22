@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3歳1勝クラス 2026/03/22 HANSHIN 6R (03/22 12:16 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>3歳1勝クラス 2026/03/22 HANSHIN 6R (03/22 12:16 予想)</h1>
+  <div class="meta">ダート1800m（右） |  | 13頭立て | 1回 阪神 10日目 サラ系3歳 1勝クラス （混合）（特指） 馬齢 13頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>19.0%</strong>
+   / 3連信頼度: <strong>14.0%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">3. ワンダフルデイズ</div>
+      <div class="pick-jockey">丹内 祐次 / 高橋 義忠</div>
+    </div>
+    <div class="pick-prob">14.4%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">11. アトモス</div>
+      <div class="pick-jockey">角田 大和 / 角田 晃一</div>
+    </div>
+    <div class="pick-prob">12.9%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">9. ラブインアクション</div>
+      <div class="pick-jockey">鮫島 克駿 / 橋口 慎介</div>
+    </div>
+    <div class="pick-prob">11.8%</div>
+    <div class="pick-pop">8番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">13. タガノエルー</div>
+      <div class="pick-jockey">菱田 裕二 / 宮 徹</div>
+    </div>
+    <div class="pick-prob">10.6%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">13頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ミヤジオズ</td><td>牡3</td><td>57</td><td>田口 貫太</td><td>鈴木 孝志</td><td>リアルスティール</td><td>キングカメハメハ</td><td>490(-4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">スターシップ</td><td>牡3</td><td>57</td><td>松山 弘平</td><td>高柳 大輔</td><td>ラブリーデイ</td><td>カジノドライヴ</td><td>540(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ワンダフルデイズ</td><td>牡3</td><td>57</td><td>丹内 祐次</td><td>高橋 義忠</td><td>ルーラーシップ</td><td>ディープインパクト</td><td>500(-4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">エコロガノン</td><td>牡3</td><td>57</td><td>酒井 学</td><td>矢野 英一</td><td>マジェスティックウォリアー</td><td>ハーツクライ</td><td>448(-8)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ジュンプリメーロ</td><td>牡3</td><td>57</td><td>武 豊</td><td>友道 康夫</td><td>キタサンブラック</td><td>ゼンノロブロイ</td><td>484(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">キタノシャカール</td><td>牡3</td><td>57</td><td>坂井 瑠星</td><td>吉田 直弘</td><td>ニューイヤーズデイ</td><td>ハードスパン</td><td>432(-12)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">クリュギスト</td><td>牡3</td><td>57</td><td>岩田 望来</td><td>松下 武士</td><td>ホッコータルマエ</td><td>ゴールドアリュール</td><td>498(-8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ランニングビーチ</td><td>牡3</td><td>57</td><td>佐々木 大輔</td><td>牧 光二</td><td>ルヴァンスレーヴ</td><td>デュランダル</td><td>468(-4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">ラブインアクション</td><td>牝3</td><td>55</td><td>鮫島 克駿</td><td>橋口 慎介</td><td>Nyquist</td><td>Bernardini</td><td>478(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">セイントエルモズ</td><td>牡3</td><td>57</td><td>斎藤 新</td><td>小島 茂之</td><td>サンダースノー</td><td>ディープスカイ</td><td>546(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">アトモス</td><td>牡3</td><td>57</td><td>角田 大和</td><td>角田 晃一</td><td>キタサンブラック</td><td>Into Mischief</td><td>470(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">アメリカンコール</td><td>牡3</td><td>57</td><td>北村 友一</td><td>武 幸四郎</td><td>American Pharoah</td><td>Tapit</td><td>524(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">タガノエルー</td><td>牡3</td><td>57</td><td>菱田 裕二</td><td>宮 徹</td><td>モズアスコット</td><td>フレンチデピュティ</td><td>454(-8)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">タガノエルーが指数83.7・前走1勝クラス4着(差0.2)・上がり36.5で実績トップ。アトモスは良馬場での指数81.2が光り、前走重馬場凡走は度外視可。ワンダフルデイズは指数79.4で成長曲線が確かく阪神ダ1800m経験あり。キタノシャカールは落馬不利を克服しての勝利で底力を示す。アメリカンコールは新馬上がり36.7と同コース実績が好材料。</div><h3>血統派</h3>
+<div class="analysis-text">クリュギストが父ホッコータルマエ×母父ゴールドアリュールで最もダート向き血統構成、メンバー随一。アメリカンコールはAmerican Pharoah×Tapitの米国ダート最強級配合でポテンシャル最上位。ラブインアクションはNyquist×Bernardiniの米ダート血統で距離延長も対応可。アトモスはキタサンブラック×Into Mischiefの日米融合配合で指数も裏付け。</div><h3>展開派</h3>
+<div class="analysis-text">逃げ馬はジュンプリメーロとラブインアクションの2頭だが競り合わず、スロー～ミドルの前残り展開を予想。アメリカンコールが好位3番手外から直線で抜け出す理想形、調教最速で成長途上の伸びしろ。アトモスは指数最上位級で良馬場替わり巻き返し確実だが中団からスロー展開を打破できるか。タガノエルーは末脚最強だが後方からスロー展開では物理的に届かないリスク。</div><h3>陣営派</h3>
+<div class="analysis-text">ワンダフルデイズがダ1800m複勝率57%・指数上昇・前走完勝・調教好調で陣営評価最高。アトモスは指数81.2が良馬場で最高水準、角田父子タッグで勝負気配。タガノエルーは指数83.7の絶対値最高だが勝ち切れない傾向とゲート難。ラブインアクションは前走77.2圧勝・55kg斤量利・厩舎強気。武豊×友道のジュンプリメーロも要注意。</div><h3>体調派</h3>
+<div class="analysis-text">ワンダフルデイズは調教最速・体重適正・指数上昇の三拍子。ラブインアクションは体重完全維持478kg(0)・調教優秀・55kg斤量恩恵で体調面最注目。アトモスは体重安定470kg(-2)で前走敗因が条件による明確な説明あり。キタノシャカールは-12kgの大幅減が最大危険信号、432kgに57kgは過酷。タガノエルーは指数高いが-8kg減と小柄馬への重斤量が課題。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度C / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>馬場が渋った場合に行きっぷりの悪さが致命傷となり追走に苦労する</li><li>7枠外枠から中途半端なポジションとなり直線で前が壁になる</li><li>角田大和騎手が勝負どころで積極的に動けずスパートが遅れ、先行勢を捕まえきれない</li><li>外枠からポジション取りに失敗し中団後方から押っつけ通しで凡走（前走の再現）</li><li>スピード指数81.2は1勝クラスでは中位レベルに過ぎず、タガノエルー83.7やワンダフルデイズ79.4勢に指数面で劣る展開</li><li>馬体重の微減傾向(474→472→470)が示すコンディション低下と、厩舎の外部要因依存コメントが能力的天井を示唆</li><li>スピード指数79.4は1勝クラスの水準に届かず、アトモス(81.2)やタガノエルー(83.7)といった上位指数馬に力負けする</li><li>馬体重504→500kgと連戦による消耗が進行中。一杯追いの調教で余力なく、昇級戦で最後の踏ん張りが利かない</li><li>ラブインアクション・ジュンプリメーロ・アメリカンコールと先行馬多数でペースが速くなり、好位が取れず中団から凡走</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">信頼度 14.0%</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="agent-section" style="border-left: 4px solid #ff9500;">
+<div class="round-header diff"><span>馬体重発表前との相違</span></div>
+<div class="section-body">
+<div class="diff-row">
+  <div class="diff-card">
+    <div class="label">◎ 本命</div>
+    <div class="value">ワンダフルデイズ</div>
+    <div class="sub">変更（体重前: アトモス）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">○ 対抗</div>
+    <div class="value">アトモス</div>
+    <div class="sub">変更（体重前: タガノエルー）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">▲ 単穴</div>
+    <div class="value">ラブインアクション</div>
+    <div class="sub">変更（体重前: ワンダフルデイズ）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">☆ 方式A</div>
+    <div class="value">タガノエルー</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">CC信頼度</div>
+    <div class="value trust-high">19.0%</div>
+    <div class="sub">体重前: 13.6%</div>
+    <div style="margin-top:6px;font-size:12px;"><span class="trust-high">+5.4%</span></div>
+  </div>
+</div>
+</div></div>
+
+</div>
+</body>
+</html>
