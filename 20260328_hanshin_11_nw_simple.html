@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第73回毎日杯 2026/03/28 HANSHIN 11R (03/28 02:43 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第73回毎日杯 2026/03/28 HANSHIN 11R (03/28 02:43 予想 馬体重なし)</h1>
+  <div class="meta">芝1800m（右 外） |  | 7頭立て | 2回 阪神 1日目 サラ系3歳 オープン （国際）（特指） 馬齢 7頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>51.1%</strong>
+   / 3連信頼度: <strong>27.8%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">2. カフジエメンタール</div>
+      <div class="pick-jockey">武 豊 / 矢作 芳人</div>
+    </div>
+    <div class="pick-prob">27.3%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">4. アルトラムス</div>
+      <div class="pick-jockey">岩田 望来 / 野中 賢二</div>
+    </div>
+    <div class="pick-prob">19.3%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">6. ウップヘリーア</div>
+      <div class="pick-jockey">吉村 誠之助 / 黒岩 陽一</div>
+    </div>
+    <div class="pick-prob">17.9%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">3. ローベルクランツ</div>
+      <div class="pick-jockey">松山 弘平 / 小林 真也</div>
+    </div>
+    <div class="pick-prob">14.7%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">7頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">フレイムスター</td><td>牡3</td><td>57</td><td>団野 大成</td><td>清水 久詞</td><td>ドレフォン</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">カフジエメンタール</td><td>牡3</td><td>57</td><td>武 豊</td><td>矢作 芳人</td><td>ポエティックフレア</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ローベルクランツ</td><td>牡3</td><td>57</td><td>松山 弘平</td><td>小林 真也</td><td>サトノダイヤモンド</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">アルトラムス</td><td>牡3</td><td>57</td><td>岩田 望来</td><td>野中 賢二</td><td>イスラボニータ</td><td>スクリーンヒーロー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ブリガンティン</td><td>牡3</td><td>57</td><td>原 優介</td><td>松山 将樹</td><td>ベンバトル</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ウップヘリーア</td><td>牡3</td><td>57</td><td>吉村 誠之助</td><td>黒岩 陽一</td><td>エピファネイア</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">シーズザスローン</td><td>牡3</td><td>57</td><td>幸 英明</td><td>松永 幹夫</td><td>キズナ</td><td>Frankel</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">カフジエメンタールが前走アルメリア賞1着・芝1800良・1:45.2・上がり33.9で同条件快勝、メンバー中最速水準のタイム。アルトラムスはシンザン記念3着で唯一のGIII掲示板実績だが1800mは距離未経験。ウップヘリーアは若竹賞2着・差0.2接戦で少頭数なら浮上可能。ローベルクランツはきさらぎ賞7着も上がり33.0は全馬最速の末脚で質は本物。フレイムスターはスプリングS16着・上がり38.2で大失速、調教C。</div><h3>血統派</h3>
+<div class="analysis-text">ウップヘリーアは父エピファネイア×母父キングカメハメハでスタミナ優秀、阪神外回りの長い直線に最適。カフジエメンタールは父ポエティックフレア×母父キングカメハメハで欧州×日本クロス、1800mは父の射程上限だが母父でカバー。アルトラムスは父イスラボニータ×母父スクリーンヒーローでマイル〜1800mベスト、阪神の坂でロベルト系底力が生きる。フレイムスターは父ドレフォン（米国短距離血統）で1800mスタミナ不足。シーズザスローンは父キズナ×母父Frankelで芝向き血統ポテンシャル高い。</div><h3>展開派</h3>
+<div class="analysis-text">フレイムスターが7頭立てで単独逃げ確実、スローペース確定。スローからの末脚勝負で中団差し馬有利。カフジエメンタールは中団4番手から最短距離差しでスロー折り合い可能。アルトラムスは後方一気の瞬発力型で直線の長い阪神外回りで最大限発揮。ウップヘリーアは外枠6番から後方差し、外目を通れる阪神外回りで好走可能。ローベルクランツはスロー展開では追い込みが届かない可能性あり。</div><h3>陣営派</h3>
+<div class="analysis-text">カフジエメンタールは武豊×矢作芳人の日本競馬最強コンビ、武豊は阪神コース精通で毎日杯優勝経験複数、調教B。アルトラムスは岩田望来が後方差しの名手で野中賢二厩舎の調教「迫力十分・B」。ローベルクランツは松山弘平が関西リーディング上位で阪神コース精通、調教「前走以上・B」。ウップヘリーアは吉村誠之助×黒岩陽一で重賞経験値が懸念。フレイムスターは前走大惨敗後の同騎手継続・調教Cで陣営に閉塞感。</div><h3>体調派</h3>
+<div class="analysis-text">ウップヘリーアは2ヶ月の余裕ローテで体重+14の成長・充実、調教「気配上々・B」で最高の体調。アルトラムスは2.5ヶ月の余裕ローテ、調教「迫力十分・B」でボディアップ示唆。カフジエメンタールは短期ローテ（中2週）が懸念だが体重+4で充実、調教Bで体調維持。フレイムスターはGII大惨敗13日後・体重-8・調教Cで今回メンバー最悪のコンディション。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>格上挑戦の壁: 前走1勝クラス勝ちから一気のオープン重賞で、GIIIで3着経験のあるアルトラムスなど経験豊富な馬に末脚比べで届かない</li><li>短期ローテ疲労: 中2週での出走となり、アルメリア賞の激走疲れが残った状態での出走で直線でパフォーマンスが落ちる</li><li>スロー展開での不発: フレイムスターが7頭立てで単独逃げのスローを作り、差し馬のカフジエメンタールが末脚を存分に発揮できず後方から来た逆張り馬に差し返される</li><li>相手レベル過小評価: 1勝クラス快勝からのオープン重賞で質的な壁に直面</li><li>ポエティックフレア阪神1800m未知数: 父系の距離適性が阪神1800mで発揮されない可能性</li><li>武豊・矢作ブランドによる過剰人気で妙味なし、マークされてコース取り制限</li><li>前走1勝クラス快勝からのオープン重賞クラスアップで質的な壁に直面し、上位争いに加われない</li><li>武豊騎乗の人気馬として徹底マークされ、後方からのコース取りが制限されて末脚を出し切れない</li><li>7頭立てスローペースで前が残る流れになり、後方差し型のカフジエメンタールが伸び切れず3着以下</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円（信頼度 27.8%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">2 カフジエメンタール</td><td>2.9</td><td>5</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連単</td><td class="left">2 カフジエメンタール→4 アルトラムス→6 ウップヘリーア</td><td>13.6</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr><tr><td>3連複</td><td class="left">2 カフジエメンタール-4 アルトラムス-6 ウップヘリーア</td><td>3.9</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連複</td><td class="left">2 カフジエメンタール-3 ローベルクランツ-6 ウップヘリーア</td><td>10.7</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎▲☆</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
