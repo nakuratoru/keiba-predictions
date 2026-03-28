@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3歳未勝利 2026/03/28 HANSHIN 3R (03/28 10:22 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>3歳未勝利 2026/03/28 HANSHIN 3R (03/28 10:22 予想)</h1>
+  <div class="meta">ダート1200m（右） |  | 16頭立て | 2回 阪神 1日目 サラ系3歳 未勝利 （混合）［指定］ 馬齢 16頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>32.6%</strong>
+   / 3連信頼度: <strong>32.0%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">12. ナムラロダン</div>
+      <div class="pick-jockey">吉村 誠之助 / 長谷川 浩大</div>
+    </div>
+    <div class="pick-prob">21.5%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">2. レッドレベンディス</div>
+      <div class="pick-jockey">武 豊 / 庄野 靖志</div>
+    </div>
+    <div class="pick-prob">17.8%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">4. ウェルカムソング</div>
+      <div class="pick-jockey">岩田 望来 / 河嶋 宏樹</div>
+    </div>
+    <div class="pick-prob">13.4%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">10. バンダムソレール</div>
+      <div class="pick-jockey">原 優介 / 小栗 実</div>
+    </div>
+    <div class="pick-prob">7.2%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">バロニアル</td><td>牡3</td><td>57</td><td>藤懸 貴志</td><td>柴田 卓</td><td>ダノンスマッシュ</td><td>ゼンノロブロイ</td><td>508(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">レッドレベンディス</td><td>牡3</td><td>57</td><td>武 豊</td><td>庄野 靖志</td><td>クリソベリル</td><td>ロードカナロア</td><td>448(+4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">スズランクイーン</td><td>牝3</td><td>55</td><td>城戸 義政</td><td>谷 潔</td><td>アニマルキングダム</td><td>キズナ</td><td>444(+2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ウェルカムソング</td><td>牡3</td><td>57</td><td>岩田 望来</td><td>河嶋 宏樹</td><td>Charlatan</td><td>Street Sense</td><td>466(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ジェイパック</td><td>牝3</td><td>55</td><td>角田 大和</td><td>宮本 博</td><td>イスラボニータ</td><td>エンパイアメーカー</td><td>436(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">シンゼンイセ</td><td>牡3</td><td>57</td><td>太宰 啓介</td><td>荒川 義之</td><td>サトノインプレッサ</td><td>Intikhab</td><td>450(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">スーパーカルメン</td><td>牝3</td><td>52</td><td>森田 誠也</td><td>大橋 勇樹</td><td>ミスチヴィアスアレックス</td><td>メイショウボーラー</td><td>390(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">スラッシュ</td><td>牡3</td><td>57</td><td>菱田 裕二</td><td>安達 昭夫</td><td>フィレンツェファイア</td><td>フジキセキ</td><td>472(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">ハクサンテドリガワ</td><td>牝3</td><td>55</td><td>団野 大成</td><td>小崎 憲</td><td>ハクサンムーン</td><td>デュランダル</td><td>432(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">バンダムソレール</td><td>牡3</td><td>57</td><td>原 優介</td><td>小栗 実</td><td>ルーラーシップ</td><td>ゼンノロブロイ</td><td>468(+6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">ジュンクロノシップ</td><td>牡3</td><td>57</td><td>高倉 稜</td><td>浜田 多実雄</td><td>レッドファルクス</td><td>ロードカナロア</td><td>514(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">ナムラロダン</td><td>牡3</td><td>57</td><td>吉村 誠之助</td><td>長谷川 浩大</td><td>ミッキーアイル</td><td>Storm Cat</td><td>478(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">マロ</td><td>牡3</td><td>57</td><td>松山 弘平</td><td>藤野 健太</td><td>エスポワールシチー</td><td>キングカメハメハ</td><td>514(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">マクローリン</td><td>牡3</td><td>57</td><td>鮫島 良太</td><td>加藤 公太</td><td>ヴァンゴッホ</td><td>Frankel</td><td>474(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">ゼンノボニータ</td><td>牡3</td><td>57</td><td>国分 優作</td><td>秋山 真一郎</td><td>イスラボニータ</td><td>キズナ</td><td>508(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">テセラグラディウス</td><td>牝3</td><td>55</td><td>北村 友一</td><td>高橋 一哉</td><td>ニューイヤーズデイ</td><td>ゴールドアリュール</td><td>444(+11)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">ナムラロダンがスピード指数断トツ(74.9)で実績最上位。直近2走ダ1400m2着(73.0)→ダ1200m2着(74.9)と安定。レッドレベンディスはダ1200m通算3着3回、指数70.6で2番手。ウェルカムソングは新馬2着(差0.2秒、指数63.5)で前走出遅れは度外視可。バンダムソレールはダ1200m2着実績あり(指数63.1)だがタイム自体は遅め。マクローリンはさざんか賞5着(1勝クラス)とクラス上位の経験あり。</div><h3>血統派</h3>
+<div class="analysis-text">ナムラロダンは母父Storm Catが米国型スピードを供給しダ1200m適性裏付け。レッドレベンディスは父クリソベリル(ダートGI馬)×母父ロードカナロア(スプリント王者)でダート短距離適性最高クラス。ウェルカムソングは父Charlatan(米国ダートGI)で配合的にダ1200m向き。マロは父エスポワールシチー(ゴールドアリュール系)でダート適性十分。テセラグラディウスは父ニューイヤーズデイ×母父ゴールドアリュールでダート血統濃厚だが成績伴わず。</div><h3>展開派</h3>
+<div class="analysis-text">ハイペース寄りのミドルペースを想定。逃げ候補3頭(ジェイパック・ハクサンテドリガワ・テセラグラディウス)だが絶対的なスピードはない。ナムラロダンは好位追走でどのペースでも対応可能、展開面での不安少。レッドレベンディスは1枠2番の好位インで恵まれるがテンション面に不安。バンダムソレールはハイペースなら浮上、追い込み一発あり。ウェルカムソングは内枠から先行可能、出遅れなければ上位。</div><h3>陣営派</h3>
+<div class="analysis-text">武豊騎乗のレッドレベンディスが騎手力で最高評価。阪神ダ短距離の経験値圧倒的。ナムラロダンは吉村誠之助の継続騎乗(2着2回)で手が合う。マロは松山弘平が2戦目で前進期待。ウェルカムソングは岩田望来×河嶋厩舎で仕上げに自信あり。テセラグラディウスは北村友一のベテラン騎乗とブリンカー着用の効果に期待。</div><h3>体調派</h3>
+<div class="analysis-text">ナムラロダンは478kg(+2)で成長曲線が理想的、馬なり余力の調教も好材料でコンディション万全。ウェルカムソングは466kg(+2)で一息入って好仕上がり、ラスト12.4秒優秀。レッドレベンディスは448kg(+4)で回復増、テンション面がやや不安。バンダムソレールは468kg(+6)で増えすぎ感あるも追い切り末脚11.7秒は全馬最速級。テセラグラディウスは+11kgだが元に戻った形、ラスト11.1秒最速で上昇気配顕著。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>ハイペース先行崩れ: 16頭立てで逃げ・先行馬が密集し、好位追走のナムラロダンがペースに巻き込まれて直線で失速</li><li>減量騎手の判断ミス: 多頭数の阪神内回りで吉村誠之助が位置取りに失敗し、武豊や松山弘平との騎手力の差が顕在化</li><li>連戦疲労: 3走連続の中1-2週ローテで3歳馬の体力が限界に達し、レース当日に動きが鈍る</li><li>2着癖が続き勝ち切れない（吉村騎手の仕掛け遅れ+外枠からの不利）</li><li>16頭フルゲートで包まれて直線で進路が開かず差し損ね</li><li>ハクサンテドリガワやテセラグラディウスなど調教好時計の穴馬が逃げ粘り、前残り展開でナムラロダンが届かない</li><li>中1週3連戦の蓄積疲労と6枠12番の外枠不利で好位を取れず凡走</li><li>右手前固定の癖が阪神の急坂で裏目に出て直線失速、内枠先行馬に前残りされる</li><li>人気を背負い12番枠から好位を取りに行くも内外から包まれ、直線で捌けず取りこぼし</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円（信頼度 32.0%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">12 ナムラロダン</td><td>2.8</td><td>5</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連単</td><td class="left">12 ナムラロダン→2 レッドレベンディス→4 ウェルカムソング</td><td>19.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr><tr><td>3連複</td><td class="left">2 レッドレベンディス-4 ウェルカムソング-12 ナムラロダン</td><td>5.0</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連複</td><td class="left">4 ウェルカムソング-10 バンダムソレール-12 ナムラロダン</td><td>17.6</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎▲☆</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
