@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第33回マーチステークス 2026/03/29 NAKAYAMA 11R (03/28 20:29 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第33回マーチステークス 2026/03/29 NAKAYAMA 11R (03/28 20:29 予想 馬体重なし)</h1>
+  <div class="meta">ダート1800m（右） |  | 16頭立て | 3回 中山 2日目 サラ系4歳以上 オープン （国際）（指定） ハンデ 16頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>14.4%</strong>
+   / 3連信頼度: <strong>11.9%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">4. ブレイクフォース</div>
+      <div class="pick-jockey">横山 武史 / 中舘 英二</div>
+    </div>
+    <div class="pick-prob">12.3%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">6. ヴァルツァーシャル</div>
+      <div class="pick-jockey">丹内 祐次 / 高木 登</div>
+    </div>
+    <div class="pick-prob">11.7%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">7. アクションプラン</div>
+      <div class="pick-jockey">荻野 極 / 池上 昌和</div>
+    </div>
+    <div class="pick-prob">10.9%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">14. チュウワクリスエス</div>
+      <div class="pick-jockey">原田 和真 / 栗田 徹</div>
+    </div>
+    <div class="pick-prob">10.1%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">0</span></td><td>0</td><td class="left horse-name">ハピ</td><td>牡7</td><td>58</td><td>津村 明秀</td><td>大久保 龍志</td><td>キズナ</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">マテンロウスカイ</td><td>せん7</td><td>59</td><td>横山 典弘</td><td>松永 幹夫</td><td>モーリス</td><td>スペシャルウィーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ショウナンライシン</td><td>牡6</td><td>56</td><td>柴田 善臣</td><td>大竹 正博</td><td>エスケンデレヤ</td><td>フジキセキ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ブレイクフォース</td><td>牡7</td><td>58</td><td>横山 武史</td><td>中舘 英二</td><td>アジアエクスプレス</td><td>サンデーサイレンス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">レヴォントゥレット</td><td>牡5</td><td>57</td><td>M.ディー</td><td>矢作 芳人</td><td>ロードカナロア</td><td>マンハッタンカフェ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">ヴァルツァーシャル</td><td>牡7</td><td>58.5</td><td>丹内 祐次</td><td>高木 登</td><td>マクフィ</td><td>エンパイアメーカー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">アクションプラン</td><td>牡6</td><td>57.5</td><td>荻野 極</td><td>池上 昌和</td><td>リオンディーズ</td><td>タートルボウル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ピュアキアン</td><td>牡5</td><td>56</td><td>吉田 豊</td><td>竹内 正洋</td><td>ホッコータルマエ</td><td>Tiznow</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">オメガギネス</td><td>牡6</td><td>59</td><td>横山 和生</td><td>安田 翔伍</td><td>ロゴタイプ</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">バスタードサフラン</td><td>牝5</td><td>54</td><td>舟山 瑠泉</td><td>渡辺 薫彦</td><td>マジェスティックウォリアー</td><td>ゴールドアリュール</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">ペイシャエス</td><td>牡7</td><td>58.5</td><td>木幡 巧也</td><td>高木 登</td><td>エスポワールシチー</td><td>ワイルドラッシュ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">ハナウマビーチ</td><td>牡4</td><td>55</td><td>石川 裕紀人</td><td>西園 翔太</td><td>ゴールドドリーム</td><td>スキャターザゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">ミッキーヌチバナ</td><td>牡8</td><td>58</td><td>大野 拓弥</td><td>高橋 亮</td><td>ダノンレジェンド</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">チュウワクリスエス</td><td>牡4</td><td>56</td><td>原田 和真</td><td>栗田 徹</td><td>ルヴァンスレーヴ</td><td>サウスヴィグラス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">サンデーファンデー</td><td>牡6</td><td>59</td><td>角田 大和</td><td>東田 明士</td><td>スズカコーズウェイ</td><td>スマートボーイ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">コレペティトール</td><td>せん6</td><td>56</td><td>松岡 正海</td><td>中竹 和也</td><td>ジャスタウェイ</td><td>Coronado&#x27;s Quest</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">サンデーファンデーがSP指数93.7で全馬最高、GII2着の格と先行力で断然の評価。ブレイクフォースは前走総武S1着（中山ダ1800m）で同コース実績万全、初ブリンカー効果で末脚強化。チュウワクリスエスは前走アレキサンドラS1着・指数91.8で中山ダ1800mに特化した4歳成長株、56kgの恵量も武器。アクションプランは中山ダ1800mでポルックスS1着（92.2）・総武S2着と同コース適性抜群だがムラあり。ヴァルツァーシャルは一昨年マーチS勝ち馬で指数90.7安定だが58.5kgが課題。オメガギネスはGI5着の格だが主戦場は1400-1600mで距離延長が疑問。マテンロウスカイは昨年2着も前走14着大敗・7ヶ月休養明け・59kgで割引大。</div><h3>血統派</h3>
+<div class="analysis-text">ヴァルツァーシャル（マクフィ×エンパイアメーカー）が血統的に中山ダ1800m最適配合で一昨年マーチS優勝の裏付けあり。ブレイクフォース（アジアエクスプレス×SS）はヘネシー系のダート特化血統で中山適性高い。サンデーファンデー（スズカコーズウェイ×スマートボーイ）は先行持続力型で指数最高値が群を抜く。アクションプラン（リオンディーズ×タートルボウル）は中山専用機的成績。ミッキーヌチバナ（ダノンレジェンド×キングカメハメハ）は8歳でも調教反応良好。チュウワクリスエス（ルヴァンスレーヴ×サウスヴィグラス）は4歳伸び盛りでダート中距離特化型。ペイシャエス（エスポワールシチー×ワイルドラッシュ）はダート血統明確で重賞3勝だが近走不振。コレペティトール（ジャスタウェイ）は芝血統で初ダート根拠なし。</div><h3>展開派</h3>
+<div class="analysis-text">レヴォントゥレットの単騎逃げでミドル～ややスローペースを想定、前残り傾向で先行馬・好位差し有利。アクションプランが4枠先行で展開最有利、中山ダ1800mのポルックスS1着・総武S2着と実績も裏付け。マテンロウスカイは1枠先行で横山典弘の手腕が加わり展開利大、昨年2着の経験値も。ブレイクフォースは後方差しで直線308mでは届かないリスク、スローペースなら不利。ヴァルツァーシャルも差し脚質で同様の懸念。サンデーファンデーは8枠15番からの先行で距離ロス大。チュウワクリスエスは7枠で先行力あるが外枠のロスと重賞初挑戦が未知数。オメガギネスは好位追走可能だが1800mで坂を上がって止まる懸念。</div><h3>陣営派</h3>
+<div class="analysis-text">ヴァルツァーシャルがマーチS優勝実績×コース専門家的存在×厩舎強気コメント（◎最高印）で陣営派筆頭。ブレイクフォースは前走同コース優勝×横山武史×ブリンカー効果継続で最高評価。アクションプランは厩舎「中山は最も結果の出ている舞台」と断言、荻野極騎手との連携も安定。チュウワクリスエスは4歳上昇馬で栗田師「心身成長」と自信、56kgハンデ恵まれ×コース適性で有力候補。サンデーファンデーはGII2着の実績値だが59kgハンデと気性面の不安定さが割引。ミッキーヌチバナは前走3着で陣営前向き。マテンロウスカイは昨年2着×横山典弘だが59kgと長休が大割引。コレペティトール・バスタードサフランは最低評価。</div><h3>体調派</h3>
+<div class="analysis-text">ヴァルツァーシャルが体重安定右肩上がり（504→512kg）・調教A+「推進力ある走り」・前走60kgから58.5kgへ斤量減で体調面最高評価。ブレイクフォースは体重496kgで安定増加トレンド・調教「馬体充実目を引く（上昇マーク）」・前走勝利から反動なし。サンデーファンデーは大型馬528kgで乗り込み入念・前走GII2着の充実ぶり。チュウワクリスエスは494-498kgの極めて安定した推移・4歳成長曲線・調教上々。アクションプランは体重516kgで安定だが厩舎自ら「間隔詰めていいタイプではないかも」と中3週を懸念。ペイシャエスは近2走で18kg減の急落が最大の懸念。バスタードサフランは体重乱高下・調教「今ひと息」で仕上がり不安。ミッキーヌチバナは8歳で体重522→510kgと減少傾向に警戒。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>ブレイクフォース：ブリンカー2走目で効果薄れ＋中山の短い直線で後方から届かず。サンデーファンデーやアクションプランが緩いペースで逃げ粘り、追い込み不発に終わる</li><li>ヴァルツァーシャル：ムラ駆けパターンが発動し二桁着順に大敗。58.5kgの斤量増＋丹内騎手の重賞プレッシャーで勝ち切れないどころか崩れる</li><li>両馬共倒れ：チュウワクリスエス（指数91.8・56kg・4歳成長力）やアクションプラン（中山巧者・指数92.2）が台頭し、人気2頭が馬券圏外に沈むハンデ戦特有の波乱</li><li>SP指数89.4が示す能力的天井：メンバー中最上位ではなく、58kgへのハンデ増で前走のパフォーマンスを再現できない</li><li>後方一気戦法が中山小回りで不発：マテンロウスカイ・レヴォントゥレット・サンデーファンデー・アクションプランが前を固め、物理的に届かない展開</li><li>ブリンカー初装着効果の減衰：2走目で馬が慣れて集中力が低下し、末脚のキレが鈍る</li><li>ブレイクフォースがブリンカー2戦目で集中力低下、58kgの斤量増もあり差し届かず凡走。スピード指数89.4はメンバー中位で本来の評価は過大</li><li>ヴァルツァーシャルが58.5kgのトップハンデに加え好不調の激しい波が裏目に出る。カノープスS13着のような大崩れ再発。一昨年の勝利時より3.5kg増で2着すら怪しい</li><li>アクションプランが中3週の消耗で本来の機動力を発揮できず。池上師自身が間隔の短さを懸念しており、好位から粘れずズルズル後退するパターン</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">信頼度 11.9%</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+</div>
+</body>
+</html>
