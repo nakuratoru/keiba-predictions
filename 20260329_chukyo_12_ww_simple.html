@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鈴鹿特別 2026/03/29 CHUKYO 12R (03/29 16:08 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>鈴鹿特別 2026/03/29 CHUKYO 12R (03/29 16:08 予想)</h1>
+  <div class="meta">ダート1400m（左） |  | 16頭立て | 1回 中京 6日目 サラ系4歳以上 2勝クラス （混合）［指定］ 定量 16頭</div>
+  <div class="cc-trust">CC単勝信頼度: <strong>39.7%</strong>
+   / 3連信頼度: <strong>10.8%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">11. コーラルクラウン</div>
+      <div class="pick-jockey">川田 将雅 / 福永 祐一</div>
+    </div>
+    <div class="pick-prob">21.9%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">2. チュウワチーフ</div>
+      <div class="pick-jockey">松山 弘平 / 小崎 憲</div>
+    </div>
+    <div class="pick-prob">16.0%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">4. カレンワッツアップ</div>
+      <div class="pick-jockey">浜中 俊 / 小林 真也</div>
+    </div>
+    <div class="pick-prob">9.4%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">6. カルパ</div>
+      <div class="pick-jockey">田山 旺佑 / 須貝 尚介</div>
+    </div>
+    <div class="pick-prob">8.9%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">マスグラバイト</td><td>せん6</td><td>58</td><td>岩田 康誠</td><td>高木 登</td><td>ヘニーヒューズ</td><td>ワイルドラッシュ</td><td>476(+3)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">チュウワチーフ</td><td>牡4</td><td>58</td><td>松山 弘平</td><td>小崎 憲</td><td>Tom&#x27;s d&#x27;Etat</td><td>Overanalyze</td><td>474(-6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">モリノアミーゴ</td><td>牝4</td><td>56</td><td>小林 美駒</td><td>鈴木 伸尋</td><td>モーニン</td><td>ヴィクトワールピサ</td><td>458(-8)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">カレンワッツアップ</td><td>牡5</td><td>58</td><td>浜中 俊</td><td>小林 真也</td><td>キズナ</td><td>Arch</td><td>476(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">フィリップ</td><td>牡5</td><td>58</td><td>佐々木 大輔</td><td>岩戸 孝樹</td><td>ロージズインメイ</td><td>エンパイアメーカー</td><td>500(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">カルパ</td><td>牡5</td><td>58</td><td>田山 旺佑</td><td>須貝 尚介</td><td>モーリス</td><td>キングカメハメハ</td><td>446(-6)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">クリスタルウエイ</td><td>牡7</td><td>58</td><td>中井 裕二</td><td>高橋 文雅</td><td>ディスクリートキャット</td><td>ゴールドアリュール</td><td>474(-24)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">エンファサイズ</td><td>牡6</td><td>58</td><td>富田 暁</td><td>小笠 倫弘</td><td>リアルスティール</td><td>グラスワンダー</td><td>458(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">シンエン</td><td>牡7</td><td>58</td><td>酒井 学</td><td>松下 武士</td><td>ドレフォン</td><td>キングカメハメハ</td><td>500(-14)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">サトノアルペジオ</td><td>せん6</td><td>58</td><td>田辺 裕信</td><td>大和田 成</td><td>モーリス</td><td>ネオユニヴァース</td><td>486(-6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">コーラルクラウン</td><td>牡4</td><td>58</td><td>川田 将雅</td><td>福永 祐一</td><td>サートゥルナーリア</td><td>Dubawi</td><td>484(-4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">サンダーアリュール</td><td>牝5</td><td>56</td><td>吉田 隼人</td><td>菊川 正達</td><td>サンダースノー</td><td>ゴールドアリュール</td><td>448(-12)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">チャロ</td><td>牡4</td><td>58</td><td>三浦 皇成</td><td>和田 正一郎</td><td>ヘニーヒューズ</td><td>キングカメハメハ</td><td>498(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">メイショウタムシバ</td><td>牝5</td><td>56</td><td>武 豊</td><td>飯田 祐史</td><td>ダノンレジェンド</td><td>スペシャルウィーク</td><td>426(-26)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">フォーワンセルフ</td><td>牡7</td><td>58</td><td>丸田 恭介</td><td>小手川 準</td><td>パイロ</td><td>アドマイヤマックス</td><td>526(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">フィーチャリング</td><td>せん4</td><td>58</td><td>北村 友一</td><td>和田 正一郎</td><td>ヘニーヒューズ</td><td>ステイゴールド</td><td>454(-12)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">マルモリスペシャルがSP指数81.3で全馬トップ、前走1勝クラスを逃げ切り3馬身差圧勝と実績断然。チュウワチーフはSP78.3で安定感あり、近3走すべて掲示板内で2勝クラスでの実績が光る。フィーチャリングは上がり34.6秒が全馬最速級、差し脚の破壊力は随一だが位置取りが課題。エイシンシュトルムは近走SP73-77で安定推移、1400m適性も高い。カレンワッツアップは前走上がり36.0で好走、堅実な末脚が武器。</div><h3>血統派</h3>
+<div class="analysis-text">マルモリスペシャルは父エスポワールシチー×母父クロフネの砂短距離血統で中京ダ1400mに高適性。チュウワチーフは父ヘニーヒューズ×母父キングカメハメハで筋肉質のダート向き配合、距離短縮で機動力発揮。グランツアーテはサウスヴィグラス系の砂短距離血統だが距離延長がやや不安。フィーチャリングは父ドレフォン×母父ディープインパクトで末脚に底力あり。エイシンシュトルムはオルフェーヴル産駒で馬場問わず走れるが、ダート1400mがベストかは微妙。</div><h3>展開派</h3>
+<div class="analysis-text">マルモリスペシャルが内枠3番から先手を主張、フィリップやサンダーアリュールも先行意欲があり前半はやや速い流れ。16頭立てで外枠勢は位置取り不利、中京ダ1400mの長い直線を考えると好位差しが有利な展開。マルモリスペシャルは逃げ切り実績あるが多頭数で競りかけられるリスクあり。カレンワッツアップは外枠14番だが先行力があり好位追走可能。フィーチャリングは後方からの差しで直線勝負、展開ハマれば一気だが届かないリスクも。エイシンシュトルムは好位で折り合えれば直線粘り込み可能。</div><h3>陣営派</h3>
+<div class="analysis-text">マルモリスペシャルは今野忠成騎手が継続騎乗で逃げパターン確立、橋口慎介厩舎は中京ダート成績良好。チュウワチーフはM.デムーロ騎手の技量が加算材料、大久保龍志厩舎のダート馬管理に定評。グランツアーテは坂井瑠星騎手×音無秀孝厩舎でダート短距離の信頼度高い。エイシンシュトルムは武豊騎手の中京巧者ぶりが光り、好位からのレースメイクに期待。フィーチャリングは鮫島克駿騎手が差しに回る形で脚を溜められるか。</div><h3>体調派</h3>
+<div class="analysis-text">マルモリスペシャルは前走から中3週で体調維持、馬体重480kg台で安定推移。チュウワチーフは斤量57kgだが実績馬で問題なし、出走間隔も適切。エイシンシュトルムは中2週のローテだが武豊騎手の手腕で調整面カバー。テイエムマンカイは馬体重500kg超の大型馬で叩き良化型、間隔空いて上積みあり。フィーチャリングは斤量55kgの恩恵あるが休み明け初戦の仕上がりがカギ。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 高</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>先行激化による逃げ潰れ: 16頭立てで先行馬が複数おり、楽逃げができず直線で失速するシナリオ</li><li>キャリア6戦の浅さと昇級の壁: 前走の好指数81.3は1勝クラスでの一発であり、2勝クラスの相手に安定して通用する裏付けがない</li><li>中京ダ1400mの直線の長さが差し馬に味方: フィーチャリングやカレンワッツアップなど上がり上位の差し馬に直線で捕まるシナリオ</li><li>昇級の壁: SP指数81.3は1勝クラス逃げ切りで出たもの。2勝クラスで揉まれた経験がなく、チュウワチーフ等の同水準SP指数持ち馬に力負けする</li><li>展開不利: 16頭立てで先行馬が複数おり、ハナを奪えないか競りかけられて消耗。控える形での実績が1400mではなく、折り合いを欠くリスク</li><li>末脚の持続力不足: 上がり36.3~36.9と平凡で、中京の坂で脚が止まった場合、上がり34台を使えるフィーチャリングや上がり36.0のカレンワッツアップに差し切られる</li><li>キャリア6戦の浅さが裏目--フルゲート16頭の2勝クラスで位置取り争いに巻き込まれ、序盤で脚を使わされて直線で失速</li><li>SP指数81.3は一発の好走であり安定水準ではない--今回はベスト未満のパフォーマンスに終わり、SP75前後で凡走</li><li>1400m経験の薄さと馬体重減少傾向--逃げ以外の形になった場合に対応できず、終いが甘くなって差されるか掲示板外</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円（信頼度 10.8%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">11 コーラルクラウン</td><td>2.2</td><td>5</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+<div class="agent-section" style="border-left: 4px solid #ff9500;">
+<div class="round-header diff"><span>馬体重発表前との相違</span></div>
+<div class="section-body">
+<div class="diff-row">
+  <div class="diff-card">
+    <div class="label">◎ 本命</div>
+    <div class="value">コーラルクラウン</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">○ 対抗</div>
+    <div class="value">チュウワチーフ</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">▲ 単穴</div>
+    <div class="value">カレンワッツアップ</div>
+    <div class="sub">変更（体重前: フィーチャリング）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">☆ 方式A</div>
+    <div class="value">カルパ</div>
+    <div class="sub">変更（体重前: カレンワッツアップ）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">CC信頼度</div>
+    <div class="value trust-low">39.7%</div>
+    <div class="sub">体重前: 44.3%</div>
+    <div style="margin-top:6px;font-size:12px;"><span class="trust-low">-4.6%</span></div>
+  </div>
+</div>
+</div></div>
+
+</div>
+</body>
+</html>
