@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山吹賞 2026/04/04 NAKAYAMA 9R (04/03 23:37 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>山吹賞 2026/04/04 NAKAYAMA 9R (04/03 23:37 予想 馬体重なし)</h1>
+  <div class="meta">芝2200m（右 外） |  | 13頭立て | 3回 中山 3日目 サラ系3歳 1勝クラス （混合）（特指） 馬齢 13頭</div>
+  <div class="cc-trust">◎勝率(p1): <strong>14.6%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">13. イモータリス</div>
+      <div class="pick-jockey">石川 裕紀人 / 手塚 貴久</div>
+    </div>
+    <div class="pick-prob">14.6%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">8. ドッグウッド</div>
+      <div class="pick-jockey">横山 和生 / 斎藤 誠</div>
+    </div>
+    <div class="pick-prob">13.1%</div>
+    <div class="pick-pop">8番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">5. レイヒストリコ</div>
+      <div class="pick-jockey">団野 大成 / 黒岩 陽一</div>
+    </div>
+    <div class="pick-prob">11.5%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">6. モウエエデショー</div>
+      <div class="pick-jockey">原田 和真 / 萱野 浩二</div>
+    </div>
+    <div class="pick-prob">9.2%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">13頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ブラウンバナナ</td><td>牡3</td><td>57</td><td>津村 明秀</td><td>林 徹</td><td>キズナ</td><td>Green Tune</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">グレーヌドジョワ</td><td>牡3</td><td>57</td><td>丹内 祐次</td><td>今野 貞一</td><td>ロードカナロア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ヤマニンヘルシェ</td><td>牡3</td><td>57</td><td>大野 拓弥</td><td>辻 哲英</td><td>レッドファルクス</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ポッドクロス</td><td>牡3</td><td>57</td><td>荻野 極</td><td>大竹 正博</td><td>レイデオロ</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">レイヒストリコ</td><td>牡3</td><td>57</td><td>団野 大成</td><td>黒岩 陽一</td><td>レイデオロ</td><td>ネオユニヴァース</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">モウエエデショー</td><td>牡3</td><td>57</td><td>原田 和真</td><td>萱野 浩二</td><td>ダノンプレミアム</td><td>Dream Ahead</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">ヨカオウ</td><td>牡3</td><td>57</td><td>岩田 康誠</td><td>谷 潔</td><td>キズナ</td><td>スクワートルスクワート</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ドッグウッド</td><td>牡3</td><td>57</td><td>横山 和生</td><td>斎藤 誠</td><td>レイデオロ</td><td>タートルボウル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">クラウンインジエア</td><td>牡3</td><td>57</td><td>佐々木 大輔</td><td>藤岡 健一</td><td>モーリス</td><td>Unbridled&#x27;s Song</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">バリオス</td><td>牡3</td><td>57</td><td>西村 淳也</td><td>武 幸四郎</td><td>キタサンブラック</td><td>フレンチデピュティ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">トップオブザライン</td><td>牡3</td><td>57</td><td>三浦 皇成</td><td>友道 康夫</td><td>ドレフォン</td><td>フジキセキ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">ケントン</td><td>牡3</td><td>57</td><td>武藤 雅</td><td>田島 俊明</td><td>リアルスティール</td><td>ディープスカイ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">イモータリス</td><td>牡3</td><td>57</td><td>石川 裕紀人</td><td>手塚 貴久</td><td>ミッキーロケット</td><td>スペシャルウィーク</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">SP指数最高はモウエエデショーのGII5着時87.4。ドッグウッドは1勝クラス2着のSI82.7で着順安定、持続力型。イモータリスは未勝利勝ちSI80.3ながら上がり最速で差し切る内容が強く、手塚厩舎の期待馬。レイヒストリコは芝2400m勝ち・2200m2着と距離適性抜群でワンペースだが堅実。ブラウンバナナは上がり34.1で叩き2戦目の上積みに期待。</div><h3>血統派</h3>
+<div class="analysis-text">2200m距離適性でレイデオロ産駒3頭（レイヒストリコ・ドッグウッド・ポッドクロス）が血統的に優位。イモータリスはミッキーロケット×スペシャルウィークのスタミナ血統で2200m以上に適性高い。バリオスもキタサンブラック×フレンチデピュティで距離・コース適性良好。トップオブザライン（ドレフォン産駒）・ケントンは血統的に距離が長い。</div><h3>展開派</h3>
+<div class="analysis-text">逃げ候補はクラウンインジエアとヨカオウの2頭でミドル～やや速めのペース想定。内枠有利のコース形態でブラウンバナナ(1枠1番)・ヤマニンヘルシェ(3枠3番)・レイヒストリコ(4枠5番)が恵まれた。ドッグウッドは中団から外を回しての差しが効く展開なら浮上。イモータリスは8枠13番大外で出遅れ癖あり距離ロス大。モウエエデショーは後方一気の脚質が中山の短い直線で不利。</div><h3>陣営派</h3>
+<div class="analysis-text">騎手・厩舎の総合力でイモータリス（石川裕紀人＋手塚貴久）が最上位評価。ドッグウッド（横山和生＋斎藤誠）も信頼度高い。トップオブザライン（三浦皇成＋友道康夫）は名門タッグだが調教で不安。ヨカオウは岩田康誠の逃げ手腕が武器。藤岡健一厩舎のクラウンインジエアは「兄ジャックドールに似てきた」との期待コメント。</div><h3>体調派</h3>
+<div class="analysis-text">調教上向き矢印はイモータリス（推進力ある走り↗）とヤマニンヘルシェ（久々も好仕上がり↗）の2頭。レイヒストリコも余裕ある手応えで好状態。トップオブザラインは本調子欠く↘で明確なマイナス。ドッグウッドは前走-8kgの馬体減が気がかりだが調教の動きは良い。クラウンインジエアは馬体重変動（480→498→482）が不安定。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>出遅れ+大外枠で終始外を回り脚を使い切り直線伸びず</li><li>3ヶ月ぶりの実戦でキャリア2戦の若駒が昇級戦のペースに対応できず息切れ</li><li>中山2200m外回りは後方からの追い込みが届きにくいコース形態で差し遅れ</li><li>8枠13番の大外枠が致命的ロスとなり、終始外を回されて脚を使い切る</li><li>ヨカオウが盲点馬で岩田康誠の手腕による逃げ切りが決まる可能性</li><li>逃げ馬2頭の展開次第でレース結果が大きく変わる不確実性</li><li>昇級の壁: 未勝利勝ちのSP指数74.3は1勝クラスでは標準以下で、モウエエデショーやドッグウッドの指数と明確に見劣りする</li><li>上がりの鈍さ: 上がり3F 34.8-36.0秒と決め手不足で、スローの瞬発力勝負になった場合にブラウンバナナやイモータリスに差される</li><li>逃げ馬のペースコントロール: ヨカオウが単騎スローに持ち込んだ場合、好位追走組のヨーイドン勝負で瞬発力負けする</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">p1 14.6%</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+</div>
+</body>
+</html>
