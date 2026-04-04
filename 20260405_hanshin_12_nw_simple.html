@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天満橋ステークス 2026/04/05 HANSHIN 12R (04/04 22:40 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>天満橋ステークス 2026/04/05 HANSHIN 12R (04/04 22:40 予想 馬体重なし)</h1>
+  <div class="meta">ダート1400m（右） |  | 16頭立て | 2回 阪神 4日目 サラ系4歳以上 3勝クラス （混合）（特指） 定量 16頭</div>
+  <div class="cc-trust">◎勝率(p1): <strong>15.9%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">5. ニューオーリンズ</div>
+      <div class="pick-jockey">和田 陽希 / 杉山 晴紀</div>
+    </div>
+    <div class="pick-prob">15.9%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">4. ゲイルライダー</div>
+      <div class="pick-jockey">武 豊 / 牧浦 充徳</div>
+    </div>
+    <div class="pick-prob">13.0%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">14. イリフィ</div>
+      <div class="pick-jockey">C.ルメール / 高野 友和</div>
+    </div>
+    <div class="pick-prob">8.9%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">15. タマモティーカップ</div>
+      <div class="pick-jockey">永島 まなみ / 高橋 亮</div>
+    </div>
+    <div class="pick-prob">8.8%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ジャスパーバローズ</td><td>牡6</td><td>58</td><td>吉村 誠之助</td><td>清水 久詞</td><td>モーリス</td><td>ダンスインザダーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">サヴォンリンナ</td><td>牝4</td><td>56</td><td>北村 友一</td><td>田中 克典</td><td>サトノダイヤモンド</td><td>Zoffany</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">ルミノメテオール</td><td>牝6</td><td>56</td><td>岩田 康誠</td><td>金成 貴史</td><td>エピファネイア</td><td>フォーティナイナー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ゲイルライダー</td><td>牡4</td><td>58</td><td>武 豊</td><td>牧浦 充徳</td><td>ドレフォン</td><td>ロードカナロア</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">ニューオーリンズ</td><td>牡4</td><td>58</td><td>和田 陽希</td><td>杉山 晴紀</td><td>リアルスティール</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">トーセンサウダージ</td><td>牡6</td><td>58</td><td>古川 吉洋</td><td>杉浦 宏昭</td><td>トーセンホマレボシ</td><td>エンパイアメーカー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">タガノシャーンス</td><td>牝6</td><td>56</td><td>幸 英明</td><td>中尾 秀正</td><td>キタサンブラック</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ハワイアンタイム</td><td>せん6</td><td>58</td><td>太宰 啓介</td><td>昆 貢</td><td>ロードカナロア</td><td>コマンズ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">ダノンスウィッチ</td><td>牡5</td><td>58</td><td>坂井 瑠星</td><td>東田 明士</td><td>American Pharoah</td><td>Galileo</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">ジョディーズマロン</td><td>牡8</td><td>58</td><td>横山 典弘</td><td>北出 成人</td><td>ディスクリートキャット</td><td>サムライハート</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">ガンウルフ</td><td>牡6</td><td>58</td><td>高杉 吏麒</td><td>藤岡 健一</td><td>Gun Runner</td><td>A.P. Indy</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">セミマル</td><td>牡6</td><td>58</td><td>西村 淳也</td><td>西村 真幸</td><td>アメリカンペイトリオット</td><td>マイネルラヴ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">リネアグローリア</td><td>牡5</td><td>58</td><td>岩田 望来</td><td>小崎 憲</td><td>モーニン</td><td>サンデーサイレンス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">イリフィ</td><td>牝4</td><td>56</td><td>C.ルメール</td><td>高野 友和</td><td>Too Darn Hot</td><td>Invincible Spirit</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">タマモティーカップ</td><td>牝4</td><td>56</td><td>永島 まなみ</td><td>高橋 亮</td><td>デクラレーションオブウォー</td><td>フジキセキ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">ルークススペイ</td><td>牡4</td><td>58</td><td>川田 将雅</td><td>伊藤 圭三</td><td>ベストウォーリア</td><td>メジロベイリー</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">スピード指数90.3のニューオーリンズが圧倒的首位。前走阪神ダ1400mを1:23.1、1.5秒差の圧勝で昇級初戦の鮮度もプラス。ゲイルライダーも前走0.9秒差圧勝で指数86.7、武豊騎乗で底を見せていない。タマモティーカップは3走連続好走中で指数86.7、牝馬56kgの斤量利あり安定感抜群。セミマルは3勝クラスで2着、4着を複数回と堅実。ルークススペイは川田騎手で阪神ダ1400m好相性。イリフィはルメール騎手だが1200m専門で距離延長が未知数。ダノンスウィッチは重馬場限定の好走で良馬場では不安定。下位勢はジャスパーバローズの大敗続き、サヴォンリンナ・ルミノメテオールのダート初挑戦、トーセンサウダージの3勝クラス不振など割引材料が多い。</div><h3>血統派</h3>
+<div class="analysis-text">ゲイルライダーが血統最上位。父ドレフォンはダート短距離の名種牡馬、母父ロードカナロアのスプリント血統と合わせダ1400mに完璧な配合。ニューオーリンズは父リアルスティールが芝系だが母父クロフネのダート適性が補完。ルークススペイは父ベストウォーリアがダ1400mの名馬で産駒も短距離ダートに強い。リネアグローリアの父モーニンはフェブラリーS勝ち馬、ガンウルフの父Gun Runnerは米ダートG1馬と、いずれも本格的ダート血統。一方サヴォンリンナは父サトノダイヤモンド・母父Zoffanyの完全芝配合でダート適性は極めて低い。タガノシャーンスの父キタサンブラックは芝ステイヤー系でダート1400mには疑問が残る。イリフィは父Too Darn Hotが欧州芝系で1400m延長には血統的裏付けが弱い。</div><h3>展開派</h3>
+<div class="analysis-text">阪神ダ1400mは1角までの距離が短く内枠先行馬有利のコース形態。3枠5番のニューオーリンズは内から楽に先手を取れる最高の枠順で、逃げ確定的。2枠4番のゲイルライダーも好位2番手を確保できる絶好枠。逃げ馬はニューオーリンズの他にガンウルフ、ハワイアンタイムがいるがガンウルフは6枠で外から、ハワイアンタイムは久々で控える可能性が高く、ペースはやや速め~平均を想定。タマモティーカップとルークススペイは8枠の外枠で先行脚質ながらロスが生じやすい。セミマルは中団差しで前崩れ待ち。イリフィはルメール騎手で内をロスなく回れれば浮上可能だが1400m未経験が不安。ジョディーズマロンは追い込み一辺倒で前崩れ必須。展開的にはニューオーリンズとゲイルライダーの内枠先行組が圧倒的に有利。</div><h3>陣営派</h3>
+<div class="analysis-text">騎手力ではルメール(イリフィ)、武豊(ゲイルライダー)、川田(ルークススペイ)のトップ3が突出。厩舎コメントで最も強気なのはイリフィの高野師で、16頭中唯一の◎印「かなり良化、楽しみが大きい」。ニューオーリンズの杉山晴師も「昇級しても力は通用」と自信を見せるが「中3週がどうか」と間隔不安を正直に吐露。ゲイルライダーの牧浦師は「クラスにメドの立つ走りを」とやや慎重で中1週を懸念。タマモティーカップの高橋亮師は「ダートに替わってから安定感がある」と好感触。セミマルの西村師は「終いは確実に脚を使える。展開次第」と条件付き。ダノンスウィッチは「ここを目標にやってきた」と目標レースとしての仕上げ。下位勢では若手騎手や陣営の消極的コメントが目立つ。</div><h3>体調派</h3>
+<div class="analysis-text">調教時計トップはダノンスウィッチの栗坂3F24.8秒で「久々も動き軽快」の上昇矢印。イリフィも栗坂5F53.8-1F12.2を馬なり余力で好時計、厩舎◎印と合致する好仕上がり。ニューオーリンズは「ますます快調」で調教良好だが厩舎理想の間隔より短い中3週が気がかり。最大の懸念はゲイルライダーの中1週ローテで、調教は栗坂1F14.2と明らかに軽め、「攻め軽めが気掛り」のコメント通り前走激走の反動が心配される。タマモティーカップは順調キープで牝馬56kgの斤量利。ルークススペイは前走10kg減が気になるが調教は水準以上。セミマルは「太めも好馬体」で休み明けの仕上がりにやや不安。タガノシャーンスは調教1F11.0の最速級で侮れない。トーセンサウダージは厩舎自ら「良化度合遅く」と認めコンディション不十分。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>中3週の疲労蓄積による末脚鈍化。厩舎自身が間隔の短さを懸念。前走激走の反動リスク。</li><li>逃げ潰れ。ガンウルフやゲイルライダーからのプレッシャーでペースが上がり、昇級戦で逃げ切れない展開。</li><li>和田陽希騎手の昇級初戦でのペース判断ミス。トップジョッキー陣との駆け引きで後手を踏むリスク。</li><li>昇級の壁＋中3週の消耗で前走のキレが再現できず、3勝クラスの壁に跳ね返される</li><li>ガンウルフ・ゲイルライダーに先行勢が絡まれてペースが速くなり、逃げ馬ニューオーリンズが直線で失速する</li><li>若手騎手の和田陽希が名手揃いの3勝クラスでマーク騎乗を受け、自分のペースを作れずに凡走する</li><li>ハイペース消耗: ガンウルフ・ゲイルライダーに競られ前半のペースが上がり、直線で脚が残らず失速</li><li>クラスの壁+中3週: 2勝クラスでの圧勝は相手レベルの問題。3勝クラスの追い比べで甘くなり、かつ間隔が詰まっているため末脚が鈍る</li><li>阪神ダ1400m内枠先行罠: 3枠5番から行くも外からの被せに遭い、スタート後のポジション争いで消耗し直線で失速</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円（p1 15.9%）</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">5 ニューオーリンズ</td><td>9.2</td><td>10</td><td style='text-align:right;font-weight:600;'>1,000円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+</div>
+</body>
+</html>
