@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>千葉日報杯 2026/04/04 NAKAYAMA 10R (04/04 14:27 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>千葉日報杯 2026/04/04 NAKAYAMA 10R (04/04 14:27 予想)</h1>
+  <div class="meta">ダート1800m（右） |  | 15頭立て | 3回 中山 3日目 サラ系4歳以上 2勝クラス （混合）（特指） 定量 15頭</div>
+  <div class="cc-trust">◎勝率(p1): <strong>15.2%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">6. リザードアイランド</div>
+      <div class="pick-jockey">横山 和生 / 田村 康仁</div>
+    </div>
+    <div class="pick-prob">15.2%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">3. オリーブグリーン</div>
+      <div class="pick-jockey">西村 淳也 / 矢作 芳人</div>
+    </div>
+    <div class="pick-prob">12.7%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">11. ピコシー</div>
+      <div class="pick-jockey">岩田 康誠 / 奥村 武</div>
+    </div>
+    <div class="pick-prob">11.1%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">5. サツキノジョウ</div>
+      <div class="pick-jockey">丹内 祐次 / 武井 亮</div>
+    </div>
+    <div class="pick-prob">10.8%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">15頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">スプレーフォール</td><td>牡5</td><td>58</td><td>石川 裕紀人</td><td>相沢 郁</td><td>カリフォルニアクローム</td><td>ハービンジャー</td><td>472(+2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">アベベ</td><td>牡5</td><td>58</td><td>原 優介</td><td>秋本 大介</td><td>コパノリッキー</td><td>ブライアンズタイム</td><td>480(-14)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">オリーブグリーン</td><td>牡4</td><td>58</td><td>西村 淳也</td><td>矢作 芳人</td><td>ヘニーヒューズ</td><td>シンボリクリスエス</td><td>528(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">エンプレスフレーム</td><td>牝4</td><td>56</td><td>原田 和真</td><td>上原 博之</td><td>カリフォルニアクローム</td><td>ハイアーゲーム</td><td>458(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">サツキノジョウ</td><td>牝5</td><td>56</td><td>丹内 祐次</td><td>武井 亮</td><td>レイデオロ</td><td>フジキセキ</td><td>464(+6)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">リザードアイランド</td><td>牡4</td><td>58</td><td>横山 和生</td><td>田村 康仁</td><td>イスラボニータ</td><td>スニッツェル</td><td>488(-4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">デルマタモン</td><td>牡8</td><td>58</td><td>菊沢 一樹</td><td>勢司 和浩</td><td>オンファイア</td><td>キングカメハメハ</td><td>512(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">フジレイメイ</td><td>牡4</td><td>58</td><td>松岡 正海</td><td>小笠 倫弘</td><td>サンダースノー</td><td>アフリート</td><td>502(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">ニシノブレイゼスト</td><td>牡4</td><td>58</td><td>田辺 裕信</td><td>高木 登</td><td>シルバーステート</td><td>グランデラ</td><td>508(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">ライジンマル</td><td>せん5</td><td>58</td><td>木幡 初也</td><td>竹内 正洋</td><td>アジアエクスプレス</td><td>スペシャルウィーク</td><td>534(+8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">ピコシー</td><td>牡4</td><td>58</td><td>岩田 康誠</td><td>奥村 武</td><td>サトノダイヤモンド</td><td>キングカメハメハ</td><td>472(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">タリエシン</td><td>せん6</td><td>58</td><td>野中 悠太郎</td><td>秋本 大介</td><td>キンシャサノキセキ</td><td>Dubai Destination</td><td>440(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">セザンワールド</td><td>せん6</td><td>58</td><td>柴田 善臣</td><td>蛯名 利弘</td><td>トゥザワールド</td><td>ジャングルポケット</td><td>506(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">アースイオス</td><td>牡5</td><td>58</td><td>横山 琉人</td><td>手塚 貴徳</td><td>ジャスタウェイ</td><td>マリエンバード</td><td>532(-12)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">ウインアルドーレ</td><td>牡5</td><td>58</td><td>三浦 皇成</td><td>奥平 雅士</td><td>ビーチパトロール</td><td>フレンチデピュティ</td><td>502(-2)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">SP指数最高のリザードアイランド(82.2-84.7)が地力最上位だが前走2勝クラス初戦12着大敗が不安材料。オリーブグリーンはSP79.0で昇級初戦5着と好内容、矢作厩舎で上昇力あり。サツキノジョウは前走牝馬限定3着(SP79.2)で長くいい脚を使った好内容、牡馬混合初が鍵。セザンワールドは2勝クラスで4着2回と安定、SP79.2は上位水準。ピコシーは4着・6着と僅差善戦、チークP着用で前進期待。ライジンマルは直近2走で内容良化中、先行脚質で中山向き。</div><h3>血統派</h3>
+<div class="analysis-text">リザードアイランドは父イスラボニータ×母父スニッツェルで中山ダ1800m2勝、コース適性実証済み。オリーブグリーンは父ヘニーヒューズ×母父シンボリクリスエスでダ1800mの王道配合、528kg大型馬でパワー十分。ライジンマルは父アジアエクスプレス×母父スペシャルウィークで534kg大型馬、中山パワーコース向き。フジレイメイは父サンダースノー×母父アフリートでダート中距離の理想的血統。タリエシンは父キンシャサノキセキでスプリント血統、1800mは明らかに長い。</div><h3>展開派</h3>
+<div class="analysis-text">ライジンマルがハナを主張し、リザードアイランドが番手、スプレーフォール・エンプレスフレームが3-4番手の先行グループ。先行馬4-5頭で平均〜やや速いペース予想。中山ダ1800mは1コーナーまで距離が短く内枠有利。オリーブグリーンは2枠3番で好位インを確保でき砂被りOK、理想的レースが可能。ピコシーはチークPで行きっぷり改善なら好位まで上げられる。サツキノジョウは最後方からの追い込みで馬場良だと届かないリスク。ウインアルドーレは8枠15番大外で距離ロス大。</div><h3>陣営派</h3>
+<div class="analysis-text">横山和生(リザードアイランド)は中山実績豊富で先行馬の操縦に長け、田村厩舎との信頼コンビ。西村淳也(オリーブグリーン)+矢作厩舎はリーディング級の最上級組み合わせ。岩田康誠(ピコシー)はインを突く技術が天下一品で中山小回り向き。田辺裕信(ニシノブレイゼスト)は中山のスペシャリスト。柴田善臣(セザンワールド)は差し馬操縦と展開読みに長ける大ベテラン。リザードアイランドの中山ダ1800m 2勝のコース実績が最高。</div><h3>体調派</h3>
+<div class="analysis-text">リザードアイランドは488kg(-4)で安定、調教5F66.0-1F11.3がメンバー最速で「上積み十分」と絶好調。ピコシーは472kg(-2)安定、チークP効果ありで上昇。オリーブグリーンは528kg(-2)でデキ落ちなし、栗坂路好時計。サツキノジョウは464kg(+6)で馬体充実、好気配保つ。セザンワールドは506kg(-4)で活気十分、坂路好時計。アベベ480kg(-14)は転厩ストレスで不安大、タリエシン440kg(-8)はモタれで不良、アースイオス532kg(-12)は大幅減で不安。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>前走12着大敗の再現：先行して直線で反応できず失速するパターン</li><li>攻め過ぎ調教の反動：好時計を出した代償でレース当日に余力がない</li><li>ペースが流れて先行馬総崩れ：先行馬が多く、差し追い込み馬に逆転される</li><li>前走と同様に追い出してから反応できず失速するパターン。キャリア5戦の若馬特有の波の大きさが出る</li><li>先行馬多数の消耗戦で好位追走のアドバンテージが消え、序盤の脚の使い過ぎから直線で伸び切れない</li><li>2勝クラスの壁。未勝利・1勝クラスでの高指数は相手なりの可能性があり、クラスが上がって真の実力が露呈する</li><li>前走大敗(12着)の再現 - 2勝クラスのペースで追い出しても反応できず4角以降失速するパターン</li><li>内枠先行馬に番手を奪われ序盤から脚を使わされて直線で伸び切れない</li><li>キャリア5戦の浅さと前走大敗のトラウマで騎手が仕掛けどころを迷い中途半端な競馬になる</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">p1 15.2%</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="agent-section" style="border-left: 4px solid #ff9500;">
+<div class="round-header diff"><span>馬体重発表前との相違</span></div>
+<div class="section-body">
+<div class="diff-row">
+  <div class="diff-card">
+    <div class="label">◎ 本命</div>
+    <div class="value">リザードアイランド</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">○ 対抗</div>
+    <div class="value">オリーブグリーン</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">▲ 単穴</div>
+    <div class="value">ピコシー</div>
+    <div class="sub">同じ → 再現性高</div>
+    
+  </div>
+  <div class="diff-card">
+    <div class="label">☆ 方式A</div>
+    <div class="value">サツキノジョウ</div>
+    <div class="sub">変更（体重前: ライジンマル）</div>
+    <div style="margin-top:6px;font-size:12px;"><span style="display:inline-block;background:#FF3B30;color:white;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;">CHANGE</span></div>
+  </div>
+  <div class="diff-card">
+    <div class="label">◎勝率(p1)</div>
+    <div class="value trust-low">15.2%</div>
+    <div class="sub">体重前: 16.3%</div>
+    <div style="margin-top:6px;font-size:12px;"><span class="trust-low">-1.1%</span></div>
+  </div>
+</div>
+</div></div>
+
+</div>
+</body>
+</html>
