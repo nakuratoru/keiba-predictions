@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポラリスステークス 2026/04/04 HANSHIN 10R (04/04 14:13 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .race-header .cc-trust {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 4px 12px; margin-top: 10px; font-size: 13px;
+  }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .num-badge {
+    display: inline-block; width: 22px; height: 22px; background: #F2F2F7;
+    border-radius: 4px; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px;
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>ポラリスステークス 2026/04/04 HANSHIN 10R (04/04 14:13 予想)</h1>
+  <div class="meta">ダート1400m（右） |  | 16頭立て | 2回 阪神 3日目 サラ系4歳以上 オープン （国際）（特指） ハンデ 16頭</div>
+  <div class="cc-trust">◎勝率(p1): <strong>17.8%</strong></div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">7. ビダーヤ</div>
+      <div class="pick-jockey">坂井 瑠星 / 矢作 芳人</div>
+    </div>
+    <div class="pick-prob">17.8%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">8. ヤマニンウルス</div>
+      <div class="pick-jockey">武 豊 / 斉藤 崇史</div>
+    </div>
+    <div class="pick-prob">15.1%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">5. キタノズエッジ</div>
+      <div class="pick-jockey">古川 吉洋 / 畑端 省吾</div>
+    </div>
+    <div class="pick-prob">12.3%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">☆</div>
+    <div>
+      <div class="pick-name">12. ベルジュロネット</div>
+      <div class="pick-jockey">鮫島 克駿 / 大久保 龍志</div>
+    </div>
+    <div class="pick-prob">10.2%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">1</span></td><td>1</td><td class="left horse-name">ジュンウィンダム</td><td>牝6</td><td>53</td><td>西塚 洸二</td><td>浜田 多実雄</td><td>カレンブラックヒル</td><td>ベーカバド</td><td>514(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span><span class="num-badge">2</span></td><td>2</td><td class="left horse-name">ヴーレヴー</td><td>牝4</td><td>54</td><td>浜中 俊</td><td>武 幸四郎</td><td>サトノクラウン</td><td>マンハッタンカフェ</td><td>496(-4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">3</span></td><td>3</td><td class="left horse-name">スマートサニー</td><td>牡6</td><td>55</td><td>高杉 吏麒</td><td>石橋 守</td><td>シニスターミニスター</td><td>キングカメハメハ</td><td>478(+6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span><span class="num-badge">4</span></td><td>4</td><td class="left horse-name">ハセドン</td><td>牡7</td><td>56</td><td>吉村 誠之助</td><td>大和田 成</td><td>モーリス</td><td>マンハッタンカフェ</td><td>478(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">5</span></td><td>5</td><td class="left horse-name">キタノズエッジ</td><td>牡5</td><td>57</td><td>古川 吉洋</td><td>畑端 省吾</td><td>ジョーカプチーノ</td><td>キングカメハメハ</td><td>550(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span><span class="num-badge">6</span></td><td>6</td><td class="left horse-name">バトルクライ</td><td>牡7</td><td>58.5</td><td>北村 友一</td><td>高木 登</td><td>イスラボニータ</td><td>キングカメハメハ</td><td>512(-4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">7</span></td><td>7</td><td class="left horse-name">ビダーヤ</td><td>牡5</td><td>58</td><td>坂井 瑠星</td><td>矢作 芳人</td><td>リアルスティール</td><td>Singspiel</td><td>498(-2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span><span class="num-badge">8</span></td><td>8</td><td class="left horse-name">ヤマニンウルス</td><td>牡6</td><td>59.5</td><td>武 豊</td><td>斉藤 崇史</td><td>ジャスタウェイ</td><td>スウェプトオーヴァーボード</td><td>584(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">9</span></td><td>9</td><td class="left horse-name">クロジシジョー</td><td>牡7</td><td>59</td><td>菱田 裕二</td><td>岡田 稲男</td><td>フリオーソ</td><td>スペシャルウィーク</td><td>460(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span><span class="num-badge">10</span></td><td>10</td><td class="left horse-name">バトゥーキ</td><td>牡6</td><td>56</td><td>秋山 稔樹</td><td>浜田 多実雄</td><td>ラニ</td><td>サウスヴィグラス</td><td>504(+6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">11</span></td><td>11</td><td class="left horse-name">サクセスローレル</td><td>牡7</td><td>52</td><td>亀田 温心</td><td>北出 成人</td><td>Mastery</td><td>Street Sense</td><td>538(+14)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span><span class="num-badge">12</span></td><td>12</td><td class="left horse-name">ベルジュロネット</td><td>牡4</td><td>56</td><td>鮫島 克駿</td><td>大久保 龍志</td><td>ロードカナロア</td><td>サクラバクシンオー</td><td>550(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">13</span></td><td>13</td><td class="left horse-name">アドバンスファラオ</td><td>せん6</td><td>56</td><td>高倉 稜</td><td>森 秀行</td><td>American Pharoah</td><td>Tiznow</td><td>492(-18)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span><span class="num-badge">14</span></td><td>14</td><td class="left horse-name">セントメモリーズ</td><td>牝5</td><td>52</td><td>富田 暁</td><td>斎藤 誠</td><td>エピファネイア</td><td>ネオユニヴァース</td><td>478(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">15</span></td><td>15</td><td class="left horse-name">ナイトアクアリウム</td><td>牡6</td><td>55</td><td>長岡 禎仁</td><td>杉山 佳明</td><td>ロードカナロア</td><td>クロフネ</td><td>498(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span><span class="num-badge">16</span></td><td>16</td><td class="left horse-name">バグラダス</td><td>牡6</td><td>56</td><td>岩田 望来</td><td>嘉藤 貴行</td><td>マジェスティックウォリアー</td><td>ディープインパクト</td><td>490(-8)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>各派分析</span></div>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text">ヤマニンウルスがSP指数94.9で最高値、東海S圧勝（差0.6秒）の実績はメンバー中トップ。ただし前走から約9ヶ月ぶりの長期休養明け。ビダーヤはコーラルS2着（SP93.5）で直近5走すべて3着以内、複勝率90%の驚異的安定感だが勝ち切れない課題あり。キタノズエッジはすばるS1着・コーラルS3着と1400mで充実、叩き2戦目で上昇見込み。バトルクライは根岸S2着（SP89.7、上がり34.8秒）の好走があるがムラが大きく信頼しにくい。ベルジュロネットは3連勝中だがOP未経験でSP88.5が最高、相手強化でどこまで通用するか。</div><h3>血統派</h3>
+<div class="analysis-text">ヤマニンウルスは父ジャスタウェイ×母父スウェプトオーヴァーボードで、母父のダートスプリント適性が本馬のダ1400m適性を支える。584kgの大型馬で阪神のパワーコース向き、道悪もプラス。キタノズエッジは父ジョーカプチーノ×母父キンカメで阪神ダ1400mに非常にマッチ、550kgの馬格もパワーコース向き。ビダーヤは父リアルスティール×母父Singspielでバランス型だが、血統的ベストはもう少し長い距離。バトルクライは父イスラボニータ×母父キンカメでダ1400mドンピシャの距離適性。バトゥーキは父ラニ×母父サウスヴィグラスで両親ともにダート適性極めて高い配合。</div><h3>展開派</h3>
+<div class="analysis-text">逃げ候補が少なくスロー〜ミドルペース濃厚。ヤマニンウルスが好位2-3番手、ベルジュロネットが中団前目につける展開。ビダーヤ・キタノズエッジは後方から直線で外に出す差し脚質。阪神ダ1400mは直線の急坂でスタミナとパワーが問われ、先行馬有利だが坂で止まる馬も出る。道悪なら外差し傾向が強まりバグラダス・バトゥーキの追い込み勢が台頭する可能性。ヤマニンウルスは先行力で展開有利だが59.5kgで直線の坂がこたえるリスクあり。ベルジュロネットは好位追走で展開に左右されにくい。</div><h3>陣営派</h3>
+<div class="analysis-text">武豊×斉藤崇史厩舎（ヤマニンウルス）は阪神ダートの経験値と東海S勝利の実績で信頼度最上位。坂井瑠星×矢作厩舎（ビダーヤ）はトップジョッキーと日本最大級厩舎の組み合わせで、ドバイ取りやめ後も国内戦に集中。鮫島克駿×大久保龍志厩舎（ベルジュロネット）はリーディング上位騎手×名門厩舎で昇級初戦でも信頼可。古川吉洋（キタノズエッジ）はベテランで阪神ダート経験豊富だがリーディング上位ではなく勝ち切る力でやや劣る。岩田望来（バグラダス）は阪神地元コースで追込馬の脚の使い方がうまく穴馬候補。</div><h3>体調派</h3>
+<div class="analysis-text">ビダーヤは498kg(-2)で安定、栗CW終い11.5秒の好時計、「好調持続」で仕上がりA。ベルジュロネットは550kg(+4)で成長中の4歳、調教上昇矢印つき「体も動きも良く」、56kgの軽斤量がアドバンテージ大、体調A。キタノズエッジは550kg(+6)でやや増だが栗坂5F52.6秒は全馬中最速、「叩き上昇型」で2戦目上昇見込み、体調A-。ヤマニンウルスは584kg(+2)で休養前と同体重だが8.5ヶ月休養明け、調教上昇矢印はあるも59.5kgの最重量ハンデが課題、体調B+。アドバンスファラオは-18kgの大幅減+気性面不安で体調C-。サクセスローレルは+14kgの大幅増で体調D。</div>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>敗因シナリオ</span><span class="badge">信頼度B / 死角リスク: 中</span></div>
+<div class="section-body">
+<ol style="font-size:13px;color:#3A3A3C;margin-left:16px;line-height:1.8;"><li>ビダーヤが勝負どころでモタつき、ベルジュロネットの先行押し切りに差し切れない（ドバイ取りやめ後の調整難再発）</li><li>ヤマニンウルスが8ヶ月半の長期休養明け+59.5kgの重斤量で直線の坂で失速し、追い込み勢（バグラダス、バトゥーキ）に差される</li><li>スローペースで前残り展開となり、ベルジュロネット・スマートサニーが粘り込み、後方待機のビダーヤ・キタノズエッジが届かない</li><li>58kgの斤量が響き勝ち切れない脚質がさらに悪化、スローペースで差し届かず4〜5着</li><li>ドバイ遠征取りやめ後の調整ミスで勝負どころでモタつき、仕上がりのピークを外す</li><li>馬場悪化（稍重〜重）で末脚の切れが鈍り、パワー型先行馬に粘られて届かない</li></ol>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">p1 17.8%</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+</div>
+</body>
+</html>
