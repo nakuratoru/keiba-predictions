@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>水無月ステークス 2026/06/07 HANSHIN 11R (06/07 17:58 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>水無月ステークス 2026/06/07 HANSHIN 11R (06/07 17:58 予想)</h1>
+  <div class="meta">ダート1200m（右） | 稍重 | 16頭立て | 3回 阪神 2日目 サラ系3歳以上 オープン （国際）（特指） ハンデ 16頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">6. アンズアメ</div>
+      <div class="pick-jockey">川田 将雅 / 高柳 大輔</div>
+    </div>
+    <div class="pick-prob">10.8%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">15. コンクイスタ</div>
+      <div class="pick-jockey">西村 淳也 / 吉岡 辰弥</div>
+    </div>
+    <div class="pick-prob">10.7%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">13. ペプチドヤマト</div>
+      <div class="pick-jockey">高倉 稜 / 武 英智</div>
+    </div>
+    <div class="pick-prob">9.9%</div>
+    <div class="pick-pop">13番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ムーヴ</td><td>牡7</td><td>56</td><td>坂井 瑠星</td><td>池上 昌和</td><td>ラニ</td><td>ワイルドラッシュ</td><td>482(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">マルモリスペシャル</td><td>牡7</td><td>55</td><td>西塚 洸二</td><td>大橋 勇樹</td><td>バトルプラン</td><td>スペシャルウィーク</td><td>542(-4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">プレゼンティーア</td><td>牝5</td><td>52</td><td>松本 大輝</td><td>田中 克典</td><td>マジェスティックウォリアー</td><td>ゴールドアリュール</td><td>496(+4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">フリームファクシ</td><td>牡6</td><td>58.5</td><td>酒井 学</td><td>須貝 尚介</td><td>ルーラーシップ</td><td>スペシャルウィーク</td><td>510(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">ショウナンアビアス</td><td>牡6</td><td>55</td><td>池添 謙一</td><td>加藤 士津八</td><td>ドレフォン</td><td>キングカメハメハ</td><td>504(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">アンズアメ</td><td>牝4</td><td>53</td><td>川田 将雅</td><td>高柳 大輔</td><td>ドレフォン</td><td>エンパイアメーカー</td><td>484(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">スマートフォルス</td><td>牡6</td><td>56</td><td>鮫島 克駿</td><td>吉村 圭司</td><td>シニスターミニスター</td><td>ロードカナロア</td><td>486(+8)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">クロジシジョー</td><td>牡7</td><td>59</td><td>菱田 裕二</td><td>岡田 稲男</td><td>フリオーソ</td><td>スペシャルウィーク</td><td>454(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">ケイアイドリー</td><td>牡9</td><td>58.5</td><td>松若 風馬</td><td>前川 恭子</td><td>エスポワールシチー</td><td>Seeking the Gold</td><td>534(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">リジル</td><td>牝5</td><td>53</td><td>渡辺 竜也</td><td>奥村 豊</td><td>ダノンレジェンド</td><td>ハーツクライ</td><td>504(+14)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">アガシ</td><td>せん5</td><td>55</td><td>田口 貫太</td><td>庄野 靖志</td><td>エピファネイア</td><td>クロフネ</td><td>500(+8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">ロードフロンティア</td><td>牡5</td><td>55</td><td>川須 栄彦</td><td>松下 武士</td><td>ロードカナロア</td><td>Distorted Humor</td><td>466(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">ペプチドヤマト</td><td>牡7</td><td>57</td><td>高倉 稜</td><td>武 英智</td><td>ドレフォン</td><td>コロナドズクエスト</td><td>502(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">サンライズアムール</td><td>牡7</td><td>59.5</td><td>斎藤 新</td><td>小林 真也</td><td>モーリス</td><td>タイキシャトル</td><td>518(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>15</td><td class="left horse-name">コンクイスタ</td><td>せん6</td><td>58</td><td>西村 淳也</td><td>吉岡 辰弥</td><td>ロードカナロア</td><td>Pivotal</td><td>500(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">ジュンウィンダム</td><td>牝6</td><td>55</td><td>国分 優作</td><td>浜田 多実雄</td><td>カレンブラックヒル</td><td>ベーカバド</td><td>504(-2)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>6</td><td class="left horse-name">アンズアメ</td><td style="font-weight:700;background:#F0F7FF;">1 (11.8)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.1)</td><td style="background:#F0F7FF;">2 (10.6)</td><td style="background:#F0F7FF;">2 (10.6)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.1)</td></tr><tr><td>15</td><td class="left horse-name">コンクイスタ</td><td style="background:#F0F7FF;">2 (10.2)</td><td style="background:#F0F7FF;">2 (10.6)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.0)</td><td style="font-weight:700;background:#F0F7FF;">1 (10.9)</td><td style="background:#F0F7FF;">2 (10.9)</td></tr><tr><td>14</td><td class="left horse-name">サンライズアムール</td><td style="background:#F0F7FF;">3 (9.3)</td><td style="background:#F0F7FF;">3 (9.7)</td><td style="background:#F0F7FF;">3 (9.6)</td><td style="background:#F0F7FF;">3 (9.9)</td><td style="background:#F0F7FF;">3 (9.8)</td></tr><tr><td>13</td><td class="left horse-name">ペプチドヤマト</td><td style="background:#F0F7FF;">5 (8.1)</td><td style="background:#F0F7FF;">4 (9.0)</td><td style="background:#F0F7FF;">4 (9.5)</td><td style="background:#F0F7FF;">4 (9.6)</td><td style="background:#F0F7FF;">4 (9.8)</td></tr><tr><td>5</td><td class="left horse-name">ショウナンアビアス</td><td style="color:#AEAEB2;">6 (7.8)</td><td style="background:#F0F7FF;">5 (8.1)</td><td style="background:#F0F7FF;">5 (8.2)</td><td style="background:#F0F7FF;">5 (8.4)</td><td style="background:#F0F7FF;">5 (8.4)</td></tr><tr><td>16</td><td class="left horse-name">ジュンウィンダム</td><td style="background:#F0F7FF;">4 (8.6)</td><td style="color:#AEAEB2;">6 (7.9)</td><td style="color:#AEAEB2;">7 (7.4)</td><td style="color:#AEAEB2;">7 (7.1)</td><td style="color:#AEAEB2;">7 (7.2)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>15 コンクイスタ: 京葉S2着1:09.7差0.0、令月S1着1:11.1で現級ダ1200の実績が最上位。近2走の指数91.6、92.2はこの組み合わせでも最も信頼しやすい。  </p>
+<p>14 サンライズアムール: 休み明けでも、昨年水無月S1着1:10.9、クラスターC1着1:09.2、東京盃3着1:11.2と格上の1200実績が明確。直近もカペラS6着1:10.1なら大きくは崩れていない。  </p>
+<p>6 アンズアメ: 3勝クラスだが近2走が1:10.4で2着、1:10.5で1着、上がり35.0-35.7、指数88.5-90.0と内容が濃い。昇級でも時計の裏付けがある。  </p>
+<p>13 ペプチドヤマト: 天王山S3着1:10.6差0.2、室町S1着1:10.3、指数91.8でOP1200の地力は十分。大和S8着でも0.6差なら大きな減点ではない。  </p>
+<p>5 ショウナンアビアス: 越後S3着1:10.5差0.4、なにわS1着1:11.1で近走は安定。派手さはないが1200で大崩れが少なく、相手なりに走る実績がある。  </p>
+<p>16 ジュンウィンダム: 前走天王山S1着1:10.4、上がり35.3、指数91.8は高評価。ただしその前3走が12着、13着、9着で振れ幅が大きく、軸までは置きにくい。  </p>
+<p>1 ムーヴ: 千葉S2着1:10.8差0.1、京葉S6着1:10.0差0.3でOP1200では通用。末脚は安定しているが、勝ち切るだけの決め手では上位勢に一歩譲る。  </p>
+<p>11 アガシ: 大和S3着1:11.1差0.2、指数90.6は十分評価できる。千葉S10着1:11.9差1.2の反動はあるが、走れば足りる実績は示している。  </p>
+<p>8 クロジシジョー: 近2走の1400は5着、7着でやや物足りないが、昨秋の東京盃2着1:11.1、JBCスプリ5着の実績は上位。今回は最近の1200実績が薄い分だけ評価を抑える。  </p>
+<p>3 プレゼンティーア: 2連勝中で福島中央TV1着1:07.6、前走も1着1:10.5と勢いはある。ただし指数は81前後で、オープン相手に即通用とまではまだ言い切れない。  </p>
+<p>2 マルモリスペシャル: 大和S4着1:11.1差0.2、指数90.6は走れる証拠。ただし近5走で馬券圏内がなく、1400でも1200でも詰め切れていない。  </p>
+<p>7 スマートフォルス: りんくうS4着1:10.7差0.1、指数91.9は魅力。ただ前走京葉S13着1:10.7差1.0で、近2走の内容比較では信頼度が上がらない。  </p>
+<p>9 ケイアイドリー: 実績自体は最上位級だが、近走は千葉S5着1:11.2差0.5、根岸S16着1:25.8差2.5でピーク時ほどの裏付けがない。近況実績重視なら強くは押しにくい。  </p>
+<p>4 フリームファクシ: すばるS1着1:23.0はあるが、それ以降のダートは根岸S6着、バレンタインS10着。しかも今回は1200替わりで、近走実績からは買い材料が乏しい。  </p>
+<p>10 リジル: 近5走は1400中心で、神無月S5着1:22.4差0.3が最良。1200の直近裏付けがなく、休み明けで相手強化の今回は実績面で見劣る。  </p>
+<p>12 ロードフロンティア: 千葉S15着1:12.3差1.6、京葉S11着1:12.5でOPでは足りていない。近5走の指数も低く、好走実績の裏付けが最も薄い。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>15番 コンクイスタ: 14%</li>
+<li>14番 サンライズアムール: 12%</li>
+<li>6番 アンズアメ: 11%</li>
+<li>13番 ペプチドヤマト: 9%</li>
+<li>5番 ショウナンアビアス: 9%</li>
+<li>16番 ジュンウィンダム: 8%</li>
+<li>1番 ムーヴ: 7%</li>
+<li>11番 アガシ: 6%</li>
+<li>8番 クロジシジョー: 5%</li>
+<li>3番 プレゼンティーア: 5%</li>
+<li>2番 マルモリスペシャル: 4%</li>
+<li>7番 スマートフォルス: 4%</li>
+<li>9番 ケイアイドリー: 3%</li>
+<li>4番 フリームファクシ: 1%</li>
+<li>10番 リジル: 1%</li>
+<li>12番 ロードフロンティア: 1%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>6 アンズアメ: <code>ドレフォン×エンパイアメーカー</code> で米国型ダート短距離の芯が強く、阪神ダ1200の稍重で求められる先行持続力とパワーを最も素直に評価できる配合。  </p>
+<p>15 コンクイスタ: <code>ロードカナロア×Pivotal</code> はスピードに欧州的な馬力が補強された形で、湿ったダート1200でも止まりにくい。外枠でも血統の機動力は高い。  </p>
+<p>13 ペプチドヤマト: <code>ドレフォン×コロナドズクエスト</code> は短距離ダートの米国色が濃く、阪神1200への設計図が明快。稍重での押し切り性能も高く見込める。  </p>
+<p>14 サンライズアムール: <code>モーリス×タイキシャトル</code> で芝寄りのスピードに米国的短距離血統が入る配合。実績で裏付け済みだが、純粋なダートスプリント血統比較では上位3頭に一歩譲る。  </p>
+<p>3 プレゼンティーア: <code>マジェスティックウォリアー×ゴールドアリュール</code> はダート短距離向きの王道配合。牝馬でもパワー負けしにくく、軽ハンデ込みで血統妙味は高い。  </p>
+<p>5 ショウナンアビアス: <code>ドレフォン×キングカメハメハ</code> はスピードと持続力のバランスが良く、1200への対応は堅実。道悪も血統的には守備範囲。  </p>
+<p>16 ジュンウィンダム: <code>カレンブラックヒル×ベーカバド</code> で軽さ一辺倒ではなく、多少時計のかかる短距離ダートに寄せられる配合。牝馬でも阪神1200はこなせる。  </p>
+<p>8 クロジシジョー: <code>フリオーソ×スペシャルウィーク</code> はパワー型で稍重自体は歓迎。ただし、今の阪神ダ1200ではやや機動力不足になりやすく、血統面の上積みは限定的。  </p>
+<p>1 ムーヴ: <code>ラニ×ワイルドラッシュ</code> は米国型の砂適性が濃く、時計のかかる馬場替わりはむしろプラス。差し脚質に合う血統背景。  </p>
+<p>9 ケイアイドリー: <code>エスポワールシチー×Seeking the Gold</code> はダート短距離で崩れにくい配合で、稍重も問題ない。年齢面を除けば血統適性はまだ残る。  </p>
+<p>7 スマートフォルス: <code>シニスターミニスター×ロードカナロア</code> でダート短距離適性はあるが、母系の軽さが強く、阪神1200の持続戦で突き抜ける像までは描きにくい。  </p>
+<p>11 アガシ: <code>エピファネイア×クロフネ</code> は本質的にはもう少し距離に幅がほしい配合だが、母父のダート力で1200も守備範囲。絶対的な短距離血統ではない。  </p>
+<p>2 マルモリスペシャル: <code>バトルプラン×スペシャルウィーク</code> はダート適性と持続力はあるが、1200の鋭さ勝負では少し鈍い。阪神の流れが厳しくなると血統の切れ負け懸念。  </p>
+<p>10 リジル: <code>ダノンレジェンド×ハーツクライ</code> は父の短距離ダート力はあるが、母系が引っ張るぶん1200の忙しさへの適性は上位勢ほど明確でない。  </p>
+<p>12 ロードフロンティア: <code>ロードカナロア×Distorted Humor</code> で一見合いそうだが、近親の出方も含め1400寄りのスピード持続型に映る。1200では忙しい。  </p>
+<p>4 フリームファクシ: <code>ルーラーシップ×スペシャルウィーク</code> は中距離色が濃く、ダート1200の忙しい流れには血統設計が噛み合いにくい。ここでは適性面で見劣る。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>6番 アンズアメ: 10.9%</li>
+<li>15番 コンクイスタ: 10.5%</li>
+<li>13番 ペプチドヤマト: 9.2%</li>
+<li>14番 サンライズアムール: 9.0%</li>
+<li>3番 プレゼンティーア: 8.7%</li>
+<li>5番 ショウナンアビアス: 7.9%</li>
+<li>16番 ジュンウィンダム: 7.2%</li>
+<li>8番 クロジシジョー: 6.5%</li>
+<li>1番 ムーヴ: 5.7%</li>
+<li>9番 ケイアイドリー: 5.3%</li>
+<li>7番 スマートフォルス: 4.8%</li>
+<li>11番 アガシ: 4.5%</li>
+<li>2番 マルモリスペシャル: 3.7%</li>
+<li>10番 リジル: 2.8%</li>
+<li>12番 ロードフロンティア: 1.7%</li>
+<li>4番 フリームファクシ: 1.6%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>15 コンクイスタ: 8枠でも外から無理なく好位を取れ、14や3を見ながら運べるのが強み。稍重の阪神ダ1200で砂を被りにくい並びは展開上かなり良い。  </p>
+<p>14 サンライズアムール: 外から先団形成がしやすく、自分で流れを作れる。59.5kgは厳しいが、今回は極端な差し一辺倒にはなりにくく展開利が残る。  </p>
+<p>6 アンズアメ: 先行勢の直後で脚をためる形が取りやすい枠。前がやり合っても、やり合わなくても対応しやすい好位差し型で崩れにくい。  </p>
+<p>3 プレゼンティーア: 内枠からハナか2番手を確保しやすく、今回の並びならかなり主導権を握りやすい。稍重で前が止まり切らない想定なら粘り込み警戒。  </p>
+<p>13 ペプチドヤマト: 7枠で揉まれず中団外目を取れそう。前が速すぎないぶん突き抜けるまではどうかだが、直線で一番スムーズに差して来やすい差し馬。  </p>
+<p>5 ショウナンアビアス: 内目の好位差しが利く並び。前を見ながらロスなく運べるので展開待ちにはならず、前残りにも差し届きにも両対応。  </p>
+<p>16 ジュンウィンダム: 8枠で脚は使いやすいが、前走ほど差し向きの追い風までは感じない。外差しが利く馬場にもう一段寄れば順位を上げられる。  </p>
+<p>1 ムーヴ: 最内でじっと溜めて直線勝負の形。流れが締まれば浮上するが、今回は前が総崩れになるほどのハイには寄り切らない想定で上位までは少し注文が付く。  </p>
+<p>8 クロジシジョー: 差し脚質としては悪くないが、59kgで自力でポジションを押し上げにくい。前が残る想定では届いて掲示板圏のイメージ。  </p>
+<p>11 アガシ: 中団待機から流れに乗る形になりそうで、展開待ちの面が強い。速くなりすぎれば浮上余地はあるが、今回は少し中途半端。  </p>
+<p>9 ケイアイドリー: 1200なら追走はできるが、近走の位置取りを見ると差し寄り。外差し決着まで振れれば怖いが、展開の助けは必要。  </p>
+<p>2 マルモリスペシャル: 1枠で脚をためる競馬はできるが、1200では前半の機動力で見劣る。内で我慢してどこまで脚を使えるか。  </p>
+<p>7 スマートフォルス: 差しに回ると今回は少し忙しい並び。ハイペース想定なら上がるが、現状の隊列予想では展開利が薄い。  </p>
+<p>10 リジル: 先行意識は高いが、5枠から外の速い馬に被されやすい。好位は取れても楽な2列目までは難しく、終いで甘くなる懸念。  </p>
+<p>12 ロードフロンティア: 行くなら行くで外の14や10、3にプレッシャーを受けやすい。単騎逃げの形に持ち込めないと展開がかなり苦しい。  </p>
+<p>4 フリームファクシ: 1200の先行争いに乗る絵が薄く、かといって差し決着待ちでもない。今回はコース形態と流れの両面で噛み合いにくい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>15番 コンクイスタ: 12.8%</li>
+<li>14番 サンライズアムール: 11.4%</li>
+<li>6番 アンズアメ: 10.3%</li>
+<li>3番 プレゼンティーア: 9.4%</li>
+<li>13番 ペプチドヤマト: 8.7%</li>
+<li>5番 ショウナンアビアス: 8.1%</li>
+<li>16番 ジュンウィンダム: 7.2%</li>
+<li>1番 ムーヴ: 6.5%</li>
+<li>8番 クロジシジョー: 5.0%</li>
+<li>11番 アガシ: 4.8%</li>
+<li>9番 ケイアイドリー: 4.0%</li>
+<li>2番 マルモリスペシャル: 3.6%</li>
+<li>7番 スマートフォルス: 3.0%</li>
+<li>10番 リジル: 2.6%</li>
+<li>12番 ロードフロンティア: 2.0%</li>
+<li>4番 フリームファクシ: 0.6%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>15 コンクイスタ: 西村淳也騎手との短距離ダート運用が安定しており、近2走の1200mオープンで連対。外枠でも阪神ダ1200は加速をつけやすく、陣営の使い方に無駄がない。  </p>
+<p>14 サンライズアムール: 昨年のこのレース勝ち馬で、阪神ダ1200を明確に狙って使う陣営ローテは強い。59.5kgは重いが、条件実績の裏付けは最上位級。  </p>
+<p>6 アンズアメ: 川田将雅騎手起用はこの条件で強力。高柳大輔厩舎もダート短距離の組み立てが上手く、昇級でも陣営力で即通用圏。  </p>
+<p>13 ペプチドヤマト: 武英智厩舎がこの路線を継続的に使っており、高倉騎手とのコンビでも阪神ダ1200の適性は高い。人気ほど地味でも陣営目線では拾いたい。  </p>
+<p>16 ジュンウィンダム: 天王山S勝ちから同路線ローテで、浜田厩舎の狙いは明確。国分優作騎手で突き抜ける信頼まではないが、条件継続は強み。  </p>
+<p>5 ショウナンアビアス: 池添騎手への替わりはプラス寄りで、加藤士津八厩舎も1200mでの使い方が素直。オープン慣れが進めば陣営面の押し上げがある。  </p>
+<p>1 ムーヴ: 坂井瑠星騎手への乗り替わりは魅力があり、差し脚質をこのコースで生かせる布陣。関東馬でもここを狙った起用としては悪くない。  </p>
+<p>3 プレゼンティーア: 52kgは有利で、松本騎手続投も先行策を徹底しやすい。格上挑戦色はあるが、厩舎の短距離ダート運用は噛み合っている。  </p>
+<p>8 クロジシジョー: 実績は上位だが、菱田騎手で59kgを背負う今回の陣営構成は強気すぎる印象。1400m経由自体は悪くないが、期待値は少し下げたい。  </p>
+<p>11 アガシ: 田口騎手と庄野厩舎のダ1200運用は悪くなく、前走大和S3着もある。ただし千葉S凡走後で、陣営面だけで強く押し上げる材料は限定的。  </p>
+<p>9 ケイアイドリー: 松若騎手で阪神ダ1200自体は合うが、前川厩舎での近況ローテはやや手探り。年齢と休養歴を踏まえると陣営の上積み期待は控えめ。  </p>
+<p>2 マルモリスペシャル: 大橋厩舎の短距離ダート起用は理解できるが、西塚騎手でオープンの阪神1200を勝ち切る絵までは描きにくい。内枠利はある。  </p>
+<p>7 スマートフォルス: 鮫島克駿騎手は阪神で怖いが、吉村厩舎がこの馬を1200オープンで突き抜けさせるだけの後押し材料は薄い。善戦止まりの陣営評価。  </p>
+<p>4 フリームファクシ: 須貝厩舎の変わり身には警戒するが、酒井騎手で1200ダート替わりを即重賞級に結びつけるデータは乏しい。今回は試走寄りに映る。  </p>
+<p>10 リジル: 奥村豊厩舎で渡辺竜也騎手起用は話題性以上の裏付けが薄く、しかも1200初戦。陣営の勝負度合いより適性確認の色が強い。  </p>
+<p>12 ロードフロンティア: 川須騎手で先手は見えるが、松下厩舎の近走ローテは結果に結びついていない。オープンの阪神1200で積極評価する陣営材料に欠ける。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>15番 コンクイスタ: 12.2%</li>
+<li>14番 サンライズアムール: 10.8%</li>
+<li>6番 アンズアメ: 10.1%</li>
+<li>13番 ペプチドヤマト: 9.7%</li>
+<li>16番 ジュンウィンダム: 8.8%</li>
+<li>5番 ショウナンアビアス: 7.4%</li>
+<li>1番 ムーヴ: 6.9%</li>
+<li>3番 プレゼンティーア: 6.8%</li>
+<li>8番 クロジシジョー: 6.6%</li>
+<li>11番 アガシ: 5.9%</li>
+<li>9番 ケイアイドリー: 4.3%</li>
+<li>2番 マルモリスペシャル: 4.0%</li>
+<li>7番 スマートフォルス: 2.8%</li>
+<li>4番 フリームファクシ: 1.8%</li>
+<li>10番 リジル: 1.1%</li>
+<li>12番 ロードフロンティア: 0.8%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>6 アンズアメ: 482kg→484kg→今回484kg近辺の推移で馬体が完成域に入り、中2週続きでも消耗感が薄い。53kgのハンデも有利で、調教も「ますます快調」。叩きながら上げてきた体調面は最上位。  </p>
+<p>13 ペプチドヤマト: 494kg→500kg→502kg→502kgと近走の馬体推移が安定。中8週弱でも緩みは見えず、57kgは楽ではないが500kg超の馬格なら耐えやすい。好調持続の調教も好材料。  </p>
+<p>3 プレゼンティーア: 490kg台を維持しながら今回は496kgで+4kg、過度な増減ではなく充実分の範囲。中6週で連勝後の疲労も出にくく、52kgも軽い。好気配保つ内容で状態面は高い。  </p>
+<p>5 ショウナンアビアス: 504kg前後で大きく崩れず、今回は504kg付近ならちょうどいい。中5週で立て直しやすい間隔、55kgも据え置き感覚で臨める。上昇気配窺える調教で安定評価。  </p>
+<p>14 サンライズアムール: 520kg前後の大型馬で518kgなら許容範囲、久々でも力強い調教で仕上がり自体は悪くない。ただ59.5kgは前走比でも相当重く、約2kg増なら1馬身分、3kg近い増ならさらに厳しい。状態は良いが斤量で頭固定まではしにくい。  </p>
+<p>1 ムーヴ: 488kgが近2走で安定しており、今回は482kgでも大きな減りではない。中7週で疲労を抜きやすく、56kgも無難。手応え十分の調教で衰えは薄く、体調面では堅実。  </p>
+<p>16 ジュンウィンダム: 514kg→502kg→506kg→今回504kgなら前走好走時のゾーンに近い。前々走の-12kgから戻して反動なく、55kgも許容。攻め軽めでも順調で、叩き良化の流れは維持。  </p>
+<p>11 アガシ: 492kgから今回は500kgで+8kg。やや増えたが、休養明けで細化よりは良く、500kgなら太すぎる数字でもない。中11週で立て直しは利き、久々も動き軽快なら圏内。  </p>
+<p>15 コンクイスタ: 490kg→492kg→今回500kgで+10kgはやはり重い。中7週で余裕残しの可能性があり、先週好時計でも当週は軽めで1F14.9は物足りない。ただ大型すぎない500kgで収まるなら大崩れまではしにくい。  </p>
+<p>2 マルモリスペシャル: 546kg前後を維持しており、今回は542kgでも許容範囲。中12週でリフレッシュは利くし、強めを重ねて良化の気配もある。55kgは軽いが、年齢的な上積みは大きく見込みにくい。  </p>
+<p>9 ケイアイドリー: 532kg→534kgの推移で数字自体は安定し、大型馬なので+2kgは誤差の範囲。休み明け2走目で上積みはあるが、9歳で58.5kgは楽ではない。まずまず仕上がる止まりで強調まではしづらい。  </p>
+<p>7 スマートフォルス: 前走478kg(-12)から今回は486kg(+8)なら減りすぎを戻した形で、数字だけなら悪くない。ただ中7週で立て直したとはいえ、近走は増減幅がやや大きく安定感に欠ける。56kgは普通で、評価は中位まで。  </p>
+<p>12 ロードフロンティア: 前走474kg(+10)から今回466kg(-8)想定で、近走の体重変動が大きく不安定。立て直し良化の調教は見せるが、馬体の乱高下は仕上がりの難しさを示す。55kgはいいが信頼度は低め。  </p>
+<p>8 クロジシジョー: 460kg前後から今回は454kgで-6kg、小柄寄りの馬体で59kgは重い。59kgは56kg比で約1.5馬身以上の負担感があり、当日のコンディション勝負では不利。調教は悪くないが、馬格と斤量のバランスが厳しい。  </p>
+<p>4 フリームファクシ: 520kg台から今回は510kgまで絞れてきたが、芝を使ってきた後でダ1200替わり、しかも58.5kg。大型馬で斤量自体はこなせても、間隔詰め気味で一気の条件替わりは仕上げの焦点が合いにくい。  </p>
+<p>10 リジル: 490kgから一気に504kgで+14kg、しかも約7か月半ぶり。成長分より太め残りや仕上がり途上の懸念が強い。53kgは軽いが、休養明けでこの増え方では体調面から最も評価しにくい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>6番 アンズアメ: 13%</li>
+<li>13番 ペプチドヤマト: 11%</li>
+<li>3番 プレゼンティーア: 10%</li>
+<li>5番 ショウナンアビアス: 9%</li>
+<li>14番 サンライズアムール: 8%</li>
+<li>1番 ムーヴ: 8%</li>
+<li>16番 ジュンウィンダム: 7%</li>
+<li>11番 アガシ: 7%</li>
+<li>15番 コンクイスタ: 5%</li>
+<li>2番 マルモリスペシャル: 5%</li>
+<li>9番 ケイアイドリー: 4%</li>
+<li>7番 スマートフォルス: 4%</li>
+<li>12番 ロードフロンティア: 4%</li>
+<li>8番 クロジシジョー: 2%</li>
+<li>4番 フリームファクシ: 2%</li>
+<li>10番 リジル: 1%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<p><strong>敗因シナリオ</strong></p>
+<p>最多支持は6番アンズアメだが、批判者としてはまだ過信しない。負け筋の一つ目は、3勝クラスからの昇級初戦で一気に相手強化される点だ。近走指数は優秀でも、今回は14番サンライズアムールや15番コンクイスタのように、すでにオープン1200で勝ち負けしてきた馬が相手で、同じ末脚でも質の差を問われる。</p>
+
+<p>二つ目は、好位差しの器用さが裏目に出る形だ。阪神ダ1200の稍重で前が止まり切らず、外の強い先行馬に押し切られると、ちょうど届かずの2,3着型に収まりやすい。勝ち切りの確度と好走の安定感は分けて考えたい。</p>
+
+<p>三つ目は、川田騎乗と上昇気配で評価が集まりすぎ、弱点以上に強みだけが拡大解釈されている可能性だ。Round1で疑った「昇級即通用前提」は、Round5でもなお市場心理として残っている。馬券的には能力より期待が先行しているリスクがある。</p>
+
+<p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>15 コンクイスタ: Round1で最上位に取った判断はまだ維持。オープン1200での実績が明確で、近2走の指数水準も高い。馬体増は気になるが、平均が6番へ寄るならこちらの実績優位を上に取る。  </p>
+<p>14 サンライズアムール: 地力最上位候補。59.5kgは厳しいが、昨年の同条件勝ちと交流重賞級の裏付けは無視しづらい。Round1で重視した実績面は、今回もなお評価に値する。  </p>
+<p>13 ペプチドヤマト: Round1で挙げた盲点候補が今回はかなり反映された。とはいえまだ妙味は残る。1200のオープンで安定して脚を使え、人気上位総崩れの受け皿にもなれる。  </p>
+<p>6 アンズアメ: 能力自体は認めるが、平均1位ほど盤石ではない。昇級初戦、相手強化、勝ち切り経験の質の差を踏まえ、批判的には少し下げる。好走圏には入るが中心固定までは再考。  </p>
+<p>16 ジュンウィンダム: Round1で警戒した差し勢の一頭。天王山S勝ちは価値があり、嵌まれば上位勢をまとめて差す絵はある。ただし戦績の波は大きく、信頼というより破壊力評価。  </p>
+<p>5 ショウナンアビアス: 地味だが大崩れしにくい。強調材料が少ないぶん過大評価もされにくく、人気馬総崩れのときに相対浮上しやすいタイプ。勝ち切りまでは一枚落ちる。  </p>
+<p>3 プレゼンティーア: 連勝中で勢いはあるが、今回は相手が一気に上がる。軽ハンデ52kgは魅力でも、これまでの指数はまだオープン上位級と断言しづらく、人気先行なら少し疑う。  </p>
+<p>8 クロジシジョー: Round1で警戒した差し勢で、今回は平均がやや低すぎる印象。59kgは厳しいが、実績の格だけなら通用。前崩れになれば一発の余地があり、過小評価側に置く。  </p>
+<p>1 ムーヴ: 近走の1200オープンで大きくは崩れておらず、追い込みが届く流れなら圏内。勝ち切る像は薄いが、人気上位が甘くなったときの差し込み候補として侮れない。  </p>
+<p>11 アガシ: 大和S3着は評価できるが、千葉S凡走とムラがある。今回は人気ほどでも人気薄ほどでもなく、批判的には相応。展開待ちで上位の一角崩しまで。  </p>
+<p>9 ケイアイドリー: 実績だけで買うと危険だが、逆にここまで評価を落とすと怖さはある。9歳と斤量58.5kgで強気にはなれない一方、能力の残り目があるなら一変しても不思議はない。  </p>
+<p>2 マルモリスペシャル: 善戦級の域を出ず、1200オープンであと一押しが足りない。調教気配は悪くないが、勝ち切りのイメージまでは薄い。相手なりで掲示板候補。  </p>
+<p>7 スマートフォルス: りんくうS4着の内容は悪くないが、近走の凡走で信用を落とした。馬体増が前向きに出れば巻き返しもあるが、現状は押さえまで。  </p>
+<p>10 リジル: 休養明けで馬体増14kg。先週好調教の文言はあるが、1200の流れに即対応できるかは未知数。軽ハンデは利点でも、今回は様子見寄り。  </p>
+<p>4 フリームファクシ: 元値は高いが、近走内容と条件替わりのちぐはぐさが大きい。58.5kgで1200ダートの忙しい競馬に対応し切るイメージが薄く、積極評価はしにくい。  </p>
+<p>12 ロードフロンティア: 調教良化は見えるが、オープンでの近走内容が弱い。先手を取っても粘り切れない近況で、今回も相手強化の中では上積み待ち。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>15番 コンクイスタ: 11.8%</li>
+<li>14番 サンライズアムール: 11.0%</li>
+<li>13番 ペプチドヤマト: 9.8%</li>
+<li>6番 アンズアメ: 9.2%</li>
+<li>16番 ジュンウィンダム: 8.1%</li>
+<li>5番 ショウナンアビアス: 7.9%</li>
+<li>3番 プレゼンティーア: 7.6%</li>
+<li>8番 クロジシジョー: 6.7%</li>
+<li>1番 ムーヴ: 6.3%</li>
+<li>11番 アガシ: 5.6%</li>
+<li>9番 ケイアイドリー: 5.0%</li>
+<li>2番 マルモリスペシャル: 4.0%</li>
+<li>7番 スマートフォルス: 3.1%</li>
+<li>10番 リジル: 1.7%</li>
+<li>4番 フリームファクシ: 1.2%</li>
+<li>12番 ロードフロンティア: 1.0%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round1で指摘した「6番アンズアメへの過度な期待」はRound5でも完全には解消されておらず、批判者としてはなお昇級即通用の前提を疑う。一方で、15番コンクイスタ、14番サンライズアムール、13番ペプチドヤマトといったオープン1200で実績のある馬への評価は、前回より市場側もある程度織り込んできた。今回は人気馬の能力自体は認めつつ、勝ち切り確率では15番と14番を上位に置き、差し勢の16番・8番の浮上余地も残す。全体としては合意の中心である6番を少し削り、実績馬と盲点差し馬へ再配分する。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>6</td><td class="left horse-name">アンズアメ</td><td class="trust-mid">10.8%</td><td>11.5</td><td>10.6</td><td>10.7</td><td>10.3</td><td>12.5</td><td>8.6</td></tr><tr><td>2</td><td>15</td><td class="left horse-name">コンクイスタ</td><td class="trust-mid">10.7%</td><td>14.5</td><td>9.5</td><td>12.2</td><td>13.1</td><td>5.5</td><td>12.2</td></tr><tr><td>3</td><td>13</td><td class="left horse-name">ペプチドヤマト</td><td class="trust-mid">9.9%</td><td>9.5</td><td>10.0</td><td>8.8</td><td>9.4</td><td>11.0</td><td>10.2</td></tr><tr><td>4</td><td>14</td><td class="left horse-name">サンライズアムール</td><td class="trust-mid">9.9%</td><td>11.7</td><td>7.9</td><td>10.7</td><td>10.7</td><td>8.0</td><td>11.2</td></tr><tr><td>5</td><td>3</td><td class="left horse-name">プレゼンティーア</td><td class="trust-mid">8.5%</td><td>6.2</td><td>9.1</td><td>8.9</td><td>7.3</td><td>10.0</td><td>8.3</td></tr><tr><td>6</td><td>5</td><td class="left horse-name">ショウナンアビアス</td><td class="trust-mid">8.4%</td><td>8.2</td><td>8.2</td><td>8.1</td><td>7.9</td><td>9.5</td><td>8.2</td></tr><tr><td>7</td><td>16</td><td class="left horse-name">ジュンウィンダム</td><td class="trust-low">7.3%</td><td>6.7</td><td>6.5</td><td>7.3</td><td>7.8</td><td>7.5</td><td>7.8</td></tr><tr><td>8</td><td>1</td><td class="left horse-name">ムーヴ</td><td class="trust-low">6.8%</td><td>7.7</td><td>5.6</td><td>6.2</td><td>6.9</td><td>7.5</td><td>6.4</td></tr><tr><td>9</td><td>11</td><td class="left horse-name">アガシ</td><td class="trust-low">5.5%</td><td>5.7</td><td>3.5</td><td>5.2</td><td>5.8</td><td>6.5</td><td>5.5</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">クロジシジョー</td><td class="trust-low">5.2%</td><td>4.5</td><td>6.9</td><td>5.8</td><td>5.9</td><td>2.5</td><td>6.8</td></tr><tr><td>11</td><td>9</td><td class="left horse-name">ケイアイドリー</td><td class="trust-low">4.5%</td><td>3.2</td><td>6.4</td><td>4.2</td><td>4.2</td><td>4.5</td><td>4.5</td></tr><tr><td>12</td><td>2</td><td class="left horse-name">マルモリスペシャル</td><td class="trust-low">3.9%</td><td>3.2</td><td>3.6</td><td>3.3</td><td>3.6</td><td>5.0</td><td>3.8</td></tr><tr><td>13</td><td>7</td><td class="left horse-name">スマートフォルス</td><td class="trust-low">3.7%</td><td>4.2</td><td>5.0</td><td>2.8</td><td>3.1</td><td>4.0</td><td>2.8</td></tr><tr><td>14</td><td>12</td><td class="left horse-name">ロードフロンティア</td><td class="trust-low">1.9%</td><td>0.7</td><td>2.3</td><td>1.8</td><td>1.3</td><td>3.5</td><td>1.2</td></tr><tr><td>15</td><td>10</td><td class="left horse-name">リジル</td><td class="trust-low">1.8%</td><td>1.0</td><td>3.2</td><td>3.3</td><td>1.2</td><td>1.0</td><td>1.4</td></tr><tr><td>16</td><td>4</td><td class="left horse-name">フリームファクシ</td><td class="trust-low">1.3%</td><td>1.2</td><td>1.6</td><td>0.8</td><td>1.5</td><td>1.5</td><td>1.1</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>6</td><td class="left horse-name">アンズアメ</td><td>10.8%</td><td>3.7</td><td>1</td><td class="ev-low">0.40</td></tr><tr><td>2</td><td>15</td><td class="left horse-name">コンクイスタ</td><td>10.7%</td><td>4.4</td><td>2</td><td class="ev-low">0.47</td></tr><tr><td>3</td><td>13</td><td class="left horse-name">ペプチドヤマト</td><td>9.9%</td><td>41.2</td><td>13</td><td class="ev-high">4.08</td></tr><tr><td>4</td><td>14</td><td class="left horse-name">サンライズアムール</td><td>9.9%</td><td>8.9</td><td>4</td><td class="ev-low">0.88</td></tr><tr><td>5</td><td>3</td><td class="left horse-name">プレゼンティーア</td><td>8.5%</td><td>7.1</td><td>3</td><td class="ev-low">0.60</td></tr><tr><td>6</td><td>5</td><td class="left horse-name">ショウナンアビアス</td><td>8.4%</td><td>11.6</td><td>5</td><td class="ev-low">0.98</td></tr><tr><td>7</td><td>16</td><td class="left horse-name">ジュンウィンダム</td><td>7.3%</td><td>51.3</td><td>16</td><td class="ev-high">3.74</td></tr><tr><td>8</td><td>1</td><td class="left horse-name">ムーヴ</td><td>6.8%</td><td>15.6</td><td>6</td><td class="ev-mid">1.06</td></tr><tr><td>9</td><td>11</td><td class="left horse-name">アガシ</td><td>5.5%</td><td>49.2</td><td>15</td><td class="ev-high">2.69</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">クロジシジョー</td><td>5.2%</td><td>17.6</td><td>8</td><td class="ev-low">0.91</td></tr><tr><td>11</td><td>9</td><td class="left horse-name">ケイアイドリー</td><td>4.5%</td><td>29.8</td><td>11</td><td class="ev-mid">1.35</td></tr><tr><td>12</td><td>2</td><td class="left horse-name">マルモリスペシャル</td><td>3.9%</td><td>43.3</td><td>14</td><td class="ev-mid">1.67</td></tr><tr><td>13</td><td>7</td><td class="left horse-name">スマートフォルス</td><td>3.7%</td><td>36.7</td><td>12</td><td class="ev-mid">1.35</td></tr><tr><td>14</td><td>12</td><td class="left horse-name">ロードフロンティア</td><td>1.9%</td><td>18.6</td><td>9</td><td class="ev-low">0.36</td></tr><tr><td>15</td><td>10</td><td class="left horse-name">リジル</td><td>1.8%</td><td>25.1</td><td>10</td><td class="ev-low">0.45</td></tr><tr><td>16</td><td>4</td><td class="left horse-name">フリームファクシ</td><td>1.3%</td><td>16.3</td><td>7</td><td class="ev-low">0.21</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">6 アンズアメ</td><td>10.8%</td><td>3.7</td><td class="ev-low">0.34</td></tr><tr><td>複勝</td><td class="left">6 アンズアメ</td><td>31.4%</td><td>1.6</td><td class="ev-low">0.46</td></tr><tr><td>馬連</td><td class="left">6 アンズアメ-15 コンクイスタ</td><td>2.6%</td><td>6.3</td><td class="ev-low">0.14</td></tr><tr><td>ワイド</td><td class="left">6 アンズアメ-15 コンクイスタ</td><td>7.5%</td><td>3.0</td><td class="ev-low">0.20</td></tr><tr><td>馬単</td><td class="left">6 アンズアメ→15 コンクイスタ</td><td>1.3%</td><td>11.5</td><td class="ev-low">0.12</td></tr><tr><td>3連複</td><td class="left">6 アンズアメ-13 ペプチドヤマト-15 コンクイスタ</td><td>1.0%</td><td>57.3</td><td class="ev-low">0.45</td></tr><tr><td>3連単</td><td class="left">6 アンズアメ→15 コンクイスタ→13 ペプチドヤマト</td><td>0.2%</td><td>192.7</td><td class="ev-low">0.26</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 5,000円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">6 アンズアメ</td><td>3.7</td><td>20</td><td style='text-align:right;font-weight:600;'>2,000円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">6 アンズアメ-15 コンクイスタ</td><td>6.3</td><td>12</td><td style='text-align:right;font-weight:600;'>1,200円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>馬単</td><td class="left">6 アンズアメ→15 コンクイスタ</td><td>11.5</td><td>8</td><td style='text-align:right;font-weight:600;'>800円</td><td style="font-size:11px;color:#8E8E93;">馬単◎→○</td></tr><tr><td>3連複</td><td class="left">6 アンズアメ-13 ペプチドヤマト-15 コンクイスタ</td><td>57.3</td><td>8</td><td style='text-align:right;font-weight:600;'>800円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">6 アンズアメ→15 コンクイスタ→13 ペプチドヤマト</td><td>192.7</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 5,000円
+</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>

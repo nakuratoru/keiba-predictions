@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第76回安田記念 2026/06/07 TOKYO 11R (06/07 17:58 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第76回安田記念 2026/06/07 TOKYO 11R (06/07 17:58 予想 馬体重なし)</h1>
+  <div class="meta">芝1600m（左） | 良 | 17頭立て | 3回 東京 2日目 サラ系3歳以上 オープン （国際）（指定） 定量 17頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">14. ガイアフォース</div>
+      <div class="pick-jockey">横山 武史 / 杉山 晴紀</div>
+    </div>
+    <div class="pick-prob">11.0%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">17. トロヴァトーレ</div>
+      <div class="pick-jockey">C.ルメール / 鹿戸 雄一</div>
+    </div>
+    <div class="pick-prob">10.1%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">11. ワールズエンド</div>
+      <div class="pick-jockey">津村 明秀 / 池添 学</div>
+    </div>
+    <div class="pick-prob">9.0%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">17頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">レーベンスティール</td><td>牡6</td><td>58</td><td>戸崎 圭太</td><td>田中 博康</td><td>リアルスティール</td><td>トウカイテイオー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">ロングラン</td><td>せん8</td><td>58</td><td>F.ゴンサルベス</td><td>和田 勇介</td><td>ヴィクトワールピサ</td><td>Kendargent</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">オフトレイル</td><td>牡5</td><td>58</td><td>菅原 明良</td><td>吉村 圭司</td><td>Farhh</td><td>Kingmambo</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">シックスペンス</td><td>牡5</td><td>58</td><td>武 豊</td><td>田中 博康</td><td>キズナ</td><td>Twirling Candy</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">サクラトゥジュール</td><td>せん9</td><td>58</td><td>佐々木 大輔</td><td>堀 宣行</td><td>ネオユニヴァース</td><td>シンボリクリスエス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">ステレンボッシュ</td><td>牝5</td><td>56</td><td>D.レーン</td><td>宮田 敬介</td><td>エピファネイア</td><td>ルーラーシップ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">スズハローム</td><td>牡6</td><td>58</td><td>藤懸 貴志</td><td>牧田 和弥</td><td>サトノダイヤモンド</td><td>ローレルゲレイロ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">シャンパンカラー</td><td>牡6</td><td>58</td><td>岩田 康誠</td><td>田中 剛</td><td>ドゥラメンテ</td><td>Reckless Abandon</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">ウォーターリヒト</td><td>牡5</td><td>58</td><td>高杉 吏麒</td><td>石橋 守</td><td>ドレフォン</td><td>ヴィクトワールピサ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">ルクソールカフェ</td><td>牡4</td><td>58</td><td>岩田 望来</td><td>堀 宣行</td><td>American Pharoah</td><td>More Than Ready</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">ワールズエンド</td><td>牡5</td><td>58</td><td>津村 明秀</td><td>池添 学</td><td>ロードカナロア</td><td>ゼンノロブロイ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">シリウスコルト</td><td>牡5</td><td>58</td><td>横山 和生</td><td>田中 勝春</td><td>マクフィ</td><td>ゼンノロブロイ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">セイウンハーデス</td><td>牡7</td><td>58</td><td>幸 英明</td><td>橋口 慎介</td><td>シルバーステート</td><td>マンハッタンカフェ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">ガイアフォース</td><td>牡7</td><td>58</td><td>横山 武史</td><td>杉山 晴紀</td><td>キタサンブラック</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>15</td><td class="left horse-name">ドラゴンブースト</td><td>牡4</td><td>58</td><td>丹内 祐次</td><td>藤野 健太</td><td>スクリーンヒーロー</td><td>エンパイアメーカー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">パンジャタワー</td><td>牡4</td><td>58</td><td>松山 弘平</td><td>橋口 慎介</td><td>タワーオブロンドン</td><td>ヴィクトワールピサ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>17</td><td class="left horse-name">トロヴァトーレ</td><td>牡5</td><td>58</td><td>C.ルメール</td><td>鹿戸 雄一</td><td>レイデオロ</td><td>エンパイアメーカー</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>14</td><td class="left horse-name">ガイアフォース</td><td style="background:#F0F7FF;">2 (10.1)</td><td style="background:#F0F7FF;">2 (10.3)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.0)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.1)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.0)</td></tr><tr><td>17</td><td class="left horse-name">トロヴァトーレ</td><td style="font-weight:700;background:#F0F7FF;">1 (11.5)</td><td style="font-weight:700;background:#F0F7FF;">1 (10.7)</td><td style="background:#F0F7FF;">2 (10.1)</td><td style="background:#F0F7FF;">2 (9.9)</td><td style="background:#F0F7FF;">2 (10.2)</td></tr><tr><td>11</td><td class="left horse-name">ワールズエンド</td><td style="background:#F0F7FF;">4 (7.6)</td><td style="background:#F0F7FF;">3 (8.0)</td><td style="background:#F0F7FF;">3 (8.6)</td><td style="background:#F0F7FF;">3 (9.0)</td><td style="background:#F0F7FF;">3 (9.1)</td></tr><tr><td>6</td><td class="left horse-name">ステレンボッシュ</td><td style="background:#F0F7FF;">3 (7.7)</td><td style="background:#F0F7FF;">5 (7.6)</td><td style="background:#F0F7FF;">5 (7.9)</td><td style="background:#F0F7FF;">5 (7.9)</td><td style="background:#F0F7FF;">4 (7.9)</td></tr><tr><td>16</td><td class="left horse-name">パンジャタワー</td><td style="color:#AEAEB2;">7 (6.7)</td><td style="color:#AEAEB2;">6 (7.4)</td><td style="color:#AEAEB2;">6 (7.8)</td><td style="background:#F0F7FF;">4 (7.9)</td><td style="background:#F0F7FF;">5 (7.9)</td></tr><tr><td>3</td><td class="left horse-name">オフトレイル</td><td style="background:#F0F7FF;">5 (7.4)</td><td style="background:#F0F7FF;">4 (7.7)</td><td style="background:#F0F7FF;">4 (7.9)</td><td style="color:#AEAEB2;">6 (7.9)</td><td style="color:#AEAEB2;">6 (7.8)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><h2>全馬評価（好走確信度の高い順）</h2>
+<p>14 ガイアフォース: 富士S1着1:31.7、マイルCS2着1:31.6、昨年安田記念2着1:32.9と東京芝1600mのGI級実績が最上位。近3走で大きく崩れておらず、実績面の信頼度が最も高い。  </p>
+<p>17 トロヴァトーレ: 東京新聞杯1着1:32.2、エプソムC1着1:45.3で近2走連勝。東京マイルで結果と時計が揃っており、上がり33.1秒も優秀で勢いを評価する。  </p>
+<p>3 オフトレイル: マイルCS4着1:31.7、マイラーズC5着1:31.9、関屋記念2着1:31.0とマイル実績が安定。末脚も32秒台後半を連発しており、数字の裏付けが強い。  </p>
+<p>15 ドラゴンブースト: 前走マイラーズC2着1:31.8で差0.1秒、前々走大阪城S1着1:44.0。芝に戻ってから内容が濃く、近2走の指数93.8、94.0は通用水準。  </p>
+<p>16 パンジャタワー: NHKマイル1着1:31.7の実績があり、高松宮記念4着1:06.7も悪くない。1600m実績は明確で、近走も大崩れしていない点を評価。  </p>
+<p>11 ワールズエンド: 京王杯SC1着1:18.9、リゲルS2着1:31.9でスピード能力は高い。1400m寄りの実績だが、マイルでも1:31.9があり軽視はできない。  </p>
+<p>9 ウォーターリヒト: マイルCS3着1:31.6、東京新聞杯3着1:32.3で東京マイル適性は十分。前走13着でも差0.5秒、指数89.6なら大きく評価は下げない。  </p>
+<p>1 レーベンスティール: 中山記念1着1:45.1、大阪杯6着1:58.1差0.5秒と地力は高い。ただし近2回の芝1600mがマイルCS12着、しらさぎS7着でマイル実績は一段落ちる。  </p>
+<p>6 ステレンボッシュ: 前走エプソムC2着1:45.3差0.0秒で復調気配。桜花賞馬で能力はあるが、近年のマイル実績はヴィクトリアM8着1:32.4までで、勝ち切る裏付けはやや弱い。  </p>
+<p>7 スズハローム: 洛陽S1着1:34.0、ダービーCT1着1:33.4で1600mを連勝中。相手強化はあるが、近2走の安定した末脚と連続好走は実績派として無視しづらい。  </p>
+<p>13 セイウンハーデス: 大阪杯5着1:58.0差0.4秒、天皇賞秋7着1:59.0差0.4秒は立派。ただし近走の主戦場は1800-2000mで、東京マイルの直近実績が薄い。  </p>
+<p>4 シックスペンス: マイラーズC7着1:32.1差0.4秒は悪くないが、安田記念12着1:33.4の実績が残る。近走はダート中心で、芝1600mの裏付け不足を重く見る。  </p>
+<p>8 シャンパンカラー: 東京新聞杯4着1:32.3差0.1秒は評価できるが、その前後でマイルCS14着、富士S8着、マイラーズC9着と安定感を欠く。NHKマイル馬でも近走実績では強調しづらい。  </p>
+<p>12 シリウスコルト: 東京新聞杯5着1:32.4差0.2秒はあるが、ダービーCT13着1:34.8で失速。マイルで上位争いの継続実績がなく、近5走の安定感でも見劣る。  </p>
+<p>5 サクラトゥジュール: 昨年安田記念8着1:33.2、今年東京新聞杯9着1:32.5。時計自体は極端に悪くないが、近走上位実績が乏しく9歳で上積みも見込みにくい。  </p>
+<p>10 ルクソールカフェ: 武蔵野S1着1:35.2などダート実績は上位だが、芝1600mの近走実績が皆無。今回条件で判断すると好走の裏付けは最も薄い部類。  </p>
+<p>2 ロングラン: マイラーズC18着1:32.6、マイルCS15着1:32.7、昨年安田記念13着1:33.7と近走マイル重賞で結果が出ていない。数字面からは強く推せない。  </p>
+
+<h2>好走確信度配分</h2>
+<li>14番 ガイアフォース: 12%</li>
+<li>17番 トロヴァトーレ: 11%</li>
+<li>3番 オフトレイル: 10%</li>
+<li>15番 ドラゴンブースト: 9%</li>
+<li>16番 パンジャタワー: 8%</li>
+<li>11番 ワールズエンド: 8%</li>
+<li>9番 ウォーターリヒト: 7%</li>
+<li>1番 レーベンスティール: 6%</li>
+<li>6番 ステレンボッシュ: 6%</li>
+<li>7番 スズハローム: 5%</li>
+<li>13番 セイウンハーデス: 4%</li>
+<li>4番 シックスペンス: 4%</li>
+<li>8番 シャンパンカラー: 3%</li>
+<li>12番 シリウスコルト: 2%</li>
+<li>5番 サクラトゥジュール: 2%</li>
+<li>10番 ルクソールカフェ: 2%</li>
+<li>2番 ロングラン: 1%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>14 ガイアフォース: キタサンブラック×クロフネで東京マイルGI向きの持続力と機動力が高水準に同居。1800実績もむしろ底力補完で、血統設計は最上位。  </p>
+<p>16 パンジャタワー: タワーオブロンドン産駒でスピード色は強いが、母父ヴィクトワールピサが1600mへの我慢を補完。NHKマイル勝ちも血統的に再現可能。  </p>
+<p>11 ワールズエンド: ロードカナロア×ゼンノロブロイで1400寄りの父に母系の中距離質が乗る配合。東京マイルでも単なる短距離馬ではなく、粘り込みの血統裏付けがある。  </p>
+<p>17 トロヴァトーレ: レイデオロ×エンパイアメーカーで本質は1800前後寄りだが、東京の長い直線で末脚持続を活かせる配合。マイルは守備範囲だが最上位視まではしない。  </p>
+<p>3 オフトレイル: Farhh×Kingmamboは欧州的な持続力と東京向きの長い脚が武器。高速マイルで一瞬のトップスピード勝負に寄りすぎなければ浮上可能。  </p>
+<p>6 ステレンボッシュ: エピファネイア×ルーラーシップで本質は中距離寄りだが、母系の柔らかさでマイル対応は可能。消耗戦や時計の掛かる形なら血統的に上がる。  </p>
+<p>9 ウォーターリヒト: ドレフォン×ヴィクトワールピサでパワーと持続力が前面。良でも走れるが、少しでもタフさを問われる東京マイルで血統価値が増す。  </p>
+<p>15 ドラゴンブースト: スクリーンヒーロー×エンパイアメーカーで持続力とパワーが濃い。切れ味一点の高速決着だと見劣るが、底力勝負なら穴で怖い。  </p>
+<p>1 レーベンスティール: リアルスティール×トウカイテイオーで1800〜2000向きの中距離色が強い。能力は高いが血統面では東京マイルGIで少し忙しい。  </p>
+<p>4 シックスペンス: キズナ×Twirling Candyで機動力はあるが、配合全体ではやはり1800寄り。マイルでもこなせるが、血統的にはベスト条件とまでは言えない。  </p>
+<p>8 シャンパンカラー: ドゥラメンテ×Reckless Abandonで父の底力と母系のスピードが共存。マイル適性自体はあるが、完成度より条件待ちの血統印象。  </p>
+<p>7 スズハローム: サトノダイヤモンド×ローレルゲレイロで父のスタミナを母系の短距離色が引き締める形。マイル適性は出たが、GI級の総合力比較では一枚落ちる。  </p>
+<p>13 セイウンハーデス: シルバーステート×マンハッタンカフェで明確に中距離寄り。東京マイルで流れが落ち着きすぎると対応余地はあるが、血統の本領は別条件。  </p>
+<p>12 シリウスコルト: マクフィ×ゼンノロブロイで万能型だが、強調材料はワンターン1600より1800〜2000の持続力。マイルGIで突き抜ける血統像ではない。  </p>
+<p>10 ルクソールカフェ: American Pharoah×More Than Readyで芝適性を全否定はしないが、現状の実績・使われ方通り本筋はダートマイル前後。芝GIでの血統期待値は低い。  </p>
+<p>5 サクラトゥジュール: ネオユニヴァース×シンボリクリスエスで晩成の東京向き血統ではあるが、配合はマイルでも軽さより持続寄り。高齢面も含め血統の上積みは大きくない。  </p>
+<p>2 ロングラン: ヴィクトワールピサ×Kendargentでマイル対応はあるが、父由来の中距離質と年齢を考えると血統面の押し材料は限定的。上位一変の裏付けは弱い。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>14番 ガイアフォース: 12%</li>
+<li>16番 パンジャタワー: 10%</li>
+<li>11番 ワールズエンド: 10%</li>
+<li>17番 トロヴァトーレ: 9%</li>
+<li>3番 オフトレイル: 8%</li>
+<li>6番 ステレンボッシュ: 7%</li>
+<li>9番 ウォーターリヒト: 7%</li>
+<li>15番 ドラゴンブースト: 6%</li>
+<li>1番 レーベンスティール: 6%</li>
+<li>4番 シックスペンス: 5%</li>
+<li>8番 シャンパンカラー: 5%</li>
+<li>7番 スズハローム: 4%</li>
+<li>13番 セイウンハーデス: 4%</li>
+<li>12番 シリウスコルト: 3%</li>
+<li>10番 ルクソールカフェ: 2%</li>
+<li>5番 サクラトゥジュール: 1%</li>
+<li>2番 ロングラン: 1%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>14 ガイアフォース: 先行勢の外目で無理なく好位を取れて、東京マイルの長い直線でも長く脚を使える。11番の逃げを見ながら運べる並びで、展開面では最も噛み合いやすい。  </p>
+<p>11 ワールズエンド: ハナ候補の筆頭。単騎で行ける可能性が高く、極端な競り込みがなければそのまま残る絵がある。東京マイルでも前受けの利を取りやすい。  </p>
+<p>6 ステレンボッシュ: 内目の好枠で脚をためやすく、前が流れれば直線で外へ持ち出して差し込める。速すぎず遅すぎない流れが理想で、今回はそこに近い。  </p>
+<p>17 トロヴァトーレ: 差しの質は高いが、大外枠で序盤に脚を使いやすく、東京マイルでは外々を回るロスが残る。能力上位でも展開だけ見れば取りこぼし余地あり。  </p>
+<p>16 パンジャタワー: 8枠でも先行力があり、11番の直後より前目に潜り込めれば面白い。マイルで流れに乗れるぶん、外枠勢では比較的組み立てやすい。  </p>
+<p>15 ドラゴンブースト: 好位で立ち回れるのは強みだが、8枠から脚を使って位置を取りに行く形になりやすい。うまく外2列目で流れに乗れれば残り目はある。  </p>
+<p>3 オフトレイル: 中団差しで運ぶ形がはっきりしており、ペースが少しでも締まれば浮上。内寄りの枠でロスを抑えられるのは追い風。  </p>
+<p>9 ウォーターリヒト: 差し脚は通用するが、今回の想定だと前が総崩れまでは行きにくい。直線勝負でどこまで届くかの形で、展開の後押しは3番よりわずかに弱い。  </p>
+<p>1 レーベンスティール: 最内で脚をためて好位の内を回れるなら悪くない。だがマイルでは追走の忙しさが残り、前が止まり切らない想定では突き抜けまでは描きにくい。  </p>
+<p>4 シックスペンス: 位置は取れるが、逃げ先行勢がそれなりにいて楽な単騎にはならない。内で立ち回れる利はあるものの、展開で大きく押し上げる材料まではない。  </p>
+<p>13 セイウンハーデス: 11番にプレッシャーをかける先行役になりそうで、自身が展開を苦しくする側。外枠から主張して脚を使うぶん、最後の踏ん張りに課題。  </p>
+<p>7 スズハローム: 差しに振り切った脚質で、流れがもう一段速くなれば怖い。ただ今回は前が残る余地のある並びで、展開待ちの色が濃い。  </p>
+<p>8 シャンパンカラー: 中団前目でも後ろでも運べるが、決め手勝負で17番や3番に見劣る。流れが向いても差し比べで一歩足りない想定。  </p>
+<p>12 シリウスコルト: 先行も差しもできるが、今回はどちらの形でも中途半端になりやすい。6枠から外目を回されると展開利は薄い。  </p>
+<p>5 サクラトゥジュール: 後方寄りからの差しで、今の想定ペースだと前をまとめて差す絵が描きにくい。内枠は良いが、流れの助けがもっと欲しい。  </p>
+<p>10 ルクソールカフェ: ダート色が強く、芝1600mの流れで前に行っても差しても噛み合いづらい。展開面からはかなり厳しい。  </p>
+<p>2 ロングラン: 末脚勝負の形でも近走内容から前を捕まえるイメージが薄い。最内寄りでも後方からでは展開利を活かし切れない。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>14番 ガイアフォース: 11%</li>
+<li>11番 ワールズエンド: 10%</li>
+<li>6番 ステレンボッシュ: 9%</li>
+<li>17番 トロヴァトーレ: 8%</li>
+<li>16番 パンジャタワー: 8%</li>
+<li>15番 ドラゴンブースト: 8%</li>
+<li>3番 オフトレイル: 7%</li>
+<li>9番 ウォーターリヒト: 7%</li>
+<li>1番 レーベンスティール: 6%</li>
+<li>4番 シックスペンス: 5%</li>
+<li>13番 セイウンハーデス: 5%</li>
+<li>7番 スズハローム: 4%</li>
+<li>8番 シャンパンカラー: 4%</li>
+<li>12番 シリウスコルト: 3%</li>
+<li>5番 サクラトゥジュール: 2%</li>
+<li>10番 ルクソールカフェ: 2%</li>
+<li>2番 ロングラン: 1%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>14 ガイアフォース: 横山武史騎手で東京マイルGI2着、富士S勝ちの舞台実績が明確。杉山晴紀厩舎も高水準で、陣営面の再現性は最上位とみる。  </p>
+<p>17 トロヴァトーレ: ルメール騎手起用に加え、東京新聞杯→エプソムCと東京重賞を連勝した運用が強い。大外枠で取りこぼし余地はあるが、陣営力は依然上位。  </p>
+<p>6 ステレンボッシュ: レーン騎手への乗り替わりは東京で大きな後押し。宮田厩舎の丁寧な調整も好感で、牝馬でも陣営評価は高い。  </p>
+<p>16 パンジャタワー: NHKマイルC勝ちの東京マイルに戻るのは明快なプラス。松山騎手で外枠でも運びやすく、橋口慎介厩舎の舞台替わりも理にかなう。  </p>
+<p>11 ワールズエンド: 京王杯SC勝ちからの臨戦は陣営の狙いが分かりやすい。津村騎手で先行運用が固まっており、マイル延長でも組み立てやすい。  </p>
+<p>15 ドラゴンブースト: マイラーズC2着でここへの接続は良好。丹内騎手で一発型だが、近走の使い方は芝マイル路線へきれいに寄っている。  </p>
+<p>3 オフトレイル: 菅原明良騎手で末脚を生かす形が安定。吉村厩舎も1400〜1600m路線でブレが少なく、差しの運用面は悪くない。  </p>
+<p>1 レーベンスティール: 戸崎騎手と田中博康厩舎の総合力は高いが、主戦場は1800〜2000m寄り。1枠は利点でも、マイルGIの運用適性では上位勢に一歩譲る。  </p>
+<p>4 シックスペンス: 武豊騎手は魅力だが、近走のダート混合ローテはややちぐはぐ。同厩舎の1番と比較してもマイル再挑戦の確度は少し落ちる。  </p>
+<p>9 ウォーターリヒト: 東京新聞杯3着、マイルCS3着は舞台適性を示すが、高杉騎手でGIの陣営信頼度はまだ比較対象で見劣る。穴なら押さえ。  </p>
+<p>13 セイウンハーデス: 幸騎手で前々の形は作れるが、厩舎運用は本質的に中距離寄り。東京マイルGIでの陣営面上積みは限定的。  </p>
+<p>8 シャンパンカラー: NHKマイルC勝ち馬で舞台実績はあるが、岩田康誠騎手との近走運用で復調を断言しにくい。陣営評価は中位下まで。  </p>
+<p>7 スズハローム: 連勝で勢いはあるが、藤懸騎手でGI東京マイルとなると陣営比較で強調しづらい。条件戦的な妙味はあっても格上げ局面は厳しい。  </p>
+<p>12 シリウスコルト: 横山和生騎手で器用さはあるが、田中勝春厩舎を含めてこの舞台で一気に信頼を置く材料は不足。重賞善戦までの見立て。  </p>
+<p>5 サクラトゥジュール: 堀厩舎は魅力でも、佐々木騎手との組み合わせでGIの上位争いまで押し上げるには年齢面も含めて強調しづらい。  </p>
+<p>10 ルクソールカフェ: 堀厩舎で岩田望来騎手でも、実績の中心がダート。芝マイルGIへの転換は陣営の勝負手としては読みにくい。  </p>
+<p>2 ロングラン: ゴンサルベス騎手起用で変化はあるが、和田勇介厩舎を含め近走内容と舞台実績の裏付けが弱い。陣営面では最下位評価。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>14番 ガイアフォース: 12%</li>
+<li>17番 トロヴァトーレ: 11%</li>
+<li>6番 ステレンボッシュ: 10%</li>
+<li>16番 パンジャタワー: 8%</li>
+<li>11番 ワールズエンド: 8%</li>
+<li>15番 ドラゴンブースト: 7%</li>
+<li>3番 オフトレイル: 7%</li>
+<li>1番 レーベンスティール: 6%</li>
+<li>4番 シックスペンス: 6%</li>
+<li>9番 ウォーターリヒト: 5%</li>
+<li>13番 セイウンハーデス: 4%</li>
+<li>8番 シャンパンカラー: 4%</li>
+<li>7番 スズハローム: 4%</li>
+<li>12番 シリウスコルト: 3%</li>
+<li>5番 サクラトゥジュール: 2%</li>
+<li>10番 ルクソールカフェ: 2%</li>
+<li>2番 ロングラン: 1%</li></div><h3>体調派</h3>
+<div class="analysis-text"><h2>全馬評価（好走確信度の高い順）</h2>
+<p>17 トロヴァトーレ: 510kg前後で3走連続の高値安定、前走も510kgで増減なし。中4週は標準的で反動が出にくく、叩き3走目でも消耗感がないのは強み。調教も馬なりで1F11.3なら仕上がりは高水準。</p>
+
+<p>11 ワールズエンド: 466→468→470kgと緩やかな右肩上がりで好調期の体重推移。前走京王杯SCを470kgで勝って中5週、上積みを削がない間隔で好気配維持。状態面はかなり素直。</p>
+
+<p>6 ステレンボッシュ: 482kgまで増えた休み明けを一度使って478kgまで絞れたのは叩き2走目の上昇サイン。今回は叩き3走目で56kg据え置き、牝馬としては体と斤量のバランスが良く、調教もキビキビ。</p>
+
+<p>3 オフトレイル: 460〜466kgのレンジで安定し、前走466kgは太め残りではない。中5週で疲労も抜きやすく、調教も軽快。大きな上積みより、仕上がりのブレが小さい点を評価する。</p>
+
+<p>15 ドラゴンブースト: 488kgから480kg、さらに474kgと2戦続けて絞れて内容も上向き。減り方が急でもパフォーマンスを伴っており、今回は中5週で回復余地もある。調教評価も好調持続で、叩きながら整った印象。</p>
+
+<p>14 ガイアフォース: 海外帰り初戦だが、国内マイルでは482→494→496→502kgと馬体を増やしながら走れている。大型馬で58kgはこなせるが、3か月弱ぶりで当日気配確認は必要。仕上がり良好の調教で大きくは割り引かない。</p>
+
+<p>1 レーベンスティール: 484kg前後がベストゾーンで、前走492kgは+8kgでも重すぎるほどではなかった。今回は中9週で立て直しは利くし、調教の動きもハツラツ。ただしマイル戦でのピーク体重が読みにくく、最上位までは押し切れない。</p>
+
+<p>8 シャンパンカラー: 510〜516kgで体重推移が安定しており、近3走は516kgで固定。馬体のブレが少ないのは好感で、調教も追って伸び上々。大きな上積みは見えないが、体調面では崩れにくい。</p>
+
+<p>9 ウォーターリヒト: 462→472→474→478kgと増加基調で、成長分を含む好パターン。ただ前走は+4kgでやや余裕残しにも映り、今回はその解消が鍵。中5週は悪くなく、終いの伸び良の調教から大きなデキ落ちはない。</p>
+
+<p>7 スズハローム: 470kgから468kg、464kgと絞れながら2連勝は好内容。中9週でリフレッシュは利くが、少し間隔が空いた分だけ前走の研ぎ澄まされた状態を維持できるかがポイント。活気十分で大崩れはしにくい。</p>
+
+<p>13 セイウンハーデス: 482kgから472kgまで絞れて以降は474kg前後で安定。馬体の乱高下が止まり、坂路時計も出ていて好気配。中8週は悪くないが、距離短縮ローテで仕上がりがマイル向きに寄り切るかは半信半疑。</p>
+
+<p>16 パンジャタワー: 480kgでNHKマイル勝ち、昨夏488kg、高松宮記念486kgと馬格は維持。4歳でまだ上積み余地はあるが、今回は1200mからの距離延長かつ中10週で、仕上がりの矛先がスプリント寄りからどう移るか。調教自体は良い。</p>
+
+<p>4 シックスペンス: 514kgから500kgへの-14kgは絞れたとも見えるが、短期間での大幅減だけに反動リスクは残る。大型馬で58kg自体は問題ないが、ダート併用後のマイル再挑戦で仕上がりの焦点が定まり切ったか微妙。好馬体は目立つ。</p>
+
+<p>12 シリウスコルト: 508→502→494kgと2走続けて大きく減っており、絞れたというより消耗の線を疑いたい。中4週で立て直す余地はあるが、活気十分の調教でも馬体減トレンドは気になる。状態面の信頼度は高くない。</p>
+
+<p>5 サクラトゥジュール: 508〜516kgの範囲ではあるが、9歳せん馬で年齢的な上積みは見込みにくい。前走から3か月半ぶりで一息入るも仕上がるという評価通り、走れる態勢にはありそうだが、休み明けで強気にはなれない。</p>
+
+<p>10 ルクソールカフェ: 544〜550kgの大型馬で58kgはこなせるが、今回は約4か月ぶりの芝替わり。調教の仕上がり良好は認めても、近走がダート中心で当日の芝マイル仕様にどこまで整っているか不透明。体調面だけでも強調しにくい。</p>
+
+<p>2 ロングラン: 490kgまで増えた後に478kg、482kg、474kgと乱高下が大きい。8歳せん馬で中5週自体は標準でも、近走の馬体推移からは安定感に欠ける。追い切りの推進力は悪くないが、状態の再現性で最も不安が残る。</p>
+
+<h2>好走確信度配分</h2>
+<li>17番 トロヴァトーレ: 10%</li>
+<li>11番 ワールズエンド: 9%</li>
+<li>6番 ステレンボッシュ: 9%</li>
+<li>3番 オフトレイル: 8%</li>
+<li>15番 ドラゴンブースト: 8%</li>
+<li>14番 ガイアフォース: 8%</li>
+<li>1番 レーベンスティール: 7%</li>
+<li>8番 シャンパンカラー: 7%</li>
+<li>9番 ウォーターリヒト: 6%</li>
+<li>7番 スズハローム: 6%</li>
+<li>13番 セイウンハーデス: 5%</li>
+<li>16番 パンジャタワー: 5%</li>
+<li>4番 シックスペンス: 4%</li>
+<li>12番 シリウスコルト: 3%</li>
+<li>5番 サクラトゥジュール: 2%</li>
+<li>10番 ルクソールカフェ: 2%</li>
+<li>2番 ロングラン: 1%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<p><strong>敗因シナリオ</strong></p>
+<p>最多支持馬は14番ガイアフォース。Round 1でこちらが「トロヴァトーレ絶対視は危険、むしろガイアフォース上位」と見た流れは一定程度反映されたが、今度はこの馬自身がやや安全牌として見られすぎている。</p>
+
+<p>まず1つ目は、善戦型ゆえの取りこぼし。近走の東京マイル実績は上位でも、勝ち切り切れず2、3着に収まる形は十分ある。全体平均1位でも「最も崩れにくい馬」と「最も1着に近い馬」は同義ではない。</p>
+
+<p>2つ目は、1800m帰りの反応差。ドバイターフからの臨戦は格好がつく一方、東京1600mの高速決着で一瞬の加速勝負になると、1400m寄りのスピード型や近走でマイルに特化している馬にトップスピードの質で見劣る可能性がある。</p>
+
+<p>3つ目は、前受けして目標にされる形。好位で運べる強みはあるが、それは差し馬にとって標的にもなる。外から被される、あるいは直線で早めに踏まされる展開だと、最後に差されて「能力は示したが勝てない」敗因が生じる。</p>
+
+<p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>14 ガイアフォース: Round 1で最上位評価した根拠はまだ有効。東京マイルGI実績は最上位級。ただし今回は過小評価ではなく適正評価域まで上がっており、勝ち切り面だけは慎重に見たい。  </p>
+<p>17 トロヴァトーレ: Round 1で指摘した「人気先行の過熱感」はまだ残る。東京マイル実績は明白でも、8枠17番で差し届かずや外々を回されるリスクは消えない。強いが絶対視まではしない。  </p>
+<p>11 ワールズエンド: Round 1で再評価した穴候補で、その視点はかなり反映された。1400m型と決めつけられにくくなった今でも、前で運べるスピードは脅威。マイルで淡々と行ければ残る。  </p>
+<p>3 オフトレイル: これもRound 1の再評価が部分的に浸透。勝ち切り切れない不安はあるが、GIでも末脚の質は通用。人気ほど派手さはないが、差し比べの形なら上位圏。  </p>
+<p>16 パンジャタワー: 距離不安だけで嫌うのは危険というRound 1の論点は有効。NHKマイル勝ちがあり、短距離路線経由でスピード負けしないのは強み。外枠でも脚質的にまだ補正できる。  </p>
+<p>6 ステレンボッシュ: 牝馬で56kg、近走内容も悪くないが、マイルGIで牡馬一線級をまとめて差し切る像までは少し飛躍がある。評価が上がりすぎるなら一段引く。  </p>
+<p>15 ドラゴンブースト: 平均値はかなり上がったが、ここでもなお盲点の余地はある。マイラーズC2着は素直に評価。ただし相手強化で決め手勝負一辺倒になると少し見劣る。  </p>
+<p>9 ウォーターリヒト: マイルGI実績があり軽視は危険だが、近2走だけ見ると勝ち切る迫力までは薄い。相手なりで差してくるタイプで、連下向きの印象が強い。  </p>
+<p>1 レーベンスティール: 能力は高いが、1600mでの鋭さと位置取りの忙しさにまだ疑問が残る。内枠は歓迎でも、2000m寄りの持続力型として見たほうが自然。  </p>
+<p>13 セイウンハーデス: 1800-2000m実績の馬としては不気味。マイルは忙しいが、前が緩まず持続戦になればしぶとさはある。全体平均よりは少し拾っておきたい。  </p>
+<p>4 シックスペンス: 評価が下がったのは妥当。芝マイルに戻っても近走の使い方がちぐはぐで、安田記念向きの研ぎ澄まされたマイル性能を感じにくい。鞍上込みでも強気にはなれない。  </p>
+<p>7 スズハローム: 近2走で地力強化は見せたが、GIで同じ差し脚がそのまま通るかは別問題。展開待ちの面があり、人気が上がるなら妙味は薄い。  </p>
+<p>8 シャンパンカラー: NHKマイル勝ちだけで買うと危険だが、東京マイル適性自体は否定できない。近走も大敗一辺倒ではなく、完全ノーマークなら少しだけ警戒。  </p>
+<p>12 シリウスコルト: 相手なりに走る余地はあるが、1600mGIで押し切るイメージは薄い。善戦までならともかく、頭まで想定するには材料不足。  </p>
+<p>5 サクラトゥジュール: 東京巧者の残像で買われるなら危ない。年齢面もあり、近走から大きな上積みを見込むのは難しい。昨年より前進して1着争いまでは想像しにくい。  </p>
+<p>10 ルクソールカフェ: 能力以前に適性が大きな壁。ダート実績馬が芝GIマイルで即通用する想定は楽観的すぎる。激変待ちの領域。  </p>
+<p>2 ロングラン: 近走からは強調材料が乏しい。高齢でも一発が全くないとは言わないが、さすがに上位陣との比較で押し上げる根拠が薄い。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>14番 ガイアフォース: 12%</li>
+<li>17番 トロヴァトーレ: 10%</li>
+<li>11番 ワールズエンド: 9%</li>
+<li>3番 オフトレイル: 8%</li>
+<li>16番 パンジャタワー: 8%</li>
+<li>6番 ステレンボッシュ: 7%</li>
+<li>15番 ドラゴンブースト: 7%</li>
+<li>9番 ウォーターリヒト: 6%</li>
+<li>1番 レーベンスティール: 6%</li>
+<li>13番 セイウンハーデス: 5%</li>
+<li>4番 シックスペンス: 4%</li>
+<li>7番 スズハローム: 4%</li>
+<li>8番 シャンパンカラー: 4%</li>
+<li>12番 シリウスコルト: 3%</li>
+<li>5番 サクラトゥジュール: 3%</li>
+<li>10番 ルクソールカフェ: 2%</li>
+<li>2番 ロングラン: 2%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round 1で指摘した「トロヴァトーレ過熱への警戒」と「ガイアフォース、ワールズエンド、パンジャタワー、オフトレイルの再評価」はRound 5でかなり反映された。ただし、今度はガイアフォースが安全牌として寄りすぎており、善戦止まりのリスクも直視したい。依然として17番トロヴァトーレは外枠と人気先行の不安が残る。批判的視点では、実績馬の安定感を買いすぎず、11番ワールズエンドや16番パンジャタワーのスピード、3番オフトレイルの末脚を勝ち筋として重視する。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>14</td><td class="left horse-name">ガイアフォース</td><td class="trust-mid">11.0%</td><td>12.0</td><td>11.7</td><td>11.5</td><td>12.0</td><td>8.0</td><td>11.0</td></tr><tr><td>2</td><td>17</td><td class="left horse-name">トロヴァトーレ</td><td class="trust-mid">10.1%</td><td>12.0</td><td>9.4</td><td>8.5</td><td>11.0</td><td>10.0</td><td>9.5</td></tr><tr><td>3</td><td>11</td><td class="left horse-name">ワールズエンド</td><td class="trust-mid">9.0%</td><td>8.0</td><td>9.3</td><td>10.5</td><td>8.5</td><td>9.0</td><td>9.0</td></tr><tr><td>4</td><td>16</td><td class="left horse-name">パンジャタワー</td><td class="trust-low">7.9%</td><td>8.0</td><td>9.5</td><td>8.0</td><td>8.0</td><td>6.0</td><td>8.0</td></tr><tr><td>5</td><td>3</td><td class="left horse-name">オフトレイル</td><td class="trust-low">7.8%</td><td>9.0</td><td>7.6</td><td>7.5</td><td>7.0</td><td>8.0</td><td>8.0</td></tr><tr><td>6</td><td>6</td><td class="left horse-name">ステレンボッシュ</td><td class="trust-low">7.8%</td><td>5.5</td><td>7.5</td><td>8.0</td><td>9.5</td><td>9.0</td><td>7.0</td></tr><tr><td>7</td><td>15</td><td class="left horse-name">ドラゴンブースト</td><td class="trust-low">7.5%</td><td>9.5</td><td>6.5</td><td>7.5</td><td>7.0</td><td>7.5</td><td>7.0</td></tr><tr><td>8</td><td>9</td><td class="left horse-name">ウォーターリヒト</td><td class="trust-low">6.3%</td><td>7.0</td><td>6.6</td><td>6.5</td><td>5.5</td><td>6.0</td><td>6.0</td></tr><tr><td>9</td><td>1</td><td class="left horse-name">レーベンスティール</td><td class="trust-low">6.2%</td><td>6.0</td><td>6.9</td><td>5.5</td><td>6.5</td><td>7.0</td><td>5.5</td></tr><tr><td>10</td><td>13</td><td class="left horse-name">セイウンハーデス</td><td class="trust-low">4.8%</td><td>4.0</td><td>4.0</td><td>5.5</td><td>4.0</td><td>5.0</td><td>6.0</td></tr><tr><td>11</td><td>7</td><td class="left horse-name">スズハローム</td><td class="trust-low">4.8%</td><td>6.0</td><td>4.0</td><td>4.0</td><td>4.0</td><td>6.0</td><td>4.5</td></tr><tr><td>12</td><td>4</td><td class="left horse-name">シックスペンス</td><td class="trust-low">4.2%</td><td>3.0</td><td>5.0</td><td>4.5</td><td>5.5</td><td>3.5</td><td>4.0</td></tr><tr><td>13</td><td>8</td><td class="left horse-name">シャンパンカラー</td><td class="trust-low">4.2%</td><td>3.5</td><td>4.5</td><td>4.0</td><td>4.0</td><td>5.5</td><td>4.0</td></tr><tr><td>14</td><td>12</td><td class="left horse-name">シリウスコルト</td><td class="trust-low">3.1%</td><td>2.5</td><td>3.0</td><td>3.0</td><td>3.0</td><td>3.5</td><td>3.5</td></tr><tr><td>15</td><td>5</td><td class="left horse-name">サクラトゥジュール</td><td class="trust-low">2.2%</td><td>1.5</td><td>1.9</td><td>2.0</td><td>2.0</td><td>2.5</td><td>3.0</td></tr><tr><td>16</td><td>10</td><td class="left horse-name">ルクソールカフェ</td><td class="trust-low">1.8%</td><td>1.5</td><td>1.5</td><td>2.0</td><td>1.5</td><td>2.0</td><td>2.0</td></tr><tr><td>17</td><td>2</td><td class="left horse-name">ロングラン</td><td class="trust-low">1.3%</td><td>1.0</td><td>1.0</td><td>1.5</td><td>1.0</td><td>1.5</td><td>2.0</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>14</td><td class="left horse-name">ガイアフォース</td><td>11.0%</td><td>2.8</td><td>1</td><td class="ev-low">0.31</td></tr><tr><td>2</td><td>17</td><td class="left horse-name">トロヴァトーレ</td><td>10.1%</td><td>4.8</td><td>2</td><td class="ev-low">0.48</td></tr><tr><td>3</td><td>11</td><td class="left horse-name">ワールズエンド</td><td>9.0%</td><td>20.0</td><td>7</td><td class="ev-mid">1.81</td></tr><tr><td>4</td><td>16</td><td class="left horse-name">パンジャタワー</td><td>7.9%</td><td>9.0</td><td>4</td><td class="ev-low">0.71</td></tr><tr><td>5</td><td>3</td><td class="left horse-name">オフトレイル</td><td>7.8%</td><td>40.5</td><td>13</td><td class="ev-high">3.18</td></tr><tr><td>6</td><td>6</td><td class="left horse-name">ステレンボッシュ</td><td>7.8%</td><td>9.3</td><td>5</td><td class="ev-low">0.72</td></tr><tr><td>7</td><td>15</td><td class="left horse-name">ドラゴンブースト</td><td>7.5%</td><td>37.3</td><td>12</td><td class="ev-high">2.79</td></tr><tr><td>8</td><td>9</td><td class="left horse-name">ウォーターリヒト</td><td>6.3%</td><td>28.0</td><td>10</td><td class="ev-mid">1.75</td></tr><tr><td>9</td><td>1</td><td class="left horse-name">レーベンスティール</td><td>6.2%</td><td>8.7</td><td>3</td><td class="ev-low">0.54</td></tr><tr><td>10</td><td>13</td><td class="left horse-name">セイウンハーデス</td><td>4.8%</td><td>12.5</td><td>6</td><td class="ev-low">0.59</td></tr><tr><td>11</td><td>7</td><td class="left horse-name">スズハローム</td><td>4.8%</td><td>27.0</td><td>9</td><td class="ev-mid">1.28</td></tr><tr><td>12</td><td>4</td><td class="left horse-name">シックスペンス</td><td>4.2%</td><td>24.8</td><td>8</td><td class="ev-mid">1.05</td></tr><tr><td>13</td><td>8</td><td class="left horse-name">シャンパンカラー</td><td>4.2%</td><td>32.3</td><td>11</td><td class="ev-mid">1.37</td></tr><tr><td>14</td><td>12</td><td class="left horse-name">シリウスコルト</td><td>3.1%</td><td>118.9</td><td>15</td><td class="ev-high">3.68</td></tr><tr><td>15</td><td>5</td><td class="left horse-name">サクラトゥジュール</td><td>2.2%</td><td>123.0</td><td>16</td><td class="ev-high">2.65</td></tr><tr><td>16</td><td>10</td><td class="left horse-name">ルクソールカフェ</td><td>1.8%</td><td>72.4</td><td>14</td><td class="ev-mid">1.27</td></tr><tr><td>17</td><td>2</td><td class="left horse-name">ロングラン</td><td>1.3%</td><td>237.1</td><td>17</td><td class="ev-high">3.16</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">14 ガイアフォース</td><td>11.0%</td><td>2.8</td><td class="ev-low">0.27</td></tr><tr><td>複勝</td><td class="left">14 ガイアフォース</td><td>31.7%</td><td>1.2</td><td class="ev-low">0.37</td></tr><tr><td>馬連</td><td class="left">14 ガイアフォース-17 トロヴァトーレ</td><td>2.5%</td><td>6.8</td><td class="ev-low">0.14</td></tr><tr><td>ワイド</td><td class="left">14 ガイアフォース-17 トロヴァトーレ</td><td>7.2%</td><td>3.2</td><td class="ev-low">0.20</td></tr><tr><td>馬単</td><td class="left">14 ガイアフォース→17 トロヴァトーレ</td><td>1.3%</td><td>12.3</td><td class="ev-low">0.13</td></tr><tr><td>3連複</td><td class="left">11 ワールズエンド-14 ガイアフォース-17 トロヴァトーレ</td><td>0.9%</td><td>38.8</td><td class="ev-low">0.27</td></tr><tr><td>3連単</td><td class="left">14 ガイアフォース→17 トロヴァトーレ→11 ワールズエンド</td><td>0.1%</td><td>135.6</td><td class="ev-low">0.16</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>

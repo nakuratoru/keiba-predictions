@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三木特別 2026/06/07 HANSHIN 10R (06/07 17:58 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>三木特別 2026/06/07 HANSHIN 10R (06/07 17:58 予想)</h1>
+  <div class="meta">芝1800m（右 外） | 稍重 | 9頭立て | 3回 阪神 2日目 サラ系3歳以上 2勝クラス （混合）［指定］ 定量 9頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">5. ジョイエッロ</div>
+      <div class="pick-jockey">川田 将雅 / 池江 泰寿</div>
+    </div>
+    <div class="pick-prob">22.0%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">6. エバーグルーヴ</div>
+      <div class="pick-jockey">西村 淳也 / 藤岡 健一</div>
+    </div>
+    <div class="pick-prob">15.0%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">8. ヤマニンガラッシア</div>
+      <div class="pick-jockey">坂井 瑠星 / 辻 哲英</div>
+    </div>
+    <div class="pick-prob">14.2%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">9頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ウインリベラシオン</td><td>牡4</td><td>58</td><td>田口 貫太</td><td>緒方 努</td><td>ブリックスアンドモルタル</td><td>ダンスインザダーク</td><td>498(-4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">リュキア</td><td>牡4</td><td>58</td><td>国分 恭介</td><td>小椋 研介</td><td>アメリカンペイトリオット</td><td>Bluegrass Cat</td><td>458(+5)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ユメハハテシナク</td><td>牡6</td><td>58</td><td>松若 風馬</td><td>石坂 公一</td><td>ダイワメジャー</td><td>タイキシャトル</td><td>488(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">ハイディージェン</td><td>せん5</td><td>58</td><td>西塚 洸二</td><td>森田 直行</td><td>ファインニードル</td><td>Sadler&#x27;s Wells</td><td>478(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">ジョイエッロ</td><td>牡4</td><td>58</td><td>川田 将雅</td><td>池江 泰寿</td><td>ドゥラメンテ</td><td>ディープインパクト</td><td>456(+4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">エバーグルーヴ</td><td>牝4</td><td>56</td><td>西村 淳也</td><td>藤岡 健一</td><td>ドゥラメンテ</td><td>ディープインパクト</td><td>418(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>7</td><td class="left horse-name">ラーテル</td><td>せん6</td><td>58</td><td>城戸 義政</td><td>室井 潔</td><td>ビッグアーサー</td><td>コマンダーインチーフ</td><td>462(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>8</td><td class="left horse-name">ヤマニンガラッシア</td><td>牡9</td><td>58</td><td>坂井 瑠星</td><td>辻 哲英</td><td>ディープインパクト</td><td>タイキシャトル</td><td>446(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>9</td><td class="left horse-name">ツーエムクロノス</td><td>牡4</td><td>58</td><td>酒井 学</td><td>本田 優</td><td>ノーブルミッション</td><td>Singspiel</td><td>510(-2)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>5</td><td class="left horse-name">ジョイエッロ</td><td style="font-weight:700;background:#F0F7FF;">1 (22.2)</td><td style="font-weight:700;background:#F0F7FF;">1 (21.9)</td><td style="font-weight:700;background:#F0F7FF;">1 (21.9)</td><td style="font-weight:700;background:#F0F7FF;">1 (22.3)</td><td style="font-weight:700;background:#F0F7FF;">1 (22.8)</td></tr><tr><td>6</td><td class="left horse-name">エバーグルーヴ</td><td style="background:#F0F7FF;">2 (15.5)</td><td style="background:#F0F7FF;">2 (15.0)</td><td style="background:#F0F7FF;">3 (14.8)</td><td style="background:#F0F7FF;">2 (14.9)</td><td style="background:#F0F7FF;">2 (14.9)</td></tr><tr><td>8</td><td class="left horse-name">ヤマニンガラッシア</td><td style="background:#F0F7FF;">3 (13.5)</td><td style="background:#F0F7FF;">3 (14.3)</td><td style="background:#F0F7FF;">2 (15.0)</td><td style="background:#F0F7FF;">3 (14.8)</td><td style="background:#F0F7FF;">3 (14.2)</td></tr><tr><td>9</td><td class="left horse-name">ツーエムクロノス</td><td style="background:#F0F7FF;">4 (12.9)</td><td style="background:#F0F7FF;">4 (12.6)</td><td style="background:#F0F7FF;">4 (12.4)</td><td style="background:#F0F7FF;">4 (12.4)</td><td style="background:#F0F7FF;">4 (12.5)</td></tr><tr><td>3</td><td class="left horse-name">ユメハハテシナク</td><td style="background:#F0F7FF;">5 (10.4)</td><td style="background:#F0F7FF;">5 (11.0)</td><td style="background:#F0F7FF;">5 (11.5)</td><td style="background:#F0F7FF;">5 (11.4)</td><td style="background:#F0F7FF;">5 (11.5)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 ジョイエッロ: 前走は芝1800mで1:46.4の3着、勝ち馬と0.1秒差で上がり33.5秒、指数82.7が最上位。近4走すべて0.5秒差以内、2000mでも1:59.8の2着があり、実績の安定感で軸。</p>
+<p>8 ヤマニンガラッシア: 前走芝1800mで1:47.5の2着、0.1秒差で指数79.8は高水準。同距離実績はこの組でも上位だが、近5走で明確に買える内容は前走中心なので5番よりは一段下。</p>
+<p>6 エバーグルーヴ: 近5走の指数が75.1、76.7、77.8、78.1、77.1と非常に安定。前走2000m0.4秒差4着も悪くなく、大崩れしにくい実績は評価できる。</p>
+<p>9 ツーエムクロノス: 2走前に芝1800mで1:47.9、3走前に同じ1800mで2着実績があり、4走前の1600m4着は0.3秒差で指数79.1。近2走は後退したが、数字の裏付け自体は残る。</p>
+<p>1 ウインリベラシオン: 3走前の芝1800mは1:46.1で0.2秒差4着、指数75.4。前走も同距離6着で0.6秒差なら大きくは負けておらず、下位人気想定なら実績比較で拾える。</p>
+<p>3 ユメハハテシナク: 近2走の芝1600mは6着、8着だが、1:32.4で0.8秒差、指数75.9はそこまで悪くない。1800mでは昨秋に1:46.5の5着があり、上位勢ほどではないが圏内候補。</p>
+<p>4 ハイディージェン: 前走2000m8着0.7秒差で指数74.6は一応あるが、3走前の芝1800mは11着1:49.0、2.3秒差で弱い。同条件の実績比較では上積みを強く取りにくい。</p>
+<p>7 ラーテル: 近5走で最高でも指数71.7、着順も7着、10着、8着、11着、8着。1800m以上では大敗歴が目立ち、好走実績の裏付けが足りない。</p>
+<p>2 リュキア: 近5走すべてダートで6着以下、指数も低水準。今回は芝1800mで実績の裏付けがなく、実績派としては最も評価しづらい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 ジョイエッロ: 26%</li>
+<li>8番 ヤマニンガラッシア: 16%</li>
+<li>6番 エバーグルーヴ: 15%</li>
+<li>9番 ツーエムクロノス: 11%</li>
+<li>1番 ウインリベラシオン: 10%</li>
+<li>3番 ユメハハテシナク: 9%</li>
+<li>4番 ハイディージェン: 6%</li>
+<li>7番 ラーテル: 4%</li>
+<li>2番 リュキア: 3%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 ジョイエッロ: ドゥラメンテ×ディープインパクトの王道中距離配合で、阪神外1800mの持続力勝負に最も合う。稍重でも父のパワーで減点が小さく、血統設計はこの組で最上位。  </p>
+<p>6 エバーグルーヴ: 5番と同配合で適性の芯は近い。牝馬らしい軽さにディープ肌の瞬発力があり、やや時計の掛かる1800mでも大崩れしにくい血統。  </p>
+<p>9 ツーエムクロノス: ノーブルミッション×Singspielで欧州色が濃く、稍重の阪神外回りは血統的に歓迎。切れ味勝負より持久力戦で浮上するタイプ。  </p>
+<p>8 ヤマニンガラッシア: ディープインパクト×タイキシャトルで1800mの守備範囲は広い。高齢でも血統面では芝中距離への適性が明確で、少し渋る馬場もこなせる。  </p>
+<p>1 ウインリベラシオン: ブリックスアンドモルタルに母父ダンスインザダークで、軽い瞬発戦より力の要る中距離向き。阪神外1800mの稍重は血統的に悪くない。  </p>
+<p>3 ユメハハテシナク: ダイワメジャー×タイキシャトルで本質はマイル寄りだが、1800mまでは守備範囲。道悪自体はこなせても、血統の伸びしろは上位ほど強くない。  </p>
+<p>4 ハイディージェン: ファインニードル産駒で本来は短めの距離に寄りやすいが、母父Sadler&#x27;s Wellsで中距離の底力を補う形。1800mはこなせてもベスト感では一歩譲る。  </p>
+<p>7 ラーテル: ビッグアーサー×コマンダーインチーフで、父の短距離色が強い。母系のスタミナ補完はあるが、阪神芝1800mで前向きに買える血統ではない。  </p>
+<p>2 リュキア: アメリカンペイトリオット×Bluegrass Catでダート短距離色が濃い配合。芝1800m替わりで血統的な押し材料は乏しく、条件好転の裏付けが弱い。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 ジョイエッロ: 20%</li>
+<li>6番 エバーグルーヴ: 17%</li>
+<li>9番 ツーエムクロノス: 15%</li>
+<li>8番 ヤマニンガラッシア: 14%</li>
+<li>1番 ウインリベラシオン: 11%</li>
+<li>3番 ユメハハテシナク: 9%</li>
+<li>4番 ハイディージェン: 6%</li>
+<li>7番 ラーテル: 5%</li>
+<li>2番 リュキア: 3%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 ジョイエッロ: 8番がハナ、5番がその直後か好位外で折り合う形が最もしっくりくる。阪神外回り1800mの稍重で前を見ながら運べるこの馬が、直線で逃げ馬を捕まえるシナリオを本線に取る。  </p>
+<p>8 ヤマニンガラッシア: この組み合わせなら単騎逃げ濃厚。9頭立てで同型が薄く、マイペースに落とせれば前残りは十分ある。ただし稍重の阪神外回りで目標にされるぶん、勝ち切り期待は5番を少し下に置く。  </p>
+<p>6 エバーグルーヴ: 先行勢の後ろで脚をためられるのは良い。8番を5番が早めに追う流れになれば、直線で外から差してくる絵がある。極端なスロー固定でなければ3着圏の入りやすさは高い。  </p>
+<p>3 ユメハハテシナク: 内枠でロスなく好位から中団インを確保しやすい。8番の逃げ、5番の番手差しという隊列の後ろで脚をため、内目を立ち回って粘り込む形なら浮上可能。  </p>
+<p>9 ツーエムクロノス: 外8枠から位置を取りに行くと阪神外回りで距離損が出やすい。8番の外で脚を使わされる形は避けたいが、うまく5番の後ろに潜れれば食い込み余地は残る。  </p>
+<p>4 ハイディージェン: 先行力はあるが、この並びだと8番より前には行きづらく、5番とも位置が重なりやすい。早めに動くと終いが甘くなる展開リスクがあり、展開面では少し割引。  </p>
+<p>1 ウインリベラシオン: 最内は歓迎だが、後方寄りの運びになりやすく、今回は逃げ先行勢が少なくて流れが落ち着く公算が大きい。内で脚をためても差し遅れの形が先に立つ。  </p>
+<p>7 ラーテル: 後方一手になりやすく、少頭数でも前が止まる絵を描きにくい。稍重で差しが全く届かないとは言わないが、この頭数と隊列なら展開待ちが強い。  </p>
+<p>2 リュキア: 芝1800mの流れに乗るイメージが薄く、脚質面でも位置取り面でも展開利を見出しにくい。前が極端に総崩れになる想定も立てづらい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 ジョイエッロ: 21%</li>
+<li>8番 ヤマニンガラッシア: 20%</li>
+<li>6番 エバーグルーヴ: 14%</li>
+<li>3番 ユメハハテシナク: 12%</li>
+<li>9番 ツーエムクロノス: 10%</li>
+<li>4番 ハイディージェン: 9%</li>
+<li>1番 ウインリベラシオン: 7%</li>
+<li>7番 ラーテル: 4%</li>
+<li>2番 リュキア: 3%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 ジョイエッロ: 川田将雅×池江泰寿はこの組み合わせでは陣営力が最上位。少頭数の阪神外1800mでも位置取りの再現性が高く、人気でも信頼を落としにくい条件と見る。  </p>
+<p>6 エバーグルーヴ: 西村淳也×藤岡健一は関西芝中距離で安定感があり、牝馬でも運用がぶれにくい陣営。決め手勝負でも大きく崩れにくい。  </p>
+<p>8 ヤマニンガラッシア: 坂井瑠星の先行策はこの頭数だと依然有効。高齢馬で上積みは薄いが、陣営面では逃げ・先行の形を作りやすいのは強み。  </p>
+<p>9 ツーエムクロノス: 酒井学×本田優は派手さはないが、1800mで流れに乗せる運びは悪くない。外枠は割引でも、少頭数で捌きの難しさは軽減。  </p>
+<p>3 ユメハハテシナク: 松若風馬×石坂公一は内目の枠でロスを抑える形なら浮上余地あり。勝ち切りの陣営インパクトは上位に劣るが、相手候補には残る。  </p>
+<p>1 ウインリベラシオン: 田口貫太×緒方努は強調材料こそ薄いが、1枠で脚をためる競馬はしやすい。陣営力だけで上位視まではしないが、下位固定でもない。  </p>
+<p>4 ハイディージェン: 西塚洸二×森田直行は展開が向いた時の押し上げはあるが、阪神外1800mでの信頼度では上位陣に見劣る。積極策でも強気には取りにくい。  </p>
+<p>2 リュキア: 国分恭介×小椋研介で今回は芝替わりかつ連闘の臨戦。陣営面での後押しが弱く、人気薄の期待値狙いとしても材料不足。  </p>
+<p>7 ラーテル: 城戸義政×室井潔はこの条件で一変を期待できるだけの陣営裏付けが乏しい。少頭数でも上位陣との騎手・厩舎力差は大きい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 ジョイエッロ: 24%</li>
+<li>6番 エバーグルーヴ: 15%</li>
+<li>8番 ヤマニンガラッシア: 15%</li>
+<li>9番 ツーエムクロノス: 11%</li>
+<li>3番 ユメハハテシナク: 11%</li>
+<li>1番 ウインリベラシオン: 8%</li>
+<li>4番 ハイディージェン: 7%</li>
+<li>2番 リュキア: 5%</li>
+<li>7番 ラーテル: 4%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 ジョイエッロ: 448kg前後から452kg、今回456kg(+4)と右肩上がりで成長分の範囲。中2週でも坂路で1F12.3、動き軽快の評価どおり叩き4走目で仕上がりは最も安定している。  </p>
+<p>3 ユメハハテシナク: 480kg台後半で486→488→488kgとブレが小さく、中4週で疲労も出にくいローテ。58kgでもこの馬格ならこなせ、好気配保つの調教評価どおりデキは維持。  </p>
+<p>9 ツーエムクロノス: 516→512→510→514→512kgに対し今回は510kg(-2)で大型馬らしく安定。中2週でも馬なりで1F11.6、デキ落ちなしは好材料で、58kgの負担も510kg級なら相対的に軽い。  </p>
+<p>6 エバーグルーヴ: 414→414→418→418kgに対し今回418kg(+4)で細化なく出られたのは良い。56kgは魅力だが、418kgの小柄馬で10週ぶり、調教は遅れも余裕残しで仕上がりは一段下。  </p>
+<p>1 ウインリベラシオン: 488→496→500→502→502kgから今回498kg(-4)。過去の好走圏が500kg前後で大きく崩れておらず中2週も許容だが、CWでスピード感を欠き上積みは強くない。  </p>
+<p>4 ハイディージェン: 494kgから480kgへ大きく減った後、474kgを経て今回は478kg(+4)で少し戻した。ただ本来の488kg前後には届かず、叩き3走目でもまだ戻り切った印象は薄い。  </p>
+<p>8 ヤマニンガラッシア: 前走450kgから今回446kg(-4)。454～460kg台から徐々に減っており、9歳での馬体維持色が強い。中8週は悪くないが、一杯に追って変わりなく順調止まりでは上積みを取りにくい。  </p>
+<p>7 ラーテル: 472→474→472→468→462kgと下げ基調が続き、今回462kg(-6)は消耗感が気になる。中9週で立て直したい場面だが、末の粘りひと息の調教評価では強調しづらい。  </p>
+<p>2 リュキア: 前走453kg(-15)から今回は458kg(+5)でいくらか戻したが、456→460→462→468→453→458kgと変動が大きい。中1週の連闘で中間軽め、芝替わり以前に体調面の安定感を欠く。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 ジョイエッロ: 24%</li>
+<li>3番 ユメハハテシナク: 15%</li>
+<li>9番 ツーエムクロノス: 14%</li>
+<li>6番 エバーグルーヴ: 13%</li>
+<li>1番 ウインリベラシオン: 10%</li>
+<li>4番 ハイディージェン: 9%</li>
+<li>8番 ヤマニンガラッシア: 8%</li>
+<li>7番 ラーテル: 4%</li>
+<li>2番 リュキア: 3%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<p><strong>敗因シナリオ</strong></p>
+
+<p>最多支持馬の5番ジョイエッロは、能力比較では当然上位だが、今回は「取りこぼし」の想定を外せない。1つ目は、先行勢を見ながら早めに動いて脚を使わされ、阪神外回りの稍重で最後に甘くなる形。近走は安定している一方で、勝ち切る場面ではもうひと押しを欠いており、強い競馬と勝ち切る競馬は別だ。2つ目は、人気を背負って正攻法に徹した結果、内外から目標にされる形。少頭数で包まれにくい反面、仕掛けの自由度が高い相手に差し比べへ持ち込まれると、3着止まりの再現は十分ある。3つ目は、1800mへの距離短縮自体はこなせても、やや湿った馬場で瞬時の加速力勝負になり切れず、器用に立ち回る別馬に先着されるシナリオ。Round 1で指摘した「総合力上位だが取りこぼし余地あり」は、今回もなお有効と見る。</p>
+
+<p><strong>全馬評価（好走確信度の高い順）</strong></p>
+
+<p>8 ヤマニンガラッシア: Round 1で最上位に補正したが、その警戒は今回も維持したい。前走の1800m戦内容は依然優秀で、平均側も今回は3番手まで評価を上げてきた。ただし年齢的な上積みは乏しいので絶対視ではなく、展開利を取れた時に最も怖い対抗軸という扱い。  </p>
+<p>6 エバーグルーヴ: 平均では2番手だが、人気ほど破壊力を信じ切るのも危険な半面、牝馬で56kg、近走の指数水準は安定。勝ち切れない弱点はあるが、ジョイエッロが取りこぼす前提なら相対的に最も浮上しやすい。  </p>
+<p>5 ジョイエッロ: 能力と安定感で上位評価は必要。ただし平均22.9%はやや集まりすぎで、期待値面では過大評価寄り。今回も好走圏には入れてよいが、1着固定で信じるほど盤石ではない。  </p>
+<p>3 ユメハハテシナク: 近2走のマイル戦は善戦止まりでも大崩れではなく、1800m替わりはむしろ悪くない。平均評価は妥当圏だが、決め手不足で勝ち切り像は限定的。それでも人気上位が甘くなれば差し込む余地はある。  </p>
+<p>9 ツーエムクロノス: Round 1でも圏内候補と見たが、今回はやや評価を抑える。近走は着順以上に内容が平凡化しており、前で運んでも後ろからでも決め手が足りない。ただ、少頭数で流れが噛み合えば残る余地はまだある。  </p>
+<p>1 ウインリベラシオン: 1勝馬で格負け感はあるが、1800mでは末脚の形自体は作れている。平均では低めの中位だが、上位人気勢に決め手不安がある組み合わせなら、展開ひとつで掲示板以上の穴はある。  </p>
+<p>4 ハイディージェン: 平均同様に強気にはなれない。先行して粘り込む形が理想でも、近走は止まり方が目立つ。調教は悪くないが、稍重の外回り1800mで一変まで期待するのは危険。  </p>
+<p>7 ラーテル: 近走内容からは大きな上積み材料が乏しい。距離延長自体は悪くない可能性があるが、2勝クラスで上位争いまで届く裏付けは薄い。人気薄の妙味だけで拾うには根拠不足。  </p>
+<p>2 リュキア: 芝替わりそのものが大きな賭けで、近走ダート成績からも強調材料は見当たらない。平均でも最下位級で、批判的に見ても過小評価というより順当な低評価。</p>
+
+<p><strong>好走確信度配分</strong></p>
+
+<li>8番 ヤマニンガラッシア: 20%</li>
+<li>6番 エバーグルーヴ: 17%</li>
+<li>5番 ジョイエッロ: 16%</li>
+<li>3番 ユメハハテシナク: 13%</li>
+<li>9番 ツーエムクロノス: 12%</li>
+<li>1番 ウインリベラシオン: 10%</li>
+<li>4番 ハイディージェン: 7%</li>
+<li>7番 ラーテル: 3%</li>
+<li>2番 リュキア: 2%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round 1で指摘した通り、ジョイエッロは総合力上位でも勝ち切りの保証まではなく、今回も平均22.9%はやや過熱気味と見る。一方でヤマニンガラッシアは当時の警戒が一定反映され、平均でも3番手まで浮上したが、なお過小評価余地がある。エバーグルーヴは決め手不足でも斤量と安定感で相対浮上。全体としては人気上位が抜けた構図ではなく、稍重の阪神外回りで仕掛けのズレが着順を入れ替えるレース。合意形成された人気馬ほど疑い、取りこぼし前提で組み立てたい。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>5</td><td class="left horse-name">ジョイエッロ</td><td class="trust-high">22.0%</td><td>24.5</td><td>21.0</td><td>21.5</td><td>23.0</td><td>24.0</td><td>17.0</td></tr><tr><td>2</td><td>6</td><td class="left horse-name">エバーグルーヴ</td><td class="trust-high">15.0%</td><td>15.0</td><td>17.5</td><td>14.0</td><td>15.5</td><td>12.5</td><td>17.0</td></tr><tr><td>3</td><td>8</td><td class="left horse-name">ヤマニンガラッシア</td><td class="trust-mid">14.2%</td><td>15.0</td><td>14.0</td><td>20.0</td><td>15.0</td><td>7.0</td><td>17.5</td></tr><tr><td>4</td><td>9</td><td class="left horse-name">ツーエムクロノス</td><td class="trust-mid">12.5%</td><td>11.5</td><td>15.5</td><td>10.0</td><td>11.0</td><td>14.5</td><td>11.5</td></tr><tr><td>5</td><td>3</td><td class="left horse-name">ユメハハテシナク</td><td class="trust-mid">12.0%</td><td>10.0</td><td>8.5</td><td>12.0</td><td>11.5</td><td>15.5</td><td>13.0</td></tr><tr><td>6</td><td>1</td><td class="left horse-name">ウインリベラシオン</td><td class="trust-mid">9.2%</td><td>9.5</td><td>11.0</td><td>7.0</td><td>7.5</td><td>10.0</td><td>10.0</td></tr><tr><td>7</td><td>4</td><td class="left horse-name">ハイディージェン</td><td class="trust-low">7.4%</td><td>6.5</td><td>5.5</td><td>9.0</td><td>7.0</td><td>8.5</td><td>7.5</td></tr><tr><td>8</td><td>7</td><td class="left horse-name">ラーテル</td><td class="trust-low">4.3%</td><td>4.5</td><td>4.0</td><td>4.0</td><td>5.0</td><td>4.5</td><td>4.0</td></tr><tr><td>9</td><td>2</td><td class="left horse-name">リュキア</td><td class="trust-low">3.3%</td><td>3.5</td><td>3.0</td><td>2.5</td><td>4.5</td><td>3.5</td><td>2.5</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>5</td><td class="left horse-name">ジョイエッロ</td><td>22.0%</td><td>1.5</td><td>1</td><td class="ev-low">0.33</td></tr><tr><td>2</td><td>6</td><td class="left horse-name">エバーグルーヴ</td><td>15.0%</td><td>5.4</td><td>2</td><td class="ev-low">0.81</td></tr><tr><td>3</td><td>8</td><td class="left horse-name">ヤマニンガラッシア</td><td>14.2%</td><td>7.9</td><td>3</td><td class="ev-mid">1.12</td></tr><tr><td>4</td><td>9</td><td class="left horse-name">ツーエムクロノス</td><td>12.5%</td><td>20.9</td><td>6</td><td class="ev-high">2.61</td></tr><tr><td>5</td><td>3</td><td class="left horse-name">ユメハハテシナク</td><td>12.0%</td><td>11.8</td><td>4</td><td class="ev-mid">1.42</td></tr><tr><td>6</td><td>1</td><td class="left horse-name">ウインリベラシオン</td><td>9.2%</td><td>12.6</td><td>5</td><td class="ev-mid">1.16</td></tr><tr><td>7</td><td>4</td><td class="left horse-name">ハイディージェン</td><td>7.4%</td><td>21.4</td><td>7</td><td class="ev-mid">1.59</td></tr><tr><td>8</td><td>7</td><td class="left horse-name">ラーテル</td><td>4.3%</td><td>56.2</td><td>9</td><td class="ev-high">2.44</td></tr><tr><td>9</td><td>2</td><td class="left horse-name">リュキア</td><td>3.3%</td><td>53.6</td><td>8</td><td class="ev-mid">1.75</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">5 ジョイエッロ</td><td>22.0%</td><td>1.5</td><td class="ev-low">0.31</td></tr><tr><td>複勝</td><td class="left">5 ジョイエッロ</td><td>58.4%</td><td>1.1</td><td class="ev-low">0.63</td></tr><tr><td>馬連</td><td class="left">5 ジョイエッロ-6 エバーグルーヴ</td><td>8.2%</td><td>2.6</td><td class="ev-low">0.19</td></tr><tr><td>ワイド</td><td class="left">5 ジョイエッロ-6 エバーグルーヴ</td><td>22.2%</td><td>1.5</td><td class="ev-low">0.31</td></tr><tr><td>馬単</td><td class="left">5 ジョイエッロ→6 エバーグルーヴ</td><td>4.3%</td><td>3.4</td><td class="ev-low">0.12</td></tr><tr><td>3連複</td><td class="left">5 ジョイエッロ-6 エバーグルーヴ-8 ヤマニンガラッシア</td><td>5.2%</td><td>3.9</td><td class="ev-low">0.17</td></tr><tr><td>3連単</td><td class="left">5 ジョイエッロ→6 エバーグルーヴ→8 ヤマニンガラッシア</td><td>1.0%</td><td>7.7</td><td class="ev-low">0.06</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 2,000円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">5 ジョイエッロ</td><td>1.5</td><td>20</td><td style='text-align:right;font-weight:600;'>2,000円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 2,000円
+</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>
