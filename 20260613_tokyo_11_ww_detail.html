@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ジューンステークス 2026/06/13 TOKYO 11R (06/13 14:52 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>ジューンステークス 2026/06/13 TOKYO 11R (06/13 14:52 予想)</h1>
+  <div class="meta">芝1800m（左） | 良 | 13頭立て | 3回 東京 3日目 サラ系3歳以上 オープン （国際）（特指） 別定 13頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">9. ダノンエアズロック</div>
+      <div class="pick-jockey">D.レーン / 堀 宣行</div>
+    </div>
+    <div class="pick-prob">13.2%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">1. レガーロデルシエロ</div>
+      <div class="pick-jockey">大野 拓弥 / 栗田 徹</div>
+    </div>
+    <div class="pick-prob">12.4%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">3. カネラフィーナ</div>
+      <div class="pick-jockey">C.ルメール / 手塚 貴久</div>
+    </div>
+    <div class="pick-prob">11.6%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">13頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">レガーロデルシエロ</td><td>牡5</td><td>57</td><td>大野 拓弥</td><td>栗田 徹</td><td>ロードカナロア</td><td>マンハッタンカフェ</td><td>512(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">タシット</td><td>牡7</td><td>57</td><td>三浦 皇成</td><td>中川 公成</td><td>ブラックタイド</td><td>ブライアンズタイム</td><td>476(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">カネラフィーナ</td><td>牝4</td><td>56</td><td>C.ルメール</td><td>手塚 貴久</td><td>Frankel</td><td>Fortify</td><td>482(-2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">リラエンブレム</td><td>牡4</td><td>57</td><td>戸崎 圭太</td><td>武 幸四郎</td><td>キズナ</td><td>Galileo</td><td>500(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>5</td><td class="left horse-name">ナムラエイハブ</td><td>牡5</td><td>57</td><td>原 優介</td><td>長谷川 浩大</td><td>リアルスティール</td><td>エンパイアメーカー</td><td>514(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>6</td><td class="left horse-name">メリオーレム</td><td>牡5</td><td>57</td><td>石川 裕紀人</td><td>友道 康夫</td><td>シュヴァルグラン</td><td>Starspangledbanner</td><td>496(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>7</td><td class="left horse-name">コントラポスト</td><td>せん6</td><td>58</td><td>津村 明秀</td><td>菊沢 隆徳</td><td>ルーラーシップ</td><td>フジキセキ</td><td>470(-8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>8</td><td class="left horse-name">バレエマスター</td><td>牡7</td><td>58</td><td>菊沢 一樹</td><td>梅田 智之</td><td>スピルバーグ</td><td>スウェプトオーヴァーボード</td><td>482(+10)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>9</td><td class="left horse-name">ダノンエアズロック</td><td>牡5</td><td>57</td><td>D.レーン</td><td>堀 宣行</td><td>モーリス</td><td>Fastnet Rock</td><td>506(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>10</td><td class="left horse-name">ディマイザキッド</td><td>牡5</td><td>57</td><td>M.ディー</td><td>清水 英克</td><td>ディーマジェスティ</td><td>ファスリエフ</td><td>470(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>11</td><td class="left horse-name">トーセンリョウ</td><td>牡7</td><td>57</td><td>F.ゴンサルベス</td><td>加藤 征弘</td><td>ディープインパクト</td><td>Hawk Wing</td><td>460(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>12</td><td class="left horse-name">ヤマニンサンパ</td><td>牡8</td><td>58</td><td>亀田 温心</td><td>斉藤 崇史</td><td>ディープインパクト</td><td>スウェプトオーヴァーボード</td><td>480(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>13</td><td class="left horse-name">マルチャン</td><td>牡6</td><td>57</td><td>丸田 恭介</td><td>武市 康男</td><td>ラブリーデイ</td><td>スウェプトオーヴァーボード</td><td>478(-10)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>9</td><td class="left horse-name">ダノンエアズロック</td><td style="background:#F0F7FF;">2 (12.4)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.6)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.2)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.4)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.8)</td></tr><tr><td>1</td><td class="left horse-name">レガーロデルシエロ</td><td style="background:#F0F7FF;">3 (11.5)</td><td style="background:#F0F7FF;">3 (11.2)</td><td style="background:#F0F7FF;">2 (11.4)</td><td style="background:#F0F7FF;">2 (11.9)</td><td style="background:#F0F7FF;">2 (12.2)</td></tr><tr><td>3</td><td class="left horse-name">カネラフィーナ</td><td style="font-weight:700;background:#F0F7FF;">1 (12.9)</td><td style="background:#F0F7FF;">2 (12.0)</td><td style="background:#F0F7FF;">3 (10.9)</td><td style="background:#F0F7FF;">3 (11.2)</td><td style="background:#F0F7FF;">3 (11.9)</td></tr><tr><td>10</td><td class="left horse-name">ディマイザキッド</td><td style="background:#F0F7FF;">4 (9.6)</td><td style="background:#F0F7FF;">4 (10.3)</td><td style="background:#F0F7FF;">4 (10.3)</td><td style="background:#F0F7FF;">4 (10.5)</td><td style="background:#F0F7FF;">4 (10.3)</td></tr><tr><td>6</td><td class="left horse-name">メリオーレム</td><td style="color:#AEAEB2;">6 (8.2)</td><td style="color:#AEAEB2;">6 (8.0)</td><td style="color:#AEAEB2;">6 (8.4)</td><td style="color:#AEAEB2;">6 (8.3)</td><td style="background:#F0F7FF;">5 (8.6)</td></tr><tr><td>11</td><td class="left horse-name">トーセンリョウ</td><td style="background:#F0F7FF;">5 (8.3)</td><td style="background:#F0F7FF;">5 (8.5)</td><td style="background:#F0F7FF;">5 (8.7)</td><td style="background:#F0F7FF;">5 (8.7)</td><td style="color:#AEAEB2;">6 (8.5)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>1 レガーロデルシエロ: 前走エプソムC3着1:45.5、差0.2秒、上がり32.6は今回の東京芝1800mで最も強い直接実績。東風Sも0.2秒差3着で近2走の内容が安定している。  </p>
+<p>10 ディマイザキッド: 金鯱賞7着でも1:58.4で差0.3秒、毎日王冠4着1:44.4も優秀。近5走でGII相手に大きく崩れておらず、相手関係の裏付けが濃い。  </p>
+<p>9 ダノンエアズロック: 近3走が1:32.2差0.0秒2着、1:31.9差0.1秒3着、1:32.2差0.2秒4着で指数も93.5、92.6、90.2と高位安定。1800mでも昨年ジューンS5着0.3差なら圏内。  </p>
+<p>3 カネラフィーナ: 福島牝馬S7着でも0.4秒差、金杯4着0.3秒差で内容は悪くない。近5走で3勝、崩れても着差が小さく、実績の安定度は高い。  </p>
+<p>11 トーセンリョウ: 昨年エプソムC3着1:44.4、ジューンS3着1:48.2と東京1800m実績は上位。近2走はやや物足りないが、大きく負けてはいない。  </p>
+<p>8 バレエマスター: 前走新潟大賞典2着1:59.0、差0.1秒はここでは目立つ実績。ただしその前3走が8着、13着、11着で連続性に欠け、信頼は上位ほどではない。  </p>
+<p>6 メリオーレム: 都大路S4着1:44.0差0.6秒、中日新聞杯5着1:58.1差0.5秒で現級でも通用。勝ち切る裏付けは薄いが、近走指数は安定。  </p>
+<p>5 ナムラエイハブ: 小倉大賞典4着1:45.5差0.3秒は評価できるが、近2走の1800mリステッドで7着、8着と後退。近走の連続性では見劣る。  </p>
+<p>7 コントラポスト: 昨夏から秋に京成杯AH3着0.1秒差、巴賞2着0.1秒差と実績は高い。ただし半年近い休み明けで、近走実績の鮮度を重く割り引く。  </p>
+<p>12 ヤマニンサンパ: 大阪城S4着1:44.5差0.5秒は悪くないが、京都金杯15着が重い。近5走で強調できる好走が1回だけで、安定感は不足。  </p>
+<p>4 リラエンブレム: 大阪城S5着1:44.6差0.6秒で復帰戦としては及第点。ただ、近2走とも重賞・リステッドで勝ち負けまでは届いておらず、実績の量が足りない。  </p>
+<p>2 タシット: 近5走で最高でも5着、6着が中心。福島民報杯6着0.4秒差は悪くないが、勝ち負けに迫るだけの近走実績は不足。  </p>
+<p>13 マルチャン: 近5走すべて着外で、直近2走も3勝クラスで13着、14着。オープンで上位を争う実績データが見当たらない。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>1番 レガーロデルシエロ: 16%</li>
+<li>10番 ディマイザキッド: 14%</li>
+<li>9番 ダノンエアズロック: 13%</li>
+<li>3番 カネラフィーナ: 11%</li>
+<li>11番 トーセンリョウ: 9%</li>
+<li>8番 バレエマスター: 8%</li>
+<li>6番 メリオーレム: 7%</li>
+<li>5番 ナムラエイハブ: 6%</li>
+<li>7番 コントラポスト: 5%</li>
+<li>12番 ヤマニンサンパ: 4%</li>
+<li>4番 リラエンブレム: 4%</li>
+<li>2番 タシット: 2%</li>
+<li>13番 マルチャン: 1%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>9 ダノンエアズロック: モーリス×Fastnet Rockは東京芝1800m良の高速決着に合う配合で、マイル寄りの切れと1800mの持続力が両立。血統的には今回の条件が最も噛み合う。  </p>
+<p>1 レガーロデルシエロ: ロードカナロアの速力に母父マンハッタンカフェの中距離の奥行きが加わり、東京1800mの上がり勝負に適性が高い。血統面の完成度はかなり高い。  </p>
+<p>3 カネラフィーナ: Frankel産駒らしい底力と持続力があり、1800m自体は守備範囲。母系もパワー寄りだが、良馬場の東京でも能力で対応可能な血統構成。  </p>
+<p>10 ディマイザキッド: ディーマジェスティ×ファスリエフで、父由来の中距離資質に母系のスピードが補完される形。東京1800mの瞬発戦でも大きくは崩れにくい。  </p>
+<p>7 コントラポスト: ルーラーシップ×フジキセキは東京芝1800mで評価しやすい配合。持続力型だが母父の機動力で鈍さが緩和され、直線の長いコースで浮上余地がある。  </p>
+<p>11 トーセンリョウ: ディープインパクト×Hawk Wingで、東京向きの切れを出しやすい血統。1800mの良馬場は合うが、絶対的なスピードの質では上位数頭にわずかに譲る。  </p>
+<p>4 リラエンブレム: キズナ×Galileoは能力の芯が強く、本質は中距離寄り。東京1800mでもこなせるが、良馬場の高速瞬発戦ではやや持続力寄りに出る懸念がある。  </p>
+<p>6 メリオーレム: シュヴァルグラン産駒で本質はやや長めだが、母父Starspangledbannerでスピード補完はある。1800mへの対応力はあるものの、鋭さ勝負では上位に一歩譲る。  </p>
+<p>5 ナムラエイハブ: リアルスティール×エンパイアメーカーで、1800m自体は守備範囲でも血統の芯はパワーと持続力。東京の軽い良馬場で瞬発戦に寄ると強調しにくい。  </p>
+<p>12 ヤマニンサンパ: ディープインパクトに母父スウェプトオーヴァーボードで、1800mの良馬場に合うスピード型。年齢面は別として、血統だけなら大きく嫌う配合ではない。  </p>
+<p>8 バレエマスター: スピルバーグ×スウェプトオーヴァーボードで、ハマれば差し脚は使える血統。東京1800mも悪くないが、総合的には2000m寄りのほうが血統の輪郭は出やすい。  </p>
+<p>2 タシット: ブラックタイド×ブライアンズタイムは機動力より持久力とパワーが前に出る。東京芝1800m良の切れ比べでは血統面の後押しが弱い。  </p>
+<p>13 マルチャン: ラブリーデイ×スウェプトオーヴァーボードで距離対応は可能だが、血統的な強調材料は乏しい。東京1800mの上級条件で一変を裏付ける配合ではない。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>9番 ダノンエアズロック: 14%</li>
+<li>1番 レガーロデルシエロ: 13%</li>
+<li>3番 カネラフィーナ: 12%</li>
+<li>10番 ディマイザキッド: 10%</li>
+<li>7番 コントラポスト: 9%</li>
+<li>11番 トーセンリョウ: 9%</li>
+<li>4番 リラエンブレム: 7%</li>
+<li>6番 メリオーレム: 7%</li>
+<li>5番 ナムラエイハブ: 6%</li>
+<li>12番 ヤマニンサンパ: 5%</li>
+<li>8番 バレエマスター: 4%</li>
+<li>2番 タシット: 3%</li>
+<li>13番 マルチャン: 1%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>9 ダノンエアズロック: 5番を見ながら外2番手でも好位でも運べるのが強み。東京芝1800mの良で平均ややスロー想定なら、直線入口で前を射程に入れるこの馬の形が最も作りやすい。  </p>
+<p>3 カネラフィーナ: 3番枠で好位の内に収まりやすく、5番9番の直後で脚を溜める絵が描きやすい。前が飛ばし過ぎない流れなら、4角でロスなく進出して直線で抜け出す形がある。  </p>
+<p>5 ナムラエイハブ: 先手候補の筆頭で、自分の形には持ち込みやすい。ただし今回は単騎で楽逃げまでの恩恵は薄く、9番や2番に目標にされる分だけ頭固定までは押し上げにくい。  </p>
+<p>1 レガーロデルシエロ: 内枠で脚を温存できれば直線の差し脚は通用する。ただし後方寄りになりやすく、東京でも今回のペースでは差し遅れと進路待ちのリスクが残る。  </p>
+<p>10 ディマイザキッド: 差し脚の質は高く、直線勝負なら圏内。ただ、この組み合わせは前が総崩れするほど流れ切る公算が大きくなく、勝ち切りにはもう一段ペースの後押しが欲しい。  </p>
+<p>2 タシット: 2番枠から好位インを取れる展開利は依然ある。5番が逃げて9番が続き、その直後の最短距離を回れる可能性は高いが、直線で決め手比べになると上位馬に見劣る。  </p>
+<p>6 メリオーレム: 中団で脚を溜めて外目から長く使う形。ペースが緩み過ぎなければ差し込めるが、位置取りが後ろ過ぎると東京1800mでは届き切らない可能性もある。  </p>
+<p>11 トーセンリョウ: 後方待機から末脚勝負の形。去年の同条件でも脚は使えているが、今年の並びだと前受け勢がしぶとく、届いても連下までのイメージが強い。  </p>
+<p>4 リラエンブレム: 好位差しに回れる枠と並びは悪くない。3番の後ろあたりで運べれば形にはなるが、現状は展開利だけで上位評価へ押し上げるほどの優位までは感じない。  </p>
+<p>7 コントラポスト: 中団差しの形で流れ待ち。休み明けで序盤から流れに乗り切れるかが鍵で、今回は位置取り面の明確な利が薄い。  </p>
+<p>12 ヤマニンサンパ: 外枠から無理せず脚を溜める形だろうが、良馬場の東京1800mでこの頭数だと外差し一気の条件にはなりにくい。展開の助けがかなり必要。  </p>
+<p>8 バレエマスター: 末脚型で、道中は後ろからになる公算が大きい。新潟大賞典のように上がり勝負へ寄れば怖さはあるが、今回は前の隊列が極端に崩れる想定までは置きづらい。  </p>
+<p>13 マルチャン: 外枠から前へ行っても脚を使わされ、控えても位置が悪くなりやすい。今回の並びでは展開面の恩恵を見つけにくい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>9番 ダノンエアズロック: 15%</li>
+<li>3番 カネラフィーナ: 13%</li>
+<li>5番 ナムラエイハブ: 11%</li>
+<li>1番 レガーロデルシエロ: 10%</li>
+<li>10番 ディマイザキッド: 10%</li>
+<li>2番 タシット: 8%</li>
+<li>6番 メリオーレム: 8%</li>
+<li>11番 トーセンリョウ: 8%</li>
+<li>4番 リラエンブレム: 6%</li>
+<li>7番 コントラポスト: 4%</li>
+<li>12番 ヤマニンサンパ: 3%</li>
+<li>8番 バレエマスター: 3%</li>
+<li>13番 マルチャン: 1%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>9 ダノンエアズロック: レーン×堀の組み合わせはこのメンバーでは陣営力が最上位。東京芝での仕上げ精度と、マイルから1800mへ延ばしても運用しやすい厩舎力を評価する。  </p>
+<p>3 カネラフィーナ: ルメール×手塚は位置取りの融通が利き、取りこぼしが少ない陣営。牝馬重賞からの臨戦でも管理面の不安が小さく、安定して上位圏。  </p>
+<p>10 ディマイザキッド: 清水英克厩舎で派手さはないが、近走の格上戦起用は一貫しており、今回はM.ディー起用で勝負度合いを感じる。東京の決め手勝負も騎手運用的に合う。  </p>
+<p>6 メリオーレム: 友道厩舎の調整力はここでも上位。石川裕紀人は絶対値では最上位ではないが、馬のリズムを崩さず末脚を引き出す運用は合う。  </p>
+<p>1 レガーロデルシエロ: 栗田徹厩舎の続戦ローテは素直で、大野も溜める競馬なら噛み合う。騎手の勝ち切り信頼では上位陣に譲るが、陣営全体での安定感はある。  </p>
+<p>11 トーセンリョウ: 加藤征弘厩舎は東京芝の差し運用で大きく崩しにくい。ゴンサルベスは未知数を残すが、馬の脚質との整合性は悪くない。  </p>
+<p>4 リラエンブレム: 戸崎×武幸四郎は見栄えの良い組み合わせだが、今回はキャリアの浅さと使い方の慎重さが残る。陣営面だけで強く押し切るほどの優位はない。  </p>
+<p>5 ナムラエイハブ: 原×長谷川浩大は先行策を取りやすい点は良いが、東京1800mで最後まで押し切る陣営力比較ではやや見劣る。展開利はあっても騎手・厩舎の上積みは限定的。  </p>
+<p>2 タシット: 三浦の内枠先行はこの条件で一定の再現性がある。中川公成厩舎も堅実だが、人気薄を頭まで持ってくる陣営パンチでは上位に及ばない。  </p>
+<p>7 コントラポスト: 津村×菊沢隆徳は中山やローカル寄りのイメージが強く、東京1800mのオープンで陣営優位を取りにくい。休み明けの運用面も強調材料不足。  </p>
+<p>12 ヤマニンサンパ: 斉藤崇史厩舎は高水準だが、亀田起用で東京の切れ勝負にどこまで対応できるかが課題。厩舎力だけで大きくは買いづらい。  </p>
+<p>8 バレエマスター: 菊沢一樹×梅田智之は新潟や条件替わりでの一撃感はあっても、東京1800mのオープンで陣営比較の後押しは弱い。前走好走でも上積みは限定的。  </p>
+<p>13 マルチャン: 丸田×武市康男は条件戦ならともかく、この相手では陣営の押し上げ材料が乏しい。近走内容も踏まえると強調しづらい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>9番 ダノンエアズロック: 16%</li>
+<li>3番 カネラフィーナ: 13%</li>
+<li>10番 ディマイザキッド: 10%</li>
+<li>6番 メリオーレム: 10%</li>
+<li>1番 レガーロデルシエロ: 9%</li>
+<li>11番 トーセンリョウ: 8%</li>
+<li>4番 リラエンブレム: 8%</li>
+<li>5番 ナムラエイハブ: 7%</li>
+<li>2番 タシット: 6%</li>
+<li>7番 コントラポスト: 5%</li>
+<li>12番 ヤマニンサンパ: 4%</li>
+<li>8番 バレエマスター: 3%</li>
+<li>13番 マルチャン: 1%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>1 レガーロデルシエロ: 512kgは前走と同じで、近5走の516→518→516→512→512という推移からも完全に安定。中4週強の間隔も理想的で、調教も1F11.1なら仕上がり面の信頼度は最上位。</p>
+<p>3 カネラフィーナ: 482kgは前走484kgから-2kgで、478～484kgの好走レンジ内。中7週8分ほどの間隔で立て直しやすく、牝馬で56kgも許容範囲。微減は叩いた上積みとして好感。</p>
+<p>9 ダノンエアズロック: 506kg据え置きで近走の506～512kgレンジを維持。3か月ぶりは課題だが、馬格があって57kgなら負担は軽く、調教の仕上がり良好も後押し。休み明けとしてはかなり整っている。</p>
+<p>6 メリオーレム: 504kgから-8kgの496kgは一見減り幅が大きいが、勝ち鞍時494kgに近づく絞り込み。中2週9日で叩き2走目、調教も余裕残しなら上昇カーブと見る。</p>
+<p>11 トーセンリョウ: 460kgは前走と同じで、456～462kgの安定帯に収まる。中4週で整えやすく、7歳でも57kgなら負担は重くない。派手さはないが体調面の崩れが少ない。</p>
+<p>5 ナムラエイハブ: 514kgは前走516kgから-2kgで、近走の516～520kg近辺から大きく外れない。中2週台の続戦は少し詰まるが、馬格があるので57kgはこなせる。強め追いで維持は利く。</p>
+<p>10 ディマイザキッド: 460kgから+10kgの470kg。小柄すぎる馬ではないので極端な割引までは不要だが、3か月ぶりでの二桁増は太め残りか戻し切りかの見極めが難しい。仕上がれば足りるが、状態面は上位より一枚落ちる。</p>
+<p>2 タシット: 476kg据え置きで、470～482kgの範囲に収まり推移は素直。中8週強で疲労は抜けやすく、57kgも問題ない。大きな上積みまでは見込みにくいが、体調面では崩れていない。</p>
+<p>4 リラエンブレム: 500kg据え置きで前走の+16kgをそのまま維持。数字だけ見れば太め残りの警戒は残るが、3か月ぶりを一度叩いて同水準なら馬体が成長分で定着した可能性もある。判断は難しく、中位評価。</p>
+<p>7 コントラポスト: 478kgから-8kgの470kgで、休み明け初戦としてはやや絞れている。ただし半年近いブランクに58kg、しかも470kg台の馬格なら1kg増でも重く、仕上がりに注文が付く。</p>
+<p>12 ヤマニンサンパ: 486kgから-6kgの480kg。長休明けで絞ってきた形自体は悪くないが、8歳で58kg、しかも前走比では2kg分で約1馬身の負担感。調教気配は悪くないが、上積みより現状維持の印象。</p>
+<p>8 バレエマスター: 472kgから+10kgの482kgで、近5走が492→476→474→472→482と乱高下。前走好走後の二桁増は反動か緩みかの懸念があり、7歳58kgも楽ではない。デキ安定コメントでも強くは買いにくい。</p>
+<p>13 マルチャン: 488kgから-10kgの478kg。近5走が472→488→482→476→488→478と大きく振れ、今回は絞れたというより消耗のリスクもある。中5週で立て直しても、攻めの評価から強調しづらい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>1番 レガーロデルシエロ: 14.5%</li>
+<li>3番 カネラフィーナ: 13.5%</li>
+<li>9番 ダノンエアズロック: 11.5%</li>
+<li>6番 メリオーレム: 10.5%</li>
+<li>11番 トーセンリョウ: 9.0%</li>
+<li>5番 ナムラエイハブ: 8.5%</li>
+<li>10番 ディマイザキッド: 7.5%</li>
+<li>2番 タシット: 6.5%</li>
+<li>4番 リラエンブレム: 5.5%</li>
+<li>7番 コントラポスト: 5.0%</li>
+<li>12番 ヤマニンサンパ: 4.5%</li>
+<li>8番 バレエマスター: 2.5%</li>
+<li>13番 マルチャン: 1.0%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<p><strong>敗因シナリオ</strong></p>
+
+<p>最多支持馬は <code>9 ダノンエアズロック</code>。飛ぶならまず、1600m寄りの追走力が評価され過ぎて東京1800mの直線勝負で最後に甘くなる形がある。実際に近走の高指数はマイル中心で、1800mでは昨年ジューンS5着、毎日王冠4着と「善戦止まり」の履歴が残る。次に、前受けして器用に運べる半面、東京1800mでペースが緩み過ぎると後半の瞬発力比べで差し勢に切れ負けするリスク。さらに今回はレーン騎乗で人気が上乗せされやすく、能力以上に“勝ち切り前提”で買われるなら期待値面では危うい。</p>
+
+<p>もう一つの敗因は、陣営・鞍上・血統のブランドで不安が薄められている点だ。近走は崩れていないが、オープンで相手関係が軽くなったから勝ち負け必至とまでは言えない。勝ち切るには位置取り、仕掛け、直線の進路まで噛み合う必要があり、少しでも流れがズレると2,3着に収まるシナリオは十分ある。</p>
+
+<p><strong>全馬評価（好走確信度の高い順）</strong></p>
+
+<p>10 ディマイザキッド: Round1で再評価した論点はまだ有効で、GIIで大きく崩れない地力はこの相手なら上位。ただし決め手依存で取りこぼしもあるため、絶対視ではなく「人気馬の隙を突く最上位」。  </p>
+<p>1 レガーロデルシエロ: エプソムC3着は素直に高評価だが、後方一気の再現性には疑問も残る。それでも東京1800mの末脚適性は明確で、平均よりまだ少し過小評価。  </p>
+<p>11 トーセンリョウ: Round1で拾った東京実績馬で、昨年の同条件実績もある。7歳で頭打ち視されがちだが、差し比べに寄ればまだ圏内で、平均8.5%はむしろ控えめ。  </p>
+<p>9 ダノンエアズロック: 能力上位は認めるが、平均1位13.6%は勝ち切り期待が先行し過ぎ。マイル実績の横滑り評価になっており、批判者としては一段下げる。  </p>
+<p>3 カネラフィーナ: Round1同様に牝馬限定寄りの評価過多を警戒。中山金杯4着は立派だが、東京1800mの牡馬混合OPで1着固定するほどの裏付けはまだ薄い。  </p>
+<p>6 メリオーレム: 相手なりに走れるが、都大路S4着からの押し上げがやや過剰にも見える。安定感はある一方で勝ち切る絵は限定的で、連下候補の域。  </p>
+<p>7 コントラポスト: Round1で挙げた人気落ちの妙味は今回もある。休み明けと58kgは楽でないが、昨年のマイル〜1800m実績なら軽視は危険で、平均5.2%は低い。  </p>
+<p>12 ヤマニンサンパ: 高齢で人気しにくいが、差し脚の質だけならまだ通用する。京都金杯大敗で嫌われやすい分、東京1800mの末脚勝負なら穴の余地は残る。  </p>
+<p>5 ナムラエイハブ: 先行してしぶといが、近2走は押し切れず内容も平凡。展開利があれば残るが、マークされる形だと人気馬をまとめて負かす迫力まではどうか。  </p>
+<p>8 バレエマスター: 新潟大賞典2着だけ見ると怖いが、7歳で戦績のムラも大きい。今回も嵌まれば差してくる一方、1800m替わりで追走の忙しさが出る懸念がある。  </p>
+<p>4 リラエンブレム: シンザン記念勝ちの肩書で買われるなら危険。古馬相手の1800mではまだ実績不足で、少頭数キャリアの浅さもあって信頼しにくい。  </p>
+<p>2 タシット: 先行しても差してもワンパンチ足りず、近走内容も強調しづらい。相手弱化で急浮上というより、展開待ちの押さえまで。  </p>
+<p>13 マルチャン: 近走の3勝クラスで足りておらず、ここでの上昇根拠は乏しい。大幅な人気薄でも、批判的に見て積極材料が少ない。</p>
+
+<p><strong>好走確信度配分</strong></p>
+
+<li>10番 ディマイザキッド: 13%</li>
+<li>1番 レガーロデルシエロ: 12%</li>
+<li>11番 トーセンリョウ: 11%</li>
+<li>9番 ダノンエアズロック: 10%</li>
+<li>3番 カネラフィーナ: 9%</li>
+<li>6番 メリオーレム: 8%</li>
+<li>7番 コントラポスト: 8%</li>
+<li>12番 ヤマニンサンパ: 7%</li>
+<li>5番 ナムラエイハブ: 7%</li>
+<li>8番 バレエマスター: 6%</li>
+<li>4番 リラエンブレム: 4%</li>
+<li>2番 タシット: 3%</li>
+<li>13番 マルチャン: 2%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round1で指摘した「3カネラフィーナと9ダノンエアズロックの過信危険」はなお有効で、Round5でも両馬が上位人気に寄っている点はやはり気になる。一方で、当時再評価した10ディマイザキッド、11トーセンリョウは平均値でも上がってきており、批判の一部は反映された。ただ、7コントラポストと12ヤマニンサンパはまだ軽視気味。全体としては一本被りの信頼馬不在で、実績馬の取りこぼしと差し馬の台頭を前提に、勝ち切り確率を分散して見るべき混戦と判断する。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>9</td><td class="left horse-name">ダノンエアズロック</td><td class="trust-mid">13.2%</td><td>13.0</td><td>14.5</td><td>15.0</td><td>15.5</td><td>11.2</td><td>11.0</td></tr><tr><td>2</td><td>1</td><td class="left horse-name">レガーロデルシエロ</td><td class="trust-mid">12.4%</td><td>16.0</td><td>13.0</td><td>9.0</td><td>9.5</td><td>13.8</td><td>12.5</td></tr><tr><td>3</td><td>3</td><td class="left horse-name">カネラフィーナ</td><td class="trust-mid">11.6%</td><td>10.5</td><td>11.0</td><td>13.0</td><td>12.5</td><td>12.8</td><td>9.5</td></tr><tr><td>4</td><td>10</td><td class="left horse-name">ディマイザキッド</td><td class="trust-mid">10.8%</td><td>14.0</td><td>10.0</td><td>9.0</td><td>10.5</td><td>8.2</td><td>14.0</td></tr><tr><td>5</td><td>11</td><td class="left horse-name">トーセンリョウ</td><td class="trust-mid">8.8%</td><td>9.0</td><td>9.5</td><td>7.0</td><td>8.5</td><td>8.5</td><td>10.5</td></tr><tr><td>6</td><td>6</td><td class="left horse-name">メリオーレム</td><td class="trust-mid">8.6%</td><td>7.5</td><td>7.5</td><td>8.5</td><td>9.0</td><td>10.2</td><td>8.0</td></tr><tr><td>7</td><td>5</td><td class="left horse-name">ナムラエイハブ</td><td class="trust-low">7.7%</td><td>6.0</td><td>6.0</td><td>11.0</td><td>7.5</td><td>8.2</td><td>7.0</td></tr><tr><td>8</td><td>4</td><td class="left horse-name">リラエンブレム</td><td class="trust-low">6.2%</td><td>4.0</td><td>8.0</td><td>8.0</td><td>7.5</td><td>5.8</td><td>4.5</td></tr><tr><td>9</td><td>7</td><td class="left horse-name">コントラポスト</td><td class="trust-low">5.7%</td><td>4.5</td><td>8.0</td><td>4.5</td><td>5.0</td><td>4.5</td><td>8.0</td></tr><tr><td>10</td><td>2</td><td class="left horse-name">タシット</td><td class="trust-low">4.9%</td><td>2.0</td><td>3.5</td><td>8.5</td><td>5.5</td><td>6.8</td><td>2.5</td></tr><tr><td>11</td><td>12</td><td class="left horse-name">ヤマニンサンパ</td><td class="trust-low">4.7%</td><td>4.5</td><td>5.0</td><td>3.0</td><td>4.5</td><td>4.8</td><td>6.5</td></tr><tr><td>12</td><td>8</td><td class="left horse-name">バレエマスター</td><td class="trust-low">4.0%</td><td>8.0</td><td>3.0</td><td>2.5</td><td>3.0</td><td>3.2</td><td>4.5</td></tr><tr><td>13</td><td>13</td><td class="left horse-name">マルチャン</td><td class="trust-low">1.4%</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.5</td><td>2.0</td><td>1.5</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>9</td><td class="left horse-name">ダノンエアズロック</td><td>13.2%</td><td>4.9</td><td>2</td><td class="ev-low">0.65</td></tr><tr><td>2</td><td>1</td><td class="left horse-name">レガーロデルシエロ</td><td>12.4%</td><td>6.9</td><td>4</td><td class="ev-low">0.86</td></tr><tr><td>3</td><td>3</td><td class="left horse-name">カネラフィーナ</td><td>11.6%</td><td>4.1</td><td>1</td><td class="ev-low">0.48</td></tr><tr><td>4</td><td>10</td><td class="left horse-name">ディマイザキッド</td><td>10.8%</td><td>5.2</td><td>3</td><td class="ev-low">0.56</td></tr><tr><td>5</td><td>11</td><td class="left horse-name">トーセンリョウ</td><td>8.8%</td><td>9.4</td><td>6</td><td class="ev-low">0.83</td></tr><tr><td>6</td><td>6</td><td class="left horse-name">メリオーレム</td><td>8.6%</td><td>21.0</td><td>9</td><td class="ev-mid">1.81</td></tr><tr><td>7</td><td>5</td><td class="left horse-name">ナムラエイハブ</td><td>7.7%</td><td>9.1</td><td>5</td><td class="ev-low">0.70</td></tr><tr><td>8</td><td>4</td><td class="left horse-name">リラエンブレム</td><td>6.2%</td><td>12.1</td><td>7</td><td class="ev-low">0.76</td></tr><tr><td>9</td><td>7</td><td class="left horse-name">コントラポスト</td><td>5.7%</td><td>18.6</td><td>8</td><td class="ev-mid">1.05</td></tr><tr><td>10</td><td>2</td><td class="left horse-name">タシット</td><td>4.9%</td><td>101.8</td><td>12</td><td class="ev-high">5.03</td></tr><tr><td>11</td><td>12</td><td class="left horse-name">ヤマニンサンパ</td><td>4.7%</td><td>52.0</td><td>11</td><td class="ev-high">2.45</td></tr><tr><td>12</td><td>8</td><td class="left horse-name">バレエマスター</td><td>4.0%</td><td>30.6</td><td>10</td><td class="ev-mid">1.22</td></tr><tr><td>13</td><td>13</td><td class="left horse-name">マルチャン</td><td>1.4%</td><td>105.7</td><td>13</td><td class="ev-mid">1.46</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">9 ダノンエアズロック</td><td>13.2%</td><td>4.9</td><td class="ev-low">0.54</td></tr><tr><td>複勝</td><td class="left">9 ダノンエアズロック</td><td>37.8%</td><td>1.7</td><td class="ev-low">0.59</td></tr><tr><td>馬連</td><td class="left">1 レガーロデルシエロ-9 ダノンエアズロック</td><td>3.8%</td><td>13.1</td><td class="ev-low">0.40</td></tr><tr><td>ワイド</td><td class="left">1 レガーロデルシエロ-9 ダノンエアズロック</td><td>10.7%</td><td>5.3</td><td class="ev-low">0.48</td></tr><tr><td>馬単</td><td class="left">9 ダノンエアズロック→1 レガーロデルシエロ</td><td>1.9%</td><td>21.3</td><td class="ev-low">0.33</td></tr><tr><td>3連複</td><td class="left">1 レガーロデルシエロ-3 カネラフィーナ-9 ダノンエアズロック</td><td>1.8%</td><td>16.8</td><td class="ev-low">0.24</td></tr><tr><td>3連単</td><td class="left">9 ダノンエアズロック→1 レガーロデルシエロ→3 カネラフィーナ</td><td>0.3%</td><td>74.8</td><td class="ev-low">0.18</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>
