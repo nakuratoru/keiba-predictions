@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日野特別 2026/06/13 TOKYO 9R (06/13 13:43 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>日野特別 2026/06/13 TOKYO 9R (06/13 13:43 予想)</h1>
+  <div class="meta">ダート2100m（左） | 稍重 | 14頭立て | 3回 東京 3日目 サラ系3歳以上 2勝クラス （混合）［指定］ 定量 14頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">9. ビービーアジャイル</div>
+      <div class="pick-jockey">C.ルメール / 中舘 英二</div>
+    </div>
+    <div class="pick-prob">13.5%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">14. エイカイソウル</div>
+      <div class="pick-jockey">戸崎 圭太 / 藤原 英昭</div>
+    </div>
+    <div class="pick-prob">13.2%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">7. インペリアルライン</div>
+      <div class="pick-jockey">木幡 巧也 / 中舘 英二</div>
+    </div>
+    <div class="pick-prob">11.2%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">14頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">チムニートップス</td><td>牡4</td><td>58</td><td>武藤 雅</td><td>池添 学</td><td>Tapit</td><td>City Zip</td><td>490(-10)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">コズミックダンサー</td><td>牡4</td><td>58</td><td>M.ディー</td><td>橋田 宜長</td><td>アドマイヤマーズ</td><td>Medaglia d&#x27;Oro</td><td>492(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">タッチャブル</td><td>牡6</td><td>58</td><td>亀田 温心</td><td>中村 直也</td><td>リアルスティール</td><td>ルーラーシップ</td><td>518(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>4</td><td class="left horse-name">トクシースタローン</td><td>牡7</td><td>58</td><td>原 優介</td><td>辻 哲英</td><td>ホッコータルマエ</td><td>シンボリクリスエス</td><td>514(-2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>5</td><td class="left horse-name">サイモンルモンド</td><td>せん9</td><td>58</td><td>野中 悠太郎</td><td>的場 均</td><td>ダノンシャンティ</td><td>サクラローレル</td><td>460(+6)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>6</td><td class="left horse-name">シゲルカミカゼ</td><td>牡6</td><td>58</td><td>大野 拓弥</td><td>松山 将樹</td><td>ドレフォン</td><td>サウスヴィグラス</td><td>516(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>7</td><td class="left horse-name">インペリアルライン</td><td>せん7</td><td>58</td><td>木幡 巧也</td><td>中舘 英二</td><td>ドゥラメンテ</td><td>Giant&#x27;s Causeway</td><td>486(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>8</td><td class="left horse-name">キャストロププ</td><td>牡4</td><td>58</td><td>F.ゴンサルベス</td><td>尾形 和幸</td><td>ルヴァンスレーヴ</td><td>トワイニング</td><td>506(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>9</td><td class="left horse-name">ビービーアジャイル</td><td>牡3</td><td>55</td><td>C.ルメール</td><td>中舘 英二</td><td>サンダースノー</td><td>ゴールドアリュール</td><td>488(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>10</td><td class="left horse-name">トレインザマインド</td><td>せん4</td><td>58</td><td>津村 明秀</td><td>中舘 英二</td><td>マインドユアビスケッツ</td><td>フジキセキ</td><td>542(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>11</td><td class="left horse-name">タガノマルアフ</td><td>牡4</td><td>58</td><td>石川 裕紀人</td><td>角田 晃一</td><td>サトノアラジン</td><td>アイルハヴアナザー</td><td>472(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>12</td><td class="left horse-name">デルマタモン</td><td>牡8</td><td>58</td><td>北村 宏司</td><td>勢司 和浩</td><td>オンファイア</td><td>キングカメハメハ</td><td>506(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>13</td><td class="left horse-name">セイントエルモズ</td><td>牡3</td><td>55</td><td>菊沢 一樹</td><td>小島 茂之</td><td>サンダースノー</td><td>ディープスカイ</td><td>542(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>14</td><td class="left horse-name">エイカイソウル</td><td>牡5</td><td>58</td><td>戸崎 圭太</td><td>藤原 英昭</td><td>ホッコータルマエ</td><td>ゼンノロブロイ</td><td>492(+2)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>9</td><td class="left horse-name">ビービーアジャイル</td><td style="font-weight:700;background:#F0F7FF;">1 (14.1)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.2)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.0)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.5)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.7)</td></tr><tr><td>14</td><td class="left horse-name">エイカイソウル</td><td style="background:#F0F7FF;">2 (11.6)</td><td style="background:#F0F7FF;">2 (12.1)</td><td style="background:#F0F7FF;">2 (12.6)</td><td style="background:#F0F7FF;">2 (12.6)</td><td style="background:#F0F7FF;">2 (12.9)</td></tr><tr><td>7</td><td class="left horse-name">インペリアルライン</td><td style="background:#F0F7FF;">4 (10.2)</td><td style="background:#F0F7FF;">4 (10.7)</td><td style="background:#F0F7FF;">4 (10.9)</td><td style="background:#F0F7FF;">3 (11.1)</td><td style="background:#F0F7FF;">3 (11.1)</td></tr><tr><td>6</td><td class="left horse-name">シゲルカミカゼ</td><td style="background:#F0F7FF;">3 (11.1)</td><td style="background:#F0F7FF;">3 (10.8)</td><td style="background:#F0F7FF;">3 (10.9)</td><td style="background:#F0F7FF;">4 (10.9)</td><td style="background:#F0F7FF;">4 (10.8)</td></tr><tr><td>2</td><td class="left horse-name">コズミックダンサー</td><td style="background:#F0F7FF;">5 (8.8)</td><td style="background:#F0F7FF;">5 (9.0)</td><td style="background:#F0F7FF;">5 (9.7)</td><td style="background:#F0F7FF;">5 (10.0)</td><td style="background:#F0F7FF;">5 (10.3)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>9 ビービーアジャイル: 前走が東京ダ2100mで2:12.1、上がり36.6、指数84.9の完勝。現メンバーでは同条件実績が最も明快で、実績面の裏付けが一枚上だ。  </p>
+<p>7 インペリアルライン: 現級の東京ダ2100mで2着2回、5着1回、着差は0.2秒、0.3秒、0.3秒。上がり36.1-36.8-36.4も安定しており、最も崩れにくい実績馬。  </p>
+<p>6 シゲルカミカゼ: 近2走の東京ダ2100mが3着、2着でいずれも0.2秒差。前走2:12.0、前々走2:11.7で指数82.0もあり、近走内容はかなり強い。  </p>
+<p>14 エイカイソウル: 前走10着は不満だが、2走前に2勝クラス1900mで2着、指数82.0、3走前も0.3秒差3着。近走の現級実績は十分で巻き返し圏。  </p>
+<p>2 コズミックダンサー: 近2走のダ2400mで2着、1着。前走は1.0秒差勝ちで指数82.1と優秀。距離短縮でも長距離ダートの先行実績は信頼できる。  </p>
+<p>13 セイントエルモズ: 1勝クラスを1:53.4、指数83.4で勝ち、前走ユニコーンSでも10着ながら指数76.3。まだサンプルは少ないが、近走実績の質は通用圏。  </p>
+<p>10 トレインザマインド: 1勝クラス勝ち直後で、2走前の東京ダ2100mは0.3秒差3着。ただし指数70.4、71.6と数字面では上位勢にやや見劣る。  </p>
+<p>8 キャストロププ: 現級では2400mで5着、6着、2000mで11着。大崩れは少ないが、勝ち負け級の時計・指数までは示せていない。  </p>
+<p>4 トクシースタローン: 東京ダ2100mで3着、9着、2400mで5着。現級でそこそこ走れているが、善戦止まりが続いており強調しづらい。  </p>
+<p>1 チムニートップス: 1勝クラス勝ちはあるが、前走2勝クラス2000mで10着、1.6秒差。現級での決め手不足が数字にも出ている。  </p>
+<p>3 タッチャブル: 現級2100mで9着、8着、5着と詰め切れず、近5走で馬券圏なし。指数はたまに出るが、結果が伴っていない。  </p>
+<p>11 タガノマルアフ: 近3走の2勝クラスが14着、12着、11着。特に東京ダ2100mで3.7秒差14着があり、実績面では厳しい。  </p>
+<p>12 デルマタモン: 近5走すべて着外で、前走東京ダ2100mも13着、3.1秒差。近走内容からは好走材料が乏しい。  </p>
+<p>5 サイモンルモンド: 近5走で最も良くて8着、近2走は13着、14着。指数も低位で、実績面からは強く買えない。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>9番 ビービーアジャイル: 15%</li>
+<li>7番 インペリアルライン: 14%</li>
+<li>6番 シゲルカミカゼ: 13%</li>
+<li>14番 エイカイソウル: 12%</li>
+<li>2番 コズミックダンサー: 12%</li>
+<li>13番 セイントエルモズ: 8%</li>
+<li>10番 トレインザマインド: 8%</li>
+<li>8番 キャストロププ: 5%</li>
+<li>4番 トクシースタローン: 5%</li>
+<li>1番 チムニートップス: 3%</li>
+<li>3番 タッチャブル: 2%</li>
+<li>11番 タガノマルアフ: 1%</li>
+<li>12番 デルマタモン: 1%</li>
+<li>5番 サイモンルモンド: 1%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>14 エイカイソウル: ホッコータルマエ×ゼンノロブロイで、東京ダ2100mの持続力戦に最も噛み合う配合。父系のダート持久力に母父の中長距離底力が乗り、稍重でもパワー負けしにくい。  </p>
+<p>9 ビービーアジャイル: サンダースノー×ゴールドアリュールは中距離ダートの王道。父の持続力と母父の機動力があり、3歳でまだ上積みも見込める血統。  </p>
+<p>7 インペリアルライン: ドゥラメンテ×Giant&#x27;s Causewayで、スタミナと底力が濃い配合。東京ダ2100mの消耗戦に向く血で、直線の長いコースでも最後まで脚を使いやすい。  </p>
+<p>6 シゲルカミカゼ: ドレフォン×サウスヴィグラスでダート適性は非常に高い。やや1800m前後向きの印象はあるが、稍重でパワーが問われる形なら血統の強みが出る。  </p>
+<p>4 トクシースタローン: ホッコータルマエ×シンボリクリスエスはこの条件で軽視しづらいスタミナ型ダート配合。年齢面の上積みは乏しいが、条件適性そのものは高い。  </p>
+<p>13 セイントエルモズ: サンダースノー産駒で舞台適性は高いが、母父ディープスカイで9番ほど母系のダート長距離色は強くない。能力はあるが血統裏付けでは一枚下。  </p>
+<p>10 トレインザマインド: マインドユアビスケッツ×フジキセキでダート中距離の安定感がある。2100mも守備範囲だが、最上位勢ほどの長丁場向きの重厚さではない。  </p>
+<p>2 コズミックダンサー: アドマイヤマーズ産駒で父は本質的にマイル寄りだが、母父Medaglia d&#x27;Oroが強く補完。2400m実績からもスタミナは想像以上で、前走内容を踏まえ少し見直す。  </p>
+<p>8 キャストロププ: ルヴァンスレーヴ×トワイニングでダート適性と先行持続力はある。長めの距離もこなすが、母系の奥行きは上位のスタミナ型配合ほどではない。  </p>
+<p>1 チムニートップス: Tapit産駒でダート中距離適性自体はあるが、母父City Zipで全体像はややスピード寄り。東京2100m稍重の消耗戦で最後に甘くなる懸念が残る。  </p>
+<p>3 タッチャブル: リアルスティール×ルーラーシップで距離自体は保つが、芝由来のしなやかさが強く、ダート2100mのパワー持続戦ではもう一押し足りない印象。  </p>
+<p>11 タガノマルアフ: サトノアラジン×アイルハヴアナザーで、父系からはダート長距離で強く推しづらい。母父の補完はあるが、血統構成の芯は今回の条件向きではない。  </p>
+<p>12 デルマタモン: オンファイア×キングカメハメハで重厚さはあるが、血統的な強調材料は限定的。高齢でもあり、条件替わりで大きく浮上する絵は描きにくい。  </p>
+<p>5 サイモンルモンド: ダノンシャンティ×サクラローレルで、母系にスタミナはあるが父系が芝色優勢。ダート2100m稍重で積極評価できる血統背景ではない。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>14番 エイカイソウル: 15%</li>
+<li>9番 ビービーアジャイル: 14%</li>
+<li>7番 インペリアルライン: 11%</li>
+<li>6番 シゲルカミカゼ: 9%</li>
+<li>4番 トクシースタローン: 9%</li>
+<li>13番 セイントエルモズ: 8%</li>
+<li>10番 トレインザマインド: 8%</li>
+<li>2番 コズミックダンサー: 7%</li>
+<li>8番 キャストロププ: 7%</li>
+<li>1番 チムニートップス: 4%</li>
+<li>3番 タッチャブル: 4%</li>
+<li>11番 タガノマルアフ: 2%</li>
+<li>12番 デルマタモン: 1%</li>
+<li>5番 サイモンルモンド: 1%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>9 ビービーアジャイル: 2、6、8、14が前を作る中で中団外目から脚を溜めやすく、東京ダ2100mの長い直線で一番展開の恩恵を受けやすい。稍重でも差し遅れる形よりは、4角で射程に入れる流れを想定しやすい。  </p>
+<p>6 シゲルカミカゼ: 2の外か直後で運べる先行力があり、このメンバーなら隊列の核。前が極端に楽ではないが、潰れるほどでもない想定で、好位粘り込みの絵が描きやすい。  </p>
+<p>14 エイカイソウル: 8枠は課題だが、稍重で脚抜きが良くなるぶん外からでもリズム良く好位を取れれば怖い。2、6を見る位置で運び、直線で長く脚を使う形なら上位圏。  </p>
+<p>7 インペリアルライン: ペースが平均以上に流れれば最後に一番堅実に差してくる候補。ただし今回は前が総崩れになるほどではなく、勝ち切りにはもう一段流れの助けがほしい。  </p>
+<p>2 コズミックダンサー: 最内寄りから主張しやすく、逃げか番手でロスなく運べるのは大きい。昇級でも展開利は明確だが、後続に早めに来られると直線で甘くなる余地はある。  </p>
+<p>10 トレインザマインド: 中団から脚を使う形で流れには乗れそう。前がやり合えば浮上余地はあるが、自分から展開を作るタイプではなく、上位勢よりはワンテンポ待ち。  </p>
+<p>13 セイントエルモズ: 8枠で序盤の位置取りが難しく、外を回されるとロスが大きい。ただ、少し流れて持続戦になれば3歳馬らしい伸びしろで食い込む余地は残る。  </p>
+<p>8 キャストロププ: 外目の先行で立ち回る絵はあるが、2、6、14より楽な位置は取りにくい。早めに脚を使わされると直線で踏ん張り切れないリスクがある。  </p>
+<p>4 トクシースタローン: 後方待機から外目をじわじわ伸びる形か。流れが向けば差は詰めるが、自身で展開を好転させにくく、前残り気味の想定では押し上げまで。  </p>
+<p>1 チムニートップス: 内枠で好位インは取れそうだが、2や6ほど前受けの形が安定していない。ロスなく運べても直線での決め手勝負になると一枚落ちる。  </p>
+<p>3 タッチャブル: 後方からの競馬になりやすく、今回の想定ペースでは差し届く場面が限られる。道中でかなり流れてほしいタイプ。  </p>
+<p>11 タガノマルアフ: 外寄りから中団以降になると、運びに注文がつく。前が止まる展開待ちだが、そのシナリオ自体の確率が高くない。  </p>
+<p>12 デルマタモン: 追い込み一手で、東京2100mでも今回の隊列だと前との差を詰め切るには厳しい。外差し一辺倒の馬場にでもならないと展開待ち。  </p>
+<p>5 サイモンルモンド: 後方からで展開依存度が高く、今回は前が残るイメージのほうが強い。かなり特殊な消耗戦にでもならない限り浮上しづらい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>9番 ビービーアジャイル: 13%</li>
+<li>6番 シゲルカミカゼ: 12%</li>
+<li>14番 エイカイソウル: 11%</li>
+<li>7番 インペリアルライン: 10%</li>
+<li>2番 コズミックダンサー: 10%</li>
+<li>10番 トレインザマインド: 9%</li>
+<li>13番 セイントエルモズ: 8%</li>
+<li>8番 キャストロププ: 7%</li>
+<li>4番 トクシースタローン: 6%</li>
+<li>1番 チムニートップス: 5%</li>
+<li>3番 タッチャブル: 4%</li>
+<li>11番 タガノマルアフ: 2%</li>
+<li>12番 デルマタモン: 2%</li>
+<li>5番 サイモンルモンド: 1%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>9 ビービーアジャイル: ルメール騎手への乗り替わり継続は東京ダ2100mで最も強い陣営材料。中舘厩舎も同条件を使って結果を出した後の同舞台続戦で意図が明快で、55kgも含めて陣営面の再現性が最上位。  </p>
+<p>14 エイカイソウル: 戸崎圭太騎手×藤原英昭厩舎の総合力はここでも上位。前走1800mから1900m以上へ戻すローテは陣営の修正として筋が通っており、東京替わりでも鞍上の立て直し力を評価。  </p>
+<p>7 インペリアルライン: 木幡巧也騎手で派手さはないが、中舘厩舎が東京ダ2100mを継続して使い続けて近3走すべて好内容。条件選択の一貫性が高く、陣営の適性把握はかなり信頼できる。  </p>
+<p>6 シゲルカミカゼ: 大野騎手×松山将樹厩舎は大物感より安定感。近2走とも東京ダ2100mで上位に来ており、同条件連戦の厩舎判断は評価できるが、勝ち切り率では上位3頭に一歩譲る。  </p>
+<p>2 コズミックダンサー: 近2走で長距離ダートに照準を合わせて一変しており、橋田厩舎が適性を掴んだ可能性は高い。東京2100mへの短縮でも内枠先行は運びやすく、陣営面では前走を素直に評価してよい。  </p>
+<p>10 トレインザマインド: 中舘厩舎3頭出しの一角で、津村騎手との東京ダ2100m実績も悪くない。前走1勝クラス勝ち直後で勢いはあるが、厩舎内比較では9番と7番のほうが条件適性の裏付けが強い。  </p>
+<p>13 セイントエルモズ: 3歳馬で上積み余地はあるが、菊沢騎手×小島茂之厩舎の組み合わせは上位人気を押し切る陣営数字では見劣る。前走重賞挑戦の経験は買えるが、陣営面だけなら9番ほどの後押しはない。  </p>
+<p>8 キャストロププ: 尾形和幸厩舎が長距離ダート路線に固定してきた点は評価できる。F.ゴンサルベス騎手の一発は怖いが、東京2100mで勝ち切る陣営強度としてはやや中位まで。  </p>
+<p>4 トクシースタローン: 原優介騎手でロスなく運べれば圏内余地はあるが、辻厩舎のこの条件での押し上げ材料は限定的。東京ダ2100mで善戦止まりが続いており、陣営面でも強い上積みは見込みにくい。  </p>
+<p>1 チムニートップス: 池添学厩舎自体の地力はあるが、武藤雅騎手でこのクラスの東京長丁場ダートを勝ち切るイメージは上位勢より薄い。前走2勝クラス敗戦からの反転材料も陣営面では限定的。  </p>
+<p>3 タッチャブル: 亀田温心騎手×中村直也厩舎で大きく買えるコース巧者データは乏しい。使いつつの変わり身待ちの形で、陣営の強調材料は少ない。  </p>
+<p>11 タガノマルアフ: 石川裕紀人騎手は東京ダートで一定水準だが、角田晃一厩舎との今回条件で強気に押せる数字ではない。前走内容からも陣営面の押し上げは弱い。  </p>
+<p>12 デルマタモン: 北村宏司騎手の東京実績はあるものの、勢司厩舎の近走ローテと内容からは強調しづらい。高齢馬で変わり身待ちの色が濃い。  </p>
+<p>5 サイモンルモンド: 野中悠太郎騎手×的場均厩舎でこのメンバーを上回る陣営裏付けは見当たらない。近走の使われ方にも上昇パターンが薄く、期待値は低め。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>9番 ビービーアジャイル: 14%</li>
+<li>14番 エイカイソウル: 13%</li>
+<li>7番 インペリアルライン: 11%</li>
+<li>6番 シゲルカミカゼ: 10%</li>
+<li>2番 コズミックダンサー: 10%</li>
+<li>10番 トレインザマインド: 8%</li>
+<li>13番 セイントエルモズ: 8%</li>
+<li>8番 キャストロププ: 6%</li>
+<li>4番 トクシースタローン: 5%</li>
+<li>1番 チムニートップス: 4%</li>
+<li>3番 タッチャブル: 4%</li>
+<li>11番 タガノマルアフ: 3%</li>
+<li>12番 デルマタモン: 2%</li>
+<li>5番 サイモンルモンド: 2%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>14 エイカイソウル: 490kgから+2kgの492kgで叩き2走目、中4週の標準ローテ。近4走の馬体重が470→484→492→490→492と右肩上がりの後に安定し、調教も「ひと追い毎に良化」で仕上がりは最も素直に買える。  </p>
+<p>9 ビービーアジャイル: 486kgから+2kgの488kgで中4週、前走勝ち後でも馬体がぶれない。488～494kg帯で推移が安定しており、55kgは古馬58kg比で約1.5馬身分の恩恵、3歳馬として体調面のアドバンテージが大きい。  </p>
+<p>2 コズミックダンサー: 488kgから+4kgの492kgで中7週の理想的な間隔。484～492kgで大きな乱高下がなく、前走勝利後も太め残りの水準ではない。坂路で一杯に追って脚取り確かなら仕上がりは高位安定。  </p>
+<p>7 インペリアルライン: 480kgから+6kgの486kgで中4週。近5走が474→484→488→482→480→486で、使いつつ減ったぶんを適度に戻した形で好感。せん馬で大きく増えすぎておらず、馬なりでフットワーク軽快なら反動より回復を取る。  </p>
+<p>10 トレインザマインド: 534kgから+8kgの542kgで中7週。大型馬なので+8kg自体は即マイナスではないが、前走-14kgで勝った後だけに少し戻し過ぎの懸念は残る。とはいえ542kgは近走レンジ内で、追い切りの動きは上々。  </p>
+<p>13 セイントエルモズ: 538kgから+4kgの542kgで中5週。前走GIIIで-8kgだった馬体を半分戻してきたのは好材料で、大型馬らしくこの程度の増減は許容範囲。調教は「遅れも余裕残し」で絶好調までは言えないが、消耗感は薄い。  </p>
+<p>6 シゲルカミカゼ: 518kgから-2kgの516kgで中1週。518～522kg帯で安定し調教も軽めで済むほど状態は維持しているが、今回は日吉特別3着、5/30 2着からの3戦目に近い続戦で疲労リスクが上位勢より重い。  </p>
+<p>8 キャストロププ: 504kgから+2kgの506kgで中8週。496～506kgで推移が安定し、間隔を取って立て直した点は悪くない。坂路で一杯に追って反応良しなら仕上がりは合格だが、上積みの絶対量は上位ほど強調しづらい。  </p>
+<p>1 チムニートップス: 500kgから-10kgの490kgで約11週ぶり。近走は488～506kg帯で動いているので490kg自体は細すぎないが、休み明けでいきなり-10kgは絞れたというよりやや余裕なしのリスクもある。上向き気配まで。  </p>
+<p>4 トクシースタローン: 516kgから-2kgの514kgで3か月超の休み明け。508～516kg帯で安定しており馬体維持はできているが、「攻め動かぬタイプ」で追い切りからの強い上昇サインが乏しい。仕上がりは平行線寄り。  </p>
+<p>3 タッチャブル: 524kgから-6kgの518kgで中4週。ずっと522～524kgで硬直していた馬体が少し絞れた点は悪くないが、攻め強化でも大きな変わり身までは見込みにくい。6歳で上積みより現状維持の評価。  </p>
+<p>11 タガノマルアフ: 478kgから-6kgの472kgで中4週。476～480kg台を維持していた馬が472kgまで減るのはやや気になる。小柄馬ではないが、58kgを背負っての馬体減は約半馬身ぶん余計に響きやすく、調教も「舌出す」で強気になれない。  </p>
+<p>12 デルマタモン: 508kgから-2kgの506kgで中1週。504～516kgの範囲で推移はしているが、ここ2走で508→506と微減しつつ成績も下降。「あまり変わり身無」の調教評価通り、続戦の疲労を打ち消す材料が乏しい。  </p>
+<p>5 サイモンルモンド: 454kgから+6kgの460kgで3か月ぶり。前走-10kgの反動を少し戻したのはいいが、460kg前後の9歳せん馬で大きな上積みは見込みづらい。調教で追われて頭を上げており、仕上がり面では最も強調材料が薄い。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>14番 エイカイソウル: 14%</li>
+<li>9番 ビービーアジャイル: 13%</li>
+<li>2番 コズミックダンサー: 11%</li>
+<li>7番 インペリアルライン: 11%</li>
+<li>10番 トレインザマインド: 9%</li>
+<li>13番 セイントエルモズ: 9%</li>
+<li>6番 シゲルカミカゼ: 8%</li>
+<li>8番 キャストロププ: 7%</li>
+<li>1番 チムニートップス: 6%</li>
+<li>4番 トクシースタローン: 5%</li>
+<li>3番 タッチャブル: 3%</li>
+<li>11番 タガノマルアフ: 2%</li>
+<li>12番 デルマタモン: 1%</li>
+<li>5番 サイモンルモンド: 1%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h2>敗因シナリオ</h2>
+<p>最多支持の9番ビービーアジャイルは、Round 1で指摘した「能力は高いが過信は危険」という構図がまだ残る。敗因の1つ目は、3歳1勝クラスから古馬混合2勝クラスへの相手強化で、前走の末脚がそのまま通用しないケース。外から長く脚を使わされると、終いの切れだけでは差し届かない。</p>
+
+<p>2つ目は、稍重の東京2100mでスタミナと位置取りの両方を問われ、道中で包まれるか、逆に早めに動いて甘くなるケース。前走は理想的に運べたが、今回は各馬が9番を意識して動く分だけマークが厳しくなる。</p>
+
+<p>3つ目は、ルメール騎乗と前走指数の見栄えで人気先行になりやすく、期待値が能力以上に膨らむこと。勝つ力はあるが、「最も勝つべき馬」と「最も買う価値がある馬」は別で、取りこぼしまで含めると過大評価気味とみる。</p>
+
+<h2>全馬評価（好走確信度の高い順）</h2>
+<p>14 エイカイソウル: Round 1で上位視した根拠はまだ有効。前走敗戦で人気が少し落ちるなら妙味はむしろ増す。今回の調教気配が非常に良く、東京の長丁場で流れが厳しくなれば地力で差し込める。</p>
+
+<p>7 インペリアルライン: 近走の東京2100mで大崩れせず、相手なりに走れるのが強み。勝ち切れない弱さはあるが、批判的視点では「皆が勝ち馬探しをし過ぎて、安定上位馬を軽く見る」盲点がある。</p>
+
+<p>6 シゲルカミカゼ: 近2走は内容優秀で当然有力だが、先行して早めに動くぶん最後のひと押しを欠くリスクも明確。高く評価しつつも、平均以上には買われすぎない範囲にとどめたい。</p>
+
+<p>9 ビービーアジャイル: 能力上位は認めるが、Round 1の懸念は完全には解消していない。平均1位まで支持が集まった現状では、馬券的には「飛ぶ余地」を無視できず、絶対視は避けるべき。</p>
+
+<p>2 コズミックダンサー: 長距離実績は魅力で、2100mでもスタミナ勝負なら浮上できる。ただし前走2400m圧勝の見映えで評価が上がりすぎると、距離短縮で忙しくなるリスクを見落としやすい。</p>
+
+<p>10 トレインザマインド: 調子は上向きで、東京2100mでもそこそこ走れる下地はある。とはいえ大型馬の休み明け気味ローテで、上積みを強調しすぎるのは危険。人気ほど信頼は置きにくい。</p>
+
+<p>13 セイントエルモズ: Round 1で見直し余地を示した馬で、今回も3歳勢の中では9番一強ではない。ユニコーンS大敗で嫌われるなら妙味はあるが、まだ粗削りで古馬混合の消耗戦に即対応できるかは半信半疑。</p>
+
+<p>8 キャストロププ: 長めの距離で先行できるのは武器。反面、勝ち切るには決め手不足で、速い上位勢に目標にされると苦しい。相手なりで3着候補までのイメージ。</p>
+
+<p>4 トクシースタローン: 末脚はあるが、後ろ過ぎる競馬になりやすく展開依存度が高い。人気薄なら拾う余地はあるものの、勝ち切りシナリオはかなり限定的。</p>
+
+<p>1 チムニートップス: 1勝クラス勝ち直後で2勝クラスの壁はまだ厚い。馬体減も気になり、前に行っても粘り切れる保証は薄い。ただし内でロスなく運べれば掲示板圏の穴はある。</p>
+
+<p>3 タッチャブル: 攻め強化は見えるが、近走成績が示す通り上がり切れないレースが続く。能力が全く足りないわけではないが、現状は展開待ちで上位評価までは難しい。</p>
+
+<p>11 タガノマルアフ: 1勝クラス突破時の勢いはもう薄く、2勝クラスでは力負けの形が続く。調教でも強調材料が乏しく、一変待ちの域を出ない。</p>
+
+<p>12 デルマタモン: 近走内容からは衰えを疑うのが自然で、後方一気が決まる馬場や展開にも見えない。前回までの自分の低評価は妥当で、今回も大きな見直し材料はない。</p>
+
+<p>5 サイモンルモンド: 年齢と近走内容の両面で最も厳しい。大敗続きで、よほど極端な消耗戦になっても上位進出まではイメージしづらい。</p>
+
+<h2>好走確信度配分</h2>
+<li>14番 エイカイソウル: 14%</li>
+<li>7番 インペリアルライン: 12%</li>
+<li>6番 シゲルカミカゼ: 11%</li>
+<li>9番 ビービーアジャイル: 10%</li>
+<li>2番 コズミックダンサー: 10%</li>
+<li>10番 トレインザマインド: 9%</li>
+<li>13番 セイントエルモズ: 9%</li>
+<li>8番 キャストロププ: 7%</li>
+<li>4番 トクシースタローン: 6%</li>
+<li>1番 チムニートップス: 4%</li>
+<li>3番 タッチャブル: 3%</li>
+<li>11番 タガノマルアフ: 2%</li>
+<li>12番 デルマタモン: 2%</li>
+<li>5番 サイモンルモンド: 1%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round 1で警戒した9番ビービーアジャイルの過熱感は、Round 5でもなお解消し切っていない。前走指数と鞍上で最も支持を集めたが、古馬2勝クラスでマークが厳しくなる今回は取りこぼしの余地がある。一方で、自身が前回から高く見ていた14番エイカイソウル、7番インペリアルラインは市場の見直しが進んだ印象で、批判者としてはその修正は一定反映されたと評価する。最終的には14番を最上位、9番は能力を認めつつ期待値面で抑え、13番の再浮上にも警戒したい。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>9</td><td class="left horse-name">ビービーアジャイル</td><td class="trust-mid">13.5%</td><td>14.5</td><td>13.5</td><td>13.0</td><td>13.5</td><td>14.0</td><td>12.0</td></tr><tr><td>2</td><td>14</td><td class="left horse-name">エイカイソウル</td><td class="trust-mid">13.2%</td><td>11.5</td><td>14.5</td><td>11.0</td><td>13.5</td><td>14.0</td><td>14.5</td></tr><tr><td>3</td><td>7</td><td class="left horse-name">インペリアルライン</td><td class="trust-mid">11.2%</td><td>13.0</td><td>11.0</td><td>10.0</td><td>11.0</td><td>10.5</td><td>12.0</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">シゲルカミカゼ</td><td class="trust-mid">10.6%</td><td>13.0</td><td>9.5</td><td>13.0</td><td>10.5</td><td>8.0</td><td>11.0</td></tr><tr><td>5</td><td>2</td><td class="left horse-name">コズミックダンサー</td><td class="trust-mid">10.3%</td><td>11.5</td><td>8.0</td><td>10.5</td><td>10.0</td><td>11.5</td><td>10.0</td></tr><tr><td>6</td><td>10</td><td class="left horse-name">トレインザマインド</td><td class="trust-mid">8.6%</td><td>8.0</td><td>8.0</td><td>9.0</td><td>8.5</td><td>9.0</td><td>9.0</td></tr><tr><td>7</td><td>13</td><td class="left horse-name">セイントエルモズ</td><td class="trust-mid">8.5%</td><td>8.0</td><td>8.5</td><td>8.0</td><td>8.0</td><td>9.5</td><td>8.5</td></tr><tr><td>8</td><td>8</td><td class="left horse-name">キャストロププ</td><td class="trust-low">6.6%</td><td>5.5</td><td>7.0</td><td>7.0</td><td>6.5</td><td>7.0</td><td>6.5</td></tr><tr><td>9</td><td>4</td><td class="left horse-name">トクシースタローン</td><td class="trust-low">5.6%</td><td>5.0</td><td>8.0</td><td>5.5</td><td>5.5</td><td>4.5</td><td>5.5</td></tr><tr><td>10</td><td>1</td><td class="left horse-name">チムニートップス</td><td class="trust-low">4.3%</td><td>3.5</td><td>4.5</td><td>5.0</td><td>4.0</td><td>4.5</td><td>4.0</td></tr><tr><td>11</td><td>3</td><td class="left horse-name">タッチャブル</td><td class="trust-low">3.3%</td><td>3.0</td><td>3.5</td><td>3.5</td><td>3.5</td><td>3.5</td><td>3.0</td></tr><tr><td>12</td><td>11</td><td class="left horse-name">タガノマルアフ</td><td class="trust-low">1.9%</td><td>1.5</td><td>2.0</td><td>2.0</td><td>2.5</td><td>2.0</td><td>1.5</td></tr><tr><td>13</td><td>12</td><td class="left horse-name">デルマタモン</td><td class="trust-low">1.2%</td><td>1.0</td><td>1.0</td><td>1.5</td><td>1.5</td><td>1.0</td><td>1.5</td></tr><tr><td>14</td><td>5</td><td class="left horse-name">サイモンルモンド</td><td class="trust-low">1.1%</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.5</td><td>1.0</td><td>1.0</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>9</td><td class="left horse-name">ビービーアジャイル</td><td>13.5%</td><td>1.2</td><td>1</td><td class="ev-low">0.16</td></tr><tr><td>2</td><td>14</td><td class="left horse-name">エイカイソウル</td><td>13.2%</td><td>7.8</td><td>2</td><td class="ev-mid">1.03</td></tr><tr><td>3</td><td>7</td><td class="left horse-name">インペリアルライン</td><td>11.2%</td><td>18.6</td><td>4</td><td class="ev-high">2.08</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">シゲルカミカゼ</td><td>10.6%</td><td>18.7</td><td>5</td><td class="ev-mid">1.99</td></tr><tr><td>5</td><td>2</td><td class="left horse-name">コズミックダンサー</td><td>10.3%</td><td>13.6</td><td>3</td><td class="ev-mid">1.41</td></tr><tr><td>6</td><td>10</td><td class="left horse-name">トレインザマインド</td><td>8.6%</td><td>31.1</td><td>7</td><td class="ev-high">2.68</td></tr><tr><td>7</td><td>13</td><td class="left horse-name">セイントエルモズ</td><td>8.5%</td><td>21.5</td><td>6</td><td class="ev-mid">1.83</td></tr><tr><td>8</td><td>8</td><td class="left horse-name">キャストロププ</td><td>6.6%</td><td>75.2</td><td>9</td><td class="ev-high">4.97</td></tr><tr><td>9</td><td>4</td><td class="left horse-name">トクシースタローン</td><td>5.6%</td><td>58.8</td><td>8</td><td class="ev-high">3.28</td></tr><tr><td>10</td><td>1</td><td class="left horse-name">チムニートップス</td><td>4.3%</td><td>103.0</td><td>10</td><td class="ev-high">4.40</td></tr><tr><td>11</td><td>3</td><td class="left horse-name">タッチャブル</td><td>3.3%</td><td>154.6</td><td>12</td><td class="ev-high">5.17</td></tr><tr><td>12</td><td>11</td><td class="left horse-name">タガノマルアフ</td><td>1.9%</td><td>112.7</td><td>11</td><td class="ev-high">2.17</td></tr><tr><td>13</td><td>12</td><td class="left horse-name">デルマタモン</td><td>1.2%</td><td>275.1</td><td>14</td><td class="ev-high">3.39</td></tr><tr><td>14</td><td>5</td><td class="left horse-name">サイモンルモンド</td><td>1.1%</td><td>254.4</td><td>13</td><td class="ev-high">2.74</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">9 ビービーアジャイル</td><td>13.5%</td><td>1.2</td><td class="ev-low">0.16</td></tr><tr><td>複勝</td><td class="left">9 ビービーアジャイル</td><td>38.5%</td><td>1.1</td><td class="ev-low">0.42</td></tr><tr><td>馬連</td><td class="left">9 ビービーアジャイル-14 エイカイソウル</td><td>4.1%</td><td>5.0</td><td class="ev-low">0.17</td></tr><tr><td>ワイド</td><td class="left">9 ビービーアジャイル-14 エイカイソウル</td><td>11.7%</td><td>2.5</td><td class="ev-low">0.26</td></tr><tr><td>馬単</td><td class="left">9 ビービーアジャイル→14 エイカイソウル</td><td>2.1%</td><td>6.1</td><td class="ev-low">0.11</td></tr><tr><td>3連複</td><td class="left">7 インペリアルライン-9 ビービーアジャイル-14 エイカイソウル</td><td>1.9%</td><td>14.1</td><td class="ev-low">0.21</td></tr><tr><td>3連単</td><td class="left">9 ビービーアジャイル→14 エイカイソウル→7 インペリアルライン</td><td>0.3%</td><td>31.9</td><td class="ev-low">0.08</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>
