@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>武庫川特別 2026/06/14 HANSHIN 9R (06/14 03:17 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>武庫川特別 2026/06/14 HANSHIN 9R (06/14 03:17 予想 馬体重なし)</h1>
+  <div class="meta">芝1200m（右） | 良 | 13頭立て | 3回 阪神 4日目 サラ系3歳以上 2勝クラス （混合）［指定］ 定量 14頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">10. バシレウスシチー</div>
+      <div class="pick-jockey">菱田 裕二 / 岡田 稲男</div>
+    </div>
+    <div class="pick-prob">14.5%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">14. マーゴットミスト</div>
+      <div class="pick-jockey">吉村 誠之助 / 杉山 佳明</div>
+    </div>
+    <div class="pick-prob">11.9%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">11. メイショウミリオレ</div>
+      <div class="pick-jockey">高杉 吏麒 / 藤岡 健一</div>
+    </div>
+    <div class="pick-prob">11.5%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">13頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">インフローレ</td><td>牝4</td><td>56</td><td>岩田 望来</td><td>寺島 良</td><td>リオンディーズ</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ジョウゲンノツキ</td><td>牝5</td><td>56</td><td>田口 貫太</td><td>牧田 和弥</td><td>イスラボニータ</td><td>フレンチデピュティ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>4</td><td class="left horse-name">カリーシ</td><td>牝5</td><td>56</td><td>丹内 祐次</td><td>武井 亮</td><td>モーリス</td><td>ダイワメジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>5</td><td class="left horse-name">ヤマニンレセディ</td><td>牝4</td><td>56</td><td>松若 風馬</td><td>長谷川 浩大</td><td>エピファネイア</td><td>シニスターミニスター</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>6</td><td class="left horse-name">ミロワール</td><td>牝7</td><td>56</td><td>古川 吉洋</td><td>柴田 卓</td><td>ロードカナロア</td><td>ダンスインザダーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>7</td><td class="left horse-name">マキシマムドライブ</td><td>牡4</td><td>58</td><td>横山 典弘</td><td>尾関 知人</td><td>ロードカナロア</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>8</td><td class="left horse-name">スネーフリンガ</td><td>牝4</td><td>56</td><td>幸 英明</td><td>森田 直行</td><td>サンダースノー</td><td>デュランダル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>9</td><td class="left horse-name">ストラテージュ</td><td>牡4</td><td>58</td><td>坂井 瑠星</td><td>矢作 芳人</td><td>モズアスコット</td><td>ダイワメジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>10</td><td class="left horse-name">バシレウスシチー</td><td>牡7</td><td>58</td><td>菱田 裕二</td><td>岡田 稲男</td><td>ビッグアーサー</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>11</td><td class="left horse-name">メイショウミリオレ</td><td>牝5</td><td>56</td><td>高杉 吏麒</td><td>藤岡 健一</td><td>ルーラーシップ</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>12</td><td class="left horse-name">ピースフルナイト</td><td>牝6</td><td>56</td><td>酒井 学</td><td>畑端 省吾</td><td>ファインニードル</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>13</td><td class="left horse-name">バンディート</td><td>牡6</td><td>58</td><td>角田 大和</td><td>東田 明士</td><td>イスラボニータ</td><td>Sea The Stars</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>14</td><td class="left horse-name">マーゴットミスト</td><td>牡3</td><td>55</td><td>吉村 誠之助</td><td>杉山 佳明</td><td>ビッグアーサー</td><td>スウェプトオーヴァーボード</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>10</td><td class="left horse-name">バシレウスシチー</td><td style="background:#F0F7FF;">2 (11.9)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.8)</td><td style="font-weight:700;background:#F0F7FF;">1 (13.8)</td><td style="font-weight:700;background:#F0F7FF;">1 (14.4)</td><td style="font-weight:700;background:#F0F7FF;">1 (14.9)</td></tr><tr><td>14</td><td class="left horse-name">マーゴットミスト</td><td style="background:#F0F7FF;">3 (11.3)</td><td style="background:#F0F7FF;">2 (11.4)</td><td style="background:#F0F7FF;">2 (11.7)</td><td style="background:#F0F7FF;">2 (11.9)</td><td style="background:#F0F7FF;">2 (11.8)</td></tr><tr><td>11</td><td class="left horse-name">メイショウミリオレ</td><td style="background:#F0F7FF;">5 (9.6)</td><td style="background:#F0F7FF;">4 (10.4)</td><td style="background:#F0F7FF;">3 (10.8)</td><td style="background:#F0F7FF;">3 (11.1)</td><td style="background:#F0F7FF;">3 (11.6)</td></tr><tr><td>6</td><td class="left horse-name">ミロワール</td><td style="background:#F0F7FF;">4 (9.7)</td><td style="background:#F0F7FF;">5 (10.1)</td><td style="background:#F0F7FF;">4 (10.4)</td><td style="background:#F0F7FF;">4 (10.5)</td><td style="background:#F0F7FF;">4 (10.6)</td></tr><tr><td>4</td><td class="left horse-name">カリーシ</td><td style="color:#AEAEB2;">6 (8.8)</td><td style="color:#AEAEB2;">6 (8.6)</td><td style="color:#AEAEB2;">6 (8.7)</td><td style="color:#AEAEB2;">6 (8.7)</td><td style="background:#F0F7FF;">5 (8.8)</td></tr><tr><td>7</td><td class="left horse-name">マキシマムドライブ</td><td style="font-weight:700;background:#F0F7FF;">1 (12.5)</td><td style="background:#F0F7FF;">3 (11.1)</td><td style="background:#F0F7FF;">5 (10.1)</td><td style="background:#F0F7FF;">5 (9.3)</td><td style="color:#AEAEB2;">6 (8.7)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>10 バシレウスシチー: 前走7着でも0.5秒差、2走前は芝1200mで1:07.9の0.1秒差4着、指数80.4。現級で時計・指数の裏付けが最も安定している。  </p>
+<p>11 メイショウミリオレ: 3走前の芝1400mで0.1秒差4着、指数81.8が最上位級。芝1200mでも0.2秒差5着、0.1秒差5着があり、末脚の数字は信頼できる。  </p>
+<p>6 ミロワール: 前走芝1200mで0.2秒差6着、上がり32.6はメンバー中でも目立つ水準。2走前も5着で、芝短距離に戻って内容が明確に良化している。  </p>
+<p>4 カリーシ: 3走前に芝1200mで0.0秒差3着、指数80.8。近2走は着順ほど強調できないが、現級で通用する実績は上位。  </p>
+<p>14 マーゴットミスト: 近2走が芝1200mで0.2秒差3着、0.3秒差4着、指数も78.4、78.8と安定。昇級でも数字面の裏付けは7番より上。  </p>
+<p>12 ピースフルナイト: 3走前0.3秒差4着、4走前1:08.4で6着と現級で大きく崩れていない。勝ち切る裏付けは薄いが、掲示板圏の実績はある。  </p>
+<p>7 マキシマムドライブ: 前走1勝クラス勝ちの1:08.5、指数74.6は悪くないが、現級比較では時計も指数も上位勢に見劣る。昇級即通用の断定まではしにくい。  </p>
+<p>5 ヤマニンレセディ: 1勝クラスでは1着、3着で一定の内容だが、前走2勝クラスで1.0秒差15着。現級での実績不足が残る。  </p>
+<p>8 スネーフリンガ: 前走13着でも0.4秒差、指数78.1は悪くないが、2勝クラスでの着順実績が弱い。1勝クラス勝ちの指数69.6も強調しづらい。  </p>
+<p>1 インフローレ: 芝1400m中心とはいえ近5走すべて着外。芝1200mでも0.7秒差8着までで、現級での上昇材料は実績面で乏しい。  </p>
+<p>9 ストラテージュ: 近5走がダート中心で、芝1200mの裏付けがない。持ち時計比較に入れず、実績派としては評価を上げにくい。  </p>
+<p>13 バンディート: 4走前の芝1200m1着はあるが、その後の2勝クラスでは芝でもダートでも大敗続き。近走実績が大きく後退している。  </p>
+<p>2 ジョウゲンノツキ: 近走は芝1200mで1.2秒差13着、芝1600mで2.0秒差12着、ダ1400mでも10着。近5走の数字では最も苦しい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>10番 バシレウスシチー: 15.3%</li>
+<li>11番 メイショウミリオレ: 14.2%</li>
+<li>6番 ミロワール: 12.2%</li>
+<li>4番 カリーシ: 11.2%</li>
+<li>14番 マーゴットミスト: 11.0%</li>
+<li>12番 ピースフルナイト: 8.0%</li>
+<li>7番 マキシマムドライブ: 5.9%</li>
+<li>5番 ヤマニンレセディ: 5.0%</li>
+<li>8番 スネーフリンガ: 5.0%</li>
+<li>1番 インフローレ: 4.0%</li>
+<li>9番 ストラテージュ: 3.0%</li>
+<li>13番 バンディート: 3.0%</li>
+<li>2番 ジョウゲンノツキ: 2.2%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>10 バシレウスシチー: 父ビッグアーサーに母父ディープインパクトで、スプリントの持続力と坂対応力の配合。阪神芝1200m向きの短距離血統で最上位評価を維持する。  </p>
+<p>14 マーゴットミスト: 父ビッグアーサー×母父スウェプトオーヴァーボードは短距離特化色が強く、3歳馬でも血統面の1200m適性はかなり明快。昇級でも配合の裏付けは濃い。  </p>
+<p>7 マキシマムドライブ: 父ロードカナロアでスプリント性能は高い。母父ステイゴールドで少し胴長の質は入るが、阪神1200mならスピード優位が先に立つ。  </p>
+<p>12 ピースフルナイト: 父ファインニードル×母父クロフネは芝1200mで安定しやすい配合。パワーもあり、馬場が少し渋っても血統的には大きくは割り引かない。  </p>
+<p>6 ミロワール: 父ロードカナロアに母父ダンスインザダークで、父の短距離性能が前面。年齢は高いが、血統構成自体は阪神芝1200mで今も通用する。  </p>
+<p>4 カリーシ: 父モーリス×母父ダイワメジャーで、本質はマイル寄りだが母系のスピードで1200mにも対応可能。純スプリンター比較では一枚落ちる。  </p>
+<p>5 ヤマニンレセディ: 父エピファネイアで距離の融通はあるが、母父シニスターミニスター由来の前向きさで1200mをこなす形。ベスト条件とまでは言いにくい。  </p>
+<p>11 メイショウミリオレ: 父ルーラーシップ×母父ディープインパクトで、血統だけ見れば1200mは忙しい。末脚は使えても、勝ち切り条件としては少し短い。  </p>
+<p>1 インフローレ: 父リオンディーズ×母父ハービンジャーで、1400m前後の方が血統のバランスは良い。1200mでは追走の忙しさが残る。  </p>
+<p>2 ジョウゲンノツキ: 父イスラボニータに母父フレンチデピュティで、スピードはあるが芝1200m特化の配合ではない。ダート寄りの機動力が強い印象。  </p>
+<p>9 ストラテージュ: 父モズアスコット×母父ダイワメジャーで芝短距離の下地はあるが、現状はダート寄りの適性が濃い。血統だけでは今回の芝替わりを強くは推せない。  </p>
+<p>8 スネーフリンガ: 父サンダースノー×母父デュランダルは、軽い芝1200mで強調しづらい組み合わせ。道悪や力の要る条件ならまだ見直し余地はある。  </p>
+<p>13 バンディート: 父イスラボニータ×母父Sea The Starsで、1200m専用機の血統ではない。むしろ距離に少し余裕がほしく、阪神芝1200mでは忙しさが先行する。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>10番 バシレウスシチー: 14%</li>
+<li>14番 マーゴットミスト: 13%</li>
+<li>7番 マキシマムドライブ: 11%</li>
+<li>12番 ピースフルナイト: 10%</li>
+<li>6番 ミロワール: 9%</li>
+<li>4番 カリーシ: 8%</li>
+<li>5番 ヤマニンレセディ: 7%</li>
+<li>11番 メイショウミリオレ: 7%</li>
+<li>1番 インフローレ: 6%</li>
+<li>2番 ジョウゲンノツキ: 5%</li>
+<li>9番 ストラテージュ: 4%</li>
+<li>8番 スネーフリンガ: 3%</li>
+<li>13番 バンディート: 3%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>10 バシレウスシチー: 先行勢を前に見ながら好位の外目で運べる形が最も描きやすい。阪神芝1200で前がやり合えば直線で一番スムーズに抜け出す展開利がある。  </p>
+<p>11 メイショウミリオレ: 後方待機型で、7・14・2・13あたりがポジションを取りに行く流れは歓迎。外差し寄りの馬場ならさらに浮上余地が大きい。  </p>
+<p>6 ミロワール: 基本は差し脚質で、前半が少しでも流れれば末脚ははまりやすい。内すぎず外すぎない並びで、直線勝負に徹しやすい。  </p>
+<p>14 マーゴットミスト: 外枠でも先行力はあるが、今回は同型気味がいて楽逃げは難しい。好位で我慢できれば残るが、取りに行くぶん終いは甘くなりやすい。  </p>
+<p>4 カリーシ: 差し寄りで、この組み合わせなら中団から脚を使う絵は作りやすい。極端な前残りにならなければ展開の恩恵を受けやすい。  </p>
+<p>7 マキシマムドライブ: 先行力は魅力だが、阪神1200で外めの先行勢も多く、前受け組にはそれなりに負荷がかかる想定。押し切りには展開の助けが欲しい。  </p>
+<p>5 ヤマニンレセディ: 内寄りで好位差しの形を取れればロスは少ない。速すぎず遅すぎずの平均ペースなら粘り込みの余地がある。  </p>
+<p>12 ピースフルナイト: 差し脚質なので前崩れ待ちの面はあるが、隊列が縦長になれば浮上可能。馬場が渋って外差し傾向なら評価を上げたい。  </p>
+<p>1 インフローレ: 1枠は魅力だが、近走の位置取りを見ると包まれて進路待ちの形が怖い。イン差しが利く馬場なら一発はある。  </p>
+<p>8 スネーフリンガ: 先行も差しもできるが、今回はちょうど展開の恩恵を受け切りにくい立ち位置。流れに乗るだけだとワンパンチ不足。  </p>
+<p>2 ジョウゲンノツキ: ある程度前に行きたい馬で内枠自体は悪くないが、1200mの先行争いでは楽な形になりにくい。息が入りにくい流れは不向き。  </p>
+<p>13 バンディート: 大外寄りから前を取りに行くと序盤のコストが高い。7や14と並走気味になると一番苦しい形になりやすい。  </p>
+<p>9 ストラテージュ: 近走内容も含めて芝1200の流れに乗る像が薄い。展開面からは前にも後ろにも明確な利を見出しにくい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>10番 バシレウスシチー: 15%</li>
+<li>11番 メイショウミリオレ: 13%</li>
+<li>6番 ミロワール: 11%</li>
+<li>14番 マーゴットミスト: 10%</li>
+<li>4番 カリーシ: 9%</li>
+<li>7番 マキシマムドライブ: 8%</li>
+<li>5番 ヤマニンレセディ: 8%</li>
+<li>12番 ピースフルナイト: 7%</li>
+<li>1番 インフローレ: 6%</li>
+<li>8番 スネーフリンガ: 5%</li>
+<li>2番 ジョウゲンノツキ: 4%</li>
+<li>13番 バンディート: 2%</li>
+<li>9番 ストラテージュ: 2%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+
+<p>10 バシレウスシチー: 菱田騎手で芝1200mを連続使用できており、岡田稲男厩舎も条件をぶらさず使えている点はこの組で最も買いやすい。前走着順以上に運用の安定感がある。  </p>
+<p>11 メイショウミリオレ: 藤岡健一厩舎らしく短距離で差し脚を引き出す使い方が続いており、1200mへの条件集約も明確。高杉騎手起用でも陣営の狙いは読みやすい。  </p>
+<p>14 マーゴットミスト: 吉村騎手で芝1200mを継続し、杉山佳明厩舎も昇級戦でなおこの条件に据えてきたのは前向き。3歳馬で上積み余地も残る。  </p>
+<p>6 ミロワール: 芝1200mへ戻してから内容が整い、古川吉騎手で末脚を生かす形も固まりつつある。派手さはないが、陣営の条件選択は妥当。  </p>
+<p>7 マキシマムドライブ: 横山典騎手起用は魅力だが、昇級直後で先行負荷が増す条件。尾関厩舎の運用意図は分かりやすい一方、ここは前走より陣営面の後押しが少し薄い。  </p>
+<p>4 カリーシ: 丹内騎手で芝1200m中心に使われており、武井厩舎も条件自体は絞れている。勝ち切る強調材料は弱いが、使い方の一貫性はある。  </p>
+<p>5 ヤマニンレセディ: 1勝クラス勝ち後も芝1200m継続で、長谷川厩舎のローテ自体は素直。松若騎手で前々の形を取れれば陣営面では平均点。  </p>
+<p>1 インフローレ: 岩田望来騎手起用は魅力だが、近走は1400m中心から再び1200mで、寺島厩舎の狙いがやや分散気味。条件替わりの後押しは限定的。  </p>
+<p>12 ピースフルナイト: 酒井騎手で芝1200mの差し運用を続ける点は分かりやすい。畑端厩舎の使い方は堅実だが、勝ち切り期待までは強く押しにくい。  </p>
+<p>8 スネーフリンガ: 幸騎手で1200m続戦なのは悪くないが、森田厩舎のこのクラスでの押し上げ材料は乏しい。陣営面では相手なりまで。  </p>
+<p>9 ストラテージュ: 坂井騎手と矢作厩舎のブランドはあるが、近走はダート中心で芝1200m替わりの裏付けが弱い。陣営力だけで押し切るには条件不一致が残る。  </p>
+<p>2 ジョウゲンノツキ: 牧田厩舎の使い方が芝ダートで揺れており、田口騎手とのコンビでも狙いを絞ったローテに見えない。陣営面では評価しづらい。  </p>
+<p>13 バンディート: 角田騎手起用で前に行く形は見えるが、近走の条件変更が多く、東田厩舎の運用も安定しない。陣営面では最も強調しにくい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+
+<li>10番 バシレウスシチー: 15%</li>
+<li>11番 メイショウミリオレ: 12%</li>
+<li>14番 マーゴットミスト: 11%</li>
+<li>6番 ミロワール: 10%</li>
+<li>7番 マキシマムドライブ: 8%</li>
+<li>4番 カリーシ: 8%</li>
+<li>5番 ヤマニンレセディ: 7%</li>
+<li>1番 インフローレ: 7%</li>
+<li>12番 ピースフルナイト: 6%</li>
+<li>8番 スネーフリンガ: 5%</li>
+<li>9番 ストラテージュ: 4%</li>
+<li>2番 ジョウゲンノツキ: 4%</li>
+<li>13番 バンディート: 3%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>10 バシレウスシチー: 456→460→458→456kgと近4走の馬体が非常に安定し、7歳でもデキ落ちなし。中2週→中2週→中3週の使い方も無理がなく、58kgでもこの馬格なら負担は限定的で、体調面の信頼度が最も高い。  </p>
+<p>11 メイショウミリオレ: 496→488→490→492→490kgで大きなブレがなく、叩かれながら馬体が整っている。前走490kgで-2kgは消耗より微調整の範囲で、CW終い11.6の推進力も好感。  </p>
+<p>7 マキシマムドライブ: 554→550→548kgと大型馬らしく緩やかに絞れており、58kgを苦にしにくい馬格。前走勝ち後は中6週で十分間隔を取れ、坂路評価も「勝って更に上昇」で上積みがある。  </p>
+<p>14 マーゴットミスト: 530→536→534→530→546kgで前走の+16kgは目立つが、その体で3着なら太め一辺倒とは言えない。55kgは明確な恩恵だが、546kgから当日さらに増えるようだと重さが残る懸念は残る。  </p>
+<p>6 ミロワール: 468～476kgのレンジで安定しており、前走476kg据え置きで反動なし。7歳牝馬でも「デキ落ちなし」は心強く、中5週の間隔も整えやすい。  </p>
+<p>4 カリーシ: 456→460→458→454→448kgと使いつつ少しずつ絞れている形で、3月末の好走時458kgから大きく離れすぎていないのは良い。ただし直近2走が-4kg、-6kgで、さらに減ると細化リスクがある。  </p>
+<p>1 インフローレ: 440→444→436→438→442kgで大きな乱高下はなく、442kgなら小柄すぎる水準でもない。中1週でもCWの動きは軽快だが、牝馬で詰めて使われる点は消耗に注意。  </p>
+<p>5 ヤマニンレセディ: 448→452→456→462→458kgで春先に増やした馬体を前走で少し戻した形。今回は約3か月半ぶりで、坂路評価が「まだ少し重め」だけに叩き台色を少し感じる。  </p>
+<p>12 ピースフルナイト: 414～420kg台の小柄馬で、56kg自体は極端な酷量ではないが余裕は小さい。3か月ぶりでも調教は力強いが、休み明けで416kg前後だと完成度はもう一段ほしい。  </p>
+<p>8 スネーフリンガ: 446→450→460→460→462kgと数字自体は安定してきたが、460kg台で完全にもう一押し利く体かは微妙。中6週で整う余地はある一方、調教は平行線で強い上昇感まではない。  </p>
+<p>9 ストラテージュ: 458→474→478→480→472kgと近走の振れ幅が大きく、休養明けで+16kg、その後も高止まり気味。前走-8kgでもまだ絞り切れた印象はなく、中2週での立て直しも楽ではない。  </p>
+<p>2 ジョウゲンノツキ: 454→458→462→456→456kgで数字は一定でも、短期で芝ダートを行き来しつつ一杯追いで鋭さひと息は物足りない。中2週・中2週のあと3か月空いて再度中2週で、体調の軸が定まりにくい。  </p>
+<p>13 バンディート: 516→508→514→508→512kgと500kg超の馬格で58kgはこなせるが、体重推移に安定感が薄い。坂路は動いても実戦で結びつかず、前走+4kgで大敗後の中2週は上昇材料として弱い。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>10番 バシレウスシチー: 14%</li>
+<li>11番 メイショウミリオレ: 13%</li>
+<li>7番 マキシマムドライブ: 12%</li>
+<li>14番 マーゴットミスト: 11%</li>
+<li>6番 ミロワール: 10%</li>
+<li>4番 カリーシ: 8%</li>
+<li>1番 インフローレ: 7%</li>
+<li>5番 ヤマニンレセディ: 7%</li>
+<li>12番 ピースフルナイト: 6%</li>
+<li>8番 スネーフリンガ: 5%</li>
+<li>9番 ストラテージュ: 4%</li>
+<li>2番 ジョウゲンノツキ: 2%</li>
+<li>13番 バンディート: 1%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<p><strong>敗因シナリオ</strong></p>
+
+<p>最多支持馬の10番バシレウスシチーは、今回も現級上位の安定感で支持を集めるのは理解できる。ただし飛ぶ筋ははっきりある。まず7歳馬だけに反応面の上積みが乏しく、好走しても善戦止まりで1着を取り切れないシナリオ。次に好位で運べる反面、阪神芝1200mで前が速くなった場合に最後ひと押しを欠き、33秒台後半の決め手比べで差し遅れる形。さらに近走は着差こそ小さいが勝ち切れておらず、「いつ走ってもそこそこ来る馬」を勝ち馬候補として過信している危うさもある。支持の集中ほど絶対感はない。</p>
+
+<p><strong>全馬評価（好走確信度の高い順）</strong></p>
+
+<p>10 バシレウスシチー: Round1で最上位に見た現級実績は依然有力材料。ただし近走は勝ち切れず、今回は「崩れにくい」評価と「勝ち切る」評価を分けるべきで、過大評価には注意。  </p>
+<p>14 マーゴットミスト: 3歳55kgの恩恵と伸びしろは依然魅力。Round1時点の“相手強化の検証待ち”は続くが、近2走で大崩れなく、人気ほどではないにせよ上位食い込みの芽はある。  </p>
+<p>11 メイショウミリオレ: 末脚は通用級で、全体が前寄りに傾けば浮上余地。取りこぼしも多い馬だが、人気馬が止まる前提では最も拾いたい差し候補。  </p>
+<p>6 ミロワール: 高齢でも末脚の質はまだ衰え切っていない。ただし7歳で展開待ち色も濃く、平均点の高さに比べて頭固定の期待はやや危険。  </p>
+<p>4 カリーシ: 3走前の内容なら通用するが、近2走は決め手不足。評価しやすい凡走と好走が混在しており、人気するなら少し疑いたいタイプ。  </p>
+<p>7 マキシマムドライブ: Round1で指摘した昇級戦の相手強化と先行負荷は、今回も本質的には解消していない。平均支持が抑えられてきたのは妥当で、まだ人気先行の匂いは残る。  </p>
+<p>12 ピースフルナイト: 目立たないが、差しが利く形なら圏内に紛れる余地はある。人気薄ならむしろ過小評価気味で、批判者目線では少し拾いたい。  </p>
+<p>5 ヤマニンレセディ: 1勝クラス勝ち直後で楽ではないうえ、前走大敗も重い。ただし一度使って間があき、凡走だけで切り捨てるほどの底でもない。  </p>
+<p>1 インフローレ: 近走内容は弱いが、全く脚がないわけではない。距離短縮で流れがはまる可能性はあるものの、現状は展開待ちの域を出ない。  </p>
+<p>8 スネーフリンガ: 着順以上に走れている面はあるが、2勝クラスで安定して勝ち負けする裏付けはまだ弱い。押し上げるほどの盲点までは感じない。  </p>
+<p>9 ストラテージュ: ダート続きからの芝替わりで一変待ちだが、現時点では材料不足。調教気配だけで飛びつくのは危険。  </p>
+<p>2 ジョウゲンノツキ: 近走の芝成績では強気になれない。一杯に追って鋭さひと息の調教評価も、上向きを断言しづらい。  </p>
+<p>13 バンディート: 攻めは動いてもレース内容が悪すぎる。芝1200mで前に行けても止まるリスクが高く、今回は厳しく見るのが自然。</p>
+
+<p><strong>好走確信度配分</strong></p>
+
+<li>10番 バシレウスシチー: 13%</li>
+<li>14番 マーゴットミスト: 12%</li>
+<li>11番 メイショウミリオレ: 11%</li>
+<li>6番 ミロワール: 10%</li>
+<li>4番 カリーシ: 9%</li>
+<li>7番 マキシマムドライブ: 8%</li>
+<li>12番 ピースフルナイト: 8%</li>
+<li>5番 ヤマニンレセディ: 7%</li>
+<li>1番 インフローレ: 6%</li>
+<li>8番 スネーフリンガ: 5%</li>
+<li>9番 ストラテージュ: 4%</li>
+<li>2番 ジョウゲンノツキ: 4%</li>
+<li>13番 バンディート: 3%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round1で強く疑った7番マキシマムドライブは、今回は平均支持が下がっており、昇級戦の相手強化と先行負荷への懸念が一定反映されたと見てよい。一方で支持の中心が10番バシレウスシチーへ移ったが、この馬も安定感先行で勝ち切り保証まではない。3歳55kgで伸びしろのある14番、差しがはまる11番、展開待ちでも末脚はある6番までが上位圏。全体として抜けた本命不在で、人気馬を絶対視せず、取りこぼしと人気妙味の差を意識して組み立てたい。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>10</td><td class="left horse-name">バシレウスシチー</td><td class="trust-mid">14.5%</td><td>16.1</td><td>14.5</td><td>15.0</td><td>14.0</td><td>15.0</td><td>12.5</td></tr><tr><td>2</td><td>14</td><td class="left horse-name">マーゴットミスト</td><td class="trust-mid">11.9%</td><td>11.0</td><td>13.0</td><td>11.0</td><td>11.0</td><td>13.0</td><td>12.5</td></tr><tr><td>3</td><td>11</td><td class="left horse-name">メイショウミリオレ</td><td class="trust-mid">11.5%</td><td>13.6</td><td>7.0</td><td>13.0</td><td>12.0</td><td>12.5</td><td>11.0</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">ミロワール</td><td class="trust-mid">10.5%</td><td>12.1</td><td>10.0</td><td>10.5</td><td>10.0</td><td>10.5</td><td>10.0</td></tr><tr><td>5</td><td>4</td><td class="left horse-name">カリーシ</td><td class="trust-mid">8.8%</td><td>11.1</td><td>8.5</td><td>8.5</td><td>8.0</td><td>8.0</td><td>9.0</td></tr><tr><td>6</td><td>7</td><td class="left horse-name">マキシマムドライブ</td><td class="trust-mid">8.6%</td><td>5.5</td><td>11.0</td><td>8.0</td><td>8.5</td><td>10.5</td><td>8.0</td></tr><tr><td>7</td><td>12</td><td class="left horse-name">ピースフルナイト</td><td class="trust-low">7.2%</td><td>7.0</td><td>10.0</td><td>7.0</td><td>6.5</td><td>5.5</td><td>7.5</td></tr><tr><td>8</td><td>5</td><td class="left horse-name">ヤマニンレセディ</td><td class="trust-low">6.8%</td><td>6.0</td><td>7.5</td><td>8.0</td><td>7.0</td><td>5.5</td><td>7.0</td></tr><tr><td>9</td><td>1</td><td class="left horse-name">インフローレ</td><td class="trust-low">6.1%</td><td>4.5</td><td>5.5</td><td>6.0</td><td>7.5</td><td>7.0</td><td>6.0</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">スネーフリンガ</td><td class="trust-low">4.7%</td><td>5.0</td><td>2.5</td><td>5.0</td><td>5.0</td><td>5.5</td><td>5.0</td></tr><tr><td>11</td><td>9</td><td class="left horse-name">ストラテージュ</td><td class="trust-low">3.4%</td><td>3.0</td><td>4.0</td><td>2.5</td><td>4.0</td><td>3.0</td><td>4.0</td></tr><tr><td>12</td><td>2</td><td class="left horse-name">ジョウゲンノツキ</td><td class="trust-low">3.4%</td><td>2.6</td><td>4.0</td><td>3.5</td><td>3.5</td><td>2.5</td><td>4.0</td></tr><tr><td>13</td><td>13</td><td class="left horse-name">バンディート</td><td class="trust-low">2.5%</td><td>2.5</td><td>2.5</td><td>2.0</td><td>3.0</td><td>1.5</td><td>3.5</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>10</td><td class="left horse-name">バシレウスシチー</td><td>14.5%</td><td>11.4</td><td>5</td><td class="ev-mid">1.66</td></tr><tr><td>2</td><td>14</td><td class="left horse-name">マーゴットミスト</td><td>11.9%</td><td>5.1</td><td>2</td><td class="ev-low">0.61</td></tr><tr><td>3</td><td>11</td><td class="left horse-name">メイショウミリオレ</td><td>11.5%</td><td>12.2</td><td>6</td><td class="ev-mid">1.41</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">ミロワール</td><td>10.5%</td><td>9.8</td><td>4</td><td class="ev-mid">1.03</td></tr><tr><td>5</td><td>4</td><td class="left horse-name">カリーシ</td><td>8.8%</td><td>14.6</td><td>9</td><td class="ev-mid">1.29</td></tr><tr><td>6</td><td>7</td><td class="left horse-name">マキシマムドライブ</td><td>8.6%</td><td>6.4</td><td>3</td><td class="ev-low">0.55</td></tr><tr><td>7</td><td>12</td><td class="left horse-name">ピースフルナイト</td><td>7.2%</td><td>27.4</td><td>13</td><td class="ev-mid">1.99</td></tr><tr><td>8</td><td>5</td><td class="left horse-name">ヤマニンレセディ</td><td>6.8%</td><td>12.3</td><td>7</td><td class="ev-low">0.84</td></tr><tr><td>9</td><td>1</td><td class="left horse-name">インフローレ</td><td>6.1%</td><td>17.3</td><td>10</td><td class="ev-mid">1.05</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">スネーフリンガ</td><td>4.7%</td><td>25.4</td><td>11</td><td class="ev-mid">1.19</td></tr><tr><td>11</td><td>9</td><td class="left horse-name">ストラテージュ</td><td>3.4%</td><td>4.3</td><td>1</td><td class="ev-low">0.15</td></tr><tr><td>12</td><td>2</td><td class="left horse-name">ジョウゲンノツキ</td><td>3.4%</td><td>12.9</td><td>8</td><td class="ev-low">0.43</td></tr><tr><td>13</td><td>13</td><td class="left horse-name">バンディート</td><td>2.5%</td><td>27.0</td><td>12</td><td class="ev-low">0.68</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">10 バシレウスシチー</td><td>14.5%</td><td>11.4</td><td class="ev-mid">1.35</td></tr><tr><td>複勝</td><td class="left">10 バシレウスシチー</td><td>40.9%</td><td>3.0</td><td class="ev-mid">1.06</td></tr><tr><td>馬連</td><td class="left">10 バシレウスシチー-14 マーゴットミスト</td><td>4.0%</td><td>21.9</td><td class="ev-low">0.71</td></tr><tr><td>ワイド</td><td class="left">10 バシレウスシチー-14 マーゴットミスト</td><td>11.3%</td><td>6.9</td><td class="ev-low">0.65</td></tr><tr><td>馬単</td><td class="left">10 バシレウスシチー→14 マーゴットミスト</td><td>2.0%</td><td>55.8</td><td class="ev-low">0.92</td></tr><tr><td>3連複</td><td class="left">10 バシレウスシチー-11 メイショウミリオレ-14 マーゴットミスト</td><td>1.9%</td><td>55.7</td><td class="ev-low">0.83</td></tr><tr><td>3連単</td><td class="left">10 バシレウスシチー→14 マーゴットミスト→11 メイショウミリオレ</td><td>0.3%</td><td>501.6</td><td class="ev-mid">1.29</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,500円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">10 バシレウスシチー</td><td>11.4</td><td>5</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">10 バシレウスシチー-14 マーゴットミスト</td><td>21.9</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>馬単</td><td class="left">10 バシレウスシチー→14 マーゴットミスト</td><td>55.8</td><td>3</td><td style='text-align:right;font-weight:600;'>300円</td><td style="font-size:11px;color:#8E8E93;">馬単◎→○</td></tr><tr><td>3連複</td><td class="left">10 バシレウスシチー-11 メイショウミリオレ-14 マーゴットミスト</td><td>55.7</td><td>3</td><td style='text-align:right;font-weight:600;'>300円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">10 バシレウスシチー→14 マーゴットミスト→11 メイショウミリオレ</td><td>501.6</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,500円
+</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>

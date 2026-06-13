@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花のみちステークス 2026/06/14 HANSHIN 10R (06/14 03:03 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>花のみちステークス 2026/06/14 HANSHIN 10R (06/14 03:03 予想 馬体重なし)</h1>
+  <div class="meta">芝1600m（右 外） | 良 | 14頭立て | 3回 阪神 4日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 14頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">3. テラメリタ</div>
+      <div class="pick-jockey">川田 将雅 / 須貝 尚介</div>
+    </div>
+    <div class="pick-prob">12.6%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">10. アウフヘーベン</div>
+      <div class="pick-jockey">D.レーン / 高橋 亮</div>
+    </div>
+    <div class="pick-prob">12.3%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">12. セブンマジシャン</div>
+      <div class="pick-jockey">西村 淳也 / 高野 友和</div>
+    </div>
+    <div class="pick-prob">9.7%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">14頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">サンタンカ</td><td>牡4</td><td>58</td><td>松山 弘平</td><td>千田 輝彦</td><td>モーリス</td><td>コマンズ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">マイエレメント</td><td>牝4</td><td>56</td><td>吉村 誠之助</td><td>福永 祐一</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">テラメリタ</td><td>牝5</td><td>56</td><td>川田 将雅</td><td>須貝 尚介</td><td>ブリックスアンドモルタル</td><td>ヴィクトワールピサ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>4</td><td class="left horse-name">チャンネルトンネル</td><td>牡5</td><td>58</td><td>武 豊</td><td>福永 祐一</td><td>グレーターロンドン</td><td>Henrythenavigator</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>5</td><td class="left horse-name">エポックヴィーナス</td><td>牝5</td><td>56</td><td>田山 旺佑</td><td>新谷 功一</td><td>ヴィクトワールピサ</td><td>ブライアンズタイム</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>6</td><td class="left horse-name">ウォーターガーベラ</td><td>牝4</td><td>56</td><td>高杉 吏麒</td><td>石橋 守</td><td>レイデオロ</td><td>ヴィクトワールピサ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>7</td><td class="left horse-name">ケーブパール</td><td>牝5</td><td>56</td><td>岩田 望来</td><td>友道 康夫</td><td>ブリックスアンドモルタル</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>8</td><td class="left horse-name">ミナデオロ</td><td>牡5</td><td>58</td><td>C.ルメール</td><td>藤原 英昭</td><td>レイデオロ</td><td>Unusual Heat</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>9</td><td class="left horse-name">アイルシャイン</td><td>せん6</td><td>58</td><td>松若 風馬</td><td>新谷 功一</td><td>ヴィクトワールピサ</td><td>ブライアンズタイム</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>10</td><td class="left horse-name">アウフヘーベン</td><td>牝6</td><td>56</td><td>D.レーン</td><td>高橋 亮</td><td>サトノダイヤモンド</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>11</td><td class="left horse-name">コルレオニス</td><td>牡5</td><td>58</td><td>戸崎 圭太</td><td>友道 康夫</td><td>レイデオロ</td><td>ファルブラヴ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>12</td><td class="left horse-name">セブンマジシャン</td><td>牡6</td><td>58</td><td>西村 淳也</td><td>高野 友和</td><td>ジャスタウェイ</td><td>メイショウサムソン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>13</td><td class="left horse-name">ワイドアラジン</td><td>牡6</td><td>58</td><td>横山 武史</td><td>奥村 豊</td><td>ダイワメジャー</td><td>ウォーエンブレム</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>14</td><td class="left horse-name">ゼンダンハヤブサ</td><td>牡4</td><td>58</td><td>酒井 学</td><td>橋田 宜長</td><td>スマートオーディン</td><td>アグネスタキオン</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>3</td><td class="left horse-name">テラメリタ</td><td style="background:#F0F7FF;">2 (11.0)</td><td style="background:#F0F7FF;">2 (11.8)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.3)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.6)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.8)</td></tr><tr><td>10</td><td class="left horse-name">アウフヘーベン</td><td style="font-weight:700;background:#F0F7FF;">1 (12.5)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.2)</td><td style="background:#F0F7FF;">2 (12.1)</td><td style="background:#F0F7FF;">2 (12.4)</td><td style="background:#F0F7FF;">2 (12.7)</td></tr><tr><td>12</td><td class="left horse-name">セブンマジシャン</td><td style="background:#F0F7FF;">4 (8.0)</td><td style="background:#F0F7FF;">3 (8.9)</td><td style="background:#F0F7FF;">3 (9.5)</td><td style="background:#F0F7FF;">3 (9.6)</td><td style="background:#F0F7FF;">3 (9.7)</td></tr><tr><td>4</td><td class="left horse-name">チャンネルトンネル</td><td style="background:#F0F7FF;">3 (9.1)</td><td style="background:#F0F7FF;">4 (8.9)</td><td style="background:#F0F7FF;">4 (9.0)</td><td style="background:#F0F7FF;">4 (9.0)</td><td style="background:#F0F7FF;">4 (9.0)</td></tr><tr><td>1</td><td class="left horse-name">サンタンカ</td><td style="background:#F0F7FF;">5 (7.9)</td><td style="background:#F0F7FF;">5 (8.0)</td><td style="color:#AEAEB2;">6 (8.1)</td><td style="background:#F0F7FF;">5 (8.2)</td><td style="background:#F0F7FF;">5 (8.5)</td></tr><tr><td>11</td><td class="left horse-name">コルレオニス</td><td style="color:#AEAEB2;">7 (7.8)</td><td style="color:#AEAEB2;">6 (8.0)</td><td style="background:#F0F7FF;">5 (8.1)</td><td style="color:#AEAEB2;">6 (8.1)</td><td style="color:#AEAEB2;">6 (8.1)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>10 アウフヘーベン: 近2走の芝1600mで1:31.8、1:32.2と高水準の連続2着。どちらも着差0.2秒以内で、現級実績と走破時計の裏付けが最も強い。  </p>
+<p>3 テラメリタ: 2走前に阪神芝1600mの皆生特別を1:32.7で勝ち、前走も同距離で2着1:34.2差0.0秒。近5走の安定感と同条件実績は上位。  </p>
+<p>12 セブンマジシャン: 前走錦S4着で差0.2秒、2走前若潮S6着でも1:32.2、3走前ファイナルSは2着。現級マイルで大崩れが少なく軸圏。  </p>
+<p>4 チャンネルトンネル: あけぼのS2着1:33.4差0.2秒、清水S4着1:33.1差0.1秒と3勝クラスで足りている。前走9着は負けたが内容比較ではまだ上位。  </p>
+<p>14 ゼンダンハヤブサ: 前走錦S5着、前々走立雲峡S5着はいずれも差0.2秒、0.6秒。2勝クラス勝ち直後でも現級で通用の数字は出している。  </p>
+<p>11 コルレオニス: 石清水S4着1:33.0差0.2秒が優秀。前走5着は差0.7秒だが、現級マイルで一度は走れており巻き返し余地はある。  </p>
+<p>1 サンタンカ: 2連勝の内容は良く、前走1:20.7、2走前1:34.7でいずれも上がり33秒台前半。ただし3勝クラス実績はなく、指数面では上位常連に一歩譲る。  </p>
+<p>5 エポックヴィーナス: 着順は6着、7着続きでも前走錦Sは1:32.8差0.2秒、上がり32.4。数字だけ見れば現級で圏内だが、勝ち切る裏付けまでは弱い。  </p>
+<p>2 マイエレメント: 3勝クラスでは6着、14着だが、マレーシアCの1:32.7差0.5秒は悪くない。2勝クラスを連勝した実績もあり、巻き返し候補。  </p>
+<p>8 ミナデオロ: 近走は1800m中心だが、岸和田Sで1600mを5着1:33.0差0.2秒。勝ち切る材料は薄いが、現級マイルで全く足りない数字ではない。  </p>
+<p>6 ウォーターガーベラ: 近4走すべて3勝クラスで6着から8着。ただし岸和田S1:33.0差0.2秒は悪くなく、完全な圏外とも言い切れない。  </p>
+<p>7 ケーブパール: 近2走が8着、10着でともに3勝クラスでは決め手不足。2勝クラス勝ちは1400mで、現状はマイル実績の裏付けが弱い。  </p>
+<p>13 ワイドアラジン: 前走弥彦S6着差0.3秒は悪くないが、近5走で芝では6着、10着、7着、6着と詰め切れない。現級での好走実績不足は否めない。  </p>
+<p>9 アイルシャイン: 近走サンプル自体が少なく、前走石清水S10着1:33.8差1.0秒が大きくマイナス。2勝クラス勝ちはあるが、長期休養明け後の現級比較では厳しい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>10番 アウフヘーベン: 14%</li>
+<li>3番 テラメリタ: 13%</li>
+<li>12番 セブンマジシャン: 11%</li>
+<li>4番 チャンネルトンネル: 9%</li>
+<li>14番 ゼンダンハヤブサ: 9%</li>
+<li>11番 コルレオニス: 8%</li>
+<li>1番 サンタンカ: 8%</li>
+<li>5番 エポックヴィーナス: 7%</li>
+<li>2番 マイエレメント: 6%</li>
+<li>8番 ミナデオロ: 5%</li>
+<li>6番 ウォーターガーベラ: 4%</li>
+<li>7番 ケーブパール: 2%</li>
+<li>13番 ワイドアラジン: 2%</li>
+<li>9番 アイルシャイン: 2%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>10 アウフヘーベン: サトノダイヤモンド×キングカメハメハで、阪神外1600mに必要な持続力と直線の再加速力を血統的に高水準で満たす。1800mでも走れるが、マイルでも脚を長く使える配合で最上位評価を維持する。  </p>
+<p>14 ゼンダンハヤブサ: スマートオーディン×アグネスタキオンで、父系の切れと母系のマイル適性が前面に出た配合。1800mより1600mで良さが出やすく、阪神外回りの差し比べは合う。  </p>
+<p>2 マイエレメント: エピファネイア×ディープインパクトは本質的に中距離寄りだが、軽い芝マイルでの瞬発力補完が利く配合。阪神外1600mなら上質な末脚を使える血統構成。  </p>
+<p>3 テラメリタ: ブリックスアンドモルタル×ヴィクトワールピサで、パワーと持続力が強く、阪神外回りのロングスパート戦は歓迎。速い上がり勝負にも一定対応でき、血統面の裏付けは濃い。  </p>
+<p>12 セブンマジシャン: ジャスタウェイ×メイショウサムソンで、マイルから1800mで安定しやすいスタミナ持続型。阪神外1600mは忙しすぎず、地力で上位圏に残れる配合。  </p>
+<p>4 チャンネルトンネル: グレーターロンドン×Henrythenavigatorで、マイル指向の強い配合。父系の切れに母父のマイラー色が乗り、阪神外1600mの条件自体はかなり合う。  </p>
+<p>1 サンタンカ: モーリス×コマンズで、マイルから1400m寄りの機動力とパワーがある。1600mは守備範囲だが、阪神外回りで究極の切れ勝負になると最上位勢にやや見劣る。  </p>
+<p>11 コルレオニス: レイデオロ×ファルブラヴで、母系のマイル適性で補ってはいるが、父の産駒傾向からは本質的に1800m前後がベター。マイルでこなせても最適条件とは言い切れない。  </p>
+<p>8 ミナデオロ: レイデオロ×Unusual Heatで、中距離向きの持続力が主武器。阪神外1600mでも対応は可能だが、血統的にはワンターン気味の1800mの方がより噛み合う。  </p>
+<p>7 ケーブパール: ブリックスアンドモルタル×ディープインパクトで、1400m寄りの軽さに見えて母系由来の底力もある。ただし阪神外1600mで突き抜けるには、やや決め手の質が足りない印象。  </p>
+<p>13 ワイドアラジン: ダイワメジャー×ウォーエンブレムで、本来はマイル適性自体は高い。だが年齢を重ねて短距離寄りの反応が強まるタイプにも見え、阪神外1600mでの伸び比べでは押し切り材料が薄い。  </p>
+<p>5 エポックヴィーナス: ヴィクトワールピサ×ブライアンズタイムで、持続力とパワーに寄った配合。マイル自体はこなすが、阪神外1600mの軽い決め手勝負では血統的なパンチ不足がある。  </p>
+<p>6 ウォーターガーベラ: レイデオロ×ヴィクトワールピサで、かなり中距離色の強い配合。マイルで追走はできても、阪神外1600mのスピード持続戦では忙しさが残る。  </p>
+<p>9 アイルシャイン: ヴィクトワールピサ×ブライアンズタイムで、5番と近い持続力型。マイルで全く駄目ではないが、血統的に鋭い瞬発戦より消耗戦向きで、この条件では強調しづらい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>10番 アウフヘーベン: 12%</li>
+<li>14番 ゼンダンハヤブサ: 11%</li>
+<li>2番 マイエレメント: 10%</li>
+<li>3番 テラメリタ: 10%</li>
+<li>12番 セブンマジシャン: 9%</li>
+<li>4番 チャンネルトンネル: 8%</li>
+<li>1番 サンタンカ: 8%</li>
+<li>11番 コルレオニス: 8%</li>
+<li>8番 ミナデオロ: 6%</li>
+<li>7番 ケーブパール: 5%</li>
+<li>13番 ワイドアラジン: 5%</li>
+<li>5番 エポックヴィーナス: 4%</li>
+<li>6番 ウォーターガーベラ: 2%</li>
+<li>9番 アイルシャイン: 2%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>3 テラメリタ: 先行力があって3枠から無理なく好位を取れるのが大きい。逃げ馬不在で平均ややスローなら、3番手前後で運んで直線でしぶとく抜け出す形が最も描きやすい。  </p>
+<p>10 アウフヘーベン: 近走は好位差しが安定。6枠でも外すぎず、好位の外で流れに乗って早めに脚を使える。阪神外回りの長い直線もこの馬の運びに合う。  </p>
+<p>1 サンタンカ: 最内枠で先行力があり、今回はハナか番手の形まである。サンタンカが逃げて3が2、3番手に12や10という隊列なら、内でロスなく粘り込む展開利が大きい。  </p>
+<p>12 セブンマジシャン: 先行も差しもできる自在型で、今回の並びなら好位の外目を確保しやすい。決め手勝負一本だとやや甘いが、流れには乗りやすい。  </p>
+<p>4 チャンネルトンネル: 中団前目で脚をためる形は合う。内寄りの3枠で立ち回りやすく、武豊騎手なら前が遅いと見て早めに進出する絵もある。  </p>
+<p>8 ミナデオロ: 先行可能で5枠も悪くない。逃げ候補が少ない中で自然と前へ行けるのは魅力だが、直線での持続戦で10や3に比べるとひと押し足りない。  </p>
+<p>11 コルレオニス: 7枠で少し外だが、極端な後方脚質ではなく流れには乗れる。好位直後から運べれば圏内はあるが、外を回されると少しロスが出る。  </p>
+<p>2 マイエレメント: 内目の2枠は歓迎。普段は差し寄りでも、この頭数と並びなら中団インで脚をためる形が取れる。ただし前が止まらないと差し届かない懸念は残る。  </p>
+<p>6 ウォーターガーベラ: 4枠で位置は取りやすい。先行寄りに出せれば面白いが、近走はもう一列後ろになりがちで、結局ワンパンチ足りない展開になりやすい。  </p>
+<p>14 ゼンダンハヤブサ: 8枠はこのメンバー構成では痛い。中団外から脚を使う形になりやすく、スロー寄りだと差し遅れやすい。流れが少しでも速くなれば浮上。  </p>
+<p>5 エポックヴィーナス: 末脚はあるが、今回は前が手薄で差し有利の絵が薄い。4枠で内に潜れればまだいいが、基本は直線で前との差をどこまで詰められるか。  </p>
+<p>13 ワイドアラジン: 8枠で外々を回されやすく、脚質的にも前を一気に飲み込むタイプではない。他エージェントの下方修正も、展開面では妥当と見る。  </p>
+<p>7 ケーブパール: 差し脚質で5枠自体は悪くないが、今回の隊列だと前崩れ待ち。逃げ争いが起きにくく、脚を余すリスクのほうが高い。  </p>
+<p>9 アイルシャイン: 近走の位置取りからも後方寄りになりやすく、6枠から中団後ろではこのレース質と噛み合いにくい。ペースが想定以上に流れないと苦しい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>3番 テラメリタ: 13%</li>
+<li>10番 アウフヘーベン: 11%</li>
+<li>1番 サンタンカ: 10%</li>
+<li>12番 セブンマジシャン: 10%</li>
+<li>4番 チャンネルトンネル: 9%</li>
+<li>8番 ミナデオロ: 8%</li>
+<li>11番 コルレオニス: 7%</li>
+<li>2番 マイエレメント: 7%</li>
+<li>6番 ウォーターガーベラ: 6%</li>
+<li>14番 ゼンダンハヤブサ: 5%</li>
+<li>5番 エポックヴィーナス: 5%</li>
+<li>13番 ワイドアラジン: 4%</li>
+<li>7番 ケーブパール: 3%</li>
+<li>9番 アイルシャイン: 2%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>3 テラメリタ: 川田将雅×須貝尚介の組み合わせは阪神外回りマイルでの信頼度が高く、近2走も同条件で再現性十分。陣営の継続運用が最も買いやすい。  </p>
+<p>10 アウフヘーベン: レーン起用で近2走とも1600m戦を高水準にまとめており、厩舎の使い方も明快。勝ち切り課題はあるが陣営面では上位。  </p>
+<p>4 チャンネルトンネル: 武豊×福永祐一厩舎はコース取りと仕掛けの精度に期待できる。前走敗戦でも阪神マイルへの条件替わりは巻き返し余地が大きい。  </p>
+<p>12 セブンマジシャン: 高野厩舎のマイル継続ローテは安定感があり、西村淳也もこの条件では大崩れしにくい。人気とのバランスでもまだ拾える。  </p>
+<p>1 サンタンカ: 松山弘平で阪神外回りは運びやすく、昇級でも前走勝ちの勢いは評価可能。千田厩舎の間隔の取り方も無理がない。  </p>
+<p>11 コルレオニス: 友道厩舎は格上挑戦や条件再設定が上手く、戸崎圭太への乗り替わりも減点小。阪神マイルへの対応力は陣営面で水準以上。  </p>
+<p>2 マイエレメント: 福永祐一厩舎の管理馬で、吉村誠之助でもマイルへの運用意図ははっきりしている。前走大敗後でも立て直し余地はある。  </p>
+<p>14 ゼンダンハヤブサ: 酒井学×橋田厩舎で派手さはないが、近3走がマイル中心で運用に一貫性がある。阪神1600m継続組としては評価を少し上げたい。  </p>
+<p>8 ミナデオロ: ルメール×藤原英昭は本来強力だが、近走は1800m主体で今回のマイル起用に勝負度の強調が薄い。人気先行なら期待値は並。  </p>
+<p>5 エポックヴィーナス: 新谷厩舎の使い方は堅実で、前走内容も悪くない。ただし田山旺佑でこのクラスの阪神外回りを勝ち切る裏付けはまだ弱い。  </p>
+<p>7 ケーブパール: 岩田望来×友道厩舎は魅力だが、近走が1400m中心から1600mで押し切れない。陣営力で下支えはあるが上積みは限定的。  </p>
+<p>6 ウォーターガーベラ: 石橋守厩舎の仕上げ自体は安定だが、高杉吏麒でこの相手関係は強調しづらい。マイル連戦の中でも陣営面の押しは弱い。  </p>
+<p>13 ワイドアラジン: 横山武史起用は魅力でも、奥村豊厩舎の近走ローテはやや散漫。阪神マイルへの明確な勝負気配までは読みづらい。  </p>
+<p>9 アイルシャイン: 松若風馬×新谷厩舎で久々の一戦となり、使い方の再現性に不安が残る。陣営面では最も強調材料が少ない。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>3番 テラメリタ: 15%</li>
+<li>10番 アウフヘーベン: 13%</li>
+<li>4番 チャンネルトンネル: 11%</li>
+<li>12番 セブンマジシャン: 10%</li>
+<li>1番 サンタンカ: 9%</li>
+<li>11番 コルレオニス: 8%</li>
+<li>2番 マイエレメント: 7%</li>
+<li>14番 ゼンダンハヤブサ: 7%</li>
+<li>8番 ミナデオロ: 6%</li>
+<li>5番 エポックヴィーナス: 5%</li>
+<li>7番 ケーブパール: 4%</li>
+<li>6番 ウォーターガーベラ: 3%</li>
+<li>13番 ワイドアラジン: 1%</li>
+<li>9番 アイルシャイン: 1%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>10 アウフヘーベン: 454kg→462kg→462kgと叩いて馬体を戻して安定し、中2週でも前走同体重維持なら反動は小さい。強め追いで好調持続、6歳でも仕上がりは最も信頼しやすい。  </p>
+<p>3 テラメリタ: 478kg→480kg→482kg→484kg→484kgと右肩上がりで完成度が高い。84日ぶりでも坂路一番時計で調子↗、休み明けでも太め残りより成長維持の印象。  </p>
+<p>12 セブンマジシャン: 482kg→498kg→494kg→496kg→508kgで増減幅は大きいが、前走+12kgで0.2秒差なら太め一辺倒ではない。今回は叩き2走目で、508kg前後を維持できれば上積みが見込める。  </p>
+<p>11 コルレオニス: 456kg台から466kg、470kgへと馬体回復が明確で、休養明け2走目でも上積み余地あり。強め追いで好調持続、5歳牡馬58kgも470kg級なら耐えやすい。  </p>
+<p>4 チャンネルトンネル: 462kg→466kg→470kg→474kg→472kgで推移は安定。中4週で疲労は薄く、472kgなら好走圏の体つき。ただし58kg続きで上積みは大きくない。  </p>
+<p>1 サンタンカ: 520kg前後でほぼぶれず、前走516kg据え置きで勝ち切ったのは体調面で好材料。中1週は負荷だが大型馬でこなしやすく、攻め軽めでも順調。  </p>
+<p>2 マイエレメント: 492kg→488kg→490kg→486kgと推移は素直で、今回も486kg前後なら仕上がりは整う。中3週は理想的で、CWの脚捌きも鋭い。ただし前走減った分を戻し過ぎると甘くなる。  </p>
+<p>8 ミナデオロ: 510kg→528kg→524kg→520kg→512kgで大幅増のあと絞れてきたのは好感。大型馬で58kgは問題ないが、連戦での絞り過程が続いており、もう一段の安定感は欲しい。  </p>
+<p>5 エポックヴィーナス: 446kg→448kg→450kg→454kg→452kgと緩やかな上昇で体調は安定。452kg前後なら許容範囲だが、牝馬で56kg据え置き、調教も順調止まりで一変の迫力まではない。  </p>
+<p>14 ゼンダンハヤブサ: 454kg→450kg→452kg→450kg→450kgで安定感はあるが、450kg級で58kgは約1馬身分の負担増を受けやすい馬格。調子↗は良いが、馬格面の不利を残す。  </p>
+<p>6 ウォーターガーベラ: 452kg→452kg→468kg→466kg→462kgで一度増えた馬体を少しずつ絞っている途中。叩き3走目で上向く余地はあるが、ベストがどこかまだ読み切れず、仕上がり良好でも強調し切れない。  </p>
+<p>13 ワイドアラジン: 484kg→488kg→498kg→492kg→494kgで大崩れはないが、絞り切って上向く流れでもない。中4週は標準でも、G前一杯追いで脚いろ見劣るなら体調面の押しは弱い。  </p>
+<p>7 ケーブパール: 430kg台後半でまとまる小柄馬で、56kgでも余裕は大きくない。3カ月ぶりで438kgは仕上がってもおかしくないが、休み明けで折り合い重視の調整なら体調面の強い買い材料までは乏しい。  </p>
+<p>9 アイルシャイン: 前走482kgは休み明けで+12kg、今回はそこから4カ月ぶり。久々も動き軽快ではあるが、中間の積み上げ確認が難しく、せん馬でも休養明けの仕上がり不安が最も大きい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>10番 アウフヘーベン: 13%</li>
+<li>3番 テラメリタ: 12%</li>
+<li>12番 セブンマジシャン: 10%</li>
+<li>11番 コルレオニス: 9%</li>
+<li>4番 チャンネルトンネル: 8%</li>
+<li>1番 サンタンカ: 8%</li>
+<li>2番 マイエレメント: 8%</li>
+<li>8番 ミナデオロ: 7%</li>
+<li>5番 エポックヴィーナス: 6%</li>
+<li>14番 ゼンダンハヤブサ: 6%</li>
+<li>6番 ウォーターガーベラ: 5%</li>
+<li>13番 ワイドアラジン: 3%</li>
+<li>7番 ケーブパール: 3%</li>
+<li>9番 アイルシャイン: 2%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<p><strong>敗因シナリオ</strong></p>
+
+<p>最多支持は <code>3 テラメリタ</code>。確かに近2走の1600m内容と追い切り時計は優秀だが、全員が見ている強みだけで押し切れるほど抜けた存在ではない。負けるならまず、好位で運べることが逆に仇となり、阪神外回りで後半の瞬発力勝負に巻き込まれて差し比べで甘くなる形。勝ち切るというより“無難に上位”の馬で、人気ほど1着固定の信頼は高くない。</p>
+
+<p>もう1つは、前走2勝クラス勝ちの反動よりも、相手強化での比較が甘く見積もられるケース。近走は安定しているが、33秒台前半の決め手を連発しているわけではなく、同じ位置取りのままアウフヘーベンやゼンダンハヤブサに終いで見劣る可能性がある。さらに外差しが利く馬場になれば、好位勢の中で最も“目標にされる立場”になるのもリスクだ。</p>
+
+<p>Round 1 で指摘した「上位人気に抜けた馬はいない」という見立ては、今回もほぼ維持したい。アウフヘーベンの勝ち切り不安は依然残り、ゼンダンハヤブサやマイエレメントの軽視は多少是正されたが、まだ十分とは言えない。</p>
+
+<p><strong>全馬評価（好走確信度の高い順）</strong></p>
+
+<p>3 テラメリタ: 平均1位は納得でも、2勝クラス勝ち直後で過信は禁物。好位安定型として崩れにくい半面、人気ほどの決め手断然感はない。  </p>
+<p>10 アウフヘーベン: 能力上位だがRound 1で触れた勝ち切り難はそのまま。連続好走がむしろ人気を押し上げ、期待値面では少し危うい。  </p>
+<p>12 セブンマジシャン: 近走水準は足りるが、結局は善戦止まりになりやすいタイプ。上位圏評価は必要でも頭固定までは踏み込みにくい。  </p>
+<p>4 チャンネルトンネル: あけぼのS2着は強いが、前走凡走でムラは残る。武豊で人気を集めるなら、取りこぼしも同時に警戒したい。  </p>
+<p>14 ゼンダンハヤブサ: Round 1で盲点視した馬。3勝ではまだ実績不足でも、近2走の1600m内容は通用圏で、差し遅れさえなければ上位進出の芽は十分。  </p>
+<p>1 サンタンカ: 昇級でも勢いは侮れないが、1400mの好内容をそのまま1600m上級条件へ直結するのは危険。相手強化で真価を問われる。  </p>
+<p>11 コルレオニス: 末脚の質は足りるが、毎回勝ち負けまで届くかは別。友道厩舎と戸崎で過剰に売れるなら少し疑ってかかりたい。  </p>
+<p>2 マイエレメント: 前走14着で嫌われるなら妙味はある。1600mに戻れば巻き返し余地はあり、Round 1時点よりも相対評価は上げたい。  </p>
+<p>5 エポックヴィーナス: 近走着順は地味でも指数は足りる。展開待ちだが、上位人気がもたつく差し決着なら食い込む余地がある。  </p>
+<p>8 ミナデオロ: ルメールと厩舎で必要以上に買われやすいが、3勝での決め手比較では一歩譲る。能力はあるが人気先行の危険もある。  </p>
+<p>6 ウォーターガーベラ: ずっと差のない競馬はしているが、1勝馬のままなのは勝ち切れない理由があるとも言える。押さえまでが妥当。  </p>
+<p>7 ケーブパール: 1400m寄りの印象が強く、1600m3勝で積極評価しにくい。友道厩舎で無視は危険だが、材料はまだ弱い。  </p>
+<p>13 ワイドアラジン: 近走の1800m戦は悪くないが、現状は詰めの甘さが先立つ。調教評価も強調しづらく、上位争いまではもう一押し欲しい。  </p>
+<p>9 アイルシャイン: 久々で動ける調教はあるが、実戦間隔が空きすぎている。いきなり3勝のマイルで上位まで求めるのは酷。</p>
+
+<p><strong>好走確信度配分</strong></p>
+
+<li>3番 テラメリタ: 11%</li>
+<li>10番 アウフヘーベン: 10%</li>
+<li>12番 セブンマジシャン: 9%</li>
+<li>4番 チャンネルトンネル: 9%</li>
+<li>14番 ゼンダンハヤブサ: 8%</li>
+<li>1番 サンタンカ: 8%</li>
+<li>11番 コルレオニス: 8%</li>
+<li>2番 マイエレメント: 7%</li>
+<li>5番 エポックヴィーナス: 7%</li>
+<li>8番 ミナデオロ: 6%</li>
+<li>6番 ウォーターガーベラ: 5%</li>
+<li>7番 ケーブパール: 4%</li>
+<li>13番 ワイドアラジン: 4%</li>
+<li>9番 アイルシャイン: 4%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+今回も上位人気に絶対視できる馬は不在。最多支持のテラメリタは近走内容と調教から高評価は妥当だが、好位抜け出し型で差し比べになると甘くなるリスクがあり、1着固定での信頼は危うい。アウフヘーベンも能力上位ながら勝ち切れなさは依然として残る。Round 1で指摘した上位人気の取りこぼし前提はまだ有効で、ゼンダンハヤブサやマイエレメントはなお過小評価気味。人気馬の安定感は認めつつも、期待値の観点では盲点側の浮上余地を重く見る。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>3</td><td class="left horse-name">テラメリタ</td><td class="trust-mid">12.6%</td><td>13.0</td><td>11.0</td><td>12.9</td><td>14.6</td><td>12.5</td><td>11.4</td></tr><tr><td>2</td><td>10</td><td class="left horse-name">アウフヘーベン</td><td class="trust-mid">12.3%</td><td>14.8</td><td>12.5</td><td>11.7</td><td>12.8</td><td>12.0</td><td>10.2</td></tr><tr><td>3</td><td>12</td><td class="left horse-name">セブンマジシャン</td><td class="trust-mid">9.7%</td><td>10.8</td><td>8.5</td><td>9.8</td><td>9.8</td><td>9.5</td><td>9.8</td></tr><tr><td>4</td><td>4</td><td class="left horse-name">チャンネルトンネル</td><td class="trust-mid">9.0%</td><td>9.0</td><td>7.5</td><td>8.8</td><td>10.8</td><td>9.0</td><td>8.8</td></tr><tr><td>5</td><td>1</td><td class="left horse-name">サンタンカ</td><td class="trust-mid">8.5%</td><td>7.8</td><td>8.8</td><td>9.7</td><td>8.9</td><td>7.2</td><td>8.5</td></tr><tr><td>6</td><td>11</td><td class="left horse-name">コルレオニス</td><td class="trust-mid">8.1%</td><td>7.8</td><td>9.2</td><td>7.0</td><td>7.9</td><td>8.5</td><td>8.0</td></tr><tr><td>7</td><td>14</td><td class="left horse-name">ゼンダンハヤブサ</td><td class="trust-low">7.5%</td><td>7.8</td><td>9.5</td><td>5.0</td><td>6.6</td><td>7.2</td><td>8.7</td></tr><tr><td>8</td><td>2</td><td class="left horse-name">マイエレメント</td><td class="trust-low">7.2%</td><td>5.5</td><td>9.5</td><td>6.9</td><td>6.8</td><td>7.5</td><td>7.1</td></tr><tr><td>9</td><td>5</td><td class="left horse-name">エポックヴィーナス</td><td class="trust-low">6.0%</td><td>7.8</td><td>5.0</td><td>5.0</td><td>4.8</td><td>7.0</td><td>6.7</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">ミナデオロ</td><td class="trust-low">6.0%</td><td>5.5</td><td>4.8</td><td>7.8</td><td>6.0</td><td>6.2</td><td>5.9</td></tr><tr><td>11</td><td>6</td><td class="left horse-name">ウォーターガーベラ</td><td class="trust-low">4.2%</td><td>4.0</td><td>2.2</td><td>6.0</td><td>3.4</td><td>4.8</td><td>4.8</td></tr><tr><td>12</td><td>7</td><td class="left horse-name">ケーブパール</td><td class="trust-low">3.6%</td><td>2.2</td><td>4.8</td><td>3.4</td><td>4.6</td><td>3.2</td><td>3.5</td></tr><tr><td>13</td><td>13</td><td class="left horse-name">ワイドアラジン</td><td class="trust-low">3.3%</td><td>2.2</td><td>5.0</td><td>4.0</td><td>1.9</td><td>3.0</td><td>3.8</td></tr><tr><td>14</td><td>9</td><td class="left horse-name">アイルシャイン</td><td class="trust-low">2.0%</td><td>2.0</td><td>1.8</td><td>2.0</td><td>1.1</td><td>2.2</td><td>3.0</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>3</td><td class="left horse-name">テラメリタ</td><td>12.6%</td><td>10.6</td><td>5</td><td class="ev-mid">1.33</td></tr><tr><td>2</td><td>10</td><td class="left horse-name">アウフヘーベン</td><td>12.3%</td><td>3.5</td><td>1</td><td class="ev-low">0.43</td></tr><tr><td>3</td><td>12</td><td class="left horse-name">セブンマジシャン</td><td>9.7%</td><td>11.0</td><td>7</td><td class="ev-mid">1.07</td></tr><tr><td>4</td><td>4</td><td class="left horse-name">チャンネルトンネル</td><td>9.0%</td><td>8.8</td><td>3</td><td class="ev-low">0.79</td></tr><tr><td>5</td><td>1</td><td class="left horse-name">サンタンカ</td><td>8.5%</td><td>19.8</td><td>10</td><td class="ev-mid">1.68</td></tr><tr><td>6</td><td>11</td><td class="left horse-name">コルレオニス</td><td>8.1%</td><td>11.0</td><td>6</td><td class="ev-low">0.89</td></tr><tr><td>7</td><td>14</td><td class="left horse-name">ゼンダンハヤブサ</td><td>7.5%</td><td>24.3</td><td>12</td><td class="ev-mid">1.81</td></tr><tr><td>8</td><td>2</td><td class="left horse-name">マイエレメント</td><td>7.2%</td><td>14.0</td><td>9</td><td class="ev-mid">1.01</td></tr><tr><td>9</td><td>5</td><td class="left horse-name">エポックヴィーナス</td><td>6.0%</td><td>8.9</td><td>4</td><td class="ev-low">0.54</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">ミナデオロ</td><td>6.0%</td><td>7.4</td><td>2</td><td class="ev-low">0.45</td></tr><tr><td>11</td><td>6</td><td class="left horse-name">ウォーターガーベラ</td><td>4.2%</td><td>19.8</td><td>11</td><td class="ev-low">0.83</td></tr><tr><td>12</td><td>7</td><td class="left horse-name">ケーブパール</td><td>3.6%</td><td>13.4</td><td>8</td><td class="ev-low">0.48</td></tr><tr><td>13</td><td>13</td><td class="left horse-name">ワイドアラジン</td><td>3.3%</td><td>72.2</td><td>14</td><td class="ev-high">2.40</td></tr><tr><td>14</td><td>9</td><td class="left horse-name">アイルシャイン</td><td>2.0%</td><td>32.1</td><td>13</td><td class="ev-low">0.65</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 テラメリタ</td><td>12.6%</td><td>10.6</td><td class="ev-mid">1.09</td></tr><tr><td>複勝</td><td class="left">3 テラメリタ</td><td>35.9%</td><td>2.7</td><td class="ev-low">0.85</td></tr><tr><td>馬連</td><td class="left">3 テラメリタ-10 アウフヘーベン</td><td>3.6%</td><td>9.5</td><td class="ev-low">0.28</td></tr><tr><td>ワイド</td><td class="left">3 テラメリタ-10 アウフヘーベン</td><td>10.1%</td><td>3.8</td><td class="ev-low">0.33</td></tr><tr><td>馬単</td><td class="left">3 テラメリタ→10 アウフヘーベン</td><td>1.8%</td><td>26.4</td><td class="ev-low">0.38</td></tr><tr><td>3連複</td><td class="left">3 テラメリタ-10 アウフヘーベン-12 セブンマジシャン</td><td>1.3%</td><td>20.1</td><td class="ev-low">0.22</td></tr><tr><td>3連単</td><td class="left">3 テラメリタ→10 アウフヘーベン→12 セブンマジシャン</td><td>0.2%</td><td>109.4</td><td class="ev-low">0.20</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 テラメリタ</td><td>10.6</td><td>5</td><td style='text-align:right;font-weight:600;'>500円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">3 テラメリタ-10 アウフヘーベン</td><td>9.5</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>馬単</td><td class="left">3 テラメリタ→10 アウフヘーベン</td><td>26.4</td><td>3</td><td style='text-align:right;font-weight:600;'>300円</td><td style="font-size:11px;color:#8E8E93;">馬単◎→○</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>
