@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>芦ノ湖特別 2026/06/14 TOKYO 9R (06/14 13:37 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>芦ノ湖特別 2026/06/14 TOKYO 9R (06/14 13:37 予想)</h1>
+  <div class="meta">芝1600m（左） | 良 | 11頭立て | 3回 東京 4日目 サラ系3歳以上 2勝クラス （混合）（特指） 定量 11頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">1. テーオーアルアイン</div>
+      <div class="pick-jockey">津村 明秀 / 奥村 豊</div>
+    </div>
+    <div class="pick-prob">16.3%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">4. フジガイフウ</div>
+      <div class="pick-jockey">荻野 極 / 岩戸 孝樹</div>
+    </div>
+    <div class="pick-prob">14.6%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">11. クールデイトナ</div>
+      <div class="pick-jockey">三浦 皇成 / 宮地 貴稔</div>
+    </div>
+    <div class="pick-prob">13.0%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">11頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">テーオーアルアイン</td><td>牡3</td><td>55</td><td>津村 明秀</td><td>奥村 豊</td><td>アルアイン</td><td>Siyouni</td><td>476(+2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ホークマン</td><td>牡5</td><td>58</td><td>谷原 柚希</td><td>粕谷 昌央</td><td>ホークビル</td><td>タイキシャトル</td><td>496(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ロゼル</td><td>牡6</td><td>58</td><td>杉原 誠人</td><td>大和田 成</td><td>シルバーステート</td><td>タイキシャトル</td><td>492(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">フジガイフウ</td><td>牡3</td><td>55</td><td>荻野 極</td><td>岩戸 孝樹</td><td>ミスターメロディ</td><td>サクラプレジデント</td><td>504(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">レッドバレンティア</td><td>牡6</td><td>58</td><td>原 優介</td><td>矢嶋 大樹</td><td>リオンディーズ</td><td>ディープインパクト</td><td>458(-8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">ミーントゥビー</td><td>牝4</td><td>56</td><td>松岡 正海</td><td>堀内 岳志</td><td>リアルインパクト</td><td>フジキセキ</td><td>436(0)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>7</td><td class="left horse-name">コムユンプリュム</td><td>牝4</td><td>56</td><td>石川 裕紀人</td><td>鹿戸 雄一</td><td>ブリックスアンドモルタル</td><td>Le Havre</td><td>432(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>8</td><td class="left horse-name">アージェント</td><td>せん5</td><td>58</td><td>F.ゴンサルベス</td><td>黒岩 陽一</td><td>シルバーステート</td><td>ウォーエンブレム</td><td>530(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>9</td><td class="left horse-name">ミクストベリーズ</td><td>牡4</td><td>58</td><td>木幡 巧也</td><td>伊藤 圭三</td><td>Iffraaj</td><td>Kodiac</td><td>478(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>10</td><td class="left horse-name">ルクスジニア</td><td>牝4</td><td>56</td><td>M.ディー</td><td>松尾 卓哉</td><td>キズナ</td><td>ハービンジャー</td><td>444(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>11</td><td class="left horse-name">クールデイトナ</td><td>牡3</td><td>55</td><td>三浦 皇成</td><td>宮地 貴稔</td><td>フォーウィールドライブ</td><td>ウォーエンブレム</td><td>482(+2)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>1</td><td class="left horse-name">テーオーアルアイン</td><td style="font-weight:700;background:#F0F7FF;">1 (14.9)</td><td style="font-weight:700;background:#F0F7FF;">1 (16.0)</td><td style="font-weight:700;background:#F0F7FF;">1 (16.4)</td><td style="font-weight:700;background:#F0F7FF;">1 (16.7)</td><td style="font-weight:700;background:#F0F7FF;">1 (17.1)</td></tr><tr><td>4</td><td class="left horse-name">フジガイフウ</td><td style="background:#F0F7FF;">2 (14.9)</td><td style="background:#F0F7FF;">2 (14.5)</td><td style="background:#F0F7FF;">2 (14.2)</td><td style="background:#F0F7FF;">2 (14.7)</td><td style="background:#F0F7FF;">2 (15.1)</td></tr><tr><td>11</td><td class="left horse-name">クールデイトナ</td><td style="background:#F0F7FF;">3 (12.5)</td><td style="background:#F0F7FF;">3 (13.0)</td><td style="background:#F0F7FF;">3 (13.0)</td><td style="background:#F0F7FF;">3 (12.8)</td><td style="background:#F0F7FF;">3 (12.8)</td></tr><tr><td>7</td><td class="left horse-name">コムユンプリュム</td><td style="background:#F0F7FF;">4 (10.3)</td><td style="background:#F0F7FF;">4 (10.6)</td><td style="background:#F0F7FF;">4 (10.8)</td><td style="background:#F0F7FF;">4 (11.0)</td><td style="background:#F0F7FF;">4 (10.8)</td></tr><tr><td>6</td><td class="left horse-name">ミーントゥビー</td><td style="color:#AEAEB2;">6 (9.1)</td><td style="background:#F0F7FF;">5 (9.4)</td><td style="background:#F0F7FF;">5 (9.6)</td><td style="background:#F0F7FF;">5 (10.0)</td><td style="background:#F0F7FF;">5 (10.1)</td></tr><tr><td>10</td><td class="left horse-name">ルクスジニア</td><td style="background:#F0F7FF;">5 (10.0)</td><td style="color:#AEAEB2;">6 (9.1)</td><td style="color:#AEAEB2;">6 (9.3)</td><td style="color:#AEAEB2;">6 (9.4)</td><td style="color:#AEAEB2;">7 (8.9)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>1 テーオーアルアイン: 前走白百合Sで1:47.3の3着、0.2秒差で上がり33.0秒。2走前も芝1600mを1:33.7、上がり33.1秒で勝っており、近走実績の裏付けが最も強い。  </p>
+<p>4 フジガイフウ: 前走東京芝1600mを1:32.7、上がり32.6秒で完勝。この時計は優秀で、1勝クラス組でも実績面の伸びしろは大きい。  </p>
+<p>11 クールデイトナ: チャーチルC6着でも0.7秒差、指数85.6はこの組み合わせで上位。3歳馬だが重賞で揉まれた実績を評価する。  </p>
+<p>8 アージェント: 前走2勝クラス芝1600mで1:33.9の3着、0.5秒差で上がり33.1秒。近走だけ見れば現級マイルで最も直接的な好走実績がある。  </p>
+<p>6 ミーントゥビー: 近4走が0.5秒差以内で、前走も1:46.4の3着、上がり32.9秒。距離は1800m中心だが、現級で安定して差のない競馬を続けている。  </p>
+<p>7 コムユンプリュム: 前走2勝クラス芝1600mで1:33.9の4着、0.5秒差。大崩れは少ないが、勝ち切るだけの時計実績では上位勢に一歩譲る。  </p>
+<p>10 ルクスジニア: 2走前の芝1600mで1:34.0、0.5秒差6着。着差は詰めているが、決め手の数字で上位比較ではやや足りない。  </p>
+<p>3 ロゼル: 芝1600mで1:33.0の実績はあるが、近5走はすべて掲示板外か5着止まり。着差も0.7秒前後あり、安定感は乏しい。  </p>
+<p>9 ミクストベリーズ: 近5走がすべて芝1400mで、1600m実績の裏付けが薄い。1400mでも近3走は着差0.5秒前後で、上積み材料に欠ける。  </p>
+<p>5 レッドバレンティア: 1800mでは差のない競馬もあるが、近走は着順が5着、7着、15着、5着、10着。実績面で好走パターンが見えにくい。  </p>
+<p>2 ホークマン: 近4走が9着、6着、7着、15着で、芝1600mでも1:34.7、1:35.4と時計面の裏付けが弱い。上位争いまでは厳しい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>1番 テーオーアルアイン: 20%</li>
+<li>4番 フジガイフウ: 16%</li>
+<li>11番 クールデイトナ: 15%</li>
+<li>8番 アージェント: 10%</li>
+<li>6番 ミーントゥビー: 10%</li>
+<li>7番 コムユンプリュム: 8%</li>
+<li>10番 ルクスジニア: 7%</li>
+<li>3番 ロゼル: 5%</li>
+<li>9番 ミクストベリーズ: 4%</li>
+<li>5番 レッドバレンティア: 3%</li>
+<li>2番 ホークマン: 2%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>1 テーオーアルアイン: 父アルアインの中距離持続力に母父Siyouniの欧州マイル適性が重なり、東京芝1600mの良馬場で最も血統の噛み合いが良い。瞬発力勝負にも対応しやすい配合。</p>
+<p>4 フジガイフウ: 父ミスターメロディのスピードに母父サクラプレジデント経由の芝向きのしぶとさが加わる配合で、東京マイルの高速決着にも十分対応可能。3歳の伸びしろもある。</p>
+<p>7 コムユンプリュム: ブリックスアンドモルタルにLe Havreの組み合わせは、芝マイル前後での持続力と軽い欧州色が出やすい。東京1600mで急坂を含めて長く脚を使える血統。</p>
+<p>6 ミーントゥビー: リアルインパクト×フジキセキでマイル寄りのスピード持続力が強い。1800mで見せる末脚からも、血統的には1600mへの短縮はむしろプラスに出る余地がある。</p>
+<p>10 ルクスジニア: キズナに母父ハービンジャーで本質はマイルから中距離の芝向き。切れ味一辺倒ではないが、東京マイルなら底力で上位圏に食い込める配合。</p>
+<p>11 クールデイトナ: 父フォーウィールドライブ、母父ウォーエンブレムで米国型のスピード色は濃いが、2歳時から芝マイルで動けている点は評価できる。東京良芝ではやや軽さ負けの懸念が残る。</p>
+<p>8 アージェント: 父シルバーステートで芝マイル自体はこなせるが、母父ウォーエンブレムでパワーと前向きさが勝ちやすい配合。東京の上がり勝負では血統面の後押しは強くない。</p>
+<p>9 ミクストベリーズ: Iffraaj×Kodiac は典型的に1400m寄りの欧州スピード血統で、東京1600mではやや距離が長い印象。良馬場マイルの決め手比べでは少し割り引く。</p>
+<p>5 レッドバレンティア: リオンディーズ×ディープインパクトで芝向きの下地はあるが、マイルで鋭く弾けるより1800m前後で持続力を活かしたい配合。東京1600mでの血統的魅力は中位以下。</p>
+<p>3 ロゼル: シルバーステート×タイキシャトルでマイル適性自体はあるが、配合全体としては切れの絶対値より先行持続型に出やすい。東京良芝の瞬発戦では強調材料が乏しい。</p>
+<p>2 ホークマン: ホークビルに母父タイキシャトルで、本質的にはパワーとスタミナが前に出やすい。東京芝1600mの良馬場で求められる鋭さとは血統の方向性がややズレる。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>1番 テーオーアルアイン: 17%</li>
+<li>4番 フジガイフウ: 15%</li>
+<li>7番 コムユンプリュム: 13%</li>
+<li>6番 ミーントゥビー: 11%</li>
+<li>10番 ルクスジニア: 10%</li>
+<li>11番 クールデイトナ: 9%</li>
+<li>8番 アージェント: 7%</li>
+<li>9番 ミクストベリーズ: 6%</li>
+<li>5番 レッドバレンティア: 5%</li>
+<li>3番 ロゼル: 4%</li>
+<li>2番 ホークマン: 3%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>1 テーオーアルアイン: 10番ルクスジニアが自然にハナ、4番フジガイフウと7番コムユンプリュムが好位、その直後の最内で1番が脚をためる形がいちばん描きやすい。東京マイル良の11頭立てなら極端な消耗戦になりにくく、内でロスなく運べるこの馬の展開利は大きい。  </p>
+<p>4 フジガイフウ: 逃げ争いを激化させずに2、3番手へ収まりやすい並びで、直線まで無理なく好位を取れる。前が止まり切らない想定なら、この馬の好位抜け出しはかなり現実的。  </p>
+<p>11 クールデイトナ: 8枠で序盤の立ち回りは難しいが、外から無理に競らず中団後ろで脚をためる形なら直線勝負に持ち込める。平均ペースなら差し届く余地はあり、外枠勢では最も怖い。  </p>
+<p>7 コムユンプリュム: 10番を見ながら先行できる配置で、隊列には乗りやすい。東京マイルの良で前受けの恩恵はあるが、1番や4番ほどの内目の利はないぶん上位2頭よりは一段下。  </p>
+<p>10 ルクスジニア: 単騎で行ける可能性が高く、展開を作るのはこの馬。ただし東京1600mの8枠発走で最後まで押し切るには少し甘くなりやすく、勝ち切りまでとなると相手関係で少し割引。  </p>
+<p>8 アージェント: 好位の外目で流れに乗れそうで、位置取り自体は悪くない。ペースが落ち着くなら前との差も詰めやすいが、やはり外を回されやすい並びなので内の先行勢よりは分が悪い。  </p>
+<p>6 ミーントゥビー: 直線勝負の差し脚は使えるが、この組み合わせだと前半が流れ切らない公算が大きい。展開待ちの面はあるものの、東京の長い直線で掲示板以上に突っ込む絵は残る。  </p>
+<p>3 ロゼル: 内目は引けたが、近走の位置取りを見ると前を取り切るというより好位差し。今回の想定ペースでは中途半端な位置になりやすく、決め手勝負でも前残りでも少し足りない。  </p>
+<p>5 レッドバレンティア: 先行も差しもできるが、今回はどちらに振っても展開の後押しが弱い。中団外目で運ぶとロスが出やすく、前に行っても1番4番7番10番ほどの優位はない。  </p>
+<p>9 ミクストベリーズ: 差し寄りの脚質で7枠、しかも今回のメンバー構成ではペースが上がり切りにくい。血統面の1400m色の指摘もあったが、展開面でもマイルで差し届く流れは想定しづらく下げる。  </p>
+<p>2 ホークマン: もし思い切って行けば一瞬の隊列利はあるが、10番がいる以上すんなり単騎にはなりにくい。控えても切れ負けしやすく、展開面からは強く推しにくい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>1番 テーオーアルアイン: 17%</li>
+<li>4番 フジガイフウ: 15%</li>
+<li>11番 クールデイトナ: 13%</li>
+<li>7番 コムユンプリュム: 12%</li>
+<li>10番 ルクスジニア: 10%</li>
+<li>8番 アージェント: 9%</li>
+<li>6番 ミーントゥビー: 8%</li>
+<li>3番 ロゼル: 6%</li>
+<li>5番 レッドバレンティア: 4%</li>
+<li>9番 ミクストベリーズ: 3%</li>
+<li>2番 ホークマン: 3%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><h2>全馬評価（好走確信度の高い順）</h2>
+<p>1 テーオーアルアイン: 白百合S3着から自己条件の東京芝1600mへ戻すローテが最も明快で、津村騎手継続も含めて陣営の勝負手が読みやすい。前走で格上相手に形を作っており、ここは取りに来た配置とみる。  </p>
+<p>11 クールデイトナ: 重賞帰りを自己条件へ戻す組み合わせは陣営面で高評価。三浦騎手起用でマイル戦を続ける意図も一貫しており、久々でも坂路内容から大きく割り引く必要はない。  </p>
+<p>4 フジガイフウ: 東京芝1600mを勝って同条件の2勝クラスへ直行する運用は素直に買える。荻野極騎手継続で条件替わりもなく、昇級初戦でも陣営の設計は安定。  </p>
+<p>7 コムユンプリュム: 鹿戸厩舎が東京芝マイルを継続して使う形は好感。石川騎手続投で前走4着からの上積み狙いが明確で、人気ほど地味でも陣営面では崩れにくい。  </p>
+<p>8 アージェント: 前走の東京芝1600m3着を受けて同条件へ再投入する判断は妥当。芝実戦サンプルはまだ少ないが、黒岩厩舎がここで再度マイル芝を選んだ点は評価できる。  </p>
+<p>6 ミーントゥビー: 近走は1800m中心だが、調整過程は安定しており松岡騎手で運べる点は悪くない。ただし牝馬限定戦から混合戦へ替わるぶん、陣営面の押しは上位ほど強くない。  </p>
+<p>10 ルクスジニア: 1600m実績はあるが、近走の使い方は1800m寄りで東京マイルへ強く寄せてきた印象は薄い。鞍上強化余地はある一方、遠征込みで勝ち切り狙いの迫力は上位に一歩譲る。  </p>
+<p>9 ミクストベリーズ: 1400m中心の運用からのマイル延長で、伊藤圭三厩舎の狙いが少し散っている。木幡巧也騎手で大崩れはしにくいが、陣営の条件適性面では強調材料が少ない。  </p>
+<p>5 レッドバレンティア: 近走は1800mを使われており、ここでのマイル替わりに積極的な勝負気配は感じにくい。原騎手起用も含めて一変待ちの色合いが強い。  </p>
+<p>3 ロゼル: 杉原騎手継続自体は悪くないが、近走内容と使い方に上向きのシグナルが乏しい。東京芝1600m再挑戦でも陣営面から強く押し上げる根拠は薄い。  </p>
+<p>2 ホークマン: ここ数走の条件替わりに一貫性がなく、東京芝1600mで勝ち負けを狙う陣営の設計としては弱い。調教コメントも強調しづらく、統計的には最も期待値を取りにくいタイプ。  </p>
+
+<h2>好走確信度配分</h2>
+<li>1番 テーオーアルアイン: 17%</li>
+<li>11番 クールデイトナ: 14%</li>
+<li>4番 フジガイフウ: 13%</li>
+<li>7番 コムユンプリュム: 11%</li>
+<li>8番 アージェント: 10%</li>
+<li>6番 ミーントゥビー: 9%</li>
+<li>10番 ルクスジニア: 8%</li>
+<li>9番 ミクストベリーズ: 6%</li>
+<li>5番 レッドバレンティア: 5%</li>
+<li>3番 ロゼル: 4%</li>
+<li>2番 ホークマン: 3%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>4 フジガイフウ: 494kg前後から502kg、今回504kgと右肩上がりでも太め感は薄く、3歳55kgで中6週の間隔も理想的。手応え十分の調教で仕上がりは最も素直に買える。  </p>
+<p>1 テーオーアルアイン: 前走474kgから476kgへ+2kgで、482→474→476kgの戻し方が自然。中1週は楽ではないが、前走の大幅減の反動を補う程度で、体も動きも良く状態維持。  </p>
+<p>11 クールデイトナ: 480kgを軸に安定し、休み明けでも+2kgの482kgなら重すぎない。約10週ぶりでも坂路で動き軽快、55kg据え置きで仕上がり不安は限定的。  </p>
+<p>10 ルクスジニア: 前走450kgへ+10kgだったが今回は444kgで絞れてきた。叩き2走目で6kg減は上昇パターン寄りで、牝馬56kgなら負担も許容。  </p>
+<p>6 ミーントゥビー: 442→440→436→436kgで細身だが推移は安定。中3週で詰まりすぎず、調教も軽快。436kgで56kgはやや楽ではないが、消耗感は薄い。  </p>
+<p>7 コムユンプリュム: 436→432→428→432kgで小刻みな増減。今回は432kgへ戻したのは良いが、432kgの小柄馬に56kgはやや重い。動きはキビキビで大崩れまでは見ない。  </p>
+<p>8 アージェント: 562kgから前走532kgへ-30kg、今回は530kgでさらに-2kg。大型馬なので58kg自体は苦にしないが、近2走の大幅な馬体変動はなお不安。調教気配で下支え。  </p>
+<p>9 ミクストベリーズ: 476～484kgの範囲で推移自体は乱れていないが、今回は484kgから478kgへ-6kg。58kg据え置きで上積みより軽い消耗懸念が先立つ。  </p>
+<p>3 ロゼル: 502→498→494→490→492kgで緩やかな絞り込み。今回は+2kgで下げ止まったのは悪くないが、6歳58kgで上積みは乏しい。余裕ある動きまでで強調まではしにくい。  </p>
+<p>5 レッドバレンティア: 468→460→466→458kgと細化と戻しを繰り返し、今回は-8kgの458kg。中2週での馬体減は消耗寄りに映り、攻め軽めも含めて仕上がり強調しづらい。  </p>
+<p>2 ホークマン: 492kg近辺で固まっているのは悪くないが、今回は496kgでやや増え、調教評価も馬体絞り切れず。5歳58kgで中2週続きのローテは疲労懸念が先で買い材料が薄い。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>4番 フジガイフウ: 16%</li>
+<li>1番 テーオーアルアイン: 14%</li>
+<li>11番 クールデイトナ: 13%</li>
+<li>10番 ルクスジニア: 12%</li>
+<li>6番 ミーントゥビー: 11%</li>
+<li>7番 コムユンプリュム: 10%</li>
+<li>8番 アージェント: 9%</li>
+<li>9番 ミクストベリーズ: 5%</li>
+<li>3番 ロゼル: 4%</li>
+<li>5番 レッドバレンティア: 4%</li>
+<li>2番 ホークマン: 2%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h2>敗因シナリオ</h2>
+
+<p>最多支持の1番テーオーアルアインが負けるとしたら、まず考えるべきは「白百合S3着」の見映え先行だ。前走は1800mで上がり33.0を使ったが、今回は東京1600mでより瞬発力の質と位置取りの精度が問われる。リステッドで地力を見せたこと自体は認めるが、その評価がそのまま2勝クラスのマイル戦に横滑りしているなら、人気先行の危うさがある。</p>
+
+<p>次に、脚質の柔軟性が過大評価されるリスク。先行も差しもできる半面、今回は決め手比べで4番フジガイフウ、11番クールデイトナの鋭さに見劣る形や、逆に流れてしまって末脚の持続力勝負で甘くなる形がある。どちらのレンジでも「ちょうど良い競馬」が必要で、人気ほど盤石ではない。</p>
+
+<p>最後に、Round 1で私が上位評価したことで見直されるのは筋だが、今回はその反動で「弱点が薄れたように扱われている」点が危険だ。前回の好内容は買い材料でも、今回は55kgでもう妙味が削れている。勝ち切り前提で信頼し過ぎると危ない。</p>
+
+<h2>全馬評価（好走確信度の高い順）</h2>
+
+<p>11 クールデイトナ: Round 1で重賞級指数を評価した見立てはまだ有効。チャーチルC6着の指数85.6はこの組合せで上位で、休み明けでも坂路53.0なら能力で押し切る余地がある。シンザン記念13着だけで嫌われるならむしろ妙味。</p>
+
+<p>7 コムユンプリュム: Round 1で過小評価されやすい堅実型と見たが、今回はなおその範囲。東京1600mで大崩れしにくく、前走4着も着順以上に悪くない。派手な決め手不足はあるが、人気上位総崩れの受け皿として有力。</p>
+
+<p>1 テーオーアルアイン: 前回同様に地力は認めるが、今回は平均1位まで押し上げられた分だけ過熱感がある。白百合S3着は立派でも、1600mで絶対視するにはまだ材料不足。推せるが、頭固定の安心感はない。</p>
+
+<p>6 ミーントゥビー: Round 1で堅実型として拾った視点は今回も維持。近3走が1800mで差の小さい競馬で、東京マイル替わりでも末脚の質なら通用圏。勝ち切りまでは疑うが、人気ほど軽く扱う馬ではない。</p>
+
+<p>4 フジガイフウ: Round 1で「切れ味勝負を昇級へ直結させるのは危険」と見た懸念はまだ消えていない。前走1勝クラス勝ちは鮮やかだが、32.6の上がり再現を前提にすると危うい。平均2位でも過信までは禁物。</p>
+
+<p>10 ルクスジニア: 牝馬限定戦中心でも大崩れしない点は評価できる。マイル実績もあり、外枠から脚をためる形なら上位食い込みはある。ただし決め手の絶対値で突き抜ける絵はやや薄く、善戦止まりの危険も残る。</p>
+
+<p>8 アージェント: 前走の大幅馬体減でも走れた点は不気味。せん馬で戦歴が浅く、まだ見切れない部分がある。とはいえ2勝クラス芝での裏付けは弱く、平均並みの評価をそのまま受け取るのは危険で、上にも下にも振れ幅が大きい。</p>
+
+<p>9 ミクストベリーズ: 1400m実績寄りで、東京マイルの質の違う差し比べでどこまで届くか。近走も悪くはないが、勝ち切る像は薄い。ただ、全体が人気馬中心に固まりすぎるなら、展開ひとつで浮上する盲点ではある。</p>
+
+<p>3 ロゼル: 近走成績だけなら買いにくいが、マイルで全く戦えない馬でもない。問題は勝ち負けラインまで届くだけの上積み材料に乏しいこと。全員が低く見るのは妥当だが、相手なりに脚を使う余地は少しある。</p>
+
+<p>5 レッドバレンティア: 1800mで差のない競馬はあるが、マイルでの押し上げ材料が薄い。気性面を考慮した軽め調整も、強調材料としては弱い。人気薄の一撃より、善戦止まりのほうが現実的。</p>
+
+<p>2 ホークマン: 近走内容がさすがに厳しく、平均最下位も納得。調教の評価も平凡で、マイルで一変するだけの根拠が足りない。全員が見限る側に寄るのは危険な合意ではなく、今回は単純に能力比較で劣勢。</p>
+
+<h2>好走確信度配分</h2>
+
+<li>11番 クールデイトナ: 14%</li>
+<li>7番 コムユンプリュム: 13%</li>
+<li>1番 テーオーアルアイン: 12%</li>
+<li>6番 ミーントゥビー: 11%</li>
+<li>4番 フジガイフウ: 10%</li>
+<li>10番 ルクスジニア: 10%</li>
+<li>8番 アージェント: 9%</li>
+<li>9番 ミクストベリーズ: 7%</li>
+<li>3番 ロゼル: 6%</li>
+<li>5番 レッドバレンティア: 5%</li>
+<li>2番 ホークマン: 3%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round 1で私はフジガイフウの昇級即通用に懐疑的で、テーオーアルアインとクールデイトナ、さらにコムユンプリュムとミーントゥビーの過小評価を指摘した。Round 5ではその一部が反映され、1番が平均1位、11番と7番も上位に来た一方、4番はなお高評価で売れ過ぎの懸念が残る。今回は1番の能力を認めつつも人気先行を疑い、重賞指数を持つ11番を最上位。7番、6番も堅実さに対してまだ妙味があり、全体としては上位拮抗で人気馬の信頼度は見た目ほど高くない。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>1</td><td class="left horse-name">テーオーアルアイン</td><td class="trust-high">16.3%</td><td>20.0</td><td>17.0</td><td>16.5</td><td>17.5</td><td>14.5</td><td>13.5</td></tr><tr><td>2</td><td>4</td><td class="left horse-name">フジガイフウ</td><td class="trust-mid">14.6%</td><td>16.5</td><td>14.5</td><td>15.0</td><td>13.5</td><td>16.0</td><td>11.5</td></tr><tr><td>3</td><td>11</td><td class="left horse-name">クールデイトナ</td><td class="trust-mid">13.0%</td><td>15.5</td><td>8.9</td><td>12.5</td><td>14.0</td><td>13.0</td><td>14.0</td></tr><tr><td>4</td><td>7</td><td class="left horse-name">コムユンプリュム</td><td class="trust-mid">10.8%</td><td>9.0</td><td>12.4</td><td>11.5</td><td>11.0</td><td>10.0</td><td>11.5</td></tr><tr><td>5</td><td>6</td><td class="left horse-name">ミーントゥビー</td><td class="trust-mid">10.2%</td><td>10.0</td><td>11.7</td><td>9.0</td><td>9.0</td><td>11.0</td><td>10.0</td></tr><tr><td>6</td><td>8</td><td class="left horse-name">アージェント</td><td class="trust-mid">9.2%</td><td>9.0</td><td>7.7</td><td>9.0</td><td>10.0</td><td>9.5</td><td>10.0</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">ルクスジニア</td><td class="trust-mid">9.1%</td><td>7.0</td><td>10.2</td><td>9.0</td><td>8.0</td><td>10.5</td><td>9.0</td></tr><tr><td>8</td><td>9</td><td class="left horse-name">ミクストベリーズ</td><td class="trust-low">5.3%</td><td>3.5</td><td>5.7</td><td>4.5</td><td>6.0</td><td>5.0</td><td>7.0</td></tr><tr><td>9</td><td>3</td><td class="left horse-name">ロゼル</td><td class="trust-low">4.8%</td><td>4.0</td><td>4.0</td><td>5.5</td><td>4.0</td><td>5.0</td><td>6.0</td></tr><tr><td>10</td><td>5</td><td class="left horse-name">レッドバレンティア</td><td class="trust-low">4.1%</td><td>3.5</td><td>4.9</td><td>4.0</td><td>4.5</td><td>3.5</td><td>4.5</td></tr><tr><td>11</td><td>2</td><td class="left horse-name">ホークマン</td><td class="trust-low">2.6%</td><td>2.0</td><td>2.9</td><td>3.5</td><td>2.5</td><td>2.0</td><td>3.0</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>1</td><td class="left horse-name">テーオーアルアイン</td><td>16.3%</td><td>5.4</td><td>2</td><td class="ev-low">0.88</td></tr><tr><td>2</td><td>4</td><td class="left horse-name">フジガイフウ</td><td>14.6%</td><td>2.3</td><td>1</td><td class="ev-low">0.34</td></tr><tr><td>3</td><td>11</td><td class="left horse-name">クールデイトナ</td><td>13.0%</td><td>6.7</td><td>3</td><td class="ev-low">0.87</td></tr><tr><td>4</td><td>7</td><td class="left horse-name">コムユンプリュム</td><td>10.8%</td><td>16.6</td><td>7</td><td class="ev-mid">1.80</td></tr><tr><td>5</td><td>6</td><td class="left horse-name">ミーントゥビー</td><td>10.2%</td><td>11.3</td><td>6</td><td class="ev-mid">1.15</td></tr><tr><td>6</td><td>8</td><td class="left horse-name">アージェント</td><td>9.2%</td><td>11.1</td><td>5</td><td class="ev-mid">1.02</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">ルクスジニア</td><td>9.1%</td><td>7.1</td><td>4</td><td class="ev-low">0.64</td></tr><tr><td>8</td><td>9</td><td class="left horse-name">ミクストベリーズ</td><td>5.3%</td><td>20.1</td><td>8</td><td class="ev-mid">1.06</td></tr><tr><td>9</td><td>3</td><td class="left horse-name">ロゼル</td><td>4.8%</td><td>72.1</td><td>11</td><td class="ev-high">3.44</td></tr><tr><td>10</td><td>5</td><td class="left horse-name">レッドバレンティア</td><td>4.1%</td><td>28.6</td><td>9</td><td class="ev-mid">1.17</td></tr><tr><td>11</td><td>2</td><td class="left horse-name">ホークマン</td><td>2.6%</td><td>51.6</td><td>10</td><td class="ev-mid">1.34</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">1 テーオーアルアイン</td><td>16.3%</td><td>5.4</td><td class="ev-low">0.74</td></tr><tr><td>複勝</td><td class="left">1 テーオーアルアイン</td><td>45.8%</td><td>1.6</td><td class="ev-low">0.68</td></tr><tr><td>馬連</td><td class="left">1 テーオーアルアイン-4 フジガイフウ</td><td>5.7%</td><td>3.6</td><td class="ev-low">0.18</td></tr><tr><td>ワイド</td><td class="left">1 テーオーアルアイン-4 フジガイフウ</td><td>15.8%</td><td>1.9</td><td class="ev-low">0.27</td></tr><tr><td>馬単</td><td class="left">1 テーオーアルアイン→4 フジガイフウ</td><td>2.9%</td><td>8.6</td><td class="ev-low">0.20</td></tr><tr><td>3連複</td><td class="left">1 テーオーアルアイン-4 フジガイフウ-11 クールデイトナ</td><td>3.1%</td><td>7.1</td><td class="ev-low">0.18</td></tr><tr><td>3連単</td><td class="left">1 テーオーアルアイン→4 フジガイフウ→11 クールデイトナ</td><td>0.5%</td><td>24.7</td><td class="ev-low">0.11</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">1 テーオーアルアイン</td><td>5.4</td><td>10</td><td style='text-align:right;font-weight:600;'>1,000円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>
