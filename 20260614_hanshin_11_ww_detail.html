@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第67回宝塚記念 2026/06/14 HANSHIN 11R (06/14 15:05 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第67回宝塚記念 2026/06/14 HANSHIN 11R (06/14 15:05 予想)</h1>
+  <div class="meta">芝2200m（右） | 良 | 18頭立て | 3回 阪神 4日目 サラ系3歳以上 オープン （国際）（指定） 定量 18頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">16. メイショウタバル</div>
+      <div class="pick-jockey">武 豊 / 石橋 守</div>
+    </div>
+    <div class="pick-prob">12.2%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">5. クロワデュノール</div>
+      <div class="pick-jockey">北村 友一 / 斉藤 崇史</div>
+    </div>
+    <div class="pick-prob">12.0%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">1. ダノンデサイル</div>
+      <div class="pick-jockey">戸崎 圭太 / 安田 翔伍</div>
+    </div>
+    <div class="pick-prob">9.1%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">18頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ダノンデサイル</td><td>牡5</td><td>58</td><td>戸崎 圭太</td><td>安田 翔伍</td><td>エピファネイア</td><td>Congrats</td><td>520(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">ミュージアムマイル</td><td>牡4</td><td>58</td><td>D.レーン</td><td>高柳 大輔</td><td>リオンディーズ</td><td>ハーツクライ</td><td>504(+2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">シュガークン</td><td>牡5</td><td>58</td><td>吉村 誠之助</td><td>清水 久詞</td><td>ドゥラメンテ</td><td>サクラバクシンオー</td><td>522(+4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">ミクニインスパイア</td><td>牡4</td><td>58</td><td>丹内 祐次</td><td>林 徹</td><td>アドマイヤマーズ</td><td>ティンバーカントリー</td><td>498(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">クロワデュノール</td><td>牡4</td><td>58</td><td>北村 友一</td><td>斉藤 崇史</td><td>キタサンブラック</td><td>Cape Cross</td><td>514(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">ビザンチンドリーム</td><td>牡5</td><td>58</td><td>西村 淳也</td><td>坂口 智康</td><td>エピファネイア</td><td>ジャングルポケット</td><td>466</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">ファミリータイム</td><td>牡5</td><td>58</td><td>幸 英明</td><td>石坂 公一</td><td>リアルスティール</td><td>Galileo</td><td>482(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">タガノデュード</td><td>牡5</td><td>58</td><td>高杉 吏麒</td><td>宮 徹</td><td>ヤマカツエース</td><td>ハーツクライ</td><td>504(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">コスモキュランダ</td><td>牡5</td><td>58</td><td>横山 武史</td><td>加藤 士津八</td><td>アルアイン</td><td>Southern Image</td><td>518(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">ジューンテイク</td><td>牡5</td><td>58</td><td>松山 弘平</td><td>武 英智</td><td>キズナ</td><td>シンボリクリスエス</td><td>500(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">シンエンペラー</td><td>牡5</td><td>58</td><td>坂井 瑠星</td><td>矢作 芳人</td><td>Siyouni</td><td>Galileo</td><td>500(-8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">マイネルエンペラー</td><td>牡6</td><td>58</td><td>川田 将雅</td><td>清水 久詞</td><td>ゴールドシップ</td><td>ロージズインメイ</td><td>486(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">シェイクユアハート</td><td>牡6</td><td>58</td><td>古川 吉洋</td><td>宮 徹</td><td>ハーツクライ</td><td>Sri Pekan</td><td>456(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">スティンガーグラス</td><td>牡5</td><td>58</td><td>岩田 望来</td><td>友道 康夫</td><td>キズナ</td><td>Not For Sale</td><td>480(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>15</td><td class="left horse-name">マイユニバース</td><td>牡4</td><td>58</td><td>横山 典弘</td><td>武 幸四郎</td><td>レイデオロ</td><td>ネオユニヴァース</td><td>480(+12)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">メイショウタバル</td><td>牡5</td><td>58</td><td>武 豊</td><td>石橋 守</td><td>ゴールドシップ</td><td>フレンチデピュティ</td><td>502(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>17</td><td class="left horse-name">レガレイラ</td><td>牝5</td><td>56</td><td>C.ルメール</td><td>木村 哲也</td><td>スワーヴリチャード</td><td>ハービンジャー</td><td>484(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>18</td><td class="left horse-name">ミステリーウェイ</td><td>せん8</td><td>58</td><td>松本 大輝</td><td>小林 真也</td><td>ジャスタウェイ</td><td>High Chaparral</td><td>498(-8)</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header"><span>トップ5馬の変遷</span><span class="badge">5ラウンド</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>馬番</th><th>馬名</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr></thead>
+<tbody>
+<tr><td>5</td><td class="left horse-name">クロワデュノール</td><td style="font-weight:700;background:#F0F7FF;">1 (12.7)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.8)</td><td style="font-weight:700;background:#F0F7FF;">1 (11.7)</td><td style="background:#F0F7FF;">2 (11.9)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.3)</td></tr><tr><td>16</td><td class="left horse-name">メイショウタバル</td><td style="background:#F0F7FF;">3 (9.0)</td><td style="background:#F0F7FF;">2 (10.6)</td><td style="background:#F0F7FF;">2 (11.6)</td><td style="font-weight:700;background:#F0F7FF;">1 (12.0)</td><td style="background:#F0F7FF;">2 (12.1)</td></tr><tr><td>2</td><td class="left horse-name">ミュージアムマイル</td><td style="background:#F0F7FF;">2 (9.6)</td><td style="background:#F0F7FF;">3 (9.4)</td><td style="background:#F0F7FF;">3 (9.2)</td><td style="background:#F0F7FF;">3 (9.3)</td><td style="background:#F0F7FF;">3 (9.2)</td></tr><tr><td>1</td><td class="left horse-name">ダノンデサイル</td><td style="background:#F0F7FF;">4 (9.0)</td><td style="background:#F0F7FF;">4 (9.0)</td><td style="background:#F0F7FF;">4 (8.9)</td><td style="background:#F0F7FF;">4 (8.9)</td><td style="background:#F0F7FF;">4 (9.1)</td></tr><tr><td>17</td><td class="left horse-name">レガレイラ</td><td style="background:#F0F7FF;">5 (8.7)</td><td style="background:#F0F7FF;">5 (8.6)</td><td style="background:#F0F7FF;">5 (8.6)</td><td style="background:#F0F7FF;">5 (8.6)</td><td style="background:#F0F7FF;">5 (8.7)</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※各ラウンドの全Run/批判者の確信度平均 / 背景色付き=トップ5圏内</p>
+</div></div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>最終ラウンド各派分析</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<h3>実績派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 クロワデュノール: 前走天皇賞春1着3:13.7、前々走大阪杯1着1:57.6で近2走の格と数字が最上位。GIで連続して結果と指数93台を出しており、実績面では中心。</p>
+<p>16 メイショウタバル: 前走大阪杯2着1:57.7差0.1、昨年宝塚記念1着2:11.1が強い。阪神芝2200mの実績が明確で、逃げて結果を出している点も実戦値が高い。</p>
+<p>2 ミュージアムマイル: 有馬記念1着2:31.5、天皇賞秋2着1:58.7差0.1、セントライト記念1着2:10.8。2200mでもGI級相手でも崩れておらず、安定感が高い。</p>
+<p>1 ダノンデサイル: 大阪杯3着1:57.9差0.3、有馬3着差0.1、ジャパンC3着差0.5。勝ち切りまでは一歩でも、近走ずっと高水準で大崩れがない。</p>
+<p>17 レガレイラ: エリザベス女王杯1着2:11.0、オールカマー1着2:10.2、有馬4着差0.2。2200mの持ち時計とGI実績は十分で、昨年宝塚11着だけでは切れない。</p>
+<p>13 シェイクユアハート: 金鯱賞1着1:58.1上がり33.5、中日新聞杯1着1:57.6上がり33.2。近2勝の数字が優秀で、2000m中心ながら内容で軽視できない。</p>
+<p>15 マイユニバース: 日経賞1着2:30.7差0.2で指数94.6は優秀。2200mでも迎春S2着2:10.9があり、近走の上昇度は高い。</p>
+<p>10 ジューンテイク: 京都記念1着2:12.7、金鯱賞4着1:58.2差0.1。2200m重賞勝ちがあり、前走海外8着でも国内近2走の内容なら通用圏。</p>
+<p>8 タガノデュード: 大阪杯4着1:57.9差0.3、天皇賞春6着差0.8。勝ち切る裏付けまでは弱いが、GIでも着差は詰めており近走内容は堅実。</p>
+<p>4 ミクニインスパイア: 日経賞2着2:30.9差0.2で重賞でも足りる数字は出した。まだ格の裏付けは薄いが、近4走連続連対は評価できる。</p>
+<p>12 マイネルエンペラー: 阪神大賞典5着差1.0、昨年日経賞1着。2200mのAJCC11着2:12.1差1.3が気掛かりで、近走の実績比較では一枚落ちる。</p>
+<p>6 ビザンチンドリーム: 昨年天皇賞春2着3:14.0差0.0、フォワ賞1着は立派。ただし今年初戦アミールT7着で直近の裏付けが弱く、国内実戦間隔も長い。</p>
+<p>14 スティンガーグラス: ダイヤモンドS1着3:32.0、アルゼンチン共和国杯2着2:30.3。長距離実績はあるが、2200mの高速決着実績が近走で不足。</p>
+<p>11 シンエンペラー: 近5走で4着以内がネオムターフ4着のみ。有馬14着、ジャパンC8着、天皇賞春7着とGIで着差を詰め切れていない。</p>
+<p>9 コスモキュランダ: 有馬記念2着差0.1はあるが、その後の日経賞7着差1.0、昨秋の2200mオールカマー8着。好走と凡走の振れが大きい。</p>
+<p>7 ファミリータイム: 3勝クラスで2200m勝ち2回はあるが、重賞では日経新春杯2着以外に強調材料が薄い。阪神大賞典9着差2.4では相手強化で苦しい。</p>
+<p>18 ミステリーウェイ: アルゼンチン共和国杯1着2:30.2はあるが、近3走はGI・GIIで14着、16着、8着。上位相手では実績差が大きい。</p>
+<p>3 シュガークン: 青葉賞1着2:24.2はあるが、直近の新潟大賞典15着1:2.00.1差1.2が案外。長期ブランク明け後の内容では強く推しにくい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 クロワデュノール: 13%</li>
+<li>16番 メイショウタバル: 11%</li>
+<li>2番 ミュージアムマイル: 11%</li>
+<li>1番 ダノンデサイル: 9%</li>
+<li>17番 レガレイラ: 8%</li>
+<li>13番 シェイクユアハート: 7%</li>
+<li>15番 マイユニバース: 7%</li>
+<li>10番 ジューンテイク: 6%</li>
+<li>8番 タガノデュード: 5%</li>
+<li>4番 ミクニインスパイア: 4%</li>
+<li>12番 マイネルエンペラー: 4%</li>
+<li>6番 ビザンチンドリーム: 4%</li>
+<li>14番 スティンガーグラス: 3%</li>
+<li>11番 シンエンペラー: 3%</li>
+<li>9番 コスモキュランダ: 2%</li>
+<li>7番 ファミリータイム: 1%</li>
+<li>18番 ミステリーウェイ: 1%</li>
+<li>3番 シュガークン: 1%</li></div><h3>血統派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 クロワデュノール: 父キタサンブラックに母父Cape Crossで、底力と機動力の配合が阪神芝2200mに非常に合う。春天勝ちでも血統的に中距離へ戻して鈍る型ではなく、良馬場なら最も崩れにくい。</p>
+
+<p>2 ミュージアムマイル: 父リオンディーズに母父ハーツクライで、2000〜2500mの持続力勝負に強い配合。セントライト記念勝ちの内容からも2200mは守備範囲の中心に近い。</p>
+
+<p>16 メイショウタバル: 父ゴールドシップでも母父フレンチデピュティが前向きさと機動力を補強し、宝塚記念の舞台適性は高い。阪神内回りで先行持続の形に持ち込めれば血統面の裏付けは濃い。</p>
+
+<p>17 レガレイラ: 父スワーヴリチャードに母父ハービンジャーで、非根幹距離の持続戦は合う。昨年の敗戦は道悪と消耗戦の色が強く、良馬場替わりなら血統的には巻き返せる。</p>
+
+<p>1 ダノンデサイル: 父エピファネイアに母父Congratsで、パワーと持続力は上位。2400m級の実績馬だが、阪神2200mでも機動力不足までは感じず、良馬場なら高水準で対応可能。</p>
+
+<p>10 ジューンテイク: 父キズナに母父シンボリクリスエスで、阪神芝2200m向きのスタミナ持続型。京都記念勝ちも血統像に沿っており、距離適性はかなり明確。</p>
+
+<p>15 マイユニバース: 父レイデオロに母父ネオユニヴァースで、中長距離の持続力に寄った配合。2500m実績が目立つが、2200mでも流れに乗れれば末脚を持続できる血統。</p>
+
+<p>12 マイネルエンペラー: 父ゴールドシップに母父ロージズインメイで、タフさと持続力は十分。やや長めがベターでも、阪神2200m自体は守備範囲で、消耗戦寄りなら浮上余地がある。</p>
+
+<p>13 シェイクユアハート: 父ハーツクライで中距離持続戦への適性は高い。母系の爆発力は強調しにくいが、2000m実績から2200m延長は自然で、血統的な無理はない。</p>
+
+<p>8 タガノデュード: 父ヤマカツエースに母父ハーツクライで、意外に中距離持続戦に噛み合う配合。超一流血統ではないが、2200mへの融通は利く。</p>
+
+<p>6 ビザンチンドリーム: 父エピファネイアに母父ジャングルポケットで、いかにも長めの距離で良さが出る配合。2400m超の欧州色が強く、阪神2200mの機動戦では少し割引く。</p>
+
+<p>11 シンエンペラー: 父Siyouniに母父Galileoで欧州的な中長距離血統。持続力は認めるが、阪神内回り2200mのコーナー加速戦では切れ負けリスクがある。</p>
+
+<p>14 スティンガーグラス: 父キズナでも母父Not For Saleで重厚さがあり、近走実績通り長距離で光る配合。2200mへの距離短縮は血統面では歓迎しにくい。</p>
+
+<p>7 ファミリータイム: 父リアルスティールに母父Galileoで、本質はゆったり運べる中長距離型。2200mはこなせるが、G1の瞬時の加速力勝負では血統的な決め手が一枚落ちる。</p>
+
+<p>9 コスモキュランダ: 父アルアインに母父Southern Imageで、機動力はあるが配合全体のスケールはやや限定的。2500m級での粘りはある一方、2200mの一線級相手では血統の後押しが弱い。</p>
+
+<p>4 ミクニインスパイア: 父アドマイヤマーズに母父ティンバーカントリーは本質的にマイル〜中距離寄りで、2500m実績ほど血統の説得力は強くない。2200mG1での底力比較では見劣る。</p>
+
+<p>3 シュガークン: 父ドゥラメンテに母父サクラバクシンオーで、配合自体は面白いが母父由来のスピード色が強く、近親の奥行きも踏まえると現状のG1宝塚で強くは推しにくい。</p>
+
+<p>18 ミステリーウェイ: 父ジャスタウェイに母父High Chaparralで、かなりスタミナ寄りの配合。阪神2200mで求められる機動力とトップスピードの質では最も厳しい部類。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 クロワデュノール: 13%</li>
+<li>2番 ミュージアムマイル: 11%</li>
+<li>16番 メイショウタバル: 10%</li>
+<li>17番 レガレイラ: 10%</li>
+<li>1番 ダノンデサイル: 9%</li>
+<li>10番 ジューンテイク: 8%</li>
+<li>15番 マイユニバース: 8%</li>
+<li>12番 マイネルエンペラー: 6%</li>
+<li>13番 シェイクユアハート: 5%</li>
+<li>8番 タガノデュード: 4%</li>
+<li>6番 ビザンチンドリーム: 4%</li>
+<li>11番 シンエンペラー: 3%</li>
+<li>14番 スティンガーグラス: 2%</li>
+<li>7番 ファミリータイム: 2%</li>
+<li>9番 コスモキュランダ: 2%</li>
+<li>4番 ミクニインスパイア: 1%</li>
+<li>3番 シュガークン: 1%</li>
+<li>18番 ミステリーウェイ: 1%</li></div><h3>展開派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>5 クロワデュノール: 16メイショウタバルを前に見ながら3,4番手あたりで運べる並びが理想的。良馬場の阪神2200mで内目の好位差しが最もハマりやすい展開とみる。  </p>
+<p>16 メイショウタバル: 外枠でも主張してハナ濃厚。去年のように自分の形なら簡単には止まらないが、今年は同型がいて単騎楽逃げの公算が少し下がる。  </p>
+<p>2 ミュージアムマイル: 1枠から中団インで脚を溜め、4角でロスなく進出できる。前がやり合って少しでも流れれば直線で最も差し込みやすい一頭。  </p>
+<p>1 ダノンデサイル: 同じく最内寄りで立ち回り利が大きい。極端な後方に置かれなければ、内で脚を温存して直線だけで上位圏に届く絵は濃い。  </p>
+<p>10 ジューンテイク: 5枠から好位の外で流れに乗りやすい。前を見ながら運べる脚質で、阪神2200mの機動力勝負は合う。  </p>
+<p>13 シェイクユアハート: 自分では行かず、前が作る流れ待ち。7枠で少し外を回されるぶん勝ち切りまでは押しづらいが、差しの利く隊列なら浮上。  </p>
+<p>17 レガレイラ: 大外寄りで序盤の位置取りが難しい。差し脚は上位でも、阪神内回りで外々を回る形になると取りこぼしリスクが残る。  </p>
+<p>15 マイユニバース: 7枠でも極端な追い込みではなく、好位後ろで脚を溜められるのは強み。流れが締まれば長く脚を使って圏内へ。  </p>
+<p>12 マイネルエンペラー: 先行勢の一角だが、今日は16や18ほど前には行かないはず。6枠で外過ぎず、好位イン寄りならしぶとさを出せる。  </p>
+<p>8 タガノデュード: 中団差しの形なら展開待ちとしては悪くない。阪神2200mで前崩れが限定的だと勝ち切りまでは難しいが、流れひとつで食い込む。  </p>
+<p>4 ミクニインスパイア: 2枠で立ち回りは利く。自分から早めに動けるなら面白いが、GIの流れで包まれると持ち味を出し切れない懸念がある。  </p>
+<p>6 ビザンチンドリーム: 後方待機からの差し込み想定。平均やや速めなら脚は使えるが、阪神内回りで最後方近くからでは届き切る絵までは薄い。  </p>
+<p>11 シンエンペラー: 6枠から中団前後で流れには乗れそう。ただしこの舞台で決め手勝負にも持久戦にも中途半端になりやすい並び。  </p>
+<p>9 コスモキュランダ: 5枠で前には行きやすいが、16や18がいる中で脚を使わされると苦しい。早めに動く形になるほど終いが甘くなりそう。  </p>
+<p>14 スティンガーグラス: 7枠で序盤の進路取りが難しい。長距離戦のようにじわっと運ぶ形は作れても、阪神2200mの急所で外を回る不利が大きい。  </p>
+<p>7 ファミリータイム: 先行したい馬だが、内外から速い馬がいて楽な2番手は取りにくい。脚を使って位置を取りに行くと最後の粘りが削がれる。  </p>
+<p>3 シュガークン: 2枠は魅力でも、この相手でハナを主張するかは微妙。行けても厳しいマークを受けやすく、控えても流れに乗り切れない。  </p>
+<p>18 ミステリーウェイ: 大外からでも前へ行くしかない並び。16に競りかける形だと展開を苦しくする側で、自身が最後まで踏ん張るイメージは持ちにくい。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>5番 クロワデュノール: 13%</li>
+<li>16番 メイショウタバル: 12%</li>
+<li>2番 ミュージアムマイル: 10%</li>
+<li>1番 ダノンデサイル: 9%</li>
+<li>10番 ジューンテイク: 8%</li>
+<li>13番 シェイクユアハート: 7%</li>
+<li>17番 レガレイラ: 7%</li>
+<li>15番 マイユニバース: 6%</li>
+<li>12番 マイネルエンペラー: 5%</li>
+<li>8番 タガノデュード: 5%</li>
+<li>4番 ミクニインスパイア: 4%</li>
+<li>6番 ビザンチンドリーム: 3%</li>
+<li>11番 シンエンペラー: 3%</li>
+<li>9番 コスモキュランダ: 3%</li>
+<li>14番 スティンガーグラス: 2%</li>
+<li>7番 ファミリータイム: 1%</li>
+<li>3番 シュガークン: 1%</li>
+<li>18番 ミステリーウェイ: 1%</li></div><h3>陣営派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>16 メイショウタバル: 前年の宝塚記念を阪神芝2200mで逃げ切っており、武豊継続騎乗で同条件の再現性が最も高い。陣営としてはこの舞台向きの勝ち筋が明確。  </p>
+<p>5 クロワデュノール: 北村友一×斉藤崇史で大阪杯、天皇賞春を勝ち切っており、G1での厩舎運用力は最上位級。距離短縮でも陣営面の不安は小さい。  </p>
+<p>2 ミュージアムマイル: レーン起用は大きな加点材料で、高柳大輔厩舎も上位戦線での運用が安定。有馬記念勝ちからここへ向かうローテも丁寧。  </p>
+<p>17 レガレイラ: ルメール×木村哲也は大舞台での信頼度が高く、2200mでもエリザベス女王杯勝ちがある。大外枠でも陣営力で上位評価を維持。  </p>
+<p>12 マイネルエンペラー: 川田起用は明確な上積みで、清水久詞厩舎の長距離中距離重賞運用も悪くない。AJCC大敗の反動だけは残るが、鞍上で拾える。  </p>
+<p>1 ダノンデサイル: 戸崎圭太×安田翔伍で海外G1を含む高水準の運用が続く。阪神内枠で立ち回りやすく、陣営面では大きく割り引かない。  </p>
+<p>10 ジューンテイク: 松山弘平×武英智で京都記念勝ちがあり、関西圏の中距離重賞での陣営相性は悪くない。人気次第では期待値も取りやすい。  </p>
+<p>13 シェイクユアハート: 古川吉洋で重賞連勝は派手ではないが継続騎乗の蓄積は評価できる。宮厩舎らしく使い方が堅実で、人気薄なら陣営妙味はある。  </p>
+<p>15 マイユニバース: 横山典弘のペース判断は侮れず、武幸四郎厩舎も上昇馬を重賞へつなぐ流れは良い。ただしG1級陣営比較では最上位までは届かない。  </p>
+<p>14 スティンガーグラス: 友道康夫厩舎は大舞台で最上位評価だが、岩田望来との組み合わせで阪神2200mの絶対的裏付けまでは不足。距離短縮も陣営面では半信半疑。  </p>
+<p>8 タガノデュード: 宮厩舎の連闘・使い詰めではなく余裕ある臨戦は好感。高杉吏麒はここで一気に相手強化となり、鞍上実績の差で上位までは推し切れない。  </p>
+<p>11 シンエンペラー: 矢作芳人厩舎の国際G1運用力は高いが、坂井瑠星とのコンビで近走を勝ち切れていない点は気になる。陣営ブランドだけで上積みはしにくい。  </p>
+<p>4 ミクニインスパイア: 丹内祐次×林徹で上昇力は認めるが、G1の阪神内回りで一気に信頼を置けるだけの陣営実績はまだ薄い。  </p>
+<p>6 ビザンチンドリーム: 海外実績はあるが、西村淳也×坂口智康で国内G1阪神2200mを勝ち切るイメージはまだ限定的。能力に対して陣営面の後押しが弱い。  </p>
+<p>9 コスモキュランダ: 横山武史は魅力だが、加藤士津八厩舎との組み合わせでこのメンバーを勝ち切る裏付けは乏しい。人気とのバランスを見ても強気にはなれない。  </p>
+<p>7 ファミリータイム: 幸英明×石坂公一は堅実でも、G1で主導権を握って押し切る陣営パターンではない。昇級即通用の陣営加点も小さい。  </p>
+<p>3 シュガークン: 吉村誠之助への乗り替わりで、この舞台のG1としては鞍上実績が大きな課題。清水久詞厩舎の管理力は認めても陣営総合点は低い。  </p>
+<p>18 ミステリーウェイ: 松本大輝×小林真也でここは陣営比較が厳しい。外枠の逃げ先行を支える騎手・厩舎実績も薄く、再現性は最も低い部類。  </p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>16番 メイショウタバル: 12%</li>
+<li>5番 クロワデュノール: 11%</li>
+<li>2番 ミュージアムマイル: 10%</li>
+<li>17番 レガレイラ: 9%</li>
+<li>12番 マイネルエンペラー: 8%</li>
+<li>1番 ダノンデサイル: 7%</li>
+<li>10番 ジューンテイク: 7%</li>
+<li>13番 シェイクユアハート: 6%</li>
+<li>15番 マイユニバース: 6%</li>
+<li>14番 スティンガーグラス: 5%</li>
+<li>8番 タガノデュード: 4%</li>
+<li>11番 シンエンペラー: 4%</li>
+<li>4番 ミクニインスパイア: 3%</li>
+<li>6番 ビザンチンドリーム: 2%</li>
+<li>9番 コスモキュランダ: 2%</li>
+<li>7番 ファミリータイム: 2%</li>
+<li>3番 シュガークン: 1%</li>
+<li>18番 ミステリーウェイ: 1%</li></div><h3>体調派</h3>
+<div class="analysis-text"><p><strong>全馬評価（好走確信度の高い順）</strong></p>
+<p>16 メイショウタバル: 500kgから+2kgの502kgで、昨年の宝塚記念勝ち時504kgに近い体つき。4月5日から70日で余裕のあるローテ、叩き3走目の上積みも見込め、CWで1F10.9の豪快な伸びは仕上がり最上位。</p>
+<p>5 クロワデュノール: 大阪杯522kgから天皇賞春514kgへ絞って結果を出し、今回も514kg維持は理想的。5月3日から42日で反動は薄く、調教も「万全の態勢整う」で状態面の不安が最も少ない。</p>
+<p>1 ダノンデサイル: 516kgから+4kgの520kgでも大型馬なので許容範囲。近3走が508→514→516→520と緩やかな右肩上がりで充実過程、70日ぶりでも毛ヅヤ冴えるなら好状態維持。</p>
+<p>17 レガレイラ: 482kgから+2kgの484kgで、秋以降の好走レンジ480kg前後を維持。12月28日以来168日ぶりでも牝馬で56kgは2kg軽く約1馬身分の恩恵、手応え十分の調教で休み明けとしては整っている。</p>
+<p>10 ジューンテイク: 498kgから+2kgの500kgで近3走504→500→498→500と安定。4月26日から49日で間隔も標準、京都記念勝ち時504kgに近く「体も動きも良く」で叩きが進んだ上昇を取る。</p>
+<p>8 タガノデュード: 500kgから+2kgの504kgで、502前後を軸にした安定推移。天皇賞春から42日で使い詰めではなく、坂路でしっかり負荷を掛けて伸び鋭く先着なら体調面はかなりいい。</p>
+<p>13 シェイクユアハート: 462kgから-6kgの456kgはやや細いが、近走458-462kg帯が好走ゾーンで許容内。3月15日から91日ぶりでも「久々も好気配」、ただ456kgで58kgは小柄馬には少し重く勝ち切りまでは一枚下。</p>
+<p>12 マイネルエンペラー: 490kgから-4kgの486kgで、488-490kg近辺の実績レンジに戻る形。84日ぶりは標準外でも長すぎず、丹念に乗り込まれており叩き台感は薄い。</p>
+<p>4 ミクニインスパイア: 504kgから-6kgの498kgは絞れた範囲で、500kg前後なら許容。3月28日から78日で余裕があり、Wで動きハツラツなら上昇気配はあるが、G1級の仕上がり比較では一段落ちる。</p>
+<p>2 ミュージアムマイル: 502kgから+2kgの504kgで数字自体は安定。ただ12月28日から168日ぶりの休養明けで、「本調子には今一息」は体調派としては見逃せない。能力より仕上がり面で少し割り引く。</p>
+<p>14 スティンガーグラス: 484kgから-4kgの480kgで大きくは崩れていないが、2月21日から113日ぶりで上積みより仕上げ過程の印象。調教は良好でも一気の相手強化で、万全までは言い切れない。</p>
+<p>15 マイユニバース: 前走468kgから+12kgの480kgは明確に課題。近2走が480→468→480で振れ幅が大きく、3月28日から78日で緩んだ可能性もある。調教自体はいいが、太め残りリスクを警戒する。</p>
+<p>9 コスモキュランダ: 520kgから-2kgの518kgで、520kg前後の大型安定型。間隔は78日で悪くないが、気合乗り上々でも近走の馬体推移に上昇感が乏しく、上積みより現状維持の評価。</p>
+<p>6 ビザンチンドリーム: 466kgで数字は軽すぎないが、前走比較が取れず状態判断が難しい。2月14日から120日ぶりで休み明け、順調に乗り込む程度の調教評価では仕上がり断言まではできない。</p>
+<p>11 シンエンペラー: 508kgから-8kgの500kgは春天後の消耗を疑う減り方。5月3日から42日で詰まりすぎではないが、「完調に今ひと息」と合わせると良化途上で、体調面の押しは弱い。</p>
+<p>7 ファミリータイム: 482kgで維持はできているが、3月22日から84日ぶりで上積みの裏付けが薄い。動き軽快でも強調材料に欠け、体調だけで大きく押し上げる根拠は乏しい。</p>
+<p>18 ミステリーウェイ: 506kgから-8kgの498kgは8歳馬には消耗懸念が強い。春天から42日で再度の長距離戦後、中身が戻り切った感じまではなく、気配も強調しづらい。</p>
+<p>3 シュガークン: 前走518kgからさらに+4kgの522kgで、もともとの好走帯500kg前後から大きく膨らんだまま。5月16日から29日と間隔も詰まり、前走+14kg大敗後に絞れていないのは体調派として最も厳しい。</p>
+
+<p><strong>好走確信度配分</strong></p>
+<li>16番 メイショウタバル: 14%</li>
+<li>5番 クロワデュノール: 13%</li>
+<li>1番 ダノンデサイル: 10%</li>
+<li>17番 レガレイラ: 9%</li>
+<li>10番 ジューンテイク: 8%</li>
+<li>8番 タガノデュード: 7%</li>
+<li>13番 シェイクユアハート: 7%</li>
+<li>12番 マイネルエンペラー: 6%</li>
+<li>4番 ミクニインスパイア: 5%</li>
+<li>2番 ミュージアムマイル: 4%</li>
+<li>14番 スティンガーグラス: 4%</li>
+<li>15番 マイユニバース: 3%</li>
+<li>9番 コスモキュランダ: 3%</li>
+<li>6番 ビザンチンドリーム: 2%</li>
+<li>11番 シンエンペラー: 2%</li>
+<li>7番 ファミリータイム: 1%</li>
+<li>18番 ミステリーウェイ: 1%</li>
+<li>3番 シュガークン: 1%</li></div>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<details>
+<summary class="round-header" style="cursor:pointer;list-style:none;">
+<span>批判者分析全文</span>
+<span class="badge">tap to expand</span>
+</summary>
+<div class="section-body">
+<p><strong>敗因シナリオ</strong></p>
+
+<p>クロワデュノールが最多支持なのは能力比較では自然だが、飛ぶ余地はまだある。第一に、天皇賞(春)から中5週での阪神2200mへの質的転換だ。3200mで長く脚を使った後に、今度はコーナー4回の機動力と一瞬の加速を問われる形で、前走の強さがそのまま再現される保証はない。第二に、メイショウタバルや先行勢を早めに捕まえに行く「王者の競馬」を強いられると、4角で脚を使わされて差し返される危険がある。第三に、調教は良くても大阪杯→春天→宝塚の連戦は楽ではなく、能力で押し切れるほど他馬との差が絶対的とまでは言い切れない。Round 1で指摘した「絶対視は危険」は、平均値が12.3%にとどまり突出し切っていない点で一部反映されたが、なお過信は禁物という立場を維持する。</p>
+
+<p><strong>全馬評価（好走確信度の高い順）</strong></p>
+
+<p>16 メイショウタバル: Round 1で重視した単騎逃げの再現余地は依然大きく、今年も阪神2200mで自分の形なら最も相手に嫌な馬。ただし有馬のように後続に早めに来られると脆いので、強いが盤石ではない。  </p>
+<p>5 クロワデュノール: 能力最上位は認めるが、春天直後の反動と2200mの機動戦への適応を考えると平均1位ほどの安心感はない。勝ち切り候補ではあるが、取りこぼしシナリオは明確に存在する。  </p>
+<p>2 ミュージアムマイル: 有馬記念勝ちの格は高いが、今回は「本調子には今一息」の調教評価が気になる。末脚は上位でも、人気ほどの信頼までは置きにくい。  </p>
+<p>1 ダノンデサイル: 大崩れしない安定感は魅力だが、近走の並びからは勝ち切れない善戦型に寄りつつある。内枠でロスなく運べても、決め手比べであと一歩の危険は残る。  </p>
+<p>17 レガレイラ: 56kgは有利で2200m実績も十分だが、昨年宝塚の凡走歴が示すように阪神内回りの持続戦で取りこぼす余地はある。ルメールで過剰に売れるなら期待値はやや落ちる。  </p>
+<p>13 シェイクユアハート: Round 1での盲点指摘はある程度当たっており、今もなお過小評価気味。決め手特化ゆえ位置取りの不安はあるが、金鯱賞の内容ならG1でも圏内。  </p>
+<p>15 マイユニバース: これもRound 1で拾った上昇株で、日経賞の価値は高い。+12kgは成長か余裕残しかの見極めが必要で、人気急騰なら少し疑いたいが、能力は通用。  </p>
+<p>10 ジューンテイク: 京都記念勝ちと金鯱賞4着で2200mの適性は見せたが、G1で勝ち切るにはワンパンチ不足の印象。香港帰り初戦で気配上昇は認めても、平均7.6%はやや買われ気味。  </p>
+<p>12 マイネルエンペラー: 川田騎乗で必要以上に売れやすいタイプだが、AJCC大敗があり絶対値はそこまで高くない。持久戦になれば浮上する一方、瞬発戦では足りない。  </p>
+<p>8 タガノデュード: 近走は地味に崩れておらず、大阪杯4着は侮れない。反面、G1で勝ち切るには展開待ちの面が強く、相手強化で連下評価まで。  </p>
+<p>4 ミクニインスパイア: 日経賞2着は優秀だが、ここは相手が一気に強くなる。上がり性能は通じても、まだG1で押し切る裏付けまでは不足。  </p>
+<p>14 スティンガーグラス: 長距離実績は評価できるが、2200mでの追走スピードに少し疑問が残る。友道厩舎で人気の盲点になりにくく、妙味も限定的。  </p>
+<p>6 ビザンチンドリーム: 海外実績は立派だが、近走の舞台が長距離寄りで、阪神2200mの機動戦はベスト条件に見えない。刺さるなら直線外差し一本の形。  </p>
+<p>11 シンエンペラー: ネームバリューに対して近走内容が物足りず、完調に今ひと息の評価も割引材料。地力で残る線はあるが、まだ過大評価の余地が大きい。  </p>
+<p>9 コスモキュランダ: 有馬2着だけで復活扱いするのは危険で、その後の不安定さが消えていない。前受けしてしぶとい場面はあっても、勝ち切り像は薄い。  </p>
+<p>7 ファミリータイム: 2200m自体は合うが、オープン上位級と比べると絶対能力で見劣る。前で楽をしてどこまでの立場。  </p>
+<p>3 シュガークン: まだキャリアの浅さに魅力はあるが、前走新潟大賞典15着が重い。大幅な相手強化で、ここは様子見が妥当。  </p>
+<p>18 ミステリーウェイ: ハナ候補ではあるが、メイショウタバルより先手の質で劣る。競り合えば総崩れの可能性が高く、激走はかなり限定的。</p>
+
+<p><strong>好走確信度配分</strong></p>
+
+<li>16番 メイショウタバル: 12.5%</li>
+<li>5番 クロワデュノール: 10.5%</li>
+<li>2番 ミュージアムマイル: 9.0%</li>
+<li>1番 ダノンデサイル: 8.5%</li>
+<li>17番 レガレイラ: 8.0%</li>
+<li>13番 シェイクユアハート: 7.0%</li>
+<li>15番 マイユニバース: 6.5%</li>
+<li>10番 ジューンテイク: 6.5%</li>
+<li>12番 マイネルエンペラー: 5.5%</li>
+<li>8番 タガノデュード: 5.5%</li>
+<li>4番 ミクニインスパイア: 4.0%</li>
+<li>14番 スティンガーグラス: 3.5%</li>
+<li>6番 ビザンチンドリーム: 3.5%</li>
+<li>11番 シンエンペラー: 3.0%</li>
+<li>9番 コスモキュランダ: 2.5%</li>
+<li>7番 ファミリータイム: 2.0%</li>
+<li>3番 シュガークン: 1.0%</li>
+<li>18番 ミステリーウェイ: 1.0%</li>
+</div>
+</details>
+</div>
+
+<div class="agent-section">
+<div class="round-header critic"><span>批判者の分析サマリー</span></div>
+<div class="section-body">
+<p style="font-size:13px;color:#3A3A3C;line-height:1.8;">
+Round 1で警戒したクロワデュノールの過信リスクは、今回もなお消えていない。能力は最上位でも、春天直後の反動と阪神2200mの機動戦への質的転換、王者として早めに動かされる展開は明確な敗因候補。一方で、Round 1で盲点視したメイショウタバル、シェイクユアハート、マイユニバースは今回も評価を引き上げたい。特にメイショウタバルは単騎逃げなら最も展開利が大きい。平均上位のミュージアムマイル、レガレイラ、ジューンテイクは能力を認めつつも、調子面や取りこぼし余地に対してやや買われ過ぎとみる。
+</p>
+</div>
+</div>
+
+<div class="agent-section">
+<div class="round-header final"><span>全馬CC推定勝率（降順）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>実績派</th><th>血統派</th><th>展開派</th><th>陣営派</th><th>体調派</th><th>批判者</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>16</td><td class="left horse-name">メイショウタバル</td><td class="trust-mid">12.2%</td><td>12.4</td><td>10.5</td><td>12.0</td><td>12.2</td><td>13.2</td><td>12.5</td></tr><tr><td>2</td><td>5</td><td class="left horse-name">クロワデュノール</td><td class="trust-mid">12.0%</td><td>13.4</td><td>12.6</td><td>12.0</td><td>11.2</td><td>12.2</td><td>10.5</td></tr><tr><td>3</td><td>1</td><td class="left horse-name">ダノンデサイル</td><td class="trust-mid">9.1%</td><td>9.7</td><td>9.1</td><td>8.5</td><td>8.2</td><td>9.8</td><td>8.8</td></tr><tr><td>4</td><td>2</td><td class="left horse-name">ミュージアムマイル</td><td class="trust-mid">8.8%</td><td>10.9</td><td>10.8</td><td>9.5</td><td>10.0</td><td>4.7</td><td>9.2</td></tr><tr><td>5</td><td>17</td><td class="left horse-name">レガレイラ</td><td class="trust-mid">8.6%</td><td>8.6</td><td>10.0</td><td>7.0</td><td>9.0</td><td>8.8</td><td>8.2</td></tr><tr><td>6</td><td>10</td><td class="left horse-name">ジューンテイク</td><td class="trust-low">7.4%</td><td>6.7</td><td>8.1</td><td>8.0</td><td>7.0</td><td>7.8</td><td>6.8</td></tr><tr><td>7</td><td>13</td><td class="left horse-name">シェイクユアハート</td><td class="trust-low">6.6%</td><td>7.8</td><td>5.5</td><td>7.0</td><td>5.7</td><td>6.4</td><td>7.2</td></tr><tr><td>8</td><td>15</td><td class="left horse-name">マイユニバース</td><td class="trust-low">5.9%</td><td>6.7</td><td>8.0</td><td>6.0</td><td>6.0</td><td>3.5</td><td>6.5</td></tr><tr><td>9</td><td>12</td><td class="left horse-name">マイネルエンペラー</td><td class="trust-low">5.6%</td><td>3.2</td><td>5.7</td><td>5.0</td><td>7.7</td><td>6.0</td><td>5.5</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">タガノデュード</td><td class="trust-low">5.1%</td><td>5.0</td><td>4.4</td><td>4.5</td><td>4.0</td><td>6.8</td><td>5.2</td></tr><tr><td>11</td><td>4</td><td class="left horse-name">ミクニインスパイア</td><td class="trust-low">3.9%</td><td>3.8</td><td>1.9</td><td>4.5</td><td>2.2</td><td>5.9</td><td>3.9</td></tr><tr><td>12</td><td>14</td><td class="left horse-name">スティンガーグラス</td><td class="trust-low">3.4%</td><td>2.5</td><td>2.1</td><td>2.5</td><td>4.7</td><td>4.5</td><td>3.5</td></tr><tr><td>13</td><td>6</td><td class="left horse-name">ビザンチンドリーム</td><td class="trust-low">2.9%</td><td>3.5</td><td>3.8</td><td>3.0</td><td>2.0</td><td>2.5</td><td>3.2</td></tr><tr><td>14</td><td>11</td><td class="left horse-name">シンエンペラー</td><td class="trust-low">2.8%</td><td>2.2</td><td>2.8</td><td>3.5</td><td>4.0</td><td>1.9</td><td>2.7</td></tr><tr><td>15</td><td>9</td><td class="left horse-name">コスモキュランダ</td><td class="trust-low">2.5%</td><td>1.4</td><td>1.8</td><td>3.0</td><td>2.5</td><td>3.4</td><td>2.4</td></tr><tr><td>16</td><td>7</td><td class="left horse-name">ファミリータイム</td><td class="trust-low">1.4%</td><td>0.8</td><td>1.6</td><td>1.5</td><td>1.7</td><td>0.9</td><td>1.8</td></tr><tr><td>17</td><td>18</td><td class="left horse-name">ミステリーウェイ</td><td class="trust-low">0.9%</td><td>0.8</td><td>0.7</td><td>1.5</td><td>0.7</td><td>0.8</td><td>1.0</td></tr><tr><td>18</td><td>3</td><td class="left horse-name">シュガークン</td><td class="trust-low">0.9%</td><td>0.7</td><td>0.8</td><td>1.0</td><td>1.0</td><td>0.8</td><td>1.1</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>16</td><td class="left horse-name">メイショウタバル</td><td>12.2%</td><td>5.5</td><td>2</td><td class="ev-low">0.67</td></tr><tr><td>2</td><td>5</td><td class="left horse-name">クロワデュノール</td><td>12.0%</td><td>2.5</td><td>1</td><td class="ev-low">0.30</td></tr><tr><td>3</td><td>1</td><td class="left horse-name">ダノンデサイル</td><td>9.1%</td><td>7.4</td><td>5</td><td class="ev-low">0.67</td></tr><tr><td>4</td><td>2</td><td class="left horse-name">ミュージアムマイル</td><td>8.8%</td><td>5.9</td><td>3</td><td class="ev-low">0.52</td></tr><tr><td>5</td><td>17</td><td class="left horse-name">レガレイラ</td><td>8.6%</td><td>6.4</td><td>4</td><td class="ev-low">0.55</td></tr><tr><td>6</td><td>10</td><td class="left horse-name">ジューンテイク</td><td>7.4%</td><td>174.0</td><td>15</td><td class="ev-high">12.93</td></tr><tr><td>7</td><td>13</td><td class="left horse-name">シェイクユアハート</td><td>6.6%</td><td>69.5</td><td>11</td><td class="ev-high">4.57</td></tr><tr><td>8</td><td>15</td><td class="left horse-name">マイユニバース</td><td>5.9%</td><td>17.1</td><td>6</td><td class="ev-mid">1.01</td></tr><tr><td>9</td><td>12</td><td class="left horse-name">マイネルエンペラー</td><td>5.6%</td><td>115.9</td><td>13</td><td class="ev-high">6.46</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">タガノデュード</td><td>5.1%</td><td>46.6</td><td>9</td><td class="ev-high">2.39</td></tr><tr><td>11</td><td>4</td><td class="left horse-name">ミクニインスパイア</td><td>3.9%</td><td>56.1</td><td>10</td><td class="ev-high">2.17</td></tr><tr><td>12</td><td>14</td><td class="left horse-name">スティンガーグラス</td><td>3.4%</td><td>117.8</td><td>14</td><td class="ev-high">3.98</td></tr><tr><td>13</td><td>6</td><td class="left horse-name">ビザンチンドリーム</td><td>2.9%</td><td>31.2</td><td>7</td><td class="ev-low">0.92</td></tr><tr><td>14</td><td>11</td><td class="left horse-name">シンエンペラー</td><td>2.8%</td><td>75.8</td><td>12</td><td class="ev-high">2.10</td></tr><tr><td>15</td><td>9</td><td class="left horse-name">コスモキュランダ</td><td>2.5%</td><td>39.7</td><td>8</td><td class="ev-low">0.98</td></tr><tr><td>16</td><td>7</td><td class="left horse-name">ファミリータイム</td><td>1.4%</td><td>220.7</td><td>18</td><td class="ev-high">3.00</td></tr><tr><td>17</td><td>18</td><td class="left horse-name">ミステリーウェイ</td><td>0.9%</td><td>192.4</td><td>16</td><td class="ev-mid">1.78</td></tr><tr><td>18</td><td>3</td><td class="left horse-name">シュガークン</td><td>0.9%</td><td>201.0</td><td>17</td><td class="ev-mid">1.75</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">16 メイショウタバル</td><td>12.2%</td><td>5.5</td><td class="ev-low">0.56</td></tr><tr><td>複勝</td><td class="left">16 メイショウタバル</td><td>34.8%</td><td>1.8</td><td class="ev-low">0.57</td></tr><tr><td>馬連</td><td class="left">5 クロワデュノール-16 メイショウタバル</td><td>3.4%</td><td>7.5</td><td class="ev-low">0.21</td></tr><tr><td>ワイド</td><td class="left">5 クロワデュノール-16 メイショウタバル</td><td>9.5%</td><td>3.7</td><td class="ev-low">0.30</td></tr><tr><td>馬単</td><td class="left">16 メイショウタバル→5 クロワデュノール</td><td>1.7%</td><td>18.4</td><td class="ev-low">0.25</td></tr><tr><td>3連複</td><td class="left">1 ダノンデサイル-5 クロワデュノール-16 メイショウタバル</td><td>1.2%</td><td>12.7</td><td class="ev-low">0.12</td></tr><tr><td>3連単</td><td class="left">16 メイショウタバル→5 クロワデュノール→1 ダノンデサイル</td><td>0.2%</td><td>66.3</td><td class="ev-low">0.11</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v3.4</div>
+</div>
+</body>
+</html>
