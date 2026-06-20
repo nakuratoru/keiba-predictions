@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>町田特別 2026/06/20 TOKYO 9R (06/20 11:55 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>町田特別 2026/06/20 TOKYO 9R (06/20 11:55 予想 馬体重なし)</h1>
+  <div class="meta">芝2400m（左） | 良 | 10頭立て | 3回 東京 5日目 サラ系3歳以上 2勝クラス （混合）［指定］ ハンデ 10頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">3. ピックデムッシュ</div>
+      <div class="pick-jockey">C.ルメール / 鹿戸 雄一</div>
+    </div>
+    <div class="pick-prob">23.4%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">7. チャリングクロス</div>
+      <div class="pick-jockey">戸崎 圭太 / 奥村 武</div>
+    </div>
+    <div class="pick-prob">15.8%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">6. ランツフート</div>
+      <div class="pick-jockey">三浦 皇成 / 大久保 龍志</div>
+    </div>
+    <div class="pick-prob">13.6%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">10頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">フルレゾン</td><td>牝5</td><td>53</td><td>武藤 雅</td><td>池添 学</td><td>オルフェーヴル</td><td>ティンバーカントリー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">サイモンルモンド</td><td>せん9</td><td>50</td><td>木幡 育也</td><td>的場 均</td><td>ダノンシャンティ</td><td>サクラローレル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ピックデムッシュ</td><td>牡4</td><td>57</td><td>C.ルメール</td><td>鹿戸 雄一</td><td>レイデオロ</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">バンフィエルド</td><td>牡7</td><td>54</td><td>柴田 大知</td><td>粕谷 昌央</td><td>オルフェーヴル</td><td>Candy Ride</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">オウケンボルト</td><td>牡7</td><td>53</td><td>吉田 豊</td><td>松永 康利</td><td>フェノーメノ</td><td>オウケンブルースリ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">ランツフート</td><td>牡4</td><td>55</td><td>三浦 皇成</td><td>大久保 龍志</td><td>ブリックスアンドモルタル</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>7</td><td class="left horse-name">チャリングクロス</td><td>牡3</td><td>53</td><td>戸崎 圭太</td><td>奥村 武</td><td>キタサンブラック</td><td>Cape Cross</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>8</td><td class="left horse-name">レーヴドロペラ</td><td>牝4</td><td>53</td><td>F.ゴンサルベス</td><td>加藤 士津八</td><td>モーリス</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>9</td><td class="left horse-name">クリフハンガー</td><td>せん5</td><td>54</td><td>原 優介</td><td>上原 博之</td><td>ルーラーシップ</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>10</td><td class="left horse-name">シテフローラル</td><td>せん8</td><td>55</td><td>松山 弘平</td><td>堀 宣行</td><td>ディープインパクト</td><td>Rossini</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ピックデムッシュ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ランツフート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">レーヴドロペラ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ピックデムッシュ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">チャリングクロス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ランツフート</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ピックデムッシュ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ランツフート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">レーヴドロペラ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ピックデムッシュ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">チャリングクロス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">レーヴドロペラ</span></td></tr>
+<tr><td>5</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ピックデムッシュ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">チャリングクロス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ランツフート</span></td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、最終=合成を matome が微調整→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ピックデムッシュ</span></td>
+<td>+0.80</td>
+<td>+0.54</td>
+<td>+0.40</td>
+<td>+0.76</td>
+<td>+0.84</td>
+<td>24.6</td>
+<td><b>23.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">チャリングクロス</span></td>
+<td>+0.20</td>
+<td>+0.36</td>
+<td>+0.44</td>
+<td>+0.72</td>
+<td>+0.62</td>
+<td>15.4</td>
+<td><b>15.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ランツフート</span></td>
+<td>+0.02</td>
+<td>+0.30</td>
+<td>+0.18</td>
+<td>+0.26</td>
+<td>+0.40</td>
+<td>11.6</td>
+<td><b>13.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">レーヴドロペラ</span></td>
+<td>+0.18</td>
+<td>+0.10</td>
+<td>+0.34</td>
+<td>+0.26</td>
+<td>+0.06</td>
+<td>12.4</td>
+<td><b>12.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">シテフローラル</span></td>
+<td>+0.02</td>
+<td>-0.32</td>
+<td>-0.42</td>
+<td>+0.22</td>
+<td>+0.60</td>
+<td>9.2</td>
+<td><b>9.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">フルレゾン</span></td>
+<td>+0.22</td>
+<td>-0.10</td>
+<td>-0.40</td>
+<td>+0.26</td>
+<td>+0.02</td>
+<td>10.8</td>
+<td><b>9.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">オウケンボルト</span></td>
+<td>-0.34</td>
+<td>+0.44</td>
+<td>-0.24</td>
+<td>+0.24</td>
+<td>-0.18</td>
+<td>6.8</td>
+<td><b>6.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">クリフハンガー</span></td>
+<td>-0.38</td>
+<td>-0.22</td>
+<td>+0.02</td>
+<td>+0.36</td>
+<td>-0.06</td>
+<td>5.7</td>
+<td><b>5.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">バンフィエルド</span></td>
+<td>-0.60</td>
+<td>-0.08</td>
+<td>-0.42</td>
+<td>+0.06</td>
+<td>-0.38</td>
+<td>3.2</td>
+<td><b>3.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">サイモンルモンド</span></td>
+<td>-0.96</td>
+<td>-0.66</td>
+<td>-0.64</td>
+<td>-0.56</td>
+<td>-0.54</td>
+<td>0.2</td>
+<td><b>0.2</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行2</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行2の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, フルレゾン, +0.2, 今年の琵琶湖特別で2400mを0.1秒差3着かつ指数86.2はこの組み合わせでは通用水準。近2走は着順ほど悪くないが指数が72.3と79.3に落ちており 強くは押し上げない。<br><br>2番, サイモンルモンド, -1.0, 近5走すべて2勝クラスで8着以下かつ直近3走は1.6秒差 2.1秒差 4.0秒差の大敗続きで 指数も51.8まで低下している。芝替わり以前に近走実績の裏付けがまったく足りない。<br><br>3番, ピックデムッシュ, +0.9, セントライト記念4着で指数92.0という格上実績がこのメンバーでは最上位級。近4走も2勝クラスで2着2回3着1回4着1回と崩れず 2400m前後の持続的な実績が最も安定している。<br><br>4番, バンフィエルド, -0.5, 近5走すべて2勝クラスで7着以下と壁に当たっており 青嵐賞2400mでも1.6秒差13着だった。指数も70点台前半から後半に留まり クラス内での実績不足が明確。<br><br>5番, オウケンボルト, -0.4, 芝2400mでは許波多特別0.7秒差7着や箱根特別1.8秒差5着で決め手不足が続いている。グッドラックでも7着で 2勝クラスの長距離戦で上位実績が乏しい。<br><br>6番, ランツフート, 0.0, 芝2400mの1勝クラス勝ちで指数78.2と条件適性は見せているが 2勝クラス実績がまだない。通算6戦で底は見せていない一方 実績比較では強くも弱くも振れない。<br><br>7番, チャリングクロス, +0.3, 山藤賞を勝って指数83.7はこのメンバーでも見劣らず 3歳馬としては実績の伸びしろがある。まだ1勝クラスまでの実績だが 近3走は5着 3着 1着と内容が安定している。<br><br>8番, レーヴドロペラ, +0.1, オークス14着でも1.4秒差かつ指数81.4は この2勝クラスでは一定の裏付けになる。三陸特別3着もあり長めの距離実績はあるが 直近の潮来特別9着1.3秒差で強調まではしづらい。<br><br>9番, クリフハンガー, -0.3, 1勝クラスの2200m勝ちはあるが 2勝クラス昇級後は2000mで1.5秒差10着 2500mで1.4秒差10着と通用の形を示せていない。指数も73.0と69.9でクラス上位には足りない。<br><br>10番, シテフローラル, -0.1, 2勝クラスで2600m0.2秒差4着や2400m戦出走歴があり 大きくは見劣らない。とはいえ近5走で勝ち負け級の実績まではなく 休養前も指数82.3が最高で押し上げ材料は限定的。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>3番ピックデムッシュの高評価はセントライト記念92.0への依存が強く、近走の現級指数81前後との整合を再点検したい。対して7番チャリングクロスの83.7、1番フルレゾンの2400m86.2は相対的に控えめすぎる可能性がある。8番レーヴドロペラも81.4/80.6の実績に対して+0.1は低めに見え、3番との比較基準をそろえたい。5番オウケンボルト、10番シテフローラル、6番ランツフートは付値差の説明がやや薄く、現級指数の扱いを統一すると整合しやすい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, フルレゾン, +0.4, 琵琶湖特別で芝2400mを0.1秒差3着、指数86.2はこの組では上位の現級実績。近2走は72.3、79.3と落としているが、同条件の裏付け自体ははっきりある。<br><br>2番, サイモンルモンド, -1.0, 近5走すべて2勝クラスで8着以下、直近3走は1.6秒差、2.1秒差、4.0秒差の大敗続きで指数も51.8まで低下。近走実績の裏付けがこのメンバーで最も乏しい。<br><br>3番, ピックデムッシュ, +0.8, セントライト記念4着、指数92.0は最上位級の実績で、現級でも2着2回、3着1回、4着1回と崩れていない。近2走の指数76台は物足りないが、2勝クラスでの安定度と格上実績を合わせれば依然高評価。<br><br>4番, バンフィエルド, -0.6, 近5走すべて2勝クラスで7着以下、青嵐賞の芝2400mでも1.6秒差13着と現級で足りていない。指数も70.7-78.6止まりで、上位圏に食い込む実績が薄い。<br><br>5番, オウケンボルト, -0.4, 芝の2勝クラス長距離では許波多特別7着0.7秒差、箱根特別5着1.8秒差、グッドラック7着で、上位争いの実績が乏しい。指数も80.9が一度あるだけで、全体としては現級で一押し足りない。<br><br>6番, ランツフート, -0.1, 芝2400mの1勝クラス勝ちで指数78.2は悪くないが、2勝クラスでの実績がまだない。通用余地はある一方、実績比較では現時点で強調材料が不足する。<br><br>7番, チャリングクロス, +0.5, 山藤賞1着の指数83.7はこのメンバーでも通用水準で、1勝クラスながら数字の裏付けは強い。近3走も5着、3着、1着と安定しており、実績面で素直に加点できる。<br><br>8番, レーヴドロペラ, +0.3, オークス14着でも1.4秒差、指数81.4、さらに三陸特別3着で指数80.6と、長距離寄りの現級実績は足りている。前走潮来特別9着1.3秒差、指数70.5で勢いはないが、実績の底はこの組で見劣らない。<br><br>9番, クリフハンガー, -0.3, 1勝クラスの2200m勝ちで指数80.9はあるが、昇級後は2戦連続10着で1.5秒差、1.4秒差と完敗。指数73.0、69.9では現級で足りない内容が続いている。<br><br>10番, シテフローラル, -0.1, 横津岳特別4着0.2秒差、指数82.3はこの組なら一定評価できるが、2400mの箱根特別では1.3秒差8着と同条件実績は強くない。近5走で勝ち負け級の裏付けまではなく、評価は中立寄りに留める。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, フルレゾン, -0.3, この頭数で逃げ先行馬が少なく前が楽になる公算で 後方寄りの差し脚質には待たされやすいです。東京2400の長い直線は合う余地があっても 今回の並びでは展開利は薄いです。<br><br>2番, サイモンルモンド, -0.6, 近走の通過順からも後方一手になりやすく 芝替わりでも展開面の助けは見込みにくいです。少頭数のスロー寄り想定では 直線だけで差を詰める形になりやすいです。<br><br>3番, ピックデムッシュ, +0.5, オウケンボルトが行って この馬が好位の外か2列目で流れに乗る形が描きやすいです。極端な消耗戦になりにくい組み合わせで 長く脚を使う先行差しの形が最もはまりやすいです。<br><br>4番, バンフィエルド, 0.0, 中団前で運べる余地はありますが 自分で流れを作るタイプではなく展開の恩恵も不利も限定的です。前が緩んだときに内で脚をためられればという程度です。<br><br>5番, オウケンボルト, +0.4, 逃げ候補がはっきりしており この頭数なら単騎気味に運べる可能性があります。東京2400で楽に先手なら直線入口まで主導権を握れるので 前残りの恩恵を受けやすいです。<br><br>6番, ランツフート, +0.2, 先行勢を見る位置で無理なく運べそうで 隊列の恩恵は受けやすいです。スロー寄りで瞬発力勝負になってもポジションを取りやすい並びです。<br><br>7番, チャリングクロス, +0.3, 3番手から5番手あたりの好位で脚をためる形が取りやすく 展開の自由度があります。前が飛ばし過ぎず差し遅れもしにくいレース像で 立ち回りの利が出やすいです。<br><br>8番, レーヴドロペラ, +0.1, 先行集団の一角に入れそうで ペースが落ち着けば前々で粘り込む余地があります。ただし外めの並びで少し脚を使わされる可能性があり 強い上げ材料まではありません。<br><br>9番, クリフハンガー, -0.1, 近走は前目でもうひと押しの形が多く 今回も好位の外で脚を使わされると甘くなりやすい並びです。展開自体は向かなくはないですが 隊列の利を強く受けるタイプではありません。<br><br>10番, シテフローラル, -0.2, 差し寄りの運びになりやすく 少頭数でも前が止まり切らない想定では届くかどうかの競馬になりやすいです。東京の長い直線は歓迎でも 今回はペース面の追い風が弱いです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>少頭数スロー前有利という前提のわりに、5番オウケンボルトの展開加点が伸び切っておらず、3番ピックデムッシュとの序列根拠が薄い。6番ランツフートと8番レーヴドロペラは理由文の内容に対して付値が低め。逆に1番フルレゾンと10番シテフローラルの差し勢2頭は、内外と位置取りリスクの差を踏まえると軽重の付け方を見直す余地がある。9番クリフハンガーは『展開自体は向かなくはない』という説明に対してマイナス評価がやや不整合。4番バンフィエルドも内で自然に好位を拾える想定なら0.0より微プラスの検討余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, フルレゾン, -0.2, オウケンボルトが楽に先手を取って隊列が早めに固まる形だと 後方寄りのこの馬は仕掛け待ちになりやすいです。ただ1枠で内をロスなく拾えるぶん 外差しよりは展開不利が少し軽くなります。<br><br>2番, サイモンルモンド, -0.6, 少頭数で逃げ馬も限られ オウケンボルト先導のスロー寄りなら最後方近くからでは物理的に届く形を作りにくいです。直線勝負に振れても前との差が詰まりにくい展開です。<br><br>3番, ピックデムッシュ, +0.6, 5番がハナなら この馬はその直後の内目か2列目で脚をためる形が最も描きやすいです。東京2400でも 早めに動ける位置で直線へ向けるので 展開の取り回しはかなり良いです。<br><br>4番, バンフィエルド, +0.1, 先手争いがきつくならない組み合わせで 4枠から内寄りの好位を拾えれば脚を使わされにくいです。自分で流れを作る馬ではないものの 今回は自然に展開の利を受ける余地があります。<br><br>5番, オウケンボルト, +0.7, この組み合わせならハナ候補が最もはっきりしており 単騎気味に運べる公算が高いです。東京2400でも楽に息を入れて4角先頭なら 前残りシナリオの中心にいるのはこの馬です。<br><br>6番, ランツフート, +0.3, 5番を見ながら3番と並ぶような好位外で運べそうで 極端に脚を使わず流れに乗りやすいです。スロー気味からのロングスパート戦なら 位置取りの良さが素直に生きます。<br><br>7番, チャリングクロス, +0.3, 先行勢の直後で3番手から5番手あたりに収まりやすく 速過ぎても遅過ぎても対応しやすい並びです。5番が作る淡々とした流れを好位差しで拾う形は十分あります。<br><br>8番, レーヴドロペラ, +0.2, 5番の後ろで前々の列に取りつければ スロー寄りの前残りに乗れる余地があります。7枠でも10頭立てなら外を回され過ぎるリスクは限定的で 微プラスは見込めます。<br><br>9番, クリフハンガー, +0.1, 外枠でも頭数が少なく 好位の外で流れに乗る形自体は作れそうです。3角までに無理なく隊列へ入れれば展開そのものは大きなマイナスではなく むしろ少し追い風です。<br><br>10番, シテフローラル, -0.4, 差し寄りのうえに大外で 序盤から内へ潜り込みにくく 位置取りが後ろになりやすいです。前が緩む想定では 1番以上に外から動かされて届き切らないリスクを強く見ます。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, フルレゾン, -0.5, 前走458kgで+12kgと戻し過ぎた直後に今回は未発表なので増減ゼロ仮定でもまだ重めの水準です。良かった1月の448kg前後からは遠く追い切りも力感乏しくで上積みが薄いです。<br><br>2番, サイモンルモンド, -0.7, 前走460kgで+6kgのまま中6日と詰まっており高齢馬の連戦としては疲労残りを警戒します。1日前の坂路もかなり軽く攻めた程度で強調しにくい仕上がりです。<br><br>3番, ピックデムッシュ, +0.4, 近4走が458から462kgに収まっていて馬体の安定感があります。美Wで終い1F11.2なら動きは十分で57kgもこの馬格なら大きな割引ではありません。<br><br>4番, バンフィエルド, -0.4, 428から436kgのレンジで使われていますが近2走の内容に対して馬体面の上向きが乏しいです。追い切り評価も上積み薄で叩いた効果を強く見込みにくいです。<br><br>5番, オウケンボルト, -0.2, 456から464kgで大きく崩れてはいませんが前走大敗後も未発表なら据え置き仮定で変わり身の根拠が薄いです。53kgは楽でも追い切りから強い良化気配までは読みづらいです。<br><br>6番, ランツフート, -0.1, 休み明けは約8か月で実戦の息持ちには少し不安が残ります。一杯に追って時計は出ていますが仕上がりの良さと久々の割引がほぼ相殺でわずかに慎重です。<br><br>7番, チャリングクロス, +0.7, 前走は492kgから480kgへ12kg絞って勝っており叩きながら体が締まった上昇過程です。今回は53kgで大型馬に有利な条件でもあり追い切りのパワーアップしてと調子↗も強い後押しです。<br><br>8番, レーヴドロペラ, +0.3, 前走466kgでやや余裕残しにも見えましたが休み明けでも動き軽快の評価なら仕上がりは悪くありません。53kgも牝馬としては運びやすく久々を踏まえても体調面はやや上向きです。<br><br>9番, クリフハンガー, +0.2, 456から446kgへ少しずつ絞れており立て直し良化のコメント通りなら戻り過程としては悪くないです。54kgは小柄寄りの馬体には少し重めですが追い切り気配の良化を優先して小幅に上げます。<br><br>10番, シテフローラル, -0.6, 約10か月ぶりで8歳馬というだけでも仕上げ切る難しさがあります。評価が馬体は仕上がるも止まりで気配が突き抜けず過去の438から450kg台の軽い馬体に55kgも楽ではありません。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>7番チャリングクロスの高加点は未発表馬体重の不確実性を軽く見過ぎではないか。6番ランツフートと8番レーヴドロペラは調教内容の割に慎重すぎ、逆に9番クリフハンガーは近走内容低下の割に加点が甘く見える。1番フルレゾン・5番オウケンボルト・7番チャリングクロスで未発表馬体重への仮定の置き方が揃っておらず、基準の統一を再点検したい。10番シテフローラルは減点理由の主軸を久々・高齢より調教仕上がりの弱さに置く方が体調派として整理しやすい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, フルレゾン, -0.4, 未発表馬体重は増減ゼロ仮定で統一すると前走458kgのまま見立てになり、1月の好走時448kg前後よりまだ少し余裕が残る計算です。坂路も馬なりで力感乏しく、絞れてくる裏付けが薄いぶん下げます。<br><br>2番, サイモンルモンド, -0.7, 前走460kgで+6kgの直後に中6日では、9歳せん馬の連戦として疲労残りを強く警戒します。1日前坂路60.4-14.2も負荷は軽く、上向きより維持止まりの仕上がりです。<br><br>3番, ピックデムッシュ, +0.4, 458-462kgの狭いレンジで馬体が安定しており、当日のブレが小さいタイプです。美Wの終い11.2も十分で、57kgもこの馬格なら体調面での減点は要りません。<br><br>4番, バンフィエルド, -0.4, 428-436kgの範囲で推移して大きな悪化はない一方、叩いての上昇カーブも見えません。追い切り評価が上積み薄なら、体調面で積極的に買う材料は乏しいです。<br><br>5番, オウケンボルト, -0.2, 未発表馬体重は据え置き仮定で前走464kgのままなら太めとも細めとも言いませんが、大敗後の反転材料としては弱いです。53kgは有利でも、追い切りが変化を強く示しておらず小幅減点にとどめます。<br><br>6番, ランツフート, +0.2, 8か月ぶりでも坂路52.4-12.2を一杯に追って併入なら、休み明けとしては仕上がり水準が高いです。未発表馬体重の不確実性は残りますが、調教の質で久々の割引をおおむね補えると見ます。<br><br>7番, チャリングクロス, +0.5, 未発表馬体重は増減ゼロ仮定で前走480kg据え置きと見るのが基準上自然で、前走で12kg絞って結果も出しているぶんこの水準なら十分許容です。美W終い11.4で評価もパワーアップして、53kgはこの馬格なら実質1-2馬身分ほど運びやすく、引き続き体調面は上向きです。<br><br>8番, レーヴドロペラ, +0.4, 前走466kgはやや余裕残しでも、今回は坂路53.7-11.7で久々でも動き軽快なら仕上げ直しは順調です。53kgも牝馬には扱いやすく、休み明けを踏まえても上積み寄りに見ます。<br><br>9番, クリフハンガー, +0.1, 456kgから450kg、446kgと少しずつ絞れている流れ自体は悪くなく、追い切りも立て直し良化の評価です。ただし54kgは小柄寄りの現状馬体にはやや楽ではなく、調教良化だけで強くは上げません。<br><br>10番, シテフローラル, -0.5, 減点の主軸は久々そのものより、追い切り評価が「馬体は仕上がるも」で止まり、動きの迫力が一段足りない点です。438-450kg台の軽めの馬体で55kgなら、仕上がりが抜け切らないぶん当日の負荷は軽くありません。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, フルレゾン, +0.3, オルフェーヴルに母父ティンバーカントリーで、芝2400mに必要な持久力とタフさは血統的に十分ある。高速決着一辺倒より少し消耗戦寄りのほうが配合の良さが出やすい。<br><br>2番, サイモンルモンド, -0.5, 父ダノンシャンティは本質的にマイルから中距離寄りで、東京芝2400mの持続力勝負では血統面の後押しが弱い。母父サクラローレルで底力は補えるが、この条件で強く買える配合ではない。<br><br>3番, ピックデムッシュ, +0.8, 父レイデオロに母父ハービンジャーは東京芝2400mでかなり噛み合う長距離持続型の配合だ。切れとスタミナのバランスが良く、道悪を含めて条件のブレにも比較的強い血統構成。<br><br>4番, バンフィエルド, +0.1, オルフェーヴル産駒らしく距離そのものは守備範囲で、母父Candy Rideの持続力も悪くない。芝2400m自体はこなせる血統だが、この配合だけで大きく押し上げるほどの強調材料まではない。<br><br>5番, オウケンボルト, +0.4, 父フェノーメノに母父オウケンブルースリで、かなり長めの距離に軸足を置いたスタミナ配合だ。東京芝2400mへの条件替わりは血統面では歓迎で、消耗戦ならなお浮上余地がある。<br><br>6番, ランツフート, +0.3, 父ブリックスアンドモルタルに母父ステイゴールドで、中距離の機動力に母系の持久力が補強された形だ。芝2400mへの延長は血統的に自然で、距離不安よりむしろプラスに見える。<br><br>7番, チャリングクロス, +0.7, キタサンブラックに母父Cape Crossは、長く脚を使う東京芝の中長距離で魅力が大きい。父の成長力と母系の欧州的な持続力が合わさっていて、3歳夏前でも条件適性は高い。<br><br>8番, レーヴドロペラ, +0.4, モーリスに母父ディープインパクトなら、スピードの質を保ちながら2400mまで伸ばせる配合だ。牝馬でも長めの距離に対応しやすく、東京の軽い芝でも血統的な不安は小さい。<br><br>9番, クリフハンガー, +0.5, ルーラーシップに母父ステイゴールドは、芝2200m以上で良さが出やすいスタミナ持続型の王道配合だ。東京芝2400mはこの馬の血統適性を素直に評価しやすい条件。<br><br>10番, シテフローラル, +0.2, 父ディープインパクトで東京芝2400mへの適性は担保されている。母父Rossiniでマイル寄りのスピードも入るぶん純粋なステイヤー色は薄いが、この条件をこなす下地はある。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>3番ピックデムッシュの強気評価は7番チャリングクロスとの差の説明が薄く、付値先行に見える。7番チャリングクロスはキタサンブラック×Cape Crossで東京芝2400mの血統テーマにかなり合うため、むしろ再加点余地がある。5番オウケンボルトはスタミナ偏重を加点しすぎの可能性があり、9番クリフハンガーのルーラーシップ×ステイゴールドの王道性との比較整理が必要。8番レーヴドロペラは『こなせる』と『積極加点』を分けて見たい。10番シテフローラルと1番フルレゾンは東京2400m向きの血統価値をやや控えめに見積もっていないか再点検の余地がある。6番ランツフートも延長歓迎の根拠をもう少し具体化したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, フルレゾン, +0.4, オルフェーヴルに母父ティンバーカントリーならスタミナとタフさの裏付けは濃く東京芝2400mは血統的に守備範囲だ。瞬発力一点勝負より持続戦や少し渋った馬場で配合の良さが出やすい。<br><br>2番, サイモンルモンド, -0.5, 父ダノンシャンティはこの条件では距離の後押しが弱く母父サクラローレルの底力を足しても東京芝2400m向きとは言い切りにくい。血統面では明確な上積み材料に乏しい。<br><br>3番, ピックデムッシュ, +0.7, レイデオロに母父ハービンジャーは中長距離で長く脚を使う形に合いやすく東京芝2400mの適性は高い。重すぎず軽すぎない配合で馬場の振れにも比較的対応しやすい。<br><br>4番, バンフィエルド, +0.1, オルフェーヴルの距離適性に母父Candy Rideの持続力が入っていて2400m自体はこなせる血統だ。とはいえ東京の軽い芝で強く押し上げるほどの切れ味補強までは見えない。<br><br>5番, オウケンボルト, +0.2, フェノーメノに母父オウケンブルースリでスタミナ色はかなり強く距離延長自体は歓迎しやすい。ただし東京芝2400mは単なる我慢比べではなく持続的なスピードも要るため血統加点は控えめに修正する。<br><br>6番, ランツフート, +0.4, ブリックスアンドモルタルの持続力に母父ステイゴールドの底力が入る形で延長は血統的に素直なプラスだ。スピードの質を落としすぎず2400mまでレンジを伸ばせる配合で東京向きのバランスも悪くない。<br><br>7番, チャリングクロス, +0.8, キタサンブラックに母父Cape Crossは東京芝2400mで求められる長い直線の持続力と中長距離適性が強く噛み合う。父の成長力と母系の欧州的な底力の組み合わせはこの条件でかなり魅力が大きい。<br><br>8番, レーヴドロペラ, +0.1, モーリスに母父ディープインパクトなら2400mをこなす下地はあり東京芝にも対応可能だ。ただし血統だけで積極的に押し上げるほど長距離特化とは言えず加点は小さくとどめる。<br><br>9番, クリフハンガー, +0.6, ルーラーシップに母父ステイゴールドは東京芝2400mで評価しやすい王道の持続力配合だ。5番よりも父系に持続的なスピードの質があり東京向きの中長距離適性としては一段整理しやすい。<br><br>10番, シテフローラル, +0.3, ディープインパクト産駒で東京芝2400mへの対応力はやはり評価できる。母父Rossiniでマイル寄りのスピードは入るが長い直線での瞬発力と中距離以上への延長許容は血統的に十分ある。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, フルレゾン, +0.1, 池添学厩舎は上のクラスでも整えてくる厩舎でこの条件替わり自体は悪くない。武藤雅騎手は強調材料までは薄く陣営面の押しは小幅にとどめる。<br><br>2番, サイモンルモンド, -0.5, 木幡育也騎手に的場均厩舎の組み合わせではこの東京芝2400mの2勝クラスで陣営の後押しは弱い。50kgの軽さはあっても陣営力で上げる材料には乏しい。<br><br>3番, ピックデムッシュ, +0.8, C.ルメール騎手への信頼度はこのメンバーでは抜けて高く東京の長めの芝でも強い後押しになる。鹿戸雄一厩舎もこの条件できっちり馬を競馬に向かわせる厩舎で陣営面はかなり強調できる。<br><br>4番, バンフィエルド, -0.3, 柴田大知騎手は手堅さはあるがこのクラスの東京芝2400mで強く押し上げる材料にはなりにくい。粕谷昌央厩舎もここで格の後押しを与えるほどではなく陣営面はやや弱め。<br><br>5番, オウケンボルト, -0.2, 吉田豊騎手は東京での立ち回りに味がある一方で勝ち切りの強い後押しというほどではない。松永康利厩舎もこの条件で大きく買える看板まではなく陣営評価は少し控えめ。<br><br>6番, ランツフート, +0.5, 大久保龍志厩舎は使い出しや昇級戦でも仕上げの質を保ちやすく陣営として好感が持てる。三浦皇成騎手なら東京芝の中長距離で無難以上を見込みやすく陣営面ははっきりプラス。<br><br>7番, チャリングクロス, +0.6, 戸崎圭太騎手は東京芝での信頼度が高く3歳馬のハンデ戦でも手綱の強みが出やすい。奥村武厩舎も丁寧に上げてくるタイプでこの舞台の陣営力は素直に評価したい。<br><br>8番, レーヴドロペラ, +0.2, F.ゴンサルベス騎手は短期免許騎手らしく一発の怖さがあり陣営の勝負気配としては少し買える。加藤士津八厩舎の格だけで大きくは上げにくくプラスは軽めにとどめる。<br><br>9番, クリフハンガー, -0.1, 原優介騎手は勢いはあるがこの条件でトップ層相手に陣営面の優位までは取りにくい。上原博之厩舎も中立寄りで強い後押しは感じずわずかに割引。<br><br>10番, シテフローラル, +0.7, 堀宣行厩舎は休み明けでも仕上げてくる名門でこの馬のような久々のケースでも陣営の信頼が置ける。松山弘平騎手の起用も勝ちに行く布陣で陣営面はかなり強い。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>3番ピックデムッシュと10番シテフローラルの差が小さく、理由文の強さなら3番をもっと抜けさせるか10番を少し下げる余地がある。7番チャリングクロスは戸崎＋東京芝の強調に対して0.6は控えめ、逆に6番ランツフートは三浦評価の書きぶりほどには0.5がやや強いかもしれない。8番レーヴドロペラの0.2は『一発の怖さ』の割に伸びず中途半端。1番フルレゾンの+0.1と9番クリフハンガーの-0.1、2番サイモンルモンドの-0.5と他の軽い減点勢との差も、数値差を支える説明を補いたい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, フルレゾン, +0.1, 池添学厩舎はこのクラスでも仕上げを外しにくく陣営面ではわずかに買える。武藤雅騎手で大きな上積みまでは見込まず微加点にとどめる。<br><br>2番, サイモンルモンド, -0.6, 木幡育也騎手と的場均厩舎の布陣はこの東京芝2400mの2勝クラスで強調しづらく陣営の後押しがかなり薄い。軽ハンデはあっても陣営力だけ見ると明確に見劣る。<br><br>3番, ピックデムッシュ, +0.9, C.ルメール騎手はこの条件で最上位級の信頼を置ける存在で陣営面の押しは非常に強い。鹿戸雄一厩舎との組み合わせも上質で今回の布陣はこのレースでもはっきり抜けた部類。<br><br>4番, バンフィエルド, -0.3, 柴田大知騎手は堅実さはあってもこの条件で強く押し上げるタイプではない。粕谷昌央厩舎もここで陣営の格を感じるほどではなくやや割引。<br><br>5番, オウケンボルト, -0.2, 吉田豊騎手は東京で乗り慣れはあるが勝ち切りまで強く託せる布陣とまでは言いにくい。松永康利厩舎もこの条件で大きな後押し材料はなく軽い減点にとどめる。<br><br>6番, ランツフート, +0.4, 大久保龍志厩舎はきっちり整えてくる厩舎で陣営面は素直に好感が持てる。三浦皇成騎手も東京芝中長距離で無難以上だが最上位評価までは置かず一段控えた加点に見直す。<br><br>7番, チャリングクロス, +0.7, 戸崎圭太騎手の東京芝での信頼度は高くこの条件では明確なプラス材料になる。奥村武厩舎も丁寧に出してくるタイプで陣営布陣は上位評価に引き上げたい。<br><br>8番, レーヴドロペラ, +0.1, F.ゴンサルベス騎手起用には一定の勝負気配を感じるが短期免許騎手の一発期待だけで大きくは振れない。加藤士津八厩舎の後押しも強調しづらく小幅な加点まで。<br><br>9番, クリフハンガー, -0.1, 原優介騎手は勢いこそあるがこの東京芝2400mの2勝クラスで陣営優位を取るほどの格まではまだ感じない。上原博之厩舎も中立的でわずかに割り引く程度。<br><br>10番, シテフローラル, +0.6, 堀宣行厩舎は休み明けでも仕上げてくる厩舎でこの馬のような久々でも陣営の信頼は高い。松山弘平騎手起用も前向き材料だが条件適性込みの鞍上インパクトでは3番に一歩譲る。</p>
+</details>
+<details><summary>全体批判・確定(matome)</summary>
+<p style="margin:4px 0;"><b>全体批判:</b><br>3番ピックデムッシュを1位固定にしている点は、少し見直す余地があるのではないか。2勝クラスで大崩れはない一方、今回は57kgで勝ち切れていない立場でもあり、4歳春以降の指数も抜け切ってはいない。安定感の評価は妥当でも、7番チャリングクロスに6.6点差をつけるほどの断然視でよいのかは再点検してよさそうだ。7番チャリングクロスは2位に置くより、むしろ3番ピックデムッシュにもっと迫る評価でもよいのではないか。53kgのハンデ、戸崎騎手、調教気配の上昇と、上向き材料はかなり多い。2400m延長は未知でも、上位争いの比較なら「距離不安を理由に3番ピックデムッシュより下」と決め打ちしすぎていないかは気になる。8番レーヴドロペラを3位に入れている点は、上位3頭入りとしてはやや強気ではないか。久々でも動ける調教は魅力だが、近走の2勝クラスでは2500mで9着があり、現級での裏付けはまだ薄い。3着候補として置くなら、同じく長距離適性や上積みを見込める6番ランツフートとの比較をもう一段詰めたい。6番ランツフートは5位据え置きではなく、上位3頭に割って入る余地があるのではないか。キャリア6戦で底を見せておらず、東京芝2400mの勝ち歴があり、今回は調教内容もかなり目立つ。休み明けと昇級の不確定要素で抑えすぎているなら、8番レーヴドロペラや1番フルレゾンより上に取る再考はあってよさそうだ。1番フルレゾンは4位でまとまっているが、評価の置き方が少し難しい。1月の芝2400m3着はここでは通用材料だが、直近2走の着順と今回の調教評価は弱く、上位3頭に押し上げるには根拠が足りないかもしれない。逆に言えば、8番レーヴドロペラを3位にするなら、1番フルレゾンとの優劣基準はかなり明確にしておきたい。全体としては、3番ピックデムッシュの『信頼』と8番レーヴドロペラの『3番手評価』がやや無難寄りで、6番ランツフートの上積み余地を取りこぼしていないか、という並びに見える。見直すなら、7番チャリングクロスを3番ピックデムッシュに肉薄させるか、6番ランツフートを8番レーヴドロペラに替えて上位3頭へ入れる線がまず論点になりそうだ。</p>
+<p style="margin:4px 0;"><b>matome(確定):</b><br>3番, ピックデムッシュ, 28%, 2勝クラスで2400m前後を崩れず走れており東京向きの持続力とルメール騎手込みで首位評価は維持する。critic_gouseiの「1位固定は危険」は一部採用し57kgで勝ち切れない弱みを認めて7番チャリングクロスとの差は小さく見直した。<br><br>7番, チャリングクロス, 26%, 53kgのハンデと戸崎騎手に加えて調教の上昇気配が明確で3歳馬の伸びしろも大きく3番ピックデムッシュに肉薄できる。critic_gouseiの「もっと迫る評価でよい」は採用し2400m延長は未知でも現時点の勢いで相殺可能とみる。<br><br>6番, ランツフート, 20%, キャリア6戦で底を見せておらず東京芝2400m勝ちがあり今回は坂路内容も非常に目立つので上積み期待が大きい。critic_gouseiの「8番レーヴドロペラや1番フルレゾンより上」は採用し休み明けと昇級でも3番手まで押し上げる。<br><br>8番, レーヴドロペラ, 15%, 久々でも動ける調教と長めの距離適性は魅力で牝馬53kgも悪くないが現級での決定打はまだ弱い。critic_gouseiの「3位はやや強気」は採用し6番ランツフートとの比較で一枚下げたが上位圏には残す。<br><br>1番, フルレゾン, 11%, 1月の芝2400m3着はこの組み合わせなら通用材料で最内からロスなく運べれば差し込み余地はある。critic_gouseiの「上位3頭に押し上げる根拠は薄い」は採用し直近2走と調教評価の弱さから5番手据え置きにとどめた。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>3</td><td class="left horse-name">ピックデムッシュ</td><td>23.4%</td><td>5.3</td><td>2</td><td class="ev-mid">1.24</td></tr><tr><td>2</td><td>7</td><td class="left horse-name">チャリングクロス</td><td>15.8%</td><td>1.2</td><td>1</td><td class="ev-low">0.19</td></tr><tr><td>3</td><td>6</td><td class="left horse-name">ランツフート</td><td>13.6%</td><td>22.5</td><td>4</td><td class="ev-high">3.06</td></tr><tr><td>4</td><td>8</td><td class="left horse-name">レーヴドロペラ</td><td>12.9%</td><td>7.5</td><td>3</td><td class="ev-low">0.97</td></tr><tr><td>5</td><td>10</td><td class="left horse-name">シテフローラル</td><td>9.2%</td><td>58.0</td><td>6</td><td class="ev-high">5.33</td></tr><tr><td>6</td><td>1</td><td class="left horse-name">フルレゾン</td><td>9.2%</td><td>38.6</td><td>5</td><td class="ev-high">3.54</td></tr><tr><td>7</td><td>5</td><td class="left horse-name">オウケンボルト</td><td>6.8%</td><td>81.2</td><td>10</td><td class="ev-high">5.52</td></tr><tr><td>8</td><td>9</td><td class="left horse-name">クリフハンガー</td><td>5.7%</td><td>73.8</td><td>8</td><td class="ev-high">4.22</td></tr><tr><td>9</td><td>4</td><td class="left horse-name">バンフィエルド</td><td>3.2%</td><td>67.6</td><td>7</td><td class="ev-high">2.18</td></tr><tr><td>10</td><td>2</td><td class="left horse-name">サイモンルモンド</td><td>0.2%</td><td>81.2</td><td>9</td><td class="ev-low">0.16</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 ピックデムッシュ</td><td>23.4%</td><td>5.3</td><td class="ev-mid">1.04</td></tr><tr><td>複勝</td><td class="left">3 ピックデムッシュ</td><td>60.9%</td><td>1.0</td><td class="ev-low">0.61</td></tr><tr><td>馬連</td><td class="left">3 ピックデムッシュ-7 チャリングクロス</td><td>9.3%</td><td>2.9</td><td class="ev-low">0.24</td></tr><tr><td>ワイド</td><td class="left">3 ピックデムッシュ-7 チャリングクロス</td><td>24.7%</td><td>1.1</td><td class="ev-low">0.27</td></tr><tr><td>馬単</td><td class="left">3 ピックデムッシュ→7 チャリングクロス</td><td>4.9%</td><td>11.3</td><td class="ev-low">0.45</td></tr><tr><td>3連複</td><td class="left">3 ピックデムッシュ-6 ランツフート-7 チャリングクロス</td><td>5.8%</td><td>5.4</td><td class="ev-low">0.26</td></tr><tr><td>3連単</td><td class="left">3 ピックデムッシュ→7 チャリングクロス→6 ランツフート</td><td>1.1%</td><td>27.7</td><td class="ev-low">0.25</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 400円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 ピックデムッシュ</td><td>5.3</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">3 ピックデムッシュ-7 チャリングクロス</td><td>2.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>馬単</td><td class="left">3 ピックデムッシュ→7 チャリングクロス</td><td>11.3</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬単◎→○</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 400円
+</p>
+</div></div>
+
+<div class="footer-version">v4.0</div>
+</div>
+</body>
+</html>
