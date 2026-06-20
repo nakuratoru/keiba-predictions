@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スレイプニルステークス 2026/06/20 TOKYO 11R (06/20 15:12 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>スレイプニルステークス 2026/06/20 TOKYO 11R (06/20 15:12 予想)</h1>
+  <div class="meta">ダート2100m（左） | 不良 | 15頭立て | 3回 東京 5日目 サラ系3歳以上 オープン （国際）（特指） 別定 15頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">14. レッドプロフェシー</div>
+      <div class="pick-jockey">原 優介 / 大久保 龍志</div>
+    </div>
+    <div class="pick-prob">11.9%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">6. タガノバビロン</div>
+      <div class="pick-jockey">松山 弘平 / 西園 翔太</div>
+    </div>
+    <div class="pick-prob">11.7%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">2. クールミラボー</div>
+      <div class="pick-jockey">C.ルメール / 寺島 良</div>
+    </div>
+    <div class="pick-prob">11.2%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">15頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">マリオロード</td><td>牡7</td><td>58</td><td>大野 拓弥</td><td>安達 昭夫</td><td>キタサンブラック</td><td>オペラハウス</td><td>498(-8)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">クールミラボー</td><td>牡6</td><td>58</td><td>C.ルメール</td><td>寺島 良</td><td>ドレフォン</td><td>キングカメハメハ</td><td>502(-6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">レヴォントゥレット</td><td>牡5</td><td>58</td><td>吉田 豊</td><td>矢作 芳人</td><td>ロードカナロア</td><td>マンハッタンカフェ</td><td>482(-18)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>4</td><td class="left horse-name">ロードプレジール</td><td>牡8</td><td>57</td><td>菊沢 一樹</td><td>佐藤 悠太</td><td>キングカメハメハ</td><td>ディープインパクト</td><td>508(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">フタイテンロック</td><td>牡7</td><td>57</td><td>丸田 恭介</td><td>佐藤 吉勝</td><td>トーセンジョーダン</td><td>ダンスインザダーク</td><td>504(+4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>6</td><td class="left horse-name">タガノバビロン</td><td>牡4</td><td>57</td><td>松山 弘平</td><td>西園 翔太</td><td>ヘニーヒューズ</td><td>スペシャルウィーク</td><td>520(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">ハナウマビーチ</td><td>牡4</td><td>57</td><td>木幡 巧也</td><td>西園 翔太</td><td>ゴールドドリーム</td><td>スキャターザゴールド</td><td>520(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>8</td><td class="left horse-name">タイセイドレフォン</td><td>牡7</td><td>58</td><td>黛 弘人</td><td>西村 真幸</td><td>ドレフォン</td><td>トワイニング</td><td>500(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">スナークラファエロ</td><td>せん5</td><td>57</td><td>杉原 誠人</td><td>野中 賢二</td><td>リアルスティール</td><td>フォーティナイナーズサン</td><td>472(-6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>10</td><td class="left horse-name">リアレスト</td><td>牡5</td><td>57</td><td>荻野 極</td><td>尾関 知人</td><td>リアルスティール</td><td>ワークフォース</td><td>534(+8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">ピカピカサンダー</td><td>牡4</td><td>57</td><td>三浦 皇成</td><td>鹿戸 雄一</td><td>アジアエクスプレス</td><td>メジロライアン</td><td>506(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>12</td><td class="left horse-name">ミッキークレスト</td><td>牡5</td><td>57</td><td>丸山 元気</td><td>大久保 龍志</td><td>ジャスタウェイ</td><td>Shackleford</td><td>528(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">ルヴァンユニベール</td><td>牡4</td><td>57</td><td>戸崎 圭太</td><td>北出 成人</td><td>ホッコータルマエ</td><td>ストロングリターン</td><td>554(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>14</td><td class="left horse-name">レッドプロフェシー</td><td>牡6</td><td>57</td><td>原 優介</td><td>大久保 龍志</td><td>ルーラーシップ</td><td>マンハッタンカフェ</td><td>494(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>15</td><td class="left horse-name">アムールドパリ</td><td>牝5</td><td>55</td><td>F.ゴンサルベス</td><td>稲垣 幸雄</td><td>マインドユアビスケッツ</td><td>サンデーサイレンス</td><td>454(+6)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">レッドプロフェシー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">クールミラボー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">タガノバビロン</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アムールドパリ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">タガノバビロン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ルヴァンユニベール</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">レッドプロフェシー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">タガノバビロン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ルヴァンユニベール</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">クールミラボー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">タガノバビロン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">レッドプロフェシー</span></td></tr>
+<tr><td>5</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ルヴァンユニベール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アムールドパリ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">タガノバビロン</span></td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、最終=合成を matome が微調整→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">レッドプロフェシー</span></td>
+<td>+0.56</td>
+<td>+0.20</td>
+<td>+0.38</td>
+<td>+0.48</td>
+<td>+0.60</td>
+<td>11.5</td>
+<td><b>11.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">タガノバビロン</span></td>
+<td>+0.70</td>
+<td>+0.30</td>
+<td>+0.42</td>
+<td>+0.30</td>
+<td>+0.60</td>
+<td>12.7</td>
+<td><b>11.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">クールミラボー</span></td>
+<td>+0.48</td>
+<td>+0.32</td>
+<td>+0.24</td>
+<td>+0.52</td>
+<td>+0.58</td>
+<td>10.9</td>
+<td><b>11.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ルヴァンユニベール</span></td>
+<td>+0.54</td>
+<td>+0.32</td>
+<td>+0.24</td>
+<td>+0.64</td>
+<td>+0.46</td>
+<td>11.3</td>
+<td><b>10.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アムールドパリ</span></td>
+<td>+0.40</td>
+<td>+0.10</td>
+<td>+0.16</td>
+<td>+0.46</td>
+<td>+0.00</td>
+<td>8.9</td>
+<td><b>9.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ピカピカサンダー</span></td>
+<td>+0.16</td>
+<td>+0.26</td>
+<td>+0.42</td>
+<td>+0.36</td>
+<td>+0.48</td>
+<td>8.5</td>
+<td><b>8.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">リアレスト</span></td>
+<td>+0.20</td>
+<td>+0.08</td>
+<td>+0.32</td>
+<td>+0.38</td>
+<td>-0.24</td>
+<td>7.5</td>
+<td><b>7.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ロードプレジール</span></td>
+<td>+0.12</td>
+<td>-0.12</td>
+<td>+0.14</td>
+<td>-0.02</td>
+<td>-0.26</td>
+<td>5.9</td>
+<td><b>6.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ミッキークレスト</span></td>
+<td>-0.20</td>
+<td>+0.02</td>
+<td>+0.18</td>
+<td>+0.24</td>
+<td>+0.00</td>
+<td>4.8</td>
+<td><b>5.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ハナウマビーチ</span></td>
+<td>-0.26</td>
+<td>+0.06</td>
+<td>-0.18</td>
+<td>+0.58</td>
+<td>-0.28</td>
+<td>4.1</td>
+<td><b>4.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">スナークラファエロ</span></td>
+<td>-0.26</td>
+<td>-0.28</td>
+<td>+0.18</td>
+<td>-0.12</td>
+<td>-0.04</td>
+<td>3.8</td>
+<td><b>3.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">タイセイドレフォン</span></td>
+<td>-0.20</td>
+<td>+0.00</td>
+<td>-0.38</td>
+<td>+0.22</td>
+<td>-0.46</td>
+<td>3.7</td>
+<td><b>3.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">マリオロード</span></td>
+<td>-0.46</td>
+<td>-0.08</td>
+<td>-0.14</td>
+<td>-0.16</td>
+<td>-0.32</td>
+<td>2.6</td>
+<td><b>2.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">レヴォントゥレット</span></td>
+<td>-0.38</td>
+<td>-0.38</td>
+<td>-0.84</td>
+<td>-0.28</td>
+<td>-0.02</td>
+<td>2.0</td>
+<td><b>2.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">フタイテンロック</span></td>
+<td>-0.70</td>
+<td>+0.00</td>
+<td>-0.06</td>
+<td>-0.08</td>
+<td>-0.22</td>
+<td>1.6</td>
+<td><b>1.6</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行3</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行3の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, マリオロード, -0.5, 近5走はOP以上で4着が最高で GII16着に加えて近4走の指数も88.8以下に留まる。昨夏の名鉄杯勝ちはあるが その後は同水準で頭打ちの実績に見える。<br><br>2番, クールミラボー, +0.5, 近5走すべてOP-L級で大崩れが少なく 仁川S3着0.1差とブラジルC2着で指数92.6 90.9はこの組でも上位。同距離2100mでも東京Lで2着歴があり 実績の裏付けは濃い。<br><br>3番, レヴォントゥレット, -0.4, 近5走でOPの好走は総武S5着0.3差までで ブリリアント12着 マーチS15着3.6秒差は厳しい。指数も81.3 68.4と大きく崩れた走りがあり オープン実績は弱い。<br><br>4番, ロードプレジール, +0.1, アルデバランS2着0.5差とブリリアント6着0.5差で OPでも一定の通用実績はある。指数89.4 86.6も悪くなく 大きくは買いづらいが実績面では軽視までは不要。<br><br>5番, フタイテンロック, -0.7, 近2走のOPで16着 15着と連続大敗し 指数も76.2 70.3まで落ちている。昨秋ブラジルC4着0.5差はあるが 現状の近走実績では強く下げる。<br><br>6番, タガノバビロン, +0.8, アンタレスS4着0.7差 レグルスS2着同着差0.0 ベテルギウス4着0.5差と 近3走のオープン上位実績が明確。指数89.6 90.7 90.8を連発しており 素の能力比較ではかなり高い。<br><br>7番, ハナウマビーチ, -0.3, 3勝クラス連勝後に重賞とGIIで11着 12着と壁に当たり 指数も83.0 85.6止まり。現級での実績裏付けはまだ薄い。<br><br>8番, タイセイドレフォン, -0.2, 平城京S6着1.2差で指数87.5は悪くないが 近5走で馬券圏内がなく ベテルギウス11着 シリウスS10着と上位実績に欠ける。OP常連としてはもう一押し足りない。<br><br>9番, スナークラファエロ, -0.2, 吾妻小富士S3着0.7差とカノープスS3着で走れる場面はあるが シトリンS14着3.0秒差と前走アハルテケS14着2.1秒差が重い。指数の振れ幅も大きく 実績の安定感に欠ける。<br><br>10番, リアレスト, +0.2, 近5走はOP-Lで3着 7着 9着 6着と勝ち切れていないが アルデバランS3着0.5差 仁川S9着0.7差で大負けは少ない。指数89.4 89.1が示す通り オープン通用の下地はある。<br><br>11番, ピカピカサンダー, 0.0, ブリリアント4着0.2差で同距離2100mの好内容は評価できるが その前2走が16着13着で指数70.6 81.0と崩れすぎている。実績面では上振れと下振れが極端で 中立が妥当。<br><br>12番, ミッキークレスト, -0.2, アルデバランS4着0.8差はあるが 吾妻小富士S9着1.4差とシトリンS13着3.0秒差でオープンではまだ決め手不足。伊丹S勝ちの指数89.1はあるものの 現級実績は強調しづらい。<br><br>13番, ルヴァンユニベール, +0.6, 平城京S3着0.7差で指数90.9 さらに昨夏レパードS2着でも90.9を出しており 世代重賞級の実績はこの組で上位。総武S6着0.3差も含めて オープンで安定して能力を示している。<br><br>14番, レッドプロフェシー, +0.7, 前走ブリリアント2着0.1差で同距離2100mの指数88.9は強いし その前に金蹄Sを2:10.7で勝っている。近2走で東京2100mの実績を連続で積み 能力の裏付けはかなり明確。<br><br>15番, アムールドパリ, +0.4, 前走ブリリアント2着0.1差に加え 昨年の是政Sを同じ東京2100mで1着 指数88.5とコース実績がはっきりしている。ベテルギウス10着やブラジルC9着はあるが 得意条件での実績は信頼できる。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>14番レッドプロフェシーと15番アムールドパリは前走同条件好走を買いすぎており、90点級指数を並べる6番タガノバビロン・13番ルヴァンユニベールとの比較説明が薄い。11番ピカピカサンダーは東京2100mで88.4を2回出しており0.0は低すぎる可能性。2番クールミラボーは直近の同条件ブリリアントS8着83.7を軽く扱いすぎではないか。4番ロードプレジールと10番リアレスト、8番タイセイドレフォンと12番ミッキークレストの相対評価も実績比較の整合性を再点検したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, マリオロード, -0.5, 近5走は名鉄杯勝ち後にOP以上で4着が最高で、GII16着2.8秒差を含め指数も88.8止まり。近走実績の水準では頭打ち感が強い。<br><br>2番, クールミラボー, +0.3, 仁川S3着0.1差で92.6、ブラジルC2着で90.9はこの組でも上位だが、直近の同条件ブリリアントS8着1.0秒差83.7は見過ごせない。高い実績はあるが、同条件での最新内容を踏まえて少し評価を下げる。<br><br>3番, レヴォントゥレット, -0.4, 総武S5着0.3差はあるが、ブリリアントS12着1.4秒差、マーチS15着3.6秒差とオープン上位実績が弱い。指数81.3と68.4の大崩れも重い。<br><br>4番, ロードプレジール, +0.0, アルデバランS2着0.5差で89.4、ブリリアントS6着0.5秒差で86.6は一定水準だが、仁川S12着1.3秒差85.4もあり抜けた裏付けまではない。実績面では可も不可もなく中立寄り。<br><br>5番, フタイテンロック, -0.7, 近2走のOPで16着2.2秒差、15着3.6秒差と内容が悪く、指数も76.2、70.3まで低下している。昨秋ブラジルC4着88.6はあるが、直近実績では強く下げたい。<br><br>6番, タガノバビロン, +0.8, アンタレスS4着0.7差、レグルスS2着タイ、ベテルギウス4着0.5差と近3走のOP・重賞で内容が濃い。指数89.6、90.7、90.8を連続して出しており、実績比較では最上位級。<br><br>7番, ハナウマビーチ, -0.3, 3勝クラス連勝後にGII12着1.3秒差、GIII11着1.6秒差で指数も85.6、83.0止まり。現級以上での実績裏付けはまだ乏しい。<br><br>8番, タイセイドレフォン, -0.1, 平城京S6着1.2秒差87.5、名古屋城S4着86.2と全く走れないわけではないが、近5走で馬券圏がなく上位実績が足りない。現状は弱めの中立から下げまで。<br><br>9番, スナークラファエロ, -0.2, 吾妻小富士S3着0.7差87.5、カノープスS3着90.0はあるが、シトリンS14着3.0秒差72.9、前走アハルテケS14着2.1秒差78.8が重い。実績の振れ幅が大きく信用しづらい。<br><br>10番, リアレスト, +0.2, アルデバランS3着0.5差89.4、仁川S9着でも0.7秒差89.1、ブリリアントS7着0.7秒差85.4とオープンで大崩れが少ない。4番より着順と指数の安定感でわずかに上。<br><br>11番, ピカピカサンダー, +0.2, ブリリアントS4着0.2秒差88.4に加え、東京2100mの伊勢佐木S勝ちでも88.4を出しており、同条件実績は明確。アンタレスS16着70.6、アルデバランS13着81.0は悪いが、コース実績の裏付けで軽く上げる。<br><br>12番, ミッキークレスト, -0.2, アルデバランS4着0.8秒差87.5はあるが、吾妻小富士S9着1.4秒差82.7、シトリンS13着3.0秒差72.9でオープンでは甘い。3勝クラス伊丹Sの89.1は評価できても、現級実績ではまだ物足りない。<br><br>13番, ルヴァンユニベール, +0.6, 平城京S3着0.7秒差90.9、レパードS2着でも90.9を記録しており、世代重賞級の実績が光る。総武S6着0.3秒差87.4も含め、オープンで能力を安定して示している。<br><br>14番, レッドプロフェシー, +0.5, 前走ブリリアントS2着0.1秒差88.9、金蹄S1着88.1で東京2100mの裏付けは濃いが、レグルスS8着0.6秒差86.7やその前の3勝クラスでの停滞を見ると、90点級を続ける6番13番ほどの総合実績ではない。条件実績は高く評価しつつも少し抑える。<br><br>15番, アムールドパリ, +0.3, 前走ブリリアントS2着0.1秒差88.9、是政S1着88.5で東京2100m実績は明確だが、ブラジルC9着2.3秒差77.9、ベテルギウス10着1.6秒差83.4もある。得意条件では走る一方、全体実績では14番や6番13番より一段下。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, マリオロード, +0.2, 先行勢がそれなりに多く不良の2100mなら道中で隊列が縦になりやすく, 内で脚をためて直線で差し込む形は作りやすい。極端な後方一気だと届き切らない懸念は残る。<br><br>2番, クールミラボー, +0.5, 2列目から中団の内で流れに乗れそうで, 3番11番15番を前に見ながらロスなく運べる並びが良い。東京ダ2100mの不良で前がやり合えば, 直線で一番運びやすい位置に入る。<br><br>3番, レヴォントゥレット, -0.7, ハナか前受けの形だが同型がいて単騎は楽ではなく, 不良馬場で2100mを押し切るには息を入れる区間を作りにくい。11番15番に絡まれて早めに脚を使う展開が濃い。<br><br>4番, ロードプレジール, +0.1, ペースが流れれば終いを生かせるが, この条件であまりに後ろすぎると4角でまだ遠い形になりやすい。内枠で距離ロスを抑えられる分だけわずかに上げる。<br><br>5番, フタイテンロック, 0.0, 中団で流れに乗る形なら悪くないが, 明確に展開が強く向く並びでも強く逆風でもない。不良の2100mとしては可もなく不可もない位置取り想定。<br><br>6番, タガノバビロン, +0.6, 前が作るやや速めの流れを中団後ろで受けて, 3角から外目でも長く脚を使う絵がはまりやすい。逃げ先行が苦しくなる展開を最も拾いやすいタイプの一頭。<br><br>7番, ハナウマビーチ, +0.2, 先行争いには加わらず差す形に徹すれば展開の恩恵は受けやすい。とはいえ後ろすぎると直線だけでは足りないので, 中団後ろで運べるかが条件になる。<br><br>8番, タイセイドレフォン, +0.1, 好位から中団の外めで流れに乗る形になりそうで, 前崩れなら多少の浮上余地がある。ただし強い差し追込み決着になるほどの決め手型でもなく上げ幅は小さい。<br><br>9番, スナークラファエロ, -0.5, 先団で運びたい馬だが今回は2100mへの延長で, しかも前に行く馬が他にもいる。不良で脚を使わされると直線前に苦しくなるシナリオが見えやすい。<br><br>10番, リアレスト, +0.4, 中団の外からでも脚をためて運べるタイプで, 先行勢の直後に収まれればかなり展開は向く。前が止まる流れを待てる立場で, 東京2100mの差し場面は描きやすい。<br><br>11番, ピカピカサンダー, -0.4, 逃げなくても前で運ぶ馬で, 3番や15番と並ぶ形になると息の入らない先行戦になりやすい。前受け自体は合うが今回は前の取り合いが楽ではない。<br><br>12番, ミッキークレスト, -0.2, 差すなら流れ自体は向くが, 7枠から最初のポジション取りで外を回されやすい。不良の東京2100mで終始ロスが出ると, 展開利を削られやすい並び。<br><br>13番, ルヴァンユニベール, +0.3, 先行争いの一列後ろあたりで我慢できれば, 消耗戦の中で一番おいしいポケットに入りやすい。外枠でも無理にハナへ行く必要がないのはこの組み合わせで利点。<br><br>14番, レッドプロフェシー, +0.5, 前を行かせて中団後ろから運べるので, 3番11番15番が作る流れをちょうど良く受けられる。直線でバテた先行勢の外を差してくる展開像がかなり描きやすい。<br><br>15番, アムールドパリ, -0.2, 先行力はあるが8枠で外から脚を使って位置を取りに行く形になりやすく, 同型もいて楽な先行にはなりにくい。番手で収まれば残る余地はあるが, 展開面では少し割引。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>11番ピカピカサンダーと15番アムールドパリのマイナス幅の比較、2番クールミラボーの理想的すぎる位置取り想定、6番タガノバビロンだけ外を回す不利を軽視している点は再点検余地がある。12番ミッキークレストと13番ルヴァンユニベールは、前崩れ想定の恩恵に対して付値が控えめで、理由と数字の温度差がある。1番マリオロードと4番ロードプレジールの差も整理したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, マリオロード, +0.1, 内で脚をためて3角以降に前の外へ持ち出す形は描けるが, このメンバーだと差し届くには流れ待ちの面が強い。4番ほど後ろ過ぎず運べるぶんだけわずかに上げる。<br><br>2番, クールミラボー, +0.3, 先行勢の直後で運べる並び自体は良いが, 2枠2番で理想通りに2列目の内へ収まる前提までは置きにくい。3番11番15番の後ろで少し待たされても脚を使える形なのでプラスは維持するが, 上げ幅は抑える。<br><br>3番, レヴォントゥレット, -0.7, 3番枠から自然に前へ行く形だが, 11番15番に加えて9番13番も前受け候補で息を入れにくい。向正面までに脚を使わされると, 不良の2100mでは最後に甘くなる絵が濃い。<br><br>4番, ロードプレジール, 0.0, 内でロスなく脚をためられるのは良いが, この馬はどうしても後方寄りになりやすく4角でまだ遠い形が残る。1番より展開待ちの度合いが強く, 補正は中立までにとどめる。<br><br>5番, フタイテンロック, 0.0, 中団あたりで流れに乗れれば極端な不利は受けにくい並びで, かといって前崩れの恩恵を真っ先に受ける脚質でもない。展開面では可もなく不可もない。<br><br>6番, タガノバビロン, +0.4, 前がやり合って差しが利く想定自体は合うが, この馬だけ外を回しても平気とまでは言えない。4枠で無理なく中団外目に収まり, 3角から長く脚を使えるなら浮上しやすいという評価に修正する。<br><br>7番, ハナウマビーチ, +0.2, 前半は無理せず中団後ろで脚をため, 3角から外へ出してジワッと差す形なら流れの恩恵は受けやすい。極端な後方になると東京2100mでも差し損ねがあるので上げ幅は小さめ。<br><br>8番, タイセイドレフォン, +0.1, 好位直後から中団で流れに乗れそうで, 前が苦しくなれば相対的に浮上する余地はある。ただし自分から展開を強く味方にできる脚質ではなく, 軽いプラスまで。<br><br>9番, スナークラファエロ, -0.5, 距離延長の2100mで前々へ出していくと, 3番11番15番との兼ね合いで脚を使わされやすい。好位で我慢しても前半の負荷が高くなりやすく, 展開面では割引が必要。<br><br>10番, リアレスト, +0.4, 中団で前を見ながら進めて, 先行勢が苦しくなるところを直線で拾う形はかなり描きやすい。外過ぎず後ろ過ぎずの位置に入れれば, このレースの差し場面に合う。<br><br>11番, ピカピカサンダー, -0.3, 逃げ切り一辺倒ではなく番手でも運べるので, 3番よりは融通が利く。ただ今回は前受け候補が複数いて楽に2番手固定とは見にくく, 早めに脚を使うぶんマイナスは残る。<br><br>12番, ミッキークレスト, +0.1, 7枠で外々を回されるとロスはあるが, 前が流れて縦長になれば後ろからでも進路は取りやすい。差し込みの展開恩恵は受けられる組で, マイナスまでは不要と見直す。<br><br>13番, ルヴァンユニベール, +0.5, 外枠でもハナを争う必要はなく, 3番11番15番の一列後ろで脚をためる形が最も取りやすい。先頭集団の直後から4角で前に取りつき, 直線で粘る先行勢の外へ出す展開像がはっきりある。<br><br>14番, レッドプロフェシー, +0.5, 前を行かせて中団後ろから運べるので, 先行勢が作るやや厳しい流れをちょうど良く受けられる。直線でバテた前を外からまとめて拾う形が描きやすく, 展開利は大きい。<br><br>15番, アムールドパリ, -0.1, 8枠でも外から無理にハナを叩く必要はなく, 11番の外で2列目からでも運べる余地がある。とはいえ外枠ぶん位置を取りに行くコストは残るので, わずかに割り引く程度へ修正する。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, マリオロード, -0.2, 今回498kgで近5走の中では軽めのゾーンに入り 前走506kgからさらに-8kgは7歳馬としては少し減り過ぎに映る。坂路は馬なりで悪くないが 調子→で大きな上積みまでは感じない。<br><br>2番, クールミラボー, +0.2, 502kgはこの馬の近走レンジの真ん中で 前走508kgから-6kgでも絞れた範囲に収まる。中7週で負荷も適度で CW馬なり先着と仕上がりは安定。<br><br>3番, レヴォントゥレット, -0.9, 今回482kgは前走500kgから-18kgで 1週前に使っての連闘で大幅減は消耗リスクがかなり大きい。中間軽めの調整も攻め強化が利かず 体調面では強く下げたい。<br><br>4番, ロードプレジール, +0.1, 508kgは近走の506〜512kg帯に収まり 前走512kgから-4kgで重すぎず軽すぎずの調整。8歳でも中7週で坂路の脚捌きは力強く 大きな上積みまではないが状態維持は十分。<br><br>5番, フタイテンロック, -0.1, 前走500kgから今回は504kgで大きな反動は薄いが 近走の490〜510kgを行き来していて体つきは安定感に欠ける。一杯に追って熱心に乗られている点は悪くないものの 調子→で強い上昇までは見込みにくい。<br><br>6番, タガノバビロン, +0.4, 520kg据え置きで近3走524→520→520kgと馬体が安定しており 休み明けでも太め残りの感じは薄い。坂路強めで一息入るも仕上るの評価なら 仕上がり水準は高い。<br><br>7番, ハナウマビーチ, -0.2, 520kg前後で体は安定しているが 3か月ぶりで坂路強めに対して鋭さひと息の評価は物足りない。大きな割引ではないが 当日の切れ味や反応面で少し下げる。<br><br>8番, タイセイドレフォン, -0.4, 今回500kgは前走508kgから-8kgで もともと500〜508kg帯の馬とはいえ年齢を考えるとやや細化気味に映る。CW一杯でも力強さに欠けの評価で 仕上がり面の後押しが弱い。<br><br>9番, スナークラファエロ, +0.1, 前走478kgから今回は472kgで 叩いて-6kgなら前走のやや余裕残しを削いだ形とも取れる。せん馬で馬体の戻りも利きやすく 坂路の動きスムーズなら体調はやや上向き。<br><br>10番, リアレスト, +0.5, 今回534kgは前走526kgから+8kgでも 530kg前後で走れている大型馬なので太めより張り増しと見たい。中7週で一息入るも上々かつ調子↗なら 追い切り内容も含めてかなり好感。<br><br>11番, ピカピカサンダー, +0.4, 506kg据え置きで前走の好走体重を維持できており 叩き3走目で馬体がぶれないのは好材料。坂路52.3秒で反応良しかつ調子↗なので 前走以上のデキまである。<br><br>12番, ミッキークレスト, +0.2, 今回528kgは前走520kgから+8kgだが もともと518〜522kg帯で動けていた大型馬で成長分を含めれば許容範囲。一杯に追ってひと追い毎に良化の評価なら 休み明け2走目で上向きがある。<br><br>13番, ルヴァンユニベール, +0.3, 554kgは前走560kgから-6kgで 巨漢馬だけに絞れてきた分だけ身のこなしはむしろ良くなりそう。57kg据え置きもこの馬格ならこなせる範囲で 追い切りの脚取りも確か。<br><br>14番, レッドプロフェシー, +0.7, 今回494kgは前走484kgから+10kgでも 2走前486kgで走れており細くない体に戻した印象が強い。坂路52.8秒で前走以上の気配かつ調子↗なら 体調面ではかなり強く押せる。<br><br>15番, アムールドパリ, +0.3, 今回454kgは前走448kgから+6kgで 小柄な牝馬には歓迎しやすい戻し方になる。55kgは前走53kgから2kg増で約3馬身前後の負荷増だが 実戦で変わる馬の評価なら仕上がり自体は悪くない。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>14番レッドプロフェシーの+0.7は+10kgを強気に取り過ぎていないか再点検したい。9番スナークラファエロの+0.1は調子→で上向き根拠が薄く、プラス評価が甘い可能性。5番フタイテンロックの-0.1は『490〜510kgを行き来』だけではマイナス根拠が弱い。15番アムールドパリと13番ルヴァンユニベールは斤量を理由に混ぜており、体調軸に絞ると付値の整理余地あり。2番クールミラボーは安定材料の割に+0.2が低めで、他馬との相対比較を見直したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, マリオロード, -0.2, 498kgは前走506kgから-8kgで 近2走続けて減っており 7歳馬としては少し細化の警戒が残る。追い切りは余裕ある動きでも調子→で 強い上積みまでは見込みにくい。<br><br>2番, クールミラボー, +0.3, 502kgはこの馬の近走レンジにきれいに収まり 前走508kgから-6kgも絞れた範囲で収束している。中7週で負荷も適度、CW馬なり先着で脚色に余裕なら 体調面は安定して一段上。<br><br>3番, レヴォントゥレット, -0.9, 482kgは前走500kgから-18kgで 1週前に使っての連闘としては減り幅が大きすぎる。中間軽めで攻め強化も利かず 消耗リスクはこの組でかなり強い。<br><br>4番, ロードプレジール, +0.1, 508kgは近走の506〜512kg帯に収まり 前走512kgから-4kgで重すぎず軽すぎずの調整。力強い脚捌きで状態維持は十分だが 調子→で大きな上昇までは読みづらい。<br><br>5番, フタイテンロック, 0.0, 504kgは前走500kgから+4kgで 反動より立て直し寄りに見え 体重推移だけで下げる根拠は薄かった。一杯に追って熱心に乗り込めている一方で 調子→なので体調面は中立に戻す。<br><br>6番, タガノバビロン, +0.4, 520kg据え置きで近3走524→520→520kgと馬体が安定しており 休み明けでも太め残りの感じは薄い。坂路強めで仕上る評価なら 今回も高い水準で出せる。<br><br>7番, ハナウマビーチ, -0.2, 520kg前後で体は安定しているが 3か月ぶりで強めに追っても鋭さひと息の評価はやや物足りない。大きな割引ではないが 当日の反応面に少し不安が残る。<br><br>8番, タイセイドレフォン, -0.4, 500kgは前走508kgから-8kgで もともと500kg台前半でも走れる馬とはいえ 今回は少し細く映る。CW一杯でも力強さに欠けの評価で 仕上がりの後押しが弱い。<br><br>9番, スナークラファエロ, 0.0, 472kgは前走478kgから-6kgで 叩いたぶん絞れた可能性はあるが 調子→で上向きまで言い切る材料は薄い。動きスムーズは維持評価にとどめて 体調面は中立とする。<br><br>10番, リアレスト, +0.5, 534kgは前走526kgから+8kgでも この馬は530kg前後でも動ける大型馬で 太めより張り増しと見たい。一息入るも上々で調子↗、追い切りの終い11.3秒も含めて 仕上がりはかなり好感。<br><br>11番, ピカピカサンダー, +0.4, 506kg据え置きで前走の好走体重を維持できており 叩き3走目でも馬体がぶれないのは好材料。坂路52.3秒で反応良し、調子↗なら 前走以上のデキも十分ある。<br><br>12番, ミッキークレスト, +0.2, 528kgは前走520kgから+8kgでも もともと518〜522kg帯で動けていた大型馬で増え方は許容範囲。ひと追い毎に良化の評価なら 休み明け2走目で上向きがある。<br><br>13番, ルヴァンユニベール, +0.2, 554kgは前走560kgから-6kgで この巨漢馬としては重さを削って動きやすくした印象が出る。CWで一杯に追って脚取り確かなら 体調面はややプラスまで。<br><br>14番, レッドプロフェシー, +0.5, 494kgは前走484kgから+10kgで 増え幅そのものは大きく 強気一辺倒には取りにくいが 486kg前後で走れてきた馬だけに戻し過ぎとまでは断定しない。坂路52.8秒で前走以上の気配、調子↗もあるので 体調面は明確に上げるが上限は少し抑える。<br><br>15番, アムールドパリ, +0.2, 454kgは前走448kgから+6kgで 小柄な牝馬としては減るより戻る方が好感を持ちやすい。調教は実戦で変わる馬という評価で強い上昇までは取れず 体調面のプラスは軽めにとどめる。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, マリオロード, +0.2, キタサンブラックにオペラハウスでスタミナと持続力が前面に出る配合で 東京ダ2100mの消耗戦自体は合う。不良馬場もパワーでこなせる余地があり 血統面では短い距離より今回条件が少し良い。<br><br>2番, クールミラボー, +0.5, ドレフォン産駒はダート適性と道悪耐性が高く 母父キングカメハメハで中距離の底力も補強されている。東京ダ2100mの持続戦に血統が素直に噛み合うタイプ。<br><br>3番, レヴォントゥレット, -0.3, ロードカナロア産駒で母父マンハッタンカフェなら距離は母系で補えても 本質はスピード寄りでダ2100m不良は少し重い。血統的には1800m前後までの機動力戦の方が出しやすい。<br><br>4番, ロードプレジール, -0.1, キングカメハメハに母父ディープインパクトでスタミナの芯はあるが 全体像は芝中長距離寄りの配合。ダ2100mそのものは守備範囲でも 不良ダートで強く押し上げる血統ではない。<br><br>5番, フタイテンロック, +0.1, トーセンジョーダンにダンスインザダークでスタミナ色が強く 長めの距離で消耗戦になる形は血統的に悪くない。ダート巧者の裏付けは濃くないが 不良でバテ比べに寄るなら少し浮上余地がある。<br><br>6番, タガノバビロン, +0.2, ヘニーヒューズ産駒らしくダート適性と馬場悪化への強さは明確で 母父スペシャルウィークが距離の我慢を補う。2100mはやや長めでも 不良馬場のパワー勝負なら血統で軽く後押しできる。<br><br>7番, ハナウマビーチ, +0.6, 父ゴールドドリームに母父スキャターザゴールドはダート中距離を強く意識できる配合で パワーと持続力が出やすい。東京ダ2100mの不良で求められる砂適性と粘りが血統的に高水準。<br><br>8番, タイセイドレフォン, +0.3, ドレフォンに母父トワイニングでダート色と道悪耐性はかなり濃い。距離延長に絶対の後押しとまでは言えないが 不良の東京ダ2100mで血統のプラスは見込める。<br><br>9番, スナークラファエロ, -0.4, リアルスティールに母父フォーティナイナーズサンでダートはこなせても 配合全体では2100mを強く推せるほどのスタミナ型ではない。不良の長丁場で良さが増す血統像ではなく 条件はやや重い。<br><br>10番, リアレスト, +0.3, リアルスティールに母父ワークフォースでスタミナ持続型に寄りやすく 東京ダ2100mは血統イメージに合う。不良でも母系のパワーが利きやすく 条件替わりでの血統後押しはある。<br><br>11番, ピカピカサンダー, +0.4, アジアエクスプレス産駒はダートでのパワーと道悪適性が高く 母父メジロライアンで息の長い脚も補える。距離はギリギリでも 不良ダートでの底力勝負なら血統面の押し上げは大きい。<br><br>12番, ミッキークレスト, +0.2, ジャスタウェイに母父Shacklefordで 砂をこなす機動力と米国的なパワーを併せ持つ配合。2100mは少し長めの印象も 不良でタフさが問われるなら血統的には軽くプラス。<br><br>13番, ルヴァンユニベール, +0.8, ホッコータルマエ産駒はダート中長距離と渋った馬場で非常に頼りやすく 母父ストロングリターンでもスピードを邪魔しない。不良の東京ダ2100mはこの馬の血統が最も強く活きやすい条件の一つ。<br><br>14番, レッドプロフェシー, +0.2, ルーラーシップに母父マンハッタンカフェでスタミナ持続力は十分あり 東京ダ2100mの長め条件は血統的に合う。不良でのダート純度は最上位ほどではないが 消耗戦寄りなら少し買える。<br><br>15番, アムールドパリ, +0.5, マインドユアビスケッツ産駒はダート適性と渋馬場耐性が高く 母父サンデーサイレンスが長めの距離での柔らかさを補う。牝馬でも2100m不良を血統で苦にしにくく この条件はかなり向く。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>13番ルヴァンユニベールは父の看板で最上位に寄せすぎていないか再点検余地。14番レッドプロフェシーは理由文の前向きさに比べて+0.2は低めで、10番リアレストや1番マリオロード・5番フタイテンロックとの差説明が薄い。7番ハナウマビーチと15番アムールドパリは高評価自体は分かるが、13番や2番より上位寄りに置く根拠がやや粗い。3番レヴォントゥレットと9番スナークラファエロは下げ幅が大きめで、特に9番は不良自体まで強い減点にしてよいか見直し余地。6番タガノバビロンと11番ピカピカサンダーは理由に対して付値の整合が甘く、6番は低すぎ、11番は『距離はギリギリ』の割に高めかもしれない。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, マリオロード, +0.1, キタサンブラックにオペラハウスで本質は持続力とスタミナ寄りなので 2100mへの延長自体は血統上悪くない。半面 ダートの純度と不良での押しの強さは上位勢ほどではなく 軽い加点にとどめる。<br><br>2番, クールミラボー, +0.5, ドレフォン産駒のダート適性と渋馬場耐性はこの条件で素直に評価しやすい。母父キングカメハメハで中距離の底力も補えており 東京ダ2100m不良への血統適性は高い部類。<br><br>3番, レヴォントゥレット, -0.2, ロードカナロア産駒で母父マンハッタンカフェなら距離の下支えはあるが 配合の軸はやはり機動力とスピード寄り。ダ2100m不良で良さが増す血統像までは描きにくく 少しだけ下げる。<br><br>4番, ロードプレジール, -0.1, キングカメハメハに母父ディープインパクトでスタミナの芯はあるが 全体像は芝中長距離の柔らかさが先に立つ。東京ダ2100mは守備範囲でも 不良ダートで積極的に押し上げる配合ではない。<br><br>5番, フタイテンロック, +0.1, トーセンジョーダンにダンスインザダークで消耗戦向きのスタミナ色は出ている。ダート血統としての裏付けは濃くないが 長丁場のバテ比べに寄るならわずかに合う。<br><br>6番, タガノバビロン, +0.3, ヘニーヒューズ産駒らしい砂適性と道悪耐性は明確で 母父スペシャルウィークが距離の我慢を補う。2100mがベストとまでは言わないが 不良のパワー持続戦なら血統の後押しはもう一段見込める。<br><br>7番, ハナウマビーチ, +0.5, ゴールドドリームに母父スキャターザゴールドで ダート中距離のパワーと持続力をかなり意識できる配合。東京2100m不良への適性は高く見てよいが 父の産駒実績面も含めて最上位断定まではしない。<br><br>8番, タイセイドレフォン, +0.3, ドレフォンに母父トワイニングで ダート色と道悪耐性はかなり濃い配合。距離の絶対的な裏付けは最上位級ほど強くないが この馬場で血統のプラスは見込める。<br><br>9番, スナークラファエロ, -0.2, リアルスティールに母父フォーティナイナーズサンなら ダート自体や渋馬場を大きく嫌う配合ではない。とはいえ 2100m不良でスタミナ優位に振れたときに強く買える血統でもなく 軽めの減点が妥当。<br><br>10番, リアレスト, +0.3, リアルスティールに母父ワークフォースで スタミナ持続型に寄りやすい配合は東京ダ2100mに合う。母系の重厚さもあって 不良でタフさを問われるほど血統の追い風はある。<br><br>11番, ピカピカサンダー, +0.2, アジアエクスプレス産駒のパワーとダート適性はこの舞台でも武器になる。母父メジロライアンで粘りは補えるが 2100mを強く押し切るほどのスタミナ血統ではなく 加点は控えめに修正する。<br><br>12番, ミッキークレスト, +0.2, ジャスタウェイに母父Shacklefordで 機動力に米国的な砂向きのパワーを足した配合。2100mは少し長めでも 不良でタフさが問われるなら軽くプラスに見たい。<br><br>13番, ルヴァンユニベール, +0.6, ホッコータルマエ産駒はダート中長距離と渋馬場で非常に信頼しやすく この条件への適性はやはり高い。母父ストロングリターンで極端なスタミナ増幅まではないので 父の看板だけで抜け切る評価にはせず一段抑える。<br><br>14番, レッドプロフェシー, +0.4, ルーラーシップに母父マンハッタンカフェは 長めのダートで問われる持続力とスタミナに筋が通る配合。ダート純度は米国型の上位勢に譲っても 東京ダ2100m不良の消耗戦では10番や1番より前向きに取れる。<br><br>15番, アムールドパリ, +0.4, マインドユアビスケッツ産駒のダート適性と渋馬場耐性は魅力で 母父サンデーサイレンスが長めでも脚を使える下地を足す。牝馬でもこの条件はこなしやすいが 13番や2番より血統の距離裏付けはわずかに譲る。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, マリオロード, -0.4, 近走で騎手が定まらず今回は大野拓弥への乗り替わりで陣営の後押しは強く出ない。安達厩舎もこの東京ダ2100mのオープンで格の上積みを強調しにくい。<br><br>2番, クールミラボー, +0.8, C.ルメールへの乗り替わりはこの馬で勝ちに来た陣営の意図が明確で強い加点材料。寺島厩舎もダート中距離でしっかり結果を出せる陣営で信頼度が高い。<br><br>3番, レヴォントゥレット, -0.2, 矢作厩舎の看板は魅力だが近走で騎手が固定されず今回は吉田豊で陣営面の押しはやや弱い。継続騎乗の強みがないぶん上積みは限定的。<br><br>4番, ロードプレジール, -0.5, 前走の岩田康誠から菊沢一樹への乗り替わりは陣営の推進力という意味では明確に落ちる。厩舎面でもここで強く買えるだけのブランドは薄い。<br><br>5番, フタイテンロック, -0.3, 丸田恭介自体は大きなマイナスではないが騎手起用が定まり切らず陣営の勝負手は見えにくい。佐藤吉勝厩舎の後押しもこのクラスでは強調しづらい。<br><br>6番, タガノバビロン, +0.5, 松山弘平が継続して乗っており手の内に入っている点は素直に評価できる。西園翔太厩舎もダート戦で攻めて使える厩舎で陣営面はしっかりプラス。<br><br>7番, ハナウマビーチ, -0.4, 同厩でもこちらは近走でルメールや松山弘平が乗っていた流れから木幡巧也への乗り替わりで見劣る。継続性も薄く陣営の押しは弱まった印象。<br><br>8番, タイセイドレフォン, -0.5, 近走の騎手が定まらず今回は黛弘人で陣営面の強化材料に乏しい。西村厩舎もこのメンバーで騎手込みの上積みを強く見込みづらい。<br><br>9番, スナークラファエロ, -0.2, 野中賢二厩舎は一定の信頼が置けるが今回は杉原誠人への乗り替わりで大きな後押しとは言いにくい。継続騎乗ではない点も加点しづらい。<br><br>10番, リアレスト, -0.3, 近走で田辺や岩田望来が乗っていた流れから荻野極への乗り替わりで陣営の勝負気配はやや後退する。尾関厩舎も強い押し材料まではない。<br><br>11番, ピカピカサンダー, +0.4, 三浦皇成が継続騎乗で東京2100mでも結果を出しており手の内は十分ある。鹿戸厩舎も安定感があり陣営面は素直にプラス評価。<br><br>12番, ミッキークレスト, +0.1, 大久保龍志厩舎の地力はこの組み合わせでも評価できる。ただし坂井瑠星の継続騎乗ではなく丸山元気への乗り替わりで強い加点までは届かない。<br><br>13番, ルヴァンユニベール, +0.6, 戸崎圭太への乗り替わりは今回の陣営面でかなり目立つ強化材料で勝負気配を感じる。北出厩舎との組み合わせでも騎手の格でしっかり押し上げたい。<br><br>14番, レッドプロフェシー, +0.5, 原優介で近2走とも東京2100mを続けて使っており継続騎乗の強みがはっきりある。大久保龍志厩舎もこの条件で仕上げてくる陣営で信頼しやすい。<br><br>15番, アムールドパリ, -0.1, 近走の佐々木大輔からF.ゴンサルベスへの乗り替わりは未知数が残り陣営面で強くは上げにくい。稲垣厩舎も大舞台でのブランド面では中立寄り。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>2番クールミラボーと13番ルヴァンユニベールは乗り替わり加点がやや大きすぎないか再点検余地。14番レッドプロフェシーは東京2100mで原優介継続の成果が明確で、11番ピカピカサンダー比でももう一段上げてもよさそう。12番ミッキークレストと15番アムールドパリは『騎手不定・乗り替わり』の減点が他馬より甘く見える。4番ロードプレジールは前走だけ岩田康誠で常時上位騎手配置ではなく、-0.5はやや厳しすぎる可能性。6番タガノバビロンと7番ハナウマビーチの同厩比較では、松山を6番に残した厩舎のメッセージ性をもっと強く評価する整理もありうる。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, マリオロード, -0.4, 近走で騎手が定まらず今回も継続騎乗の強みがない。安達厩舎込みでもこの条件で陣営の強い押しは見えにくい。<br><br>2番, クールミラボー, +0.6, C.ルメールへの乗り替わり自体は明確な強化材料で寺島厩舎の勝負度も感じる。ただ近走も武豊や戸崎圭太、横山武史と上位騎手が続いており、乗り替わり加点は少し抑える。<br><br>3番, レヴォントゥレット, -0.2, 矢作厩舎の看板はあるが近走で騎手が固定されず今回は吉田豊で継続性は薄い。陣営面だけで強く押し上げる材料まではない。<br><br>4番, ロードプレジール, -0.2, 前走の岩田康誠からの乗り替わりは見劣るが、もともと常時トップ騎手を配していた馬ではない。陣営面の弱化はあるが強いマイナスまで取るほどではない。<br><br>5番, フタイテンロック, -0.3, 丸田恭介自体は悪くないが騎手起用が定まり切らず陣営の勝負手は見えにくい。佐藤吉勝厩舎の後押しもこの相手関係では強調しづらい。<br><br>6番, タガノバビロン, +0.7, 松山弘平の継続騎乗は手の内に入っている強みが大きい。同厩2頭出しでこちらに松山を残した配置は厩舎のメッセージとしても強く、陣営面は明確に上位。<br><br>7番, ハナウマビーチ, -0.6, 同じ西園翔太厩舎でもこちらは木幡巧也で、6番との騎手配置比較で見劣る。ルメールや松山弘平が乗っていた流れからも陣営の押しはかなり薄くなった。<br><br>8番, タイセイドレフォン, -0.5, 近走の騎手が定まらず今回は黛弘人で陣営面の強化材料に乏しい。西村厩舎込みでもこのメンバーで騎手・厩舎の後押しは弱い。<br><br>9番, スナークラファエロ, -0.2, 野中賢二厩舎は一定の信頼が置けるが今回は杉原誠人への乗り替わりで強い上積みは感じない。継続騎乗ではないぶん陣営面の加点はしづらい。<br><br>10番, リアレスト, -0.3, 近走で田辺裕信や岩田望来が乗っていた流れから荻野極への乗り替わりで陣営の推進力はやや後退する。尾関厩舎もここで強く押し切る布陣には映らない。<br><br>11番, ピカピカサンダー, +0.5, 三浦皇成が継続騎乗で東京2100mでも結果を出しており手の内は十分ある。鹿戸厩舎の安定感も込みで、陣営面は素直にプラスを取れる。<br><br>12番, ミッキークレスト, -0.2, 大久保龍志厩舎の地力は認めるが、坂井瑠星から丹内祐次を挟んで今回は丸山元気と騎手が定まらない。陣営の勝負気配という点ではむしろ少し割り引きたい。<br><br>13番, ルヴァンユニベール, +0.4, 戸崎圭太への乗り替わりは確かに魅力で北出厩舎としても勝負気配はある。ただ近走も騎手が流動的で、乗り替わり一発の加点はやや抑えて評価する。<br><br>14番, レッドプロフェシー, +0.8, 原優介で東京2100mを続けて使い、同条件で1着2着と継続騎乗の成果がはっきり出ている。大久保龍志厩舎がこの条件でこのコンビを続けるのは陣営面でかなり強い後押しだ。<br><br>15番, アムールドパリ, -0.3, 前走で好走した佐々木大輔からF.ゴンサルベスへの乗り替わりは継続性が切れるぶん陣営面では割引になる。稲垣厩舎もこの舞台で騎手込みの強い上積みまでは示しにくい。</p>
+</details>
+<details><summary>全体批判・確定(matome)</summary>
+<p style="margin:4px 0;"><b>全体批判:</b><br>6番タガノバビロンを1位固定で見すぎていないかは再考余地がありそうです。安定感は高いものの、主戦場は1800〜1900m寄りで、東京ダ2100mの不良まで含めると14番レッドプロフェシーや2番クールミラボーより明確に上と断定できるかは点検したいです。14番レッドプロフェシーは東京ダ2100mでの近2走が強く、前走内容と調教気配からは6番タガノバビロンと入れ替えてもよい候補ではないでしょうか。13番ルヴァンユニベールの3位は理解できる一方、2100m実績の裏付けでは2番クールミラボーに譲る面があり、上位3頭入りをやや急ぎすぎていないか気になります。2番クールミラボーは昨年のこのレースの勝ち馬で、東京ダ2100m実績も明確なので、4位は少し下げすぎかもしれません。少なくとも13番ルヴァンユニベールより上に見直す余地がありそうです。10番リアレストは5位で妥当圏ですが、東京ダ2100mで大きく崩れず調教も上向きで、不良馬場の消耗戦なら13番ルヴァンユニベールとの比較で浮上余地がないかは確認してよさそうです。全体としては、13番ルヴァンユニベールがやや上がりすぎ、2番クールミラボーがやや下がりすぎという見方を提案したいです。</p>
+<p style="margin:4px 0;"><b>matome(確定):</b><br>14番, レッドプロフェシー, 28%, 東京ダ2100mで1着→2着と内容が最も安定しており、不良馬場でも末脚の質が落ちにくい点を重視した。critic_gousei の「6番タガノバビロンと入れ替え候補」という指摘は採用し、3日前坂路52.8-12.3で前走以上の気配も後押しと見た。<br><br>2番, クールミラボー, 24%, 昨年のこのレース勝ち馬で東京ダ2100mの実績が明確かつ、近走も大崩れではなくルメール騎乗も魅力でこの条件なら見直しが必要と判断した。critic_gousei の「13番ルヴァンユニベールより上、4位は低すぎる」という指摘は採用した。<br><br>6番, タガノバビロン, 20%, オープンでも1800〜1900mで高水準に安定しており能力上位は認めるが、東京ダ2100mの裏付けでは14番レッドプロフェシーと2番クールミラボーに一歩譲ると見た。critic_gousei の「1位固定で見すぎ」という指摘は採用した一方、馬券圏の軸候補としての高評価自体は維持した。<br><br>15番, アムールドパリ, 16%, 東京ダ2100mで重馬場勝ちがあり、前走ブリリアントSでも0.1秒差2着なら不良の持久戦で浮上余地が大きい。critic_gousei は触れていないが、55kgも有利で13番ルヴァンユニベールや10番リアレストより条件適性を上に取った。<br><br>10番, リアレスト, 13%, 東京ダ2100mでは大きく崩れず、今回も上がりが使える形なら差し込み圏に届くと見て5番手に据えた。critic_gousei の「13番ルヴァンユニベールとの比較で浮上余地」という指摘は採用しつつ、絶対的な決め手では14番レッドプロフェシーや2番クールミラボーには及ばないと判断した。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>14</td><td class="left horse-name">レッドプロフェシー</td><td>11.9%</td><td>8.1</td><td>6</td><td class="ev-low">0.96</td></tr><tr><td>2</td><td>6</td><td class="left horse-name">タガノバビロン</td><td>11.7%</td><td>3.7</td><td>1</td><td class="ev-low">0.43</td></tr><tr><td>3</td><td>2</td><td class="left horse-name">クールミラボー</td><td>11.2%</td><td>4.9</td><td>2</td><td class="ev-low">0.55</td></tr><tr><td>4</td><td>13</td><td class="left horse-name">ルヴァンユニベール</td><td>10.7%</td><td>6.9</td><td>4</td><td class="ev-low">0.74</td></tr><tr><td>5</td><td>15</td><td class="left horse-name">アムールドパリ</td><td>9.3%</td><td>8.0</td><td>5</td><td class="ev-low">0.74</td></tr><tr><td>6</td><td>11</td><td class="left horse-name">ピカピカサンダー</td><td>8.7%</td><td>6.9</td><td>3</td><td class="ev-low">0.60</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">リアレスト</td><td>7.3%</td><td>18.8</td><td>8</td><td class="ev-mid">1.38</td></tr><tr><td>8</td><td>4</td><td class="left horse-name">ロードプレジール</td><td>6.0%</td><td>37.1</td><td>10</td><td class="ev-high">2.21</td></tr><tr><td>9</td><td>12</td><td class="left horse-name">ミッキークレスト</td><td>5.1%</td><td>36.3</td><td>9</td><td class="ev-mid">1.86</td></tr><tr><td>10</td><td>7</td><td class="left horse-name">ハナウマビーチ</td><td>4.3%</td><td>53.8</td><td>13</td><td class="ev-high">2.31</td></tr><tr><td>11</td><td>9</td><td class="left horse-name">スナークラファエロ</td><td>3.7%</td><td>38.5</td><td>11</td><td class="ev-mid">1.42</td></tr><tr><td>12</td><td>8</td><td class="left horse-name">タイセイドレフォン</td><td>3.6%</td><td>90.2</td><td>14</td><td class="ev-high">3.26</td></tr><tr><td>13</td><td>1</td><td class="left horse-name">マリオロード</td><td>2.7%</td><td>50.1</td><td>12</td><td class="ev-mid">1.34</td></tr><tr><td>14</td><td>3</td><td class="left horse-name">レヴォントゥレット</td><td>2.2%</td><td>18.7</td><td>7</td><td class="ev-low">0.42</td></tr><tr><td>15</td><td>5</td><td class="left horse-name">フタイテンロック</td><td>1.6%</td><td>92.2</td><td>15</td><td class="ev-mid">1.44</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">14 レッドプロフェシー</td><td>11.9%</td><td>8.1</td><td class="ev-low">0.79</td></tr><tr><td>複勝</td><td class="left">14 レッドプロフェシー</td><td>34.4%</td><td>2.1</td><td class="ev-low">0.65</td></tr><tr><td>馬連</td><td class="left">6 タガノバビロン-14 レッドプロフェシー</td><td>3.2%</td><td>14.3</td><td class="ev-low">0.37</td></tr><tr><td>ワイド</td><td class="left">6 タガノバビロン-14 レッドプロフェシー</td><td>9.1%</td><td>5.8</td><td class="ev-low">0.44</td></tr><tr><td>馬単</td><td class="left">14 レッドプロフェシー→6 タガノバビロン</td><td>1.6%</td><td>35.0</td><td class="ev-low">0.45</td></tr><tr><td>3連複</td><td class="left">2 クールミラボー-6 タガノバビロン-14 レッドプロフェシー</td><td>1.4%</td><td>19.9</td><td class="ev-low">0.23</td></tr><tr><td>3連単</td><td class="left">14 レッドプロフェシー→6 タガノバビロン→2 クールミラボー</td><td>0.2%</td><td>135.8</td><td class="ev-low">0.26</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v4.0</div>
+</div>
+</body>
+</html>
