@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ストークステークス 2026/06/20 HANSHIN 10R (06/20 14:21 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>ストークステークス 2026/06/20 HANSHIN 10R (06/20 14:21 予想)</h1>
+  <div class="meta">芝2200m（右） | 稍重 | 18頭立て | 3回 阪神 5日目 サラ系3歳以上 3勝クラス （混合）［指定］ ハンデ 18頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">6. サクソンジェンヌ</div>
+      <div class="pick-jockey">坂井 瑠星 / 高橋 義忠</div>
+    </div>
+    <div class="pick-prob">11.5%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">8. ナムラフッカー</div>
+      <div class="pick-jockey">高倉 稜 / 長谷川 浩大</div>
+    </div>
+    <div class="pick-prob">8.9%</div>
+    <div class="pick-pop">10番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">10. サトノクローク</div>
+      <div class="pick-jockey">田口 貫太 / 橋口 慎介</div>
+    </div>
+    <div class="pick-prob">8.8%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">18頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">シャルクハフト</td><td>牡4</td><td>54</td><td>富田 暁</td><td>清水 久詞</td><td>リアルスティール</td><td>ワークフォース</td><td>502(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">サダムオプシス</td><td>牡5</td><td>54</td><td>幸 英明</td><td>平田 修</td><td>ルーラーシップ</td><td>サムライハート</td><td>486(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">シュバルツマサムネ</td><td>牡4</td><td>56</td><td>小崎 綾也</td><td>杉山 佳明</td><td>マインドユアビスケッツ</td><td>モーリス</td><td>482(-6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">メイショウソウタ</td><td>牡5</td><td>56</td><td>菱田 裕二</td><td>岡田 稲男</td><td>ドレフォン</td><td>マンハッタンカフェ</td><td>528(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">ピンキープロミス</td><td>牡6</td><td>55</td><td>国分 優作</td><td>畠山 吉宏</td><td>ゴールドシップ</td><td>アグネスデジタル</td><td>482(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">サクソンジェンヌ</td><td>牝5</td><td>54</td><td>坂井 瑠星</td><td>高橋 義忠</td><td>Saxon Warrior</td><td>Dark Angel</td><td>474(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">ドットクルー</td><td>牡6</td><td>55</td><td>高杉 吏麒</td><td>笹田 和秀</td><td>ディーマジェスティ</td><td>ロードカナロア</td><td>478(+6)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">ナムラフッカー</td><td>牡5</td><td>55</td><td>高倉 稜</td><td>長谷川 浩大</td><td>スワーヴリチャード</td><td>ルーラーシップ</td><td>474(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">サークルオブジョイ</td><td>牡5</td><td>56</td><td>亀田 温心</td><td>池添 学</td><td>Constitution</td><td>Colonel John</td><td>496(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">サトノクローク</td><td>牡6</td><td>55</td><td>田口 貫太</td><td>橋口 慎介</td><td>サトノクラウン</td><td>ディープインパクト</td><td>480(0)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">アスターブジエ</td><td>牡6</td><td>56</td><td>角田 大和</td><td>中竹 和也</td><td>オルフェーヴル</td><td>マンハッタンカフェ</td><td>466(0)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">カエルム</td><td>牡5</td><td>55</td><td>M.デムーロ</td><td>安田 翔伍</td><td>ブラックタイド</td><td>キングカメハメハ</td><td>472(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">インジケーター</td><td>牡5</td><td>53</td><td>田山 旺佑</td><td>高橋 康之</td><td>Liam&#x27;s Map</td><td>Street Sense</td><td>496(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">ウインデイジー</td><td>牝5</td><td>53</td><td>松若 風馬</td><td>宮 徹</td><td>ゴールドシップ</td><td>コンデュイット</td><td>462(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>15</td><td class="left horse-name">アロンディ</td><td>牡4</td><td>56</td><td>西村 淳也</td><td>武 英智</td><td>ハービンジャー</td><td>エピファネイア</td><td>456(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">キーパフォーマー</td><td>牝5</td><td>53</td><td>吉村 誠之助</td><td>辻野 泰之</td><td>キタサンブラック</td><td>ネオユニヴァース</td><td>466(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>17</td><td class="left horse-name">タイセイフェリーク</td><td>牝6</td><td>54</td><td>藤懸 貴志</td><td>青木 孝文</td><td>ミッキーロケット</td><td>ディープインパクト</td><td>426(-12)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>18</td><td class="left horse-name">ファームツエンティ</td><td>せん6</td><td>55</td><td>酒井 学</td><td>北出 成人</td><td>キズナ</td><td>ブライアンズタイム</td><td>446(0)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">サクソンジェンヌ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ナムラフッカー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アロンディ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">サクソンジェンヌ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">サトノクローク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ナムラフッカー</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">サクソンジェンヌ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">サトノクローク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アロンディ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">サクソンジェンヌ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ナムラフッカー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アロンディ</span></td></tr>
+<tr><td>5</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">サクソンジェンヌ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アロンディ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">サトノクローク</span></td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、最終=合成を matome が微調整→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">サクソンジェンヌ</span></td>
+<td>+0.72</td>
+<td>+0.32</td>
+<td>+0.32</td>
+<td>+0.42</td>
+<td>+0.38</td>
+<td>12.3</td>
+<td><b>11.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ナムラフッカー</span></td>
+<td>+0.34</td>
+<td>+0.12</td>
+<td>+0.36</td>
+<td>+0.44</td>
+<td>-0.14</td>
+<td>8.7</td>
+<td><b>8.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">サトノクローク</span></td>
+<td>+0.46</td>
+<td>+0.18</td>
+<td>-0.04</td>
+<td>+0.52</td>
+<td>-0.32</td>
+<td>8.6</td>
+<td><b>8.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アロンディ</span></td>
+<td>+0.34</td>
+<td>+0.02</td>
+<td>+0.26</td>
+<td>+0.56</td>
+<td>+0.38</td>
+<td>8.9</td>
+<td><b>8.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">シュバルツマサムネ</span></td>
+<td>+0.20</td>
+<td>+0.18</td>
+<td>-0.14</td>
+<td>-0.12</td>
+<td>-0.28</td>
+<td>6.2</td>
+<td><b>7.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">サークルオブジョイ</span></td>
+<td>+0.16</td>
+<td>+0.20</td>
+<td>-0.10</td>
+<td>-0.16</td>
+<td>-0.08</td>
+<td>6.3</td>
+<td><b>6.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">アスターブジエ</span></td>
+<td>+0.12</td>
+<td>-0.08</td>
+<td>+0.16</td>
+<td>+0.58</td>
+<td>-0.36</td>
+<td>6.4</td>
+<td><b>6.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">カエルム</span></td>
+<td>-0.20</td>
+<td>+0.22</td>
+<td>+0.50</td>
+<td>+0.32</td>
+<td>+0.56</td>
+<td>5.9</td>
+<td><b>6.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">タイセイフェリーク</span></td>
+<td>+0.14</td>
+<td>-0.22</td>
+<td>-0.22</td>
+<td>+0.28</td>
+<td>-0.10</td>
+<td>5.6</td>
+<td><b>5.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ファームツエンティ</span></td>
+<td>-0.06</td>
+<td>-0.18</td>
+<td>+0.10</td>
+<td>+0.40</td>
+<td>-0.22</td>
+<td>5.1</td>
+<td><b>5.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">サダムオプシス</span></td>
+<td>-0.08</td>
+<td>-0.12</td>
+<td>+0.22</td>
+<td>+0.26</td>
+<td>+0.20</td>
+<td>5.5</td>
+<td><b>5.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">キーパフォーマー</span></td>
+<td>-0.10</td>
+<td>-0.22</td>
+<td>+0.18</td>
+<td>+0.32</td>
+<td>-0.22</td>
+<td>4.9</td>
+<td><b>4.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ピンキープロミス</span></td>
+<td>-0.18</td>
+<td>-0.02</td>
+<td>+0.04</td>
+<td>+0.50</td>
+<td>-0.06</td>
+<td>4.8</td>
+<td><b>4.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ドットクルー</span></td>
+<td>-0.12</td>
+<td>-0.08</td>
+<td>+0.12</td>
+<td>+0.06</td>
+<td>-0.04</td>
+<td>4.9</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ウインデイジー</span></td>
+<td>-0.24</td>
+<td>-0.10</td>
+<td>-0.20</td>
+<td>+0.54</td>
+<td>-0.04</td>
+<td>4.1</td>
+<td><b>4.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">メイショウソウタ</span></td>
+<td>-0.80</td>
+<td>-0.36</td>
+<td>-0.10</td>
+<td>-0.70</td>
+<td>+0.18</td>
+<td>0.9</td>
+<td><b>0.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">インジケーター</span></td>
+<td>-0.82</td>
+<td>-0.46</td>
+<td>+0.16</td>
+<td>-0.86</td>
+<td>-0.44</td>
+<td>0.7</td>
+<td><b>0.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">シャルクハフト</span></td>
+<td>-0.90</td>
+<td>-0.26</td>
+<td>-0.22</td>
+<td>+0.18</td>
+<td>-0.22</td>
+<td>0.5</td>
+<td><b>0.5</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, シャルクハフト, -0.9, 近5走はすべてダートの3勝クラスで11着13着9着5着6着と頭打ちです。指数も86.2が上限で今回は芝替わりとなり、実績面の裏付けがかなり薄いです。<br><br>2番, サダムオプシス, -0.1, 前走烏丸Sは5着0.4秒差で指数85.8と悪くありませんが、それ以前は3勝クラスで8着9着9着11着と決め手を欠いています。芝2200mでも日本海S11着があり、実績上は強調しにくいです。<br><br>3番, シュバルツマサムネ, +0.4, 近3走の3勝クラスが4着0.7秒差、8着0.5秒差、5着0.7秒差で指数85.1-86.0と安定しています。芝2200mでも八坂S5着があり、この条件帯で能力は十分通用しています。<br><br>4番, メイショウソウタ, -0.8, 近5走はすべてダート3勝クラスで3着1回以外は7着9着15着9着です。今回は芝替わりで、近走実績からは素の能力比較で大きく割り引かざるを得ません。<br><br>5番, ピンキープロミス, -0.1, 前走3勝クラスは9着でも0.4秒差ですが、勝ち上がりは2勝クラスで指数79.4です。芝2200mでも2勝クラスで6着7着があり、現級で抜けた実績までは示せていません。<br><br>6番, サクソンジェンヌ, +0.7, 中山2200mのサンシャインSで4着同タイムの指数87.1はこの組み合わせでも上位です。さらに2500mで4着0.4秒差86.3、前走も牝馬3勝で6着0.3秒差と、現級での安定実績が明確です。<br><br>7番, ドットクルー, -0.1, 3勝クラスで4着歴はありますが、近5走は10着4着14着4着12着で勝ち負け水準までは届いていません。指数も84.9が上限で、実績面では中位止まりです。<br><br>8番, ナムラフッカー, +0.3, 前走烏丸S4着0.3秒差で指数86.5はこのメンバーでも見劣りしません。以前は1800mで崩れましたが、長めの距離に戻した近走内容からは能力の裏付けがあります。<br><br>9番, サークルオブジョイ, +0.2, 近3走の3勝クラスが6着0.5秒差、5着0.8秒差、8着0.8秒差で指数83.8-85.1と大崩れしていません。2400m以上で安定して走れており、地力はこの級で足ります。<br><br>10番, サトノクローク, +0.6, 前走烏丸S2着同タイムで指数88.6は近5走内で最も強い実績です。ムラはありますが、この水準の走破実績を持つ点は素の能力評価で強く買えます。<br><br>11番, アスターブジエ, +0.1, 前走サンシャインSは12着でも0.7秒差で、御堂筋S6着0.8秒差85.3、グレイトフルS5着0.5秒差85.7があります。勝ち切れないものの、長めの3勝クラスで一定の実績はあります。<br><br>12番, カエルム, -0.2, 近走は2勝クラスで1着4着2着6着と堅実ですが、まだ3勝クラス実績がありません。芝2200m実績も清滝特別5着78.5止まりで、現級比較では少し見劣ります。<br><br>13番, インジケーター, -0.9, 近5走はすべてダートで、芝の近走実績がありません。3勝クラスでもダート5着までで、今回の芝2200mで能力を証明した材料はほぼないです。<br><br>14番, ウインデイジー, -0.3, 2勝クラス勝ちはありますが、前走の3勝クラス烏丸Sでは11着0.9秒差で指数82.4でした。現級での実績比較ではまだ一段足りません。<br><br>15番, アロンディ, +0.2, 菊花賞10着で指数88.7、今年も琵琶湖特別1着で86.9と高い実績があります。前走サンシャインS15着は気になりますが、御堂筋S5着0.8秒差があり能力の絶対値は軽視できません。<br><br>16番, キーパフォーマー, -0.2, 牝馬限定3勝で5着0.3秒差は悪くありませんが、混合3勝クラスでは14着1.4秒差があります。指数も84.1-81.2止まりで、実績面ではもう一押し足りません。<br><br>17番, タイセイフェリーク, +0.2, 芝2200mでムーンライトS6着0.4秒差の指数85.2があり、古都S5着85.0も評価できます。勝ち切る実績は乏しいものの、現級長距離での能力証明は足りています。<br><br>18番, ファームツエンティ, -0.1, 近2走で1勝クラスと2勝クラスを連勝していますが、指数は77.5と82.9で現級上位馬には一歩届きません。上昇度はあるものの、3勝クラス実績がない分だけ実績評価は控えめです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>10番サトノクロークは88.6の単発評価に対して近走他指数が弱く、+0.6は再現性の説明が不足。6番サクソンジェンヌのような複数回の高実績馬との比較を見直したい。15番アロンディは88.7・86.9・85.3があり+0.2は控えめ、11番アスターブジエも85.7・85.3があって+0.1は低めに見える。3番シュバルツマサムネは2200m裏付けを強く書くには81.2しかなく、理由と付値の整合を再確認したい。17番タイセイフェリークは古い85台を重く見る一方で直近81台が続いており、11番との比較で甘くないか。2番サダムオプシスは前走85.8以外の現級実績が薄く-0.1は甘め、12番カエルムは未昇級でも安定度の割に-0.2はやや厳しめか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, シャルクハフト, -0.9, 近5走はすべてダート3勝クラスで11着13着9着5着6着、指数も86.2止まりです。芝2200mで裏付けになる近走実績がなく、実績比較では大きく見劣ります。<br><br>2番, サダムオプシス, -0.3, 前走烏丸S5着0.4秒差で指数85.8は評価できますが、現級の他4走は8着9着9着11着で指数79.1-82.4、日本海Sの芝2200mでも11着70.6です。単発の好走だけでは現級上位の実績とは言いにくいです。<br><br>3番, シュバルツマサムネ, +0.2, 御堂筋S4着0.7秒差86.0、烏丸S8着0.5秒差85.1と近2走の3勝クラス実績は安定しています。2200m自体の裏付けは八坂S5着81.2までなので、上積み評価は控えめに留めます。<br><br>4番, メイショウソウタ, -0.8, 近5走はすべてダート3勝クラスで3着1回以外は7着9着15着9着です。芝替わりの今回、実績面で能力を支える材料がかなり乏しいです。<br><br>5番, ピンキープロミス, -0.1, 前走3勝クラス9着でも0.4秒差ですが、指数84.6までで現級での強い裏付けはありません。芝2200mでも2勝クラスで6着79.3、7着72.3と、この条件で抜けた実績は示せていません。<br><br>6番, サクソンジェンヌ, +0.7, サンシャインS4着同タイムで指数87.1、グレイトフルS4着0.4秒差で86.3と、現級長距離で高水準の実績を複数持っています。芝2200mでも2勝クラス勝ちがあり、実績の再現性はこの組で上位です。<br><br>7番, ドットクルー, -0.1, 近5走は10着4着14着4着12着で、3勝クラスで善戦止まりが続いています。指数も84.9が上限で、実績比較では中位までです。<br><br>8番, ナムラフッカー, +0.3, 前走烏丸S4着0.3秒差で指数86.5はこのメンバーでも上位です。御堂筋S8着でも84.6が出ており、長めの距離では現級通用の実績があります。<br><br>9番, サークルオブジョイ, +0.2, 烏丸S6着0.5秒差85.1、松籟S5着0.8秒差84.9、グレイトフルS8着0.8秒差83.8と長距離の3勝クラスで崩れ切っていません。勝ち切る実績はないものの、地力は足りています。<br><br>10番, サトノクローク, +0.3, 前走烏丸S2着同タイムの指数88.6は最上位級ですが、他の近4走は6着13着12着8着で指数76.7-83.1と落差があります。高い一撃は認めつつも、実績の再現性を考えて評価は抑えます。<br><br>11番, アスターブジエ, +0.3, グレイトフルS5着0.5秒差85.7、御堂筋S6着0.8秒差85.3と、現級長距離で安定した水準を続けています。前走サンシャインS12着でも0.7秒差82.0なら大敗ほどではなく、実績の底はあります。<br><br>12番, カエルム, -0.1, 2勝クラスでは1着4着2着6着と安定していますが、指数は78.5-79.6でまだ3勝クラス上位に並ぶ水準ではありません。未昇級でも大きくは嫌わない一方、実績比較ではわずかに見劣ります。<br><br>13番, インジケーター, -0.9, 近5走はすべてダートで、芝の近走実績がありません。ダートで3勝クラス5着84.2はあっても、芝2200mで能力を証明した材料はほぼないです。<br><br>14番, ウインデイジー, -0.3, 2勝クラス勝ちはありますが、前走烏丸Sは11着0.9秒差で指数82.4でした。現級での実績比較ではまだ一段足りません。<br><br>15番, アロンディ, +0.5, 菊花賞10着で指数88.7、琵琶湖特別1着で86.9、御堂筋S5着0.8秒差85.3と、格と指数の両面で高い実績があります。前走サンシャインS15着79.8は割引でも、能力の絶対値はこの組で上位です。<br><br>16番, キーパフォーマー, -0.2, 牝馬限定3勝で5着0.3秒差81.2は悪くありませんが、混合3勝クラスでは14着1.4秒差76.7、5着0.6秒差84.1までです。実績面ではもう一段の裏付けが欲しいです。<br><br>17番, タイセイフェリーク, +0.0, ムーンライトS6着0.4秒差85.2、古都S5着0.7秒差85.0は評価できますが、ともに昨秋の実績です。直近はシドニーT7着0.3秒差81.2、比叡S8着81.7で、今の実績水準だけなら強調まではしません。<br><br>18番, ファームツエンティ, -0.1, 1勝クラスと2勝クラスを連勝してきましたが、指数は77.5と82.9で3勝クラス上位勢とはまだ差があります。上昇余地はあっても、実績評価は控えめです。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, シャルクハフト, -0.3, 近走の通過順からは中団差しで運ぶ形になりそうだが 前に行きたい馬が何頭かいて阪神2200の稍重で外々を回されると脚の使いどころが難しい。最内は引けたが 展開で押し上げる材料は薄い。<br><br>2番, サダムオプシス, +0.1, 後方で脚をためる形が合う馬で 先行勢がそこそこ揃った今回は直線でジワッと差し込む絵はある。最内寄りでロスなく我慢できれば 展開はわずかに向く。<br><br>3番, シュバルツマサムネ, -0.2, 逃げか好位で形を作る馬だが 同型が複数いて今回は単騎で楽には行きにくい。2枠は悪くないものの 稍重で早めに脚を使わされる流れになると粘り込みの条件は少し厳しい。<br><br>4番, メイショウソウタ, -0.4, 近走は前で運ぶ形が多く 今回も前受けに回りたいはずだが 芝2200で同型と並ぶと追走負荷が上がりやすい。先行勢の一角として流れを苦しくする側で 自分に展開利は出にくい。<br><br>5番, ピンキープロミス, +0.2, 末脚を温存して後半勝負に寄せるタイプで 前がやり合うなら浮上余地はある。極端な追込なので取りこぼしもあるが 展開面だけなら少しプラス。<br><br>6番, サクソンジェンヌ, +0.3, 先行してしぶとい形が安定しており 3番や10番を見ながら好位の外目で流れに乗れそう。ハナにこだわる必要がないので ペースが少し流れる想定なら位置取りの自由度が高い。<br><br>7番, ドットクルー, 0.0, 中団から脚を使う形になりそうで 流れ自体は悪くないが 2200で一気に展開が向くほどの偏りも見えない。速すぎず遅すぎずの想定で 展開補正は中立。<br><br>8番, ナムラフッカー, +0.3, 後ろすぎない差しで運べるのが今回の並びでは噛み合う。前に3番10番13番あたりがいて ペースが緩み切らなければ 直線で外から長く脚を使える展開になりやすい。<br><br>9番, サークルオブジョイ, +0.1, 逃げも好位もできるので 10番や3番の後ろで脚をためる形に持ち込めれば悪くない。自分から競りかけると苦しいが 控える選択肢がある分だけ微プラス。<br><br>10番, サトノクローク, -0.5, 前走のようにハナならしぶといが 今回は3番13番4番6番あたりも前へ行けて 楽逃げの公算が低い。阪神2200の稍重で早めにプレッシャーを受けると 直線で差される絵が濃い。<br><br>11番, アスターブジエ, -0.1, かなり後ろからになる可能性が高く 先行勢が多いのは歓迎でも 阪神2200で差し遅れや大外一気不発のリスクが残る。展開が大きくハマるところまでは見込みにくい。<br><br>12番, カエルム, +0.4, 長丁場での先行歴があり この枠なら前を見ながら中団前目へ収まりやすい。逃げ争いの直後で脚をためて 4角から長く踏む形が最も描きやすく 展開面ではかなり買いやすい。<br><br>13番, インジケーター, -0.7, ダートでハナを切ってきた馬で 芝替わりでも行く形を取りやすく 10番や3番と先手争いになる公算が高い。外枠から押して行くぶん消耗しやすく 今回の展開ではかなり厳しい。<br><br>14番, ウインデイジー, +0.2, 基本は中団からで 前がやり合えばこの馬の持続力は生きやすい。7枠は少し外だが 位置を取りに行きすぎないタイプなので 展開の受け方としては悪くない。<br><br>15番, アロンディ, +0.2, 差し寄りだが極端に後ろではなく 流れた時にちょうどいいところへ収まりそう。外の7枠でも自分のリズムで運べる並びで 前崩れの2列目を拾いやすい。<br><br>16番, キーパフォーマー, -0.2, 近走は中団からだが 8枠で序盤に脚を使うか 後ろに下げるかの難しい立場になった。前が流れるのは悪くないものの コース取りのロスが出やすく展開面ではやや不利。<br><br>17番, タイセイフェリーク, -0.2, 末脚勝負型で流れは向く余地があるが 8枠から後方待機になると 4角で外を回されやすい。前崩れ待ち一辺倒になりやすく 展開補正は少し下げる。<br><br>18番, ファームツエンティ, -0.1, こちらも差しだが大外で位置を取りにくく ロスなく立ち回るのが難しい。流れ自体は合っても 阪神2200のコーナー4回で外々を回る形は微妙に割引。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>6番サクソンジェンヌ・12番カエルムの先行好位勢を強くプラスに置く一方、10番サトノクローク・13番インジケーターを大きくマイナスにした線引きに飛躍がないか再点検したい。9番サークルオブジョイは『控える選択肢』があるなら+0.1は控えめ、逆に2番サダムオプシスは11番アスターブジエより甘く見過ぎていないか。3番シュバルツマサムネと4番メイショウソウタ、17番タイセイフェリークと18番ファームツエンティの差も本文理由だけでは付き切っておらず、1番シャルクハフト・4番メイショウソウタは芝替わりで脚質推定の不確実性をもっと織り込む余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, シャルクハフト, -0.2, ダート実績中心で芝替わりの脚質推定に幅はあるが 最内枠なら無理なく内で脚をためる形は取りやすい。前がやや流れる想定でも外を回されにくく 大きな展開不利までは見ない。<br><br>2番, サダムオプシス, 0.0, 後方待機で前が流れる恩恵は受けられるが 直線勝負一本になりやすく阪神2200の4角戦で差し遅れの余地も残る。1枠でロスは抑えられるので 下げるほどでもなく中立に戻す。<br><br>3番, シュバルツマサムネ, -0.1, 芝で先行実績はあるが 今回は10番13番がいてハナ一本の楽な形には寄りにくい。内目から好位には収まれても 自分のペースで運べる公算はやや下がる。<br><br>4番, メイショウソウタ, -0.2, 芝替わりで前に出し切るか控えるかの不確実性はあるので 強い下げは見直す。とはいえ前受けに出ると同型圧で息を入れづらく 展開利はまだ薄い。<br><br>5番, ピンキープロミス, +0.2, 10番13番あたりが前を作って 3番4番6番9番が続く形なら 後半に脚を温存するこの馬には差し込みの余地がある。極端な後方型で取りこぼしはあるが 展開の風は少し吹く。<br><br>6番, サクソンジェンヌ, +0.2, ハナを争わず3列目あたりで流れに乗れるのがこの並びでは利点だが 前勢総崩れまで行くとは限らないので上げ幅は抑える。10番13番の直後で脚をためて 4角から早めに動ける形は描きやすい。<br><br>7番, ドットクルー, 0.0, 中団で脚をためて流れに乗る形になりそうで ペース想定自体は悪くない。とはいえ位置取りで大きな得も損も出にくく 展開補正は据え置きでいい。<br><br>8番, ナムラフッカー, +0.3, 後ろすぎない差し脚質で 先行勢の直後から外へ出す絵が最もはまりやすい。10番が逃げて13番が絡み 直線で前が少し甘くなる流れなら この馬の持続差しは使いやすい。<br><br>9番, サークルオブジョイ, +0.2, 10番や13番を前に置いて好位外か中団前で折り合えるのは強みで 単純な先行争いに巻き込まれにくい。逃げても控えても形を作れるぶん 今回の並びではわずか以上に買いやすい。<br><br>10番, サトノクローク, -0.3, 逃げ切りの絵はあるが 今回は13番に加えて3番4番6番9番も前々へ意識できて 楽に単騎とは見にくい。主導権を取っても向正面から息を入れづらく 直線で差し勢の標的になりやすい。<br><br>11番, アスターブジエ, -0.1, 前が流れる恩恵はあるが この馬は最後方近くまで下げる形が多く 阪神2200では4角で届く位置にいるかが課題になる。差し展開そのものは歓迎でも 展開だけで強く押し上げるまではいかない。<br><br>12番, カエルム, +0.3, 逃げ争いの直後ではなく その一列後ろで脚をためる形に持ち込みやすい枠並びがいい。10番13番が作る流れを見ながら 3角過ぎから長く脚を使うシナリオはかなり自然。<br><br>13番, インジケーター, -0.5, ダート同様に出して行けば 10番の外からでも脚を使わされやすく 7枠で初手の負荷が大きい。芝で控える形もあり得るが どちらにしてもこの並びでは位置取りを作るまでに消耗しやすい。<br><br>14番, ウインデイジー, +0.1, 中団後ろで前を見ながら運ぶ形になりそうで 流れが少し締まる今回は差しの順番が回る余地がある。外すぎる枠ではあるが 自ら展開を苦しくするタイプではない。<br><br>15番, アロンディ, +0.2, 中団の外目で流れに乗って 先行勢の後ろから4角で進出する形がこのレース像に合う。前崩れ一辺倒を待つほど後ろではなく 差し勢の中では位置取りの利がある。<br><br>16番, キーパフォーマー, -0.2, 8枠から好位を取りに行くと序盤で脚を使い 後ろに下げると今度は外々を回りやすい。やや流れる想定自体は悪くないが コース取りの難しさが展開面では残る。<br><br>17番, タイセイフェリーク, -0.2, 差し向きの流れになっても 8枠発で後方待機だと4角で外を回されやすく 直線までにロスが積み上がる。内で溜める馬より一手遅れやすく 小さく下げる。<br><br>18番, ファームツエンティ, -0.1, 大外は不利だが 17番ほど最後方一辺倒ではなく 中団後ろで内へ潜り込めればまだ形は作れる。流れが向いてもコーナーで距離損は出やすいので 軽いマイナスまで。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, シャルクハフト, -0.3, 508kgから502kgで今回は-6kg、500kg前後で安定しており絞れた範囲だが一杯追いで調子評価は横ばいです。大きな上積みまでは感じず体調面はやや慎重に見ます。<br><br>2番, サダムオプシス, +0.2, 今回486kgで前走と同体、近走も476kgから486kgの範囲で推移していて馬体は安定しています。5か月ぶりをひと叩きされて中6週で54kg据え置きなら体調面は少し上向きです。<br><br>3番, シュバルツマサムネ, -0.2, 前走488kgから今回は482kgで-6kg、近3走で488→482→488→482と振れ幅がやや大きいです。攻め強化は好材料でも56kgで一杯追い、上積みより維持の範囲と見ます。<br><br>4番, メイショウソウタ, -0.1, 530kg前後の大型馬で今回は528kgと大きな問題はないですが、先着しても伸び案外という調教評価は強調しにくいです。56kgはこなせる馬格でも体調面で強くは推せません。<br><br>5番, ピンキープロミス, +0.1, 484kg前後をずっと維持できていて今回は482kg、叩いても馬体が減りすぎず安定しています。6歳でもデキ落ちなしのコメントどおり消耗感は薄く小幅に上げます。<br><br>6番, サクソンジェンヌ, +0.4, 468kgから474kgへ増やした前走で走れて今回は同体の474kg、牝馬でも馬体維持が利いています。中4週で馬なりの余裕ある動き、54kgなら仕上がりは良好です。<br><br>7番, ドットクルー, +0.1, 前走472kgから今回は478kgで+6kgですが、もともと470kg台で安定しており太め残りとまでは見ません。馬なりで力強い脚捌きなら休み明けの中3週でも反動は薄そうです。<br><br>8番, ナムラフッカー, +0.5, 484kgから478kgへ絞れたあと前走472kgで好走し今回は474kg、絞って本調子に戻す過程がはっきりしています。本調子取り戻すの調教評価も合致し体調面ではかなり良いです。<br><br>9番, サークルオブジョイ, -0.1, 前走502kgから496kgで-6kg、500kg前後で推移してきた馬としてはやや減り幅が大きめです。順調さはあるものの56kgで大きく上向いた感じまではありません。<br><br>10番, サトノクローク, 0.0, 466kgから480kgへ増やして以降は3走続けて480kgで固定されており馬体の安定感はあります。平凡な動きの評価は物足りないですが55kgで馬格とのバランスは悪くなく中立です。<br><br>11番, アスターブジエ, +0.2, 今回466kgで前走同体、近5走も466kgから472kgの範囲で大きなブレがありません。6歳でも好時計マークの追い切りは好感で、56kgでも体調維持はできています。<br><br>12番, カエルム, +0.8, 3か月ぶりでも472kgで維持、470kg前後で使いながら崩れない馬体推移です。馬なりで好仕上がりかつ調子↗は明確な上昇サインで、55kgなら体調面でかなり強く上げます。<br><br>13番, インジケーター, +0.2, 512kgから498kgまで絞って近2走は498kg前後で安定、太め感を解消してきた流れは良いです。53kgはこの馬格ならかなり楽で、脚取り確かなら体調面は軽く後押しできます。<br><br>14番, ウインデイジー, -0.2, 450kg台前半の牝馬で今回は462kgと+6kg、前走も456kgで結果が出ておらず少し余裕残しの懸念があります。鋭さひと息の調教評価もあり53kgでも体の切れは平凡です。<br><br>15番, アロンディ, +0.3, 454kgから458kgを使って今回は456kg、細くならず戻しすぎてもおらず馬体バランスが良いです。前走15着後でも好気配示すの調教と調子↗なら叩き3走目での上昇を見込みます。<br><br>16番, キーパフォーマー, +0.2, 468kgから今回は466kgで-2kg、近4走が462kgから468kgの範囲で安定しています。体も動きも良いという評価どおり53kgの軽ハンデも含めて体調面はまずまずです。<br><br>17番, タイセイフェリーク, -0.8, 前走438kgで+12kgだった馬が今回は426kgで一気に-12kg、もともと420kg台の小柄な牝馬だけに消耗のリスクを強く見ます。54kgでも馬格との釣り合いは楽ではなく体調面では大きく割引です。<br><br>18番, ファームツエンティ, +0.3, 444kgから448kgを行き来して今回は446kgと安定、せん馬で細化なく使えているのは好材料です。一息入るも仕上るの評価どおり間隔を空けても緩んでおらず55kgなら無難に好調圏です。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>12番カエルムの+0.8は休み明け3か月・調子↗評価をかなり強く取りすぎていないか。6番サクソンジェンヌとの差が体調面だけでは開きすぎに見える。8番ナムラフッカーは調子→なのに良化ストーリーを重く見すぎの可能性。10番サトノクロークは馬体安定でも一杯追いで平凡なら0.0よりやや下げてもよく、11番アスターブジエとの比較基準も再確認したい。15番アロンディの+0.3は好気配・↗のわりに時計裏づけが薄め。17番タイセイフェリークの-0.8は426kgが元のレンジで、前走+12kgからの戻りという見方もできるため下げすぎの余地。2番サダムオプシスは叩き2戦目同体・動き軽快でもう少し上評価でもよいのではないか。1番シャルクハフトと4番メイショウソウタの減点バランスも見直し余地あり。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, シャルクハフト, -0.2, 508kgから502kgで-6kgですが、もともと500kg前後でまとまっており絞れた範囲です。一杯追いでも終い11.9で実戦並みの良評価なら、体調面の下げは小幅で足ります。<br><br>2番, サダムオプシス, +0.3, 今回486kgで前走同体、476kgから486kgのレンジで馬体は安定しています。5か月ぶりを使って中6週、馬なりで動き軽快なら叩き2戦目の上積みを前回より少し強めに見ます。<br><br>3番, シュバルツマサムネ, -0.2, 前走488kgから今回は482kgで-6kg、近走でも488kgと482kgを行き来していて体つきはやや定まりません。一杯追いで攻め強化は好材料でも、56kgで明確な上向きまでは感じません。<br><br>4番, メイショウソウタ, -0.2, 528kgの大型馬で+2kg自体は問題ありませんが、一杯に追って先着も伸び案外は体の張りや反応面で物足りません。馬格で56kgはこなせても、当日のデキとしては強調しづらいです。<br><br>5番, ピンキープロミス, +0.1, 484kg前後を維持して今回は482kg、使っても減りすぎないのは好感です。強めに追ってデキ落ちなしなら、6歳でも消耗より維持の印象が勝ちます。<br><br>6番, サクソンジェンヌ, +0.4, 468kgから474kgに増やした前走で走れて今回は474kgを維持、牝馬としては馬体管理が上手いです。中4週で馬なりの余裕ある動き、54kgなら仕上がりは引き続き良好です。<br><br>7番, ドットクルー, +0.1, 前走472kgから478kgで+6kgですが、470kg台後半はこの馬の守備範囲です。馬なりで力強い脚捌きなら、太め残りより回復分と見て軽く上げます。<br><br>8番, ナムラフッカー, +0.3, 484kgから472kgまで絞って前走好走、今回は474kgで極端に戻していません。本調子取り戻すの評価は好感でも調子は→なので、体調面の加点は一段控えておきます。<br><br>9番, サークルオブジョイ, -0.1, 前走502kgから今回は496kgで-6kg、500kg前後で来た馬としてはやや減り幅が目立ちます。順調に乗り込めてはいますが、上向きというより維持の範囲です。<br><br>10番, サトノクローク, -0.2, 480kgで3走連続同体と馬体自体は安定していますが、一杯に追って平凡な動きは体調面では割引です。55kgと480kgの釣り合いは悪くないものの、今回は中立より少し下に取ります。<br><br>11番, アスターブジエ, +0.2, 今回466kgで前走同体、近5走も466kgから472kgの範囲で安定しています。強めに追って5F51.7の好時計なら、10番より仕上がりの裏づけは明確です。<br><br>12番, カエルム, +0.5, 3か月ぶりでも472kgを維持し、470kg前後で大きく崩れない馬体推移は信頼できます。馬なりで好仕上がり、調子↗は評価しますが、休み明けでもあるので体調面の上げ幅は少し抑えます。<br><br>13番, インジケーター, +0.2, 512kgから498kgまで絞って近2走は498kg前後で安定、太め感を解消した流れは良いです。53kgはこの馬格なら馬身換算でもかなり有利で、脚取り確かなら軽く後押しできます。<br><br>14番, ウインデイジー, -0.2, 450kg台前半の牝馬で今回は462kgと+6kg、前走も456kgで結果が出ておらず少し重さが残る懸念があります。強めに追って鋭さひと息なら、53kgでも切れ味面は平凡です。<br><br>15番, アロンディ, +0.2, 454kgから458kgを使って今回は456kg、細くも太くもなく馬体バランスは良いです。好気配示す、調子↗は好感でも時計の裏づけは薄めなので、叩き3走目の上昇見込みは小幅加点に留めます。<br><br>16番, キーパフォーマー, +0.2, 468kgから466kgで-2kg、近4走が462kgから468kgの範囲でまとまっています。馬なりで体も動きも良く、53kgなら仕上がり面で無理なく押せます。<br><br>17番, タイセイフェリーク, -0.4, 前走438kgから今回は426kgで-12kgですが、426kg自体はこの馬の元のレンジです。それでも小柄な牝馬が一戦使って大きく減らした点は楽ではなく、フットワーク軽快を加味してもなお体調面は割引です。<br><br>18番, ファームツエンティ, +0.3, 444kgから448kgの間で安定して今回は446kg、せん馬で細化なく使えているのは好材料です。一息入るも仕上るの評価どおり、間隔が空いても緩みは感じません。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, シャルクハフト, +0.2, リアルスティールに母父ワークフォースなら中距離の持続力と多少渋った芝への対応は見込める配合です。ダート実績先行の戦歴でも血統だけ見れば芝2200m替わりはむしろこなせる余地があります。<br><br>2番, サダムオプシス, +0.1, ルーラーシップ産駒は阪神内外回りの中長距離でしぶとく母父サムライハートで軽さも少し補えます。道悪も極端なマイナスではなく2200mは守備範囲です。<br><br>3番, シュバルツマサムネ, -0.3, マインドユアビスケッツは本質的にダート色が強く母父モーリスで芝の中距離は補えても芝2200mで強く上げる血統ではありません。稍重でパワーは足せても長め芝の設計図としては半信半疑です。<br><br>4番, メイショウソウタ, -0.7, ドレフォン産駒で母父マンハッタンカフェでもベースはダート寄りのパワー型です。芝2200mへの替わりは血統面ではかなり不利で上積み材料にしづらいです。<br><br>5番, ピンキープロミス, +0.5, ゴールドシップに母父アグネスデジタルならスタミナと馬場悪化耐性が出やすく阪神2200mの消耗戦は歓迎です。6歳でもこの父系は息長く中長距離で適性を保ちやすいです。<br><br>6番, サクソンジェンヌ, +0.3, Saxon WarriorはSadler&#x27;s Wells的な持続力と中距離以上の底力を伝えやすく母父Dark Angelのスピードで重さを緩和しています。2200mの持久力勝負は血統的に合いやすく稍重もこなせる部類です。<br><br>7番, ドットクルー, -0.1, ディーマジェスティ産駒で距離はこなせる一方で母父ロードカナロアが入ってやや中距離寄りのバランスです。2200m自体は守備範囲でもこの条件で血統の押しは強くありません。<br><br>8番, ナムラフッカー, +0.4, スワーヴリチャードに母父ルーラーシップはスタミナと持続力が前に出やすく阪神2200mに合う配合です。軽い瞬発戦より少し時計の掛かる中長距離で良さが出やすい血統です。<br><br>9番, サークルオブジョイ, -0.2, Constitutionに母父Colonel Johnは米国型のパワーと持続力で芝長距離を全否定はしませんが日本の阪神芝2200mで切れを補強する配合ではありません。少し渋る馬場は悪くなくても血統的な後押しは限定的です。<br><br>10番, サトノクローク, +0.3, サトノクラウン産駒は欧州的なスタミナと渋った馬場への耐性があり母父ディープで芝のしなやかさも入ります。阪神2200mの稍重は血統面で素直にプラスです。<br><br>11番, アスターブジエ, +0.4, オルフェーヴルに母父マンハッタンカフェはかなり濃いスタミナ配合で阪神2200mの持久力戦は合います。道悪もこなせる血統背景で条件そのものは歓迎です。<br><br>12番, カエルム, +0.2, ブラックタイドに母父キングカメハメハなら長め距離での持続力は十分で少し力の要る芝も守備範囲です。2600m寄りの血統感はあるものの2200mでも大きくは崩れない設計です。<br><br>13番, インジケーター, -0.8, Liam&#x27;s Mapに母父Street Senseはかなり米国ダート色が濃く芝2200m替わりを血統で支える材料が薄いです。稍重でパワーは利いても芝中長距離の適性面では強く下げます。<br><br>14番, ウインデイジー, +0.8, ゴールドシップに母父コンデュイットはスタミナと道悪耐性が非常に強く出る配合で阪神2200mの稍重はまさに血統向きです。切れ勝負より持久戦で浮上しやすくこの条件替わりはかなり歓迎です。<br><br>15番, アロンディ, +0.6, ハービンジャーに母父エピファネイアは欧州的な底力に日本的な芝適性が乗る好配合です。阪神2200mで少し渋る馬場は血統面でかなり合いやすく4歳の成長余地もまだ見込めます。<br><br>16番, キーパフォーマー, +0.2, キタサンブラックに母父ネオユニヴァースなら中距離以上の持続力と阪神向きのしぶとさが出やすいです。2200m延長は血統上むしろ自然で少し時計が掛かるのも悪くありません。<br><br>17番, タイセイフェリーク, +0.1, ミッキーロケットに母父ディープインパクトで長め距離への適性はあり阪神2200mも守備範囲です。強調し切るほどの重厚配合ではないものの条件自体は合います。<br><br>18番, ファームツエンティ, +0.4, キズナに母父ブライアンズタイムはスタミナとパワーが補強されており阪神芝中長距離で安定しやすい配合です。稍重の2200mは血統面でプラスに出やすいです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>見直し候補は、上げ過ぎなら14番ウインデイジーと15番アロンディ、下げ過ぎなら3番シュバルツマサムネと9番サークルオブジョイ。12番カエルムは理由の割に加点が弱く、16番キーパフォーマーと1番シャルクハフトは『こなせる』以上の加点になっていないか比較整理の余地がある。特に3番シュバルツマサムネと7番ドットクルー・9番サークルオブジョイ、14番ウインデイジーと11番アスターブジエ・18番ファームツエンティの差の説明を詰めたい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, シャルクハフト, +0.0, リアルスティールに母父ワークフォースで中距離の持続力と多少力の要る芝への対応は見込めます。ただ芝2200mで強く背中を押すほど配合の輪郭ははっきりせず血統評価は中立までです。<br><br>2番, サダムオプシス, +0.1, ルーラーシップ産駒らしく中長距離での持続力はあり母父サムライハートで重過ぎない配合です。阪神芝2200mは血統的に守備範囲で少しだけ前向きに見ます。<br><br>3番, シュバルツマサムネ, -0.1, マインドユアビスケッツのダート色は残るものの母父モーリスが芝の持続力と中距離適性を補っています。芝2200mで強調はしにくい一方で下げ切るほどの配合でもなく軽いマイナスにとどめます。<br><br>4番, メイショウソウタ, -0.7, ドレフォン産駒で母父マンハッタンカフェでもベースはダート寄りのパワー型です。芝2200m替わりを血統面で積極的に支える材料は薄く強めに下げます。<br><br>5番, ピンキープロミス, +0.5, ゴールドシップに母父アグネスデジタルでスタミナとパワーが出やすく少し渋る阪神芝2200mは合いやすい配合です。父系の息の長さもありこの条件ははっきりプラスです。<br><br>6番, サクソンジェンヌ, +0.3, Saxon Warriorの欧州的な持続力に母父Dark Angelのスピードが入って重過ぎない中長距離型です。2200mの持久力勝負や稍重は血統面で噛み合います。<br><br>7番, ドットクルー, +0.0, ディーマジェスティで距離はこなせても母父ロードカナロアでやや中距離寄りにまとまった配合です。2200mに不向きではありませんが血統だけで押し上げるほどの特徴は薄いです。<br><br>8番, ナムラフッカー, +0.4, スワーヴリチャードに母父ルーラーシップでスタミナと持続力が前に出やすい配合です。阪神芝2200mの少し時計が掛かる形は血統的にかなり合います。<br><br>9番, サークルオブジョイ, +0.1, Constitution産駒らしいパワーに母父Colonel John由来の芝中距離寄りの底力もあり配合自体は単純な米国ダート一辺倒ではありません。切れ味強化型ではないものの稍重の阪神芝2200mなら少しだけ血統後押しがあります。<br><br>10番, サトノクローク, +0.3, サトノクラウンの欧州的なスタミナに母父ディープインパクトのしなやかさが入る配合です。阪神芝2200mで少し渋る馬場は血統面で素直にプラスです。<br><br>11番, アスターブジエ, +0.4, オルフェーヴルに母父マンハッタンカフェでスタミナの芯がかなり強い配合です。阪神芝2200mの持久力戦や道悪寄りの馬場は歓迎しやすいです。<br><br>12番, カエルム, +0.3, ブラックタイドに母父キングカメハメハで長め距離の持続力とパワーを備えた配合です。2600m寄りの体質はありますが稍重の阪神2200mなら血統面でしっかりプラス評価できます。<br><br>13番, インジケーター, -0.8, Liam&#x27;s Mapに母父Street Senseで米国ダート色がかなり濃い配合です。力の要る馬場自体はこなせても芝2200mの適性を血統で支える材料は乏しく強く下げます。<br><br>14番, ウインデイジー, +0.6, ゴールドシップに母父コンデュイットでスタミナと道悪耐性の方向は非常に明確です。かなり条件向きの配合ですが11番や18番と比べて絶対的に抜けると言い切るほどではなく評価は少し抑えます。<br><br>15番, アロンディ, +0.4, ハービンジャーに母父エピファネイアで欧州的な底力と日本芝への適応力を併せ持つ配合です。阪神芝2200mや少し渋る馬場は合いやすい一方で最上位まで振るほど重厚さ一辺倒でもありません。<br><br>16番, キーパフォーマー, +0.1, キタサンブラックに母父ネオユニヴァースで中距離以上の持続力は自然に備わる配合です。2200m延長は血統上無理がないものの強い上積みとまでは言いにくく小幅な加点にとどめます。<br><br>17番, タイセイフェリーク, +0.1, ミッキーロケットに母父ディープインパクトで長めの芝に向くしなやかさと持続力があります。阪神2200mは血統的に守備範囲でわずかにプラスです。<br><br>18番, ファームツエンティ, +0.4, キズナに母父ブライアンズタイムでスタミナとパワーが補強された中長距離向きの配合です。阪神芝2200mで少し時計が掛かる状況は血統面ではっきり追い風です。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, シャルクハフト, -0.3, ここは吉村誠之助から富田暁への乗り替わりで 陣営の押し上げ材料は弱い。清水久詞厩舎は地力あるが 今回は騎手面で強く買える布陣ではない。<br><br>2番, サダムオプシス, +0.3, 幸英明の継続騎乗はこの馬の手の内を踏まえた運びに期待しやすい。平田修厩舎との組み合わせも堅実で 陣営面ではやや上げる。<br><br>3番, シュバルツマサムネ, -0.4, 近走で騎手が定まらず 今回も小崎綾也への乗り替わりで継続性に欠ける。杉山佳明厩舎も悪くないが この条件で陣営の後押しは強調しづらい。<br><br>4番, メイショウソウタ, +0.3, 菱田裕二が続けて乗っている点は評価でき 手の内を知る継続騎乗は素直にプラス。岡田稲男厩舎との現行ラインも安定感がある。<br><br>5番, ピンキープロミス, +0.1, 国分優作は勝たせた実績があり 戻る形なら最低限の信頼は置ける。畠山吉宏厩舎の遠征で強烈な勝負手までは感じないが 陣営面はわずかに前向き。<br><br>6番, サクソンジェンヌ, +0.4, 武豊から坂井瑠星への乗り替わりでも 騎手の格は高水準で陣営の意欲は維持されている。高橋義忠厩舎も関西圏の中距離でしっかり整えてくる印象があり プラス評価。<br><br>7番, ドットクルー, +0.1, 前走の戸崎圭太から戻して高杉吏麒なら この馬で何度か乗っている分だけ流れは悪くない。笹田和秀厩舎も含めて大きな上積みまでは言えないが 小幅に加点。<br><br>8番, ナムラフッカー, -0.4, 近走で騎手が替わり続け 今回の高倉稜も継続性という意味では弱い。長谷川浩大厩舎の仕上げは一定でも 陣営の押し上げ要素は乏しい。<br><br>9番, サークルオブジョイ, -0.3, 池添学厩舎は魅力だが 騎手は丹内祐次から亀田温心へ替わって継続騎乗の利がない。ここで陣営強化と言える乗り替わりでもなく やや割引。<br><br>10番, サトノクローク, -0.5, 前走で池添謙一を配して好走した後に 今回は田口貫太へ替わる形で鞍上の格は下がる。橋口慎介厩舎の運びとしても 勝負気配の強化とは受け取りにくい。<br><br>11番, アスターブジエ, -0.5, 岩田望来 池添謙一 岩田康誠 西村淳也ときて今回は角田大和で 騎手の流れは明らかに弱い。中竹和也厩舎でも 今回の陣営配置は強調しづらい。<br><br>12番, カエルム, +0.7, 安田翔伍厩舎にM.デムーロの組み合わせは このメンバーでも陣営面の格が上位。継続騎乗ではないが 一段上の鞍上を確保してきた点に勝負気配を感じる。<br><br>13番, インジケーター, -0.5, 田山旺佑への乗り替わりは 前走の北村宏司から見ても鞍上強化とは言いにくい。高橋康之厩舎も含めて このクラスの芝替わりで陣営の後押しは薄い。<br><br>14番, ウインデイジー, -0.2, 松若風馬への乗り替わり自体は悪くないが 近走の騎手が定まらず継続性を欠く。宮徹厩舎のベテラン感はあるものの 今回は中立より少し下。<br><br>15番, アロンディ, +0.5, 西村淳也に戻るのは明確に好材料で 勝たせた時のコンビを戻してきた意図は感じる。武英智厩舎もこの条件でしっかり狙ってくる構えに見え 陣営面でははっきりプラス。<br><br>16番, キーパフォーマー, -0.3, 近走は浜中俊 戸崎圭太 岩田望来 西村淳也ときて今回は吉村誠之助で 騎手ラインの厚みは下がる。辻野泰之厩舎でも 陣営面の押しは弱い。<br><br>17番, タイセイフェリーク, -0.2, 藤懸貴志に戻る形で全くの未知ではないが 近走の主戦感は薄く継続騎乗の利も限定的。青木孝文厩舎の遠征込みでも 陣営面は強調材料不足。<br><br>18番, ファームツエンティ, -0.4, 前走の松山弘平や前々走の武豊から 今回は酒井学への乗り替わりで鞍上の迫力は落ちる。北出成人厩舎も堅実ではあるが 陣営強化の局面ではない。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>12番カエルムは継続性欠如をほぼ不問で大幅加点しており、他馬との基準差が大きいのではないか。10番サトノクローク・11番アスターブジエ・8番ナムラフッカー・9番サークルオブジョイは騎手弱化や乗り替わりを重く見過ぎている可能性があり、減点幅の再点検余地がある。逆に4番メイショウソウタと5番ピンキープロミスは継続や再コンビを都合よく拾って加点しており、15番アロンディも『勝たせた時のコンビ』への物語先行で加点幅がやや大きくないか見直したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, シャルクハフト, -0.3, 吉村誠之助から富田暁への乗り替わりで陣営の押し上げは弱い。清水久詞厩舎の地力は認めても 今回は鞍上面で強く買える布陣ではない。<br><br>2番, サダムオプシス, +0.3, 幸英明の継続騎乗はこの馬の運びを踏まえやすく 陣営面では素直に評価できる。平田修厩舎との組み合わせも堅実で 小幅以上のプラス。<br><br>3番, シュバルツマサムネ, -0.4, 近走で騎手が定まらず 今回も小崎綾也への乗り替わりで継続性に欠ける。杉山佳明厩舎込みでも この条件で陣営の後押しは強調しづらい。<br><br>4番, メイショウソウタ, +0.2, 菱田裕二の継続騎乗自体はプラスだが それだけで大きく押し上げるほどの布陣ではない。岡田稲男厩舎との現行ラインを評価しても 軽い加点まで。<br><br>5番, ピンキープロミス, +0.0, 国分優作に戻る点は悪くないが 強い勝負手とまでは言いにくい。畠山吉宏厩舎の遠征も含めて 陣営面は中立評価にとどめる。<br><br>6番, サクソンジェンヌ, +0.4, 武豊から坂井瑠星でも騎手の格は高い水準で 陣営の本気度は維持されている。高橋義忠厩舎もこの距離帯でしっかり整えてくる印象があり はっきりプラス。<br><br>7番, ドットクルー, +0.1, 高杉吏麒はこの馬での騎乗歴があり 戻る形は悪くない。笹田和秀厩舎まで含めて大きな上積みではないが わずかに前向き。<br><br>8番, ナムラフッカー, -0.2, 騎手が替わり続けている点はやはり減点材料だが 高倉稜への乗り替わりを強い弱化とまでは見ない。長谷川浩大厩舎の管理力も踏まえ 軽いマイナスまでに修正する。<br><br>9番, サークルオブジョイ, -0.1, 丹内祐次から亀田温心への乗り替わりで継続騎乗の利は薄れるが 大きな陣営弱化とまでは言えない。池添学厩舎のバックアップもあり 軽微な割引にとどめる。<br><br>10番, サトノクローク, -0.3, 池添謙一から田口貫太への乗り替わりは鞍上の迫力という意味で下がる。ただし橋口慎介厩舎の運用まで含めて全面的な弱気配置ではなく 減点はやや控えめに見直す。<br><br>11番, アスターブジエ, -0.3, 有力どころを渡り歩いた近走の流れから今回は角田大和で 騎手ラインはやはり見劣る。ただし中竹和也厩舎の管理まで否定するほどではなく マイナス幅は縮める。<br><br>12番, カエルム, +0.5, 安田翔伍厩舎にM.デムーロの組み合わせは このメンバーでも陣営の格が上位。継続騎乗ではないぶん過大評価は避けるが それでも勝負気配のある鞍上確保としては明確にプラス。<br><br>13番, インジケーター, -0.5, 田山旺佑への乗り替わりは 前走の北村宏司から見ても鞍上強化とは言いにくい。高橋康之厩舎を加味しても 今回の芝替わりで陣営の後押しは薄い。<br><br>14番, ウインデイジー, -0.2, 松若風馬への乗り替わり自体は悪くないが 近走の騎手が定まらず継続性を欠く。宮徹厩舎のベテラン力を見ても 中立より少し下が妥当。<br><br>15番, アロンディ, +0.3, 西村淳也に戻す判断はプラスだが それだけで大きく振るほどではない。武英智厩舎が勝たせた時のラインを戻してきた点は評価しつつ 加点幅は抑える。<br><br>16番, キーパフォーマー, -0.3, 近走の騎手ラインと比べると今回は吉村誠之助で厚みは下がる。辻野泰之厩舎でも 陣営面の押しは強くない。<br><br>17番, タイセイフェリーク, -0.2, 藤懸貴志に戻る形で全くの未知ではないが 主戦としての継続性は乏しい。青木孝文厩舎の遠征込みでも 陣営面は強調材料不足。<br><br>18番, ファームツエンティ, -0.4, 松山弘平や武豊から今回は酒井学への乗り替わりで 鞍上の迫力は一段落ちる。北出成人厩舎は堅実でも 今回は陣営強化の局面ではない。</p>
+</details>
+<details><summary>全体批判・確定(matome)</summary>
+<p style="margin:4px 0;"><b>全体批判:</b><br>6番サクソンジェンヌは最上位評価でも不自然ではないが、牝馬限定戦からの臨戦で阪神芝2200m稍重の混合戦に替わる点まで踏まえると、頭固定級とまで見るのはやや慎重でもよいのではないか。15番アロンディは阪神替わりと距離適性で見直せる一方、直近の同距離15着を踏まえると2位は少し信用しすぎの余地があり、近2走の3勝クラスで差の少ない競馬をしている8番ナムラフッカーを上に取る再考余地がある。11番アスターブジエは追い切りは良いが近走は善戦止まりで差し届かないリスクがあり、長めの距離で大きく崩れず稍重実績もある9番サークルオブジョイの方を上に見る余地もありそう。全体としては15番アロンディと11番アスターブジエがやや上がりすぎ、8番ナムラフッカーと9番サークルオブジョイがやや下がりすぎではないか。</p>
+<p style="margin:4px 0;"><b>matome(確定):</b><br>6番, サクソンジェンヌ, 24%, 6番サクソンジェンヌは中山芝2200mで0.0秒差4着の実績と安定した先行力を評価して最上位です。critic_gouseiの「牝馬限定戦から混合戦で頭固定は慎重」は採用しつつも地力上位判断は維持しました。<br><br>8番, ナムラフッカー, 21%, 8番ナムラフッカーは近2走の3勝クラス長距離戦で差の少ない競馬を続けており阪神外回りよりも今回の持久戦条件は合います。critic_gouseiの「15番アロンディより上に取る再考余地」は採用しました。<br><br>9番, サークルオブジョイ, 19%, 9番サークルオブジョイは2400m以上で大崩れが少なく重い芝の勝利歴もあって稍重の阪神芝2200mはむしろ歓迎です。critic_gouseiの「11番アスターブジエより上に見たい」は採用しました。<br><br>15番, アロンディ, 17%, 15番アロンディは阪神替わりと中長距離適性で巻き返し可能で調教気配も上向きです。もっとも前走同距離15着は無視できずcritic_gouseiの過大評価警戒は採用して4番手に下げました。<br><br>10番, サトノクローク, 15%, 10番サトノクロークは前走烏丸Sで0.0秒差2着かつ指数最上位で展開を作れる強みがあります。critic_gouseiの対象外でしたが近走内容だけなら11番アスターブジエより前に取る価値があると判断しました。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>6</td><td class="left horse-name">サクソンジェンヌ</td><td>11.5%</td><td>7.6</td><td>2</td><td class="ev-low">0.87</td></tr><tr><td>2</td><td>8</td><td class="left horse-name">ナムラフッカー</td><td>8.9%</td><td>19.8</td><td>10</td><td class="ev-mid">1.77</td></tr><tr><td>3</td><td>10</td><td class="left horse-name">サトノクローク</td><td>8.8%</td><td>15.8</td><td>7</td><td class="ev-mid">1.39</td></tr><tr><td>4</td><td>15</td><td class="left horse-name">アロンディ</td><td>8.6%</td><td>10.0</td><td>5</td><td class="ev-low">0.86</td></tr><tr><td>5</td><td>3</td><td class="left horse-name">シュバルツマサムネ</td><td>7.1%</td><td>23.9</td><td>12</td><td class="ev-mid">1.70</td></tr><tr><td>6</td><td>9</td><td class="left horse-name">サークルオブジョイ</td><td>6.8%</td><td>11.4</td><td>6</td><td class="ev-low">0.77</td></tr><tr><td>7</td><td>11</td><td class="left horse-name">アスターブジエ</td><td>6.2%</td><td>26.7</td><td>15</td><td class="ev-mid">1.65</td></tr><tr><td>8</td><td>12</td><td class="left horse-name">カエルム</td><td>6.1%</td><td>4.8</td><td>1</td><td class="ev-low">0.29</td></tr><tr><td>9</td><td>17</td><td class="left horse-name">タイセイフェリーク</td><td>5.5%</td><td>24.3</td><td>13</td><td class="ev-mid">1.35</td></tr><tr><td>10</td><td>18</td><td class="left horse-name">ファームツエンティ</td><td>5.4%</td><td>7.9</td><td>3</td><td class="ev-low">0.43</td></tr><tr><td>11</td><td>2</td><td class="left horse-name">サダムオプシス</td><td>5.3%</td><td>17.4</td><td>9</td><td class="ev-low">0.92</td></tr><tr><td>12</td><td>16</td><td class="left horse-name">キーパフォーマー</td><td>4.8%</td><td>16.9</td><td>8</td><td class="ev-low">0.82</td></tr><tr><td>13</td><td>5</td><td class="left horse-name">ピンキープロミス</td><td>4.6%</td><td>24.8</td><td>14</td><td class="ev-mid">1.15</td></tr><tr><td>14</td><td>7</td><td class="left horse-name">ドットクルー</td><td>4.5%</td><td>44.0</td><td>17</td><td class="ev-mid">1.97</td></tr><tr><td>15</td><td>14</td><td class="left horse-name">ウインデイジー</td><td>4.1%</td><td>9.6</td><td>4</td><td class="ev-low">0.40</td></tr><tr><td>16</td><td>4</td><td class="left horse-name">メイショウソウタ</td><td>0.7%</td><td>23.5</td><td>11</td><td class="ev-low">0.17</td></tr><tr><td>17</td><td>13</td><td class="left horse-name">インジケーター</td><td>0.6%</td><td>43.0</td><td>16</td><td class="ev-low">0.27</td></tr><tr><td>18</td><td>1</td><td class="left horse-name">シャルクハフト</td><td>0.5%</td><td>60.9</td><td>18</td><td class="ev-low">0.28</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※CC推定勝率をそのまま使用（EV_POWER補正なし）</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">6 サクソンジェンヌ</td><td>11.5%</td><td>7.6</td><td class="ev-low">0.72</td></tr><tr><td>複勝</td><td class="left">6 サクソンジェンヌ</td><td>32.8%</td><td>3.0</td><td class="ev-low">0.85</td></tr><tr><td>馬連</td><td class="left">6 サクソンジェンヌ-8 ナムラフッカー</td><td>2.3%</td><td>86.1</td><td class="ev-mid">1.60</td></tr><tr><td>ワイド</td><td class="left">6 サクソンジェンヌ-8 ナムラフッカー</td><td>6.6%</td><td>27.0</td><td class="ev-mid">1.44</td></tr><tr><td>馬単</td><td class="left">6 サクソンジェンヌ→8 ナムラフッカー</td><td>1.2%</td><td>153.1</td><td class="ev-mid">1.44</td></tr><tr><td>3連複</td><td class="left">6 サクソンジェンヌ-8 ナムラフッカー-10 サトノクローク</td><td>0.8%</td><td>347.5</td><td class="ev-high">2.10</td></tr><tr><td>3連単</td><td class="left">6 サクソンジェンヌ→8 ナムラフッカー→10 サトノクローク</td><td>0.1%</td><td>1787.5</td><td class="ev-mid">1.86</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率（EV_POWER=1.01乗補正適用）/ NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 200円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">6 サクソンジェンヌ</td><td>7.6</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 200円
+</p>
+</div></div>
+
+<div class="footer-version">v4.0</div>
+</div>
+</body>
+</html>
