@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>バーデンバーデンカップ 2026/06/27 FUKUSHIMA 11R (06/26 23:08 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>バーデンバーデンカップ 2026/06/27 FUKUSHIMA 11R (06/26 23:08 予想 馬体重なし)</h1>
+  <div class="meta">芝2000m（右） | 稍重 | 9頭立て | 2回 福島 1日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 9頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">3. ハニーコム</div>
+      <div class="pick-jockey">戸崎 圭太 / 蛯名 正義</div>
+    </div>
+    <div class="pick-prob">18.6%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">7. リーティアコナル</div>
+      <div class="pick-jockey">小崎 綾也 / 高橋 一哉</div>
+    </div>
+    <div class="pick-prob">17.8%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">4. マリアイリダータ</div>
+      <div class="pick-jockey">坂井 瑠星 / 田中 博康</div>
+    </div>
+    <div class="pick-prob">16.5%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">9頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">テーオーダグラス</td><td>牡5</td><td>58</td><td>横山 典弘</td><td>須貝 尚介</td><td>リアルスティール</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ノーランサンライズ</td><td>牝4</td><td>56</td><td>菊沢 一樹</td><td>佐藤 悠太</td><td>キタサンブラック</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ハニーコム</td><td>牝5</td><td>56</td><td>戸崎 圭太</td><td>蛯名 正義</td><td>シルバーステート</td><td>ホワイトマズル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">マリアイリダータ</td><td>牝4</td><td>56</td><td>坂井 瑠星</td><td>田中 博康</td><td>ドゥラメンテ</td><td>オルフェーヴル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">ホウオウスーペリア</td><td>牡6</td><td>58</td><td>津村 明秀</td><td>吉岡 辰弥</td><td>スクリーンヒーロー</td><td>Shamardal</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">ホルトバージ</td><td>牡5</td><td>58</td><td>石川 裕紀人</td><td>柴田 卓</td><td>キンシャサノキセキ</td><td>Zensational</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>7</td><td class="left horse-name">リーティアコナル</td><td>牡4</td><td>58</td><td>小崎 綾也</td><td>高橋 一哉</td><td>Kingman</td><td>English Channel</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>8</td><td class="left horse-name">フィオレストラーダ</td><td>牝4</td><td>56</td><td>荻野 極</td><td>杉山 晴紀</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>9</td><td class="left horse-name">アマイ</td><td>牝6</td><td>56</td><td>原 優介</td><td>伊藤 大士</td><td>ダノンバラード</td><td>タイキシャトル</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ハニーコム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">マリアイリダータ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">リーティアコナル</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ハニーコム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">リーティアコナル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">マリアイリダータ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">リーティアコナル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ハニーコム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">マリアイリダータ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ハニーコム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">リーティアコナル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">マリアイリダータ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">リーティアコナル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ハニーコム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">マリアイリダータ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.60</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.40</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ハニーコム</span></td>
+<td>+0.66</td>
+<td>+0.34</td>
+<td>+0.26</td>
+<td>+0.28</td>
+<td>+0.38</td>
+<td>20.2</td>
+<td>17.5</td>
+<td>14.4</td>
+<td><b>18.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">リーティアコナル</span></td>
+<td>+0.44</td>
+<td>+0.24</td>
+<td>+0.32</td>
+<td>+0.44</td>
+<td>+0.62</td>
+<td>18.0</td>
+<td>18.5</td>
+<td>16.4</td>
+<td><b>17.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">マリアイリダータ</span></td>
+<td>+0.22</td>
+<td>+0.26</td>
+<td>+0.46</td>
+<td>+0.50</td>
+<td>+0.52</td>
+<td>15.5</td>
+<td>18.1</td>
+<td>18.4</td>
+<td><b>16.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">アマイ</span></td>
+<td>+0.30</td>
+<td>-0.34</td>
+<td>+0.06</td>
+<td>+0.14</td>
+<td>+0.24</td>
+<td>12.2</td>
+<td>13.3</td>
+<td>11.0</td>
+<td><b>12.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">フィオレストラーダ</span></td>
+<td>+0.06</td>
+<td>+0.02</td>
+<td>+0.32</td>
+<td>+0.50</td>
+<td>-0.04</td>
+<td>11.6</td>
+<td>10.1</td>
+<td>13.0</td>
+<td><b>11.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ホウオウスーペリア</span></td>
+<td>-0.02</td>
+<td>+0.02</td>
+<td>-0.46</td>
+<td>+0.14</td>
+<td>+0.02</td>
+<td>9.2</td>
+<td>-</td>
+<td>7.8</td>
+<td><b>8.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ノーランサンライズ</span></td>
+<td>-0.34</td>
+<td>+0.06</td>
+<td>-0.04</td>
+<td>+0.24</td>
+<td>-0.22</td>
+<td>6.5</td>
+<td>-</td>
+<td>8.8</td>
+<td><b>7.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">テーオーダグラス</span></td>
+<td>-0.58</td>
+<td>+0.14</td>
+<td>-0.22</td>
+<td>+0.22</td>
+<td>+0.26</td>
+<td>4.5</td>
+<td>-</td>
+<td>6.0</td>
+<td><b>4.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ホルトバージ</span></td>
+<td>-0.68</td>
+<td>-0.30</td>
+<td>-0.32</td>
+<td>-0.62</td>
+<td>-0.28</td>
+<td>2.3</td>
+<td>-</td>
+<td>4.2</td>
+<td><b>2.6</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行2</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行2の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, テーオーダグラス, -0.5, 近5走の3勝クラスで8着12着13着15着8着と明確に頭打ちで 芝でもダでも着差と着順が足りない。直近の芝1800mでも指数81.9止まりで 3勝クラスの地力比較では強調しにくい。<br><br>2番, ノーランサンライズ, -0.2, 同距離の3勝クラスで5着0.9秒差と11着0.8秒差なら大きくは崩れていないが 抜けた実績まではない。2勝クラス勝ちはあるものの 指数83.5は福島1800mでのもので 今回の3勝クラス突破を強く裏付けるほどではない。<br><br>3番, ハニーコム, +0.5, 前走シドニーTで2着0.2秒差かつ2000mで1分59秒6は この組み合わせで素直に高評価できる。ユートピアS5着0.3秒差で指数86.1もあり 3勝クラスで上位能力を既に示している。<br><br>4番, マリアイリダータ, +0.4, まだ3勝クラス実績はないが 近4走が1着1着2着2着で崩れておらず 同距離2000mでも1着2回2着1回と安定感が高い。指数は84.9と80.5があり 2勝クラスからの昇級馬としては通用圏の実績を持つ。<br><br>5番, ホウオウスーペリア, -0.1, 芝2000mの美浦Sで6着0.4秒差は悪くないが 近走の主戦場がダートで 芝の継続的な裏付けは弱い。芝2000mで押し上げるほどの近走実績はなく 実績軸では中立やや下。<br><br>6番, ホルトバージ, -0.6, 芝2000mの関門橋Sで11着1.0秒差と明確に足りず 近5走全体もダート中心で芝実績が薄い。近走成績の質からは 3勝クラス芝2000mで買える裏付けが乏しい。<br><br>7番, リーティアコナル, +0.6, 2走前に中山芝2000mの2勝クラスを1分59秒1で完勝し指数85.3は この組み合わせでかなり優秀。昇級初戦のサンシャインSでも7着0.3秒差と僅差で 3勝クラスでも即通用の実績を示した。<br><br>8番, フィオレストラーダ, +0.2, 同距離2000mを2連勝している点は評価でき 特に福島2000mの1分58秒5は時計面で目を引く。ただし相手は1勝クラスと牝馬2勝クラスで 指数78.5までだと3勝クラスでの絶対値はまだ測り切れない。<br><br>9番, アマイ, +0.2, 近3走の3勝クラス芝2000mで5着0.1秒差 7着0.4秒差とこの級で一定の地力は見せている。勝ち切る迫力は薄いが 指数83.8があり 実績面では軽視しにくい。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番マリアイリダータは3勝クラス実績なし・指数も80前後中心なのに+0.4はやや盛り気味ではないか。対して9番アマイは3勝クラス芝2000mで0.1秒差5着や指数83.8があり、+0.2は控えめに見える。7番リーティアコナルの高評価は理解できるが、3勝クラス実績は2200mの7着0.3差1戦で、同距離3勝2着の3番ハニーコムとの差の説明を詰めたい。8番フィオレストラーダは理由文が慎重なのに+0.2が甘めで、実績派なら0前後でもよさそう。5番ホウオウスーペリアの-0.1は、直近芝2000m3勝6着0.4差を踏まえると2番ノーランサンライズとの差の説明を見直す余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, テーオーダグラス, -0.5, 近5走の3勝クラスで8着12着13着15着8着と苦戦が続き、芝でもダートでも着差・指数ともに足りない。直近の東京芝1800mも8着0.5秒差で指数81.9止まりなら、芝2000mの3勝クラスで強調材料は薄い。<br><br>2番, ノーランサンライズ, -0.2, 3勝クラス芝2000mで5着0.9秒差、11着0.8秒差と大崩れではないが、指数77.5と77.1ではこの級の突破実績として弱い。2勝クラス勝ちの指数83.5はあるが、現級の裏付けとしては5番や9番より見劣る。<br><br>3番, ハニーコム, +0.6, 前走シドニーTで2着0.2秒差、1分59秒6、上がり34.7と同距離3勝クラスで明確に足りる実績を示した。ユートピアS5着0.3秒差で指数86.1もあり、近5走の実績水準はこの組み合わせで最上位級。<br><br>4番, マリアイリダータ, +0.2, 近4走が1着1着2着2着で安定し、芝2000mでも1着2回2着1回と条件実績は整っている。とはいえ現級実績はなく、指数も80.3、80.5中心なら3勝クラスで強く押し上げるほどではなく、昇級での通用余地を軽く評価する程度に留める。<br><br>5番, ホウオウスーペリア, +0.0, 前走美浦Sの芝2000mで6着0.4秒差、指数79.7なら現級で全く足りない内容ではない。芝の継続実績は乏しいが、少なくとも2番ほど現級同条件で見劣る内容ではなく、実績評価は中立が妥当。<br><br>6番, ホルトバージ, -0.6, 芝2000mの関門橋Sで11着1.0秒差、指数75.1と明確に不足しており、近走全体もダートでの凡走が中心だ。今回条件の芝2000m3勝クラスで上積みを見込める実績裏付けは乏しい。<br><br>7番, リーティアコナル, +0.4, 2走前の中山芝2000mを1分59秒1、指数85.3で勝ち上がった内容は優秀で、距離実績の質は高い。昇級初戦のサンシャインSも7着0.3秒差、指数84.9で通用は示したが、同距離3勝クラス2着歴のある3番よりは実績の直接性で一段下げる。<br><br>8番, フィオレストラーダ, +0.0, 芝2000mを2連勝し、福島2000mで1分58秒5の時計もあるが、相手は1勝クラスと牝馬2勝クラスまでだ。指数も80.4、78.5なら現級で即強調できる水準ではなく、実績派としては中立評価に戻す。<br><br>9番, アマイ, +0.3, 3勝クラス芝2000mで5着0.1秒差、7着0.4秒差と同条件で安定して走れており、指数83.8もこの組では十分通用圏だ。勝ち切れてはいないが、現級同距離の裏付けでは4番より一歩上と見る。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, テーオーダグラス, -0.2, 近走は好位からでも中団からでも運んでおり脚質が定まり切らないうえに, 福島芝2000mの最初のコーナーが近い条件で内枠を生かし切る形が見えにくい。流れが締まっても前が止まり過ぎても展開利を受ける像は薄い。<br><br>2番, ノーランサンライズ, -0.1, 差し寄りの運びになりやすく, 9頭立ての福島2000mで前を見ながら運べるのは悪くないが, 先行勢が少頭数で極端には崩れない想定だと届く場面は限定的。内枠でロスは抑えられるぶん大きなマイナスまでは取らない。<br><br>3番, ハニーコム, +0.2, 先行して脚を使える馬で, 7番と9番の後ろの3番手から流れに乗る形が取りやすい。内寄りの枠で立ち回りやすく, 直線の短い福島なら外を回す差し馬より展開の恩恵を受けやすい。<br><br>4番, マリアイリダータ, +0.1, 中団前あたりで脚を溜めて直線で抜ける形が合いそうで, 先行争いを見ながら4枠からスムーズに入れるのは悪くない。超スローの前残り一本調子になると取りこぼし得るが, 平均的な流れならちょうどいい位置を取れそう。<br><br>5番, ホウオウスーペリア, +0.1, 芝2000mでは好位の内目で流れに乗る形が自然で, 少頭数なら中団外を回される不利が減る。7番と9番が作る流れの直後で我慢できれば, 4角で前との差を詰めやすい。<br><br>6番, ホルトバージ, -0.4, 芝での近走は前半から位置を取り切れず, 今回も先行馬が何頭かいる組み合わせで後手に回る懸念がある。福島2000mで外気味の枠から差す形はロスが出やすく, 展開面でははっきり不利。<br><br>7番, リーティアコナル, +0.5, ハナ候補の筆頭で, この頭数なら自分のリズムで逃げて隊列をすんなり決める絵が描きやすい。9番が来ても番手で折り合える余地があり, 福島の小回りで4角先頭圏を作れる点は展開的に強い。<br><br>8番, フィオレストラーダ, +0.3, 先行力があって外の偶数枠からでも無理なく好位外を取れそうで, 7番の直後か9番の外で流れに乗る形が見える。少頭数なら外々を回る不利が薄く, 直線で前を追う展開は作りやすい。<br><br>9番, アマイ, -0.3, この馬も前に行きたいが大外寄りから7番に並びかけると, 1角までに脚を使わされやすい。単騎ならしぶといが, 今回は逃げ候補が他にもいて平均以上の流れを自分で苦しくする可能性が高い。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>7番リーティアコナル高評価と9番アマイ低評価の非対称さは再点検余地がある。9番アマイは番手でも運べる近走があり、7番リーティアコナルだけ『番手可』とするのは不公平かもしれない。3番ハニーコムと8番フィオレストラーダは想定位置の根拠差が薄く、内で運べる3番ハニーコムより8番フィオレストラーダを上に取る説明が弱い。4番マリアイリダータは展開の幅に対応しやすく、5番ホウオウスーペリアと同列の+0.1は低めかもしれない。1番テーオーダグラスと2番ノーランサンライズは少頭数内枠の利を踏まえると、現状のマイナス評価はやや消極的すぎる可能性がある。6番ホルトバージの低評価は妥当でも、『外差しロス』より『前崩れ待ちになりやすい隊列』を主因にしたほうが比較整理しやすい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, テーオーダグラス, +0.0, 少頭数の1枠で最初のコーナーまでに内で脚をためやすく, 展開不利を強く受ける並びではない。とはいえ自分から隊列を取りに行く像も薄く, 展開面の押し上げまでは弱い。<br><br>2番, ノーランサンライズ, +0.0, 2枠なら前を見ながらロスなく中団の内に収まりやすく, 9頭立てでは差し遅れリスクが少し和らぐ。前が止まらない形でも外を回されにくいぶん中立まで引き上げるが, 展開で強く浮くタイプではない。<br><br>3番, ハニーコム, +0.3, 7番か9番が前を取り, その直後の好位3番手あたりを内で運ぶ形が最も描きやすい。福島2000mの小回りで内々を立ち回れる利がはっきりあり, 直線も先に動ける。<br><br>4番, マリアイリダータ, +0.2, 前が7番9番で流れを作るなら, その後ろの4,5番手で脚をためて4角から無理なく進出できる。極端な前残りにも差し決着にも寄り過ぎず, 隊列の幅に対応しやすい点は5番より買いやすい。<br><br>5番, ホウオウスーペリア, +0.1, 先団直後の外目で流れに乗れれば4角で置かれにくく, 少頭数なら進路も作りやすい。展開が向く余地はあるが, 3番4番ほど内での機動力までは見込みにくい。<br><br>6番, ホルトバージ, -0.4, 7番9番に3番8番まで前受け候補がいて, この馬はどうしても前崩れ待ちの隊列になりやすい。福島2000mで差し一本の形になると4角までに前との差を詰めにくく, 展開面では明確に不利。<br><br>7番, リーティアコナル, +0.4, ハナの有力候補で, 外2頭の並びでも先に主導権を取って1角へ入る絵はまだ最も描きやすい。9番が無理に競らず番手に収まるなら平均やや遅めに落とし込みやすく, 4角先頭圏の利は大きい。<br><br>8番, フィオレストラーダ, +0.1, 先行力はあるので7番9番を見ながら外3番手か4番手には乗れそうで, 流れ自体には乗り遅れにくい。ただし3番より内で脚をためる形は取りにくく, 外を回るぶん上積みは控えめ。<br><br>9番, アマイ, -0.1, 7番と同型でも近走どおり番手で我慢する形は取れるので, 前走想定ほど大きくは割り引かない。ただ大外から1角までに位置を決めるぶん少し脚を使いやすく, 7番よりは展開の自由度が落ちる。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, テーオーダグラス, -0.2, 当日馬体重は未発表なので増減ゼロ前提だが近3走は496kgから488kgまで絞れてさらに前走484kgと減少傾向で戻り切った感じは薄い。追い切りはキビキビでも今回は55kgから58kgへ3kg増で体調面の後押しは弱い。<br><br>2番, ノーランサンライズ, +0.1, 492kgから502kgまで段階的に増えてきた推移で急な太め残りという形ではなく馬格のある牝馬なら56kgもこなしやすい。一杯に追って5F65.6-1F11.2なら負荷は十分で5週空きの仕上げも悪くない。<br><br>3番, ハニーコム, +0.2, 前走434kgへ4kg減で走っており近5走も434kgから438kgの狭いレンジに収まっていて体調のブレが小さい。小柄で56kgは楽ではないが馬なりで好気配維持なら当日のデキは安定寄りと見る。<br><br>4番, マリアイリダータ, +0.5, 436kgから454kgまで使いつつ馬体を増やしながら内容も上げていて叩きながら良化した典型の推移に見える。今回は54kgから56kgへ2kg増でも馬なりで好気配示す上に調子↗なら上積みを強めに取れる。<br><br>5番, ホウオウスーペリア, -0.5, 調教評価が「太めも力強い」で3か月ぶりの今回はまず絞り切れているかが課題になる。前走490kgも重めに出やすい並びで58kg据え置きでも体調面は割引が必要。<br><br>6番, ホルトバージ, -0.4, 近走の馬体は476kgから484kgの間で揺れているが今回は前走から4週で大きな変わり身を示す材料が薄い。追い切りも「あまり変わり身無」で58kg据え置きなら体調面の押し上げは見込みにくい。<br><br>7番, リーティアコナル, +0.4, 1月の482kgから2月480kgで勝ち上がりその後3月480kg 4月486kgと増やして内容を落としておらず馬体の充実が感じられる。2か月半ぶりでも「久々も好気配」かつ調子↗で486kg前後なら58kgでも耐えやすい。<br><br>8番, フィオレストラーダ, +0.3, 前走は456kgから468kgへ12kg増で勝っており太めではなく回復分や成長分が実戦に結び付いた形と見やすい。中4週で同斤量56kgならその好状態を維持しやすく調教もデキ安定で素直にプラス。<br><br>9番, アマイ, -0.2, 474kgから470kg 468kgと続けて減っており近2走は少しずつ消耗が見える並びだ。3か月空いて立て直し余地はあるが今回は54kgで走れた1月時より2kg重い56kgでもあり体調面ではわずかに下げる。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番マリアイリダータは『54kg→56kg増』の根拠が今回と噛み合わず、+0.5は盛り気味に見える。7番リーティアコナルも久々かつ前走486kgの増加分を楽観しすぎで+0.4は再点検余地。逆に9番アマイは微減2走を消耗と見て-0.2まで下げるのは厳しく、休み明けと調教『動きハツラツ』をもっと拾えないか。1番テーオーダグラスは斤量増を体調評価に混ぜすぎで、純粋な気配評価との整合を見直したい。2番ノーランサンライズは段階的馬体増を素直にプラス扱いする根拠が薄く、8番フィオレストラーダは12kg増で勝って中4週・デキ安定なのに相対的に加点が控えめに見える。3番ハニーコムと9番アマイで、馬体減の扱いの物差しがズレていないかも確認したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, テーオーダグラス, -0.1, 当日馬体重は未発表で増減ゼロ前提だが、496kgから484kgまでの推移は絞れてきた面と消耗懸念が半々で、体調面で強くは押せない。追い切りは動きキビキビで気配自体は悪くなく、前回より下げ幅は小さく見直す。<br><br>2番, ノーランサンライズ, +0.0, 492kgから502kgへ段階的に増えているが、この並びだけで明確な上積みとは言い切れず、太め残りとも断定しにくい。負荷の強い追い切りはこなしており、体調評価としては中立までにとどめる。<br><br>3番, ハニーコム, +0.2, 近5走が434kgから438kgの狭いレンジで、前走434kgでも走れている以上は馬体減を悪化材料とまでは取りにくい。馬なりで好気配維持なら、当日の仕上がりは安定寄りと見てよい。<br><br>4番, マリアイリダータ, +0.4, 436kgから454kgまで使いながら馬体を増やし、その増加が緩さではなく充実に出ているのは好感が持てる。今回の斤量は前走と同じ56kgで、好気配示す追い切りと調子↗を合わせれば体調面の加点は依然必要だが、過大評価は避けて少し抑える。<br><br>5番, ホウオウスーペリア, -0.5, 調教評価が「太めも力強い」で、3か月ぶりの今回はまず絞り切れているかが焦点になる。力強さは認めても、当日の仕上がり不安がはっきり残るぶん体調面では明確に割り引く。<br><br>6番, ホルトバージ, -0.3, 476kgから484kgの範囲で動いているが、今回は中4週で調教評価も「あまり変わり身無」と上向き材料が薄い。大きなデキ落ちまでは感じない一方、押し上げ要素も乏しくやや下げにとどめる。<br><br>7番, リーティアコナル, +0.2, 480kg前後で走れていた馬が前走486kgでも崩れておらず、馬体の充実自体はマイナスではない。とはいえ今回は2か月半ぶりで、久々も好気配とはいえ当日数字未確認の段階では強く盛りすぎず控えめなプラスに修正する。<br><br>8番, フィオレストラーダ, +0.4, 前走の456kgから468kgへの12kg増で勝ち切ったのは、太め残りより回復と成長が実戦で機能した形と見やすい。中4週で調教もデキ安定なら、その好状態の維持を素直に評価して加点を強める。<br><br>9番, アマイ, +0.1, 474kgから470kg、468kgへの微減2走だけで消耗と決めつけるほどではなく、減り幅はまだ許容範囲だ。3か月ぶりで立て直しが利きやすく、追い切りの動きハツラツを踏まえると体調面はわずかに上向きへ見直せる。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, テーオーダグラス, +0.2, リアルスティールに母父ハービンジャーなら中距離芝での持続力には筋が通る配合で 福島2000mへの条件替わりは血統的に悪くない。瞬発力一本の配合ではなく 小回りで脚を長く使う形は合う。<br><br>2番, ノーランサンライズ, +0.3, キタサンブラックに母父クロフネはスタミナとパワーを補いやすく 2000m前後は守備範囲に入る。福島の小回りで機動力を問われる形も血統的にはむしろ噛み合う。<br><br>3番, ハニーコム, +0.1, シルバーステートに母父ホワイトマズルで 1800mから2000mの芝中距離に素直な配合。母父由来の底力が入るぶん距離延長自体は自然だが 馬場悪化で大きく跳ねるほどの強調材料まではない。<br><br>4番, マリアイリダータ, +0.8, ドゥラメンテに母父オルフェーヴルは中距離での持続力と機動力の質が高く この条件に対する血統適性はかなり濃い。牝馬でも非力に出にくい配合で 福島2000mのコーナー4回も前向きに見られる。<br><br>5番, ホウオウスーペリア, -0.1, スクリーンヒーローに母父Shamardalなら芝2000m自体は守備範囲だが 本質はもう少しタフさやパワー寄りに出やすい。福島芝2000mで明確に血統後押しが強いタイプではなく 中立よりわずかに下げる。<br><br>6番, ホルトバージ, -0.7, キンシャサノキセキに母父Zensationalでは短距離からマイル寄りのスピード色が強く 芝2000mの配合としてはかなり薄い。距離のこなしに絶対はないが 血統面だけならここは明確に不利。<br><br>7番, リーティアコナル, +0.5, Kingmanに母父English Channelで 2000m前後の芝でしなやかなスピードと持続力を両立しやすい配合。欧州的な底力が入るため 小回りでも単なる切れ勝負にならない福島2000mは合いやすい。<br><br>8番, フィオレストラーダ, +0.6, エピファネイアに母父ディープインパクトは芝中距離での完成度が高く 牝馬の2000m戦ではかなり王道の配合。軽い切れだけでなく持続力にも寄るので 福島の内回り的な流れにも対応しやすい。<br><br>9番, アマイ, +0.2, ダノンバラードに母父タイキシャトルで 母系のスピードを父の中距離適性が受ける形だから 2000mを先行して粘るイメージは作りやすい。一本調子の危うさはあるが 福島の小回り自体は血統面で大きくは割り引かない。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>見直し候補は、過大評価寄りなら4番マリアイリダータと7番リーティアコナル。どちらも血統の良さを福島2000mの小回り適性へ強く直結しすぎていないか再点検余地がある。逆に3番ハニーコムは『芝中距離に素直』『距離延長自然』という理由の割に+0.1は低く、付値と説明の整合性が弱い。5番ホウオウスーペリアはパワー寄りをなぜマイナスにするのか根拠補強が必要。9番アマイは戦法像の説明に寄っており、血統適性の積極加点としては甘い可能性がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, テーオーダグラス, +0.2, リアルスティールに母父ハービンジャーなら芝中距離での持続力と一定のパワーは配合どおりで 福島2000mへの条件替わりは血統的に無理がない。鋭い瞬発力特化ではないぶん 小回りで長く脚を使う形は合う。<br><br>2番, ノーランサンライズ, +0.3, キタサンブラックに母父クロフネは中距離のスタミナにパワーを補いやすい配合で 2000m前後は血統の守備範囲に入る。軽さ一辺倒ではないので 福島の機動力戦でも血統面の裏付けはある。<br><br>3番, ハニーコム, +0.2, シルバーステートに母父ホワイトマズルは芝1800mから2000mで素直に噛み合いやすく 距離延長を前向きに見やすい配合。強烈な上積みまでは断定しにくいが 中立よりは確かに上向く。<br><br>4番, マリアイリダータ, +0.5, ドゥラメンテに母父オルフェーヴルは中距離での持続力と底力が濃く 2000mそのものへの血統適性は高い。もっとも 血統の良さをそのまま福島小回り巧者へ直結し切るのはやりすぎなので 強い加点からは一段下げる。<br><br>5番, ホウオウスーペリア, +0.0, スクリーンヒーローに母父Shamardalは芝2000mでパワーと持続力に寄りやすく 条件自体は十分守備範囲。小回り芝で明確な血統上積みまでは見込みにくいが マイナスに振る根拠も薄く中立が妥当。<br><br>6番, ホルトバージ, -0.7, キンシャサノキセキに母父Zensationalではスピード寄りの配合色が強く 芝2000mで問われる持続的な中距離適性はかなり薄い。こなす余地を全否定はしないが 血統面だけならここははっきり不利。<br><br>7番, リーティアコナル, +0.3, Kingmanに母父English Channelなら芝2000m前後でのしなやかなスピードと底力は評価できる。とはいえ 欧州的な良さをそのまま福島2000mの小回り適性へ強く結びつけるのは過大で 条件適性の加点は中程度にとどめる。<br><br>8番, フィオレストラーダ, +0.5, エピファネイアに母父ディープインパクトは芝中距離で王道寄りの配合で 牝馬の2000m戦に対する血統の完成度は高い。切れだけでなく持続力にも寄るため 福島2000mでも血統面の後押しは明確。<br><br>9番, アマイ, +0.1, ダノンバラードに母父タイキシャトルは 父の中距離持続力に母系のスピードと前向きさが入る配合で 1800mから2000mの芝自体は合いやすい。積極的に大きく押し上げるほどではないが 条件適性としてはわずかにプラス。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, テーオーダグラス, +0.3, 横山典弘への乗り替わりは陣営面では明確な強化です。須貝尚介厩舎も勝負どころで頼れる陣営ですが 継続騎乗ではないぶん上積みは中程度にとどめます。<br><br>2番, ノーランサンライズ, -0.4, ここで菊沢一樹への乗り替わりは陣営面では強調しにくいです。近走で小崎綾也や坂井瑠星を使ってきた流れから見ると 手綱の後押しはやや弱くなりました。<br><br>3番, ハニーコム, +0.4, 戸崎圭太への乗り替わりはこの馬にとって素直にプラスです。蛯名正義厩舎も丁寧に使うタイプで 上位騎手の判断力が加わる点を評価します。<br><br>4番, マリアイリダータ, +0.8, 坂井瑠星へのスイッチは陣営の勝負気配が濃いです。田中博康厩舎は上のクラスでも仕上げと使い方がうまく ここは陣営力でかなり押し上げます。<br><br>5番, ホウオウスーペリア, +0.1, 津村明秀なら大きく割り引く必要はなく 吉岡辰弥厩舎との組み合わせも無難です。ただし継続騎乗でもなければ 強い勝負手とも言い切れません。<br><br>6番, ホルトバージ, -0.5, 騎手が定まらない中で今回は石川裕紀人に替わる形で 陣営の軸が見えにくいです。継続性の薄さと厩舎の押し出しの弱さから このメンバーではやや下げます。<br><br>7番, リーティアコナル, +0.7, 小崎綾也がここまで継続して乗って結果も積み上げており 手の内に入れている強みは大きいです。乗り替わり全盛の中でこの継続騎乗は陣営面でかなり信頼できます。<br><br>8番, フィオレストラーダ, +0.2, 杉山晴紀厩舎は上昇馬をきっちり運ぶ印象があり 陣営の地力は評価できます。もっとも松若風馬から荻野極への乗り替わりは強烈な上積みとまでは言えず 小幅の加点です。<br><br>9番, アマイ, +0.2, 原優介の継続騎乗でこの馬の形はつかめています。伊藤大士厩舎も含めて派手さはないものの 継続の安心感は陣営面でわずかにプラスです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番マリアイリダータの+0.8は坂井瑠星騎手起用の強化を見込み過ぎかもしれず、結果を出していた継続線を切る点との整合を再確認したい。8番フィオレストラーダは松若風馬騎手で連勝中なのに乗り替わりで加点しており、継続重視の軸とズレがある。2番ノーランサンライズは坂井瑠星比較より、小崎綾也騎手との実績ある継続ライン断絶を主因に置く方が自然ではないか。6番ホルトバージの-0.5は、1番テーオーダグラスや3番ハニーコムも騎手固定でない中で相対的に厳し過ぎないか。3番ハニーコムと9番アマイも、継続性評価とのバランス上、付値の差の説明を補いたい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, テーオーダグラス, +0.3, 横山典弘への乗り替わりはこの組では陣営面の押し材料です。須貝尚介厩舎の勝負どころでの送り込みも信頼でき 大き過ぎないが明確な加点は必要です。<br><br>2番, ノーランサンライズ, -0.4, 福島で勝ち鞍があり近走でも小崎綾也との継続線があっただけに ここでそのラインを切るのは陣営面で割引です。菊沢一樹起用自体を強く否定するほどではないが 手の内を知る継続騎乗を失ったぶん下げます。<br><br>3番, ハニーコム, +0.2, ここまで騎手が固定されていない馬だけに 戸崎圭太への乗り替わりは純粋に鞍上強化として見ます。ただし継続騎乗の利はないので 上げ幅は中程度までです。<br><br>4番, マリアイリダータ, +0.5, 坂井瑠星の起用は陣営の本気度を感じるプラス材料です。もっとも直近2勝が舟山瑠泉との継続線だった以上 その流れを切るぶんを差し引いて 強いが上げ過ぎない評価に修正します。<br><br>5番, ホウオウスーペリア, +0.1, 津村明秀ならこの条件で陣営面の信頼は保てます。吉岡辰弥厩舎との組み合わせも無難で 強い勝負手ではないが小幅には上げます。<br><br>6番, ホルトバージ, -0.2, 騎手が定まりにくく 今回も継続騎乗ではない点は陣営面で強調しにくいです。ただし他馬にも乗り替わりはあるので 大きくは下げず軽いマイナスにとどめます。<br><br>7番, リーティアコナル, +0.7, 小崎綾也で一貫して使い続け この馬の形を完全に把握している継続騎乗は大きな強みです。派手な名手起用ではなくても 手の内に入れた陣営の積み上げはこのレースでかなり評価できます。<br><br>8番, フィオレストラーダ, -0.2, 松若風馬で連勝してきた流れをここで切るのは 陣営面ではむしろ小さな減点です。杉山晴紀厩舎の地力は認めても 継続騎乗重視の軸では上積みより断絶のほうを取ります。<br><br>9番, アマイ, +0.2, 原優介の継続騎乗でこの馬の先行リズムを共有できている点は素直に買えます。3番より鞍上の絶対値では見劣っても 継続性という陣営面の裏付けでは同程度に評価できます。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>4番, マリアイリダータ, 24%, 4番マリアイリダータは合成3位では物足りず 無敗で底を見せていない上に2000mで安定し福島向きの立ち回りもできるので 本来は上位3頭ではなく首位評価まで引き上げたい。<br><br>3番, ハニーコム, 22%, 3番ハニーコムは合成1位だと少し持ち上がりすぎで 近走の安定感は高いが勝ち切る迫力では4番マリアイリダータに見劣りし マークされる立場での押し切りにはやや疑問が残る。<br><br>7番, リーティアコナル, 21%, 7番リーティアコナルは合成2位は理解できる一方で 単騎逃げ前提の評価に寄りすぎており 昇級初戦7着でも差は小さいが福島2000mで同型や早仕掛けが入ると取りこぼしも十分ある。<br><br>9番, アマイ, 18%, 9番アマイは合成4位でもまだ少し低く 3勝クラスで相手なりに踏ん張れる地力と調教気配を評価すべきで 先行勢の中では7番リーティアコナルより展開の融通が利く分だけ上位食い込みの妙味がある。<br><br>8番, フィオレストラーダ, 15%, 8番フィオレストラーダは合成5位で概ね妥当だが 連勝内容は評価しても小頭数の2勝クラス勝ち直後で一気の相手強化は重く 上位3頭に割って入るまでの裏付けはまだ足りない。</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>4番, マリアイリダータ, 19%, 4番マリアイリダータは芝2000mで2連勝中でまだ底を見せておらず 近走内容も着差以上に安定感が高い。昇級でも指数水準は足りており 調教気配の上向きも好材料。<br><br>7番, リーティアコナル, 17%, 7番リーティアコナルは同距離で連勝しており 先行して自分の形に持ち込めるのが強み。前走3勝クラスでも0.3秒差なら通用圏で 久々でも追い切りは良好。<br><br>3番, ハニーコム, 15%, 3番ハニーコムは前走同条件の牝馬3勝クラスで2着と内容が良く この組み合わせなら上位評価しやすい。決め手と安定感のバランスが取れており 戸崎騎手で位置も取りやすい。<br><br>8番, フィオレストラーダ, 13%, 8番フィオレストラーダは福島と京都の芝2000mを連勝して勢いがあり 4歳牝馬で伸びしろもある。相手強化は課題だが近2走の運びは素直で この頭数なら立ち回りやすい。<br><br>9番, アマイ, 11%, 9番アマイは3勝クラスで大きく崩れず 2000mでは先行してしぶとい競馬を続けている。勝ち切る迫力はもう一段ほしいが 調教の動きは良く展開ひとつで粘り込みがある。<br><br>2番, ノーランサンライズ, 9%, 2番ノーランサンライズは近2走の着順は平凡でも 2000mでは一定の形を作れており福島1800m勝ちの小回り適性も感じる。強めの追い切りで動けており 牝馬同士に近い構成なら見直せる。<br><br>5番, ホウオウスーペリア, 7%, 5番ホウオウスーペリアは近走の大半がダートだが 芝2000mの3勝クラスで0.4秒差6着なら全く足りないわけではない。反面 年齢面と調教の太め残り評価で上位までは押し上げにくい。<br><br>1番, テーオーダグラス, 5%, 1番テーオーダグラスは近走着順自体は物足りないが 芝の3勝クラスで差の小さい競馬はできている。今回は58kgで距離延長も歓迎断定まではしづらく 強くは推しにくい立場。<br><br>6番, ホルトバージ, 4%, 6番ホルトバージは芝2000mの近走内容がやや足りず 近況もダート中心で強調材料が少ない。追い切り評価も平凡で 今回は相対的に見劣る。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>3</td><td class="left horse-name">ハニーコム</td><td>18.6%</td><td>11.3</td><td>6</td><td class="ev-high">2.10</td></tr><tr><td>2</td><td>7</td><td class="left horse-name">リーティアコナル</td><td>17.8%</td><td>5.3</td><td>2</td><td class="ev-low">0.94</td></tr><tr><td>3</td><td>4</td><td class="left horse-name">マリアイリダータ</td><td>16.5%</td><td>3.0</td><td>1</td><td class="ev-low">0.50</td></tr><tr><td>4</td><td>9</td><td class="left horse-name">アマイ</td><td>12.2%</td><td>13.6</td><td>7</td><td class="ev-mid">1.66</td></tr><tr><td>5</td><td>8</td><td class="left horse-name">フィオレストラーダ</td><td>11.6%</td><td>6.3</td><td>4</td><td class="ev-low">0.73</td></tr><tr><td>6</td><td>5</td><td class="left horse-name">ホウオウスーペリア</td><td>8.9%</td><td>7.9</td><td>5</td><td class="ev-low">0.71</td></tr><tr><td>7</td><td>2</td><td class="left horse-name">ノーランサンライズ</td><td>7.0%</td><td>5.6</td><td>3</td><td class="ev-low">0.39</td></tr><tr><td>8</td><td>1</td><td class="left horse-name">テーオーダグラス</td><td>4.7%</td><td>13.8</td><td>8</td><td class="ev-low">0.65</td></tr><tr><td>9</td><td>6</td><td class="left horse-name">ホルトバージ</td><td>2.6%</td><td>26.1</td><td>9</td><td class="ev-low">0.69</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 ハニーコム</td><td>18.6%</td><td>11.3</td><td class="ev-mid">1.72</td></tr><tr><td>複勝</td><td class="left">3 ハニーコム</td><td>51.9%</td><td>1.9</td><td class="ev-low">0.89</td></tr><tr><td>馬連</td><td class="left">3 ハニーコム-7 リーティアコナル</td><td>8.1%</td><td>17.8</td><td class="ev-mid">1.17</td></tr><tr><td>ワイド</td><td class="left">3 ハニーコム-7 リーティアコナル</td><td>22.2%</td><td>5.8</td><td class="ev-mid">1.07</td></tr><tr><td>馬単</td><td class="left">3 ハニーコム→7 リーティアコナル</td><td>4.1%</td><td>32.4</td><td class="ev-mid">1.06</td></tr><tr><td>3連複</td><td class="left">3 ハニーコム-4 マリアイリダータ-7 リーティアコナル</td><td>6.2%</td><td>12.0</td><td class="ev-low">0.60</td></tr><tr><td>3連単</td><td class="left">3 ハニーコム→7 リーティアコナル→4 マリアイリダータ</td><td>1.1%</td><td>130.8</td><td class="ev-mid">1.11</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 300円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 ハニーコム</td><td>11.3</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">3 ハニーコム-7 リーティアコナル</td><td>17.8</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>3連複</td><td class="left">3 ハニーコム-4 マリアイリダータ-7 リーティアコナル</td><td>12.0</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 300円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>

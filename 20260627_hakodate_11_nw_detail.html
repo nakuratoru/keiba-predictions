@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青函ステークス 2026/06/27 HAKODATE 11R (06/26 22:59 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>青函ステークス 2026/06/27 HAKODATE 11R (06/26 22:59 予想 馬体重なし)</h1>
+  <div class="meta">芝1200m（右） | 稍重 | 14頭立て | 1回 函館 5日目 サラ系3歳以上 オープン （国際）（特指） ハンデ 14頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">3. ジョーメッドヴィン</div>
+      <div class="pick-jockey">横山 琉人 / 清水 久詞</div>
+    </div>
+    <div class="pick-prob">11.8%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">13. ロードフォアエース</div>
+      <div class="pick-jockey">岩田 康誠 / 友道 康夫</div>
+    </div>
+    <div class="pick-prob">11.5%</div>
+    <div class="pick-pop">9番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">14. ルージュラナキラ</div>
+      <div class="pick-jockey">横山 武史 / 加藤 征弘</div>
+    </div>
+    <div class="pick-prob">11.3%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">14頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ダンツエラン</td><td>牝4</td><td>53</td><td>古川 吉洋</td><td>本田 優</td><td>ロードカナロア</td><td>Into Mischief</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ブラックチャリス</td><td>牝3</td><td>53</td><td>吉田 隼人</td><td>武 幸四郎</td><td>キタサンブラック</td><td>トゥザワールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ジョーメッドヴィン</td><td>牡5</td><td>57</td><td>横山 琉人</td><td>清水 久詞</td><td>ドレフォン</td><td>キングヘイロー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>4</td><td class="left horse-name">ステークホルダー</td><td>牡6</td><td>54</td><td>斎藤 新</td><td>斎藤 誠</td><td>ハービンジャー</td><td>アドマイヤムーン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>5</td><td class="left horse-name">ティニア</td><td>牡6</td><td>56</td><td>佐々木 大輔</td><td>池江 泰寿</td><td>Frankel</td><td>Giant&#x27;s Causeway</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>6</td><td class="left horse-name">クファシル</td><td>牡6</td><td>55</td><td>北村 友一</td><td>池添 学</td><td>モーリス</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>7</td><td class="left horse-name">マイネルレノン</td><td>牡7</td><td>55</td><td>丹内 祐次</td><td>宮 徹</td><td>ダイワメジャー</td><td>マイネルラヴ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>8</td><td class="left horse-name">サウザンサニー</td><td>牡6</td><td>55</td><td>大野 拓弥</td><td>岩戸 孝樹</td><td>タリスマニック</td><td>ワークフォース</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>9</td><td class="left horse-name">モリノドリーム</td><td>牝7</td><td>54</td><td>武 豊</td><td>鈴木 伸尋</td><td>モーリス</td><td>アドマイヤムーン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>10</td><td class="left horse-name">ナムラローズマリー</td><td>牝5</td><td>53</td><td>松本 大輝</td><td>羽月 友彦</td><td>ミッキーアイル</td><td>ヨハネスブルグ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>11</td><td class="left horse-name">ナムラクララ</td><td>牝4</td><td>54</td><td>浜中 俊</td><td>長谷川 浩大</td><td>アドマイヤマーズ</td><td>Storm Cat</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>12</td><td class="left horse-name">アメリカンステージ</td><td>牡4</td><td>57.5</td><td>岩田 望来</td><td>矢作 芳人</td><td>Into Mischief</td><td>Warrior&#x27;s Reward</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>13</td><td class="left horse-name">ロードフォアエース</td><td>牡5</td><td>57.5</td><td>岩田 康誠</td><td>友道 康夫</td><td>ロードカナロア</td><td>War Front</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>14</td><td class="left horse-name">ルージュラナキラ</td><td>牝4</td><td>54</td><td>横山 武史</td><td>加藤 征弘</td><td>アドマイヤマーズ</td><td>カジノドライヴ</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジョーメッドヴィン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ロードフォアエース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ルージュラナキラ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ルージュラナキラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ロードフォアエース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジョーメッドヴィン</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジョーメッドヴィン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ルージュラナキラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ロードフォアエース</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ロードフォアエース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジョーメッドヴィン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ルージュラナキラ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジョーメッドヴィン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ルージュラナキラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ナムラクララ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.60</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#8E8E93'>0.20</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#8E8E93'>0.20</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジョーメッドヴィン</span></td>
+<td>+0.50</td>
+<td>+0.24</td>
+<td>+0.30</td>
+<td>+0.40</td>
+<td>+0.24</td>
+<td>12.4</td>
+<td>10.6</td>
+<td>10.8</td>
+<td><b>11.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ロードフォアエース</span></td>
+<td>+0.52</td>
+<td>-0.30</td>
+<td>+0.00</td>
+<td>+0.64</td>
+<td>+0.60</td>
+<td>11.4</td>
+<td>10.7</td>
+<td>12.8</td>
+<td><b>11.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ルージュラナキラ</span></td>
+<td>+0.40</td>
+<td>-0.12</td>
+<td>+0.30</td>
+<td>+0.26</td>
+<td>+0.52</td>
+<td>10.8</td>
+<td>12.6</td>
+<td>11.7</td>
+<td><b>11.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ブラックチャリス</span></td>
+<td>+0.28</td>
+<td>+0.30</td>
+<td>+0.30</td>
+<td>+0.04</td>
+<td>+0.20</td>
+<td>10.2</td>
+<td>10.6</td>
+<td>9.7</td>
+<td><b>10.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ナムラクララ</span></td>
+<td>+0.34</td>
+<td>-0.18</td>
+<td>+0.00</td>
+<td>+0.36</td>
+<td>+0.46</td>
+<td>9.8</td>
+<td>9.8</td>
+<td>7.7</td>
+<td><b>9.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">モリノドリーム</span></td>
+<td>+0.16</td>
+<td>+0.22</td>
+<td>-0.22</td>
+<td>+0.34</td>
+<td>+0.48</td>
+<td>9.2</td>
+<td>9.0</td>
+<td>8.0</td>
+<td><b>8.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">マイネルレノン</span></td>
+<td>+0.06</td>
+<td>-0.00</td>
+<td>+0.14</td>
+<td>+0.46</td>
+<td>+0.30</td>
+<td>8.2</td>
+<td>-</td>
+<td>6.8</td>
+<td><b>8.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">アメリカンステージ</span></td>
+<td>-0.16</td>
+<td>-0.40</td>
+<td>+0.32</td>
+<td>-0.26</td>
+<td>+0.54</td>
+<td>5.6</td>
+<td>-</td>
+<td>9.1</td>
+<td><b>6.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ティニア</span></td>
+<td>-0.24</td>
+<td>-0.04</td>
+<td>+0.16</td>
+<td>-0.04</td>
+<td>+0.20</td>
+<td>5.4</td>
+<td>-</td>
+<td>5.9</td>
+<td><b>5.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ナムラローズマリー</span></td>
+<td>-0.24</td>
+<td>+0.04</td>
+<td>+0.06</td>
+<td>+0.48</td>
+<td>-0.24</td>
+<td>5.5</td>
+<td>-</td>
+<td>5.3</td>
+<td><b>5.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">クファシル</span></td>
+<td>-0.34</td>
+<td>+0.04</td>
+<td>-0.18</td>
+<td>-0.10</td>
+<td>+0.26</td>
+<td>4.6</td>
+<td>-</td>
+<td>4.1</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">サウザンサニー</span></td>
+<td>-0.44</td>
+<td>-0.12</td>
+<td>+0.24</td>
+<td>-0.24</td>
+<td>+0.00</td>
+<td>3.6</td>
+<td>-</td>
+<td>3.6</td>
+<td><b>3.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ダンツエラン</span></td>
+<td>-0.68</td>
+<td>-0.36</td>
+<td>-0.30</td>
+<td>+0.12</td>
+<td>-0.30</td>
+<td>1.8</td>
+<td>-</td>
+<td>1.8</td>
+<td><b>1.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ステークホルダー</span></td>
+<td>-0.72</td>
+<td>-0.46</td>
+<td>-0.12</td>
+<td>-0.10</td>
+<td>-0.08</td>
+<td>1.6</td>
+<td>-</td>
+<td>2.7</td>
+<td><b>1.8</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ダンツエラン, -0.7, 近5走で芝1200mの北九州短距離Sが18着1.0秒差ではなく2.0秒差で指数61.6と大敗しており この条件での裏付けが薄い。GIIスワンS7着0.3秒差はあるが 以降の成績が悪化していて実績の連続性を買いにくい。<br><br>2番, ブラックチャリス, +0.5, フェアリーSを1分33秒6で勝ち指数92.4を記録しており 重賞勝ちの実績はここでは上位。函館芝1200mでも新馬1着と函館2歳S2着0.3秒差があり コース適性の実績も明確。<br><br>3番, ジョーメッドヴィン, +0.4, 近5走すべて芝1200mのOP以上で 北九州短距離1着 モルガナイトS3着0.1秒差と安定して走れている。前走函館SSもGIIIで8着0.5秒差なら大きくは負けておらず このメンバーでは実績が堅実。<br><br>4番, ステークホルダー, -0.6, 近5走が芝1200mのOP以上で11着 8着 12着 15着 12着と着順が弱く 指数も86前後止まりで頭打ち。函館SS15着1.0秒差の実績からも オープン級での能力裏付けは乏しい。<br><br>5番, ティニア, -0.2, セントウルS8着0.4秒差は悪くないが 近5走で馬券圏内がなく OPとリステッドで7着前後が続いている。指数も82.4から86.6の範囲で上積みが見えず 実績面ではやや足りない。<br><br>6番, クファシル, -0.4, 近5走の芝1200mオープン実績が8着 10着 6着 12着 4着で 勝ち負けの裏付けに乏しい。UHB賞4着で指数89.0はあるが その後は指数80台前半から半ばが続き上位実績としては弱い。<br><br>7番, マイネルレノン, 0.0, 鞍馬S4着0.5秒差で指数88.0は今回でも通用圏だが それ以前は14着や11着もあり成績の振れが大きい。オープンで善戦止まりの実績が中心で 強く上げるほどでも下げるほどでもない。<br><br>8番, サウザンサニー, -0.4, 近2走の芝1200mオープンで15着と12着に終わっており 直近の実績が弱い。UHB賞3着タイの実績はあるが約11か月前で 現在のオープン実績としては鮮度を欠く。<br><br>9番, モリノドリーム, +0.2, カーバンクルS4着0.2秒差で指数89.5はこの組み合わせなら評価できる数字。昨年の青函SとキーンランドCでも大きくは崩れておらず 函館洋芝1200mのオープン実績は一定水準。<br><br>10番, ナムラローズマリー, -0.1, 3勝クラスの淀屋橋Sを1分7秒9で勝っている点は評価できるが オープン昇級初戦のモルガナイトSで11着0.7秒差と跳ね返された。近走指数も87.1が最高で オープン上位実績としてはまだ足りない。<br><br>11番, ナムラクララ, +0.1, オパールS2着で指数93.5を出しており このメンバーでも数字面の天井は高い。近走も愛知杯8着0.3秒差と大きく負けてはいないが 京阪杯13着や北九州短距離6着があり安定感は今ひとつ。<br><br>12番, アメリカンステージ, -0.3, 韋駄天S2着で指数91.7は高いが 芝1200mの実績としては国内で明確な裏付けが不足している。近5走の大半がダート実績で 今回の芝1200mオープンにそのまま直結する実績評価はしにくい。<br><br>13番, ロードフォアエース, +0.7, ラピスラズリSを1分7秒1で勝ち指数93.2はこのメンバーでも最上位級の実績。シルクロードS9着0.4秒差もGIIIで内容は悪くなく 近2走着順は冴えないが能力実績の裏付けは強い。<br><br>14番, ルージュラナキラ, +0.4, ラピスラズリS3着 カーバンクルS5着 オーシャンS8着0.4秒差と 芝1200mオープン上位で大崩れなく積み上げている。3勝クラス勝ちが1分7秒0で指数88.5でもあり 現級通用の実績は十分。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>2番ブラックチャリスは高評価の根拠が古い1200m実績とマイル重賞に寄っており、8番サウザンサニー・10番ナムラローズマリーとの比較で甘くないか再点検余地。11番ナムラクララは指数93.5の割に+0.1は控えめで、13番ロードフォアエース93.2との差が開きすぎに見える。13番ロードフォアエースは近2走低調でも+0.7まで買う説明を補強したい。3番ジョーメッドヴィンと9番モリノドリームは近走連続性・函館1200実績の割に抑え気味かもしれない。4番ステークホルダーと6番クファシルのマイナス幅の差、12番アメリカンステージの指数評価と条件実績評価のバランスも整理余地あり。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ダンツエラン, -0.7, 近5走で今回と直結する芝1200mは北九州短距離S18着2.0秒差で指数61.6と大敗しており この条件の実績裏付けが弱い。GIIスワンS7着0.3秒差と指数92.1はあるが 距離も違い その後の実績連続性が切れている。<br><br>2番, ブラックチャリス, +0.3, フェアリーS勝ちの指数92.4は能力上位だが マイル重賞実績が評価の中心で 現時点の1200m実績は2歳時の函館2歳S2着0.3秒差まで遡る。今回条件に直結する近走の裏付けとしては少し薄く 前回より評価を抑える。<br><br>3番, ジョーメッドヴィン, +0.5, 近5走すべて芝1200mのOP以上で 北九州短距離1着 モルガナイトS3着0.1秒差と現級での連続した実績が明確。前走函館SS8着も0.5秒差なら大崩れではなく 函館1200m重賞を使ってきた実績連続性を評価して上方修正する。<br><br>4番, ステークホルダー, -0.7, 近5走の芝1200mOP以上が11着 8着 12着 15着 12着で 最高でも8着止まりと現級での能力実証が乏しい。指数も86.2が上限で 函館SS15着1.0秒差を含め上位争いの裏付けが見えない。<br><br>5番, ティニア, -0.2, セントウルS8着0.4秒差と指数86.0は悪くないが 近5走で馬券圏内がなく OPとリステッドで7着前後に留まる。指数も82.4から86.6止まりで 現級上位の実績としては一段足りない。<br><br>6番, クファシル, -0.3, 近5走の芝1200mOP以上は8着 10着 6着 12着 4着で 勝ち負け級の実績はまだない。ただ UHB賞4着指数89.0やみちのくS6着0.4秒差はあり 4番ほど極端には下げない。<br><br>7番, マイネルレノン, +0.0, 鞍馬S4着0.5秒差で指数88.0は通用圏だが ラピスラズリS11着 淀短距離S14着もあり実績の振れ幅が大きい。OPで善戦できる水準はあるが 実績だけで強く上げ下げする材料まではない。<br><br>8番, サウザンサニー, -0.3, UHB賞3着同着で指数89.0はあるが 近2走の芝1200mOPで15着 12着と直近実績が明確に落ちている。現時点の能力証明としては古い好走より 直近の凡走続きの方を重く取る。<br><br>9番, モリノドリーム, +0.3, カーバンクルS4着0.2秒差で指数89.5はこの組み合わせなら上位圏の数字で 函館日刊S杯勝ちや昨年青函Sの経験もあり 函館1200m実績は揃っている。近2走の着順は地味でも 1200mOPで示した数字の裏付けは評価できる。<br><br>10番, ナムラローズマリー, -0.2, 淀屋橋Sを1分7秒9で勝ち指数87.1は評価できるが それは3勝クラスで OP初戦のモルガナイトSでは11着0.7秒差と壁に当たった。現級実績の裏付けではまだ様子見が妥当。<br><br>11番, ナムラクララ, +0.3, オパールS2着の指数93.5はこのメンバーでも最上位級で 愛知杯8着0.3秒差も格を考えれば悪くない。京阪杯13着や北九州短距離6着で安定感は欠くが 実績の天井値はもっと評価してよい。<br><br>12番, アメリカンステージ, -0.2, 韋駄天S2着で指数91.7は高く スピード能力自体はここでも見劣らない。とはいえ芝1200mの国内OP実績が乏しく 近5走の中心がダートで 条件直結の実績評価では少し割り引く。<br><br>13番, ロードフォアエース, +0.6, ラピスラズリSを1分7秒1で勝ち指数93.2はメンバー上位の明確な能力証明で シルクロードS9着もGIIIで0.4秒差なら内容は悪くない。近2走は着順ほど派手ではないが 負け幅は0.5秒 0.4秒に収まり 芝1200mオープン級で示した実績の質は依然高い。<br><br>14番, ルージュラナキラ, +0.4, ラピスラズリS3着 カーバンクルS5着 オーシャンS8着0.4秒差と 芝1200mのOPから重賞で安定して差のない競馬を続けている。3勝クラスも1分7秒0で勝っており 現級通用の実績は十分。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ダンツエラン, -0.3, 後方からになる形が濃く函館1200の短い直線では差し届く絵が描きにくい。1枠で脚をためても前が止まるほどのハイには決め打ちしづらい。<br><br>2番, ブラックチャリス, +0.5, 1列目を見ながら内の好位を取れそうでこの枠と函館1200の形は噛み合う。10番や12番13番がやり合うなら2番手から3番手で運んで直線で抜け出す形がある。<br><br>3番, ジョーメッドヴィン, +0.3, 内目の枠から中団のインで脚をためやすく前が速くなれば差しの形がはまる。逃げ争いを見ながらロスなく運べる点は展開面でプラス。<br><br>4番, ステークホルダー, -0.4, 差し後方寄りの運びになりやすく函館1200では直線だけで全部を差すのは苦しい。内で詰まらず捌けても前残りの形には逆らいやすい。<br><br>5番, ティニア, +0.1, 中団で流れに乗って脚を温存できそうで前が少しやり合うなら差し込み余地はある。極端な追い込み戦になりにくい舞台なので上げ幅は小さい。<br><br>6番, クファシル, +0.2, 先団直後あたりで立ち回れそうで4枠から無駄なく運べるのは好材料。逃げ馬を深追いせずに好位の外目で流れに乗れれば展開の利はある。<br><br>7番, マイネルレノン, -0.2, 先行力はあるが周りにも前に行きたい馬が多く楽に2番手3番手へ収まる形ではない。早めに脚を使わされると直線で甘くなる展開リスクがある。<br><br>8番, サウザンサニー, -0.3, 後方からになると函館1200では差し損ねやすくペースが流れても取りこぼしの形が残る。中団より後ろで運ぶ想定なら展開の追い風は限定的。<br><br>9番, モリノドリーム, +0.1, 先行勢が多く流れれば中団差しのこの馬には最低限の向きはある。武豊騎手なら前を見ながら外に持ち出す絵は描けるがコース形態上は強い追い風までは言えない。<br><br>10番, ナムラローズマリー, -0.2, 先団を取りに行く形だと外から来る12番13番14番との兼ね合いで息を入れにくい。好位差しに回ってもペース次第で忙しくなりやすい。<br><br>11番, ナムラクララ, -0.3, 先行したい馬だが7枠で内の先行勢を見ながら運ぶぶん位置取りが難しい。前へ行けば外々を回されやすく控えてもベストの並びを作りにくい。<br><br>12番, アメリカンステージ, -0.7, スピードで前へ出る絵はあるが芝1200でこの枠から主張すると前半に脚を使いやすい。13番や内の先行勢もいてハナ争いがきつくなりやすく展開面ではかなり厳しい。<br><br>13番, ロードフォアエース, -0.6, 外枠の先行馬で前に行くにはコーナーまでに脚を使う必要がある。12番も速く内にも前に行く馬がいるので外から被せに行く形は消耗戦になりやすい。<br><br>14番, ルージュラナキラ, -0.4, 8枠から好位を取りに行くとどうしても外を回る形になりやすい。前半の位置取りコストが高くこのレースの先行争いの中では展開利が薄い。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>2番ブラックチャリスの加点がやや大きく、3番ジョーメッドヴィン・5番ティニア・9番モリノドリームの加点が展開想定のわりに小さいように見える。前傾想定なら中団差し勢をもう少し評価し、逆に10番ナムラローズマリーの減点は理由の強さに比べて軽いかもしれない。12番アメリカンステージ・13番ロードフォアエース・14番ルージュラナキラは外先行不利を強く見すぎて、押し切りや控える対抗シナリオの検討が薄い点も再点検余地。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ダンツエラン, -0.3, 後方寄りの形になりやすく函館1200の短い直線では差し届く絵がまだ描きにくい。前がやり合ってもこの馬だけに強い追い風が吹くほどの消耗戦までは見込みにくい。<br><br>2番, ブラックチャリス, +0.3, 1列目の直後で内を立ち回れる形は引き続き魅力だが前が速くなる想定なら絶対的な展開利までは言い切れない。12番や13番を前に見ながら好位のインで運べるぶんの加点にとどめる。<br><br>3番, ジョーメッドヴィン, +0.4, 速めの先行争いを見ながら中団インで脚をためやすく今回の並びは差しの形が噛み合いやすい。3角までに無理なくポケットを取れて直線で前が少し甘くなる展開は十分ある。<br><br>4番, ステークホルダー, -0.4, 後方寄りから外へ出して差す形だと函館1200では物理的に届かないリスクが高い。ペースが流れても位置取りの不利をひっくり返すにはかなり展開待ちになる。<br><br>5番, ティニア, +0.3, 中団で流れに乗って前のやり合いを見られる配置で差し勢の中では素直に展開が向きやすい。極端な追い込み馬ではないぶん4角で射程に入れやすく直線で脚を使う形を描ける。<br><br>6番, クファシル, +0.2, 先団直後あたりで無駄なく運べそうで内外の先行争いをやや離れて見られるのは好材料。速すぎず遅すぎずの流れなら一番競馬はしやすい。<br><br>7番, マイネルレノン, -0.2, 先行力はあるが周囲にも前へ行きたい馬が多く息の入りにくい並びになった。好位に収まっても前半で脚を使わされるリスクは残る。<br><br>8番, サウザンサニー, -0.3, 差し脚質でも後ろすぎる位置取りになりやすく函館1200では前との距離を詰め切れない懸念が大きい。流れが向いても4角でまだ後方だと取りこぼしやすい。<br><br>9番, モリノドリーム, +0.3, 先行勢の後ろで脚をためて外へ持ち出す形が取りやすくこの組み合わせなら差しの利を受けやすい。前が総崩れまではなくても直線で好位勢の外を伸びるシナリオは十分ある。<br><br>10番, ナムラローズマリー, -0.4, 6枠から前受けも差し寄りも選べるがどちらにしても周囲の先行勢との兼ね合いでリズムを崩しやすい。前へ行けば消耗しやすく控えても忙しくなりやすい並びで展開面は厳しめ。<br><br>11番, ナムラクララ, -0.3, 先行したい馬でこの外めの枠は内の先行勢を見ながら動くぶん位置取りが難しい。出していくと外々になりやすく控えても本来の形を作りにくい。<br><br>12番, アメリカンステージ, -0.5, スピードで前に出る形はあるが7枠から主張すると内外の先行勢と噛み合って前半で脚を使いやすい。控える対抗シナリオはあるにせよ本質的には前受けでこその並びに見え 展開面の不利はまだ大きい。<br><br>13番, ロードフォアエース, -0.4, 8枠でも番手外あたりに収める対抗シナリオはあるので下げすぎは修正するが前に行くまでのコストはやはり高い。12番や内の先行馬を見ながら外を運ぶ形はロスが出やすい。<br><br>14番, ルージュラナキラ, -0.2, 8枠でも無理にハナへこだわらず好位外で折り合う形は取れそうで外先行勢の中ではまだ融通が利く。とはいえ位置を取りに行くぶんの外々のロスは残るので軽い減点にとどめる。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ダンツエラン, -0.5, 近2走が494kg、492kgで今回は未発表なので492kg前後想定ですが、1200m戦で結果が出ていない時期の体つきのままという見立てになりやすいです。追い切り自体は悪くないものの、3か月ぶりで上向き材料が体調面からは強く見えません。<br><br>2番, ブラックチャリス, +0.3, 436kgから462kgまで成長してきた馬で、前走458kgなら極端に緩んではいません。3か月ぶりでも函館Wでしっかり負荷をかけて仕上がり良好、55kgから53kgへの2kg減はこの馬格なら馬身換算で約1馬身分の軽さとして素直に好材料です。<br><br>3番, ジョーメッドヴィン, +0.2, 520kg台を安定して使えていて、近5走で520-530-522-522-522kgと馬体の芯がぶれていません。中2週でも消耗より維持の形で、調教も馬なりで元気一杯なら体調面の下げ要素は薄いです。<br><br>4番, ステークホルダー, -0.2, 458kgから464kg、470kgと使いつつ増えているのは悪くない一方で、6歳馬で休み明けを2走叩いてもまだ大きな良化サインまでは見えません。追い切りも脚取り確か止まりで、上積み強調まではしづらいです。<br><br>5番, ティニア, +0.1, 504-508kgで馬体は安定していて、6週空けての調整も芝で軽快です。57kgから56kgへの1kg減は大型馬には過剰評価不要ですが、仕上がり自体は順調と見ます。<br><br>6番, クファシル, -0.3, 490kg台後半から504kgまで増えてきていますが、近2走は500kg、504kgで結果が伴わず、馬体増が良化より重さに出ている懸念があります。調教評価も「元気はいいが」で、強い上昇気配までは読みづらいです。<br><br>7番, マイネルレノン, +0.4, 472kgまで減った後に482kg、482kg、486kg、488kgと立て直してきた流れは好感で、叩きながら馬体が戻っているのは上昇サインです。今回は57kgから55kgへの2kg減もあり、490kg前後の馬格なら体調面の後押しとしてははっきりプラスです。<br><br>8番, サウザンサニー, +0.2, 524kgから522kg、520kgと少し絞れつつ、今回は3か月ぶりでも調教評価が良化著しいで調子も↗です。大幅な数字変動がない大型馬なので、休み明けでも仕上がり面はむしろ前向きに見ます。<br><br>9番, モリノドリーム, -0.4, 前走482kgは492kgからの-10kgで、7歳牝馬としては消耗の可能性をまず警戒したい減り方です。今回は56kgから54kgに軽くなるのは助けでも、追い切り時計がやや地味で一気に戻ったとまでは言いにくいです。<br><br>10番, ナムラローズマリー, -0.1, 460kg台半ばで大きくぶれないのは良いですが、462kgまで絞れた時に勝って次走468kgで反動気味という推移なので、今回未発表なら再度の張り戻しが鍵です。調教はスムーズでも、体調面で強く押し上げるほどの材料はありません。<br><br>11番, ナムラクララ, +0.1, 486kgから472kgまで絞って内容を上げた後、前走474kgなら大きな戻りすぎではありません。芝での追い切りも量は積めており、ダートを使った後の芝替わりで硬さがなければ体調維持の範囲です。<br><br>12番, アメリカンステージ, +0.5, 536kgから524kgへ絞れて直近で好走しており、休み明け3戦目で体が締まってきた可能性があります。57.5kg据え置きは楽ではないですが、この馬格なら斤量負けの懸念は小さく、函館芝での11.5秒は仕上がり面でかなり目立ちます。<br><br>13番, ロードフォアエース, -0.2, 556kgから550kgへ減っての近2走で、まだ重賞級の高負荷に対して体がパンとしてこない印象です。57.5kgを背負い続ける立場で大型馬とはいえ楽ではなく、追い切りもまずまず止まりなら体調面は中立よりやや下げます。<br><br>14番, ルージュラナキラ, +0.3, 462kg、458kg、462kg、456kgとレンジが狭く、仕上がりの再現性が高いタイプです。4か月ぶりでも乗り込み入念で、55kgから54kgへの1kg減はこの馬格なら地味に効きます。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>7番マイネルレノンの+0.4は追い切り内容の弱さの割に強気すぎないか。8番サウザンサニーは『良化著しい』だけで未確認の馬体面をプラスに倒しすぎの可能性。12番アメリカンステージの+0.5は『締まってきた可能性』に対して最大級評価がやや先走り気味。13番ロードフォアエースは550kg前後維持を不調扱いしすぎで、-0.2は再考余地。1番ダンツエランは距離戦績を体調評価に混ぜて-0.5まで下げすぎか。9番モリノドリームは-10kgを即消耗と決め打ちしすぎの懸念。全体に馬体増減の解釈基準が馬ごとに揺れていないか確認したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ダンツエラン, -0.3, 近2走の494kg、492kg自体は大きく崩れておらず、未発表なら今回もその近辺想定で極端な体調悪化までは見ません。ただ3か月ぶりで調教評価は仕上がり良好止まり、調子も→なので上積み薄めとしてやや下げます。<br><br>2番, ブラックチャリス, +0.3, 432kg台から460kg前後まで成長カーブを描けており、前走458kgなら緩み過ぎではありません。53kgは前走55kg比で2kg減、460kg弱の馬格なら馬身換算で約1馬身分の負担減として素直にプラスです。<br><br>3番, ジョーメッドヴィン, +0.2, 520-530-522-522-522kgで馬体の芯が安定していて、中2週でも消耗より維持の印象です。函館W67.0-38.0-12.1を馬なりでまとめ、元気一杯なら体調面の不安は小さいです。<br><br>4番, ステークホルダー, -0.2, 458kgから464kg、470kgと使いつつ戻している点は悪くありませんが、叩いた割にグッと上向くほどの変化はまだ薄いです。強め追いで1F12.6、評価も脚取り確か止まりなら体調面はやや控えめです。<br><br>5番, ティニア, +0.1, 504kg、508kgで馬体は安定しており、間隔を空けても緩んだ形ではありません。56kgはこの馬格なら負担感が強くなく、芝追い11.7で順調さを示している分だけ少し上げます。<br><br>6番, クファシル, -0.3, 496kg前後から500kg、504kgへと増えてきた流れはありますが、直近は増えた分が張りではなく重さに出ている懸念があります。調教も66.7-39.3-12.1で悪くはない一方、評価が元気はいいがに留まるなら強い上昇とは取りません。<br><br>7番, マイネルレノン, +0.2, 472kgまで減った後に482kg、482kg、486kg、488kgと立て直してきたのは体調面では好材料です。ただ今回は函館W68.9-40.5-13.2で評価も実戦で変わる馬と、追い切りの押しは弱いので上げ幅は控えめに修正します。<br><br>8番, サウザンサニー, +0.1, 524kg、522kg、520kgと大型馬としては安定レンジで、馬体面に大きな乱れは見えません。休み明けでも調子↗かつ良化著しいの評価は拾いますが、未発表の当日馬体重で裏取りできない以上は軽いプラスまでです。<br><br>9番, モリノドリーム, -0.2, 前走482kgは492kgから-10kgでも、即消耗と決め打つほどではなく絞れた可能性も残ります。ただ7歳牝馬で6週続戦、今回の追い切りも72.0-41.6-13.1と地味なので、戻り切った確証がなく少し下げます。<br><br>10番, ナムラローズマリー, -0.1, 460kg台前半から後半の範囲で推移しており、大きな崩れはありません。ただ462kgで勝った後に468kgへ戻した前走がやや重く映る流れで、今回未発表では強く買えるほどの上向き材料も乏しいです。<br><br>11番, ナムラクララ, +0.1, 486kgから472kgへ絞れて内容を上げ、前走474kgなら戻し過ぎではありません。函館芝67.8-38.5-12.6で量はこなせており、硬さなく維持できている前提なら軽くプラスです。<br><br>12番, アメリカンステージ, +0.3, 国内計測の536kgから前走524kgなら12kg絞れており、休み明けを使われて体が締まってきた可能性は高いです。57.5kgは楽ではないですが、この馬格なら斤量負けは小さく、函館芝36.8-11.5のスピード感は仕上がり面で明確に評価します。<br><br>13番, ロードフォアエース, +0.0, 556kgから550kgでもこの馬のレンジ内で、馬体維持を不調とまでは取りません。57.5kgも550kg級なら相対的負担は重過ぎず、追い切りがまずまずなので体調面は中立に見直します。<br><br>14番, ルージュラナキラ, +0.3, 462kg、458kg、462kg、456kgとレンジが狭く、仕上がりの再現性が高いのが強みです。4か月ぶりでも乗り込み入念で、54kgなら馬格とのバランスも良く、体調面は素直にプラスです。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ダンツエラン, +0.2, 父ロードカナロアで芝短距離の設計は合う。母父Into Mischiefの米国的な前向きさもあり1200m自体は守備範囲だが、配合全体で洋芝巧者とまでは言い切れない。<br><br>2番, ブラックチャリス, -0.2, 父キタサンブラックに母父トゥザワールドで本質はマイルから中距離寄りの持続力型に出やすい。2歳時の1200実績はあっても血統面では古馬混合の函館1200で強くは押しにくい。<br><br>3番, ジョーメッドヴィン, +0.5, 父ドレフォンのスピードに母父キングヘイローの短距離芝適性が重なる配合で函館1200は血統的にかなり噛み合う。軽い切れよりパワーと機動力を問う条件はむしろ歓迎。<br><br>4番, ステークホルダー, -0.4, 父ハービンジャーは本来もう少し距離があった方が良く1200mの忙しさは血統的に不利。母父アドマイヤムーンで短距離の下支えはあるが、オープンの純スプリント戦では不足感がある。<br><br>5番, ティニア, +0.3, 父Frankelに母父Giant&#x27;s Causewayで欧州的なパワーと持続力が強い配合。日本の平坦高速一辺倒より函館の洋芝1200の方が血統の良さを出しやすい。<br><br>6番, クファシル, -0.2, 父モーリスに母父ディープインパクトでマイル前後の総合力型に出やすい配合。洋芝適性はあっても1200mで問われる先天的な短距離色はやや薄い。<br><br>7番, マイネルレノン, +0.4, 父ダイワメジャーに母父マイネルラヴは短距離指向が明確で小回り1200は得意分野。年齢を重ねても血統の型はブレず、函館の舞台替わりは素直にプラス。<br><br>8番, サウザンサニー, -0.5, 父タリスマニックに母父ワークフォースで配合の重心はかなりスタミナ寄り。洋芝で多少の補正は入るが、1200mのスピード勝負では血統面の後押しが弱い。<br><br>9番, モリノドリーム, +0.3, 父モーリスに母父アドマイヤムーンでパワー型スプリント適性を拾える配合。切れ味特化ではないぶん洋芝1200の持続戦は合いやすく、函館替わりは血統上も自然に好材料。<br><br>10番, ナムラローズマリー, +0.5, 父ミッキーアイルに母父ヨハネスブルグは短距離のスピード持続に寄った配合で1200m適性が高い。母父由来で道悪や力の要る芝にも融通が利きやすく、函館も合う血統。<br><br>11番, ナムラクララ, +0.4, 父アドマイヤマーズに母父Storm Catで前進気勢の強い短距離マイル型の配合。スピードの質が高く、時計が掛かったり馬場が渋ったりしても母系の強さで対応しやすい。<br><br>12番, アメリカンステージ, -0.6, 父Into Mischiefに母父Warrior&#x27;s Rewardで米国ダートスプリント色がかなり濃い。絶対的なスピードは高いが、芝1200で求められる軽い芝質への適性は血統面で割引が必要。<br><br>13番, ロードフォアエース, +0.7, 父ロードカナロアに母父War Frontは芝1200の完成度が高い王道スプリント配合。日本の短距離適性に加えて母系のパワーもあり、函館の洋芝でも血統的な取りこぼしが少ない。<br><br>14番, ルージュラナキラ, +0.3, 父アドマイヤマーズで短距離マイルのスピードを持ち、母父カジノドライヴが力の要る馬場への耐性を補う。配合としては軽すぎず函館芝1200への適性は十分見込める。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>5番ティニアは欧州パワーを買いすぎて1200の忙しさへの減点が甘い可能性。12番アメリカンステージは函館の洋芝適性を踏まえると-0.6は重すぎるかもしれない。2番ブラックチャリスは函館1200実績のある配合をマイナスに置く根拠が5番との比較で薄い。6番クファシルと9番モリノドリームの差、11番ナムラクララと14番ルージュラナキラの序列、1番ダンツエランと13番ロードフォアエースの差は、母父差だけでどこまで付値差を広げるか再点検余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ダンツエラン, +0.2, 父ロードカナロアで1200m自体の守備範囲は広く母父Into Mischiefで先行的なスピードも補える。芝短距離向きの骨格はあるが母系の出方は米国色が強く函館洋芝で一段上の後押しまでとは見ない。<br><br>2番, ブラックチャリス, +0.1, 父キタサンブラックは本質的にはもう少し長めでも母父トゥザワールドの機動力と2歳時から函館1200で動ける配合の実戦型がある。純粋なスプリント血統ではないがこの舞台を血統面でマイナスに置くほどではない。<br><br>3番, ジョーメッドヴィン, +0.5, 父ドレフォンの前向きなスピードに母父キングヘイローの芝短距離適性が重なる。函館1200のようにパワーと機動力を要する条件は配合の長所が出やすい。<br><br>4番, ステークホルダー, -0.4, 父ハービンジャーはやはり本質的に1200mでは忙しくなりやすい。母父アドマイヤムーンで短距離の下支えはあるがオープンの純スプリント戦では血統の重心が少し後ろにある。<br><br>5番, ティニア, +0.1, 父Frankelに母父Giant&#x27;s Causewayで洋芝や力の要る芝への適性は確かにある。そこは買える一方で配合全体は持続力寄りで1200mの忙しさを強く歓迎する血ではなく上げ幅は控える。<br><br>6番, クファシル, -0.1, 父モーリスに母父ディープインパクトは総合力型でマイル前後に出やすい配合。洋芝はこなせても先天的なスプリント色はそこまで濃くなく血統面では少しだけ割引。<br><br>7番, マイネルレノン, +0.4, 父ダイワメジャーに母父マイネルラヴで短距離指向がかなり明快な配合。小回り1200mで必要な先行力と持続力を血統的に備えており函館替わりは素直にプラス。<br><br>8番, サウザンサニー, -0.5, 父タリスマニックに母父ワークフォースで配合の重心はかなりスタミナ寄りに映る。洋芝で多少は補えても1200mのテンの速さで血統的な後押しは弱い。<br><br>9番, モリノドリーム, +0.3, 父モーリスでも母父アドマイヤムーンが入るぶん短距離芝への寄せ方が明確になる。切れ一辺倒ではなくパワー持続型のスプリントになりやすく函館1200は血統の形に合う。<br><br>10番, ナムラローズマリー, +0.5, 父ミッキーアイルに母父ヨハネスブルグで短距離のスピード持続にかなり寄った配合。母父由来で力の要る芝や渋った馬場への融通も見込みやすく函館向き。<br><br>11番, ナムラクララ, +0.3, 父アドマイヤマーズに母父Storm Catで前進気勢の強い短距離マイル型の配合。スピードの質は高いが母系の押し出しはやや前向きすぎる面もあり函館1200で強く抜けるほどではない。<br><br>12番, アメリカンステージ, -0.3, 父Into Mischiefに母父Warrior&#x27;s Rewardで米国ダートスプリント色は依然として濃い。とはいえ函館の洋芝ならパワー型の血が全く噛み合わないわけではなく芝替わりの割引はやや緩める。<br><br>13番, ロードフォアエース, +0.6, 父ロードカナロアに母父War Frontは芝1200で完成度の高い王道スプリント配合。日本的なスピードに母系のパワーが足されており函館洋芝でも血統的な取りこぼしが少ない。<br><br>14番, ルージュラナキラ, +0.3, 父アドマイヤマーズで短距離マイルの推進力があり母父カジノドライヴが力の要る馬場への耐性を補う。軽さ一辺倒ではないぶん函館芝1200への適性は十分見込める。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ダンツエラン, -0.2, 古川吉洋騎手への乗り替わりは強調材料になりにくく 本田優厩舎のこのクラスの短距離オープンで強気に押せる陣営構成でもない。近走で騎手が定まっておらず 手の内面の上積みも薄い。<br><br>2番, ブラックチャリス, +0.2, 吉田隼人騎手は函館芝1200mで信頼を置きやすい騎手で 北海道シリーズ替わりは陣営面でプラス。武幸四郎厩舎も若駒をきっちり仕上げる印象があり 軽い後押しはある。<br><br>3番, ジョーメッドヴィン, +0.3, 横山琉人騎手で近2走を続けて使っており 継続騎乗の強みは出せる。清水久詞厩舎も使いつつ状態を整えるタイプで 函館SSを叩いた臨戦に陣営の意図が見える。<br><br>4番, ステークホルダー, 0.0, 斎藤新騎手への乗り替わり自体は大きな上積みとも減点とも言いにくい。斎藤誠厩舎は総合力のある厩舎だが この馬に関しては継続騎乗の利もなく中立が妥当。<br><br>5番, ティニア, +0.4, 池江泰寿厩舎はオープン馬の調整力で格上の存在で 北海道遠征でも陣営の信頼感がある。佐々木大輔騎手への乗り替わりも今の函館では実戦的で 前向きに見たい。<br><br>6番, クファシル, +0.2, 北村友一騎手への強化は素直にプラスで 池添学厩舎も立て直し力のある厩舎。近走の鞍上推移を見ると 今回は陣営が勝負度を少し上げてきた印象を受ける。<br><br>7番, マイネルレノン, +0.5, 丹内祐次騎手は北海道開催の芝短距離で信頼度が高く この舞台での起用は陣営面の明確な加点。宮徹厩舎との組み合わせもローカルで噛み合いやすく 乗り役の後押しが大きい。<br><br>8番, サウザンサニー, 0.0, 大野拓弥騎手への戻りは無難で 岩戸孝樹厩舎もこの条件で特段強く押し上げる材料まではない。継続性も薄く 陣営面の差は出しにくい。<br><br>9番, モリノドリーム, +0.8, 武豊騎手への乗り替わりはこのメンバーでも陣営面の最上位級の押し材料。鈴木伸尋厩舎としても函館実績馬にトップジョッキーを配してきた形で 勝負気配は濃い。<br><br>10番, ナムラローズマリー, -0.1, 松本大輝騎手はローカルで健闘できるが オープンの函館短距離で鞍上強化感までは出ない。羽月友彦厩舎もこのクラスで陣営力が抜けるタイプではなく 小幅に控えめ。<br><br>11番, ナムラクララ, +0.3, 浜中俊騎手が継続して乗る点は評価でき 馬の癖や運びを把握している強みがある。長谷川浩大厩舎もこの馬を丁寧に使っており 継続コンビの安定感はプラス。<br><br>12番, アメリカンステージ, +0.7, 岩田望来騎手への乗り替わりは明確な強化で 矢作芳人厩舎の遠征帰り調整力も含めて陣営の格は高い。芝替わりでも有力騎手を確保してきた点に 勝負の姿勢が表れている。<br><br>13番, ロードフォアエース, +0.9, 友道康夫厩舎に岩田康誠騎手という陣営の格はこの組み合わせで最上位級。岩田家での乗り継ぎから康誠騎手に戻す形も勝ちに行く色が濃く 陣営面ではかなり強く上げたい。<br><br>14番, ルージュラナキラ, +0.6, 横山武史騎手に戻るのは大きなプラスで 昨夏の函館勝ちもこの騎手とのもの。加藤征弘厩舎も堅実で 舞台を知る人馬の再タッグは陣営面で強調できる。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>9番モリノドリームの+0.8、12番アメリカンステージの+0.7、13番ロードフォアエースの+0.9は、陣営の格や騎手名声を強く買いすぎて加点幅が膨らんでいないか再点検したい。特に13番ロードフォアエースは『岩田康誠騎手に戻す』根拠が薄く、11番ナムラクララや3番ジョーメッドヴィンの継続騎乗評価との差の説明が必要。逆に2番ブラックチャリスや11番ナムラクララは、北海道・継続騎乗の文脈のわりに控えめで、7番マイネルレノンとの比較で見直し余地がある。8番サウザンサニーの0.0や1番ダンツエランと10番ナムラローズマリーの減点差も、理由の強弱に対して数値がややちぐはぐ。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ダンツエラン, -0.2, 古川吉洋騎手への乗り替わりは函館芝1200mのオープンで強い上積みとは言いにくい。本田優厩舎もこの条件で陣営力を大きく押し出せるタイプではなく騎手も定まり切らない。<br><br>2番, ブラックチャリス, +0.3, 吉田隼人騎手への替わりは北海道開催では素直にプラスに取れる。武幸四郎厩舎も若駒をきっちり運ぶ厩舎で函館実績のある馬を当地に持ち込む陣営の形は悪くない。<br><br>3番, ジョーメッドヴィン, +0.3, 横山琉人騎手で近2走続けて使っている点は継続騎乗として評価できる。清水久詞厩舎も使いながら整える形が合う厩舎で叩き2戦目の意図は見える。<br><br>4番, ステークホルダー, +0.0, 斎藤新騎手への乗り替わりは大きな強化とも弱化とも言えない。斎藤誠厩舎の総合力は認めるがこの馬に関しては継続騎乗の利が薄く中立。<br><br>5番, ティニア, +0.4, 池江泰寿厩舎はオープン馬の調整力で一段上の信頼がある。佐々木大輔騎手への乗り替わりも今の函館では実戦的で遠征込みでも陣営面は前向き。<br><br>6番, クファシル, +0.2, 北村友一騎手への替わりはこのメンバーでは軽い強化と見ていい。池添学厩舎も立て直しの利く厩舎で近走の鞍上推移からは陣営の手当てが見える。<br><br>7番, マイネルレノン, +0.5, 丹内祐次騎手を函館芝短距離で使う形は陣営面で明確な加点になる。継続騎乗ではないが当地巧者の色が濃く宮徹厩舎とのローカル適性も噛み合う。<br><br>8番, サウザンサニー, -0.1, 大野拓弥騎手への戻り自体は無難でも強い上積み材料まではない。岩戸孝樹厩舎もこの条件で押し切る陣営イメージは薄く継続性も弱い。<br><br>9番, モリノドリーム, +0.5, 武豊騎手への乗り替わりは大きな後押しだが継続騎乗ではないぶん最上限までは振らない。函館実績馬に一流騎手を配してきた陣営の勝負気配ははっきり感じる。<br><br>10番, ナムラローズマリー, -0.2, 松本大輝騎手はローカルで健闘できても函館芝1200mのオープンで鞍上強化感は乏しい。羽月友彦厩舎もこのクラスで陣営力を強く買う場面ではなく控えめ評価。<br><br>11番, ナムラクララ, +0.4, 浜中俊騎手の継続騎乗はこの馬の運びを把握している点で素直に評価したい。長谷川浩大厩舎もこの馬を丁寧に使っており継続コンビの安定感は7番に次ぐ水準。<br><br>12番, アメリカンステージ, +0.4, 岩田望来騎手の起用と矢作芳人厩舎の格は明確にプラスだが芝替わりでの一発回答まで陣営だけで断定はしにくい。有力騎手を確保してきた勝負気配は買うが加点は一段抑える。<br><br>13番, ロードフォアエース, +0.6, 友道康夫厩舎と岩田康誠騎手の組み合わせはこのレースでも上位の陣営構成。岩田康誠騎手は春雷Sでも手綱を取っており完全な初手ではなく勝ちに寄せた再配置として強めに評価するが継続騎乗組との差は残す。<br><br>14番, ルージュラナキラ, +0.6, 横山武史騎手に戻るのは明確なプラスで昨夏の函館勝ちもこの人馬のもの。加藤征弘厩舎も堅実で舞台を知る再タッグは陣営面でかなり強い。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>14番, ルージュラナキラ, 22%, 14番ルージュラナキラは54kgで近4走の芝1200mが安定し函館実績もあるので暫定3位は低めです。13番ロードフォアエースより斤量面で楽があり3番ジョーメッドヴィンより上昇余地も見込めるため◎候補に引き上げます。<br><br>3番, ジョーメッドヴィン, 21%, 3番ジョーメッドヴィンはオープン級で大崩れが少なく函館SS8着も0.5秒差なら地力は最上位圏です。もっとも57kgで勝ち切れないレースも続いており暫定1位のまま断然視するのは危ういので対抗までにとどめます。<br><br>9番, モリノドリーム, 19%, 9番モリノドリームは函館芝1200mへの適性と54kgが魅力で昨年の青函S実績からも暫定5位は軽視気味です。近2走の着順だけで下げすぎるよりコース替わりでの巻き返しを重く見て上位3頭に入れます。<br><br>13番, ロードフォアエース, 17%, 13番ロードフォアエースはラピスラズリ勝ちの実績で能力上位ですが近2走は57.5kgで先行して甘くなっており暫定2位はやや高いです。外枠から押して行く形だと終いの信頼が落ちるので連下寄りに下げます。<br><br>2番, ブラックチャリス, 15%, 2番ブラックチャリスは53kgで函館芝1200m実績があり素質だけなら通用していい一頭です。とはいえ今回は古馬オープン初戦でマイル実績先行の評価になりやすく暫定4位は少し先走りで11番ナムラクララにも食い込む余地があります。</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>13番, ロードフォアエース, 14%, 13番ロードフォアエースはラピスラズリ勝ちの実績が最上位級で 近走も大きく崌れておらず地力はここで最も信頼しやすい。57.5キロは楽ではないが先行力と総合力で最上位評価にした。<br><br>14番, ルージュラナキラ, 12%, 14番ルージュラナキラは1200mで安定して高水準に走れており オーシャンSでも差の小さい内容だった。函館1200mの勝ち歴もあり54キロなら重賞級相手でも勝ち負け圏と見た。<br><br>3番, ジョーメッドヴィン, 11%, 3番ジョーメッドヴィンは近5走すべて1200mで大きくは崩れず 函館SS8着も差は小さく内容は悪くない。函館で追い切り気配も良く 展開が噛み合えば押し切りまである。<br><br>2番, ブラックチャリス, 10%, 2番ブラックチャリスは桜花賞大敗だけで見限れず フェアリーS勝ちと函館1200mでの新馬勝ちと重賞2着が光る。3歳牝馬で53キロは魅力が大きく 短距離替わりで一変を警戒したい。<br><br>12番, アメリカンステージ, 9%, 12番アメリカンステージは芝実績が少ないが 韋駄天S2着と今回の調教内容からスピード能力はかなり高い。57.5キロと芝1200mへの完全対応が課題でも 能力だけなら上位に食い込める。<br><br>11番, ナムラクララ, 8%, 11番ナムラクララは1200mでオパールS2着の高指数があり 愛知杯でも0.3秒差なら近走内容は悪くない。芝替わりで巻き返せる余地があり 54キロもこの相手なら戦いやすい。<br><br>9番, モリノドリーム, 7%, 9番モリノドリームは函館巧者の印象が強く 青函S勝ち歴を含め洋芝適性はメンバー内でも上位だ。近走はやや頭打ちだが54キロと武豊騎手で地元替わりなら注意が必要。<br><br>7番, マイネルレノン, 6%, 7番マイネルレノンは鞍馬S4着が示す通り近走の内容は悪くなく 先行してしぶとい形なら粘り込める。年齢的な上積みは大きくないが 展開ひとつで馬券圏内に届く。<br><br>5番, ティニア, 6%, 5番ティニアは勝ち切れない一方でオープンでも大きくは崩れず 追い切りの動きもこの馬としては良好に映る。差し届く流れになれば浮上可能だが 56キロであと一押し欲しい。<br><br>10番, ナムラローズマリー, 5%, 10番ナムラローズマリーは3勝クラス勝ち直後で勢いはあり 53キロもこの条件では魅力がある。オープン初戦の前走は物足りないが クラス慣れで前進余地はある。<br><br>6番, クファシル, 4%, 6番クファシルはオープンで掲示板争いまでの内容が多く 能力的に足りないわけではないが決め手比較で少し見劣る。55キロは手頃でも近走成績からは強調材料がもう一つ欲しい。<br><br>8番, サウザンサニー, 3%, 8番サウザンサニーは昨夏の札幌で差のない競馬があり洋芝適性は感じるが 近2走の凡走で勢いを欠く。調教の良化気配はあるものの 勝ち切るイメージまでは持ちにくい。<br><br>4番, ステークホルダー, 3%, 4番ステークホルダーは54キロは恵まれたが 近走のオープン1200mで上位争いできておらず内容も物足りない。強調できる近況実績が乏しく 入着候補までの評価に留めた。<br><br>1番, ダンツエラン, 2%, 1番ダンツエランはスワンS7着の内容だけ見れば通用の余地はあるが 直近2走の大敗が重く短距離オープンでの勢いも薄い。調教気配は悪くないが現状では信頼しづらい。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>3</td><td class="left horse-name">ジョーメッドヴィン</td><td>11.8%</td><td>11.2</td><td>6</td><td class="ev-mid">1.32</td></tr><tr><td>2</td><td>13</td><td class="left horse-name">ロードフォアエース</td><td>11.5%</td><td>26.4</td><td>9</td><td class="ev-high">3.04</td></tr><tr><td>3</td><td>14</td><td class="left horse-name">ルージュラナキラ</td><td>11.3%</td><td>8.3</td><td>3</td><td class="ev-low">0.94</td></tr><tr><td>4</td><td>2</td><td class="left horse-name">ブラックチャリス</td><td>10.2%</td><td>2.4</td><td>1</td><td class="ev-low">0.24</td></tr><tr><td>5</td><td>11</td><td class="left horse-name">ナムラクララ</td><td>9.5%</td><td>9.8</td><td>4</td><td class="ev-low">0.93</td></tr><tr><td>6</td><td>9</td><td class="left horse-name">モリノドリーム</td><td>8.9%</td><td>12.0</td><td>7</td><td class="ev-mid">1.07</td></tr><tr><td>7</td><td>7</td><td class="left horse-name">マイネルレノン</td><td>8.0%</td><td>23.1</td><td>8</td><td class="ev-mid">1.84</td></tr><tr><td>8</td><td>12</td><td class="left horse-name">アメリカンステージ</td><td>6.2%</td><td>6.3</td><td>2</td><td class="ev-low">0.39</td></tr><tr><td>9</td><td>5</td><td class="left horse-name">ティニア</td><td>5.5%</td><td>10.0</td><td>5</td><td class="ev-low">0.55</td></tr><tr><td>10</td><td>10</td><td class="left horse-name">ナムラローズマリー</td><td>5.4%</td><td>39.3</td><td>12</td><td class="ev-high">2.14</td></tr><tr><td>11</td><td>6</td><td class="left horse-name">クファシル</td><td>4.5%</td><td>33.0</td><td>11</td><td class="ev-mid">1.48</td></tr><tr><td>12</td><td>8</td><td class="left horse-name">サウザンサニー</td><td>3.6%</td><td>26.7</td><td>10</td><td class="ev-low">0.97</td></tr><tr><td>13</td><td>1</td><td class="left horse-name">ダンツエラン</td><td>1.8%</td><td>88.0</td><td>13</td><td class="ev-mid">1.59</td></tr><tr><td>14</td><td>4</td><td class="left horse-name">ステークホルダー</td><td>1.8%</td><td>88.0</td><td>14</td><td class="ev-mid">1.56</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 ジョーメッドヴィン</td><td>11.8%</td><td>11.2</td><td class="ev-mid">1.08</td></tr><tr><td>複勝</td><td class="left">3 ジョーメッドヴィン</td><td>34.0%</td><td>1.2</td><td class="ev-low">0.39</td></tr><tr><td>馬連</td><td class="left">3 ジョーメッドヴィン-13 ロードフォアエース</td><td>3.1%</td><td>41.9</td><td class="ev-mid">1.03</td></tr><tr><td>ワイド</td><td class="left">3 ジョーメッドヴィン-13 ロードフォアエース</td><td>8.8%</td><td>30.2</td><td class="ev-high">2.15</td></tr><tr><td>馬単</td><td class="left">3 ジョーメッドヴィン→13 ロードフォアエース</td><td>1.5%</td><td>91.0</td><td class="ev-mid">1.12</td></tr><tr><td>3連複</td><td class="left">3 ジョーメッドヴィン-13 ロードフォアエース-14 ルージュラナキラ</td><td>1.3%</td><td>122.0</td><td class="ev-mid">1.32</td></tr><tr><td>3連単</td><td class="left">3 ジョーメッドヴィン→13 ロードフォアエース→14 ルージュラナキラ</td><td>0.2%</td><td>2254.9</td><td class="ev-high">4.07</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 200円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">3 ジョーメッドヴィン</td><td>11.2</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連複</td><td class="left">3 ジョーメッドヴィン-13 ロードフォアエース-14 ルージュラナキラ</td><td>122.0</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 200円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>

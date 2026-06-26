@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>洞爺湖特別 2026/06/27 HAKODATE 10R (06/26 23:28 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>洞爺湖特別 2026/06/27 HAKODATE 10R (06/26 23:28 予想 馬体重なし)</h1>
+  <div class="meta">芝2000m（右） | 稍重 | 11頭立て | 1回 函館 5日目 サラ系3歳以上 2勝クラス （混合）（特指） 定量 11頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">1. ハートメテオ</div>
+      <div class="pick-jockey">岩田 望来 / 笹田 和秀</div>
+    </div>
+    <div class="pick-prob">15.3%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">4. ウィルサヴァイブ</div>
+      <div class="pick-jockey">横山 武史 / 須貝 尚介</div>
+    </div>
+    <div class="pick-prob">14.6%</div>
+    <div class="pick-pop">8番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">7. レイヤードレッド</div>
+      <div class="pick-jockey">長浜 鴻緒 / 手塚 貴久</div>
+    </div>
+    <div class="pick-prob">14.1%</div>
+    <div class="pick-pop">9番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">11頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ハートメテオ</td><td>牝4</td><td>56</td><td>岩田 望来</td><td>笹田 和秀</td><td>ロードカナロア</td><td>Majesticperfection</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ラブリーリディア</td><td>牝4</td><td>56</td><td>小沢 大仁</td><td>中内田 充正</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ヨヒーン</td><td>牝4</td><td>56</td><td>鮫島 克駿</td><td>杉山 晴紀</td><td>キズナ</td><td>Tiz Wonderful</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">ウィルサヴァイブ</td><td>牝4</td><td>56</td><td>横山 武史</td><td>須貝 尚介</td><td>アルアイン</td><td>ハービンジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">リッチブラック</td><td>牡7</td><td>58</td><td>斎藤 新</td><td>西村 真幸</td><td>エピファネイア</td><td>ブライアンズタイム</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">ロードマンハイム</td><td>せん6</td><td>58</td><td>岩田 康誠</td><td>友道 康夫</td><td>ロードカナロア</td><td>Shirocco</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>7</td><td class="left horse-name">レイヤードレッド</td><td>牡4</td><td>58</td><td>長浜 鴻緒</td><td>手塚 貴久</td><td>フィエールマン</td><td>スニッツェル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>8</td><td class="left horse-name">バルティカ</td><td>牡4</td><td>58</td><td>北村 友一</td><td>高橋 亮</td><td>ルーラーシップ</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>9</td><td class="left horse-name">ウインアクトゥール</td><td>牡5</td><td>58</td><td>丹内 祐次</td><td>栗田 徹</td><td>ゴールドアクター</td><td>チチカステナンゴ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>10</td><td class="left horse-name">アメジストブラック</td><td>牡7</td><td>58</td><td>舟山 瑠泉</td><td>小椋 研介</td><td>エピファネイア</td><td>フジキセキ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>11</td><td class="left horse-name">ドッビアーコ</td><td>せん5</td><td>58</td><td>古川 吉洋</td><td>奥村 豊</td><td>Street Boss</td><td>Bernardini</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">レイヤードレッド</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ハートメテオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ウィルサヴァイブ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ウィルサヴァイブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ハートメテオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">レイヤードレッド</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ハートメテオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ウィルサヴァイブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">レイヤードレッド</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ハートメテオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ウィルサヴァイブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">レイヤードレッド</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ウィルサヴァイブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ハートメテオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">レイヤードレッド</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.40</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ハートメテオ</span></td>
+<td>+0.42</td>
+<td>+0.22</td>
+<td>+0.24</td>
+<td>-0.08</td>
+<td>+0.30</td>
+<td>15.0</td>
+<td>16.3</td>
+<td>15.0</td>
+<td><b>15.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ウィルサヴァイブ</span></td>
+<td>+0.32</td>
+<td>+0.42</td>
+<td>+0.06</td>
+<td>+0.54</td>
+<td>+0.42</td>
+<td>15.7</td>
+<td>13.2</td>
+<td>12.4</td>
+<td><b>14.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">レイヤードレッド</span></td>
+<td>+0.32</td>
+<td>+0.08</td>
+<td>+0.28</td>
+<td>+0.40</td>
+<td>-0.04</td>
+<td>13.8</td>
+<td>14.8</td>
+<td>14.2</td>
+<td><b>14.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ロードマンハイム</span></td>
+<td>+0.02</td>
+<td>+0.20</td>
+<td>+0.16</td>
+<td>+0.36</td>
+<td>+0.54</td>
+<td>11.6</td>
+<td>11.3</td>
+<td>11.0</td>
+<td><b>11.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ウインアクトゥール</span></td>
+<td>+0.06</td>
+<td>+0.14</td>
+<td>+0.00</td>
+<td>+0.48</td>
+<td>+0.18</td>
+<td>11.2</td>
+<td>11.4</td>
+<td>9.7</td>
+<td><b>11.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">バルティカ</span></td>
+<td>-0.04</td>
+<td>+0.14</td>
+<td>-0.16</td>
+<td>+0.50</td>
+<td>+0.30</td>
+<td>10.2</td>
+<td>10.3</td>
+<td>8.6</td>
+<td><b>9.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ヨヒーン</span></td>
+<td>-0.22</td>
+<td>+0.06</td>
+<td>+0.04</td>
+<td>+0.28</td>
+<td>+0.28</td>
+<td>8.0</td>
+<td>-</td>
+<td>8.8</td>
+<td><b>8.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アメジストブラック</span></td>
+<td>+0.06</td>
+<td>-0.30</td>
+<td>-0.34</td>
+<td>-0.18</td>
+<td>-0.54</td>
+<td>7.4</td>
+<td>-</td>
+<td>5.8</td>
+<td><b>7.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ラブリーリディア</span></td>
+<td>-0.40</td>
+<td>-0.32</td>
+<td>-0.20</td>
+<td>+0.40</td>
+<td>+0.18</td>
+<td>5.4</td>
+<td>-</td>
+<td>7.0</td>
+<td><b>5.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">リッチブラック</span></td>
+<td>-0.78</td>
+<td>-0.14</td>
+<td>-0.68</td>
+<td>+0.02</td>
+<td>-0.22</td>
+<td>1.7</td>
+<td>-</td>
+<td>3.8</td>
+<td><b>2.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ドッビアーコ</span></td>
+<td>-1.00</td>
+<td>-0.32</td>
+<td>-0.12</td>
+<td>-0.76</td>
+<td>-0.10</td>
+<td>0.0</td>
+<td>-</td>
+<td>3.4</td>
+<td><b>0.6</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行3</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行3の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ハートメテオ, +0.4, 2勝クラスの芝2000mで2着を2回続けており差はいずれも0.1秒で指数も82.4と78.7ならこの組では上位です。前走10着は1.1秒差でも同距離実績の裏付けが明確で実績面はまだ買えます。<br><br>2番, ラブリーリディア, -0.4, 近3走の2勝クラスでは9着14着5着で指数も75.1 70.1 74.8と頭打ちです。未勝利と1勝クラスの勝ち時計はあるが現級実績の裏付けは弱いです。<br><br>3番, ヨヒーン, -0.2, 1勝クラスを1分58秒3で勝った実績はあるものの昇級後の芝2000m3戦が5着7着6着で指数も74台前後に留まっています。現級で足りるだけの実績はまだ示せていません。<br><br>4番, ウィルサヴァイブ, +0.3, 2勝クラスで2着2回があり阪神芝1800mでは指数83.8 京都芝2000mでも0.1秒差2着で水準以上です。大敗もあるが現級で通用する内容は既に示しています。<br><br>5番, リッチブラック, -0.8, 近5走は2勝クラスで7着7着8着6着12着と崩れ続け芝2000mでも1.3秒差6着が精一杯です。指数も70台前半止まりで7歳の現状実績はかなり厳しいです。<br><br>6番, ロードマンハイム, +0.1, 勝ち切れてはいないが2勝クラスで0.0秒差2着があり近走も0.5秒差7着 0.9秒差6着なら大きくは負けていません。指数80.7の裏付けもあり実績は中位より少し上です。<br><br>7番, レイヤードレッド, +0.3, 今年の芝2000mの2勝クラスで4着4着4着と安定し指数も79.5 79.9 80.8で揃っています。勝ち負けまではともかく現級で崩れない実績は信頼できます。<br><br>8番, バルティカ, -0.2, 芝2000mの2勝クラスで3着1回5着6着と一定の形はあるが前走15着4.3秒差と大敗が重いです。良い時でも指数は78台までで強調し切れません。<br><br>9番, ウインアクトゥール, 0.0, 芝では2勝クラスで3着3回があり2000mでも0.6秒差3着の実績があって大きくは見劣りしません。一方で11着やダート大敗もあって実績の振れ幅が大きく評価は中立です。<br><br>10番, アメジストブラック, +0.2, 近走は2400m中心だが2勝クラスで2着4着4着4着と相手なりに走れており指数80.4 79.2はこの組なら通用圏です。距離短縮は課題でもクラス実績自体は軽く扱えません。<br><br>11番, ドッビアーコ, -1.0, 近5走がすべてダートで6着9着10着12着11着と2勝クラスで明確に足りておらず芝実績の裏付けがありません。この条件で実績面からは最も強く下げる対象です。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>1番ハートメテオと4番ウィルサヴァイブ、7番レイヤードレッドの相対評価にズレがある可能性。6番ロードマンハイムのプラス評価は直近実績の裏付けが弱めで、9番ウインアクトゥールや8番バルティカとの比較整理が必要ではないか。10番アメジストブラックは2400m実績中心なのにプラス評価へ踏み込み気味。2番ラブリーリディアと3番ヨヒーンのマイナス幅の差も再点検余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ハートメテオ, +0.5, 2勝クラス芝2000mで0.1秒差2着を2回、指数も82.4と78.7があり、この組では現級実績の質が高いです。前走10着1.1秒差はあるが同距離で既に足りる数字を出しており、4番や7番より実績の裏付けは一段上です。<br><br>2番, ラブリーリディア, -0.5, 2勝クラスでは9着14着5着で、芝2000mでも0.8秒差5着まで、指数も75.1 70.1 74.8止まりです。1勝クラスまでの勝ち実績はあるが、現級で通用する裏付けは3番よりも薄く下げ幅をやや強めます。<br><br>3番, ヨヒーン, -0.3, 1勝クラスを1:58.3、指数81.2で勝った実績は悪くない一方、昇級後の芝2000m3戦は5着7着6着、指数72.6 74.9 74.8で壁に当たっています。現級実績は不足だが、2番よりは下支えになる数字があります。<br><br>4番, ウィルサヴァイブ, +0.2, 2勝クラスで芝1800m2着時の指数83.8、芝2000mでも0.1秒差2着の実績は評価できます。とはいえ芝2000mでは4着1.0秒差の凡走もあり、同距離の安定感では1番に一歩譲るため少し控えめに見直します。<br><br>5番, リッチブラック, -0.8, 近5走は2勝クラスで12着6着7着7着8着、芝2000mでも1.3秒差6着が精一杯で指数も70台前半です。近走実績からは巻き返し材料が乏しく、引き続き強いマイナスです。<br><br>6番, ロードマンハイム, 0.0, 2勝クラスで0.0秒差2着と指数80.7はあるものの、それは約11か月前で、直近2走は7着6着、指数76.2 76.9です。近走の裏付けだけで上積み評価するほどではなく、中立まで下げるのが妥当です。<br><br>7番, レイヤードレッド, +0.2, 芝2000mの2勝クラスで4着4着4着、指数79.5 79.9 80.8と大きく崩れない実績は素直に評価できます。ただし2着歴や0.1秒差級の強い実績はなく、1番ほどの押し上げ材料はありません。<br><br>8番, バルティカ, -0.2, 芝2000mの2勝クラスで3着、5着、6着があり指数も78.7 77.8 75.4なら一定水準です。ただ前走15着4.3秒差、指数45.1の大敗は実績評価では無視しづらく、わずかに下げる判断を維持します。<br><br>9番, ウインアクトゥール, +0.1, 芝の2勝クラスでは3着3回があり、芝2000mでも0.6秒差3着、指数78.4の実績があります。ダート大敗は今回条件と切り分けられるため、芝実績だけなら6番よりわずかに上と見て軽くプラスに修正します。<br><br>10番, アメジストブラック, 0.0, 2勝クラスで2着4着4着4着と崩れてはいないが、すべて芝2400mでの実績です。指数80.4と79.2はあるものの、今回の芝2000mで直接裏付けた実績ではないため、実績派としては中立が妥当です。<br><br>11番, ドッビアーコ, -1.0, 近5走すべてダートの2勝クラスで11着12着10着9着6着と足りず、芝での近走実績が皆無です。今回条件で実績面の裏付けは最も乏しく、引き続き最大級のマイナスです。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ハートメテオ, +0.2, 4番が主張して11番が外から並びかける形でも極端なハイにはなりにくく、中団インで脚を溜めやすい。1枠でロスなく運べるぶん直線の短い函館では少し上げる。<br><br>2番, ラブリーリディア, -0.5, 後方一気の形が多く今回も後ろからになりやすいが、函館芝2000mは小回りで直線も短く差し遅れのリスクが高い。逃げ先行馬の顔ぶれも飛ばし切る構成ではなく、展開待ちのぶん下げる。<br><br>3番, ヨヒーン, -0.1, いつも中団から差す形で大きな不利はないが、前が総崩れになるメンバー構成ではない。内で脚は溜まるものの、展開だけで強く押し上げる場面ではない。<br><br>4番, ウィルサヴァイブ, +0.7, 内目から自然にハナか2番手を取れる組み合わせで、この馬がレースの軸になる展開。函館2000mの先行有利と噛み合い、4角先頭気味に運べるシナリオがかなり描きやすい。<br><br>5番, リッチブラック, +0.3, 近走は長めの距離で前に行っており今回も押して好位へ行けそうで、前残り寄りの流れなら拾える。4番を見ながら2列目外で運べれば展開面の恩恵はある。<br><br>6番, ロードマンハイム, +0.1, 近走は差す形が多いが前走のように途中で動けるので、極端な追い込み一辺倒ではない。平均ペース想定なら中団から早めに進出する形で小さく展開利がある。<br><br>7番, レイヤードレッド, 0.0, 中団あたりで流れに乗る形になりそうで、展開の恩恵も不利も限定的。前が止まらないと届き切れないが、位置を取りに行き過ぎるタイプでもなく中立。<br><br>8番, バルティカ, +0.3, 先行して長く脚を使う形に持ち込みやすく、4番の直後あたりで流れに乗れればしぶとい展開。外過ぎない7枠で包まれにくく、函館の小回りでは運びやすい。<br><br>9番, ウインアクトゥール, +0.2, 4番の後ろか5番8番の外で好位を取れそうで、前々で立ち回るイメージは持ちやすい。差し比べ一辺倒にならない想定なので、この馬の位置取りはプラス。<br><br>10番, アメジストブラック, -0.3, 近走は2400m中心で道中ゆったり入る形が多く、今回の函館2000mの小回り戦で後手に回ると苦しい。外枠からじわっと運ぶ形だと4角で前との差を詰め切れない懸念がある。<br><br>11番, ドッビアーコ, -0.2, 外枠から出して行けば先行争いに加われるが、最初のコーナーまでに脚を使わされやすい並び。4番にプレッシャーをかける役にはなれても、自身は外々を回るリスクが残る。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番ウィルサヴァイブの加点幅は、11番ドッビアーコのプレッシャーを自分で想定している割に強気すぎるか再点検したい。11番ドッビアーコは他馬へ与える影響の書き方に対して自身の減点が軽く、4番との整合も甘い。5番リッチブラックは『前に行ければ』の仮定先行で8番バルティカ・9番ウインアクトゥールより甘く見える。7番レイヤードレッドは中団で流れに乗れるタイプなのに0.0止まりは低めで、1番ハートメテオや6番ロードマンハイムとの比較説明が欲しい。2番ラブリーリディアを強く下げるなら、同じく位置取り不安の10番アメジストブラックとの差も見直し余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ハートメテオ, +0.2, 4番と11番が前を主張しても極端な消耗戦までは行かず、内で脚をためる形は取りやすい。1枠でコーナー4つをロスなく回れる分だけ小回り函館では少し上げる。<br><br>2番, ラブリーリディア, -0.5, 後方寄りの形になりやすく、函館芝2000mの短い直線では差し遅れの危険が大きい。4番と11番が作る流れも差し総崩れ級のハイまでは見込みにくく、展開待ちの色が濃い。<br><br>3番, ヨヒーン, 0.0, 中団差しで流れには乗れそうだが、前がきつくなるほどの隊列でもなく展開の追い風は限定的。内目で立ち回れる利はあるが、それは大きな加点材料まではならない。<br><br>4番, ウィルサヴァイブ, +0.5, 先手か番手は取りやすいが、11番が外から絡む形は十分あり単騎で楽には行けない。とはいえ函館2000mで前受けできる利自体は大きく、4角先頭圏の絵はまだ描きやすい。<br><br>5番, リッチブラック, 0.0, 前に行ければ形は悪くないが、近走を見ると今回の2000mで確実に好位を取れるとは言い切れない。8番や9番ほど位置取りの再現性を展開面で買えず、中立まで下げる。<br><br>6番, ロードマンハイム, +0.1, 後ろ一辺倒ではなく函館でも途中から動けており、小回りで置かれ切るイメージは薄い。前が止まり切らなくても中団から早めに射程へ入れる分だけわずかに上げる。<br><br>7番, レイヤードレッド, +0.1, 中団の内外で無理なく流れに乗れそうで、1番よりは外でロスの懸念がある一方、2番ほど位置取りが後ろになり切らない。展開不問寄りに運べるぶんだけ軽くプラスに修正する。<br><br>8番, バルティカ, +0.3, 4番を見る形の先行が叶えば、このレースではかなり運びやすい並び。11番が外から主張してもこの馬自身は好位外で窮屈になりにくく、前残りシナリオの恩恵を受けやすい。<br><br>9番, ウインアクトゥール, +0.2, 8番の外か直後で好位を取る形は見えやすく、差し届かずの形になりにくい。4番と11番がやり合ってもこの馬は少し離れた好位で運べそうで、位置取り面はプラス。<br><br>10番, アメジストブラック, -0.4, 近走の距離と脚の使い方から、函館2000mの小回りで前半から良い位置を取り切れない不安がある。2番ほど極端な追い込みではないが、外枠から動き遅れると4角で苦しい。<br><br>11番, ドッビアーコ, -0.5, 外枠から出して行けば4番に圧をかける役にはなれるが、自身は1角までに脚を使って外々を回されやすい。ハナを取っても楽な単騎逃げにはなりにくく、展開を作る側の消耗が大きい。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ハートメテオ, +0.4, 今回は馬体重未発表なので前走452kg想定だが, 前走は休み明けで+16kgでも太すぎる止まり方ではなく, ひと叩きで中2週かつ函館Wで1F12.0と伸びが目立つのは上積み材料。56kgも前走据え置きで, 叩き2走目の良化を見込める。<br><br>2番, ラブリーリディア, -0.2, 馬体重未発表で前走454kg想定だと近3走で446kg→448kg→454kgと増加気味で, 絞れて上向く形ではない。中5週を使って函館入り後も調教評価は「多少上向く」止まりで, 仕上がり面の後押しは弱い。<br><br>3番, ヨヒーン, -0.1, 馬体重未発表で462kg想定なら近4走が458kg→470kg→462kg→462kgで大きなブレはなく, 体調は安定域。ただし今回は56kgで前走据え置き, 強め追いで仕上がり良好でも調子は横ばい表示なので, 強い上積みまでは感じない。<br><br>4番, ウィルサヴァイブ, +0.1, 馬体重未発表で448kg想定なら442kg→448kgと休み明けを使って適度に戻しており, 細化や太め残りの印象は薄い。中6週で馬なり中心でも折り合いスムーズなら維持は利いており, 56kg据え置きでも体調面は軽くプラス。<br><br>5番, リッチブラック, -0.6, 馬体重未発表で464kg想定だと近走は458kgから戻したが, 中1週でダートを大敗した直後という臨戦は消耗が気になる。函館W73.2-13.6で調教評価も「上昇味薄いが」と鈍く, 58kgを背負う7歳馬としては上向き材料が乏しい。<br><br>6番, ロードマンハイム, +0.2, 馬体重未発表で514kg想定なら518kg前後を安定して使えており, 大型馬だけに58kg据え置きもこなしやすい。中8週明けを一度使って中2週, 函館Wで余裕ある動きなら体の張りは維持できている。<br><br>7番, レイヤードレッド, +0.1, 馬体重未発表で484kg想定だと494kgから徐々に絞れてきており, 近2走は486kg→484kgで重すぎない実戦向きの水準。中2週で芝追い11.9まで出して遅れ不安なしなら, 反動よりも状態維持を見たい。<br><br>8番, バルティカ, +0.3, 馬体重未発表で450kg想定だと前走の-10kgは減りすぎに映るが, そこから4か月空けて立て直せるのはむしろ好材料。函館Wで仕上がり良好の評価が出ており, 57kgから58kgへの1kg増は馬身換算で約0.2馬身ぶんの不利でも体調立て直しの上積みで相殺可能。<br><br>9番, ウインアクトゥール, -0.3, 馬体重未発表で444kg想定なら450kgからの-6kgでやや減っており, もともと大柄ではない馬に58kgは楽ではない。約4か月ぶりでも追い切りは軽快だが1F13.0で終いの迫力は強くなく, 休養明けの上昇度は限定的。<br><br>10番, アメジストブラック, -0.4, 馬体重未発表で528kg想定だと前走は+12kgで走れてはいるが, 今回は約8か月ぶりで7歳馬の長休明けになる。函館W66.7と全体時計は出ても評価は「動きまずまず」止まりで, 強め追いに対して仕上がりの確信までは持ちにくい。<br><br>11番, ドッビアーコ, -0.2, 馬体重未発表で554kg想定なら近5走は552kg前後で安定しており, 馬格があるので58kg自体は大きな減点ではない。ただし約3か月ぶりで芝追いの速い時計は道中で飛ばしたぶんにも見え, 体調が上向いたというより平行線の印象。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>見直し候補は、強気すぎる可能性のある1番ハートメテオと8番バルティカ、逆に下げすぎの可能性がある3番ヨヒーン・7番レイヤードレッド・9番ウインアクトゥール。特に8番バルティカは馬体未発表のまま『立て直し前提』で加点しており、10番アメジストブラックの長休明け評価との基準差が気になる。11番ドッビアーコは本文の弱気さに対して-0.2がまだ甘い可能性もある。全体に、未確認の回復を買う馬と横ばい安定を嫌う馬の基準が揺れていないか再点検したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ハートメテオ, +0.3, 前走452kgは休み明けで+16kgでも止まり方が極端に鈍くなく ひと叩きして中2週なら絞れてくる余地はある。函館Wで1F12.0と伸びは目立つが 当日馬体重が未発表のままなので良化を断定するほどには振らない。<br><br>2番, ラブリーリディア, -0.2, 前走454kgまで増えてきた流れで 今回も未発表なら絞れて上向く裏づけはまだ薄い。調教評価も「多少上向く」止まりで 体調面の強い後押しは感じにくい。<br><br>3番, ヨヒーン, +0.0, 458kgから470kgを挟んで近2走462kgと馬体は安定しており 体調を崩している形ではない。強め追いで仕上がり良好まで出ているなら 下げ材料より横ばい中立で扱うのが妥当。<br><br>4番, ウィルサヴァイブ, +0.1, 442kgから448kgへと戻した前走は太めでも細化でもなく ちょうど実戦向きのレンジに見える。中6週で馬なり中心でも折り合いスムーズなら 状態維持はできている。<br><br>5番, リッチブラック, -0.6, 前走464kgで中1週の再戦は 7歳馬には疲労の抜け切りを疑う臨戦。函館W73.2-13.6で調教評価も弱く 58kgを背負っての上積みは見込みづらい。<br><br>6番, ロードマンハイム, +0.2, 514kgから518kg近辺で安定して使えている大型馬で 58kg据え置きはこなしやすい馬格。ひと叩き後の中2週で函館Wも余裕ある動きなら 体の張りは保てている。<br><br>7番, レイヤードレッド, +0.2, 494kgから486kgそして484kgと段階的に絞れており 今が重すぎず軽すぎない実戦型の水準に見える。中2週でも芝で1F11.9まで出せて遅れ不安なしなら 反動より維持以上を評価したい。<br><br>8番, バルティカ, +0.0, 前走450kgの-10kgは確かに気になるが 今回は当日馬体重未発表のため立て直し完了を前提にはできない。調教の「仕上がり良好」は評価しても 4か月ぶりで1kg増のぶんまで含めれば体調面は中立までに留める。<br><br>9番, ウインアクトゥール, -0.1, 前走444kgは450kgからの-6kgで やや減っていた小柄寄りの馬体に映る。今回は約4か月ぶりでも動き自体は軽快で大きくは下げないが 58kgは馬身換算で約0.2馬身ぶんの負担があり少しだけ割引く。<br><br>10番, アメジストブラック, -0.4, 前走528kgで走れている馬格なので58kg自体は問題ないが 約8か月ぶりの7歳馬で休養明けの不確実性は大きい。函館W66.7は出ていても「動きまずまず」止まりなら 仕上がりの確信までは置けない。<br><br>11番, ドッビアーコ, -0.3, 552kgから554kg前後で馬体は安定しており 58kgも馬格的にはこなせるが 調教時計は芝で道中を飛ばしたぶんの見栄えが強い。約3か月ぶりで上向き材料が薄く 体調面はやや弱気に見直す。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ハートメテオ, -0.1, ロードカナロア産駒で本質はマイルから中距離寄りでも機動力型に出やすく、函館芝2000mで強く押し上げる血統像ではない。母父Majesticperfectionも米国スピード色が濃く、距離延長の後押しは限定的。<br><br>2番, ラブリーリディア, +0.3, エピファネイアに母父ディープインパクトは中距離芝でしなやかさと持続力を出しやすく、函館2000mは血統的に守備範囲。母系の軽さがあるので極端な消耗戦よりは標準的な芝2000m替わりがプラス。<br><br>3番, ヨヒーン, +0.2, キズナ産駒は洋芝や時計の掛かる芝で底力が生きやすく、母父Tiz Wonderfulの米国要素も小回りでの立ち回り補強になる。2000mは十分にこなせる配合で、函館替わりは軽く上向く。<br><br>4番, ウィルサヴァイブ, +0.5, アルアインに母父ハービンジャーなら1800mより2000m前後で良さが出やすく、洋芝適性も意識しやすい配合。母父由来の持続力が函館芝のタフさに噛み合いやすく、この条件替わりは血統面で明確に後押しできる。<br><br>5番, リッチブラック, +0.1, エピファネイアに母父ブライアンズタイムでスタミナと持続力はあり、2000m自体は短すぎず長すぎずの範囲。切れ味勝負向きではないが、函館のやや重厚な芝質は少しだけ合う。<br><br>6番, ロードマンハイム, 0.0, ロードカナロアに母父Shiroccoで父のスピードと母系の欧州的な持久力が混ざり、距離自体は2000mまで許容できる。ただし配合の軸は1800m前後に見え、函館2000mで大きく上げ下げするほどの偏りはない。<br><br>7番, レイヤードレッド, +0.6, フィエールマン産駒で母父スニッツェルなら父の長めの持続力を母系の機動力で引き締めた形で、2000mの小回り中距離はむしろ合いやすい。洋芝や少し時計の掛かる馬場にも対応しやすい血統で、この条件ははっきり好材料。<br><br>8番, バルティカ, +0.4, ルーラーシップに母父ディープインパクトは中距離の王道配合で、函館芝2000mのような持続力戦は得意レンジ。父系のパワーで洋芝適性も見込みやすく、血統だけ見れば巻き返し余地はある。<br><br>9番, ウインアクトゥール, +0.3, ゴールドアクターに母父チチカステナンゴはスタミナとパワーが前面に出る配合で、平坦小回りの芝2000mは血統的に合う。速い瞬発戦より洋芝の持続戦向きで、この舞台はやや上げたい。<br><br>10番, アメジストブラック, -0.4, エピファネイアに母父フジキセキでこなせなくはないが、近い血統像は中長距離でじっくり脚を使う形に寄る。函館2000mは対応範囲でもベストより忙しくなりやすく、血統面では少し割引。<br><br>11番, ドッビアーコ, -0.9, Street Bossに母父Bernardiniは米国ダート色が非常に強く、芝2000mでの適性裏付けはかなり薄い。小回り芝中距離で求められる持続的な芝脚質とは血統の方向性が大きくずれている。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>再点検候補は主に3点。1) 7番レイヤードレッドと4番ウィルサヴァイブの高評価は、血統説明に対して加点幅がやや先行していないか。2) 5番リッチブラックをプラス、10番アメジストブラックを大きめマイナスにした序列は、どちらも中長距離寄りと読むなら差が開きすぎではないか。3) 1番ハートメテオ、3番ヨヒーン、6番ロードマンハイムは、説明文だけ見ると明確な不向きまでは言っておらず、現状の低め評価は見直し余地がある。2番ラブリーリディアと8番バルティカ、3番ヨヒーンと9番ウインアクトゥールの相対比較も整理したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ハートメテオ, 0.0, ロードカナロアに母父Majesticperfectionで全体像はスピード寄りだが、母系の補完で2000mまで完全に否定する配合でもない。函館芝2000mで強く買う血統ではない一方、明確な減点根拠までも薄く中立に戻す。<br><br>2番, ラブリーリディア, +0.3, エピファネイアに母父ディープインパクトは芝中距離でしなやかさと持続力を出しやすく、2000mは素直に守備範囲。洋芝でパワー一辺倒ではないが、函館2000mで無理なくプラス評価できる配合。<br><br>3番, ヨヒーン, +0.1, キズナ産駒の底力と母父Tiz Wonderfulの米国的な前向きさで、小回り芝2000mへの対応力はある。洋芝や時計の掛かる芝で少し上向く余地はあるが、強調材料はそこまで大きくない。<br><br>4番, ウィルサヴァイブ, +0.4, アルアインに母父ハービンジャーは1800mより2000m前後で持続力を活かしやすく、洋芝適性も見込みやすい。函館芝2000mへの噛み合いは明確に感じるが、配合だけで過大評価は避けて一段控えめにする。<br><br>5番, リッチブラック, 0.0, エピファネイアに母父ブライアンズタイムでスタミナとパワーはあるが、2000mで大きく上積みするほどの鮮明な適性差までは出にくい。軽い芝向きではない一方、函館2000mで明確に押し上げる根拠も弱く中立。<br><br>6番, ロードマンハイム, +0.1, ロードカナロアのスピードに母父Shiroccoの欧州的な持久力が入っており、単純な短距離血統ではない。2000m替わりでわずかに守備範囲が広がる配合で、大きな加点はしないが軽く上向きに見る。<br><br>7番, レイヤードレッド, +0.4, フィエールマン産駒で母父スニッツェルなら長めの持続力に機動力を足した形で、小回り2000mは合いやすい。洋芝や少し力の要る芝もこなせる血統像で好材料だが、加点幅は抑えて再評価する。<br><br>8番, バルティカ, +0.3, ルーラーシップに母父ディープインパクトは中距離芝で王道型の持続力を出しやすく、函館2000mも合うレンジ。父系のパワーで洋芝もこなせる見立てで、2番と同程度のプラスに整理する。<br><br>9番, ウインアクトゥール, +0.2, ゴールドアクターに母父チチカステナンゴでスタミナとパワーが前面に出る配合だけに、平坦小回りの芝2000mは血統的に悪くない。3番よりパワー寄りの適性は明確だが、芝での切れ不足も残りうるので加点は控えめにする。<br><br>10番, アメジストブラック, -0.2, エピファネイアに母父フジキセキなら中長距離でじっくり良さが出る方向で、函館2000mは少し忙しい可能性がある。とはいえ適性から大きく外れる血統ではなく、減点は小さめに修正する。<br><br>11番, ドッビアーコ, -0.9, Street Bossに母父Bernardiniは米国ダート色がかなり濃く、芝2000mの持続力勝負に合う裏付けが乏しい。今回の条件では血統の方向性が最もずれており、強いマイナス評価を維持する。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, ハートメテオ, +0.3, 岩田望来への戻りは陣営の上積みです。前走の富田暁から鞍上強化の形で 以前にこの馬へ乗って大崩れしておらず手の内も多少あります。<br><br>2番, ラブリーリディア, +0.2, 中内田充正厩舎の管理力はこのクラスでも軽視しづらく陣営面は底上げです。小沢大仁の継続騎乗もあり 極端な上積みまでは見ないがマイナスにはしません。<br><br>3番, ヨヒーン, +0.4, 鮫島克駿への戻りは明確に好材料です。勝ち鞍と札幌での好走がこの騎手で出ており 継続実績のある組み合わせとして信頼を足せます。<br><br>4番, ウィルサヴァイブ, +0.7, 横山武史に須貝尚介厩舎ならこの組み合わせだけで強く押せます。近走で鞍上が動いていた中でトップジョッキーを配してきたのは陣営の勝負気配として扱いたいです。<br><br>5番, リッチブラック, -0.3, 近走の鞍上配置に強い後押しが見えず 今回の斎藤新も陣営面で大きく押し上げる材料ではありません。西村真幸厩舎で大きなマイナスまでは取らないが このメンバーでは見劣ります。<br><br>6番, ロードマンハイム, +0.8, 友道康夫厩舎に岩田康誠の継続騎乗はこのレースで最上位級の陣営評価です。前走から同じ騎手で運べるのは大きく 管理力と騎乗経験の両面で強く上げます。<br><br>7番, レイヤードレッド, -0.2, 手塚貴久厩舎は悪くないものの 騎手面では長浜鴻緒で強調しづらいです。近走でも江田照男や嶋田純次など固定感が薄く 陣営の押し出しは弱めです。<br><br>8番, バルティカ, +0.3, 北村友一に戻る形は陣営面で好感です。京都2000mでの好走時にこの騎手が乗っており 馬のリズムを知る鞍上起用としてプラス評価できます。<br><br>9番, ウインアクトゥール, +0.2, 丹内祐次は函館芝中距離で軽視しにくく 陣営としては堅実な起用です。継続騎乗ではないが 北海道シリーズでこの騎手を確保した点はわずかに上向きです。<br><br>10番, アメジストブラック, -0.8, 近走で北村友一や浜中俊が乗っていた馬に舟山瑠泉への乗り替わりは陣営面でかなり弱いです。小椋研介厩舎との組み合わせもこの条件で強い後押しとは言いづらく 大きく割り引きます。<br><br>11番, ドッビアーコ, -0.3, 古川吉洋はベテランですが この馬は近走で騎手が定まらず継続性に欠けます。奥村豊厩舎で極端なマイナスではないものの 今回の陣営布陣に強調材料は少ないです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番ウィルサヴァイブと6番ロードマンハイムは高評価の根拠に対して数値がやや強すぎないか再点検したい。1番ハートメテオと9番ウインアクトゥールは理由文の割に加点が控えめで、8番バルティカとの比較も含め整合性確認の余地がある。2番ラブリーリディアと5番リッチブラック、7番レイヤードレッドと11番ドッビアーコは、厩舎力や継続性の扱いが数値にどう反映されたかがやや曖昧。10番アメジストブラックの大幅マイナスは妥当でも、他馬との差がそこまで開く理由をもう一段詰めたい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ハートメテオ, +0.3, 岩田望来への乗り替わりは素直に鞍上強化です。継続騎乗ではないもののこの馬への騎乗歴があり 陣営としては押し上げ材料があります。<br><br>2番, ラブリーリディア, +0.2, 中内田充正厩舎の管理力はこの組でもやはり加点です。小沢大仁の継続騎乗は大きな武器までは言えないが 厩舎力込みで小幅に上げます。<br><br>3番, ヨヒーン, +0.4, 鮫島克駿に戻る点は明確なプラスです。勝ち鞍と札幌での好走歴がこの騎手で出ており 組み合わせの裏付けがあります。<br><br>4番, ウィルサヴァイブ, +0.5, 横山武史と須貝尚介厩舎の布陣はこのレースでも上位です。強くは買える陣営ですが 継続性や今回だけで抜けた勝負気配とまでは言い切れず少し圧縮します。<br><br>5番, リッチブラック, -0.2, 西村真幸厩舎で大きくは下げにくい一方で 斎藤新への起用に強い押し出しは感じません。近走の騎手配置も定まり切らず 陣営面はやや弱めです。<br><br>6番, ロードマンハイム, +0.6, 友道康夫厩舎に岩田康誠の継続騎乗はこの組でもかなり強い材料です。厩舎の格と同騎手で運べる安心感を評価するが 隔絶級までではないので少し抑えます。<br><br>7番, レイヤードレッド, -0.1, 手塚貴久厩舎は軽視しないが 騎手面で強調しづらいです。前走と同じ長浜鴻緒で最低限の継続性はあるため 下げ幅は小さくとどめます。<br><br>8番, バルティカ, +0.3, 北村友一に戻る形は好感です。この馬で2000mを複数回任されており 手の内を分かる鞍上への回帰として素直にプラス評価します。<br><br>9番, ウインアクトゥール, +0.1, 丹内祐次の函館芝中距離起用は陣営として無難にプラスです。ただし継続騎乗ではなく この馬との結び付きもそこまで強くないので加点は控えめにします。<br><br>10番, アメジストブラック, -0.7, 近走で北村友一や浜中俊が乗っていた流れから舟山瑠泉への乗り替わりは このレースで最も大きい鞍上弱化です。厩舎側で強く打ち消せる材料も乏しく 陣営面でははっきり割り引きます。<br><br>11番, ドッビアーコ, -0.2, 古川吉洋はベテランでも この馬は近走の騎手が定まらず継続性に欠けます。奥村豊厩舎で極端には下げないが 今回の陣営布陣に強い後押しはありません。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1番, ハートメテオ, 23%, 1番ハートメテオは2走前と3走前の2000m内容がこの組み合わせでは最上位で前走10着だけを重く見る合成には疑問がある。函館替わり2走目で調教気配も上向きなら◎候補として最も筋が通る。<br><br>7番, レイヤードレッド, 21%, 7番レイヤードレッドは勝ち切れていないぶん合成で3番手止まりだが近3走の2000m実績は安定しており大崩れしにくさは上位評価に値する。前走1800m7着よりも中山2000mの連続4着を重視して○圏に引き上げたい。<br><br>4番, ウィルサヴァイブ, 19%, 4番ウィルサヴァイブは合成2位でも不自然ではないが小倉2000mの失速歴があり1着固定級としては少し買い被られている。京都2000mの2着は優秀なので上位3頭には残すが頭候補までは下げる。<br><br>6番, ロードマンハイム, 17%, 6番ロードマンハイムは2000m実績の薄さがあるため合成5位据え置きくらいが妥当で上にも下にも振れすぎたくない。とはいえ近2走の内容と函館の立ち回りは悪くなく4番ウィルサヴァイブや9番ウインアクトゥールより逆転余地はある。<br><br>8番, バルティカ, 14%, 8番バルティカは前走大敗だけで圏外に置かれているなら見直しが必要で京都2000mではこの相手関係なら足りる内容を続けている。6位以下からの浮上候補として最も警戒したく9番ウインアクトゥールより2000m適性の裏付けを買う。</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1番, ハートメテオ, 16%, 1番ハートメテオは2000mの2勝クラスで0.1秒差2着が2回あり、この組み合わせでは実績が最も素直です。前走凡走後でも函館Wで終いの伸びが目立ち、距離延長で巻き返しやすいと見ます。<br><br>7番, レイヤードレッド, 14%, 7番レイヤードレッドは近3走の2000m前後で大崩れがなく、現級で安定して地力を見せています。函館芝で終い11.9の調教も良く、勝ち切りまではともかく上位圏の信頼度は高いです。<br><br>4番, ウィルサヴァイブ, 12%, 4番ウィルサヴァイブは2000mで2着歴があり、1800mでも鋭い脚を使えている点が魅力です。先行も差しもできる内容で流れに乗りやすく、横山武史騎手も含めて上位評価します。<br><br>6番, ロードマンハイム, 11%, 6番ロードマンハイムは前走函館1800mで差の小さい6着、札幌でも近い条件で好走歴があり洋芝適性を感じます。勝ち味は薄いものの動きに余裕があり、2000mでもまとめてきそうです。<br><br>3番, ヨヒーン, 10%, 3番ヨヒーンは近走成績自体は地味でも2000mを使い続けて大きく崩れておらず、福島での勝ち方にも安定感がありました。調教も仕上がり良好で、相手関係ひとつで圏内に届く評価です。<br><br>8番, バルティカ, 9%, 8番バルティカは前走の大敗が強く響く一方で、その前の2000m戦では差の小さい競馬を続けていました。仕上がり自体は悪くなく、極端な凡走明けでも条件替わりで反発余地があります。<br><br>9番, ウインアクトゥール, 8%, 9番ウインアクトゥールはダートの大敗を度外視すれば、芝1800mから2000mで堅実に差を詰めてきた馬です。函館Wの動きも軽く、連下圏なら十分意識できます。<br><br>2番, ラブリーリディア, 7%, 2番ラブリーリディアは近2走が物足りないものの、函館2000mで未勝利勝ちがありコース経験はあります。末脚は使えているので、展開がはまれば着順以上の差し込みは可能です。<br><br>10番, アメジストブラック, 6%, 10番アメジストブラックは長期休養明けと2000mへの距離短縮が課題ですが、もともと長めの芝でそこそこ走れる地力はあります。追い切り時計は出ており、仕上がり次第で一変の余地だけは残します。<br><br>5番, リッチブラック, 4%, 5番リッチブラックは近走の内容も指数も低調で、芝2000mへ戻っても強くは推しづらいです。7歳58kgで上昇気配も薄く、よほど展開が向かないと厳しいと見ます。<br><br>11番, ドッビアーコ, 3%, 11番ドッビアーコは近走が全てダートで内容も弱く、芝2000m替わりでいきなりの前進を見込む材料は少ないです。調教の見栄えは良いものの、11番ドッビアーコはレース実績面で最下位評価が妥当です。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>1</td><td class="left horse-name">ハートメテオ</td><td>15.3%</td><td>9.7</td><td>7</td><td class="ev-mid">1.48</td></tr><tr><td>2</td><td>4</td><td class="left horse-name">ウィルサヴァイブ</td><td>14.6%</td><td>9.7</td><td>8</td><td class="ev-mid">1.42</td></tr><tr><td>3</td><td>7</td><td class="left horse-name">レイヤードレッド</td><td>14.1%</td><td>11.0</td><td>9</td><td class="ev-mid">1.55</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">ロードマンハイム</td><td>11.4%</td><td>6.1</td><td>3</td><td class="ev-low">0.70</td></tr><tr><td>5</td><td>9</td><td class="left horse-name">ウインアクトゥール</td><td>11.0%</td><td>6.6</td><td>4</td><td class="ev-low">0.73</td></tr><tr><td>6</td><td>8</td><td class="left horse-name">バルティカ</td><td>9.9%</td><td>7.5</td><td>5</td><td class="ev-low">0.74</td></tr><tr><td>7</td><td>3</td><td class="left horse-name">ヨヒーン</td><td>8.2%</td><td>9.2</td><td>6</td><td class="ev-low">0.75</td></tr><tr><td>8</td><td>10</td><td class="left horse-name">アメジストブラック</td><td>7.1%</td><td>5.7</td><td>2</td><td class="ev-low">0.41</td></tr><tr><td>9</td><td>2</td><td class="left horse-name">ラブリーリディア</td><td>5.7%</td><td>5.2</td><td>1</td><td class="ev-low">0.30</td></tr><tr><td>10</td><td>5</td><td class="left horse-name">リッチブラック</td><td>2.1%</td><td>41.6</td><td>10</td><td class="ev-low">0.86</td></tr><tr><td>11</td><td>11</td><td class="left horse-name">ドッビアーコ</td><td>0.6%</td><td>83.2</td><td>11</td><td class="ev-low">0.54</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">1 ハートメテオ</td><td>15.3%</td><td>9.7</td><td class="ev-mid">1.21</td></tr><tr><td>複勝</td><td class="left">1 ハートメテオ</td><td>43.5%</td><td>2.1</td><td class="ev-low">0.82</td></tr><tr><td>馬連</td><td class="left">1 ハートメテオ-4 ウィルサヴァイブ</td><td>5.2%</td><td>7.7</td><td class="ev-low">0.33</td></tr><tr><td>ワイド</td><td class="left">1 ハートメテオ-4 ウィルサヴァイブ</td><td>14.8%</td><td>4.4</td><td class="ev-low">0.55</td></tr><tr><td>馬単</td><td class="left">1 ハートメテオ→4 ウィルサヴァイブ</td><td>2.6%</td><td>20.8</td><td class="ev-low">0.44</td></tr><tr><td>3連複</td><td class="left">1 ハートメテオ-4 ウィルサヴァイブ-7 レイヤードレッド</td><td>3.1%</td><td>35.6</td><td class="ev-low">0.89</td></tr><tr><td>3連単</td><td class="left">1 ハートメテオ→4 ウィルサヴァイブ→7 レイヤードレッド</td><td>0.5%</td><td>253.7</td><td class="ev-mid">1.07</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 200円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>馬連</td><td class="left">1 ハートメテオ-4 ウィルサヴァイブ</td><td>7.7</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>3連複</td><td class="left">1 ハートメテオ-4 ウィルサヴァイブ-7 レイヤードレッド</td><td>35.6</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 200円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
