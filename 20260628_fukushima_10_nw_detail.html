@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鶴ヶ城ステークス 2026/06/28 FUKUSHIMA 10R (06/27 23:43 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>鶴ヶ城ステークス 2026/06/28 FUKUSHIMA 10R (06/27 23:43 予想 馬体重なし)</h1>
+  <div class="meta">ダート1700m（右） | 良 | 11頭立て | 2回 福島 2日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 11頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">4. エクリプスルバン</div>
+      <div class="pick-jockey">戸崎 圭太 / 田中 博康</div>
+    </div>
+    <div class="pick-prob">18.5%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">9. ドバイブルース</div>
+      <div class="pick-jockey">横山 武史 / 加藤 征弘</div>
+    </div>
+    <div class="pick-prob">16.6%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">3. バギーウィップ</div>
+      <div class="pick-jockey">武藤 雅 / 大竹 正博</div>
+    </div>
+    <div class="pick-prob">10.4%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">11頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">オリーブグリーン</td><td>牡4</td><td>58</td><td>松山 弘平</td><td>矢作 芳人</td><td>ヘニーヒューズ</td><td>シンボリクリスエス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">メイショウフウドウ</td><td>せん5</td><td>58</td><td>三浦 皇成</td><td>藤原 英昭</td><td>シニスターミニスター</td><td>フジキセキ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">バギーウィップ</td><td>牡4</td><td>58</td><td>武藤 雅</td><td>大竹 正博</td><td>ナダル</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">エクリプスルバン</td><td>せん5</td><td>58</td><td>戸崎 圭太</td><td>田中 博康</td><td>シニスターミニスター</td><td>マンハッタンカフェ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">ヴァナルガンド</td><td>牡6</td><td>58</td><td>津村 明秀</td><td>稲垣 幸雄</td><td>シビルウォー</td><td>アドマイヤベガ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">タイセイミッション</td><td>せん5</td><td>58</td><td>菊沢 一樹</td><td>伊藤 圭三</td><td>キタサンブラック</td><td>ノヴェリスト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>7</td><td class="left horse-name">ラフエイジアン</td><td>せん6</td><td>58</td><td>F.ゴンサルベス</td><td>中舘 英二</td><td>アジアエクスプレス</td><td>Medicean</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>8</td><td class="left horse-name">アイウィル</td><td>牡5</td><td>58</td><td>田口 貫太</td><td>高木 登</td><td>ドレフォン</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>9</td><td class="left horse-name">ドバイブルース</td><td>牡5</td><td>58</td><td>横山 武史</td><td>加藤 征弘</td><td>キンシャサノキセキ</td><td>Monsun</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>10</td><td class="left horse-name">ゴールドアローン</td><td>牝5</td><td>56</td><td>石川 裕紀人</td><td>青木 孝文</td><td>ドレフォン</td><td>ヘニーヒューズ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>11</td><td class="left horse-name">クロースコンバット</td><td>牡7</td><td>58</td><td>北村 宏司</td><td>青木 孝文</td><td>キンシャサノキセキ</td><td>ワイルドラッシュ</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">エクリプスルバン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ドバイブルース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">バギーウィップ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">エクリプスルバン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ドバイブルース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">バギーウィップ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">エクリプスルバン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ドバイブルース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">オリーブグリーン</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">エクリプスルバン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ドバイブルース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">バギーウィップ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">エクリプスルバン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ドバイブルース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ラフエイジアン</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.60</td>
+<td style='color:#AF52DE'>0.60</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">エクリプスルバン</span></td>
+<td>+0.88</td>
+<td>+0.36</td>
+<td>+0.42</td>
+<td>+0.52</td>
+<td>+0.52</td>
+<td>18.9</td>
+<td>18.5</td>
+<td>16.8</td>
+<td><b>18.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ドバイブルース</span></td>
+<td>+0.74</td>
+<td>+0.28</td>
+<td>+0.52</td>
+<td>+0.22</td>
+<td>+0.60</td>
+<td>17.0</td>
+<td>16.8</td>
+<td>15.0</td>
+<td><b>16.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">バギーウィップ</span></td>
+<td>+0.04</td>
+<td>-0.06</td>
+<td>+0.36</td>
+<td>+0.52</td>
+<td>+0.36</td>
+<td>9.2</td>
+<td>12.0</td>
+<td>12.8</td>
+<td><b>10.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">オリーブグリーン</span></td>
+<td>+0.18</td>
+<td>+0.08</td>
+<td>+0.08</td>
+<td>+0.28</td>
+<td>+0.46</td>
+<td>10.3</td>
+<td>10.1</td>
+<td>10.8</td>
+<td><b>10.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ラフエイジアン</span></td>
+<td>+0.28</td>
+<td>+0.10</td>
+<td>-0.22</td>
+<td>+0.20</td>
+<td>+0.06</td>
+<td>10.1</td>
+<td>7.0</td>
+<td>7.2</td>
+<td><b>9.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ゴールドアローン</span></td>
+<td>+0.16</td>
+<td>+0.12</td>
+<td>+0.16</td>
+<td>+0.48</td>
+<td>-0.10</td>
+<td>9.8</td>
+<td>8.5</td>
+<td>8.6</td>
+<td><b>9.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">アイウィル</span></td>
+<td>-0.04</td>
+<td>+0.16</td>
+<td>+0.32</td>
+<td>+0.40</td>
+<td>-0.14</td>
+<td>8.3</td>
+<td>7.2</td>
+<td>9.8</td>
+<td><b>8.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">タイセイミッション</span></td>
+<td>-0.24</td>
+<td>-0.20</td>
+<td>+0.12</td>
+<td>-0.06</td>
+<td>-0.22</td>
+<td>5.3</td>
+<td>-</td>
+<td>7.2</td>
+<td><b>5.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">クロースコンバット</span></td>
+<td>-0.14</td>
+<td>-0.48</td>
+<td>-0.22</td>
+<td>+0.12</td>
+<td>-0.12</td>
+<td>5.4</td>
+<td>-</td>
+<td>5.2</td>
+<td><b>5.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヴァナルガンド</span></td>
+<td>-0.24</td>
+<td>-0.08</td>
+<td>-0.20</td>
+<td>-0.20</td>
+<td>+0.02</td>
+<td>5.3</td>
+<td>-</td>
+<td>3.8</td>
+<td><b>5.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">メイショウフウドウ</span></td>
+<td>-0.92</td>
+<td>-0.32</td>
+<td>-0.84</td>
+<td>+0.26</td>
+<td>+0.14</td>
+<td>0.5</td>
+<td>-</td>
+<td>2.6</td>
+<td><b>0.9</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, オリーブグリーン, +0.2, 前走桃山Sは3勝クラスで5着0.7秒差かつ指数83.4なら通用水準です。2走前に2勝クラスを勝っており実績はまだ底を見せていません。<br><br>2番, メイショウフウドウ, -0.9, 近3走の3勝クラスが16着16着13着で着差も2.5秒差7.8秒差2.1秒差と大きく崩れています。指数も67.7から23.1まで落ちており現級実績はかなり弱いです。<br><br>3番, バギーウィップ, +0.2, 招福S3着0.4秒差と檜山特別勝ちの指数84.6はこの組み合わせでも見劣りしません。前走12着は減点ですがキャリア6戦で上積み余地も残しています。<br><br>4番, エクリプスルバン, +0.9, 近2走の3勝クラスで2着2着かつ指数86.1と87.8はこのメンバーでも最上位級です。勝ち切れていないだけで実績比較なら昇級後すでに突破目前です。<br><br>5番, ヴァナルガンド, -0.4, 3勝クラスでは7着15着9着と結果が足りず指数も79.2止まりです。2勝クラス勝ちの内容は悪くないですが現級での裏付けは薄いです。<br><br>6番, タイセイミッション, -0.2, 和布刈特別勝ちで同距離実績はあるものの昇級初戦のアリエスSは10着1.9秒差で指数68.8でした。現級実績の裏付けでは一段見劣ります。<br><br>7番, ラフエイジアン, +0.3, 近3走の3勝クラスが4着5着6着で指数81.7から83.1と大崩れせず安定しています。勝ち負け実績までは足りないが現級で一定以上の能力は示しています。<br><br>8番, アイウィル, +0.1, 響灘特別勝ちの指数81.2があり昇級後も小倉城S5着と大きくは負けていません。3勝クラスで突き抜ける実績まではないが同距離では水準級です。<br><br>9番, ドバイブルース, +0.8, 上総S3着0.2秒差で指数87.1かつ下総S4着0.4秒差で84.8は非常に強い現級実績です。1700mでもポプラS2着で指数84.2があり距離実績も十分です。<br><br>10番, ゴールドアローン, +0.1, 招福S2着0.3秒差と北総S5着0.7秒差はこのクラスで通用する実績です。直近2走は物足りないが指数80前後を持っており完全な力負けとは言えません。<br><br>11番, クロースコンバット, -0.3, 昨年の鶴ヶ城S2着と奥羽S3着は評価できる一方で近2走は15着9着と後退しています。直近の指数61.9は大きな減点で近況実績では強く推しにくいです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>3番バギーウィップは現級指数79.6なのに2勝クラスの84.6を強く使っており、直近12着75.6込みで+0.2は甘く見える。10番ゴールドアローンは現級2着・5着の裏付けがあり3番より低い+0.1は再考余地。11番クロースコンバットは直近大敗だけでなく同条件1700mの現級上位実績82.8・81.1・78.5もあり-0.3は下げすぎか。5番ヴァナルガンドは79前後の現級指数があるのに-0.4、8番アイウィルは77台で+0.1なので相対評価の基準が揺れていないか確認したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, オリーブグリーン, +0.2, 前走桃山Sは3勝クラスで5着0.7秒差、指数83.4なら現級で足りる実績です。2走前に2勝クラス勝ちがあり、まだ上積み込みで水準以上と見ます。<br><br>2番, メイショウフウドウ, -0.9, 近3走の3勝クラスが16着16着13着で、着差も2.5秒差、7.8秒差、2.1秒差と大きいです。指数67.7、23.1、70.8では現級実績がかなり弱いです。<br><br>3番, バギーウィップ, +0.0, 招福S3着0.4秒差は評価できる一方、現級指数は79.6止まりで前走下総S12着1.7秒差、指数75.6は物足りません。檜山特別の84.6は同距離実績として残しつつも、現級裏付けはまだ中立までです。<br><br>4番, エクリプスルバン, +0.9, 近2走の3勝クラスで2着2着、着差0.1秒差と0.2秒差、指数87.8と86.1はこの組では最上位です。現級突破目前の実績比較なら最も強く評価できます。<br><br>5番, ヴァナルガンド, -0.2, 是政S7着1.2秒差で指数79.2、北総S9着1.0秒差で78.9なら現級で全く通じない水準ではありません。とはいえ15着3.8秒差、指数64.0の大敗もあり、現級実績はやや弱めまでにとどめます。<br><br>6番, タイセイミッション, -0.2, 和布刈特別勝ちで同距離の2勝クラス実績はありますが、昇級初戦アリエスSは10着1.9秒差、指数68.8でした。現級での能力証明はまだ足りません。<br><br>7番, ラフエイジアン, +0.3, 近3走の3勝クラスが4着、5着、6着で、指数81.7、83.1、82.0と安定しています。勝ち切る裏付けまではないものの、現級で崩れない実績は評価できます。<br><br>8番, アイウィル, +0.0, 小倉城S5着1.0秒差で指数77.7、豊前S8着0.3秒差で76.8と、現級では善戦止まりです。響灘特別勝ちの81.2はあるものの、3勝クラスで強く上げるだけの実績まではありません。<br><br>9番, ドバイブルース, +0.8, 上総S3着0.2秒差で指数87.1、下総S4着0.4秒差で84.8は非常に強い現級実績です。1700mでもポプラS2着、指数84.2があり、距離を替えても高水準です。<br><br>10番, ゴールドアローン, +0.2, 招福S2着0.3秒差、指数80.2と北総S5着0.7秒差、指数81.0は現級で十分に通用する実績です。直近2走はやや落ちますが、3番よりは現級裏付けが明確です。<br><br>11番, クロースコンバット, -0.1, 近2走は15着と9着で指数61.9、76.2と後退していますが、同条件1700mでは昨年の鶴ヶ城S2着82.8、報知杯大雪H6着81.1、奥羽S3着78.5があります。近況悪化はあるものの、同条件実績まで踏まえると下げすぎは避けます。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, オリーブグリーン, +0.4, 1枠でロスなく中団のインを確保しやすい。6番と11番を中心に前がある程度流れれば, 3 4角で内目を捌いて差を詰める形が描きやすい。<br><br>2番, メイショウフウドウ, -0.4, 先行したい馬だが内から出していくと6番や11番との先行争いに巻き込まれやすい。1700mの小回りで息を入れにくい並びなので, 早めに脚を使わされる懸念がある。<br><br>3番, バギーウィップ, +0.2, 3番枠なら好位の内で脚をためる形に持ち込みやすい。4番の外に出して競るより控えて運べれば, 小回りでの立ち回りが利く。<br><br>4番, エクリプスルバン, +0.6, 先手候補を見ながら2 3番手の外目か番手に収まりやすい並びだ。福島1700の形なら4角先頭圏の運びがしやすく, 直線で最も展開利を受けやすい。<br><br>5番, ヴァナルガンド, -0.1, 前にも行けるが今回は周囲に同型がいて位置取りが中途半端になりやすい。外から動くとコーナーでロスが出やすく, 展開面の押しは弱い。<br><br>6番, タイセイミッション, -0.2, 内過ぎず外過ぎない枠で先行しやすい反面, ハナを主張すると11番や2番に見られて楽ではない。自分で流れを作る形になりやすく, 差される余地はある。<br><br>7番, ラフエイジアン, -0.4, 後方一気の形だと福島1700の短い直線ではどうしても届く場所が限られる。前が総崩れになるほどの激流までは見込みにくく, 展開待ちの度合いが強い。<br><br>8番, アイウィル, +0.2, 好位後ろから流れに乗れる脚質で, 前がやり合った時に外目から差し込む形は作りやすい。7枠でも11頭立てなら外々を回され過ぎる心配は比較的小さい。<br><br>9番, ドバイブルース, +0.5, 先行勢の直後で脚をためる形が最もハマりそうな並びだ。11番が押して6番 4番が追走する流れなら, 4角で前を射程に入れて抜け出す絵が浮かぶ。<br><br>10番, ゴールドアローン, +0.1, 中団外目で流れを見ながら運べるので前崩れの保険は利く。ただし福島1700で大外寄りから差すにはワンテンポ早く動く必要があり, 強い追い風まではない。<br><br>11番, クロースコンバット, -0.5, 8枠から先手を取りに行くと1角までに脚を使わされやすく, 今回は内にも前受け候補がいる。去年の同条件実績はあるが, 今回の並びは楽逃げの形に見えない。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番エクリプスルバン・9番ドバイブルース高評価に対し、2番メイショウフウドウ・6番タイセイミッション・11番クロースコンバットの下げ幅が大きく、全体のペース想定が馬ごとにぶれて見える。1番オリーブグリーンの内差し評価は、前残り想定との整合性に再考余地。3番バギーウィップは『控えて好位内』前提が近走の先行実績とややズレる。前が厳しいなら7番ラフエイジアンや10番ゴールドアローンを切りすぎていないかも確認したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, オリーブグリーン, +0.1, 内枠自体は魅力だが、この並びは前が総崩れよりも先行勢が粘り込む公算のほうを取りたい。1列後ろのインで脚をためて直線で捌ければ浮上余地はあるが、展開だけで強く押すほどではない。<br><br>2番, メイショウフウドウ, -0.2, 2番枠から出していく形は作りやすく、前半から完全に苦しくなるとまでは見ない。ただ6番、11番、3番あたりも前へ意識を持てる並びで、楽に2列目を取れる保証は薄く、少しだけ展開は割り引く。<br><br>3番, バギーウィップ, +0.1, 近走どおりある程度前で運ぶ想定のほうが自然で、3番枠なら無理なく好位の内に収まりやすい。11番が主張して6番、4番が続く流れでも、内でロスなく回れる点は小回り福島で小さく利く。<br><br>4番, エクリプスルバン, +0.5, 11番が外から行き、6番と3番がその後ろ、4番がちょうど好位外か番手で流れに乗る形がいちばん描きやすい。前を見ながら4角先頭圏に持ち込みやすく、今回の並びではなお展開利が大きい。<br><br>5番, ヴァナルガンド, +0.0, 前にも行けるがこの距離と並びだと主導権争いには加わり切らず、かといって差し有利の流れを待てる脚質でもない。外から動いても内で我慢しても決め手になる展開材料が薄く、中立に戻す。<br><br>6番, タイセイミッション, +0.0, 11番の出方を見ながら2番手外でも運べる枠で、大きく不利な並びではない。一方で自分から隊列を締める側に回りやすく、楽に運んで展開利だけを取る絵でもないので中立まで。<br><br>7番, ラフエイジアン, -0.1, 前が何頭も飛ばして完全な消耗戦になれば脚は使えるが、今回はそこまでの一本調子な激流までは見込みにくい。道中は後ろからになりやすく、福島1700の形ではまだ少し待ちの要素が残る。<br><br>8番, アイウィル, +0.2, 好位後ろから流れに乗りやすく、11番が作る隊列の外目で無理なく追走する形は合う。前が止まり切らなくても4角で外からじわっと差を詰める展開は作りやすい。<br><br>9番, ドバイブルース, +0.4, 11番先手、6番と4番が追走、その直後で9番が外目を確保する形なら最も運びやすい1頭だ。ハイペース差し込み一辺倒ではなく、先行勢を見る位置から4角で動ける点を評価する。<br><br>10番, ゴールドアローン, +0.2, 外枠でも11頭立てなら極端に振られにくく、中団外で前を見ながら進めやすい。前が少し流れて4角で外から進出する余地はあり、前崩れまで行かずとも展開の受け皿にはなれる。<br><br>11番, クロースコンバット, -0.3, 外枠からハナを切るなら1角までに脚を使う懸念は残るが、必ずしも単騎で飛ばし切る必要はなく番手でも形にはなる。去年の同条件のように前で運べる余地はあるので、下げはやや緩める。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, オリーブグリーン, +0.2, 今回は馬体重未発表なので前走538kg据え置き想定だが 近4走は528-538kgの範囲で大きく崩れておらず許容内です。追い切りもCW終い11.7で除外の影響なしなら 使った反動は薄く体調面はやや前向きに見ます。<br><br>2番, メイショウフウドウ, -0.9, 前走484kgで-22kgは大きすぎて 2週での続戦は消耗残りを強く疑います。追い切りも遅れるも追わずで上向き材料に乏しく 立て直し途上の体調と見ます。<br><br>3番, バギーウィップ, +0.3, 500kg前後で安定しており 前走の-6kgも細化というほどではありません。2か月ぶりでも美Wで終い11.1と鋭く チーク効果ありと調子↗が出ているぶん仕上がりは上向きです。<br><br>4番, エクリプスルバン, +0.5, 450→442→444kgと一度絞れてから微増で 叩きながら張りを保てている形です。小柄な444kgで58kgは楽ではないものの 意欲的な攻め内容で2走続けて高水準を維持しており体調面の信頼度は高いです。<br><br>5番, ヴァナルガンド, -0.2, 474→470kgと大きな乱高下はなく 体そのものは安定しています。ただし今回は8週ぶりで坂路一杯に追っても評価が「攻め意欲的も」止まりで 仕上がりの強調材料までは足りません。<br><br>6番, タイセイミッション, +0.1, 534-532-530kgと使いつつ緩まず来ており 530kg級の馬格なら58kg自体はこなしやすい部類です。中9週でも美Wの内容は素直で 攻量の割に仕上るというコメント通り体調はまず整っています。<br><br>7番, ラフエイジアン, 0.0, 474kgから徐々に絞れて近3走は462-458kgで推移しており 現状はこの馬なりの実戦体重帯に入っています。追い切りも軽快ですが もう一段の上昇を示すほどの材料まではなく中立です。<br><br>8番, アイウィル, +0.4, 514-518kgで安定し 今回も未発表で据え置き想定なら馬体のブレが少ないのは好感です。4か月ぶりでも美W67.9-37.9-11.7と良好で 仕上がり良好かつ調子↗なら休み明けでも体調面は買えます。<br><br>9番, ドバイブルース, +0.3, 508→502→500kgと使いながら無理なく絞れており 500kg前後での安定感があります。美W66.6-37.2-11.4はこの組み合わせではかなり目立ち ブリンカー着用込みで馬の気配は引き締まっています。<br><br>10番, ゴールドアローン, +0.2, 前走462kgで-12kgは減り幅が大きかったですが 今回は馬体回復し上昇のコメントが出ており反動より戻しを見込みたいです。牝馬で56kg据え置きなら負担増もなく 叩き2走目の体調上積みはあります。<br><br>11番, クロースコンバット, -0.3, 496kg据え置き想定でも近2走は496kg前後で着順のわりに活気が戻り切っていません。追い切り時計自体は悪くないものの 調子→止まりで 7歳夏の上積みよりも平行線と見るのが妥当です。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>8番アイウィルは休み明け・馬体重未発表の不確定要素に対して+0.4がやや強気で、9番ドバイブルースは安定した馬体推移と目立つ追い切り内容の割に+0.3が控えめに見える。4番エクリプスルバンは『高水準維持』の評価に対して+0.5がやや盛り気味、10番ゴールドアローンは-12kg後で馬体回復を前提に+0.2は甘い可能性。1番オリーブグリーン、6番タイセイミッション、11番クロースコンバットも、理由に対する付値や他馬比較の整合性を再点検したい。全体として未発表馬体重への楽観と、減体重馬への厳しさの基準差がないか確認余地あり。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, オリーブグリーン, +0.1, 馬体重未発表なので前走538kg据え置き前提なら近4走528-538kgのレンジ内で大きな破綻はありません。ただ今回は調教評価が「除外の影響なし」かつ調子→で、上積み断定まではしにくく微加点にとどめます。<br><br>2番, メイショウフウドウ, -0.9, 前走484kgの-22kgはさすがに減りすぎで、そこから中2週では回復より消耗残りを強く疑います。追い切りも遅れるも追わずで反転材料が薄く、体調面ではかなり厳しく見ます。<br><br>3番, バギーウィップ, +0.3, 506kg前後から500kgへの推移は細化というほどではなく、馬体の芯は保てています。2か月ぶりでも美W終い11.1秒で調子↗なら、休み明けでも仕上がりは素直に買えます。<br><br>4番, エクリプスルバン, +0.4, 450kg台から442kgまで絞れて前走444kgへ微増という流れは、叩いて張りを保てている形です。444kgで58kgは約2kg増減で1馬身前後の負荷差を受けやすい体格ですが、攻め内容がしっかりしており体調面の信頼は依然高いです。<br><br>5番, ヴァナルガンド, -0.2, 474kg前後から470kgへと推移は安定していて、馬体そのものが崩れている印象はありません。ただ8週ぶりで一杯に追って評価が「攻め意欲的も」止まりなら、仕上がりの強調材料までは不足です。<br><br>6番, タイセイミッション, 0.0, 534-532-530kgと大きなブレがなく、530kg級なら58kg自体はこなしやすい馬格です。ただ中9週で調教も「攻量の割に仕上る」「調子→」までで、上積みを強く取るほどではなく中立が妥当です。<br><br>7番, ラフエイジアン, 0.0, 474kgから462-458kgへと絞れてきており、今はこの馬なりの実戦体重帯に収まっています。動き軽快でも調子→で、良化も悪化も強く示す材料はなく中立です。<br><br>8番, アイウィル, +0.2, 514-518kgで近走の馬体は安定しており、もともと大きく崩れにくい体つきです。4か月ぶりで美W67.9-37.9-11.7、評価も「仕上がり良好」ですが、未発表馬体重と休み明けの不確定要素を踏まえて加点は控えめに修正します。<br><br>9番, ドバイブルース, +0.4, 508kgから502kg、500kgへと使いつつ無理なく締まってきた流れは好感で、500kg前後なら58kgとの釣り合いも取れています。美W66.6-37.2-11.4はこの組では目立つ内容で、ブリンカー着用も含めて当日の気配強化を感じます。<br><br>10番, ゴールドアローン, 0.0, 前走462kgの-12kgは小さくない減り方で、今回は「馬体回復し上昇」のコメントがあっても実際の当日馬体重確認までは楽観しにくいです。56kg据え置きは負担増ではないものの、体調面だけならまずは中立までに留めます。<br><br>11番, クロースコンバット, -0.2, 496kg前後で馬体は大きく崩れていませんが、近2走据え置き圏で一段上の活気までは戻っていない見立てです。追い切りは動けても調子→なら上向き評価までは届かず、年齢面も含めて体調はやや慎重に見ます。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, オリーブグリーン, +0.3, 父ヘニーヒューズに母父シンボリクリスエスならダート中距離での持続力は出しやすく、1700mへの短縮も忙しすぎない配合です。母父由来でパワー型に寄るので福島ダ1700の消耗戦は合いやすいです。<br><br>2番, メイショウフウドウ, +0.2, 父シニスターミニスターは小回りダート1700mで先行力を生かしやすく、母父フジキセキでスピードの持続も補えます。血統面ではこの条件替わり自体は悪くなく、平坦小回りで前進余地があります。<br><br>3番, バギーウィップ, +0.7, 父ナダルは米国型パワーが強くダート1700-1800mで高い適性を示しやすく、母父ディープインパクトで硬さを和らげて機動力も足せる配合です。福島ダ1700の機動力と持続力の両立がしやすい血統でかなり向きます。<br><br>4番, エクリプスルバン, +0.4, 父シニスターミニスターに母父マンハッタンカフェで、先行力に加えてスタミナと息の長さを補強した形です。1700mへの短縮でも対応可能で、小回りダートでのしぶとさは血統的に評価できます。<br><br>5番, ヴァナルガンド, -0.4, 父シビルウォーはパワーとスタミナ寄りで悪くないものの、母父アドマイヤベガでやや重厚に出やすく、1700mでの機敏さ勝負は少し忙しい印象です。むしろもう少し長めで良さが出る配合に見えます。<br><br>6番, タイセイミッション, -0.2, 父キタサンブラックに母父ノヴェリストは本来芝中距離寄りのスタミナ色が濃く、ダート1700mで強く押せる血統ではありません。こなせても設計図としては小回りダートの専門性が高い配合ではなく軽い減点です。<br><br>7番, ラフエイジアン, +0.3, 父アジアエクスプレスはダート短中距離での持続力が武器で、母父Mediceanのスピードも小回り1700m向きです。揉まれず流れに乗れれば血統面では条件適性は十分あります。<br><br>8番, アイウィル, +0.2, 父ドレフォンはダート1700m前後で安定して走りやすく、母父ハーツクライで距離の融通も利く配合です。一本調子になりすぎず小回りにも対応可能で、血統面では無難にプラスです。<br><br>9番, ドバイブルース, +0.1, 父キンシャサノキセキに母父Monsunはやや珍しい組み合わせですが、スピードに持続力と底力を足した形で1700mは守備範囲です。ただし父の主戦場からは少し長めで、強調材料はそこまで大きくありません。<br><br>10番, ゴールドアローン, +0.5, 父ドレフォンに母父ヘニーヒューズはダート適性がかなり明確で、1700m前後の機動力勝負には血統的に強く向きます。牝馬でもパワー負けしにくい配合で、福島ダ1700への条件替わりは血統面で高く評価できます。<br><br>11番, クロースコンバット, +0.2, 父キンシャサノキセキに母父ワイルドラッシュで、父のスピードに母父のダート色とパワーを補った配合です。1700mの先行持続戦なら血統の噛み合いは悪くなく、年齢を踏まえても適性自体は保ちやすいです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>見直し候補は、3番バギーウィップと10番ゴールドアローンの評価差、8番アイウィルの低評価、2番メイショウフウドウと4番エクリプスルバンの比較、5番ヴァナルガンドのマイナス幅、9番ドバイブルースの控えめ評価。理由文の強さに対して付値が揃っていない箇所があるため、同系統・同父系・近い適性同士で再比較すると整合性を取りやすい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, オリーブグリーン, +0.3, 父ヘニーヒューズに母父シンボリクリスエスならダート中距離のパワーと持続力が出やすく、福島ダ1700の消耗戦は血統の形に合います。1800mより機動力を問われるぶんも、重厚すぎない配合で十分こなせる設計です。<br><br>2番, メイショウフウドウ, +0.1, 父シニスターミニスターで小回りダート適性はあるものの、母父フジキセキで補うのは主にスピード寄りで、1700mでの底持続という意味では強調しすぎにくい配合です。血統的には条件自体は合うが、同父の4番と比べると上積み幅は一段控えめです。<br><br>3番, バギーウィップ, +0.6, 父ナダルの米国型パワーはダ1700m前後でかなり生きやすく、母父ディープインパクトが硬さを緩和して小回りでの操縦性も補っています。福島1700で求められる機動力と持続力の両立がしやすく、血統面では明確に高評価です。<br><br>4番, エクリプスルバン, +0.5, 父シニスターミニスターに母父マンハッタンカフェで、先行力に加えて中距離ダート向きの息の長さを補強した配合です。同父の2番より1700mでの粘着力を血統的に見込みやすく、小回り持続戦への適性はよりはっきりしています。<br><br>5番, ヴァナルガンド, -0.3, 父シビルウォーはダート向きでも、母父アドマイヤベガを含めて全体像はやや重厚で、1700mの忙しいコーナー戦では少し鈍く出ても不思議はありません。長めの距離でじわっと良さが出る配合で、この条件では軽い減点以上は必要です。<br><br>6番, タイセイミッション, -0.2, 父キタサンブラックに母父ノヴェリストで、スタミナと持続に寄った設計図が先に立ち、ダ1700mの専門性はさほど高くありません。ダート自体はこなせても、血統だけでこの条件を積極加点する材料は薄いです。<br><br>7番, ラフエイジアン, +0.3, 父アジアエクスプレスのダート短中距離向きの持続力に、母父Mediceanのスピードが乗るので、小回り1700mは守備範囲です。切れ味より惰性で運ぶ形が合う血統で、福島替わりはプラスに見ます。<br><br>8番, アイウィル, +0.4, 父ドレフォンはダ1700m前後で安定感を出しやすく、母父ハーツクライで距離の融通と追走余力も補われています。10番ほどダート色一辺倒ではないが、1700mを無難にこなすだけでなく小回りでのバランスも良く、見直してよい配合です。<br><br>9番, ドバイブルース, +0.3, 父キンシャサノキセキのスピードに母父Monsunの底力が入ることで、単なる短距離型ではなく1700m前後の持続戦に寄せられた配合です。父名だけ見ると距離が気になるが、母系込みなら福島ダ1700は十分射程で、控えめすぎる評価は見直します。<br><br>10番, ゴールドアローン, +0.6, 父ドレフォンに母父ヘニーヒューズはダート適性が非常に明快で、1700m前後の機動力勝負ではかなり強く出やすい配合です。牝馬でもパワー不足に寄りにくく、3番と並ぶ水準でこの条件の血統評価は高く取れます。<br><br>11番, クロースコンバット, +0.1, 父キンシャサノキセキに母父ワイルドラッシュで、スピードの土台にダート向きのパワーを足した形は1700mに合います。年齢面で大きな上積みを血統からは言いにくく、適性評価は軽いプラスまでです。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, オリーブグリーン, +0.6, 松山弘平に矢作芳人の組み合わせはこのクラスでは陣営力がかなり強い。近走で騎手が替わり続ける中でも今回は明確に鞍上強化の形で上積みを見込める。<br><br>2番, メイショウフウドウ, +0.2, 藤原英昭厩舎は地力を引き出す厩舎力があり三浦皇成も水準以上。継続騎乗ではないが陣営の格で大きくは下げにくい。<br><br>3番, バギーウィップ, +0.3, 武藤雅の継続騎乗でこの馬の手の内を把握している点は評価できる。派手な鞍上強化ではないが乗り替わり乱発よりは陣営面で安定感がある。<br><br>4番, エクリプスルバン, +0.8, 戸崎圭太への乗り替わりはこのレースでもかなり強い後押しになる。田中博康厩舎も近年の管理力が高く勝ちに来た布陣と見て陣営面は明確に上げる。<br><br>5番, ヴァナルガンド, 0.0, 津村明秀は堅実だが今回は陣営面で特別な押し材料までは薄い。過去にルメール起用歴があるだけに今回は平常運転の布陣という評価に留まる。<br><br>6番, タイセイミッション, -0.2, 伊藤圭三厩舎はダートで一定の信頼があるものの菊沢一樹への乗り替わりで強い勝負手という印象は薄い。継続騎乗でもなく陣営の後押しはやや弱め。<br><br>7番, ラフエイジアン, +0.4, F.ゴンサルベス起用は変化をつけにきた印象で短期免許騎手の一撃には警戒したい。中舘英二厩舎も含めて現状打破を狙う布陣としては一定の上積みがある。<br><br>8番, アイウィル, -0.1, 田口貫太は伸び盛りだがこのメンバーで陣営面の押し出しはそこまで強くない。直近の勝利時から鞍上が替わる点も強調材料にはならない。<br><br>9番, ドバイブルース, +0.7, 横山武史への戻りはこの馬にとって大きなプラスで福島1700でも信頼度を上げやすい。加藤征弘厩舎も含めて上位の陣営構成で勝負気配は濃い。<br><br>10番, ゴールドアローン, -0.1, 石川裕紀人は悪くないが近走の菊沢一樹継続から替わっても陣営面で大幅上昇とまでは言いにくい。青木孝文厩舎の2頭出しでもこちらが特に強調される布陣ではない。<br><br>11番, クロースコンバット, -0.3, 北村宏司はベテランの味がある一方で近走の主戦級とは言い切れず勝負度合いの面で強調しにくい。青木孝文厩舎の2頭出しでも陣営の押しは10番よりやや弱く見える。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番エクリプスルバンは佐々木大輔で結果が出ていた継続ラインを切る不確実性の割に+0.8が強すぎるかもしれない。1番オリーブグリーンと7番ラフエイジアンは乗り替わり多発を軽く見てプラス寄せしすぎていないか、逆に3番バギーウィップの継続騎乗評価は低すぎないかを比較で再点検したい。2番メイショウフウドウと5番ヴァナルガンドは厩舎の格や過去の名手起用を現在評価にどう反映したかのロジック整理が必要。10番ゴールドアローンと11番クロースコンバットの青木厩舎2頭の差、4番エクリプスルバンと9番ドバイブルースの高評価同士の差も相対比較の説明を補いたい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, オリーブグリーン, +0.4, 矢作芳人厩舎に松山弘平はこの組み合わせだけ見れば明確に買える陣営だが、近走で騎手が固定されておらず継続騎乗の強みはない。陣営力で上げはするが、乗り替わり多発ぶんだけ前回より控えめにした。<br><br>2番, メイショウフウドウ, +0.1, 藤原英昭厩舎の看板はこのメンバーでも無視しにくいが、今回は三浦皇成で継続騎乗でも勝負の色が濃い乗り替わりでもない。過去の名手起用歴は今回の加点材料にはせず、厩舎の格だけを薄く評価する。<br><br>3番, バギーウィップ, +0.4, 武藤雅で継続して使われている点はこのレースでは素直に評価したい。派手なトップジョッキー起用ではないが、手の内に入れている継続ラインの信頼度は1番や7番より上と見る。<br><br>4番, エクリプスルバン, +0.6, 戸崎圭太への乗り替わり自体は強い加点材料で、田中博康厩舎の管理力も上位評価できる。ただし佐々木大輔で結果が出ていた流れを切る不確実性はあるので、前回ほど極端には振らない。<br><br>5番, ヴァナルガンド, 0.0, 津村明秀は十分乗れる騎手だが、この馬で陣営が明確な勝負手を打った印象まではない。過去のルメール起用歴は当時の評価であって、今回の布陣を押し上げる根拠にはしない。<br><br>6番, タイセイミッション, -0.2, 伊藤圭三厩舎はダートで一定の信頼がある一方、黛弘人から菊沢一樹への乗り替わりは陣営面での上積みとしては見えにくい。継続騎乗も切れるので、陣営評価はやや下げる。<br><br>7番, ラフエイジアン, +0.2, F.ゴンサルベス起用は変化をつける意図を感じるが、近走の騎手が定まっておらず継続騎乗の後押しは薄い。短期免許騎手の魅力だけで大きくは盛れず、軽い加点までにとどめる。<br><br>8番, アイウィル, -0.1, 田口貫太は成長途上で魅力はあるが、この組み合わせがこの条件で特別強い陣営カードとは言いにくい。前走までの流れからも陣営面での押し出しは弱め。<br><br>9番, ドバイブルース, +0.6, 横山武史に戻る形はこの馬にとって素直に好材料で、加藤征弘厩舎込みで上位の陣営構成と見ていい。4番ほど露骨な鞍上強化ではないが、過去にこの距離で乗っているぶん布陣の収まりはこちらが自然だ。<br><br>10番, ゴールドアローン, 0.0, 青木孝文厩舎の2頭の中では、石川裕紀人への乗り替わりは菊沢一樹継続よりわずかに見栄えがいいが、強烈な上積みとまでは言えない。陣営面では可も不可もなく中立評価に戻す。<br><br>11番, クロースコンバット, -0.2, 同じ青木孝文厩舎でも北村宏司はベテランの安定感止まりで、勝負気配が強く出た配役には見えない。10番より陣営の押し出しが弱く、こちらをやや下に取る。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>4番, エクリプスルバン, 27%, 4番エクリプスルバンは近2走の3勝クラス連続2着がこの組で最も安定しており先行して高指数を出せている点を素直に評価するべきで 合成1位自体は妥当だが9番ドバイブルースとの差はもう少し小さく見る<br><br>9番, ドバイブルース, 24%, 9番ドバイブルースは中山3勝クラスで87.1と84.8の指数を連続して出しており地力は4番エクリプスルバンに肉薄する 合成では4番エクリプスルバンに離されすぎで◎争いの一角として再評価したい<br><br>3番, バギーウィップ, 19%, 3番バギーウィップは休み明け後の上積みと4日前美Wでの鋭い11.1が目立ち 函館1700mの勝ち方からもこの条件での一変余地があるので7番ラフエイジアンより上に取るべきだと判断した<br><br>1番, オリーブグリーン, 16%, 1番オリーブグリーンは昇級初戦5着でも0.7差なら悲観不要で矢作厩舎らしく使われつつ整っている 合成3位は大きくは崩さないが1700m短縮が即大幅プラスとまでは言えず上位2頭とは少し差をつける<br><br>10番, ゴールドアローン, 14%, 10番ゴールドアローンは牝馬で56kgかつ馬体回復気配は魅力だが近走内容だけなら合成の15.2はやや甘く 7番ラフエイジアンを外して残すなら相手候補の5番手評価までが妥当と見る</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>4番, エクリプスルバン, 16%, 4番エクリプスルバンは近2走が3勝クラスで0.1秒差と0.2秒差の連続2着で地力上位です。先行して速い指数を続けて出せており調教内容も意欲的で1700mへの短縮も機動力でこなせそうです。<br><br>9番, ドバイブルース, 15%, 9番ドバイブルースは近2走の中山1800mで崩れず高指数を連発しておりクラス突破圏の内容です。福島1700mでも実績があり今回は調教の動きも目立っていて上位争いの可能性が高いです。<br><br>3番, バギーウィップ, 13%, 3番バギーウィップは1700mで強い勝ち方があり6戦3勝とまだ底を見せ切っていません。前走大敗はあるものの調教の終い11.1と上昇気配が強く能力全開なら巻き返せます。<br><br>1番, オリーブグリーン, 11%, 1番オリーブグリーンは昇級初戦でも3勝クラスで0.7秒差5着と大きくは負けておらず近走全体の安定感があります。大型馬で勢いもあり内枠を生かして流れに乗れれば圏内です。<br><br>8番, アイウィル, 10%, 8番アイウィルは小倉1700mで2勝クラス勝ち後に3勝クラスでも差の小さい競馬を続けていて距離適性が明確です。調教気配も良く末脚の持続力で上位に食い込めます。<br><br>10番, ゴールドアローン, 9%, 10番ゴールドアローンは牝馬ながらこのクラスで2着5着があり56kgも有利です。近走はやや決め手不足でも馬体回復気配があり流れがはまれば浮上できます。<br><br>7番, ラフエイジアン, 8%, 7番ラフエイジアンは3勝クラスで大崩れせず末脚は安定しており展開待ちの形なら差し込めます。1700m実績もあり相手なりに走れるタイプですが勝ち切る材料はやや弱いです。<br><br>6番, タイセイミッション, 7%, 6番タイセイミッションは1700mで2勝クラスを勝っていて福島でも好走歴があり条件自体は向きます。昇級初戦は完敗でしたが先行力は通用するのでどこまで粘れるかです。<br><br>11番, クロースコンバット, 5%, 11番クロースコンバットは昨年の鶴ヶ城ステークス2着があり福島1700m適性は侮れません。近2走は失速が目立ち年齢面の上積みも薄いので展開利が必要です。<br><br>5番, ヴァナルガンド, 4%, 5番ヴァナルガンドは堅実に走る場面はあるものの近走は2100m中心で今回の1700mは忙しく映ります。先行してどこまで踏ん張れるかですがこの条件替わりでの強調材料は少なめです。<br><br>2番, メイショウフウドウ, 2%, 2番メイショウフウドウは1700m勝ち実績こそあるものの近3走の3勝クラス内容が厳しく大敗続きです。前走の大きな馬体減も気掛かりで調教評価も強くなく一変までは見込みにくいです。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>4</td><td class="left horse-name">エクリプスルバン</td><td>18.5%</td><td>3.4</td><td>1</td><td class="ev-low">0.63</td></tr><tr><td>2</td><td>9</td><td class="left horse-name">ドバイブルース</td><td>16.6%</td><td>3.7</td><td>2</td><td class="ev-low">0.61</td></tr><tr><td>3</td><td>3</td><td class="left horse-name">バギーウィップ</td><td>10.4%</td><td>7.5</td><td>4</td><td class="ev-low">0.78</td></tr><tr><td>4</td><td>1</td><td class="left horse-name">オリーブグリーン</td><td>10.3%</td><td>5.7</td><td>3</td><td class="ev-low">0.59</td></tr><tr><td>5</td><td>7</td><td class="left horse-name">ラフエイジアン</td><td>9.4%</td><td>30.7</td><td>11</td><td class="ev-high">2.89</td></tr><tr><td>6</td><td>10</td><td class="left horse-name">ゴールドアローン</td><td>9.4%</td><td>22.1</td><td>9</td><td class="ev-high">2.08</td></tr><tr><td>7</td><td>8</td><td class="left horse-name">アイウィル</td><td>8.5%</td><td>18.1</td><td>7</td><td class="ev-mid">1.54</td></tr><tr><td>8</td><td>6</td><td class="left horse-name">タイセイミッション</td><td>5.7%</td><td>24.9</td><td>10</td><td class="ev-mid">1.41</td></tr><tr><td>9</td><td>11</td><td class="left horse-name">クロースコンバット</td><td>5.4%</td><td>19.0</td><td>8</td><td class="ev-mid">1.02</td></tr><tr><td>10</td><td>5</td><td class="left horse-name">ヴァナルガンド</td><td>5.0%</td><td>9.7</td><td>5</td><td class="ev-low">0.49</td></tr><tr><td>11</td><td>2</td><td class="left horse-name">メイショウフウドウ</td><td>0.9%</td><td>17.3</td><td>6</td><td class="ev-low">0.15</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">4 エクリプスルバン</td><td>18.5%</td><td>3.4</td><td class="ev-low">0.54</td></tr><tr><td>複勝</td><td class="left">4 エクリプスルバン</td><td>50.2%</td><td>1.5</td><td class="ev-low">0.70</td></tr><tr><td>馬連</td><td class="left">4 エクリプスルバン-9 ドバイブルース</td><td>7.4%</td><td>8.5</td><td class="ev-low">0.52</td></tr><tr><td>ワイド</td><td class="left">4 エクリプスルバン-9 ドバイブルース</td><td>19.8%</td><td>3.3</td><td class="ev-low">0.56</td></tr><tr><td>馬単</td><td class="left">4 エクリプスルバン→9 ドバイブルース</td><td>3.7%</td><td>3.8</td><td class="ev-low">0.12</td></tr><tr><td>3連複</td><td class="left">3 バギーウィップ-4 エクリプスルバン-9 ドバイブルース</td><td>3.2%</td><td>15.1</td><td class="ev-low">0.40</td></tr><tr><td>3連単</td><td class="left">4 エクリプスルバン→9 ドバイブルース→3 バギーウィップ</td><td>0.6%</td><td>29.0</td><td class="ev-low">0.14</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">4 エクリプスルバン</td><td>3.4</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">4 エクリプスルバン-9 ドバイブルース</td><td>8.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>馬単</td><td class="left">4 エクリプスルバン→9 ドバイブルース</td><td>3.8</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬単◎→○</td></tr><tr><td>3連複</td><td class="left">3 バギーウィップ-4 エクリプスルバン-9 ドバイブルース</td><td>15.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">4 エクリプスルバン→9 ドバイブルース→3 バギーウィップ</td><td>29.0</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
