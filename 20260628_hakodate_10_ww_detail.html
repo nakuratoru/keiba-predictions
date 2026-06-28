@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>渡島特別 2026/06/28 HAKODATE 10R (06/28 14:20 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>渡島特別 2026/06/28 HAKODATE 10R (06/28 14:20 予想)</h1>
+  <div class="meta">ダート1700m（右） | 稍重 | 11頭立て | 1回 函館 6日目 サラ系3歳以上 2勝クラス 牝［指定］ 定量 11頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">4. コンティオ</div>
+      <div class="pick-jockey">横山 和生 / 和田 勇介</div>
+    </div>
+    <div class="pick-prob">17.6%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">1. プリンセッサ</div>
+      <div class="pick-jockey">岩田 望来 / 牧田 和弥</div>
+    </div>
+    <div class="pick-prob">16.8%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">9. タマモカンパネラ</div>
+      <div class="pick-jockey">原 優介 / 伊藤 圭三</div>
+    </div>
+    <div class="pick-prob">14.9%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">11頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">プリンセッサ</td><td>牝4</td><td>56</td><td>岩田 望来</td><td>牧田 和弥</td><td>ナダル</td><td>ディープインパクト</td><td>520(+6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">コパノエビータ</td><td>牝5</td><td>56</td><td>長浜 鴻緒</td><td>手塚 貴久</td><td>ダノンレジェンド</td><td>ゴールドアリュール</td><td>428(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ネクストダンサー</td><td>牝4</td><td>56</td><td>黛 弘人</td><td>伊藤 圭三</td><td>ドレフォン</td><td>サウスヴィグラス</td><td>496(+4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">コンティオ</td><td>牝4</td><td>56</td><td>横山 和生</td><td>和田 勇介</td><td>ダノンレジェンド</td><td>エンパイアメーカー</td><td>456(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">ブラックルビー</td><td>牝4</td><td>56</td><td>北村 友一</td><td>平岩 大典</td><td>キズナ</td><td>シンボリクリスエス</td><td>448(+8)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">ユージュアーナ</td><td>牝4</td><td>56</td><td>武 豊</td><td>奥村 豊</td><td>リアルスティール</td><td>キングカメハメハ</td><td>462(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>7</td><td class="left horse-name">ルージュマローネ</td><td>牝4</td><td>56</td><td>佐々木 大輔</td><td>栗田 徹</td><td>ダイワメジャー</td><td>カジノドライヴ</td><td>476(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>8</td><td class="left horse-name">ニシノラヴァンダ</td><td>牝4</td><td>56</td><td>横山 琉人</td><td>奥平 雅士</td><td>サトノアラジン</td><td>Sidney&#x27;s Candy</td><td>432(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>9</td><td class="left horse-name">タマモカンパネラ</td><td>牝4</td><td>56</td><td>原 優介</td><td>伊藤 圭三</td><td>ナダル</td><td>ハーツクライ</td><td>504(-12)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>10</td><td class="left horse-name">ウインシャーガス</td><td>牝4</td><td>56</td><td>鮫島 克駿</td><td>杉山 晴紀</td><td>キズナ</td><td>コンデュイット</td><td>482(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>11</td><td class="left horse-name">ドーンコーラス</td><td>牝5</td><td>56</td><td>丹内 祐次</td><td>大竹 正博</td><td>スワーヴリチャード</td><td>Rock of Gibraltar</td><td>456(+12)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">コンティオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">プリンセッサ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ユージュアーナ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">プリンセッサ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">コンティオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ユージュアーナ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">プリンセッサ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">コンティオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">タマモカンパネラ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">コンティオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">プリンセッサ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">タマモカンパネラ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">コンティオ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">タマモカンパネラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">プリンセッサ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.60</td>
+<td style='color:#AF52DE'>0.77</td>
+<td style='color:#8E8E93'>0.43</td>
+<td style='color:#AF52DE'>0.60</td>
+<td style='color:#8E8E93'>0.27</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">コンティオ</span></td>
+<td>+0.14</td>
+<td>+0.36</td>
+<td>+0.62</td>
+<td>+0.48</td>
+<td>+0.50</td>
+<td>17.5</td>
+<td>19.2</td>
+<td>16.1</td>
+<td><b>17.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">プリンセッサ</span></td>
+<td>+0.44</td>
+<td>+0.18</td>
+<td>+0.20</td>
+<td>+0.48</td>
+<td>+0.26</td>
+<td>18.8</td>
+<td>16.5</td>
+<td>10.2</td>
+<td><b>16.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">タマモカンパネラ</span></td>
+<td>+0.38</td>
+<td>+0.14</td>
+<td>-0.38</td>
+<td>+0.66</td>
+<td>-0.18</td>
+<td>14.7</td>
+<td>16.3</td>
+<td>14.0</td>
+<td><b>14.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ユージュアーナ</span></td>
+<td>+0.20</td>
+<td>+0.20</td>
+<td>+0.16</td>
+<td>+0.16</td>
+<td>+0.54</td>
+<td>15.5</td>
+<td>14.7</td>
+<td>12.8</td>
+<td><b>14.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ルージュマローネ</span></td>
+<td>+0.14</td>
+<td>-0.12</td>
+<td>+0.22</td>
+<td>+0.10</td>
+<td>+0.16</td>
+<td>13.0</td>
+<td>12.1</td>
+<td>11.2</td>
+<td><b>12.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ウインシャーガス</span></td>
+<td>-0.34</td>
+<td>-0.20</td>
+<td>+0.12</td>
+<td>-0.72</td>
+<td>+0.42</td>
+<td>6.6</td>
+<td>-</td>
+<td>9.2</td>
+<td><b>7.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ドーンコーラス</span></td>
+<td>-0.56</td>
+<td>-0.24</td>
+<td>+0.00</td>
+<td>-0.64</td>
+<td>+0.16</td>
+<td>3.9</td>
+<td>-</td>
+<td>6.9</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ブラックルビー</span></td>
+<td>-0.54</td>
+<td>-0.14</td>
+<td>-0.32</td>
+<td>-0.62</td>
+<td>+0.06</td>
+<td>3.8</td>
+<td>-</td>
+<td>4.4</td>
+<td><b>3.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ネクストダンサー</span></td>
+<td>-0.68</td>
+<td>-0.22</td>
+<td>-0.44</td>
+<td>+0.38</td>
+<td>-0.24</td>
+<td>2.8</td>
+<td>5.7</td>
+<td>7.6</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">コパノエビータ</span></td>
+<td>-0.70</td>
+<td>-0.12</td>
+<td>-0.50</td>
+<td>+0.44</td>
+<td>-0.22</td>
+<td>2.7</td>
+<td>-</td>
+<td>4.6</td>
+<td><b>3.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ニシノラヴァンダ</span></td>
+<td>-0.92</td>
+<td>-0.40</td>
+<td>-0.54</td>
+<td>-0.76</td>
+<td>-0.08</td>
+<td>0.5</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>1.0</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行4</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行4の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, プリンセッサ, +0.2, 近3走の2勝クラスで5着0.6秒差と8着0.9秒差があり指数も80.1を出していて この組では実績水準はまずまずある。勝ち切る裏付けまでは弱いが 1勝クラス勝ちの1:52.2も含め大きくは崩れていない。<br><br>2番, コパノエビータ, -0.7, 近4走の2勝クラスが14着 10着 13着 14着で 着差も2.6秒 1.0秒 3.1秒 1.9秒と明確に足りていない。今回と同距離の福島1700mで3着歴はあるが 1年以上前で近況実績が弱い。<br><br>3番, ネクストダンサー, -0.6, 近4走の2勝クラスが12着 9着 10着 13着で 阪神では4.2秒差負けまであるのは厳しい。函館1700m勝ちの実績はあるが 昨年の1勝クラスで 指数74.4止まりでは現級で強調しづらい。<br><br>4番, コンティオ, +0.4, 中山1勝クラス勝ちが1:51.3で指数78.9と このメンバーでは上位の裏付けになる。昇級初戦の2勝クラスでも7着1.4秒差なら悲観ほどではなく 同距離1700mでも0.7秒差6着がある。<br><br>5番, ブラックルビー, -0.8, 近5走がすべて芝で ダート1700mの現条件に直結する実績がほぼない。2勝クラスでも芝で善戦止まりが続いており この舞台で能力裏付けを示せていない。<br><br>6番, ユージュアーナ, +0.3, 前走福島ダ1700mを1:46.0で0.5秒差勝ち 指数75.4は今回条件に直結する実績として評価できる。直前のダ1400mでも4着続きで指数71台を維持しており 内容は安定している。<br><br>7番, ルージュマローネ, +0.2, 2走前に福島ダ1700mを1:45.7で勝ち 指数77.0はこの組み合わせなら見劣らない。ただし昇級戦の咲花特別では11着1.7秒差で 現級実績の上積みはまだ限定的。<br><br>8番, ニシノラヴァンダ, -1.0, 通算1勝馬で 近5走はすべて芝の2勝クラスで14着 14着 6着 16着 16着と実績面が大きく不足している。ダート1700mでの裏付けがなく 自軸では最も強く下げる。<br><br>9番, タマモカンパネラ, +0.3, 今年は1勝クラスを1:52.9で勝ち その前も東京ダ1600mで2着0.0秒差と現状のダート実績は堅実。昇級後も2勝クラスで6着 8着なら大きく負けておらず 水準級の裏付けはある。<br><br>10番, ウインシャーガス, -0.7, 近5走は芝で2着 3着 3着 1着 5着と内容は良いが ダート実績としては今回材料になりにくい。現条件で必要なダ1700mの実績裏付けが乏しく 実績派の軸では割り引きが必要。<br><br>11番, ドーンコーラス, -0.8, 近5走はすべて芝の2勝クラスで11着 9着 10着 14着 2着と ムラが大きく近2走は着順も悪い。ダート1700mの現条件に結びつく近走実績が見当たらず 自軸では評価しにくい。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>6番ユージュアーナと4番コンティオの上げ幅は、現級実績との整合を再点検したい。1番プリンセッサは2勝クラスでの指数・着差実績の割に控えめで、7番ルージュマローネと同列評価は説明不足気味。2番コパノエビータと3番ネクストダンサーの差、また芝組の5番ブラックルビー・10番ウインシャーガス・11番ドーンコーラスの序列も、指数水準と条件適性のどちらをどこまで重く見るか整理し直す余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, プリンセッサ, +0.4, 2勝クラスで5着0.6秒差かつ指数80.1、8着0.9秒差で指数77.6はこの組み合わせでは上位の現級実績です。1勝クラス勝ちも1:52.2でまとめており、7番より実績の裏付けは一段上と見て上方修正します。<br><br>2番, コパノエビータ, -0.7, 近4走の2勝クラスが14着 10着 13着 14着で、着差も2.6秒 1.0秒 3.1秒 1.9秒では現級で明確に足りません。同距離福島1700mで3着歴はあるものの2025年4月のもので、近走実績の弱さを覆せません。<br><br>3番, ネクストダンサー, -0.8, 近4走の2勝クラスで12着 9着 10着 13着、特に阪神で4.2秒差9着と大敗があり現級実績はかなり弱いです。函館1700m勝ち1:45.6はあるが1勝クラスで指数74.4止まりで、近況比較では2番以上に下げやすいです。<br><br>4番, コンティオ, +0.2, 1勝クラス勝ちの1:51.3と指数78.9は魅力ですが、現級では7着1.4秒差で指数72.1とまだ水準級までです。同距離実績も1勝クラス6着0.7秒差までで、実績面の押し上げは軽めに留めます。<br><br>5番, ブラックルビー, -0.6, 近走はすべて芝ですが、2勝クラスで0.2秒差6着と指数81.1があり、能力値そのものは低くありません。ただ現条件のダ1700mに直結する実績が皆無で、実績派としては割引が必要です。<br><br>6番, ユージュアーナ, +0.1, 前走福島ダ1700mを1:46.0で0.5秒差勝ちは今回条件に直結しますが、あくまで1勝クラスで指数75.4です。現級実績の裏付けまではまだなく、上げ幅は控えめに見直します。<br><br>7番, ルージュマローネ, +0.1, 福島ダ1700mを1:45.7で勝った実績と指数77.0は評価できますが、これも1勝クラスまでです。昇級初戦で11着1.7秒差、指数69.6なら現級で強くは推しにくく、1番より一段下の評価です。<br><br>8番, ニシノラヴァンダ, -1.0, 通算1勝で近5走の2勝クラスが14着 14着 6着 16着 16着、指数も73.9が上限では実績水準が足りません。しかもダ1700mの裏付けがなく、自軸では最も強く下げます。<br><br>9番, タマモカンパネラ, +0.3, 1勝クラス勝ちが1:52.9で指数75.7、東京ダ1600mでも0.0秒差2着で指数75.0と近走実績は安定しています。昇級後も6着 8着で指数72台なら、現級でも水準級の裏付けはあります。<br><br>10番, ウインシャーガス, -0.4, 近4走で芝2勝クラスを2着 3着 3着 1着、指数82.1 79.6 78.9と能力の高さ自体はこのメンバーでも上位です。ただし全て芝実績で、ダ1700mの実績がないぶん実績派としてはマイナス評価に留めます。<br><br>11番, ドーンコーラス, -0.7, 芝2勝クラスで2着時の指数79.6はありますが、近4走は11着 9着 10着 14着で近況の実績が落ちています。ダ1700m実績も見当たらず、芝組では10番より下で5番と同等かそれ以上に割り引きます。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, プリンセッサ, +0.3, 1枠から無理なく好位の内に収まりやすく 函館1700の形には乗りやすいです。先行勢は多いですが ハナ争いの外で脚を溜める形なら展開利があります。<br><br>2番, コパノエビータ, -0.2, 内枠は良いものの 近走の位置取りが定まらず 前に行っても控えても中途半端になりやすい並びです。先行争いが締まる想定では 展開の後押しは弱いです。<br><br>3番, ネクストダンサー, -0.4, 3枠なら前に出していく形ですが 7番や4番もいて楽には行けません。先団の内で流れに巻き込まれると 4角までに脚を使わされやすいです。<br><br>4番, コンティオ, +0.2, 4番は逃げ争いを見ながら2列目に収めやすい枠です。前が多いレースでも 番手からロスなく運ぶ形なら展開補正は少し上です。<br><br>5番, ブラックルビー, -0.2, これまでの位置取り傾向からは前につける可能性がありますが 今回の1700ダートでその形を取ると周囲の先行圧が強いです。隊列に入れず脚を使うリスクを少し見ます。<br><br>6番, ユージュアーナ, +0.4, 先行勢を前に見ながら好位外目で流れに乗れる並びで いちばん運びやすいタイプです。7番や3番が作るペースを2列目で受けて 直線で抜ける形が描きやすいです。<br><br>7番, ルージュマローネ, -0.5, この馬が逃げ候補の中心ですが 同型がいて単騎の保証はありません。外から主張していくぶん 1角までに脚を使いやすく ハイ気味になった時の不利を強く受けます。<br><br>8番, ニシノラヴァンダ, -0.4, 短距離寄りのスピードで前半だけ速くなると 1700では息が入りにくい形です。7枠から砂を被らず行こうとすると なおさら前半の消耗が大きくなります。<br><br>9番, タマモカンパネラ, +0.5, 先行馬が多いこの組み合わせは むしろこの馬の差し寄りの立ち回りに向きます。外すぎない7枠で揉まれにくく 前がやり合ったところを3角から拾う形が最もしっくりきます。<br><br>10番, ウインシャーガス, -0.3, 8枠でダート1700だと 序盤で位置を取りに行くにも控えるにもロスが出やすいです。前が流れる想定でも 後ろから外を回す絵になりやすく 展開の助けは薄いです。<br><br>11番, ドーンコーラス, -0.5, 大外で後方寄りの形になると 1角までに好位を取れず外々を回されやすい条件です。前が止まるシナリオはあるものの この枠だと差し届くまでのロスが大きいです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>1番プリンセッサは1枠評価と『外で溜める』理由がやや矛盾。6番ユージュアーナは前が流れる想定なら2列目外の負荷を軽く見すぎで、1番4番より強い加点の根拠を再確認したい。9番タマモカンパネラは差し想定を強く置きすぎで、7枠のコースロスを8番との比較でもう一度整理したい。7番ルージュマローネは主導権を取れた場合の展開利を考えると-0.5は厳しすぎる可能性。全体に『前崩れ想定』と『好位勢への加点』が併存しているため、残れる好位と潰れる先行の線引きを見直したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, プリンセッサ, +0.2, 1枠なら無理に外で溜める形ではなく、内の好位か中団インで脚を残す形が自然です。7番が主張して3番4番が続く流れでも、最内で距離損なく運べるぶん小幅に上げます。<br><br>2番, コパノエビータ, -0.2, 先行勢の直後を取りたい並びですが、このメンバーだと1角までに中途半端な位置になりやすいです。内で詰まり気味になるか、逆に押して脚を使うかで展開の後押しは弱いままです。<br><br>3番, ネクストダンサー, -0.4, 内の3枠でも今回は7番が外から主張しやすく、3番はハナか控えるかの判断を早めに迫られます。1角までに脚を使って好位内でプレッシャーを受ける形が見え、不利寄りです。<br><br>4番, コンティオ, +0.3, 逃げ争いの直後で2列目の内目に収まりやすい並びです。前が総崩れになるほどではなくても、7番の後ろでロスなく回って直線で捌く形は描きやすく、好位勢の中では比較的残りやすいです。<br><br>5番, ブラックルビー, -0.2, 先行するなら周囲に速い馬がいて位置取りが楽ではなく、控えてもダート1700の流れに乗るまでに時間がかかりそうです。隊列の恩恵を受ける絵が薄く、軽い下げ評価です。<br><br>6番, ユージュアーナ, +0.2, 7番の外目直後か4番の外で流れに乗る形は取れますが、前が締まれば2列目外の負荷はやはりあります。運びやすさはあるものの、1番4番より明確に展開利が大きいとまでは言えず加点を縮めます。<br><br>7番, ルージュマローネ, -0.2, 主導権を取れれば隊列の軸を作れるので、前走時のように単騎気味なら残る余地はあります。とはいえ今回は3番4番6番も近く、稍重で前半が締まると楽逃げまでは見込みにくく、少しだけ下げる評価に留めます。<br><br>8番, ニシノラヴァンダ, -0.5, 7枠から砂を被らず行こうとすると前半で脚を使いやすく、1700の1角までに外で踏まされる形がきついです。短距離型の加速で隊列を作りに行くと息が入りにくく、このレースの流れとは噛み合いません。<br><br>9番, タマモカンパネラ, +0.2, 差し一手というより中団外目で流れを見ながら運べるのは悪くありませんが、7枠で終始外を回されるロスはあります。前がやり合って差し場ができる可能性はあるものの、展開利を強く見込むほどではなく小幅加点に修正します。<br><br>10番, ウインシャーガス, -0.3, 8枠からダート1700で1角までに内へ潜り込むのは難しく、控えても外々を回りやすいです。前が止まる流れでも進路取りのロスが残りやすく、展開面の助けは薄いです。<br><br>11番, ドーンコーラス, -0.5, 大外から後方寄りになると1角までにかなり外を回されやすく、道中もポジションを取りにくいです。差しの隊列になってもコース取りの不利が大きく、展開面では厳しいです。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, プリンセッサ, +0.2, 今回520kgで前走514kgから+6kgだがこの馬は510kg前後で安定しており太め感は薄い。3か月ぶりでも函館Wで力強い脚捌きなら仕上がりはまずまずで55kgから56kgへの1kg増も大型馬なら許容。<br><br>2番, コパノエビータ, -0.5, 今回428kgで前走434kgから-6kg、もともと小柄な馬で56kgは軽くなく2走前に52kgで使った後の反動も気になる。中2週で坂路評価も「さほど良化なく」なら上向き材料が乏しい。<br><br>3番, ネクストダンサー, -0.4, 496kg前後で大きな崩れはないが今回は前走492kgから+4kgで、強め追いでも「反応ひと息」は体調面で物足りない。53kgで走ってきた近走から今回は56kgへ3kg増で、約1.5馬身前後の負荷増と見て小さくない。<br><br>4番, コンティオ, +0.7, 今回456kgで前走458kgから-2kg、458→456kgと使いつつ締まってきた形で叩き2走目の上積みが見える。函館Wで1F11.9、評価も「抜群の脚捌き」で調子↗なら体調軸ではかなり買いやすい。<br><br>5番, ブラックルビー, -0.2, 448kgは前走440kgから+8kgで数字自体は悪くないが、函館W71.8-13.3と軽めで「攻量の割に仕上る」は強調しづらい。休み明け気味で仕上がり途上の可能性が残る。<br><br>6番, ユージュアーナ, +0.3, 今回462kgで前走460kgから+2kg、460-462kg帯でまとまっており馬体は安定。前走勝ちから中8週で消耗も少なく、54kgから56kgの2kg増はあるが462kgの馬格ならまだ受け止めやすい。<br><br>7番, ルージュマローネ, +0.1, 今回476kgで前走474kgから+2kg、480kg前後で推移していて大きなブレはない。前走から8週空けて坂路53.2で「余裕ある動き」なら反動は薄いが、体調面で強烈な上積みまでは感じない。<br><br>8番, ニシノラヴァンダ, -0.6, 今回432kgで前走434kgから-2kgだが、芝1200mを使った1週後の連闘で中間は「軽め」と明記されているのが不安。小柄な432kgで56kgを背負い続ける形でもあり、当日の体調上積みは見込みにくい。<br><br>9番, タマモカンパネラ, -0.3, 今回504kgで前走516kgから-12kgはさすがに大きく、520kgから一気に絞れすぎた印象がある。追い切りは悪くないが「上積み薄」で、56kg据え置きでも馬体減のぶん余裕が削がれた見立て。<br><br>10番, ウインシャーガス, +0.2, 今回482kgで前走474kgから+8kg、474kgで安定していた馬が少し増えたが連戦の細化よりは好感が持てる。中2週でも「好調持続」と出ており、馬体の張りを維持していると見たい。<br><br>11番, ドーンコーラス, +0.1, 今回456kgで前走444kgから+12kgだが、2走前460kgから前走が-16kgだったので今回は反動減からの戻しと解釈できる。5か月前の460kgに近づき、坂路の手応え十分なら体調面はむしろ立て直し気配。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>10番ウインシャーガスは+8kgと当週の動きの弱さの割に甘めではないか。11番ドーンコーラスは馬体戻しと坂路内容の割に+0.1は低く、理由と付値が弱く噛み合う。6番ユージュアーナは当週調教情報が薄いのにプラス評価が先行気味。7番ルージュマローネは反動薄・動き良好の割に抑えすぎかもしれない。9番タマモカンパネラは-12kgを絞れすぎとする線引きが11番との比較でやや不統一。3番ネクストダンサーは減点理由が斤量寄りで、体調軸との整合を再確認したい。5番ブラックルビーは仕上がり途上材料の割にマイナスが浅い可能性。4番コンティオは高評価自体より『叩き2走目』という理由表現を見直す余地。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, プリンセッサ, +0.2, 520kgで前走514kgから+6kgでも、この馬は510kg前後が守備範囲で太め残りまでは感じない。3か月ぶりでも函館Wで力強い脚捌きなら仕上がりはまずまずで、56kgもこの馬格なら許容範囲。<br><br>2番, コパノエビータ, -0.5, 428kgで前走434kgから-6kgは小柄なこの馬には軽くない減り方で、56kgを背負う当日の負担感が増す。中2週で調教評価も「さほど良化なく」なら、上向いた体調像は描きにくい。<br><br>3番, ネクストダンサー, -0.3, 496kgで大きくは崩れていないが、強めに追って「反応ひと息」は当週の仕上がり評価として物足りない。56kgは近走53kg比で約1.5馬身前後の負荷増にあたり、体調面の後押しが弱い現状では少し割り引く。<br><br>4番, コンティオ, +0.7, 456kgで前走458kgから-2kg、過去の好走帯に収まりつつ無駄なく締まった映りで休み明けとしては好感が持てる。函館W5F67.4-1F11.9で「抜群の脚捌き」、調子↗なら体調軸ではかなり強く上げたい。<br><br>5番, ブラックルビー, -0.4, 448kgで前走440kgから+8kgは増加自体が悪いわけではないが、4か月ぶりで函館W71.8-13.3と軽く、評価も「攻量の割に仕上る」止まりでは仕上がり途上の色が残る。数字が戻っても中身まで整ったとまでは言いづらい。<br><br>6番, ユージュアーナ, +0.0, 462kgで前走460kgから+2kgと馬体は安定しており、中8週で消耗の不安も薄い。ただ当週の追い切り情報が乏しく、56kgへの2kg増を打ち消すほどの上積み材料までは確認できないので中立に戻す。<br><br>7番, ルージュマローネ, +0.2, 476kgで前走474kgから+2kg、480kg前後での安定推移を保てていて反動は見えにくい。8週空けて坂路53.2、評価「余裕ある動き」なら体調維持は利いており、わずかに上向き評価。<br><br>8番, ニシノラヴァンダ, -0.6, 432kgで前走434kgから-2kg自体は微差でも、芝1200mを使った1週後の連闘で「中間軽め」は当日の上積みが見込みづらい。小柄な馬体で56kg据え置きも楽ではなく、体調面の押しは弱い。<br><br>9番, タマモカンパネラ, -0.4, 504kgで前走516kgから-12kgは、この馬の近走レンジから見ても一気の減り方で少し細く映る。11番のような前走大幅減からの戻しではなく今回は逆に削れた形で、調教も「上積み薄」なら体調面では下げる。<br><br>10番, ウインシャーガス, +0.0, 482kgで前走474kgから+8kgは細化防止なら悪くないが、函館W69.6-13.0と当週の動きは強調しづらい。評価は「好調持続」でも、増えた数字を積極材料として押し上げるほどの中身は見えず中立まで。<br><br>11番, ドーンコーラス, +0.3, 456kgで前走444kgから+12kgは、前走の-16kgからしっかり戻して2走前460kgに近づいた点を評価したい。坂路53.6-12.3で「手応え十分」なら馬体回復と動きが噛み合っており、体調面は前走より明確に上向き。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, プリンセッサ, +0.5, 父ナダルはパワー型ダート血統で母父ディープインパクトが入っても鈍重には出にくく 函館ダ1700の持続戦と稍重は血統面で合う。1800より1700への微短縮もこの配合なら機動力を引き出しやすい。<br><br>2番, コパノエビータ, +0.4, 父ダノンレジェンドに母父ゴールドアリュールで ダート適性と先行持続力はかなり明確な配合。中央の速い上がり勝負より 小回り1700で脚を長く使う形のほうが血統の良さは出やすい。<br><br>3番, ネクストダンサー, +0.6, 父ドレフォンに母父サウスヴィグラスは 牝馬でもダート短中距離での機動力と砂適性が濃い。函館1700のような小回りで多少力の要る馬場は配合イメージに合っており 血統だけなら条件好転寄り。<br><br>4番, コンティオ, +0.5, 父ダノンレジェンドに母父エンパイアメーカーで スピードとパワーの配合になっており ダ1700の持続戦は守備範囲。母父由来で多少時計の掛かる馬場にも対応しやすく 稍重はプラスに見やすい。<br><br>5番, ブラックルビー, -0.7, 父キズナに母父シンボリクリスエス自体は万能感があるが 本質は芝中距離寄りの体質を出しやすい配合。牝馬限定の函館ダ1700で前向きに買えるほどダート色は強くなく 血統面では割引が必要。<br><br>6番, ユージュアーナ, -0.1, 父リアルスティールに母父キングカメハメハで こなせる幅はあるが 血統の芯は芝質も残る中距離型。ダ1700も守備範囲ではあるものの 稍重の函館ダで大きく上げるほどダート血統に振れてはいない。<br><br>7番, ルージュマローネ, +0.2, 父ダイワメジャーのスピードに母父カジノドライヴのダート色が入っており 短めのダート中距離には対応可能な配合。ややワンペース寄りなので 小回り1700で先行力を生かせる形なら血統的には悪くない。<br><br>8番, ニシノラヴァンダ, -1.0, 父サトノアラジンに母父Sidney&#x27;s Candyで 全体として芝マイル以下のスピード色が強く ダ1700替わりは血統的にかなり苦しい。パワー型ダート適性の裏付けが薄く この条件では自軸で最も下げやすい。<br><br>9番, タマモカンパネラ, +0.7, 父ナダルでダート適性は強く 母父ハーツクライが入ることで1700前後の持続力にも厚みが出る。力の要る稍重ダートでの総合適性は高く 血統だけなら今回かなり上位に取れる。<br><br>10番, ウインシャーガス, -0.8, 父キズナに母父コンデュイットで 芝中距離の持続力とスタミナに寄りやすい配合。ダート替わり自体が血統面で強調しづらく 函館ダ1700のスピードと砂適性勝負では明確にマイナス。<br><br>11番, ドーンコーラス, -0.6, 父スワーヴリチャードに母父Rock of Gibraltarで 芝の中距離からマイル寄りのしなやかさが前に出やすい配合。ダート1700で求められる砂適性とパワーの裏付けは薄く 血統面では下げ評価になる。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>3番ネクストダンサーは1700持続力の裏付けに対して+0.6がやや強気に見える。1番プリンセッサと9番タマモカンパネラのナダル産駒同士の差、2番コパノエビータと4番コンティオのダノンレジェンド産駒同士の差は根拠をもう一段明確化したい。6番ユージュアーナは『守備範囲』という理由に対して-0.1がやや不整合。5番ブラックルビーは母父シンボリクリスエス込みなら-0.7は厳しすぎる可能性。8番ニシノラヴァンダを最下位級の-1.0にする一方で11番ドーンコーラスが-0.6に留まる比較も再点検余地あり。7番ルージュマローネは血統評価に展開要素が混ざっていないか確認したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, プリンセッサ, +0.4, 父ナダルで砂への適性と持続力は明確だが 母父ディープインパクトのぶん配合の芯は9番ほど1700持続戦に寄り切らない。とはいえ函館ダ1700の稍重はこの配合に十分合う。<br><br>2番, コパノエビータ, +0.5, 父ダノンレジェンドに母父ゴールドアリュールは ダート先行力と砂での持続性能をかなり素直に伝える配合。4番よりも母父由来のダート適性が輪郭として明確で 小回り1700では血統面の後押しが大きい。<br><br>3番, ネクストダンサー, +0.4, 父ドレフォンに母父サウスヴィグラスで ダート適性と機動力は濃く出ている。1700の持続力まで強く断定するほどではないので上げ幅は少し抑えるが 函館の稍重ダ1700自体は血統的に合う部類。<br><br>4番, コンティオ, +0.4, 父ダノンレジェンドに母父エンパイアメーカーで パワーとダート中距離向きの持続力は備わる。2番より母父の方向性が機動力よりパワー寄りで 条件適性は高いが上げ幅は同等か一段控えめまで。<br><br>5番, ブラックルビー, -0.4, 父キズナで芝寄りのしなやかさはあるが 母父シンボリクリスエスが入ることでパワーと中距離ダート対応の余地は残る。ダ1700で積極的に上げる血統ではないが 大きく嫌うほど裏付けが乏しいとも言い切れない。<br><br>6番, ユージュアーナ, 0.0, 父リアルスティールに母父キングカメハメハで 芝質は残す一方 ダート中距離をこなすだけの総合力もある配合。血統だけで明確な加点も減点もつけにくく 中立が妥当。<br><br>7番, ルージュマローネ, +0.1, 父ダイワメジャーのスピードに 母父カジノドライヴのダート適性が加わり 1700前後のダート自体は守備範囲。血統だけで強調できるほどではないが 配合としてはわずかにプラス寄り。<br><br>8番, ニシノラヴァンダ, -0.8, 父サトノアラジンで芝スピード色が強く 母父Sidney&#x27;s Candyもダ1700向きのパワー補強としては弱い。短距離芝寄りの配合印象が濃く この条件替わりは血統面でかなり厳しい。<br><br>9番, タマモカンパネラ, +0.7, 父ナダルの強いダート適性に 母父ハーツクライが持続力と距離のゆとりを補う配合で 同じナダル産駒でも1番より1700向きの厚みがある。稍重の函館ダ1700では血統面の後押しがかなり大きい。<br><br>10番, ウインシャーガス, -0.8, 父キズナに母父コンデュイットで 芝中距離のスタミナと持続力に寄りやすい配合。砂適性とダート向きの前進気勢の裏付けは薄く この条件では明確に下げたい。<br><br>11番, ドーンコーラス, -0.7, 父スワーヴリチャードに母父Rock of Gibraltarで 芝マイルから中距離寄りの軽さとしなやかさが先に立つ。8番ほど短距離寄りではないが ダ1700で欲しい砂適性の裏付けはやはり弱く 血統面ではしっかり割引。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, プリンセッサ, +0.3, 岩田望来への乗り替わりはこのメンバーでは明確な鞍上強化です。継続騎乗ではないぶん満点までは打てませんが、陣営の後押しは感じます。<br><br>2番, コパノエビータ, -0.1, 手塚厩舎自体は軽視しませんが、近走からの流れで長浜鴻緒の継続騎乗が強い押し材料とまでは言いづらいです。陣営面ではやや弱めの評価に留めます。<br><br>3番, ネクストダンサー, -0.4, 近走で横山武史を配していた時期から今回は黛弘人で、鞍上の格は一段落ちます。伊藤圭三厩舎のダート適性はあっても、今回の陣営カードは強調しにくいです。<br><br>4番, コンティオ, +0.6, 横山和生が継続して乗っており、この馬の手の内を把握している点は大きいです。和田勇介厩舎も含めて無理のないローテで運べており、陣営面の信頼度は高いです。<br><br>5番, ブラックルビー, 0.0, 北村友一への依頼自体は悪くありませんが、この馬での継続騎乗ではなく厩舎面でも特段の強い後押し材料は見えません。陣営軸では中立です。<br><br>6番, ユージュアーナ, +0.7, 前走勝ちから武豊への乗り替わりはかなり強い勝負手です。奥村豊厩舎がこのタイミングで一流騎手を確保した形で、陣営面の上積みは大きく見ます。<br><br>7番, ルージュマローネ, +0.2, 佐々木大輔はローカルで信頼を置ける騎手で、この条件の立ち回りには向く鞍上です。継続騎乗ではないものの、陣営面で軽いプラスは出せます。<br><br>8番, ニシノラヴァンダ, -0.2, 横山琉人の継続騎乗自体は悪くありませんが、陣営として今回この条件で強く押してきた布陣には見えません。厩舎の勝負気配も強調材料までは届かず小幅なマイナスです。<br><br>9番, タマモカンパネラ, -0.4, 近走で横山武史を配していた流れから今回は原優介で、陣営の攻勢はやや弱まった印象です。伊藤圭三厩舎のダート力はあっても、今回は鞍上面のマイナスが先に立ちます。<br><br>10番, ウインシャーガス, +0.3, 杉山晴紀厩舎は総合力が高く、鮫島克駿との手配もきっちりしています。継続騎乗で運べる点も含めて、陣営面では素直にやや上です。<br><br>11番, ドーンコーラス, +0.2, 丹内祐次を函館で確保してきたのはローカル戦では評価できます。継続騎乗ではないぶん強調しすぎませんが、大竹厩舎との組み合わせで最低限の後押しはあります。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>6番ユージュアーナの+0.7は継続性や厩舎との積み上げが薄い割に強すぎる可能性があり、4番コンティオ・10番ウインシャーガスとの比較で再点検余地があります。4番コンティオは理由の強さの割に控えめ、10番ウインシャーガスは厩舎力と継続騎乗の割に低めかもしれません。1番プリンセッサは鞍上強化を買う一方で騎手の入れ替わりが多く、同じ+0.3の根拠が10番より弱く見えます。3番ネクストダンサーと9番タマモカンパネラを同じ-0.4にした根拠は粗く、9番は『横山武史から直で格落ち』ではない点に注意が必要です。2番コパノエビータ、8番ニシノラヴァンダ、11番ドーンコーラスは、継続騎乗や条件替わりに込めた陣営意図の扱いが比較上やや曖昧に見えます。全体として『鞍上の格』と『継続騎乗・手の内把握』のどちらをどの程度重く見るかの物差しを揃えると精度が上がりそうです。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, プリンセッサ, +0.2, 岩田望来への乗り替わり自体は鞍上強化ですが、この馬は近走で騎手の入れ替わりが続いており継続性は薄いです。陣営面の押しは認めても、継続騎乗組ほどは強く買いません。<br><br>2番, コパノエビータ, -0.1, 手塚厩舎は軽視不要でも、長浜鴻緒の継続騎乗が今回の条件で明確な上積みとまでは言いにくいです。陣営の意図は見えても、強い後押しには届かず小幅なマイナスに留めます。<br><br>3番, ネクストダンサー, -0.4, 横山武史を配していた時期がありながら現状は黛弘人で、鞍上の格という意味では見劣ります。伊藤圭三厩舎のダート運用は認めても、今回は陣営カードが弱めです。<br><br>4番, コンティオ, +0.7, 横山和生の継続騎乗で手の内把握が進んでいるのはこの組み合わせの明確な強みです。和田勇介厩舎も含めて無理のない使い方で運べており、陣営面ではかなり信頼できます。<br><br>5番, ブラックルビー, 0.0, 北村友一の起用は水準級でも、この馬との積み上げがあるわけではありません。厩舎面でも今回に限って強く押し出せる材料は薄く、陣営軸では中立です。<br><br>6番, ユージュアーナ, +0.5, 武豊への乗り替わりはこのレースでは明確なプラスで、奥村豊厩舎の勝負手として評価できます。ただし継続騎乗の積み上げはなく、陣営面だけで大きく振り切るほどではないです。<br><br>7番, ルージュマローネ, +0.1, 佐々木大輔はローカルで一定の信頼が置ける騎手ですが、この馬では継続騎乗ではありません。陣営面の後押しは少し認める程度で、上げ幅は控えめにします。<br><br>8番, ニシノラヴァンダ, -0.1, 横山琉人の継続騎乗自体は一応の材料ですが、連闘の臨戦で陣営の強い勝負手という印象まではありません。厩舎・鞍上ともに大きな加点要素が乏しく、わずかに下げます。<br><br>9番, タマモカンパネラ, -0.2, 横山武史で結果を出した後だけに原優介への乗り替わりは鞍上面でやや弱化です。ただし直前も谷原柚希で運んでおり、3番ほど露骨な格落ちとは言えないぶん下げ幅は抑えます。<br><br>10番, ウインシャーガス, +0.5, 杉山晴紀厩舎の総合力はこのメンバーでも上位で、鮫島克駿を継続して配している点も好感です。継続騎乗と厩舎力の両面で、陣営面の信頼度ははっきり高いです。<br><br>11番, ドーンコーラス, +0.1, 丹内祐次を函館で確保してきた点はローカル戦の鞍上配置として悪くありません。ただしこの馬での継続騎乗ではなく、大竹厩舎込みでも強い勝負気配とまでは言えず小幅なプラスです。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>4番, コンティオ, 23%, 4番コンティオは合成1位自体は大筋妥当で、函館Wでの抜群評価と横山和生騎手の継続騎乗は信頼しやすい。とはいえ2勝クラス実績はまだ7着止まりで抜けた本命とまでは言えず、合成24.6はやや強気すぎるので僅差の首位評価にとどめる。<br><br>9番, タマモカンパネラ, 22%, 9番タマモカンパネラは近走の2勝クラスでも着順ほど大きく崩れておらず、ナダル産駒で稍重ダ1700への適性も見込みやすい。合成では3番手だが、1番プリンセッサよりクラス慣れと底堅さを上に取り、上位3頭に入るべき馬として繰り上げる。<br><br>6番, ユージュアーナ, 21%, 6番ユージュアーナは前走福島1700の勝ち方が素直に良く、1700替わりでパフォーマンスを上げた点は見逃せない。合成4位は軽視気味で、武豊騎手への強化も含めれば3番手圏ではなく2番手争いまで可能と見る。<br><br>1番, プリンセッサ, 19%, 1番プリンセッサは1勝クラス突破時の内容と追い切りの力強さは評価できるが、近2走の2勝クラスでは勝ち負け像までまだ届いていない。合成2位は人気先行気味で、内枠先行の利はあっても上位3頭よりは一段落とすのが妥当と判断する。<br><br>7番, ルージュマローネ, 16%, 7番ルージュマローネは福島1700の逃げ切り実績と今回の稍重想定は噛み合うが、2勝クラス昇級初戦で早々に止まった内容からは評価を上げ切れない。合成5位は妥当圏だが、ハナを切れない形まで考えると連下までの扱いが自然である。</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>4番, コンティオ, 14.5%, 4番コンティオは近2走の内容がこの組みでは安定しており函館ウッドでの動きも抜群。稍重ダ1700mでも先行力を生かしやすく前で運べる形なら勝ち負けに近い。<br><br>6番, ユージュアーナ, 13.5%, 6番ユージュアーナは前走福島ダ1700mを正攻法で押し切っており今回の条件に直結する実績がある。昇級でも内容が素直で武豊騎手への替わりも上積み材料。<br><br>9番, タマモカンパネラ, 12.5%, 9番タマモカンパネラは近走の2勝クラスで大きく崩れず1勝クラス勝ちの内容も強い。馬体減は気になるがナダル産駒らしいダート適性と地力は上位。<br><br>7番, ルージュマローネ, 11.5%, 7番ルージュマローネは福島ダ1700m勝ちが優秀で行き切れた時の粘りは侮れない。追い切りも余裕があり同型との兼ね合い次第で残り目がある。<br><br>1番, プリンセッサ, 10.5%, 1番プリンセッサは2勝クラスでも大きくは負けておらず内枠から流れに乗れれば圏内。中止明け後も内容は戻しており函館ウッドの動きも力強い。<br><br>10番, ウインシャーガス, 9.5%, 10番ウインシャーガスは近走成績だけならかなり目立つが芝中心で今回はダート替わりが鍵。仕上がりは良く能力で補う可能性はあるが適性面の不確実性を残す。<br><br>3番, ネクストダンサー, 8.0%, 3番ネクストダンサーは近走着順は悪いが昨年函館ダ1700mで勝っており舞台替わりは歓迎。反面この春の内容は鈍く調教評価ももう一つで強調まではしにくい。<br><br>11番, ドーンコーラス, 7.0%, 11番ドーンコーラスは現級で芝を使われ続けており今回のダート替わりは読みにくい。坂路の手応えは悪くないが近走内容からはまず適性確認の面が強い。<br><br>5番, ブラックルビー, 5.5%, 5番ブラックルビーは芝では現級でも通用する脚を見せているがダート1700mは一気の条件替わり。攻め気配も地味で初ダートで即通用までの後押しは薄い。<br><br>2番, コパノエビータ, 4.5%, 2番コパノエビータは近3走の負け方が大きく2勝クラスでは苦戦傾向が続く。福島や新潟より函館1700m替わりは悪くないが上向き材料が乏しい。<br><br>8番, ニシノラヴァンダ, 3.0%, 8番ニシノラヴァンダは近走が芝短距離中心で今回はダート1700mへの大幅な条件替わりになる。連闘で中間も軽く適性面と臨戦過程の両方で強くは推しにくい。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>4</td><td class="left horse-name">コンティオ</td><td>17.6%</td><td>3.6</td><td>1</td><td class="ev-low">0.63</td></tr><tr><td>2</td><td>1</td><td class="left horse-name">プリンセッサ</td><td>16.8%</td><td>5.4</td><td>3</td><td class="ev-low">0.91</td></tr><tr><td>3</td><td>9</td><td class="left horse-name">タマモカンパネラ</td><td>14.9%</td><td>6.2</td><td>5</td><td class="ev-low">0.92</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">ユージュアーナ</td><td>14.9%</td><td>5.6</td><td>4</td><td class="ev-low">0.83</td></tr><tr><td>5</td><td>7</td><td class="left horse-name">ルージュマローネ</td><td>12.6%</td><td>23.4</td><td>8</td><td class="ev-high">2.95</td></tr><tr><td>6</td><td>10</td><td class="left horse-name">ウインシャーガス</td><td>7.1%</td><td>4.2</td><td>2</td><td class="ev-low">0.30</td></tr><tr><td>7</td><td>11</td><td class="left horse-name">ドーンコーラス</td><td>4.5%</td><td>38.5</td><td>9</td><td class="ev-mid">1.73</td></tr><tr><td>8</td><td>5</td><td class="left horse-name">ブラックルビー</td><td>3.9%</td><td>16.1</td><td>6</td><td class="ev-low">0.63</td></tr><tr><td>9</td><td>3</td><td class="left horse-name">ネクストダンサー</td><td>3.8%</td><td>53.5</td><td>11</td><td class="ev-high">2.03</td></tr><tr><td>10</td><td>2</td><td class="left horse-name">コパノエビータ</td><td>3.1%</td><td>21.9</td><td>7</td><td class="ev-low">0.67</td></tr><tr><td>11</td><td>8</td><td class="left horse-name">ニシノラヴァンダ</td><td>1.0%</td><td>45.0</td><td>10</td><td class="ev-low">0.44</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">4 コンティオ</td><td>17.6%</td><td>3.6</td><td class="ev-low">0.54</td></tr><tr><td>複勝</td><td class="left">4 コンティオ</td><td>49.4%</td><td>1.3</td><td class="ev-low">0.61</td></tr><tr><td>馬連</td><td class="left">1 プリンセッサ-4 コンティオ</td><td>7.1%</td><td>10.9</td><td class="ev-low">0.63</td></tr><tr><td>ワイド</td><td class="left">1 プリンセッサ-4 コンティオ</td><td>19.7%</td><td>4.1</td><td class="ev-low">0.69</td></tr><tr><td>馬単</td><td class="left">4 コンティオ→1 プリンセッサ</td><td>3.6%</td><td>22.5</td><td class="ev-low">0.65</td></tr><tr><td>3連複</td><td class="left">1 プリンセッサ-4 コンティオ-9 タマモカンパネラ</td><td>4.7%</td><td>21.1</td><td class="ev-low">0.80</td></tr><tr><td>3連単</td><td class="left">4 コンティオ→1 プリンセッサ→9 タマモカンパネラ</td><td>0.8%</td><td>110.8</td><td class="ev-low">0.72</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 300円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">4 コンティオ</td><td>3.6</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">1 プリンセッサ-4 コンティオ</td><td>10.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>3連複</td><td class="left">1 プリンセッサ-4 コンティオ-9 タマモカンパネラ</td><td>21.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 300円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
