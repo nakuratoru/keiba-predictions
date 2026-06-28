@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紫川ステークス 2026/06/28 KOKURA 11R (06/28 15:00 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>紫川ステークス 2026/06/28 KOKURA 11R (06/28 15:00 予想)</h1>
+  <div class="meta">芝1200m（右） | 良 | 8頭立て | 2回 小倉 2日目 サラ系3歳以上 3勝クラス （混合）［指定］ ハンデ 8頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">6. アサクサグレース</div>
+      <div class="pick-jockey">杉原 誠人 / 加藤 公太</div>
+    </div>
+    <div class="pick-prob">23.1%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">8. スカイハイ</div>
+      <div class="pick-jockey">川田 将雅 / 清水 久詞</div>
+    </div>
+    <div class="pick-prob">21.3%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">3. ジュンヴァンケット</div>
+      <div class="pick-jockey">富田 暁 / 友道 康夫</div>
+    </div>
+    <div class="pick-prob">13.7%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">8頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">リチャードバローズ</td><td>牡5</td><td>54</td><td>菱田 裕二</td><td>上村 洋行</td><td>エピファネイア</td><td>Kingmambo</td><td>516(-4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ベイビーキッス</td><td>牝4</td><td>53</td><td>藤懸 貴志</td><td>青木 孝文</td><td>サンダースノー</td><td>フサイチコンコルド</td><td>456(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ジュンヴァンケット</td><td>せん5</td><td>55</td><td>富田 暁</td><td>友道 康夫</td><td>キズナ</td><td>キングヘイロー</td><td>462(+4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">ロードトレイル</td><td>牡5</td><td>55</td><td>田山 旺佑</td><td>藤岡 健一</td><td>ロードカナロア</td><td>ディープインパクト</td><td>478(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">テーオーダヴィンチ</td><td>牡8</td><td>55</td><td>幸 英明</td><td>岡田 稲男</td><td>ダイワメジャー</td><td>Sea of Secrets</td><td>506(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>6</td><td class="left horse-name">アサクサグレース</td><td>牝4</td><td>54</td><td>杉原 誠人</td><td>加藤 公太</td><td>フォーウィールドライブ</td><td>タヤスツヨシ</td><td>466(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>7</td><td class="left horse-name">ブラックケリー</td><td>牝4</td><td>53</td><td>西村 淳也</td><td>長谷川 浩大</td><td>モーリス</td><td>ストラヴィンスキー</td><td>440(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>8</td><td class="left horse-name">スカイハイ</td><td>牡5</td><td>57</td><td>川田 将雅</td><td>清水 久詞</td><td>キタサンブラック</td><td>キングカメハメハ</td><td>548(0)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アサクサグレース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">スカイハイ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジュンヴァンケット</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">スカイハイ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アサクサグレース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">スカイハイ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アサクサグレース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アサクサグレース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">スカイハイ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジュンヴァンケット</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アサクサグレース</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">スカイハイ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#8E8E93'>0.57</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.57</td>
+<td style='color:#8E8E93'>0.33</td>
+<td style='color:#8E8E93'>0.33</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アサクサグレース</span></td>
+<td>+0.52</td>
+<td>+0.38</td>
+<td>+0.40</td>
+<td>+0.10</td>
+<td>+0.50</td>
+<td>24.2</td>
+<td>24.4</td>
+<td>18.0</td>
+<td><b>23.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">スカイハイ</span></td>
+<td>+0.60</td>
+<td>+0.04</td>
+<td>+0.24</td>
+<td>-0.34</td>
+<td>+0.68</td>
+<td>21.7</td>
+<td>21.2</td>
+<td>20.1</td>
+<td><b>21.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジュンヴァンケット</span></td>
+<td>-0.04</td>
+<td>+0.22</td>
+<td>+0.24</td>
+<td>+0.20</td>
+<td>+0.30</td>
+<td>14.0</td>
+<td>13.4</td>
+<td>12.9</td>
+<td><b>13.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td>
+<td>-0.08</td>
+<td>+0.24</td>
+<td>+0.12</td>
+<td>+0.56</td>
+<td>-0.40</td>
+<td>12.6</td>
+<td>13.4</td>
+<td>14.6</td>
+<td><b>13.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ブラックケリー</span></td>
+<td>-0.40</td>
+<td>-0.10</td>
+<td>-0.14</td>
+<td>+0.20</td>
+<td>+0.32</td>
+<td>7.3</td>
+<td>7.3</td>
+<td>10.8</td>
+<td><b>7.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">テーオーダヴィンチ</span></td>
+<td>-0.34</td>
+<td>-0.04</td>
+<td>-0.34</td>
+<td>+0.30</td>
+<td>+0.04</td>
+<td>7.4</td>
+<td>-</td>
+<td>7.2</td>
+<td><b>7.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ベイビーキッス</span></td>
+<td>-0.30</td>
+<td>-0.22</td>
+<td>-0.02</td>
+<td>-0.46</td>
+<td>-0.32</td>
+<td>6.8</td>
+<td>-</td>
+<td>8.2</td>
+<td><b>7.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">リチャードバローズ</span></td>
+<td>-0.48</td>
+<td>-0.04</td>
+<td>+0.18</td>
+<td>-0.30</td>
+<td>-0.18</td>
+<td>6.1</td>
+<td>-</td>
+<td>8.2</td>
+<td><b>6.5</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, リチャードバローズ, -0.5, 近2走の3勝クラスが13着1.0秒差と15着1.5秒差で指数も76.4と70.5にとどまり、現級実績が弱い。2勝クラス勝ちはあるが1400m中心で、今回の1200m実績も乏しい。<br><br>2番, ベイビーキッス, -0.3, 3勝クラスの芝1200mでは12着1.2秒差と8着1.1秒差で、直近のOP1000mも12着と苦戦が続く。知立S2着で指数83.0はあるが、近走の現級内容がそれを下回っている。<br><br>3番, ジュンヴァンケット, 0.0, 2勝クラスでは1着、2着、2着で指数81.3-82.1と地力は見せているが、3勝クラスでは8着1.1秒差、1000m戦15着1.8秒差と壁にも当たっている。実績面では能力と現級通用度がまだ拮抗しており、中立に置く。<br><br>4番, ロードトレイル, +0.1, 前走駿風S2着、船橋Sでも6着0.3秒差で指数82.3があり、現級で一定の水準は示している。小倉1200mでは2戦とも大敗しているが、近2走の3勝クラス実績はこの組み合わせならわずかに評価できる。<br><br>5番, テーオーダヴィンチ, -0.4, 近走の3勝クラスは13着0.9秒差、4着0.5秒差、7着0.7秒差で勝ち負け実績に乏しく、昨年の小倉1200mも12着だった。指数は1400mで79.8-82.3を出しているが、今回条件での裏付けは薄い。<br><br>6番, アサクサグレース, +0.6, 近3走の芝1200mが1着、2着、1着で、花見山特別は1:07.7で0.4秒差快勝、指数83.2も優秀。まだ3勝クラス実績はないが、同距離で安定して高指数を並べており、実績面からはしっかり買える。<br><br>7番, ブラックケリー, -0.5, 2勝クラス勝ちの指数84.3は高いが、昇級後の3勝クラス4戦は13着、13着、4着、10着で、近2走はともに1.3秒以上負けて指数も68.6、68.8と低調。現級実績だけ見れば下げが妥当。<br><br>8番, スカイハイ, +0.8, 近3走の3勝クラス1400mが5着0.2秒差、3着0.3秒差、3着0.1秒差で、指数86.5、84.8、85.6はこの組では最上位。1200m実績こそ近走にないが、現級で最も高いパフォーマンスを安定して出している。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>8番スカイハイは1400m実績を1200mへそのまま高評価しており、1番リチャードバローズ・5番テーオーダヴィンチへの距離裏付け減点と整合しているか再点検したい。6番アサクサグレースは1200m実績が一直線で、8番との差の根拠がやや薄い。4番ロードトレイルは小倉1200mでの大敗2戦を抱えつつプラス評価なのが甘く見え、3番ジュンヴァンケットは1000m大敗を除けば4番より条件実績で見劣らない。7番ブラックケリーを1番と同じ-0.5に置くのは、3勝クラスでの4着・指数78.8/79.0を踏まえると厳しすぎる可能性がある。2番ベイビーキッスの知立S2着83.0をどこまで古い実績として切ったのかも説明を詰めたい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, リチャードバローズ, -0.5, 近2走の3勝クラス1400mが13着1.0秒差、15着1.5秒差で指数76.4、70.5と低く、現級で足りていない。2勝クラス勝ちはあるが1200m実績の裏付けがなく、実績面では強くは推せない。<br><br>2番, ベイビーキッス, -0.2, 知立S2着で指数83.0はこの組でも通用水準だが、その後の3勝クラス芝1200mが8着1.1秒差、12着1.2秒差、直近の1000m戦も9着、12着で指数71.5-76.2に落ちている。古い好走実績より近走の現級実績低下を重く取るが、完全に見限るほどではない。<br><br>3番, ジュンヴァンケット, +0.1, 1000mの15着1.8秒差、指数47.7は度外視余地があり、1200mに限れば2勝クラスで1着、2着、2着と指数81.3、82.1、82.1で安定している。下関S8着1.1秒差は物足りないが、条件実績だけなら中立よりわずかに上でよい。<br><br>4番, ロードトレイル, -0.1, 船橋S6着0.3秒差で指数82.3は評価できる一方、小倉1200mの近2走が12着1.3秒差、15着1.7秒差で指数68.8、67.9と大きく崩れている。現級で走れる数字と今回条件での大敗歴が混在しており、実績面ではむしろわずかに下げる。<br><br>5番, テーオーダヴィンチ, -0.4, 3勝クラスでは近3走が13着0.9秒差、4着0.5秒差、7着0.7秒差で、勝ち負けに届く実績が足りない。今回と同じ小倉1200mでも昨夏12着、指数74.0と条件実績の裏付けが薄い。<br><br>6番, アサクサグレース, +0.7, 芝1200mでは近3走が1着、2着、1着で、花見山特別1:07.7の0.4秒差勝ち、指数83.2は明快な裏付けになる。まだ3勝クラス実績はないが、同距離で安定して高水準を並べており、今回条件の実績比較では最も素直に買える。<br><br>7番, ブラックケリー, -0.3, 昇級後の3勝クラス4戦は13着、13着、4着、10着で、近2走の指数68.6、68.8は低いが、知立S4着0.4秒差で78.8、醍醐Sでも79.0は出している。現級で苦戦傾向は明確でも、1番ほど一貫して足りないわけではなく下げ幅は緩める。<br><br>8番, スカイハイ, +0.5, 近3走の3勝クラス1400mで5着0.2秒差、3着0.3秒差、3着0.1秒差、指数86.5、84.8、85.6はこの組で最上位の実績水準にある。ただし実績は1400mに集中しており、1200m替わりの裏付け不足を考えると6番より抜けた評価までは置けない。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, リチャードバローズ, -0.2, 内枠は良いが近走の運びは前後どちらにもぶれており1200の流れで好位を取り切る像がやや薄い。先行勢の後ろで詰まりなく回れても直線の短い小倉では差し届かずの懸念が残る。<br><br>2番, ベイビーキッス, -0.3, 小倉1200では近2走とも後ろからになっており今回も前半で置かれる形が濃い。8頭立てでも前に行きたい馬が何頭かいて内で脚をためても差し場待ちになりやすい。<br><br>3番, ジュンヴァンケット, +0.4, ハナ候補の1頭でこの距離なら形は作りやすい。6番との先手争いで楽逃げはないが小倉1200は前が止まりにくく自分のリズムで行ければ残り目がある。<br><br>4番, ロードトレイル, +0.2, 先行力があり3番と6番を見る3番手前後に収まりやすい並びは悪くない。外過ぎない枠でロスも抑えやすく 激流にさえならなければ流れの恩恵を受けやすい。<br><br>5番, テーオーダヴィンチ, -0.1, 1200では前に行っても押し切れず差しても届かずの形が多く 今回の想定隊列でも中途半端な位置になりやすい。外差し有利の馬場でもなく展開面の強い後押しは薄い。<br><br>6番, アサクサグレース, +0.6, 最内寄りではないが二の脚で主導権を取りやすく 小倉1200の平坦短直線に合う先行シナリオを描きやすい。3番が絡んでも8頭立てなら極端な消耗戦までは行きにくく 前受けの利が大きい。<br><br>7番, ブラックケリー, -0.2, 先行はできるが今回は3番6番4番あたりが前を固めそうで 外から被せず行くと脚を使わされやすい。控える形でも小倉の短い直線では差し切りに展開の助けが要る。<br><br>8番, スカイハイ, -0.1, 1400で好位差しの形が中心で1200替わりでは追走が忙しくなりやすい。大外枠で外々を回されるとロスが出やすく 前がやり合っても小倉では届き切らない可能性がある。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>6番アサクサグレースの高評価は、3番ジュンヴァンケットとの先手争いと昇級局面を踏まえると強すぎる可能性。3番ジュンヴァンケットも『自分のリズムで行ければ』の条件依存が大きく、逃げるのか番手でも足りるのか整理が必要。4番ロードトレイルをプラス、7番ブラックケリーをマイナスに分けた比較根拠が弱く、少頭数外枠先行の7番の運びやすさは見直し余地。8番スカイハイは大外で流れを見ながら好位差しできる可能性があり、後方一辺倒の差し馬のように扱っていないか再確認したい。1番リチャードバローズは1枠少頭数でのイン差し余地を、2番ベイビーキッスは『差し場待ち』より位置差の不利を主因にした方が展開論として整合的。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, リチャードバローズ, -0.1, 1枠少頭数でインをロスなく立ち回れる点は見直したいが、1200の序盤で前受け集団の直後を取れるかはなお微妙だ。3番6番が作る流れを内で待っても、直線入口で置かれず捌ける形まで含めると軽いマイナスにとどめる。<br><br>2番, ベイビーキッス, -0.3, この馬は差し場待ちというより前半の位置差が展開上の不利で、今回も隊列後方からになりやすい。8頭立てで詰まりは減っても、小倉1200の短い直線では前との差を詰め切る絵が描きにくい。<br><br>3番, ジュンヴァンケット, +0.3, 逃げ切り一本に決め打つより、6番の外か内でハナか番手を取れる点を前向きに評価する。6番とやり合って極端な楽逃げは見込みづらいが、内枠から前で運べるぶん展開利はまだある。<br><br>4番, ロードトレイル, +0.1, 3番6番の直後で3列目の内目に収まる形ならロスは少なく、少頭数では運びやすい。ただし前が飛ばし過ぎない前提の利で、7番との差は大きくないので小幅なプラスまでに下げる。<br><br>5番, テーオーダヴィンチ, -0.1, 前にも後ろにも寄り切らない位置になりやすく、今回の少頭数でも展開の恩恵を受ける立ち位置がはっきりしない。前残りにも差し決着にも強く振れにくい配置だ。<br><br>6番, アサクサグレース, +0.4, 二の脚で先団を取りやすく小倉1200の前受け形は依然として描きやすいが、3番の存在で単騎気分までは見込みづらい。行き切っても番手でも大崩れしにくい並びという評価にとどめ、上げ幅は圧縮する。<br><br>7番, ブラックケリー, +0.1, 少頭数の外枠先行はむしろ進路を選びやすく、3番6番の直後の外で無理なく脚をためる形はある。前を深追いして消耗する形ばかりではなく、展開面では4番と近い評価に見直す。<br><br>8番, スカイハイ, +0.1, 大外でも8頭立てなら外々を回される不利は限定的で、前2頭を見ながら好位外で流れに乗る形は取れる。1200の忙しさは残るが、後方一気しかない馬ではなく展開面は中立より少し上に修正する。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, リチャードバローズ, +0.4, 前走520kgから516kgへ絞れており 2勝クラス勝ち時と同じ馬体水準に戻したのは好感です。54kgは前走比1kg減で 516kgの馬格なら負担感も薄く 坂路の「立て直し良化」どおり体調面は上向きです。<br><br>2番, ベイビーキッス, 0.0, 456kgで前走と同体重、近3走も454から458kgで大きなブレがなく 体調面は平行線と見ます。調教も「疲れなく」で維持止まり、53kg自体はこなせても上積みまでは読みづらいです。<br><br>3番, ジュンヴァンケット, +0.5, 458kgから462kgへ戻しており 昨夏から秋の好走帯462kg前後に近づいたのは良い材料です。58kg続きから55kgへ3kg減は馬身換算でかなり大きく 追い切りも1F11.2で「動きキビキビ」なら仕上がりは高いです。<br><br>4番, ロードトレイル, +0.3, 480kgから478kgで馬体は安定しており 大きく崩れていない今の体つきを維持できています。前走58kgから55kgへ3kg減は効きやすく 強めのCWで負荷も掛けられているので体調面はやや上向きです。<br><br>5番, テーオーダヴィンチ, -0.3, 516kgから504kgへ大きく減った後の今回は506kgで戻し幅が小さく 高齢馬らしく馬体の振れが大きい点は気になります。55kgへの減量は助けでも 調教評価が「さほど良化なく」で上昇気配は薄く 体調面の押し材料は弱いです。<br><br>6番, アサクサグレース, +0.6, 前走458kgから466kgへ8kg増でも その前に466から468kgで走れていた馬だけに太め残りというより休養を挟んだ回復分と見ます。56kg続きから54kgへ2kg減で 小柄すぎない466kgならバランスも良く 坂路の「久々も力強く」どおり仕上がりはかなり良いです。<br><br>7番, ブラックケリー, -0.5, 430kgから440kgへの10kg増は この馬の近走帯430から436kgを明確に上回っており 小柄な牝馬だけに重さへ出る懸念があります。53kgへの3kg減は魅力でも 調教気配が強調材料まではなく 体調軸では割り引きが必要です。<br><br>8番, スカイハイ, +0.4, 548kgで前走同体重、春2走も550kgと548kgで推移しており 大型馬がしっかり張りを保てている印象です。58kgから57kgへの1kg減は548kgの馬格なら効きすぎない程度の後押しで 追い切りも「好気配保つ」なら高値安定です。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>6番アサクサグレースは休み明け+8kgを強くプラス評価しすぎていないか再点検したい。7番ブラックケリーは6番との比較で増減の解釈が厳しすぎ、-0.5は深い可能性。3番ジュンヴァンケットは斤量減に寄りすぎで、体調軸だけで+0.5を支える説明がやや薄い。4番ロードトレイルと8番スカイハイは『維持』寄り材料なのにプラス幅がやや甘め。1番リチャードバローズも馬体水準回帰をそのまま上昇評価にしてよいか再考余地。2番ベイビーキッスは維持止まりでも、4番8番との比較では0.0据え置きの根拠をもう少し明確にしたい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, リチャードバローズ, +0.2, 516kgは2勝クラス勝ち時と同水準で 520kgから4kg絞れた形自体は悪くありませんが 体調面で大きな上積みまでとは言いにくいです。坂路の「立て直し良化」と54kgは後押しでも 回復確認の範囲にとどめます。<br><br>2番, ベイビーキッス, +0.0, 456kgで前走同体重、近3走も454-458kgに収まっており 馬体はかなり安定しています。だからこそ維持は確認できても 「疲れなく」「調子→」の内容では4番8番のような負荷や上向き材料も薄く 中立が妥当です。<br><br>3番, ジュンヴァンケット, +0.3, 462kgは昨秋の好走帯に戻してきており 458kgからの+4kgはこの馬には回復寄りに映ります。調教の1F11.2で「動きキビキビ」も良く 斤量減を主役にせずとも仕上がり面でやや上げられます。<br><br>4番, ロードトレイル, +0.1, 478kgで480kg前後の安定帯を維持しており 体つきは大きく崩れていません。CWでしっかり負荷を掛けて「遅れ心配なし」は評価できますが 基本線は維持で 強い上昇までは見ません。<br><br>5番, テーオーダヴィンチ, -0.3, 516kgから前走504kgまで大きく減って 今回506kgと戻りが小さい点はまだ消耗感を疑います。強めに追っても「さほど良化なく」で 高齢馬らしく上積みより現状維持寄りに映り 体調面では割引です。<br><br>6番, アサクサグレース, +0.4, 458kgから466kgの+8kgは休み明けだけに過大評価は禁物ですが 2走前3走前に466-468kgで走れており 太め残りより本来の張りへ戻した可能性が高いです。坂路で「久々も力強く」かつ54kg替わりなら 体調軸では明確にプラスですが 強調しすぎない幅に修正します。<br><br>7番, ブラックケリー, -0.2, 430kgから440kgの+10kgは小柄な牝馬にはやはり軽くなく ベスト圏の432-436kgよりは少し重く映ります。もっとも調教は「脚取り確か」で 回復分の余地もあるため 大きなマイナスではなく軽い割引までに見直します。<br><br>8番, スカイハイ, +0.1, 548kgで前走同水準、近2走も550kg前後を保てており 大型馬としての張りは維持できています。追い切りも「好気配保つ」で悪くないものの あくまで高値安定の評価で 強い上積みまでは取りません。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, リチャードバローズ, -0.3, エピファネイア産駒は本質的にマイルから中距離で良さが出やすく 芝1200mはやや忙しい。母父Kingmamboでスピードは補えるが この条件で強く押す血統ではない。<br><br>2番, ベイビーキッス, -0.6, サンダースノー産駒は日本ではダートやパワー寄りの印象が強く 芝1200m良馬場での切れ勝負は血統面で分が悪い。母父フサイチコンコルドも軽いスプリント適性を強める配合ではない。<br><br>3番, ジュンヴァンケット, +0.2, 父キズナは本来もう少し長めが主戦場だが 母父キングヘイローが短距離の前進気勢と芝1200m適性を補っている。純スプリンター血統ほどではないが 条件自体はこなせる配合。<br><br>4番, ロードトレイル, +0.7, ロードカナロア産駒は芝1200mで最も信頼しやすい部類で 小倉の平坦スプリントも血統イメージに合う。母父ディープインパクトで硬さ一辺倒にならず 良馬場のスピード持続戦に向く。<br><br>5番, テーオーダヴィンチ, +0.4, ダイワメジャー産駒は芝短距離での先行力と持続力が武器になりやすく この舞台は血統的に歓迎。母系もスピードを補う配合で 年齢を理由に血統面から大きく下げる必要はない。<br><br>6番, アサクサグレース, -0.2, フォーウィールドライブは米国型のスピード血統で短距離自体は合うが 日本の芝1200mで強く買えるほど方向性がはっきりしていない。母父タヤスツヨシも芝短距離の軽さを強調する血ではなく 少し様子見の配合。<br><br>7番, ブラックケリー, +0.3, モーリス産駒としては母父ストラヴィンスキーの強い短距離血脈が入ることで 1200mへの対応力が増している。完成期の4歳牝馬という成熟面も配合イメージと噛み合う。<br><br>8番, スカイハイ, -0.5, キタサンブラックに母父キングカメハメハは本来マイルから中距離で良さが出やすい配合で 芝1200mは血統的には忙しい。能力でこなせても この条件替わりを血統面からは上げにくい。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>4番ロードトレイルと7番ブラックケリーは血統加点幅の割に近走1200実績との整合説明が薄い。3番ジュンヴァンケットは母父キングヘイローでの短距離補完を認めるなら相対的に低すぎる可能性。5番テーオーダヴィンチは年齢否定に寄っていて血統加点根拠がやや弱い。1番リチャードバローズと8番スカイハイ、2番ベイビーキッスと6番アサクサグレースのマイナス幅の差も、配合差の説明をもう少し明確化したい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, リチャードバローズ, -0.3, エピファネイア産駒は総じて1400m以上で良さが出やすく 芝1200mでは忙しさが残る。母父Kingmamboで一定のスピード補完はあるため大きな減点まではしないが 血統設計としてはベスト条件ではない。<br><br>2番, ベイビーキッス, -0.6, サンダースノーに母父フサイチコンコルドの配合は パワーと持続に寄りやすく 日本の良馬場芝1200mで問われる軽い加速には不向き。6番と違って父系時点で芝スプリント適性の裏付けが弱く 血統面の減点ははっきり必要。<br><br>3番, ジュンヴァンケット, +0.3, 父キズナだけなら1200mは少し短いが 母父キングヘイローが前進気勢と短距離芝適性をかなり補っている。純粋なスプリント血統ほどではないが この条件で前向きに見てよい配合。<br><br>4番, ロードトレイル, +0.5, ロードカナロア産駒は芝1200mへの適性が非常に明快で 小倉の平坦スプリントにも合いやすい。母父ディープインパクトで硬い短距離専科に寄り切らず 良馬場でのスピード持続に向くが 配合だけで抜けた加点まで打つほどではないと見直す。<br><br>5番, テーオーダヴィンチ, +0.2, ダイワメジャー産駒は芝短距離で先行力と持続力を出しやすく この舞台自体は血統的に守備範囲。母父Sea of Secretsも米国型のスピード補強として働くが 強い上積みというより軽い後押しにとどめる。<br><br>6番, アサクサグレース, -0.1, フォーウィールドライブは米国型の短距離スピード血統で 距離そのものは合う。2番ほどの不向きではないが 母父タヤスツヨシを含め日本の良馬場芝1200m向きの軽さが強調された配合ではなく わずかに慎重評価。<br><br>7番, ブラックケリー, +0.1, モーリスに母父ストラヴィンスキーなら 母系の短距離色で1200m対応力は補える。とはいえ父のベースはマイル寄りで この配合だけを理由に大きく押し上げるほどの短距離特化感はない。<br><br>8番, スカイハイ, -0.6, キタサンブラックに母父キングカメハメハは 両方とも本質的にはマイルから中距離寄りで 芝1200mは忙しくなりやすい。1番よりも父母双方にスプリント強調材料が薄く 血統面では明確に割引が必要。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, リチャードバローズ, -0.1, 上村厩舎は軽視までしないが近走で騎手が定まらず今回は菱田裕二への乗り替わりで強い勝負気配までは感じにくい。陣営面で大きく押し上げる材料は薄い。<br><br>2番, ベイビーキッス, -0.4, 藤懸貴志への乗り替わりで一気の強化という印象はなく近走も騎手が固定されていない。継続騎乗の強みがなく厩舎力で強く押し切るイメージも持ちにくい。<br><br>3番, ジュンヴァンケット, +0.5, 友道康夫厩舎はメンバー中でも厩舎の格で上位で条件替わりへの対応力も見込める。富田暁への戻り自体は派手ではないが陣営の総合力で一段上に見たい。<br><br>4番, ロードトレイル, -0.7, 藤岡健一厩舎は一定の力があるが今回は田山旺佑への乗り替わりが大きな割引材料。3勝クラスの小倉1200で騎手面の後押しが弱く陣営補正ははっきりマイナス。<br><br>5番, テーオーダヴィンチ, +0.2, 幸英明への乗り替わりはこの条件では地味に安定感を足せる材料。岡田厩舎もベテラン馬の調整自体はこなせる陣営で強調まではしないが少し上げる。<br><br>6番, アサクサグレース, +0.3, 杉原誠人への継続騎乗はこの馬の先行力を把握している点で好感が持てる。新興厩舎でも前走勝ちから同じ形に持ち込みやすく陣営面はプラス。<br><br>7番, ブラックケリー, +0.6, 西村淳也への乗り替わりはこのレースでかなり明確な鞍上強化。長谷川浩大厩舎との組み合わせも小倉スプリントでは勝負気配を感じやすく陣営面で強く上げたい。<br><br>8番, スカイハイ, +0.9, 川田将雅を確保した時点で陣営の本気度は最上位級と見る。清水久詞厩舎もこのクラスで強気に運べる厩舎でトップジョッキーへの乗り替わりはこの馬の陣営補正としてかなり大きい。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>8番スカイハイは川田将雅のブランド加点が大きすぎないか再点検したい。継続騎乗がない点は7番ブラックケリーや3番ジュンヴァンケットにも共通し、特に3番ジュンヴァンケットは友道厩舎の格だけで+0.5まで上げる根拠がやや薄い。逆に4番ロードトレイルの-0.7は騎手減点が強すぎる可能性があり、藤岡健一厩舎の下支えをもう少し見てもよいのではないか。6番アサクサグレースは杉原誠人との継続騎乗実績の割に加点が控えめで、5番テーオーダヴィンチは乗り替わりなのに加点される基準の整合性を確認したい。1番リチャードバローズと2番ベイビーキッスのマイナス幅の差も比較上やや説明不足。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, リチャードバローズ, +0.0, 近走で鞍上が定まらない点は気になるが、上村洋行厩舎は大きく割り引く陣営ではなく菱田裕二も極端な弱化ではない。陣営面だけなら強調も軽視もせず中立に戻す。<br><br>2番, ベイビーキッス, -0.3, 藤懸貴志への乗り替わりで明確な鞍上強化とは言いにくく、近走も騎手が固定されていない。青木孝文厩舎の後押し込みでも陣営の上積みは薄く、1番よりは下げる。<br><br>3番, ジュンヴァンケット, +0.3, 友道康夫厩舎の管理馬という点はこの組み合わせでやはり無視できず、厩舎の仕上げとレース選択の質は評価したい。ただし富田暁で大きく押し上げる材料までは乏しく、厩舎格だけでの加点幅は抑える。<br><br>4番, ロードトレイル, -0.4, 田山旺佑への乗り替わりはこのクラスでは明確な割引だが、藤岡健一厩舎の下支えまで全て消すほどではない。騎手面のマイナスを主因に下げるが、過度な減点は避ける。<br><br>5番, テーオーダヴィンチ, +0.0, 幸英明への乗り替わりはベテランらしい安定感こそあるが、今回それ自体を強い上積みとまでは言いにくい。岡田稲男厩舎も含めて陣営面で大きな押し引きはなく中立が妥当。<br><br>6番, アサクサグレース, +0.5, 杉原誠人との継続騎乗はこの馬の形を把握している点で明確な強みで、同騎手で結果を出してきた流れも評価できる。加藤公太厩舎との現状の運びも噛み合っており、陣営面ははっきりプラス。<br><br>7番, ブラックケリー, +0.6, 西村淳也への乗り替わりはこのメンバーでは分かりやすい鞍上強化で、小倉芝1200でも期待しやすい人選だ。長谷川浩大厩舎が勝負に行く乗り替わりとして見れば、陣営補正は強めに取りたい。<br><br>8番, スカイハイ, +0.7, 川田将雅の起用はやはり陣営の勝負度合いを感じる材料で、清水久詞厩舎がこの馬に勝ち切りを求めた配置と受け取れる。ただし継続騎乗ではなく川田ブランドだけで最上限までは振り切らず、強いプラスまでにとどめる。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>6番, アサクサグレース, 24%, 2勝クラス連勝の内容と小倉芝1200mでの先行力はこの組み合わせで最も買いやすいが、合成の31.8は3勝クラス初戦かつ休み明け3か月をやや楽観しすぎで、1強扱いまでは危ういと見て首位評価までにとどめる。<br><br>3番, ジュンヴァンケット, 22%, 前走の新潟1000m大敗で合成が少し抑えた印象だが、1200mに戻れば近3走前までの先行持続力と指数水準は十分通用し、55kgに軽くなる今回は8番スカイハイより上に取る余地がある。<br><br>8番, スカイハイ, 21%, 近走指数は最上位級で能力は認める一方、合成2位は1400m実績を1200mへそのまま横滑りさせた感があり、57kgのハンデと小倉1200mの忙しさを考えると◎固定よりは連下本線の評価が妥当と判断する。<br><br>4番, ロードトレイル, 18%, 近2走の内容から短距離適性は高く、特に船橋S6着の0.3差はこのメンバーなら見劣らないので合成4位13.9はやや低めだが、小倉1200mで連敗している分だけ3強に食い込ませるにはもう一押し材料が足りない。<br><br>7番, ブラックケリー, 12%, 合成5位自体は大きくは間違っていないが、近2走の3勝クラス内容が物足りず53kgだけで上位3頭に迫る評価はしにくく、2番ベイビーキッスや5番テーオーダヴィンチに逆転される余地を残す押さえ評価までに下げる。</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>8番, スカイハイ, 20%, 8番スカイハイは近3走のスピード指数がこの組で最上位水準で安定し川田将雅騎手も強みです。1200mへの対応と57kgは課題ですが総合力では最も上に見ます。<br><br>6番, アサクサグレース, 18%, 6番アサクサグレースは芝1200mで2連勝を含む内容が素直に優秀で先行して押し切れる形が明確です。昇級初戦でも調教気配が良く54kgなら通用圏です。<br><br>4番, ロードトレイル, 14%, 4番ロードトレイルは近2走がこのクラスで着順以上に内容が良く前で運べるのが小倉1200mで武器です。小倉実績は冴えませんが今の出来なら巻き返し余地があります。<br><br>3番, ジュンヴァンケット, 13%, 3番ジュンヴァンケットは芝1200mの2勝クラスで高指数を連発しており本来の短距離性能は高いです。前走の千直大敗は度外視できる一方で55kgでも詰めの甘さは残ります。<br><br>7番, ブラックケリー, 11%, 7番ブラックケリーは近2走が案外でも昨秋の1200m戦に83台後半の指数があり53kgは魅力です。馬体増が成長分なら一変があって不思議はありません。<br><br>2番, ベイビーキッス, 9%, 2番ベイビーキッスは近走成績は地味でも昨年12月の知立S2着があり小倉1200mも経験済みです。末脚勝負では足りない場面が多く展開の助けは欲しいです。<br><br>1番, リチャードバローズ, 8%, 1番リチャードバローズは近走の1400mで崩れましたが54kgは恵まれた印象で調教も上向きです。ただし芝1200mへの距離短縮が未知で忙しい流れに対応できるかが鍵です。<br><br>5番, テーオーダヴィンチ, 7%, 5番テーオーダヴィンチは地力自体はあるものの近走は1400m中心でも決め手不足で年齢面の上積みも大きくは見込みにくいです。小倉1200mでも近年の内容からは強調しづらいです。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>6</td><td class="left horse-name">アサクサグレース</td><td>23.1%</td><td>1.4</td><td>1</td><td class="ev-low">0.32</td></tr><tr><td>2</td><td>8</td><td class="left horse-name">スカイハイ</td><td>21.3%</td><td>4.4</td><td>2</td><td class="ev-low">0.94</td></tr><tr><td>3</td><td>3</td><td class="left horse-name">ジュンヴァンケット</td><td>13.7%</td><td>12.4</td><td>3</td><td class="ev-mid">1.70</td></tr><tr><td>4</td><td>4</td><td class="left horse-name">ロードトレイル</td><td>13.1%</td><td>13.4</td><td>4</td><td class="ev-mid">1.76</td></tr><tr><td>5</td><td>7</td><td class="left horse-name">ブラックケリー</td><td>7.9%</td><td>17.3</td><td>6</td><td class="ev-mid">1.37</td></tr><tr><td>6</td><td>5</td><td class="left horse-name">テーオーダヴィンチ</td><td>7.4%</td><td>27.7</td><td>8</td><td class="ev-high">2.05</td></tr><tr><td>7</td><td>2</td><td class="left horse-name">ベイビーキッス</td><td>7.0%</td><td>16.6</td><td>5</td><td class="ev-mid">1.17</td></tr><tr><td>8</td><td>1</td><td class="left horse-name">リチャードバローズ</td><td>6.5%</td><td>25.5</td><td>7</td><td class="ev-mid">1.65</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">6 アサクサグレース</td><td>23.1%</td><td>1.4</td><td class="ev-low">0.30</td></tr><tr><td>複勝</td><td class="left">6 アサクサグレース</td><td>61.3%</td><td>1.1</td><td class="ev-low">0.66</td></tr><tr><td>馬連</td><td class="left">6 アサクサグレース-8 スカイハイ</td><td>12.6%</td><td>2.5</td><td class="ev-low">0.28</td></tr><tr><td>ワイド</td><td class="left">6 アサクサグレース-8 スカイハイ</td><td>32.1%</td><td>1.4</td><td class="ev-low">0.42</td></tr><tr><td>馬単</td><td class="left">6 アサクサグレース→8 スカイハイ</td><td>6.4%</td><td>3.5</td><td class="ev-low">0.19</td></tr><tr><td>3連複</td><td class="left">3 ジュンヴァンケット-6 アサクサグレース-8 スカイハイ</td><td>8.2%</td><td>6.7</td><td class="ev-low">0.46</td></tr><tr><td>3連単</td><td class="left">6 アサクサグレース→8 スカイハイ→3 ジュンヴァンケット</td><td>1.6%</td><td>13.2</td><td class="ev-low">0.17</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 100円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>馬連</td><td class="left">6 アサクサグレース-8 スカイハイ</td><td>2.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 100円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
