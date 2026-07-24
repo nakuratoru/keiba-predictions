@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVh賞 2026/07/25 SAPPORO 11R (07/25 00:18 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>TVh賞 2026/07/25 SAPPORO 11R (07/25 00:18 予想 馬体重なし)</h1>
+  <div class="meta">芝1200m（右） | 良 | 12頭立て | 1回 札幌 1日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 12頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">5. メルトユアハート</div>
+      <div class="pick-jockey">横山 和生 / 長谷川 浩大</div>
+    </div>
+    <div class="pick-prob">12.5%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">7. ロジケープ</div>
+      <div class="pick-jockey">丹内 祐次 / 尾形 和幸</div>
+    </div>
+    <div class="pick-prob">12.5%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">4. ルーフ</div>
+      <div class="pick-jockey">佐々木 大輔 / 清水 久詞</div>
+    </div>
+    <div class="pick-prob">11.0%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">12頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">エヴァンスウィート</td><td>牝5</td><td>56</td><td>鮫島 克駿</td><td>友道 康夫</td><td>スワーヴリチャード</td><td>Machiavellian</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">シカゴスティング</td><td>牝5</td><td>56</td><td>浜中 俊</td><td>庄野 靖志</td><td>ロゴタイプ</td><td>スクリーンヒーロー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">サウスバンク</td><td>牝4</td><td>56</td><td>横山 武史</td><td>吉岡 辰弥</td><td>グレーターロンドン</td><td>アフリート</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">ルーフ</td><td>牝6</td><td>56</td><td>佐々木 大輔</td><td>清水 久詞</td><td>ダイワメジャー</td><td>Fastnet Rock</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">メルトユアハート</td><td>牝5</td><td>56</td><td>横山 和生</td><td>長谷川 浩大</td><td>ロードカナロア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>6</td><td class="left horse-name">ウィルオレオール</td><td>牡4</td><td>58</td><td>石川 倭</td><td></td><td>レッドベルジュール</td><td>フサイチコンコルド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>7</td><td class="left horse-name">ロジケープ</td><td>牡3</td><td>55</td><td>丹内 祐次</td><td>尾形 和幸</td><td>ロジユニヴァース</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>8</td><td class="left horse-name">アンジュプロミス</td><td>牝3</td><td>53</td><td>古川 奈穂</td><td>矢作 芳人</td><td>ドレフォン</td><td>スズカマンボ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>9</td><td class="left horse-name">クリエープキー</td><td>牝3</td><td>53</td><td>古川 吉洋</td><td>牧 光二</td><td>ミッキーアイル</td><td>Spirit One</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>10</td><td class="left horse-name">アスクケンタッキー</td><td>牡3</td><td>55</td><td>武 豊</td><td>藤原 英昭</td><td>Good Magic</td><td>Point of Entry</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>11</td><td class="left horse-name">ゴールドサーベル</td><td>牡5</td><td>58</td><td>荻野 琢真</td><td>大久保 龍志</td><td>レッドファルクス</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>12</td><td class="left horse-name">パクスロマーナ</td><td>牝6</td><td>56</td><td>舟山 瑠泉</td><td>加藤 公太</td><td>ネロ</td><td>アンライバルド</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">メルトユアハート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロジケープ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">アンジュプロミス</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロジケープ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">メルトユアハート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アスクケンタッキー</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">メルトユアハート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロジケープ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ルーフ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">メルトユアハート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ルーフ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロジケープ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロジケープ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">メルトユアハート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">シカゴスティング</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.60</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#8E8E93'>0.20</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">メルトユアハート</span></td>
+<td>+0.38</td>
+<td>+0.38</td>
+<td>+0.44</td>
+<td>+0.42</td>
+<td>+0.42</td>
+<td>12.9</td>
+<td>12.0</td>
+<td>12.0</td>
+<td><b>12.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロジケープ</span></td>
+<td>+0.36</td>
+<td>+0.30</td>
+<td>+0.44</td>
+<td>+0.08</td>
+<td>+0.67</td>
+<td>12.3</td>
+<td>12.4</td>
+<td>13.4</td>
+<td><b>12.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ルーフ</span></td>
+<td>+0.34</td>
+<td>+0.28</td>
+<td>+0.14</td>
+<td>+0.46</td>
+<td>+0.34</td>
+<td>11.7</td>
+<td>11.2</td>
+<td>8.7</td>
+<td><b>11.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">シカゴスティング</span></td>
+<td>+0.34</td>
+<td>+0.26</td>
+<td>+0.32</td>
+<td>+0.20</td>
+<td>-0.10</td>
+<td>10.6</td>
+<td>11.4</td>
+<td>8.1</td>
+<td><b>10.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アスクケンタッキー</span></td>
+<td>+0.18</td>
+<td>-0.06</td>
+<td>+0.54</td>
+<td>-0.12</td>
+<td>+0.70</td>
+<td>9.6</td>
+<td>10.1</td>
+<td>13.1</td>
+<td><b>10.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">アンジュプロミス</span></td>
+<td>+0.26</td>
+<td>-0.22</td>
+<td>+0.26</td>
+<td>+0.30</td>
+<td>+0.40</td>
+<td>9.7</td>
+<td>10.8</td>
+<td>11.7</td>
+<td><b>10.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">パクスロマーナ</span></td>
+<td>+0.28</td>
+<td>+0.10</td>
+<td>+0.08</td>
+<td>+0.18</td>
+<td>-0.16</td>
+<td>9.3</td>
+<td>13.1</td>
+<td>9.3</td>
+<td><b>9.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">サウスバンク</span></td>
+<td>+0.32</td>
+<td>-0.20</td>
+<td>+0.00</td>
+<td>+0.18</td>
+<td>+0.34</td>
+<td>9.5</td>
+<td>11.1</td>
+<td>7.1</td>
+<td><b>9.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">クリエープキー</span></td>
+<td>-0.08</td>
+<td>-0.16</td>
+<td>-0.12</td>
+<td>+0.30</td>
+<td>+0.18</td>
+<td>6.5</td>
+<td>-</td>
+<td>5.8</td>
+<td><b>6.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">エヴァンスウィート</span></td>
+<td>-0.20</td>
+<td>+0.12</td>
+<td>-0.08</td>
+<td>-0.06</td>
+<td>+0.12</td>
+<td>5.6</td>
+<td>-</td>
+<td>5.6</td>
+<td><b>5.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ウィルオレオール</span></td>
+<td>-0.74</td>
+<td>-0.10</td>
+<td>-0.34</td>
+<td>-0.34</td>
+<td>-0.08</td>
+<td>1.3</td>
+<td>-</td>
+<td>2.6</td>
+<td><b>1.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ゴールドサーベル</span></td>
+<td>-0.82</td>
+<td>+0.08</td>
+<td>-0.44</td>
+<td>+0.14</td>
+<td>-0.28</td>
+<td>1.0</td>
+<td>-</td>
+<td>2.4</td>
+<td><b>1.2</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行3</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行3の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>実績派として全馬の実績を読み解いたばい。今回は前走 TVh杯(3勝クラス・函館芝1200)組が多くて相手比較がしやすいレースやね。<br><br>1番, エヴァンスウィート, -0.2, 前走TVh杯7着0.4差、前々走UHB杯4着0.3差で指数82前後。3勝クラスで揉まれとるが上位とは半馬身以上足りず、朱雀S14着1.5差もあって安定感を欠く。<br><br>2番, シカゴスティング, +0.3, 前走TVh杯4着0.2差(指数83.7)、昨秋醍醐S5着で上がり33.0・指数82.9。3勝クラス芝1200を通算で堅実に走り、上位グループの一角として信用できる。<br><br>3番, サウスバンク, +0.4, 朱雀S2着0.2差(指数87.4)は今回メンバー最高格の内容、淀屋橋S3着0.4差も光る。前走10着は逃げ潰れの一発凡走とみて度外視可、本来の指数は抜けている。<br><br>4番, ルーフ, +0.3, 前走TVh杯3着0.2差(指数83.7)、UHB杯5着0.3差と直近2走が確実に上向き。2勝クラスは勝ち上がり済みで、3勝クラス相手にも通用する末脚を示した。<br><br>5番, メルトユアハート, +0.5, 前走TVh杯2着0.1差(指数85.1)が全馬でも屈指の内容、勝ち馬とほぼ差なし。UHB杯13着との落差はあるが、直近の完成度と指数の高さで上位に評価する。<br><br>6番, ウィルオレオール, -0.7, 前走TVh杯12着0.5差(指数79.5)、他は地方ダート戦ばかりで芝の3勝クラス実績が乏しい。JRA芝での連対がなく、額面の勝ち鞍も地方主体で信用しづらい。<br><br>7番, ロジケープ, +0.4, 3歳7戦3勝で連対率高く、テレビ山梨杯(2勝クラス)を上がり33.5・指数86.5で快勝。芝1200も雪うさぎ賞1着で対応済み、勢いと安定感を高く買える。ただ3勝クラスは初挑戦で格上分は割引。<br><br>8番, アンジュプロミス, +0.3, 前走TVh杯8着0.5差だが、前々走STV杯(2勝クラス)1着(指数83.9)で勝ち上がったばかり。葵S(GIII)12着の格上経験もあり、能力の裏付けはある。<br><br>9番, クリエープキー, -0.1, 前走安達太良S(OP)7着0.9差、湯の川温泉1着も指数69.1と低調。葵S13着・Fレビュー18着と格上では大敗続きで、3勝クラス相当の指数がまだ足りない。<br><br>10番, アスクケンタッキー, +0.2, 6戦3勝で前走HTB杯(2勝クラス)1着と充実期、ただ指数80.4は今回上位より一枚落ち。ダートの勝ち鞍が多く芝1200の3勝クラス実績はこれからで、格上分を割り引く。<br><br>11番, ゴールドサーベル, -0.8, 前走TVh杯15着0.9差、UHB杯12着、陽春S13着2.2差と近走総崩れ。指数も74前後まで低下し、3勝クラスでは明確に力不足を示している。<br><br>12番, パクスロマーナ, +0.2, UHB杯2着0.1差(指数85.1)は好内容、前走TVh杯6着0.3差も安定。ただ42戦5勝で朱雀S15着・巌流島17着など大敗も多く、詰めの甘さで頭までは信用しきれない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.3, &quot;3&quot;: 0.4, &quot;4&quot;: 0.3, &quot;5&quot;: 0.5, &quot;6&quot;: -0.7, &quot;7&quot;: 0.4, &quot;8&quot;: 0.3, &quot;9&quot;: -0.1, &quot;10&quot;: 0.2, &quot;11&quot;: -0.8, &quot;12&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;前走TVh杯(3勝クラス・函館芝1200)組の比較が軸。5番メルトユアハートが前走2着0.1差・指数85.1で完成度最上位、3番サウスバンクは朱雀S2着0.2差・指数87.4で前走10着を度外視すれば実力抜けている。2番・4番も直近堅実で信用。7番ロジケープは指数・勢いは高いが3勝クラス初挑戦で割引。逆に11番ゴールドサーベルは近走総崩れ・指数74で力不足、6番ウィルオレオールは地方ダート主体で芝3勝クラス実績が乏しく、ともに大きく下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>3点で基準の非対称を指摘。(1)7番ロジケープ: 自分で『格上分割引』と書きながら、2勝クラスの指数86.5を3勝クラス組(2番3番4番)より高く/同格に置いており、クラス跨ぎの指数額面比較で割引が実行されていない。(2)5番メルトユアハート: 前走2着一本のみで全馬最高+0.5だが、直近5走は前走以外総崩れ。1番12番には『安定感を欠く』『大敗多い』と再現性を減点したのに5番の落差には同じ物差しを当てておらず非対称。(3)3番サウスバンク: 前走10着を『逃げ潰れ』の展開読みで度外視する一方、5番13着や12番朱雀S15着には度外視を適用せず、基準が3番だけに偏る。展開解釈での着順書き換えは実績派の建前と緊張。加えて8番(3勝クラス実走8着の実測あり)と10番(芝3勝クラス実績ゼロの未知数)の差が0.1しかない点も、未知数への割引として薄い。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を実績軸で検証するね。3点とも「基準の非対称」を突いとって、実績派として筋が通っとるかを確かめる。<br><br>**(1) 7番ロジケープ — クラス跨ぎの指数額面比較**<br><br>これは的を射た指摘。ロジケープ前走の指数86.5は「2勝クラス(テレビ山梨杯)・芝1400」での数字。3勝クラス組の2番83.7・4番83.7・5番85.1(いずれも3勝クラス実走)と同列に置いたら、クラス差を無視して額面を丸呑みしとることになる。自分で「格上分割引」と書いた以上、指数もクラス補正せなあかん。芝1200も雪うさぎ賞は1勝クラス。3勝クラスでの実測がゼロという事実は重い。+0.4 → +0.2 に下げる。勢いと連対率は買うが、格の裏付けはまだ無い。<br><br>**(2) 5番メルトユアハート — 再現性への物差しの非対称**<br><br>これも正しい。前走2着(指数85.1)は屈指だが、その前がUHB杯13着0.8差(指数75.4)、心斎橋S9着、三年坂S11着と直近5走で好走は前走一本のみ。1番に「安定感を欠く」、12番に「大敗多い」で減点したのに、5番の落差だけ「完成度」で免罪しとるのは二重基準。前走の指数は本物だが一発の再現性が担保されとらん。+0.5 → +0.4 に下げる。額面最高は認めるが、隔絶した安定株ではない。<br><br>**(3) 3番サウスバンク — 前走10着の度外視の偏り**<br><br>ここは一部反論する。3番の前走10着は通過1-1の逃げで、朱雀S2着(指数87.4)・淀屋橋S3着(指数81.4)も同じ1-1の先行。つまり「同じ脚質での格上位実績が複数ある」ことが度外視の根拠で、これは展開読みでなく実績パターンの一貫性。一方12番の朱雀S15着1.7差は道中10-11からの失速で好走パターンと別物、5番のUHB杯13着も先行して沈んどる。ただし批判者の言う通り「前走だけ都合よく消す」姿勢は実績派として警戒すべき。朱雀S2着は指数87.4でメンバー最高なのは動かんが、前走大敗を完全度外視まではやり過ぎ。+0.4 → +0.3 に微調整。最高指数は維持しつつ、直近の負けも織り込む。<br><br>**(4) 8番と10番の差0.1が薄い点**<br><br>同意。8番は3勝クラス(TVh杯)を8着0.5差で「実走」しとる=通用の下限が見えとる。10番は芝1200の3勝クラス実績ゼロ、勝ち鞍もダート・2勝クラス止まりで完全な未知数。実績派なら「実走のある者」と「未知数」を同点近くに置くのは割引不足。10番を +0.2 → +0.1 に下げ、8番との差を広げる。<br><br>---<br><br>見直し後の全馬 P:<br><br>1番, エヴァンスウィート, -0.2, 前走TVh杯7着0.4差(指数81.0)、UHB杯4着0.3差(指数82.4)で上位とは半馬身以上足りず。朱雀S14着1.5差もあり3勝クラスで安定感を欠く。<br><br>2番, シカゴスティング, +0.3, 前走TVh杯4着0.2差(指数83.7)、醍醐S5着で上がり33.0・指数82.9。3勝クラス芝1200を堅実に走る上位グループの一角として信用できる。<br><br>3番, サウスバンク, +0.3, 朱雀S2着0.2差(指数87.4)はメンバー最高、淀屋橋S3着0.4差も光る。前走10着は同じ逃げ(1-1)での一発凡走だが完全度外視はせず、直近の負けも織り込んで微減。<br><br>4番, ルーフ, +0.3, 前走TVh杯3着0.2差(指数83.7)、UHB杯5着0.3差と直近2走が3勝クラスで確実に上向き。相手なりに末を伸ばす安定感を評価。<br><br>5番, メルトユアハート, +0.4, 前走TVh杯2着0.1差(指数85.1)は屈指の内容だが、UHB杯13着・心斎橋S9着と好走は前走一本のみ。額面は本物でも再現性が担保されず、他馬と同じ物差しで一段下げる。<br><br>6番, ウィルオレオール, -0.7, 前走TVh杯12着0.5差(指数79.5)、他は地方ダート戦ばかりで芝の3勝クラス実績が乏しい。JRA芝での連対がなく信用しづらい。<br><br>7番, ロジケープ, +0.2, 前走86.5は2勝クラス・芝1400の数字で、3勝クラス実走はゼロ。連対率と勢いは買うが、クラス跨ぎの額面を割り引くと3勝クラス実走組と同列には置けない。<br><br>8番, アンジュプロミス, +0.3, 前走TVh杯8着0.5差だが3勝クラスの実走がある。前々走STV杯(2勝クラス)1着・葵S(GIII)12着と格上経験もあり、通用の下限が見えとる。<br><br>9番, クリエープキー, -0.1, 前走安達太良S(OP)7着0.9差、湯の川温泉1着も指数69.1と低調。葵S13着・Fレビュー18着と格上では大敗続きで3勝クラス相当の指数が足りない。<br><br>10番, アスクケンタッキー, +0.1, 前走HTB杯(2勝クラス)1着と充実だが指数80.4は一枚落ち、芝1200の3勝クラス実績はゼロの未知数。実走のある8番より一段割り引く。<br><br>11番, ゴールドサーベル, -0.8, 前走TVh杯15着0.9差、UHB杯12着、陽春S13着2.2差と近走総崩れ。指数も74前後まで低下し3勝クラスで明確に力不足。<br><br>12番, パクスロマーナ, +0.2, UHB杯2着0.1差(指数85.1)は好内容、前走TVh杯6着0.3差も安定。ただ42戦5勝で朱雀S15着・巌流島17着など道中失速の大敗も多く、詰めの甘さで頭は信用しきれない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.3, &quot;3&quot;: 0.3, &quot;4&quot;: 0.3, &quot;5&quot;: 0.4, &quot;6&quot;: -0.7, &quot;7&quot;: 0.2, &quot;8&quot;: 0.3, &quot;9&quot;: -0.1, &quot;10&quot;: 0.1, &quot;11&quot;: -0.8, &quot;12&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;批判者の非対称指摘を実績軸で検証。(1)7番はクラス跨ぎ額面比較の割引が不徹底→+0.4→+0.2(2勝クラス指数を3勝クラス実走組と同列にしていた)。(2)5番は前走一本の好走に再現性減点の物差しが未適用→+0.5→+0.4。(3)3番は同じ逃げ脚質での格上位実績複数を根拠に度外視の妥当性を一部維持しつつ、前走大敗の完全消しは行き過ぎとして+0.4→+0.3。(4)8番(3勝クラス実走)と10番(芝3勝クラス未知数)の差0.1は割引不足→10番+0.2→+0.1。他馬は据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>札幌芝1200m、12頭立て。展開派として、脚質と隊列、想定ペースからシナリオを描くね。<br><br>## 隊列とペースの想定<br><br>まず逃げ・先行馬を洗い出す。通過順（前走の隊列）を見ると——<br><br>- **3番サウスバンク**: 前走含め通過1-1が定着した明確な逃げ馬。ハナは主張しやすい。<br>- **8番アンジュプロミス**: 1-1で逃げて勝った実績（STV杯・あざみ賞）。前で運びたい先行〜逃げ。<br>- **10番アスクケンタッキー**: 6戦して通過1-1が並ぶ生粋の先行馬。前走HTB杯も1-1で押し切り。<br>- **12番パクスロマーナ**: 2-2で前めに付ける先行。<br>- **7番ロジケープ**: 2-2〜6-5、番手〜好位差しの器用な先行。<br><br>逃げ・先行が **3・8・10** と複数いて、しかも3番も8番も10番も「ハナを切りたい」タイプ。**前が競り合ってペースが上がりやすい構図**。札幌1200は平坦だがコーナー2つで、テンが速くなると前が総崩れになりやすい。ここは前傾ラップ想定。<br><br>## 差してくる馬<br><br>- **4番ルーフ**: 11-12、11-11の追込一手。上がり33.7の脚。ハイペースなら最も恩恵。<br>- **5番メルトユアハート**: 6-5から差して前走2着、上がり34.2。中団差しで展開待てる。<br>- **1番エヴァンスウィート**: 11-10、8-8の後方差し。前崩れ待ち。<br>- **9番クリエープキー**: 本質は前(1-1)だが差しに回った京都で上がり32.9を記録。ただ前走安達太良は逃げて失速。<br><br>## シナリオ<br><br>3番が押してハナ、10番・8番が競りかけ、12番が続く。前3頭が引かず前半突っ込む展開なら、直線で **4番ルーフ・5番メルトユアハート** が外から差し込む。逆に前が譲り合ってスロー化するリスクも一応あるが、10番アスクケンタッキーは前走稍重を我慢して逃げ切っており引く気はなく、3番も逃げないと持ち味が消える馬。**譲り合いよりは競り合いに傾く**と読む。<br><br>内枠の逃げ先行(3番)はロスなく運べる利はあるが、ペースを作る側なので恩恵と消耗が相殺。9番7番7番の外枠(7・8・9・10・11・12)は12頭立てなら致命的ではない。<br><br>---<br><br>1番, エヴァンスウィート, +0.3, 後方差しタイプで、前が競るハイペース想定なら前崩れの恩恵を受ける。ただ位置が後ろすぎて届き切るかは半信半疑。<br><br>2番, シカゴスティング, +0.2, 8-7や12-12の中団〜後方差し。展開が向けば浮上するが位置取りが一定せず恩恵は限定的。<br><br>3番, サウスバンク, -0.4, 明確な逃げ馬だが10番8番と先行争いになりやすく、ハナの消耗が読める。前走も1-1から10着に沈んでおり競られると脆い。<br><br>4番, ルーフ, +0.7, 追込一手で上がり最速級。先行争いでペースが上がれば最も展開が向く差し馬、この隊列想定なら本命級の恩恵。<br><br>5番, メルトユアハート, +0.5, 中団から差せる自在さがあり、前崩れ展開を待てる好位置。ハイペースで確実に浮上する脚質。<br><br>6番, ウィルオレオール, -0.2, ダート帰りで芝1200の追走に脚質面の不安。位置取りが読みにくく展開利は取りづらい。<br><br>7番, ロジケープ, +0.1, 好位差しの器用さはあるが、前が競る中で番手を取りに行くと巻き込まれるリスクもあり中立寄り。<br><br>8番, アンジュプロミス, -0.3, 逃げて力を出すタイプだが3番10番とハナを主張が重なり、競り合いで持ち味が削がれる公算。<br><br>9番, クリエープキー, -0.2, 本質は前だが逃げ馬過多で前を取りにくく、前走も逃げて失速。位置取りに難がある。<br><br>10番, アスクケンタッキー, -0.3, 逃げ先行で押し切る形が身上だが、この面子では単騎逃げが難しく競り合い必至。ペースを作る側で消耗が読める。<br><br>11番, ゴールドサーベル, +0.2, 16-15や8-8の後方から。前崩れなら浮上余地はあるが差し脚が甘く恩恵は小幅。<br><br>12番, パクスロマーナ, -0.1, 2-2の先行だが前が競る中で好位を取りに行くと巻き込まれやすい。展開利は薄い。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.2, &quot;3&quot;: -0.4, &quot;4&quot;: 0.7, &quot;5&quot;: 0.5, &quot;6&quot;: -0.2, &quot;7&quot;: 0.1, &quot;8&quot;: -0.3, &quot;9&quot;: -0.2, &quot;10&quot;: -0.3, &quot;11&quot;: 0.2, &quot;12&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;逃げ先行の3・8・10が揃いハナ争いでペースが上がる想定。前傾ラップで前崩れを見込み、追込一手のルーフ(+0.7)と中団差しのメルトユアハート(+0.5)が展開の最大受益者。逆にハナを競る3・8・10と好位を取りに行く先行勢は消耗・巻き込まれリスクでマイナス。単騎スローに振れるリスクは残すが、各馬が引く気の薄い面子なので競り合い側に傾けた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>前崩れシナリオを一点張りにして差し馬(4番ルーフ+0.7,5番メルトユアハート+0.5)を全面的に持ち上げているが、8番アンジュプロミスは前走3-3で控える選択肢があり、3頭共倒れは最悪ケースの一つ。前崩れの確度に幅を。最大の再考点は7番ロジケープ+0.1: 近走6-5/6-5/2-2/2-2と好位を自在に折り合える脚質で、前崩れなら後方の1番エヴァンスウィートや4番ルーフより届く確率が高い好位置のはず。過小評価では。12番パクスロマーナ-0.1も2-2で先行残しの実績があり先行争いの当事者(3・8・10番)ではない、巻き込まれ前提は隊列の解像度が粗い。9番クリエープキー-0.2も逃げ一辺倒でなく前走前の湯の川は4-3で1着、好位で前崩れ恩恵側に回れる余地。好位差し勢の『取れる位置の幅』を全体に軽視している。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証したよ。展開の中身をもう一度見直すね。<br><br>まず隊列の解像度を上げる。純粋な逃げ主張は3番サウスバンク（前走1-1、朱雀S1-1）、8番アンジュプロミス（STV杯・あざみ賞で1-1）、10番アスクケンタッキー（近走ずっと1-1）の3頭。ここは確かに競る。ただ批判者の言う通り、8番は前走TVh杯で3-3に控えて8着、葵Sも3-4。「ハナ絶対」ではなく番手も選べる。3頭が全部ハナを叩き合う最悪シナリオは確度を割り引くべきや。前崩れは「起こりやすいが確定ではない」に格下げする。<br><br>そのうえで好位差し勢の「取れる位置の幅」を見直す。<br><br>7番ロジケープ: 近走6-5/6-5/2-2/2-2。先行争いの当事者ではなく、その一列後ろで折り合える自在さがある。前崩れなら後方の1番・4番より確実に前で恩恵を拾える絶好の位置。+0.1は明確に過小評価やった。+0.5に引き上げる。<br><br>12番パクスロマーナ: 2-2の先行残しで前走6着（0.3差）、UHB杯2着も2-2。3・8・10とは別で、先行争いの外側に構えられる。巻き込まれ前提は粗い。-0.1→+0.2に修正。<br><br>9番クリエープキー: 湯の川4-3で勝ち、安達太良は1-1で失速。逃げ一辺倒ではなく好位も取れるが、前が競る中で前を取りに行く形なので恩恵側とまでは言い切れない。-0.2→+0.1へ小幅修正。<br><br>4番・5番は前崩れ確度を割り引いた分、少し戻す。4番は後方すぎる位置リスクも残るので+0.7→+0.5、5番は6-5で前崩れも前残りも拾える中団の万能性を評価し+0.5維持。<br><br>---<br><br>1番, エヴァンスウィート, +0.2, 後方差しで前崩れの恩恵はあるが位置が後ろすぎ、好位差し勢に先着される公算。前崩れ確度を割り引き小幅に。<br><br>2番, シカゴスティング, +0.2, 8-7/12-12の中団〜後方差し。展開が向けば浮上するが位置取りが一定せず恩恵は限定的。<br><br>3番, サウスバンク, -0.4, 明確な逃げ馬だが8番10番と先行争いになりやすく、ハナの消耗が読める。前走も1-1から10着で競られると脆い。<br><br>4番, ルーフ, +0.5, 追込一手で上がり最速級。先行争いでペースが上がれば向くが、位置が後ろすぎるリスクと前崩れ確度の割引で本命級までは付けない。<br><br>5番, メルトユアハート, +0.5, 6-5の中団から前崩れも前残りも拾える自在さ。この隊列でも位置の融通が利き、展開への強さが際立つ。<br><br>6番, ウィルオレオール, -0.2, ダート帰りで芝1200の追走に脚質面の不安。位置取りが読みにくく展開利は取りづらい。<br><br>7番, ロジケープ, +0.5, 6-5/2-2で先行争いの一列後ろに折り合える好位差し。前崩れなら後方勢より確実に前で恩恵を拾える絶好の位置取り。<br><br>8番, アンジュプロミス, -0.2, ハナも叩けるが前走3-3で控える選択肢もあり、必ずしも競り合いの中心ではない。それでも3番10番と重なれば持ち味は削がれやすい。<br><br>9番, クリエープキー, +0.1, 逃げ一辺倒ではなく湯の川4-3勝ちの好位実績もあるが、前が競る中で前を取りに行く形で恩恵側と言い切れず小幅。<br><br>10番, アスクケンタッキー, -0.3, 逃げ先行で押し切る身上だが単騎逃げが難しく競り合い必至。ペースを作る側で消耗が読める。<br><br>11番, ゴールドサーベル, +0.2, 16-15や8-8の後方から。前崩れなら浮上余地はあるが差し脚が甘く恩恵は小幅。<br><br>12番, パクスロマーナ, +0.2, 2-2の先行残し実績（前走6着0.3差・UHB杯2着）。先行争いの当事者ではなく外側に構えられ、巻き込まれ前提は当たらない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.2, &quot;3&quot;: -0.4, &quot;4&quot;: 0.5, &quot;5&quot;: 0.5, &quot;6&quot;: -0.2, &quot;7&quot;: 0.5, &quot;8&quot;: -0.2, &quot;9&quot;: 0.1, &quot;10&quot;: -0.3, &quot;11&quot;: 0.2, &quot;12&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;前崩れ一点張りを是正し確度を割引。好位差し勢の『取れる位置の幅』を再評価: 7番ロジケープを+0.1→+0.5（先行争いの一列後ろで折り合える絶好位置）、12番パクスロマーナを-0.1→+0.2（2-2先行残し実績・争いの当事者でない）、9番クリエープキーを-0.2→+0.1（好位も取れる）。8番は前走3-3の控え選択肢を認め-0.3→-0.2に緩和。前崩れ割引で4番を+0.7→+0.5、5番は位置の自在性で+0.5維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>体調派として、当日のコンディションと仕上がりだけを見て補正するね。馬体重推移・叩き回数・斤量と馬格・出走間隔・調教の動きで個別に判断する。<br><br>1番, エヴァンスウィート, -0.2, 前走3週前で叩き4走目、460kg前後で推移し体は保っとる。ただ調教評価「動き軽快」も調子横ばい、目立つ上積みは見えず。<br><br>2番, シカゴスティング, +0.3, 454kg前後で安定、前走から3週の叩き回数を重ねても消耗感なし。調教「高いレベルで安定」で仕上がりは信頼できる。<br><br>3番, サウスバンク, +0.1, 490kg前後の大型で馬体はどっしり安定。ただ「軽めの調教で十分」の一言で坂路無し、仕上げ本気度がやや読みづらく強くは推せん。<br><br>4番, ルーフ, +0.2, 508kgと本馬にしては近走最重、前走3着時と同水準で緩みなし。前走から3週の間隔も自然で、札幌ダで1F12.5とラスト鋭く動けとる。<br><br>5番, メルトユアハート, +0.5, 前走から2kg増506kgで自己ベスト域、調教は函館ダ5F69.6・ラスト1F11.9でG前仕掛けて「追って伸び上々」。息の入り良く仕上がり最上位級。<br><br>6番, ウィルオレオール, -0.5, 前走芝で馬体重-10kgと大幅減、そこから中2週半、地方ダート主戦の芝替わりで体調の測りづらさが最も大きい。門別坂路一杯追いで動いたが芝適性込みで不安。<br><br>7番, ロジケープ, +0.4, 3歳で7週の間隔を取り疲れ抜けは十分、調教は函館W5F69.9・1F12.3で「推進力ある走り」、調子は数少ない↗。上向きの証拠が揃う。<br><br>8番, アンジュプロミス, +0.2, 452kg前後で安定、3週前の叩き回数を経ても「デキ落ちなし」。3歳牝馬53kgと軽ハンデで馬格への斤量負担も小さい。<br><br>9番, クリエープキー, -0.3, 434〜438kgと小柄で、前走からわずか2週の連戦。小柄な馬の詰めた間隔は消耗リスクが相対的に大きく、上積みも見えづらい。<br><br>10番, アスクケンタッキー, +0.6, 前走から中2週だが調子↗で調教「ますます快調」、札幌ダ5F70.6・ラスト1F11.8と時計が優秀。468kg前後で体も緩まず、仕上がりの勢いが際立つ。<br><br>11番, ゴールドサーベル, -0.4, 476kg前後で安定はしとるが、58kgを牡5の馬格で背負い斤量負担が重い。調教も強めに追って「あまり変わり身無」、上昇材料に乏しい。<br><br>12番, パクスロマーナ, 0.0, 438kg前後の小柄で近走-4〜-8kgと減り気味、42戦のベテランで叩き回数の疲労も気がかりだが、調教「動き軽快」で体は保っとる。プラス材料とマイナス材料が拮抗し中立。<br><br>体調派の要点: 仕上がりの勢いで抜けとるのは 10番アスクケンタッキー（調子↗+快調な時計）と 5番メルトユアハート（追って伸び上々の好時計）。7番ロジケープも3歳で息を入れ↗で上向き。逆に 6番ウィルオレオールは-10kgの大幅減+芝替わりで体調が最も読めず強く下げ、9番クリエープキーは小柄で2週連戦、11番ゴールドサーベルは馬格に対し58kg過重で下げた。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.3, &quot;3&quot;: 0.1, &quot;4&quot;: 0.2, &quot;5&quot;: 0.5, &quot;6&quot;: -0.5, &quot;7&quot;: 0.4, &quot;8&quot;: 0.2, &quot;9&quot;: -0.3, &quot;10&quot;: 0.6, &quot;11&quot;: -0.4, &quot;12&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;仕上がりの勢いで10番アスク(調子↗・札幌ダ1F11.8)と5番メルト(追って伸び上々・G前仕掛けの好時計)が最上位、7番ロジも3歳で息入り↗。6番ウィルは-10kgの大幅減+芝替わりで体調最も不透明、9番クリエは小柄で2週連戦、11番ゴールドは牡5馬格に58kg過重で下げ。多くは馬体安定で±0.2〜0.3圏。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>付値の順序と論理に非対称がある。(1)10番アスクケンタッキーを最高値+0.6にしとるが近走馬体重は478→472→468と減り続け、増加中の5番メルトユアハート(+0.5)を体調派の目線で上に置く根拠が調教時計の速さだけに見える。体の維持を最重視する軸と逆向き。(2)中2週の短間隔を9番クリエープキー・6番ウィルオレオールには消耗リスクで減点したのに、10番だけ調子↗で間隔リスクを免除。一貫性を見直す余地。(3)7番ロジケープは近走馬体重が-16〜+16と激しく上下しとるのにブレを警戒せず+0.4。(4)9番クリエープキーは体重微増で安定しとるのに小柄の一般論で-0.3、一次資料と減点理由が逆向き。(5)6番と3番で調教の使い方が非対称(6番は好調調教を黙殺、3番は軽め調教を減点)。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>体調派として批判者の指摘を検証したばい。1つずつ見ていくね。<br><br>**指摘(1)(2) 10番アスクケンタッキー**: 痛いとこ突かれた。近走478→472→468で減り続けとる。ただ体調派の目で見ると、これは「太めが絞れて実戦体重に近づいた」パターンで、-4kg程度の緩やかな減少は消耗やなく調整と読める。しかも前走HTB杯を勝った時が468で、今回維持なら好走時体重。調子↗・調教1F11.8も裏付け。ただ「増加中の5番より上」は確かに体調維持最重視の軸とは向きが違う。**+0.6→+0.5に下げる**。5番と並べる。<br><br>**指摘(2) 中2週の非対称**: これは自分の一貫性の問題。10番は中2週(2週)、6番も中2週半、9番は2週。10番だけ間隔リスクを免除したのは、調子↗と時計で相殺したから。ただ9番も体重は+2で安定しとる。9番の連戦減点は見直す。<br><br>**指摘(3) 7番ロジケープ**: 490→506→500→490と±16で激しく上下しとる。ただ直近3走は500前後で、前走-16は1200→1400替わりでの数字。体調派として体重ブレは注意材料やが、勝ち鞍を挙げとる時も上下しとるけん、この馬は元々変動する個体。過度に警戒はせんが、+0.4はやや高い。**+0.4→+0.3に微修正**。調教↗は活きとる。<br><br>**指摘(4) 9番クリエープキー**: これは指摘が正しい。一次資料では434→436→438と微増で安定しとる。「小柄」の一般論で-0.3は資料と逆向き。小柄でも体重を維持できとるなら消耗のサインは無い。前走安達太良Sは0.9秒差やが体調要因やなく相手強化。**-0.3→-0.1に引き上げる**。連戦だけ僅かに残す。<br><br>**指摘(5) 6番と3番の調教非対称**: 6番は好調調教「前走以上の動き」を芝替わり不安で黙殺、3番は「軽め」を減点。体調派なら調教の動きそのものは公平に見るべき。ただ6番の-10kg大幅減という体重事実は体調派の一次資料として最重要で、これは残す。芝適性(能力側)は自軸外なので理由から外す。**6番は-0.5→-0.4に微修正**(調教の動きを一部認める)。3番の「軽め減点」は体調悪化のサインやないけん、**+0.1→0.0近くに**...いや、大型で体維持は保っとるので**+0.1据え置き**、理由から本気度の憶測を弱める。<br><br>見直し後の全馬:<br><br>1番, エヴァンスウィート, -0.2, 3週前で叩き4走目、460前後で体は保っとるが調教「動き軽快」も調子横ばい、上積みは見えず。<br><br>2番, シカゴスティング, +0.3, 454前後で安定、3週の叩きを重ねても消耗感なし。調教「高いレベルで安定」で仕上がりは信頼できる。<br><br>3番, サウスバンク, +0.1, 490前後の大型で馬体はどっしり安定、体調面の崩れは無い。軽め調教も動き自体は否定材料でなく現状維持と読む。<br><br>4番, ルーフ, +0.2, 508kgと近走最重も前走3着時と同水準で緩みなし、3週間隔も自然。札幌ダ1F12.5とラスト鋭く動けとる。<br><br>5番, メルトユアハート, +0.5, 前走2kg増506で自己ベスト域、函館ダ5F69.6・G前仕掛けて「追って伸び上々」。息の入り良く仕上がり最上位級。<br><br>6番, ウィルオレオール, -0.4, 前走芝で-10kg大幅減が体調派の最大懸念、そこから中2週半で回復の裏取りが弱い。門別坂路「前走以上」の動きは一部認め減点を緩和。<br><br>7番, ロジケープ, +0.3, 3歳で7週間隔を取り疲れ抜け十分、調教「推進力ある走り」で調子↗。体重は±16と上下するが好走時も変動する個体で、直近は500前後に収まる。<br><br>8番, アンジュプロミス, +0.2, 452前後で安定、叩きを経ても「デキ落ちなし」。3歳牝馬53kgと軽ハンデで馬格への斤量負担も小さい。<br><br>9番, クリエープキー, -0.1, 一次資料は434→436→438と微増で安定、小柄でも体は維持できとる。2週の連戦分だけ僅かに引くが消耗のサインは無い。<br><br>10番, アスクケンタッキー, +0.5, 478→472→468の減少は太め解消の調整で好走時体重に接近、調子↗・調教1F11.8。ただ体調維持最重視の軸では増加中の馬と並べ、5番と同格に置く。<br><br>11番, ゴールドサーベル, -0.4, 476前後で安定はするが58kgを牡5の馬格で背負い斤量負担が重い。強め調教で「あまり変わり身無」、上昇材料に乏しい。<br><br>12番, パクスロマーナ, 0.0, 438前後の小柄で-4〜-8kgと減り気味、42戦のベテランで叩き疲労も気がかりだが、調教「動き軽快」で体は保っとる。材料が拮抗し中立。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.3, &quot;3&quot;: 0.1, &quot;4&quot;: 0.2, &quot;5&quot;: 0.5, &quot;6&quot;: -0.4, &quot;7&quot;: 0.3, &quot;8&quot;: 0.2, &quot;9&quot;: -0.1, &quot;10&quot;: 0.5, &quot;11&quot;: -0.4, &quot;12&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;批判を4点受け入れて修正。(1)(2)10番は近走減少+中2週を認め+0.6→+0.5に下げ5番と同格化。(3)7番の体重±16ブレを注記し+0.4→+0.3。(4)9番は一次資料が微増安定で小柄一般論の減点が逆向きだったため-0.3→-0.1に引上げ。(5)6番は調教の動きを一部認め-0.5→-0.4、ただし-10kg大幅減は一次資料として堅持。3番は軽め調教を悪化サインと見ず理由を調整。体調維持を最重視する軸の一貫性を回復した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>血統派として全12頭を分析するね。札幌芝1200m、3勝クラスのスプリント戦。血統の観点でスプリント適性・パワー配合・成長タイプを見ていくよ。<br><br>1番, エヴァンスウィート, -0.2, 父スワーヴリチャードは中距離型でスプリントの主流ではなく、母父Machiavellianはマイル以下の速さを補うが1200では持続力寄り。血統的にはこの距離やや忙しい。<br><br>2番, シカゴスティング, +0.1, 父ロゴタイプ・母父スクリーンヒーローともスプリント本流ではないが、スクリーンヒーローのパワーが札幌の力の要る芝に噛み合う程度。<br><br>3番, サウスバンク, +0.2, 父グレーターロンドン・母父アフリートのパワー血統で洋芝・時計の掛かる馬場向き。逃げ先行の脚質も血統のパワー志向と合致する。<br><br>4番, ルーフ, +0.4, 父ダイワメジャー・母父Fastnet Rockはともにスプリント〜マイルの一流種牡馬で、パワーと持続力の配合。札幌洋芝1200は血統的な適所。追込脚質も上がりの出る血統背景。<br><br>5番, メルトユアハート, +0.3, 父ロードカナロア・母父ディープインパクトはスプリント適性とキレを兼備する良配合。1200が血統的に最もフィットする条件で、上位のスプリント適性。<br><br>6番, ウィルオレオール, -0.5, 父レッドベルジュール・母父フサイチコンコルドで近走はダート中距離。血統的にも芝短距離の瞬発力型ではなくパワー持続の中距離寄りで、今回の芝1200は不向き。<br><br>7番, ロジケープ, +0.2, 父ロジユニヴァース・母父ハーツクライは本来中距離指向だが、ハーツクライのスタミナが札幌の消耗戦で持続力として活きる。純スプリント血統ではない点は割り引く。<br><br>8番, アンジュプロミス, +0.5, 父ドレフォン・母父スズカマンボはパワーとダート味を帯びた血統で、洋芝1200の力の要る流れに強く噛み合う。3歳牝馬で本格化時期とも合致。<br><br>9番, クリエープキー, +0.3, 父ミッキーアイル・母父Spirit Oneでミッキーアイルはスプリント〜マイルの快速を伝える。1200適性は血統的に確か、3歳の上昇期。<br><br>10番, アスクケンタッキー, +0.1, 父Good Magic・母父Point of Entryは米芝〜ダートの中距離基調で、純スプリンターの血統ではない。芝1200好走は血統以上に先行力によるところが大きく、血統評価は控えめ。<br><br>11番, ゴールドサーベル, +0.2, 父レッドファルクスはスプリンターズS連覇の名スプリンターで1200適性は血統的に高い。母父ステイゴールドのパワーも洋芝向き。近走不振で強くは押せない。<br><br>12番, パクスロマーナ, 0.0, 父ネロ・母父アンライバルドでスプリント実績のある配合。1200では血統的に不利はないが特別な優位もなく、自軸で差の出にくい馬。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.1, &quot;3&quot;: 0.2, &quot;4&quot;: 0.4, &quot;5&quot;: 0.3, &quot;6&quot;: -0.5, &quot;7&quot;: 0.2, &quot;8&quot;: 0.5, &quot;9&quot;: 0.3, &quot;10&quot;: 0.1, &quot;11&quot;: 0.2, &quot;12&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;札幌洋芝1200はパワー持続のスプリント血統が向く。ドレフォン産駒アンジュプロミス(8)とダイワメジャー×Fastnet Rockのルーフ(4)が血統的適所で高評価。ロードカナロア×ディープのメルトユアハート(5)は好配合。ダート中距離血統で近走もダートのウィルオレオール(6)は芝1200不向きで最低。純スプリント血統でない1・7・10は割り引きつつ、脚質由来の好走は血統評価に紛れ込ませないよう控えめに置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>血統軸内で付値と理由の食い違いを指摘。(1)1200芝への血統的本流度なら5番メルトユアハート(ロードカナロア×ディープ、担当自ら『最もフィット』)が8番アンジュプロミス(ドレフォン×スズカマンボ)より上のはずで、+0.5トップ据えは馬場未発表下で洋芝パワー要求を前提にしすぎでは。(2)4番ルーフ『パワー・持続力配合』から『上がりの出る血統』で追込を正当化するのは相反適性の都合的抽出で理由の一貫性に難。(3)5番と9番クリエープキーが同値+0.3だが担当の評価語は5番が明確に上、母系の底力差を血統で反映すれば差が付くはず。(4)11番ゴールドサーベルは『1200適性血統的に高い』としながら近走不振で抑制→血統軸外の減点、割り引きは合成に委ねては。(5)3番サウスバンクと8番は同じ洋芝パワー論理なのに+0.2と+0.5で開く、脚質整合まで揃う3番との差の根拠が血統軸外(3歳牝馬本格化)に寄っている。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を血統軸で検証したばい。<br><br>**(1) 5番と8番のトップ争い** — 妥当な指摘。純粋な芝1200血統本流度なら、ロードカナロア×ディープ（5番）の方がドレフォン×スズカマンボ（8番）より上。8番の+0.5は「洋芝パワー要求」を馬場未発表下で前提にしすぎとった。8番を下げ、5番を上げる。<br><br>**(2) 4番ルーフの追込正当化** — 認める。ダイワメジャー×Fastnet Rock はパワー・持続力型で、そこから「上がりの出る血統だから追込OK」は都合のいい抽出やった。血統本流度としては札幌1200の適所なのは確かやが、脚質正当化部分を外して素直に距離適所評価に留める。<br><br>**(3) 5番と9番の同値** — 妥当。母系の底力・1200本流度で5番(ロードカナロア×ディープ)＞9番(ミッキーアイル×Spirit One)。5番を上げるので自然に差がつく。<br><br>**(4) 11番の割り引き** — 認める。「1200血統適性高い」は血統軸の話、「近走不振」は血統軸外。軸外減点を混ぜとった。血統軸としては素直に評価し、割り引きは合成に委ねる。<br><br>**(5) 3番と8番の差** — 認める。同じ洋芝パワー論理なら3番と8番の差は血統軸で説明できず、8番の上乗せは「3歳牝馬本格化」という軸外要素やった。8番を軸外要素分だけ下げると3番と近接する。<br><br>以下、見直し後。<br><br>1番, エヴァンスウィート, -0.2, 父スワーヴリチャードは中距離型で母父Machiavellianも1200では持続力寄り。血統的にこの距離はやや忙しい。<br><br>2番, シカゴスティング, +0.1, 父ロゴタイプ・母父スクリーンヒーローともスプリント本流ではないが、スクリーンヒーローのパワーが札幌の力の要る芝に噛み合う程度。<br><br>3番, サウスバンク, +0.2, 父グレーターロンドン・母父アフリートのパワー血統で洋芝・時計の掛かる馬場向き。逃げの脚質も血統のパワー志向と合致。<br><br>4番, ルーフ, +0.3, 父ダイワメジャー・母父Fastnet Rockはスプリント〜マイルの一流種牡馬でパワーと持続力の配合。札幌洋芝1200は血統的な適所（脚質正当化は撤回）。<br><br>5番, メルトユアハート, +0.6, 父ロードカナロア・母父ディープインパクトはスプリント適性とキレを兼備する良配合で、母系の底力も厚い。芝1200が最もフィットする血統本流で、当レース最上位のスプリント適性。<br><br>6番, ウィルオレオール, -0.5, 父レッドベルジュール・母父フサイチコンコルドで、血統的に芝短距離の瞬発力型ではなくパワー持続の中距離寄り。芝1200は不向き。<br><br>7番, ロジケープ, +0.2, 父ロジユニヴァース・母父ハーツクライは本来中距離指向だが、ハーツクライのスタミナが札幌の消耗戦で持続力として活きる。純スプリント血統ではない点は割り引く。<br><br>8番, アンジュプロミス, +0.3, 父ドレフォン・母父スズカマンボはパワーとダート味を帯びた血統で洋芝1200の力の要る流れに噛み合う。ただし純粋な芝1200本流度では5番に譲り、馬場未発表下の上乗せは撤回。<br><br>9番, クリエープキー, +0.3, 父ミッキーアイル・母父Spirit Oneでミッキーアイルはスプリント〜マイルの快速を伝える。1200適性は血統的に確かだが、母系の底力では5番に及ばず。<br><br>10番, アスクケンタッキー, +0.1, 父Good Magic・母父Point of Entryは米芝〜ダートの中距離基調で純スプリンターの血統ではない。1200好走は血統以上に先行力によるところが大きく、血統評価は控えめ。<br><br>11番, ゴールドサーベル, +0.3, 父レッドファルクスはスプリンターズS連覇の名スプリンターで1200適性は血統的に高い。母父ステイゴールドのパワーも洋芝向き。近走不振の減点は血統軸外なので合成に委ね、血統軸としては素直に評価。<br><br>12番, パクスロマーナ, 0.0, 父ネロ・母父アンライバルドでスプリント実績のある配合。1200では血統的に不利はないが特別な優位もなく、自軸で差の出にくい馬。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.1, &quot;3&quot;: 0.2, &quot;4&quot;: 0.3, &quot;5&quot;: 0.6, &quot;6&quot;: -0.5, &quot;7&quot;: 0.2, &quot;8&quot;: 0.3, &quot;9&quot;: 0.3, &quot;10&quot;: 0.1, &quot;11&quot;: 0.3, &quot;12&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;批判5点を血統軸で検証。純1200本流度で5番(ロードカナロア×ディープ)を+0.6に引き上げトップ化、8番は馬場未発表下の洋芝パワー上乗せと3歳牝馬本格化(軸外)分を外し+0.5→+0.3。4番は追込の血統正当化(相反抽出)を撤回し+0.4→+0.3で距離適所評価に留める。11番は近走不振(軸外減点)を合成へ委ね+0.2→+0.3で血統本流を素直に反映。5番&gt;9番の母系底力差は5番昇格で自然に表現。3番は洋芝パワー論理を維持し据え置き。&quot;}<br>```<br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>陣営派として、騎手の格・厩舎・継続騎乗の観点だけで各馬を評価するね。能力の高さそのものは土台役に任せて、うちは陣営の後押しだけ見るとよ。<br><br>1番 エヴァンスウィート, +0.3, 友道厩舎は名門で信頼できるが、鮫島克駿への乗り替わり。前走までの吉田隼人から手が替わる点はわずかにプラス止まり。<br><br>2番 シカゴスティング, -0.2, 前2走を武豊で乗った継続効果が、今回の浜中俊への乗り替わりで途切れる。浜中も上位騎手だが手の内を知る強みは薄れる。<br><br>3番 サウスバンク, +0.5, 横山武史への強化乗り替わりで陣営の勝負気配。逃げ・先行策を託せるトップ騎手の起用は明確な後押し。<br><br>4番 ルーフ, +0.4, 佐々木大輔で前走3着・前々走5着と手が合っており継続騎乗。乗り慣れた鞍上で信頼できる。<br><br>5番 メルトユアハート, +0.5, 前走2着の横山和生が継続騎乗。手の内を知る鞍上で好走の再現に期待でき、陣営の力ははっきりプラス。<br><br>6番 ウィルオレオール, -0.3, 石川倭で地方参戦が続いた馬。JRA芝の格勝負では鞍上・厩舎の後押しが弱く、自軸では下げ。<br><br>7番 ロジケープ, +0.7, 丹内祐次が継続騎乗で連勝を含め手綱を握り続けており、手の内を知り尽くす鞍上。尾形厩舎の勝負度も高く陣営の後押しは大きい。<br><br>8番 アンジュプロミス, +0.6, 矢作厩舎に古川奈穂が全レース継続騎乗。手の内を知る鞍上での上のクラス挑戦で、名門厩舎の後押しは信頼できる。<br><br>9番 クリエープキー, +0.2, 古川吉洋が前々走の勝ち鞍で継続騎乗。手は合うが陣営の格として抜けた強調材料は乏しく小幅プラス。<br><br>10番 アスクケンタッキー, +0.8, 武豊×藤原英昭という名手×名門の黄金コンビが継続騎乗。芝替わりでも勝負気配濃厚で、陣営の格は隔絶して強い。<br><br>11番 ゴールドサーベル, -0.3, 荻野琢真に戻る乗り替わりだが近走は掲示板遠く、鞍上・厩舎に強調材料が乏しい。自軸では下げ。<br><br>12番 パクスロマーナ, -0.2, 舟山瑠泉で前走騎乗も、実力上位の乗り替わりとは言えず陣営の後押しは弱め。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.2, &quot;3&quot;: 0.5, &quot;4&quot;: 0.4, &quot;5&quot;: 0.5, &quot;6&quot;: -0.3, &quot;7&quot;: 0.7, &quot;8&quot;: 0.6, &quot;9&quot;: 0.2, &quot;10&quot;: 0.8, &quot;11&quot;: -0.3, &quot;12&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;陣営の格と継続騎乗を軸に評価。10番アスクケンタッキーは武豊×藤原英昭の名手×名門継続で隔絶、7番ロジケープは丹内継続+尾形厩舎の勝負度で強調。8番は矢作厩舎×古川奈穂の継続、5番横山和生・4番佐々木の継続騎乗も好感。3番は横山武史への強化乗り替わりで勝負気配。逆に6番は地方主戦で芝の格勝負に後押し薄く、2番は武豊→浜中の継続断絶でわずかに減点。11・12番は鞍上・厩舎に強調材料が乏しく下げ。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（陣営派）の各馬への付値・理由の本体が未添付で空欄のため、名指しの採点ができません。付値と理由を渡してください。届き次第、陣営の観点で照合する候補論点: (1)10番アスクケンタッキー武豊の継続選択と2番シカゴスティング浜中への乗り替わり評価の整合、(2)7番ロジケープ丹内・8番アンジュプロミス古川奈穂の手の内を知る継続騎乗を騎手の格で沈めていないか、(3)友道/矢作/藤原英昭ら名門厩舎の札幌遠征を厩舎力として反映したか、(4)6番ウィルオレオール石川倭の地方継続と今回JRA芝替わりの評価が混線していないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の4つの論点を陣営軸で検証したよ。<br><br>**(1) 10番 武豊継続 vs 2番 浜中乗り替わり**<br>10番アスクケンタッキーは藤原英昭×武豊で、前走 HTB杯も武豊で逃げ切り勝ち。近3走のうち勝った2走はどちらも武豊で、名門×トップ騎手の継続。陣営の勝負気配は本物で +0.80 は妥当、むしろ札幌替わりも藤原厩舎の遠征仕上げ実績を踏まえれば維持。一方2番シカゴスティングは前2走が武豊、今回**浜中に乗り替わり**。武豊が10番に集中した結果の乗り替わりで、陣営の力点が10番に移った格好。庄野厩舎×浜中は悪くないが継続の手の内アドバンテージを失う。-0.20 は妥当。<br><br>**(2) 7番丹内・8番古川奈穂の継続を格で沈めていないか**<br>7番ロジケープは丹内祐次が近5走中4走連続騎乗で3勝、手の内を知り尽くした継続。尾形厩舎の3歳馬を勝ち上がらせてきた最強の継続騎乗で、格云々でなく実際に結果を出しとる。+0.70 → **+0.75 に微増**（継続の質をもう一段評価）。8番アンジュプロミスは古川奈穂が近走全て継続、矢作厩舎×主戦の完全継続。STV杯・あざみ賞を勝った手の内で +0.60 は維持。格で沈めてはおらんが、乗り替わり不安ゼロを再確認。<br><br>**(3) 友道/矢作/藤原英昭の名門厩舎の札幌遠征**<br>1番友道×鮫島は継続でなく乗り替わり（前走吉田隼人→鮫島）だが友道厩舎の格で +0.30 維持。8番矢作、10番藤原は上で反映済み。<br><br>**(4) 6番ウィルオレオール石川倭の地方継続と芝替わり**<br>6番は石川倭が JRA・地方またいで継続騎乗だが、地方所属騎手のJRA芝1200では騎手の陣営力として上げる材料に乏しく、前走も石川で12着。継続はしとるが勝負気配とまでは言えず -0.30 維持。<br><br>1番, エヴァンスウィート, +0.30, 友道厩舎の格。ただし乗り替わり（吉田隼人→鮫島）で継続の妙味はなく格の分だけ。<br><br>2番, シカゴスティング, -0.20, 前2走の武豊が10番へ移り浜中に乗り替わり。手の内を失い陣営の力点が離れた。<br><br>3番, サウスバンク, +0.50, 横山武史へのトップ乗り替わり。吉岡厩舎の勝負気配で陣営が上乗せ。<br><br>4番, ルーフ, +0.40, 佐々木大輔が近2走継続、清水厩舎×継続で手の内を知る。<br><br>5番, メルトユアハート, +0.50, 横山和生が前走に続く継続騎乗、長谷川厩舎で好連携。<br><br>6番, ウィルオレオール, -0.30, 石川倭の継続はあるが地方所属騎手のJRA芝で陣営力の後押しに乏しい。<br><br>7番, ロジケープ, +0.75, 丹内祐次が4走連続騎乗で手の内を知り尽くす。尾形厩舎との最強継続。<br><br>8番, アンジュプロミス, +0.60, 古川奈穂の完全継続騎乗、矢作厩舎×主戦で乗り替わり不安ゼロ。<br><br>9番, クリエープキー, +0.20, 古川吉洋が勝った前走から継続、牧厩舎で手の内を知る程度の上乗せ。<br><br>10番, アスクケンタッキー, +0.80, 藤原英昭×武豊継続で前走勝利。名門×トップ騎手の勝負気配は隔絶。<br><br>11番, ゴールドサーベル, -0.30, 荻野琢真への戻しだが大久保厩舎の近走陣営に上げ材料なし。<br><br>12番, パクスロマーナ, -0.20, 舟山瑠泉継続だが加藤厩舎×若手で陣営の後押しは弱い。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.30, &quot;2&quot;: -0.20, &quot;3&quot;: 0.50, &quot;4&quot;: 0.40, &quot;5&quot;: 0.50, &quot;6&quot;: -0.30, &quot;7&quot;: 0.75, &quot;8&quot;: 0.60, &quot;9&quot;: 0.20, &quot;10&quot;: 0.80, &quot;11&quot;: -0.30, &quot;12&quot;: -0.20}, &quot;analysis_summary&quot;: &quot;批判者の4論点を陣営軸で検証。(1)10番は藤原×武豊継続+前走勝利で+0.80維持、2番は武豊が10番へ移った浜中乗り替わりで-0.20妥当。(2)7番丹内4走連続の継続を再評価し+0.70→+0.75に微増、8番古川奈穂の完全継続は+0.60維持で格による沈めなしを確認。(3)友道1番は乗り替わりのため格の分+0.30、矢作8番・藤原10番は反映済み。(4)6番石川倭は継続だが地方所属騎手のJRA芝で陣営力の後押し薄く-0.30維持。7番のみ+0.05修正、他は据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキー、TVh賞の合成スコアば批判的に見て、うちの点数ば確定するね。<br><br>## 合成スコアへの疑問点<br><br>**1. 7番ロジケープ(20.0)が低すぎるっちゃん。** ここが一番の疑問。7戦3勝[3-0-4-0]で**掲示板外れゼロ**、完全連対圏キープの3歳馬。前走テレビ山梨杯(2勝クラス・芝1400)を勝ち上がり、芝1200は4戦して[1-0-3-0]で崩れとらん。斤量55kg、調教も「推進力ある走り・調子↗」。他の上位馬が3勝クラスで足踏みしとる中、勢いと軽量が武器。合成は「3勝クラス実績が薄い」で減点しとる気がするけど、上がり馬の勢いば過小評価しとる。うちは最上位に押し上げる。<br><br>**2. 5番メルトユアハート(24.4)は妥当だけど過信気味。** 前走TVh杯2着(差0.1秒・スピード指数85.1)は文句なしで、調教も「追って伸び上々」。ただその前のUHB杯13着(0.8秒差)みたいに**ムラがある**とよ。1200では[前走good]けど条件替わりで凡走もある。1位級ではあるけど、24.4は少し高め評価。<br><br>**3. 8番アンジュプロミス(18.0)が不当に低い。** STV杯(2勝クラス)を勝ったばかりの上がり馬で、53kgの軽ハンデが効く。前走TVh杯8着は0.5秒差やけど、これは3勝クラス初挑戦かつ先行して失速。ただ好位からしぶといタイプで、軽量+矢作厩舎+3歳の伸びしろば考えると18は割り引きすぎ。<br><br>**4. 4番ルーフ(20.7)は逆に少し買われすぎ。** 前走TVh杯3着(0.2秒差)は評価できるけど、6歳で25戦3勝と頭打ち感。上がり最速タイプの追い込みで**展開待ち**の危うさがある。7番・8番より上に置くのは疑問。<br><br>**5. 2番シカゴスティング(17.0)は妥当。** 安定して差0.2〜0.4秒に来るけど**勝ち切れん**タイプ(20戦3勝、3勝クラスで惜敗続き)。ヒモまで。<br><br>## うちの確定点数<br><br>7番, ロジケープ, 24%, 7戦3勝で掲示板外れゼロの上がり馬。1200も[1-0-3-0]で崩れず55kg軽量+調子↗。勢いを最上位評価。<br><br>5番, メルトユアハート, 22%, 前走TVh杯2着(指数85.1)は最上位級だが13着凡走のムラを考慮し微減。<br><br>4番, ルーフ, 18%, 前走3着で差脚は確かだが6歳頭打ち・展開待ちの追い込みで7番8番の下に置く。<br><br>8番, アンジュプロミス, 18%, STV杯勝ちの上がり馬で53kg軽量が効く。矢作厩舎・3歳の伸びしろを買い上位に。<br><br>2番, シカゴスティング, 15%, 安定して差0.2〜0.4秒に来るが勝ち切れず。ヒモ格。<br><br>```json<br>{&quot;score&quot;: {&quot;7&quot;: 24, &quot;5&quot;: 22, &quot;4&quot;: 18, &quot;8&quot;: 18, &quot;2&quot;: 15}, &quot;analysis_summary&quot;: &quot;合成の最大の疑問は7番ロジケープの過小評価。7戦3勝掲示板外れゼロ・1200崩れず・55kg軽量・調子↗の上がり馬を最上位に押し上げた。5番メルトユアハートは前走2着で最上位級だが13着凡走のムラを見て微減。8番アンジュプロミスはSTV杯勝ち+53kg軽量+3歳の伸びしろで18まで引き上げ。4番ルーフは6歳頭打ち・展開待ちの追い込みで7番8番の下。2番はヒモ格。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1番, エヴァンスウィート, 8%, 前走TVh杯7着で函館1200を良く使われとるが、勝ち切るには一枚足りん印象。上がりも平凡で相対的に見劣る。<br><br>2番, シカゴスティング, 9%, 前走4着で指数83.7と底力はあるが、決め手不足で勝ちまでは届かん。堅実だが勝ち味に遅い。<br><br>3番, サウスバンク, 7%, 逃げ一辺倒で前走10着と崩れた。京都朱雀S2着の指数87.4は魅力だが、この距離のハナ争いは激化しそうで苦しい。<br><br>4番, ルーフ, 8%, 前走3着で追い込み脚は堅実だが、勝ち切る決定力に欠ける。展開待ちのタイプで頭までは薄い。<br><br>5番, メルトユアハート, 12%, 前走TVh杯2着・指数85.1と好調で、調教も追って伸び上々。差し脚が確かで上位争い必至。<br><br>7番, ロジケープ, 15%, 3歳で7戦3勝と底を見せず、前走2勝クラスを完勝。1200も勝ち鞍あり調教も上昇気配で最有力級。<br><br>8番, アンジュプロミス, 13%, 3歳牝馬53kgで前走STV杯を圧勝、あざみ賞など先行力が武器。斤量恵まれ好走の下地は十分。<br><br>9番, クリエープキー, 6%, 3歳牝馬だが前走OP7着で崩れ、湯の川の勝ちも指数69と低調。逃げても展開向かず苦戦か。<br><br>10番, アスクケンタッキー, 14%, 6戦3勝で連勝中、前走HTB杯を武豊で快勝し調教も「ますます快調」。上昇度と勢いで軽視できん。<br><br>12番, パクスロマーナ, 9%, 前走6着だが前々走UHB杯2着・指数85.1と好調持続。先行して粘り込む形なら馬券圏内あり。<br><br>6番, ウィルオレオール, 3%, 地方ダート主戦で前走芝1200は12着惨敗。58kgも重く芝の実績が乏しく厳しい。<br><br>11番, ゴールドサーベル, 3%, 近走15着・12着と大敗続きで指数も低迷。58kg背負ってこのメンバーでは苦しい。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>

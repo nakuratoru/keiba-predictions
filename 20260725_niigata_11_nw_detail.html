@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3歳未勝利 2026/07/25 NIIGATA 11R (07/24 23:57 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>3歳未勝利 2026/07/25 NIIGATA 11R (07/24 23:57 予想 馬体重なし)</h1>
+  <div class="meta">芝1000m（直） | 稍重 | 18頭立て | 2回 新潟 1日目 サラ系3歳 未勝利 [指定] 馬齢 18頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">18. ジョイアミーア</div>
+      <div class="pick-jockey">武藤 雅 / 高柳 瑞樹</div>
+    </div>
+    <div class="pick-prob">16.3%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">16. シルバーアックス</div>
+      <div class="pick-jockey">横山 典弘 / 村田 一誠</div>
+    </div>
+    <div class="pick-prob">13.7%</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">10. ノーブルラホーヤ</div>
+      <div class="pick-jockey">石田 拓郎 / 深山 雅史</div>
+    </div>
+    <div class="pick-prob">12.1%</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">18頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ユニベールクイーン</td><td>牝3</td><td>55</td><td>杉原 誠人</td><td>武市 康男</td><td>ミスターメロディ</td><td>ストロングリターン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">ルディドゥゲンジ</td><td>牝3</td><td>55</td><td>嶋田 純次</td><td>蛯名 利弘</td><td>ファインニードル</td><td>Heart&#x27;s Cry</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">アリアファブラ</td><td>牝3</td><td>55</td><td>斎藤 新</td><td>尾関 知人</td><td>アルバート</td><td>ロードカナロア</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">リオクリスハーレー</td><td>牝3</td><td>55</td><td>荻野 極</td><td>矢野 英一</td><td>タニノフランケル</td><td>シニスターミニスター</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">ムーンシェイド</td><td>牝3</td><td>55</td><td>木幡 巧也</td><td>牧 光二</td><td>ビッグアーサー</td><td>タニノギムレット</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">マイエラ</td><td>牡3</td><td>57</td><td>小崎 綾也</td><td>蛯名 正義</td><td>リオンディーズ</td><td>Bluegrass Cat</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">アイファーアイドル</td><td>牡3</td><td>57</td><td>松岡 正海</td><td>蛯名 利弘</td><td>パドトロワ</td><td>アサクサデンエン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">ソレム</td><td>牝3</td><td>53</td><td>石神 深道</td><td>稲垣 幸雄</td><td>Sottsass</td><td>Gregorian</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">セランディア</td><td>牝3</td><td>55</td><td>菊沢 一樹</td><td>小野 次郎</td><td>ベンバトル</td><td>ダイワメジャー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">ノーブルラホーヤ</td><td>牝3</td><td>52</td><td>石田 拓郎</td><td>深山 雅史</td><td>ダノンキングリー</td><td>タイキシャトル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">ミヤザキムスメ</td><td>牝3</td><td>55</td><td>柴田 大知</td><td>和田 雄二</td><td>ミスチヴィアスアレックス</td><td>アグネスタキオン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">タツナナイロ</td><td>牝3</td><td>55</td><td>野中 悠太郎</td><td>的場 均</td><td>タツゴウゲキ</td><td>フリオーソ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">ケイツーキップ</td><td>牝3</td><td>52</td><td>水沼 元輝</td><td>清水 英克</td><td>ラブリーデイ</td><td>ロジユニヴァース</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">ユイノササヤキ</td><td>牡3</td><td>57</td><td>木幡 初也</td><td>深山 雅史</td><td>オルフェーヴル</td><td>スクリーンヒーロー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>15</td><td class="left horse-name">テラシエスタ</td><td>牡3</td><td>54</td><td>佐藤 翔馬</td><td>黒岩 陽一</td><td>ジャスタウェイ</td><td>エンパイアメーカー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">シルバーアックス</td><td>牡3</td><td>57</td><td>横山 典弘</td><td>村田 一誠</td><td>シスキン</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>17</td><td class="left horse-name">リオハリソンメリー</td><td>牝3</td><td>52</td><td>上里 直汰</td><td>加藤 征弘</td><td>タニノフランケル</td><td>ネオユニヴァース</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>18</td><td class="left horse-name">ジョイアミーア</td><td>牝3</td><td>55</td><td>武藤 雅</td><td>高柳 瑞樹</td><td>モズアスコット</td><td>ネオユニヴァース</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ジョイアミーア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">シルバーアックス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ノーブルラホーヤ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ジョイアミーア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">シルバーアックス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ノーブルラホーヤ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ジョイアミーア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">シルバーアックス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ノーブルラホーヤ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ジョイアミーア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">シルバーアックス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ノーブルラホーヤ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ジョイアミーア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">シルバーアックス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ノーブルラホーヤ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ジョイアミーア</span></td>
+<td>+0.90</td>
+<td>+0.60</td>
+<td>+0.56</td>
+<td>+0.50</td>
+<td>+0.44</td>
+<td>16.0</td>
+<td>17.0</td>
+<td>16.5</td>
+<td><b>16.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">シルバーアックス</span></td>
+<td>+0.74</td>
+<td>+0.46</td>
+<td>+0.46</td>
+<td>+0.18</td>
+<td>+0.60</td>
+<td>13.8</td>
+<td>12.4</td>
+<td>14.7</td>
+<td><b>13.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ノーブルラホーヤ</span></td>
+<td>+0.64</td>
+<td>+0.38</td>
+<td>+0.40</td>
+<td>+0.22</td>
+<td>+0.24</td>
+<td>12.0</td>
+<td>11.7</td>
+<td>12.9</td>
+<td><b>12.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">リオクリスハーレー</span></td>
+<td>+0.27</td>
+<td>+0.04</td>
+<td>+0.36</td>
+<td>-0.00</td>
+<td>+0.30</td>
+<td>8.3</td>
+<td>8.4</td>
+<td>6.6</td>
+<td><b>8.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ムーンシェイド</span></td>
+<td>+0.21</td>
+<td>+0.14</td>
+<td>-0.22</td>
+<td>+0.49</td>
+<td>+0.18</td>
+<td>7.6</td>
+<td>7.9</td>
+<td>5.9</td>
+<td><b>7.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ルディドゥゲンジ</span></td>
+<td>+0.19</td>
+<td>+0.08</td>
+<td>-0.26</td>
+<td>+0.46</td>
+<td>-0.10</td>
+<td>6.8</td>
+<td>8.2</td>
+<td>6.1</td>
+<td><b>6.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">アリアファブラ</span></td>
+<td>+0.12</td>
+<td>-0.16</td>
+<td>+0.22</td>
+<td>-0.44</td>
+<td>+0.36</td>
+<td>6.3</td>
+<td>-</td>
+<td>6.1</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ユイノササヤキ</span></td>
+<td>-0.30</td>
+<td>-0.04</td>
+<td>+0.12</td>
+<td>-0.46</td>
+<td>+0.14</td>
+<td>3.8</td>
+<td>-</td>
+<td>3.2</td>
+<td><b>3.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">テラシエスタ</span></td>
+<td>-0.32</td>
+<td>-0.12</td>
+<td>-0.20</td>
+<td>-0.10</td>
+<td>-0.10</td>
+<td>3.3</td>
+<td>-</td>
+<td>4.8</td>
+<td><b>3.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ケイツーキップ</span></td>
+<td>-0.16</td>
+<td>+0.06</td>
+<td>-0.34</td>
+<td>-0.06</td>
+<td>-0.12</td>
+<td>4.0</td>
+<td>-</td>
+<td>2.0</td>
+<td><b>3.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ソレム</span></td>
+<td>-0.25</td>
+<td>-0.20</td>
+<td>-0.08</td>
+<td>-0.36</td>
+<td>+0.04</td>
+<td>3.7</td>
+<td>-</td>
+<td>2.9</td>
+<td><b>3.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">リオハリソンメリー</span></td>
+<td>-0.38</td>
+<td>-0.02</td>
+<td>+0.20</td>
+<td>-0.28</td>
+<td>+0.22</td>
+<td>3.6</td>
+<td>-</td>
+<td>2.3</td>
+<td><b>3.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">セランディア</span></td>
+<td>-0.44</td>
+<td>-0.20</td>
+<td>-0.26</td>
+<td>-0.02</td>
+<td>-0.08</td>
+<td>2.6</td>
+<td>-</td>
+<td>2.9</td>
+<td><b>2.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">マイエラ</span></td>
+<td>-0.38</td>
+<td>-0.08</td>
+<td>-0.50</td>
+<td>-0.22</td>
+<td>+0.12</td>
+<td>2.5</td>
+<td>-</td>
+<td>3.3</td>
+<td><b>2.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">アイファーアイドル</span></td>
+<td>-0.62</td>
+<td>-0.08</td>
+<td>-0.24</td>
+<td>+0.36</td>
+<td>+0.14</td>
+<td>2.1</td>
+<td>-</td>
+<td>2.4</td>
+<td><b>2.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ユニベールクイーン</span></td>
+<td>-0.58</td>
+<td>-0.30</td>
+<td>-0.38</td>
+<td>+0.28</td>
+<td>-0.18</td>
+<td>1.8</td>
+<td>-</td>
+<td>3.1</td>
+<td><b>2.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">タツナナイロ</span></td>
+<td>-0.74</td>
+<td>-0.24</td>
+<td>-0.22</td>
+<td>-0.26</td>
+<td>-0.22</td>
+<td>1.1</td>
+<td>-</td>
+<td>3.3</td>
+<td><b>1.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ミヤザキムスメ</span></td>
+<td>-0.84</td>
+<td>-0.26</td>
+<td>-0.52</td>
+<td>-0.10</td>
+<td>+0.02</td>
+<td>0.6</td>
+<td>-</td>
+<td>1.2</td>
+<td><b>0.7</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>実績派の観点で新潟11R芝1000m(直)を分析するね。この軸は「過去のレース結果から読み取れる素の能力」だけで測るけん、着順・着差・タイム・指数・格・距離適性を根拠に付けていくとよ。<br><br>まず注目は同距離(芝1000m直)の実績を持つ2頭と、直近で好走した2頭。<br><br>**ステップ1: 全馬評価**<br><br>1番 ユニベールクイーン, -0.6, 前走芝1200mで11着1.2秒差・指数57、前々走ダで16着4.5秒差と実績が総じて低調。掲示板圏の実績が近走に無く沈む。<br><br>2番 ルディドゥゲンジ, -0.1, 同距離芝1000mで7着0.7秒差・上がり33.6は悪くないが勝ち負けには遠く、他走も二桁着順。指数64.0はこの距離では中位。<br><br>3番 アリアファブラ, +0.1, 新馬芝1800mで5着0.5秒差・指数71.4は光るが、以降1600m13着・2000m17着と距離延長で崩れ、短距離での裏付けが無い。<br><br>4番 リオクリスハーレー, +0.3, 芝1400m7着0.8秒差・指数66.3、ダ1200m7着0.5秒差・指数66.4と指数の裏付けがあり着差もまとまる。安定感で上位。<br><br>5番 ムーンシェイド, +0.2, 芝1200m7着0.6秒差・指数66.2、新馬芝1400m5着で上がり34.4と一定の指数水準。抜けはないが実績は中位上。<br><br>6番 マイエラ, -0.4, 芝1400m16着2.4秒差・指数50、ダも13着2.8秒差と近走の内容が悪く、格上相手でも通用の跡が乏しい。<br><br>7番 アイファーアイドル, -0.7, 12か月前ダ1200m13着3.6秒差・指数25.4、新馬8着1.8秒差と実績がほぼ無く長期休養明け。数値の裏付け皆無。<br><br>8番 ソレム, -0.3, 1戦のみ芝1600m17着1.9秒差・指数55.8だが後方一気で上がり35.0のみ。実績標本が薄く短距離未経験で信用材料が乏しい。<br><br>9番 セランディア, -0.5, ダ1400m14着2.6秒差・芝1200m15着1.4秒差と近走軒並み二桁着順。指数も40台〜55台で下位。<br><br>10番 ノーブルラホーヤ, +0.7, 4週前芝1200m3着0.5秒差・指数69.4、前々走も指数64.8・66.4と高指数を安定して出す。短距離で着順・数値とも上位、軸級。<br><br>11番 ミヤザキムスメ, -0.9, ダ1200mで14着3.6秒差・指数22.8、13着2.6秒差・指数18.6と実績が隔絶して低い。額面で最も沈む。<br><br>12番 タツナナイロ, -0.8, 地方芝1700m8着2.7秒差、中央でもダ16着3.4秒差・指数23.6と着差・指数が総じて最下級。<br><br>13番 ケイツーキップ, -0.3, 芝1200m5着0.6秒差・指数66.2の好走がある一方、前走18着・その前15着と好凡走が激しく安定性を欠く。フロック評価で抑える。<br><br>14番 ユイノササヤキ, -0.4, 新馬芝1600m11着1.2秒差・指数62.1のみで、地方戦は中止。標本が薄く短距離実績も無い。<br><br>15番 テラシエスタ, -0.3, ダ1400m11着1.6秒差・指数54.6、新馬芝1400m11着と着順が伸びず、指数も中位止まり。<br><br>16番 シルバーアックス, +0.8, 3週前芝1200m3着0.5秒差・指数72.4、前々走2着0.6秒差・指数67.4と好走続き。指数最上位クラスで着順も安定、抜けて強い。<br><br>17番 リオハリソンメリー, -0.4, 1戦のみダ1800m8着1.0秒差・指数35.8で短距離未経験。実績標本が乏しく数値も低い。<br><br>18番 ジョイアミーア, +0.9, 同距離芝1000mで4着0.9秒差・指数65.5、前走3着0.1秒差・指数74.7と本レース条件そのもので好走。同距離実績・高指数で最上位級。<br><br>**ステップ2: JSON出力**<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.6, &quot;2&quot;: -0.1, &quot;3&quot;: 0.1, &quot;4&quot;: 0.3, &quot;5&quot;: 0.2, &quot;6&quot;: -0.4, &quot;7&quot;: -0.7, &quot;8&quot;: -0.3, &quot;9&quot;: -0.5, &quot;10&quot;: 0.7, &quot;11&quot;: -0.9, &quot;12&quot;: -0.8, &quot;13&quot;: -0.3, &quot;14&quot;: -0.4, &quot;15&quot;: -0.3, &quot;16&quot;: 0.8, &quot;17&quot;: -0.4, &quot;18&quot;: 0.9}, &quot;analysis_summary&quot;: &quot;実績軸では同距離芝1000m直で3着0.1秒差・指数74.7の18番ジョイアミーアが条件ドンピシャで最上位(+0.9)。3週前芝1200m3着・指数72.4と好走続きの16番シルバーアックス(+0.8)、短距離で高指数を安定して出す10番ノーブルラホーヤ(+0.7)が続く軸級。逆にダ短距離で3秒超の大敗が続き指数20台の11番・12番は実績が隔絶して低く強く沈める。3番は新馬時の高指数が光るが以降距離延長で崩れ短距離の裏付けを欠くため小さめの評価に留めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（keiba_jisseki）の出力（各馬への付値と理由）が渡されていないため、付値と理由の整合性・見落としを検証できませんでした。実行時プロンプトに担当エージェントの評価結果を含めて再度渡してください。なお実績データからは、18番ジョイアミーア（芝1000m直近3着・4着で指数74.7/65.5）と16番シルバーアックス（直近3着・指数72.4、2着経験あり）が実績上位、10番ノーブルラホーヤ（4週前3着・指数69.4）が続く構図で、この3頭の相互の付値差が争点になると予想されます。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者は「出力が渡ってない」と言うとるだけで、実質的な反証は出せとらん。その上で挙げた「18・16・10 が実績上位、この3頭の相互差が争点」という指摘は、うちの実績軸の見立てと一致しとる。ここは正面から検証して、必要な微修正だけ入れるね。<br><br>まず実績データを額面通りやなく、格・相手・距離を踏まえて読み直す。<br><br>**同距離(芝1000m直)実績が抜けとる2頭**<br>- 18番ジョイアミーア: 芝1000mで4着(指数65.5)・3着(0.1差・指数74.7)。同コース連続好走で指数74.7は全馬最高。上がり32.8/33.1もこの距離で裏付けあり。実績軸で隔絶。<br>- 2番ルディドゥゲンジ: 同じ芝1000mで7着0.7差・指数64.0。実は同距離実績では18番に次ぐ。Round1で -0.10 は下げすぎとった。フロック扱いは不当。→ +0.10 に上方修正。<br><br>**指数上位だが距離延長組**<br>- 16番シルバーアックス: 芝1200mで3着0.5差(指数72.4)・2着0.6差。安定感と指数は本物。ただし全て1200mで、今回は200m短縮の1000m直。指数72.4は距離が違う。18番の同距離74.7ほどは信用できん。+0.80 は妥当、これ以上は上げん。<br>- 10番ノーブルラホーヤ: 4週前1200mで3着0.5差・指数69.4、逃げて粘った内容。安定して指数65超を出す。ただしこれも1200m。+0.70 維持。<br><br>**格・相手を踏まえた下方修正の見直し**<br>- 4番リオクリスハーレー: 芝1400mで指数66.3・66.4を安定して出す。距離短縮はプラス材料。+0.30 維持。<br>- 13番ケイツーキップ: 前々走福島1200mで5着0.6差・指数66.2は光る。ただ前走18着大敗・凡走の波が大きい。フロックの疑いで +0.10 程度に留めるべきやったが、Round1では -0.30。指数の裏付けを取って -0.10 に緩和。<br><br>沈める組(1・7・11・12・9・8)は指数20-40台の低実績で据え置き。<br><br>---<br><br>1番, ユニベールクイーン, -0.60, 近走ダ長距離で4-5秒差の大敗続き、芝転戦の前走も11着1.2差で実績の裏付け無し。<br><br>2番, ルディドゥゲンジ, +0.10, 今回と同じ芝1000m直で7着0.7差・指数64.0、同距離実績は18番に次ぐ2番手で下げるほど弱くない。<br><br>3番, アリアファブラ, +0.10, 新馬芝1800mで5着0.5差・指数71.4は光るが以降1600m13着・2000m17着と大敗続きで信用は限定的。<br><br>4番, リオクリスハーレー, +0.30, 芝1400mで指数66.3・66.4を安定して計上、今回は距離短縮でプラス、着差も0.8差と大きく崩れず。<br><br>5番, ムーンシェイド, +0.20, 芝1200mで指数66.2・7着0.6差、新馬でも指数62.9と一定の水準は示す。<br><br>6番, マイエラ, -0.40, 芝1400m16着2.4差・ダ1200m13着など指数30-50台に沈む凡走が目立ち能力の証拠に乏しい。<br><br>7番, アイファーアイドル, -0.70, 2戦とも指数25-43で3.6差・1.8差の大敗、実績上ほぼ最下位級。<br><br>8番, ソレム, -0.30, 1戦のみ芝1600m17着1.9差・指数55.8、サンプル少なく実績が薄い。<br><br>9番, セランディア, -0.50, 3戦全て指数42-55で1.4-2.6差の敗戦、格上げできる材料が無い。<br><br>10番, ノーブルラホーヤ, +0.70, 4週前芝1200mで3着0.5差・指数69.4と逃げ粘り、安定して指数65超を計上し実績上位。<br><br>11番, ミヤザキムスメ, -0.90, 2戦とも指数18-22で3.6差・2.6差の大敗、実績軸で隔絶して低い。<br><br>12番, タツナナイロ, -0.80, 中央ダで指数10-23、地方転戦8着2.7差と実績が全く伴わず沈む。<br><br>13番, ケイツーキップ, -0.10, 前々走福島1200mで5着0.6差・指数66.2は評価できるが前走18着2.9差の落差が大きくフロックの疑い、額面通りには取らない。<br><br>14番, ユイノササヤキ, -0.40, 新馬11着1.2差・指数62.1の後は中止で実戦不足、実績の蓄積が乏しい。<br><br>15番, テラシエスタ, -0.30, 2戦とも11着で指数54台、大崩れはないが好走実績が無い。<br><br>16番, シルバーアックス, +0.80, 芝1200mで3着0.5差指数72.4・2着0.6差と安定して上位、指数は全馬屈指だが全て1200mで今回は距離替わり。<br><br>17番, リオハリソンメリー, -0.40, 1戦のみダ1800m8着1.0差・指数35.8、芝短距離の実績が皆無でサンプルも薄い。<br><br>18番, ジョイアミーア, +0.90, 今回と同じ芝1000m直で3着0.1差・指数74.7と4着・指数65.5、同コース連続好走で指数は全馬最高、実績軸で隔絶。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.60, &quot;2&quot;: 0.10, &quot;3&quot;: 0.10, &quot;4&quot;: 0.30, &quot;5&quot;: 0.20, &quot;6&quot;: -0.40, &quot;7&quot;: -0.70, &quot;8&quot;: -0.30, &quot;9&quot;: -0.50, &quot;10&quot;: 0.70, &quot;11&quot;: -0.90, &quot;12&quot;: -0.80, &quot;13&quot;: -0.10, &quot;14&quot;: -0.40, &quot;15&quot;: -0.30, &quot;16&quot;: 0.80, &quot;17&quot;: -0.40, &quot;18&quot;: 0.90}, &quot;analysis_summary&quot;: &quot;批判者の実質反証は無し。争点の18・16・10は同距離実績で18を最上位(+0.9)、16/10は指数上位も1200m実績で距離替わり分を割引き据え置き(+0.8/+0.7)。同じ芝1000m直で指数64を出した2番を-0.10→+0.10へ上方修正、前走大敗の反面で好指数もある13番はフロック疑いで-0.30→-0.10に緩和。他は据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>新潟芝1000m直線、18頭立ての未勝利戦。展開派として分析するね。<br><br>このコースは千直（新潟直線1000m）。スタートから直線だけの特殊なコースで、位置取りよりも**枠順（内外バイアス）とテンのスピード、そしてそのままバテずに押し切れる持続力**が結果を大きく左右する。コーナーが無いから「差し・追込を待つ」という展開概念が薄く、代わりに**外枠有利・馬場の外差しバイアス**が支配的になる典型的なコースね。<br><br>千直の展開シナリオを描くと——スタートから各馬が横並びで全開、序盤の位置取りはほぼ横一線。前半のスピードで前めのポジションを取れた馬が、そのまま止まらず伸びるか、外の馬場の良いところを通れた馬が勝つ。良馬場想定なら、内外バイアスは開催前半ほど極端でないが、それでも歴史的に**外枠（大外～中間の外）がやや有利**なコース。ただし枠だけで決まるわけではなく、テンの速さと二の脚がものを言う。<br><br>千直経験馬・テンの速さで見ていくね。<br><br>1番 ユニベールクイーン, -0.3, 最内枠。千直で最内は馬場の悪い内を通らされやすく、二の脚も近走冴えず、位置を取れず埋もれる懸念。<br><br>2番 ルディドゥゲンジ, -0.1, 3ヶ月前に同コース経験ありは加点材料だが7着、内寄りの枠で二の脚も並。展開の後押しは限定的。<br><br>3番 アリアファブラ, 0.0, 中距離型で千直のテン適性は未知数、内枠寄り。展開面で明確な有利不利は付けにくい。<br><br>4番 リオクリスハーレー, 0.0, 短距離替わりだが千直は初、内寄り枠。展開で語れる材料が乏しく中立。<br><br>5番 ムーンシェイド, 0.0, 前々で運ぶ脚質はあるが千直初、枠も内寄りの中間。展開優位は見出しにくい。<br><br>6番 マイエラ, -0.2, 前走ハナに立って失速、テンは速いが持続力に欠け千直では止まりやすいタイプ。内寄り枠も向かない。<br><br>7番 アイファーアイドル, 0.0, 千直の適性材料が乏しく枠も中間。中立評価。<br><br>8番 ソレム, +0.2, 前走が後方一気の追込質でテンは遅いが、千直は前が止まれば外から伸びる余地あり、枠も中間で悪くない。<br><br>9番 セランディア, -0.1, 前に行きたいが二の脚が続かず前走も先行して失速、中間枠。千直向きの持続力に疑問。<br><br>10番 ノーブルラホーヤ, +0.3, 前走福島芝1200で逃げて3着と好走、テンの速さがある。千直はテンの速い先行馬が押し切りやすく、中間枠も無難。展開が向く一頭。<br><br>11番 ミヤザキムスメ, -0.2, 近走ダートで後方から差し届かず、千直のテンスピードで劣勢。中間枠でも押し上げ材料なし。<br><br>12番 タツナナイロ, -0.2, 近走大敗続きで後方、千直のテン争いで置かれる懸念。中間枠。<br><br>13番 ケイツーキップ, 0.0, 位置取りは中団で千直の適性は読みづらい、枠は外寄り。中立。<br><br>14番 ユイノササヤキ, 0.0, 千直の材料乏しく外寄り枠は悪くないが判断材料不足で中立。<br><br>15番 テラシエスタ, +0.2, 近走は後方からの競馬だが、外枠7枠は千直で馬場の良い外を通れる利があり、テンが決まれば浮上余地。<br><br>16番 シルバーアックス, +0.4, 近走福島芝1200で逃げ・番手から3着2着と好走、テンが速く持続力もある先行タイプ。外目の8枠は千直で有利、テンで前を取り切って押し切るシナリオが描きやすい。<br><br>17番 リオハリソンメリー, +0.2, 千直は初だが大外に近い8枠で馬場の良い外を通れる枠の利、展開面のプラス。<br><br>18番 ジョイアミーア, +0.5, 同コース千直を2度使い3着・4着と好走、上がり32秒台の伸びで前が止まっても外から差せるタイプ。最外18番枠は千直で最も馬場の良いところを通れる絶好枠。テン・枠・持続力が噛み合う展開最有力。<br><br>シナリオまとめ——テンの速い16番シルバーアックスや10番ノーブルラホーヤが前めを取り、外の良い馬場を通る18番ジョイアミーアが直線で伸びて差し切る、あるいは前が止まらず16番が押し切る。内枠勢は馬場の悪い内を強いられ苦戦、大外～外枠の千直実績馬・テンの速い馬に展開の後押しがある構図。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（keiba_tenkai）の出力（各馬への付値と理由）が渡されていません。【担当エージェントの出力】欄が空欄のため、付値と理由の論理矛盾・見落とし・比較上の齟齬を検証できません。展開評価の中身（想定される先行争い・隊列・どの馬に展開が向く/向かないと判断したか、各馬の付値）を提示してください。なお本レースは芝1000m直線・18頭立てで枠順（内/外）と先行力が展開の主軸になるため、その観点での付値を特に確認したいです。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘は「出力の中身が渡っておらず検証できない」というもので、Round1 の付値そのものへの反論ではない。ただ「芝1000m直線・18頭立てで枠順（内/外）と先行力が展開の主軸」という指摘は本質を突いとるけん、それを軸に自分の展開評価を組み直して見直すね。<br><br>**このレースの展開シナリオ**<br><br>新潟芝1000m直線は、ゲートを出てからゴールまで一直線。コーナーが無いけん位置取りの駆け引きは少なく、「スタートの速さ・二の脚・前半の位置・スピードの絶対値」がほぼそのまま結果になる。差し追込が届く「展開のあや」が最も生まれにくいコースで、前々で運べる馬が圧倒的に有利。<br><br>枠バイアスは馬場次第。良馬場想定なら外差し有利という定説はあるが、渋れば外へ流れる。ただ現時点で馬場未発表＝良想定なら、極端な外偏重には振らない。1000m直線で最も効くのは「この距離で先行して結果を出しとる馬」。<br><br>**各馬の展開適性を見直す**<br><br>- 18番ジョイアミーア：同距離1000mで3-4着（55.8-55.9）。この距離を経験して前々（通過1-2の実績も）で好走。展開の主軸にドンピシャ。Round1の+0.50は妥当、むしろこのレースの展開適性で隔絶しとる。+0.60に引き上げる。<br>- 16番シルバーアックス：芝1200mで通過1-1の逃げ・先行を連続。二の脚があり前で運べる。1000m短縮はプラス。外枠8枠だが先行力でカバー。+0.40維持。<br>- 10番ノーブルラホーヤ：4週前芝1200mで通過1-1の逃げ3着。先行力は本物。1000m短縮も向く。+0.30維持。<br>- 1番ユニベールクイーン：ダート凡走続きで芝1200mも後方。1000mで前に行ける材料が乏しい。ただ内枠1枠。-0.30は少し行き過ぎ、-0.20に緩める。<br>- 6番マイエラ：前走逃げて失速、二の脚に持続力の不安。牡馬斤量57も先行の重り。-0.20維持。<br>- 8番ソレム：前走通過16-18の超後方。1000m直線で後方は最も届かない位置。追込質は展開が向かない。+0.20は付けすぎ。0.0に修正。<br>- 15番テラシエスタ：近走後方（通過14-12,12-13）で先行力に乏しい。外枠だが位置取りが後ろ。1000mで届く展開になりにくい。+0.20は過大、0.0に修正。<br>- 17番リオハリソンメリー：ダ1800mで通過2-2の先行はあるが芝1000m未経験、外8枠。+0.20は根拠が薄い、+0.10に緩める。<br>- 4番リオクリスハーレー：芝1400mで通過3-4の先行力あり、1000m短縮は前向き。0.0→+0.20に上げる。<br>- 5番ムーンシェイド：芝1400mで通過2-2の先行歴あり。短縮でスピードが活きる余地。0.0→+0.10。<br>- 11番/12番/13番/14番/9番：先行力・この距離適性ともに乏しく、後方に置かれる。11番-0.20、12番-0.20、13番0.0、14番0.0、9番-0.10維持〜微修正。<br><br>**批判への総括**：外枠先行を過大評価しないという点は自己点検通り。良馬場想定で外偏重に振らず、「1000m直線で前に行けるか」を軸に据え直した。8番・15番の後方脚質馬を持ち上げすぎとった点を修正した。<br><br>---<br><br>1番, ユニベールクイーン, -0.20, ダート凡走続きで芝でも後方、1000mで前に行ける材料が乏しい。内枠1枠を評価して-0.30から緩める。<br><br>2番, ルディドゥゲンジ, -0.10, 同距離1000m経験ありだが7着かつ後方寄り。位置取りで恩恵は薄い。<br><br>3番, アリアファブラ, +0.00, 中距離型で通過3-4の先行歴はあるが1000m直線のスピード適性は未知数、中立。<br><br>4番, リオクリスハーレー, +0.20, 芝1400mで通過3-4の先行力があり、1000m短縮でスピードが活きる位置取りが期待できる。<br><br>5番, ムーンシェイド, +0.10, 芝1400mで通過2-2の先行歴あり、短縮で前々に構えられる余地。<br><br>6番, マイエラ, -0.20, 前走逃げて失速し二の脚の持続力に不安、牡馬57kgも先行の重りになる。<br><br>7番, アイファーアイドル, +0.00, 長期休養明けで位置取りの手がかりに乏しく中立。<br><br>8番, ソレム, +0.00, 前走通過16-18の超後方。1000m直線で後方は最も届かない位置取りになり、+0.20から中立へ修正。<br><br>9番, セランディア, -0.10, ダートで先行しても失速、芝1200mでは後方。1000mで前を取れる根拠が薄い。<br><br>10番, ノーブルラホーヤ, +0.30, 4週前芝1200m通過1-1の逃げ3着で先行力は本物、1000m短縮も向く。<br><br>11番, ミヤザキムスメ, -0.20, ダートで後方凡走続き、芝1000mで前に行けるスピードが見えない。<br><br>12番, タツナナイロ, -0.20, 近走後方かつ地方芝含め位置を取れず、1000m直線で置かれる公算。<br><br>13番, ケイツーキップ, +0.00, 通過が後方寄りで先行力に欠け、展開の恩恵は付けにくく中立。<br><br>14番, ユイノササヤキ, +0.00, 芝1600mで一定の位置は取れるが1000mの絶対スピードは未知、中立。<br><br>15番, テラシエスタ, +0.00, 近走通過14-12・12-13の後方脚質で1000m直線では届きにくい位置取り、+0.20から中立へ修正。<br><br>16番, シルバーアックス, +0.40, 芝1200mで通過1-1の先行を連続、二の脚があり1000m短縮で前々に構えられる。外枠は先行力でカバー。<br><br>17番, リオハリソンメリー, +0.10, ダ1800m通過2-2の先行はあるが芝1000m未経験・外8枠で、+0.20から控えめに。<br><br>18番, ジョイアミーア, +0.60, 同距離1000mで3-4着（55.8-55.9）と前々で好走した実績、このレースの展開適性で隔絶。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.20, &quot;2&quot;: -0.10, &quot;3&quot;: 0.0, &quot;4&quot;: 0.20, &quot;5&quot;: 0.10, &quot;6&quot;: -0.20, &quot;7&quot;: 0.0, &quot;8&quot;: 0.0, &quot;9&quot;: -0.10, &quot;10&quot;: 0.30, &quot;11&quot;: -0.20, &quot;12&quot;: -0.20, &quot;13&quot;: 0.0, &quot;14&quot;: 0.0, &quot;15&quot;: 0.0, &quot;16&quot;: 0.40, &quot;17&quot;: 0.10, &quot;18&quot;: 0.60}, &quot;analysis_summary&quot;: &quot;批判者の『1000m直線は枠と先行力が主軸』を受け、後方脚質の8番・15番を+0.20から中立へ修正。同距離実績の18番を+0.60に引き上げ隔絶評価。先行力ある4番・5番を上げ、外枠先行の17番は距離未経験で控えめに。良馬場想定のため外偏重には振らず、位置取りを軸に据え直した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>体調派の観点で新潟11R・芝1000m直の全18頭を分析するね。斤量・馬体重の推移・出走間隔・叩き何走目か・調教内容に絞って、能力評価は土台チームに任せて自軸だけで補正するとよ。<br><br>（馬体重は当日未発表やけん増減ゼロ仮定。近走の推移パターンと調教の仕上がり、出走間隔で判断する。）<br><br>1番, ユニベールクイーン, -0.4, 前走470(-16)の大幅減の後2ヶ月の間隔で今回は坂路でなく美Wの5F68.9・馬なり。調教評価が「良化度合遅く」で調子横ばい、仕上がりに物足りなさが残る。<br><br>2番, ルディドゥゲンジ, -0.2, 前走から3ヶ月の休養明け。420前後の小柄な牝馬で坂路5F57.8と平凡、評価も「スピード乗らず」で叩き台の域。<br><br>3番, アリアファブラ, +0.3, 中3ヶ月だが坂路5F54.4の好時計、評価「火曜追いで仕上る」と仕上がり良好。410kg前後で安定した推移、直前できっちり負荷をかけられとる。<br><br>4番, リオクリスハーレー, +0.5, 調子↗の唯一の上昇馬。坂路5F55.3・1F12.0の鋭い伸び、評価「一息入るも仕上る」。中3ヶ月の間隔明けでも仕上がりに自信が持てる内容で、自軸ではっきり上げられる。<br><br>5番, ムーンシェイド, -0.3, 前走から2ヶ月、美W5F表記なく3F40.9とやや軽め。評価「気性難見せる」で当日のイレ込みリスク。仕上がりより気性面の不安が勝る。<br><br>6番, マイエラ, -0.7, 評価「細い仕上がりで」と明確な仕上がり不足の指摘。牡馬57kgを背負う中で馬体が緩い状態は自軸で強い減点。近走も474前後で増えとらず体は完成しきっとらん。<br><br>7番, アイファーアイドル, -0.5, 前走から実に12ヶ月ぶりの超長期休養明け。実戦感覚のブランクが大きく、坂路56.1で「乗り込み入念」だが叩き台の域を出ん。<br><br>8番, ソレム, -0.2, 前走から2ヶ月、キャリア1戦の底が見えん馬。美W5F66.7で「一応先着したが」と評価は歯切れ悪い。牝馬53kgは軽いが仕上がりの手応え不足。<br><br>9番, セランディア, -0.4, 前走8週前だが評価「単走で平凡」、美W5F67.7と目立たん。454(+8)と近走増加傾向で当日の絞り具合次第だが調教内容が推せん。<br><br>10番, ノーブルラホーヤ, +0.5, 前走4週前の3着で好調キープ、評価「好気配保つ」と仕上がり良好。ただ390kg前後の極小馬体で近走(-6)と目減り気味、消耗のリスクは残るが好気配の方を重く見る。<br><br>11番, ミヤザキムスメ, -0.6, 評価「良化気配なく」と明確に仕上がり不足。一杯に追って5F68.4・1F12.6と伸びず、394kgの小柄も相まって自軸で下げる。<br><br>12番, タツナナイロ, -0.2, 前走4週前が地方盛岡で長距離、434(+8)と増加。坂路5F54.0の時計は出とるが評価「末の粘りひと息」で決め手不足。<br><br>13番, ケイツーキップ, -0.4, 前走8週前。坂路一杯に追って1F13.8と最後止まり、評価「舌出す」は苦しさのサイン。392kgの小柄で当日の消耗も心配。<br><br>14番, ユイノササヤキ, -0.1, 前走から6ヶ月の休養明け(前々走で競走中止歴あり)。坂路5F53.2・評価「まずまず仕上がる」で仕上がり自体は及第だが、実戦ブランクを軽く引く。<br><br>15番, テラシエスタ, -0.3, 前走8週前。美W乗り込むも評価「平凡」、5F68.6と目立たん。460前後で安定はしとるが直前の動きに上昇気配が乏しい。<br><br>16番, シルバーアックス, +0.6, 前走3週前3着で連続好走中、評価「疲れなく」と連戦の疲れが出とらんのが最大の強み。坂路5F53.9のしっかりした時計、450(-10)は絞れた範囲。詰めて使う中で状態を保てとる点を自軸で高評価。<br><br>17番, リオハリソンメリー, -0.2, 前走から7ヶ月の長期休養明け・キャリア1戦。坂路5F53.7・1F12.5と動き良好で評価「細いが動き良く」だが、馬体は細めで実戦ブランクもあり相殺。<br><br>18番, ジョイアミーア, +0.4, 前走2ヶ月前だが近走の芝1000m連続好走で舞台実績十分、464前後で馬体安定。美W3F37.3・1F11.5で評価「動きキビキビ」・調子維持と仕上がり良好。詰めた間隔でないぶん余裕もある。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.4, &quot;2&quot;: -0.2, &quot;3&quot;: +0.3, &quot;4&quot;: +0.5, &quot;5&quot;: -0.3, &quot;6&quot;: -0.7, &quot;7&quot;: -0.5, &quot;8&quot;: -0.2, &quot;9&quot;: -0.4, &quot;10&quot;: +0.5, &quot;11&quot;: -0.6, &quot;12&quot;: -0.2, &quot;13&quot;: -0.4, &quot;14&quot;: -0.1, &quot;15&quot;: -0.3, &quot;16&quot;: +0.6, &quot;17&quot;: -0.2, &quot;18&quot;: +0.4}, &quot;analysis_summary&quot;: &quot;上位は仕上がりと状態の充実で16シルバーアックス(連戦でも疲れなく好調キープ)・4リオクリスハーレー(唯一の調子↗で坂路の伸び良好)・10ノーブルラホーヤ(好気配保つ・前走好走)。18ジョイアミーアと3アリアファブラも直前の動き良好で加点。下げは6マイエラ(細い仕上がり)・11ミヤザキムスメ(良化気配なく)・7アイファーアイドル(12ヶ月ぶり)。休養明け組(2・7・14・17)は実戦ブランクを引き、極小馬体の消耗リスク(10・11・13)も加味した。馬体重は未発表のため近走推移・出走間隔・調教内容で判断。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>芝1000m直線は当日の張り・テンションが効く舞台やが体調評価が時計偏重で舞台特性の重みが薄い。最大の穴は減量の解釈が馬でブレとる点：16番シルバーアックス(-10)は『絞れた』と好意的、10番ノーブルラホーヤ(-6)は消耗と不安、と逆向き。基準を揃えて再点検を。10番は390kg級の一貫した極小・消耗体質で+0.5が甘くないか(同値の4番リオクリスハーレー・16番と馬体の脆さで並ぶか)。18番ジョイアミーアは5F表記なしの終い重点調教なのに実績で『動きキビキビ』加点、同じ5F無しの5番ムーンシェイドは減点で調教基準がぶれとる。6番マイエラ-0.7は馬体468→474の充実・終い1F11.2と数字が評価文『細い』と逆向き、文字一語で最低値まで沈めるのは過剰では。8番ソレムはキャリア1戦2ヶ月明けの叩き2走目上積みをなぜ相殺できるか一言欲しい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>体調派として批判者の指摘を検証していく。時計偏重の指摘は妥当だが、芝1000m直線という舞台特性を踏まえて自軸を再点検する。<br><br>**減量の基準統一**（批判の核心）:<br>- 16番シルバーアックス: 450(-10)。ただし直前2走は460→460で、今回-10。前走3着好走時が-10なので絞れて調子キープ。追い切りも「疲れなく」53.9秒。好意的でよい。<br>- 10番ノーブルラホーヤ: 390(-6)。もともと382〜396の極小馬体。前走3着1:08.9(指数69.4)を390で好走。この馬にとって-6は普段の変動幅内で、消耗と断じるのは行き過ぎ。むしろ前走好走・追い切り「好気配保つ」で状態は保たれとる。批判を受け入れ、不安視は撤回して軽い+に修正する。ただし390級の絶対的な馬格の脆さは芝1000mの張り・パワー勝負では割引材料。差し引き中立寄りの小プラス。<br><br>**5F表記なしの調教基準統一**:<br>- 18番ジョイアミーア: 3F37.3-1F11.5「動きキビキビ」。終い重点で内容良好。同距離実績とも整合。<br>- 5番ムーンシェイド: 3F40.9-1F11.2「気性難見せる」。表記なしは同じでも評価文がマイナス。動きより気性面の不安。減点は調教内容そのもの由来なので基準ぶれではない。ただし過度に沈めない。<br><br>**6番マイエラの矛盾**: 468→474(+4)の充実、追い切り5F69.2-1F11.2は終い鋭い。評価文「細い仕上がりで」の一語だけで最低値は過剰。ただし前走16着・指数50.7と状態面の下降がある。文字一語での底打ちは撤回、控えめなマイナスに戻す。<br><br>**8番ソレム**: キャリア1戦・2ヶ月明けの叩き2走目。前走17着だが芝1600mで距離不問。追い切り「一応先着したが」は微妙、5F66.7-1F12.1で終い甘い。叩き上積みは見込めるが仕上がり自信までは持てず、中立近辺。<br><br>以下、再点検後の全馬P。<br><br>---<br><br>1番, ユニベールクイーン, -0.4, 前走470(-16)の大幅減で消耗、追い切り「良化度合遅く」5F68.9と仕上がり途上、状態面は明確に下降。<br><br>2番, ルディドゥゲンジ, -0.2, 422前後の小柄で、追い切り坂路「スピード乗らず」5F57.8と物足りず。芝1000m経験はあるが仕上がりに上向き感薄い。<br><br>3番, アリアファブラ, +0.2, 410級と小柄だが体重は安定、「火曜追いで仕上る」で当日の状態はまとまっとる。<br><br>4番, リオクリスハーレー, +0.2, 448(-14)は絞れた範囲、追い切り「一息入るも仕上る」で調子↗、状態は上向き。ただし小柄ではなく馬格は保つ。<br><br>5番, ムーンシェイド, -0.3, 追い切り「気性難見せる」で終い11.2は動くが精神面の不安が残る。458と馬格はあるが調子は横ばい。<br><br>6番, マイエラ, -0.4, 468→474と馬体は充実、追い切り1F11.2の伸びはあるが評価文「細い仕上がり」+前走大敗で状態面の下降感。文字一語で底までは沈めず控えめマイナス。<br><br>7番, アイファーアイドル, -0.2, 約12か月ぶりの長期休養明け、「乗り込み入念」だが実戦感覚のブランクは割引。<br><br>8番, ソレム, 0.0, キャリア1戦2ヶ月明けの叩き2走目で上積み余地はあるが、追い切り「一応先着したが」終い甘く仕上がり自信までは持てず中立。<br><br>9番, セランディア, -0.2, 追い切り「単走で平凡」5F67.7と物足りず、454前後で馬体は保つが状態の上向き感は乏しい。<br><br>10番, ノーブルラホーヤ, +0.2, 390(-6)は普段の変動幅内で消耗と断じるのは不当、前走3着好走+「好気配保つ」で状態は良好。ただし390級の絶対的な小柄さは芝直線のパワー勝負で割引材料。<br><br>11番, ミヤザキムスメ, -0.4, 394級の小柄、追い切り「良化気配なく」一杯に追って5F68.4と仕上がり明らかに不足。<br><br>12番, タツナナイロ, -0.2, 434で地方帰り、坂路一杯に追って「末の粘りひと息」と反応が鈍く上向き感薄い。<br><br>13番, ケイツーキップ, -0.3, 392(-8)と小柄で減、追い切り「舌出す」1F13.8と物足りず、仕上がり・気性面に不安。<br><br>14番, ユイノササヤキ, +0.2, 半年ぶりだが坂路5F53.2「まずまず仕上がる」馬なり余力で好時計、休み明けにしては動けとる。<br><br>15番, テラシエスタ, -0.2, 「乗り込むも平凡」で調子横ばい、460と馬格はあるが状態の上積み感なし。<br><br>16番, シルバーアックス, +0.5, 前走3着好走時と同様450(-10)で絞れて調子キープ、追い切り「疲れなく」5F53.9と好仕上がり、状態面ははっきり上位。<br><br>17番, リオハリソンメリー, +0.1, キャリア1戦半年ぶり、「細いが動き良く」で追い切りの動き自体は良好だが実戦間隔の長さは割引。<br><br>18番, ジョイアミーア, +0.4, 同距離連続好走で舞台適性ある馬が464前後で馬体安定、追い切り「動きキビキビ」終い11.5と状態良好、仕上がりに不安なし。<br><br>---</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟11R、芝1000m直線の3歳未勝利。血統派として全馬の適性を見ていくね。まず、この舞台は「純スプリンター向きの前傾ラップ・上がりの速さより持続力とゲートダッシュ」が問われる特殊コース。母系の短距離血・持続力タイプが浮上する。<br><br>**1番 ユニベールクイーン** 父ミスターメロディ（本邦短距離馬・アメリカンペイトリオット系のスピード型）は1000mへの短縮は血統的にプラス方向。母父ストロングリターンはマイル質でやや平凡。短縮○だが底力に欠ける。<br><br>**2番 ルディドゥゲンジ** 父ファインニードルはまさに短距離スプリント王、母父Heart&#x27;s Cryで折り合い面も無難。芝1000m実績（7着・上がり33.6）と血統が噛み合っており、この舞台適性は上位。<br><br>**3番 アリアファブラ** 父アルバートは長距離ステイヤー血統、母父ロードカナロアでスピードは補うが、配合の主眼は完全に中長距離。1000m直は血統的に最も向かない部類。<br><br>**4番 リオクリスハーレー** 父タニノフランケル（フランケル×中距離）、母父シニスターミニスターはダート短距離のスピード源。芝1000mの純スピード勝負では中途半端。<br><br>**5番 ムーンシェイド** 父ビッグアーサーはスプリンターズS馬、産駒は短距離で機能。母父タニノギムレットはやや中距離だが、父の短距離適性が前面に出れば1000mは合う。血統的短縮歓迎。<br><br>**6番 マイエラ** 父リオンディーズ（キングカメハメハ系・中距離マイル）、母父Bluegrass Catはやや距離融通。1000m直の一瞬の脚は血統本領ではない。<br><br>**7番 アイファーアイドル** 父パドトロワはスプリント〜短距離のスピード種牡馬、母父アサクサデンエンも短距離質。血統は明確に1000m向き。<br><br>**8番 ソレム** 父Sottsass（凱旋門賞馬・中長距離）、母父Gregorianも欧州中距離。血統は完全に中距離型で1000m直は最も適性外。<br><br>**9番 セランディア** 父ベンバトルは中距離、母父ダイワメジャーはマイル〜短距離のスピード源。母父の分でスピードはあるが直千の特化適性は限定的。<br><br>**10番 ノーブルラホーヤ** 父ダノンキングリー（ディープ系マイル）、母父タイキシャトルは短距離スプリント王。母父の短距離スピードが効く配合で、逃げ先行の脚質とも合致。1000m向き。<br><br>**11番 ミヤザキムスメ** 父ミスチヴィアスアレックスは米ダート短距離、母父アグネスタキオン。スピードはあるが芝直千の持続力質とはやや異質。<br><br>**12番 タツナナイロ** 父タツゴウゲキ、母父フリオーソ（ダート中心）。芝短距離のキレ質ではなくダート寄り、直千適性は薄い。<br><br>**13番 ケイツーキップ** 父ラブリーデイ（中距離）、母父ロジユニヴァースも中距離。血統的に1000m直は向かない。<br><br>**14番 ユイノササヤキ** 父オルフェーヴル（ステイヤー・底力）、母父スクリーンヒーロー（中長距離）。血統は完全に中長距離型で直千は最も不向き。<br><br>**15番 テラシエスタ** 父ジャスタウェイ（マイル〜中距離）、母父エンパイアメーカー（米中距離）。1000m直のスピード特化には血統が長すぎる。<br><br>**16番 シルバーアックス** 父シスキン（英2000ギニー馬・マイラー）、母父ディープインパクト。マイル質でスピードはあるが、逃げて粘る近走内容は好感。母父のキレも効く。直千対応は可。<br><br>**17番 リオハリソンメリー** 父タニノフランケル、母父ネオユニヴァース（中距離）。配合は中距離マイル質で直千の特化スピードは薄い。<br><br>**18番 ジョイアミーア** 父モズアスコット（安田記念・フェブラリー勝ちのスピード万能）、母父ネオユニヴァース。父のスピードと、芝1000m2走（4着・3着、上がり32秒台）が完璧に噛み合う。血統×舞台適性はこのメンバー最上位。<br><br>---<br><br>ステップ1: 全馬評価<br><br>1番, ユニベールクイーン, +0.3, 父ミスターメロディの短距離スピードで1000m短縮は血統的プラス、母父はマイル質でやや平凡。<br><br>2番, ルディドゥゲンジ, +0.6, 父ファインニードルは短距離スプリント王で母父Heart&#x27;s Cryも無難、直千実績と血統が明確に噛み合う。<br><br>3番, アリアファブラ, -0.6, 父アルバートは長距離ステイヤー血統で配合の主眼が中長距離、1000m直は最も向かない部類。<br><br>4番, リオクリスハーレー, -0.1, 父タニノフランケルは中距離質で母父はダート短距離、芝の純スピード直千では中途半端。<br><br>5番, ムーンシェイド, +0.4, 父ビッグアーサーはスプリンターズS馬で産駒は短距離機能、短縮歓迎の配合。<br><br>6番, マイエラ, -0.3, 父リオンディーズは中距離マイル質で一瞬の脚を問う直千は血統本領でない。<br><br>7番, アイファーアイドル, +0.4, 父パドトロワ・母父アサクサデンエンともに短距離質で血統は明確に1000m向き。<br><br>8番, ソレム, -0.7, 父Sottsass・母父Gregorianともに欧州中長距離で血統は完全に中距離型、直千は最も適性外。<br><br>9番, セランディア, +0.1, 父ベンバトルは中距離だが母父ダイワメジャーの短距離スピードで最低限のスピードは補える。<br><br>10番, ノーブルラホーヤ, +0.4, 母父タイキシャトルの短距離スピードが効く配合で逃げ先行の脚質とも合致、1000m向き。<br><br>11番, ミヤザキムスメ, -0.1, 父ミスチヴィアスアレックスは米ダート短距離質で芝直千の持続力質とはやや異なる。<br><br>12番, タツナナイロ, -0.3, 父タツゴウゲキ・母父フリオーソでダート寄りの血統、芝短距離キレ質ではなく直千適性は薄い。<br><br>13番, ケイツーキップ, -0.4, 父ラブリーデイ・母父ロジユニヴァースともに中距離血統で1000m直は向かない。<br><br>14番, ユイノササヤキ, -0.7, 父オルフェーヴル・母父スクリーンヒーローの中長距離配合で底力型、直千は最も不向き。<br><br>15番, テラシエスタ, -0.4, 父ジャスタウェイ・母父エンパイアメーカーで中距離質、1000m特化のスピードには血統が長い。<br><br>16番, シルバーアックス, +0.3, 父シスキンはマイラーで母父ディープ、マイル質ながら近走の逃げ粘りと母父のキレで直千対応は可。<br><br>17番, リオハリソンメリー, -0.3, 父タニノフランケル・母父ネオユニヴァースで中距離マイル質、直千の特化スピードは薄い。<br><br>18番, ジョイアミーア, +0.7, 父モズアスコットのスピード万能血と直千2走(上がり32秒台)が完璧に噛み合い、血統×舞台適性はメンバー最上位。<br><br>ステップ2: JSON<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.6, &quot;3&quot;: -0.6, &quot;4&quot;: -0.1, &quot;5&quot;: 0.4, &quot;6&quot;: -0.3, &quot;7&quot;: 0.4, &quot;8&quot;: -0.7, &quot;9&quot;: 0.1, &quot;10&quot;: 0.4, &quot;11&quot;: -0.1, &quot;12&quot;: -0.3, &quot;13&quot;: -0.4, &quot;14&quot;: -0.7, &quot;15&quot;: -0.4, &quot;16&quot;: 0.3, &quot;17&quot;: -0.3, &quot;18&quot;: 0.7}, &quot;analysis_summary&quot;: &quot;芝1000m直線は純スプリント・持続力とゲートダッシュが問われる特殊舞台。父ファインニードル(2)・パドトロワ(7)・ビッグアーサー(5)・モズアスコット(18)や母父タイキシャトル(10)など短距離血が浮上。18ジョイアミーアは父のスピード万能血と直千2走の上がり32秒台が完璧に噛み合い血統×舞台適性で最上位、2ルディドゥゲンジも短距離王ファインニードルで上位。逆に父Sottsass(8)・オルフェーヴル(14)・アルバート(3)の中長距離ステイヤー配合は直千で最も不向き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>血統タイプの設計図という軸に対し、3点で実績混入の疑い。(1)18番ジョイアミーア(+0.7)&gt;2番ルディドゥゲンジ(+0.6): 純短距離血統ならファインニードル(スプリントGⅠ)の2番が上のはずで、モズアスコット×ネオユニの18番を上に置くのは直千実績で持ち上げとらんか。(2)7番アイファーアイドル(+0.4)=5番ムーンシェイド(+0.4): 父パドトロワと父ビッグアーサー(スプリントGⅠ馬)ではスプリント血統の格が違い、同値の血統根拠が薄い。(3)16番シルバーアックス(+0.3): 自ら『マイル質』と認めながら『近走の逃げ粘り』という実績で+に持ち上げ、軸ブレ。加えて10番ノーブルラホーヤ(+0.4)は父ダノンキングリー(マイル〜中距離)を評価から落として母父タイキシャトルだけ見とらんか。9番セランディアの母父ダイワメジャー救済と非対称。血統タイプの純度・格で付値が決まるべき箇所に実績が混入しとるか点検を。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>血統派として、批判者の指摘を検証するね。これは血統タイプの純度・格で付値が決まるべき軸で、実績混入を疑われとる。1つずつ点検する。<br><br>**指摘(1) 18番&gt;2番の逆転**：これは正当な指摘。純血統の設計図で言えば、ファインニードル（スプリントGⅠ・直千質の申し子）は直千血統として2番が最上位級。18番モズアスコット（安田記念馬でマイル質）×母父ネオユニ（中距離）は、血統タイプだけ見れば「短距離もこなすスピード型」止まりで、直千特化の純度ではファインニードルに劣る。+0.7 は直千2走の実績（上がり32秒台）に引っ張られとった。18番を +0.4 に下げ、2番の +0.6 は据え置き、血統純度で2番を上に戻す。<br><br>**指摘(2) 7番=5番の同値**：正当。父ビッグアーサー（スプリンターズS馬、産駒は完全に短距離機能）と父パドトロワ（重賞スプリンターだがGⅠ級ではない）では、スプリント血統の格が違う。5番を +0.5 に上げ、7番は +0.4 据え置きで格差を付ける。母父もタニノギムレット（5番）vs アサクサデンエン（7番）で大差なし、父の格差を反映。<br><br>**指摘(3) 16番の軸ブレ**：正当。自ら「マイル質」と認めながら実績（近走逃げ粘り）で持ち上げとった。父シスキン（アイリッシュ2000ギニー馬でマイラー）、母父ディープ。血統純度では直千特化ではない。実績分を剥がして +0.1 に下げる。<br><br>**指摘(追加) 10番の非対称**：正当。父ダノンキングリー（マイル〜中距離、天皇賞秋・安田記念級）を落として母父タイキシャトルだけ見とった。9番で母父ダイワメジャー（父ベンバトル中距離）を救済したのと同じ論法なら、10番も父マイル質を織り込むべき。10番を +0.2 に下げ、9番 +0.1 と整合させる。<br><br>以下、見直し後の全馬。<br><br>---<br><br>1番, ユニベールクイーン, +0.3, 父ミスターメロディの短距離スピードで1000m短縮は血統的プラス、母父ストロングリターンはマイル質でやや平凡。<br><br>2番, ルディドゥゲンジ, +0.6, 父ファインニードルは直千質の申し子たるスプリントGⅠ馬、血統純度では当メンバーで最上位級。<br><br>3番, アリアファブラ, -0.6, 父アルバートは長距離ステイヤー血統で配合の主眼が中長距離、1000m直は最も向かない部類。<br><br>4番, リオクリスハーレー, -0.1, 父タニノフランケルは中距離質で母父はダート短距離、芝の純スピード直千では中途半端。<br><br>5番, ムーンシェイド, +0.5, 父ビッグアーサーはスプリンターズS馬で産駒は純短距離機能、血統の格でパドトロワ勢の一段上。<br><br>6番, マイエラ, -0.3, 父リオンディーズは中距離マイル質で一瞬の脚を問う直千は血統本領でない。<br><br>7番, アイファーアイドル, +0.4, 父パドトロワ・母父アサクサデンエンともに短距離質で1000m向きだが、GⅠ級スプリント血統には一枚劣る。<br><br>8番, ソレム, -0.7, 父Sottsass・母父Gregorianともに欧州中長距離で血統は完全に中距離型、直千は最も適性外。<br><br>9番, セランディア, +0.1, 父ベンバトルは中距離だが母父ダイワメジャーの短距離スピードで最低限のスピードは補える。<br><br>10番, ノーブルラホーヤ, +0.2, 母父タイキシャトルの短距離スピードは効くが父ダノンキングリーはマイル〜中距離質で、直千純度は中庸。<br><br>11番, ミヤザキムスメ, -0.1, 父ミスチヴィアスアレックスは米ダート短距離質で芝直千の持続力質とはやや異なる。<br><br>12番, タツナナイロ, -0.3, 父タツゴウゲキ・母父フリオーソでダート寄りの血統、芝短距離キレ質ではなく直千適性は薄い。<br><br>13番, ケイツーキップ, -0.4, 父ラブリーデイ・母父ロジユニヴァースともに中距離血統で1000m直は向かない。<br><br>14番, ユイノササヤキ, -0.7, 父オルフェーヴル・母父スクリーンヒーローの中長距離配合で底力型、直千は最も不向き。<br><br>15番, テラシエスタ, -0.4, 父ジャスタウェイ・母父エンパイアメーカーで中距離質、1000m特化のスピードには血統が長い。<br><br>16番, シルバーアックス, +0.1, 父シスキンはマイラー・母父ディープで血統純度は直千特化ではなく、実績分を剥がせば軽微なプラス止まり。<br><br>17番, リオハリソンメリー, -0.3, 父タニノフランケル・母父ネオユニヴァースで中距離マイル質、直千の特化スピードは薄い。<br><br>18番, ジョイアミーア, +0.4, 父モズアスコットのマイル寄りスピード×母父ネオユニで短距離対応型ではあるが、ファインニードルほどの直千純度はなく実績分を剥がして下方修正。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.6, &quot;3&quot;: -0.6, &quot;4&quot;: -0.1, &quot;5&quot;: 0.5, &quot;6&quot;: -0.3, &quot;7&quot;: 0.4, &quot;8&quot;: -0.7, &quot;9&quot;: 0.1, &quot;10&quot;: 0.2, &quot;11&quot;: -0.1, &quot;12&quot;: -0.3, &quot;13&quot;: -0.4, &quot;14&quot;: -0.7, &quot;15&quot;: -0.4, &quot;16&quot;: 0.1, &quot;17&quot;: -0.3, &quot;18&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;批判4点を全て妥当と判断し血統純度基準で再配置。18番は直千実績分を剥がし+0.7→+0.4、純短距離血統の2番(+0.6)を上位に戻した。5番はビッグアーサー(スプリントGⅠ)の格で+0.4→+0.5、パドトロワの7番(+0.4)と差別化。16番はマイル質を認めた通り実績分を剥がし+0.3→+0.1。10番は父ダノンキングリーのマイル質を織り込み+0.4→+0.2で9番の母父救済と対称化。中長距離型(3・8・14等)のマイナスは血統そのままで据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟11R、陣営派として全馬を見たばい。夏の新潟直千の未勝利戦、騎手の格と継続騎乗、厩舎の色で差を付けるね。<br><br>1番, ユニベールクイーン, -0.3, 杉原誠人は地力の騎手やが直千の定評は薄く、武市厩舎も特にこの条件で押せる材料なし。乗り替わりで手の内も浅い。<br><br>2番, ルディドゥゲンジ, -0.2, 嶋田純次への乗り替わり、蛯名利弘厩舎。同距離経験はあるが陣営で強く押せる格ではない。<br><br>3番, アリアファブラ, +0.5, 斎藤新は勢いある実力騎手で直千も差せる腕、尾関厩舎も堅実。陣営の格ははっきり上位。<br><br>4番, リオクリスハーレー, +0.3, 荻野極が継続騎乗で4戦手綱を取り続けとる。手の内を知る継続騎乗は信頼材料。<br><br>5番, ムーンシェイド, +0.2, 木幡巧也は新馬から乗った馬で今回また戻る形、乗り馴れた背中。牧厩舎は特筆なし。<br><br>6番, マイエラ, +0.2, 小崎綾也は関西の中堅で直線競馬もこなす、蛯名正義厩舎の格は一定の裏付け。<br><br>7番, アイファーアイドル, +0.4, 松岡正海はベテランで新潟直千の乗り味に定評、久々の実戦を託す陣営の意図も感じる。蛯名利弘厩舎。<br><br>8番, ソレム, +0.2, 石神深道は減量明けの若手で伸びしろ枠、稲垣厩舎。格としては中位。<br><br>9番, セランディア, 0.0, 菊沢一樹は無難だが直千で特に上げ下げする材料が乏しい。小野厩舎も中立。<br><br>10番, ノーブルラホーヤ, 0.0, 石田拓郎の継続騎乗で前走3着とコンビは機能しとるが、騎手の格は減量頼み。深山厩舎で中立。<br><br>11番, ミヤザキムスメ, -0.2, 柴田大知への乗り替わりで格は担保されるが、この馬でコンビの手応えは薄く陣営の勝負気配も乏しい。<br><br>12番, タツナナイロ, -0.3, 野中悠太郎に乗り替わり、地方帰りで的場厩舎。陣営として押す材料がなく格も中位以下。<br><br>13番, ケイツーキップ, -0.2, 水沼元輝への乗り替わり。清水厩舎ともに直千で強調できる裏付けが薄い。<br><br>14番, ユイノササヤキ, +0.2, 木幡初也は堅実、深山厩舎。中止明けを任せる形で格は中立やや上。<br><br>15番, テラシエスタ, -0.2, 佐藤翔馬は若手で直千の定評は薄く、黒岩厩舎も特にこの条件で押せず。<br><br>16番, シルバーアックス, +0.8, 横山典弘が手綱を取る点は陣営の最大の後押し。名手の直線競馬・逃げの手綱は隔絶した信頼材料で、前走3着からの継続的なコンビ。<br><br>17番, リオハリソンメリー, +0.3, 上里直汰は若手だが加藤征弘厩舎という名門の後ろ盾、新味を試す一戦の格。<br><br>18番, ジョイアミーア, +0.5, 武藤雅は勝負駆けを任せられる実力騎手、高柳瑞樹厩舎。直千で好走続きの馬にトップ級を配する陣営の勝負気配。<br><br>陣営で隔絶して抜けるのは16番シルバーアックスの横山典弘。次いで3番斎藤新・18番武藤雅・7番松岡正海の格付けが上位。継続騎乗の4番・10番は手の内を知る安心感。乗り替わりで押せん馬・地方帰りの馬は軽く引いた。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.3, &quot;2&quot;: -0.2, &quot;3&quot;: 0.5, &quot;4&quot;: 0.3, &quot;5&quot;: 0.2, &quot;6&quot;: 0.2, &quot;7&quot;: 0.4, &quot;8&quot;: 0.2, &quot;9&quot;: 0.0, &quot;10&quot;: 0.0, &quot;11&quot;: -0.2, &quot;12&quot;: -0.3, &quot;13&quot;: -0.2, &quot;14&quot;: 0.2, &quot;15&quot;: -0.2, &quot;16&quot;: 0.8, &quot;17&quot;: 0.3, &quot;18&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;陣営派の最大の後押しは16番シルバーアックスに乗る横山典弘。名手の直線競馬・逃げの手綱は隔絶した信頼材料。次いで3番斎藤新・18番武藤雅・7番松岡正海の騎手の格が上位で、継続騎乗の4番荻野極・10番石田拓郎は手の内を知る安心感。乗り替わりで陣営が押せない1番・12番、地方帰り12番、直千定評の薄い若手は軽く減点。全体に格差は騎手軸で付け、厩舎は名門16以外は補助的に見た。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>18番ジョイアミーアは舟山(減量)→武藤雅への乗り替わりで勝負駆け、あなたの枠組みなら陣営の意思表示として最上位級。16番シルバーアックス(+0.8)との差0.3が横山の格だけで説明つくか。7番アイファーアイドルの+0.4は1年休み明け2戦2桁着で、松岡の名前の格を拾いすぎでは。10番ノーブルラホーヤ0.0は石田拓郎継続コンビが前走3着で機能、4番リオクリスハーレー(荻野極継続+0.3)と扱いが不整合。継続騎乗を軸に据える一貫性を再点検。17番リオハリソンメリー+0.3は名門でも新味試しの若手起用=勝負気配薄の減点材料にもなり得る。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を陣営軸で検証したばい。要点ごとに見ていくね。<br><br>**18番と16番の差（横山の格だけで0.3説明つくか）**<br>妥当な指摘。18番は舟山(減量)→武藤雅への乗り替わりで、直千で4着・3着と走っとる馬にトップ級を配する明確な勝負気配。陣営の意思表示としては16番と遜色ない。16番も横山典弘の継続騎乗という隔絶した後押しやが、+0.8 と +0.5 の差は横山の名前を拾いすぎ。18番を +0.6 に上げて詰める。<br><br>**7番アイファーアイドルの+0.4（松岡の名前拾いすぎ）**<br>これは認める。松岡正海のベテランの格は事実やが、1年3ヶ月ぶりの復帰戦で、それ自体は陣営が「これで勝負」という強い気配とは言い切れん。「久々を託す意図」は自軸で語れる材料が薄い。名前の格に寄りすぎとった。+0.4 → +0.2 に下げる。<br><br>**10番と4番の継続騎乗の扱いの不整合**<br>最も刺さった指摘。4番は荻野極が4戦継続で +0.3、10番は石田拓郎が継続で前走3着とコンビ機能しとるのに 0.0。継続騎乗を信頼材料に据えるなら不整合。石田は減量頼みとはいえ、前走3着で手の内を知るコンビは自軸で拾うべき。10番を +0.2 に上げて一貫性を取る。<br><br>**17番リオハリソンメリー+0.3（名門でも新味試しの若手起用は勝負気配薄）**<br>これも一理ある。加藤征弘厩舎の格は後ろ盾やが、上里直汰の若手起用は「勝負駆けの一戦」とは逆向き。名門の格と勝負気配薄が相殺する。+0.3 → +0.1 に下げる。<br><br>継続騎乗の一貫性を軸に、名前の格への上乗せを削る方向で全体を整えたばい。<br><br>---<br><br>1番, ユニベールクイーン, -0.3, 杉原誠人は地力の騎手やが直千の定評は薄く、武市厩舎も特にこの条件で押せる材料なし。乗り替わりで手の内も浅い。<br><br>2番, ルディドゥゲンジ, -0.2, 嶋田純次への乗り替わり、蛯名利弘厩舎。同距離経験はあるが陣営で強く押せる格ではない。<br><br>3番, アリアファブラ, +0.5, 斎藤新は勢いある実力騎手で直千も差せる腕、尾関厩舎も堅実。陣営の格ははっきり上位。<br><br>4番, リオクリスハーレー, +0.3, 荻野極が継続騎乗で4戦手綱を取り続けとる。手の内を知る継続騎乗は信頼材料。<br><br>5番, ムーンシェイド, +0.2, 木幡巧也は新馬から乗った馬で今回また戻る形、乗り馴れた背中。牧厩舎は特筆なし。<br><br>6番, マイエラ, +0.2, 小崎綾也は関西の中堅で直線競馬もこなす、蛯名正義厩舎の格は一定の裏付け。<br><br>7番, アイファーアイドル, +0.2, 松岡正海はベテランだが1年3ヶ月ぶりの復帰戦で、名前の格ほど陣営の勝負気配は強くない。蛯名利弘厩舎。<br><br>8番, ソレム, +0.2, 石神深道は減量明けの若手で伸びしろ枠、稲垣厩舎。格としては中位。<br><br>9番, セランディア, 0.0, 菊沢一樹は無難だが直千で特に上げ下げする材料が乏しい。小野厩舎も中立。<br><br>10番, ノーブルラホーヤ, +0.2, 石田拓郎の継続騎乗で前走3着とコンビは機能。減量頼みだが手の内を知る継続は自軸で拾う。深山厩舎。<br><br>11番, ミヤザキムスメ, -0.2, 柴田大知への乗り替わりで格は担保されるが、この馬でコンビの手応えは薄く陣営の勝負気配も乏しい。<br><br>12番, タツナナイロ, -0.3, 野中悠太郎に乗り替わり、地方帰りで的場厩舎。陣営として押す材料がなく格も中位以下。<br><br>13番, ケイツーキップ, -0.2, 水沼元輝への乗り替わり。清水厩舎ともに直千で強調できる裏付けが薄い。<br><br>14番, ユイノササヤキ, +0.2, 木幡初也は堅実、深山厩舎。中止明けを任せる形で格は中立やや上。<br><br>15番, テラシエスタ, -0.2, 佐藤翔馬は若手で直千の定評は薄く、黒岩厩舎も特にこの条件で押せず。<br><br>16番, シルバーアックス, +0.8, 横山典弘が手綱を取る点は陣営の最大の後押し。名手の直線競馬・逃げの手綱は隔絶した信頼材料で、前走3着からの継続的なコンビ。<br><br>17番, リオハリソンメリー, +0.1, 加藤征弘厩舎という名門の後ろ盾はあるが、上里直汰の若手起用は勝負駆けとは逆向きで格と気配が相殺する。<br><br>18番, ジョイアミーア, +0.6, 舟山(減量)→武藤雅への乗り替わりで、直千好走続きの馬にトップ級を配する明確な勝負気配。陣営の意思表示は16番に迫る。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.3, &quot;2&quot;: -0.2, &quot;3&quot;: 0.5, &quot;4&quot;: 0.3, &quot;5&quot;: 0.2, &quot;6&quot;: 0.2, &quot;7&quot;: 0.2, &quot;8&quot;: 0.2, &quot;9&quot;: 0.0, &quot;10&quot;: 0.2, &quot;11&quot;: -0.2, &quot;12&quot;: -0.3, &quot;13&quot;: -0.2, &quot;14&quot;: 0.2, &quot;15&quot;: -0.2, &quot;16&quot;: 0.8, &quot;17&quot;: 0.1, &quot;18&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;継続騎乗の一貫性の指摘を受け10番を0.0→+0.2に修正(石田継続コンビ機能を4番荻野継続と揃える)。名前の格への上乗せを削り7番を+0.4→+0.2(松岡は1年3ヶ月ぶり復帰で勝負気配薄)、17番を+0.3→+0.1(名門でも若手新味起用は勝負駆けと逆向き)。18番の武藤雅への勝負乗り替わりを+0.5→+0.6に上げ16番横山との差を縮めた(横山の名前だけで0.3の差は過大)。16番は横山の隔絶した後押しを維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者として、暫定スコアを検討するね。まずこのレースの本質を押さえるっちゃん。**新潟芝1000mの直線競馬**で、超高速決着・前に行った馬が止まらん・上がりの速さと先行力が問われるレースやけん、そこを軸に見ていくとよ。<br><br>## 合成スコアへの疑問<br><br>**18番ジョイアミーアが1位(27.5)は妥当。むしろもっと突き放していい。**<br>このメンバーで**新潟芝1000mを2走(4着・3着)経験しとる唯一の馬**で、しかもタイム内容が抜群っちゃん。前走55.8・上がり32.8、前々走55.9・上がり33.1(スピード指数74.7はメンバー最上位)。直千は経験と適性が全て。ここは相当な強調材料やけん、1位は動かん。<br><br>**16番シルバーアックス(24.8)がやや過大評価かも。**<br>近走3-2-5着の安定感と横山典弘、前走スピード指数72.4は確かに立派っちゃん。ただ**全て通過1-1のハナ逃げで、上がり35.8〜35.4**。直線1000mは全馬がスタートから全開になるけん、いつもの単騎逃げが取れず、上がりの絶対値も18番より1秒近く遅い。**芝1000m直の経験はゼロ**で、コーナーの無い忙しい流れが向くかは未知数。24.8はやや買われすぎと見て、少し引くとよ。<br><br>**10番ノーブルラホーヤ(20.5)は据え置きでよか、が3番手争いの本線。**<br>前走福島芝1200m通過1-1で3着、スピード指数69.4、東京芝1400mで上がり34.3を使える脚がある。斤量52kgも魅力。ただ馬体390kgと小柄で、直千のパワー勝負でどう出るか。16番と10番の3番手争いは僅差やね。<br><br>**4番リオクリスハーレー(14.7)と5番ムーンシェイド(12.5)は逆でもよかくらい。**<br>4番は前走芝1400m7着(指数66.3)、調教↗で上向き。ただ**通過3-4の先行はできるが直千の実績なし**、成績も5戦して着差が縮まらん。5番は前走13着で崩れたが、その前の福島芝1200m指数66.2、新馬で上がり34.4を持っとる。ただ気性難の調教評価が直千では致命的になりうる。両馬とも決め手不足で、この2頭が上位3頭に食い込むのは考えにくか。<br><br>## 私の確定点数<br><br>18番, ジョイアミーア, 30%, 唯一の芝1000m直経験馬で2走とも掲示板圏内。前々走指数74.7・上がり32.8はメンバー最上位で、直千適性が抜けとる。<br><br>16番, シルバーアックス, 22%, 近走3-2着の安定感と横山典弘は強いが、単騎逃げ前提の脚質で直千未経験。上がりの絶対値も18番に劣り、やや過大評価と見て少し引いた。<br><br>10番, ノーブルラホーヤ, 20%, 前走先行3着・指数69.4に52kgの軽ハンデ。上がりも使える器用さがあり、16番との3番手争いは僅差で拾う価値十分。<br><br>4番, リオクリスハーレー, 13%, 前走芝1400m指数66.3で調教も上向き。ただ直千実績なく決め手不足で、上位3頭には一歩届かんと見る。<br><br>5番, ムーンシェイド, 11%, 過去に上がり34.4・指数66.2の裏付けはあるが、前走大敗と気性難の調教評価が直千では不安。<br><br>```json<br>{&quot;score&quot;: {&quot;18&quot;: 30, &quot;16&quot;: 22, &quot;10&quot;: 20, &quot;4&quot;: 13, &quot;5&quot;: 11}, &quot;analysis_summary&quot;: &quot;18番ジョイアミーアは唯一の芝1000m直経験馬(2走とも掲示板・指数74.7上がり32.8が最上位)で1位を強化。16番シルバーアックスは近走安定も単騎逃げ前提の脚質で直千未経験・上がり絶対値が18番に劣るためやや過大評価と見て24.8→22に減。10番ノーブルラホーヤは先行力+52kg+使える上がりで16番との3番手争い本線と評価。4番・5番は直千実績と決め手不足で上位3頭には届かずと判断。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>11111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟11R 芝1000m直線、白紙の目で全馬を見た総合判断ばい。<br><br>この舞台は「テンの速さ」が命の特殊コース。距離短縮組と、実際に1000m直で走った実績馬を重く見た。18頭立ての大外枠でも直線一本やけん枠の有利不利は他コースより小さいと判断した。<br><br>10番, ノーブルラホーヤ, 15%, 4週前福島芝1200で逃げて3着・スピード指数69.4と直近が抜けて良い。今回200m短縮＋52kg軽量、調教「好気配保つ」で前々の脚質がこの舞台に合う。<br><br>18番, ジョイアミーア, 14%, この1000m直を2回走って3着・4着、指数74.7は今回メンバー最高。上がり32.8-33.1の決め手があり同距離実績で信頼度が高い。<br><br>16番, シルバーアックス, 13%, 3週前福島芝1200で逃げて指数72.4、前走2着と好調持続。横典で先行力あり、短縮でテンに絡めれば粘り込み十分。<br><br>4番, リオクリスハーレー, 8%, 前走東京芝1400で指数66.3と地力上位、荻野極継続騎乗。距離短縮でスピードを活かせる馬体もある。<br><br>5番, ムーンシェイド, 7%, 福島芝1200で指数66.2、ビッグアーサー産駒でスプリント向き血統。ただ気性難の調教評価がマイナス。<br><br>2番, ルディドゥゲンジ, 6%, 前走この1000m直で7着だが上がり33.6の指数64.0、同距離経験あり。小柄で決め手型。<br><br>3番, アリアファブラ, 5%, 新馬の指数71.4は光るが距離延長続きで惨敗、初の超短距離で一変あるか未知数。調教は仕上がり良好。<br><br>12番, タツナナイロ, 4%, 地方帰り、芝短距離実績は乏しいが調教時計54.0と良い。地力は下位。<br><br>14番, ユイノササヤキ, 4%, 芝1600の指数62.1は評価できるが超短距離は未経験、調教まずまず。<br><br>6番, マイエラ, 4%, 新馬の指数58.8はあるが近走の芝1400で崩れ、細い仕上がりの調教評価が不安。<br><br>15番, テラシエスタ, 3%, 前走ダート指数54.6、芝は毎回後方で末脚型でこの舞台は忙しい。<br><br>9番, セランディア, 3%, 逃げても差されるレースが続き指数も伸びず、調教も単走で平凡。<br><br>1番, ユニベールクイーン, 3%, 前走新潟芝1200で11着・馬体大幅減、地力が足りず調教も良化遅い。<br><br>13番, ケイツーキップ, 2%, 一度指数66.2あるが前走18着と大敗、安定感を欠く。<br><br>8番, ソレム, 2%, 1戦のみで芝1600大敗、超短距離は初で判断材料が乏しい。<br><br>7番, アイファーアイドル, 2%, 12か月ぶりの実戦、休養明けで仕上がり途上、地力も下位。<br><br>17番, リオハリソンメリー, 2%, 1戦のみでダート1800大敗、芝短距離は未経験で見通し立たず。<br><br>11番, ミヤザキムスメ, 1%, ダート大敗続きで指数が極端に低く、調教も良化気配なし。<br><br>```json<br>{&quot;score&quot;: {&quot;10&quot;: 15, &quot;18&quot;: 14, &quot;16&quot;: 13, &quot;4&quot;: 8, &quot;5&quot;: 7, &quot;2&quot;: 6, &quot;3&quot;: 5, &quot;12&quot;: 4, &quot;14&quot;: 4, &quot;6&quot;: 4, &quot;15&quot;: 3, &quot;9&quot;: 3, &quot;1&quot;: 3, &quot;13&quot;: 2, &quot;8&quot;: 2, &quot;7&quot;: 2, &quot;17&quot;: 2, &quot;11&quot;: 1}, &quot;analysis_summary&quot;: &quot;芝1000m直の適性を軸に総合判断。近走スピード指数・テンの速さ・同距離実績が揃う10番ノーブルラホーヤ、18番ジョイアミーア、16番シルバーアックスを上位。距離短縮でスピードを活かせる4番・5番が続く。距離延長続きで超短距離が未知の3番、休養明けや地方帰り、ダート大敗続きの下位馬は低評価。&quot;}<br>```<br><br>11111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
