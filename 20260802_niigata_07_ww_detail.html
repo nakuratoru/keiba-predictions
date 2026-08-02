@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第26回アイビスサマーダッシュ 2026/08/02 NIIGATA 7R (08/02 15:18 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第26回アイビスサマーダッシュ 2026/08/02 NIIGATA 7R (08/02 15:18 予想)</h1>
+  <div class="meta">芝1000m（直） | 良 | 17頭立て | 2回 新潟 4日目 サラ系3歳以上 オープン （国際）（特指） 別定 17頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">10. エコロレジーナ</div>
+      <div class="pick-jockey">菊沢 一樹 / 菊沢 隆徳</div>
+    </div>
+    <div class="pick-prob">12.1%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">6. ピューロマジック</div>
+      <div class="pick-jockey">田辺 裕信 / 安田 翔伍</div>
+    </div>
+    <div class="pick-prob">11.9%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">16. アメリカンステージ</div>
+      <div class="pick-jockey">戸崎 圭太 / 矢作 芳人</div>
+    </div>
+    <div class="pick-prob">11.3%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">17頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ウイングレイテスト</td><td>牡9</td><td>58</td><td>松岡 正海</td><td>畠山 吉宏</td><td>スクリーンヒーロー</td><td>サクラユタカオー</td><td>504(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">デュガ</td><td>せん7</td><td>57</td><td>江田 照男</td><td>森 秀行</td><td>Practical Joke</td><td>Canadian Frontier</td><td>480(-10)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">ミカッテヨンデイイ</td><td>牝6</td><td>55</td><td>小林 脩斗</td><td>室井 潔</td><td>イスラボニータ</td><td>ステイゴールド</td><td>434(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">カウスリップ</td><td>牝4</td><td>55</td><td>津村 明秀</td><td>中舘 英二</td><td>ロードカナロア</td><td>Sea The Stars</td><td>556(+16)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">ベルギューン</td><td>牝4</td><td>55</td><td>菱田 裕二</td><td>牧浦 充徳</td><td>ナダル</td><td>ヴァーミリアン</td><td>500(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">ピューロマジック</td><td>牝5</td><td>56</td><td>田辺 裕信</td><td>安田 翔伍</td><td>アジアエクスプレス</td><td>ディープインパクト</td><td>460(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">バグラダス</td><td>牡6</td><td>57</td><td>杉原 誠人</td><td>嘉藤 貴行</td><td>マジェスティックウォリアー</td><td>ディープインパクト</td><td>488(-2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">シュラフ</td><td>牝4</td><td>55</td><td>嶋田 純次</td><td>佐藤 吉勝</td><td>フォーウィールドライブ</td><td>マヤノトップガン</td><td>440(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">カウンターセブン</td><td>牡4</td><td>57</td><td>三浦 皇成</td><td>村田 一誠</td><td>ロジャーバローズ</td><td>War Front</td><td>510(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">エコロレジーナ</td><td>牝6</td><td>55</td><td>菊沢 一樹</td><td>菊沢 隆徳</td><td>アメリカンペイトリオット</td><td>オルフェーヴル</td><td>504(0)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">ロードトレイル</td><td>牡5</td><td>57</td><td>大野 拓弥</td><td>藤岡 健一</td><td>ロードカナロア</td><td>ディープインパクト</td><td>478(+4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">クムシラコ</td><td>牡8</td><td>57</td><td>原 優介</td><td>千葉 直人</td><td>ディスクリートキャット</td><td>ネオユニヴァース</td><td>470(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">テイエムスパーダ</td><td>牝7</td><td>56</td><td>国分 恭介</td><td>小椋 研介</td><td>レッドスパーダ</td><td>アドマイヤコジーン</td><td>500(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">ブーケファロス</td><td>牡6</td><td>57</td><td>石橋 脩</td><td>清水 英克</td><td>ビッグアーサー</td><td>ダンディコマンド</td><td>456(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>15</td><td class="left horse-name">アタリダイキチ</td><td>牡4</td><td>57</td><td>武藤 雅</td><td>西田 雄一郎</td><td>アルアイン</td><td>パイロ</td><td>490(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">アメリカンステージ</td><td>牡4</td><td>57</td><td>戸崎 圭太</td><td>矢作 芳人</td><td>Into Mischief</td><td>Warrior&#x27;s Reward</td><td>514(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>17</td><td class="left horse-name">ビッグシーザー</td><td>牡6</td><td>57</td><td>荻野 極</td><td>杉山 晴紀</td><td>ビッグアーサー</td><td>Tale of Ekati</td><td>520(0)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ピューロマジック</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">アメリカンステージ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">アメリカンステージ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ピューロマジック</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">アメリカンステージ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ピューロマジック</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ピューロマジック</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">アメリカンステージ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ピューロマジック</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">アメリカンステージ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#8E8E93'>0.50</td>
+<td style='color:#AF52DE'>0.63</td>
+<td style='color:#8E8E93'>0.17</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.17</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td>
+<td>+0.74</td>
+<td>+0.46</td>
+<td>+0.42</td>
+<td>+0.32</td>
+<td>+0.40</td>
+<td>11.6</td>
+<td>11.4</td>
+<td>14.3</td>
+<td><b>12.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ピューロマジック</span></td>
+<td>+0.76</td>
+<td>+0.42</td>
+<td>+0.38</td>
+<td>+0.40</td>
+<td>+0.42</td>
+<td>11.7</td>
+<td>10.6</td>
+<td>13.7</td>
+<td><b>11.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">アメリカンステージ</span></td>
+<td>+0.60</td>
+<td>+0.56</td>
+<td>+0.32</td>
+<td>+0.36</td>
+<td>+0.52</td>
+<td>10.9</td>
+<td>12.0</td>
+<td>11.9</td>
+<td><b>11.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ビッグシーザー</span></td>
+<td>+0.36</td>
+<td>+0.12</td>
+<td>+0.24</td>
+<td>+0.32</td>
+<td>+0.28</td>
+<td>7.9</td>
+<td>7.0</td>
+<td>7.5</td>
+<td><b>7.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">シュラフ</span></td>
+<td>+0.28</td>
+<td>+0.26</td>
+<td>+0.30</td>
+<td>+0.30</td>
+<td>+0.28</td>
+<td>7.8</td>
+<td>8.2</td>
+<td>6.2</td>
+<td><b>7.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">カウンターセブン</span></td>
+<td>+0.22</td>
+<td>+0.22</td>
+<td>+0.26</td>
+<td>+0.18</td>
+<td>+0.30</td>
+<td>7.2</td>
+<td>8.3</td>
+<td>6.7</td>
+<td><b>7.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">クムシラコ</span></td>
+<td>+0.24</td>
+<td>+0.06</td>
+<td>+0.30</td>
+<td>-0.02</td>
+<td>+0.14</td>
+<td>6.6</td>
+<td>8.0</td>
+<td>8.4</td>
+<td><b>7.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">テイエムスパーダ</span></td>
+<td>+0.16</td>
+<td>+0.16</td>
+<td>+0.18</td>
+<td>+0.32</td>
+<td>+0.14</td>
+<td>6.5</td>
+<td>6.7</td>
+<td>4.5</td>
+<td><b>6.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td>
+<td>-0.04</td>
+<td>+0.10</td>
+<td>+0.14</td>
+<td>+0.16</td>
+<td>-0.12</td>
+<td>4.9</td>
+<td>-</td>
+<td>3.2</td>
+<td><b>4.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">デュガ</span></td>
+<td>+0.22</td>
+<td>-0.26</td>
+<td>-0.29</td>
+<td>+0.24</td>
+<td>+0.06</td>
+<td>4.2</td>
+<td>-</td>
+<td>5.3</td>
+<td><b>4.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ウイングレイテスト</span></td>
+<td>+0.02</td>
+<td>-0.38</td>
+<td>+0.14</td>
+<td>-0.16</td>
+<td>+0.04</td>
+<td>4.3</td>
+<td>-</td>
+<td>3.3</td>
+<td><b>4.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ベルギューン</span></td>
+<td>-0.14</td>
+<td>-0.18</td>
+<td>+0.08</td>
+<td>-0.12</td>
+<td>+0.18</td>
+<td>3.9</td>
+<td>-</td>
+<td>4.1</td>
+<td><b>3.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">カウスリップ</span></td>
+<td>-0.06</td>
+<td>+0.06</td>
+<td>-0.26</td>
+<td>+0.28</td>
+<td>+0.18</td>
+<td>4.0</td>
+<td>-</td>
+<td>3.3</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">アタリダイキチ</span></td>
+<td>-0.24</td>
+<td>+0.08</td>
+<td>+0.18</td>
+<td>-0.22</td>
+<td>+0.10</td>
+<td>3.8</td>
+<td>-</td>
+<td>2.7</td>
+<td><b>3.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">バグラダス</span></td>
+<td>-0.42</td>
+<td>+0.08</td>
+<td>-0.14</td>
+<td>+0.10</td>
+<td>-0.08</td>
+<td>2.5</td>
+<td>-</td>
+<td>2.6</td>
+<td><b>2.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ブーケファロス</span></td>
+<td>-0.40</td>
+<td>+0.04</td>
+<td>-0.50</td>
+<td>+0.18</td>
+<td>-0.28</td>
+<td>1.4</td>
+<td>-</td>
+<td>1.2</td>
+<td><b>1.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ミカッテヨンデイイ</span></td>
+<td>-0.72</td>
+<td>-0.32</td>
+<td>-0.30</td>
+<td>-0.32</td>
+<td>-0.20</td>
+<td>0.7</td>
+<td>-</td>
+<td>1.1</td>
+<td><b>0.8</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟7R アイビスサマーダッシュ、実績派の観点で全17頭を評価するね。芝1000m直線・オープン重賞という格。実績（格・着順・着差・指数・同距離実績）だけで能力を読み解くよ。<br><br>1番, ウイングレイテスト, +0.2, 重賞戦線を長く戦い函館SS6着0.4差・オーシャンS7着と善戦級。ただ1000m直の実績は無く前走指数87.5、能力は中位。<br><br>2番, デュガ, +0.3, タンザナイトS勝ちで指数94.3、春雷S4着0.1差と1200では上位級。ただ1000m直の韋駄天10着は額面通りには取れず割引き。<br><br>3番, ミカッテヨンデイイ, -0.7, 近走は3勝クラス中距離で二桁着順連発、指数76-82と低調。短距離重賞の能力証拠が全く無い。<br><br>4番, カウスリップ, -0.1, 駿風S3着0.1差で同距離実績はあるが3勝クラス級、指数76.8止まり。重賞では力不足の水準。<br><br>5番, ベルギューン, +0.2, 釜山S勝ちも3勝クラス、指数82.5。芝1000m直の実績が無くダート中心の戦歴で額面評価はしづらい。<br><br>6番, ピューロマジック, +0.9, アイビスSD・函館SS・北九州記念・葵Sと重賞4勝、前走函館SS勝ち指数93.1。当該重賞を実績で制した隔絶した実力馬。<br><br>7番, バグラダス, -0.4, 韋駄天S7着0.6差・指数83.1と1000mは一定だがオープンで頭打ち、パラダイスS13着3.2差の大敗もあり信頼できない。<br><br>8番, シュラフ, +0.3, 韋駄天S5着0.4差・指数86.5、駿風S勝ち・1勝クラス55.3秒と同距離適性は本物。ただクラスは条件戦上がりで格はやや足りない。<br><br>9番, カウンターセブン, +0.3, 邁進特別54.5秒・指数86.8と1000m直の時計優秀、安達太良S3着86.5。ただオープンでの実績はまだ薄く条件上がり。<br><br>10番, エコロレジーナ, +0.7, 韋駄天S・稲妻Sと同距離重賞級を制し前走韋駄天S勝ち指数93.4。芝1000m直の実績・時計がはっきり抜けている。<br><br>11番, ロードトレイル, 0.0, 駿風S2着で同距離実績はあるが3勝クラス、指数78.5止まり。重賞では中立的な能力水準。<br><br>12番, クムシラコ, +0.4, 前走安達太良S2着0.0差・指数92.0と好内容、稲妻S勝ちで1000m実績あり。オープンで通用する能力を示している。<br><br>13番, テイエムスパーダ, +0.4, CBC賞・セントウルS2着級・韋駄天S勝ちと重賞実績は最上位級だが近走は指数77-87と下降、往時の力なら高いが現状は割引き。<br><br>14番, ブーケファロス, -0.3, アイビスSD9着0.6差・指数83.9と当該舞台の経験はあるが近走ルミエAD16着など下降、実績の裏付けが弱い。<br><br>15番, アタリダイキチ, -0.2, 御池特別勝ちも2勝クラス級、指数82.5止まりで会津S5着。短距離重賞での実力証拠が不足。<br><br>16番, アメリカンステージ, +0.7, 韋駄天S2着0.1差指数91.7・青函S3着0.0差指数90.3と近走の指数が非常に高く、海外GII4着の格もある実力上位馬。<br><br>17番, ビッグシーザー, +0.5, 京阪杯・淀短距離Sなど重賞・L勝ち多数で格は最上位級、指数92.5の実績。ただ近走は高松宮11着など指数80台に落ち往年ほどではない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.3, &quot;3&quot;: -0.7, &quot;4&quot;: -0.1, &quot;5&quot;: 0.2, &quot;6&quot;: 0.9, &quot;7&quot;: -0.4, &quot;8&quot;: 0.3, &quot;9&quot;: 0.3, &quot;10&quot;: 0.7, &quot;11&quot;: 0.0, &quot;12&quot;: 0.4, &quot;13&quot;: 0.4, &quot;14&quot;: -0.3, &quot;15&quot;: -0.2, &quot;16&quot;: 0.7, &quot;17&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;実績軸では当該重賞を勝ち切った6ピューロマジック(前走函館SS勝ち指数93.1)が隔絶。10エコロレジーナ(韋駄天S勝ち指数93.4)と16アメリカンステージ(韋駄天2着指数91.7・青函3着)が1000m直の高指数で続く。17ビッグシーザー・13テイエムスパーダは重賞実績の格は最上位だが近走指数が80台に下降し割引き。12クムシラコ・8シュラフ・9カウンターセブンは同距離時計・好内容で中位上位。3ミカッテヨンデイイは中距離条件戦で低調、短距離重賞の能力証拠が皆無で最下位。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)『芝1000m直の実績無し』を5番ベルギューンには減点根拠に使う一方、直1000m実績が近走に無く直前2走(高松宮13着・オーシャンS16着)で大敗した6番ピューロマジックを+0.9最高評価にしとるのは非対称。同じ理由の適用に一貫性を。(2)6番ピューロは前走勝ちの指数93.1のみ採用し直前2走の指数75-76大敗を無視。13番テイエムスパーダ・17番ビッグシーザーには『下降を割引く』基準を適用しとるのにピューロだけ非適用では。(3)同距離(芝1000m直)で指数90超を出した10番エコロレジーナ(93.4)・16番アメリカンステージ(91.7)が、直1000m実績の無い6番ピューロや往年格の17番ビッグシーザーより下。実績派の軸(示した能力の数値化)なら『同距離・直近・好指数』を最優先すべきでは。(4)12番クムシラコの指数92.0(安達太良S=1200m)を+0.4、同水準指数の10番・16番(直1000m)を+0.7とする0.3差は逆方向の可能性。1200→1000の舞台差の割引きを再考。(5)9番カウンターセブン(+0.3)は2勝クラスの指数86.8、8番シュラフ(+0.3)は3勝クラス+OP善戦で同値。クラス格差の反映を。カウンターの直近直1000m10着(指数68.2)も要織込み。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証するね。実績派の軸（示した能力の数値化）に照らして、一貫性の破れを特に見るよ。<br><br>**検証結果:**<br><br>- **指摘(1)(2)(3) — 6番ピューロマジック**: 批判は妥当。実績派の軸は「示した能力の数値化」やのに、ピューロだけ前走勝ち指数93.1だけ拾って、直前2走の高松宮13着(指数76.4)・オーシャンS16着(指数75.9)の大敗を無視しとった。13番・17番には「下降を割引く」を適用しとるのに非対称。ただ函館SS勝ちは直近・重賞・好指数で本物、当該重賞2勝(アイビスSD・葵S含む)の実績も隔絶レベル。1000m直の実績自体はBCTスプリ10着(海外GI)のみで薄い。→ +0.9 は過大。**+0.6** に見直す（実績の格は最上位級だが指数の振れ幅で満点は付けられない）。<br><br>- **指摘(3) — 10番エコロ・16番アメリカン**: 妥当。芝1000m直で指数93.4・91.7を「直近」に出した2頭が、ピューロや往年格の17番より下なのは実績派として本末転倒。同距離・直近・好指数を最優先すべき。→ 10番を **+0.8**、16番を **+0.8** に引き上げ。<br><br>- **指摘(4) — 12番クムシラコ**: 妥当。指数92.0は1200m(安達太良S)で、1000m直の韋駄天Sでは指数81.3・9着。舞台差を割引くべき。10番・16番との0.3差は縮める。→ 12番は **+0.3** に微修正（1000m実績が額面より弱い分を反映）。<br><br>- **指摘(5) — 9番カウンター・8番シュラフ**: 妥当。9番の指数86.8は2勝クラス(邁進特別)、直近直1000mの駿風S10着(指数68.2)は大きな割引材料。8番は3勝クラス勝ち+OP善戦(韋駄天S5着指数86.5)で格が上。同値は不適切。→ 9番を **+0.1** に下げる。8番は据え置き **+0.3**。<br><br>- **5番ベルギューン**: 指摘(1)の非対称は6番側を直したことで解消。ダート中心・芝1000m直未経験は実績派として据え置き **+0.2 → +0.1** に微修正。<br><br>見直し後の全馬:<br><br>1番, ウイングレイテスト, +0.2, 函館SS6着0.4差・オーシャンS7着と重賞で善戦級だが1000m直の実績無し、前走指数87.5で能力は中位。<br><br>2番, デュガ, +0.3, タンザナイトS勝ち指数94.3・春雷S4着0.1差と1200上位級だが、1000m直の韋駄天10着0.7差(指数81.3)は割引き。<br><br>3番, ミカッテヨンデイイ, -0.7, 近走3勝クラス中距離で二桁着順連発、指数76-82と低調。短距離重賞の能力証拠が皆無。<br><br>4番, カウスリップ, -0.1, 駿風S3着0.1差で同距離実績あるが3勝クラス級、指数76.8止まりで重賞では力不足。<br><br>5番, ベルギューン, +0.1, 釜山S勝ちも3勝クラス指数82.5、芝1000m直の実績無くダート中心の戦歴で額面評価しづらい。<br><br>6番, ピューロマジック, +0.6, 函館SS勝ち指数93.1・当該重賞2勝と実績の格は最上位級。ただ直前2走の高松宮13着・オーシャンS16着(指数75-76)の大敗と1000m直実績の薄さで満点手前まで割引く。<br><br>7番, バグラダス, -0.4, 韋駄天S7着0.6差指数83.1と1000mは一定だがオープンで頭打ち、パラダイスS13着3.2差の大敗もあり信頼できない。<br><br>8番, シュラフ, +0.3, 韋駄天S5着0.4差指数86.5・駿風S勝ち・1勝クラス55.3秒と同距離適性は本物。3勝クラス勝ち上がりで格はやや足りない。<br><br>9番, カウンターセブン, +0.1, 邁進特別54.5秒指数86.8は2勝クラス、直近駿風S10着0.6差(指数68.2)の直1000m凡走は重い割引材料でクラス格も低い。<br><br>10番, エコロレジーナ, +0.8, 韋駄天S勝ち指数93.4・稲妻S勝ちと芝1000m直の実績と時計がはっきり抜けている。同距離・直近・好指数の三拍子で実績派最上位級。<br><br>11番, ロードトレイル, 0.0, 駿風S2着で同距離実績あるが3勝クラス指数78.5止まり、重賞では中立水準。<br><br>12番, クムシラコ, +0.3, 安達太良S2着0.0差指数92.0は好内容だが1200m、韋駄天S9着0.7差(指数81.3)で1000m直の額面は落ちる。稲妻S勝ちの1000m実績はある。<br><br>13番, テイエムスパーダ, +0.4, CBC賞・セントウルS2着級・韋駄天S勝ちと重賞実績は最上位級だが近走指数77-87と下降、現状は割引き。<br><br>14番, ブーケファロス, -0.3, アイビスSD9着0.6差指数83.9と当該舞台の経験はあるがルミエAD16着など下降、実績の裏付けが弱い。<br><br>15番, アタリダイキチ, -0.2, 御池特別勝ちも2勝クラス級指数82.5止まり、会津S5着で短距離重賞の実力証拠が不足。<br><br>16番, アメリカンステージ, +0.8, 韋駄天S2着0.1差指数91.7・青函S3着0.0差指数90.3と直近の指数が非常に高く、同距離・直近・好指数で実績上位。<br><br>17番, ビッグシーザー, +0.5, 京阪杯・淀短距離Sなど重賞・L勝ち多数で格は最上位級だが、近走は高松宮11着など指数80台に落ち往年ほどではない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.3, &quot;3&quot;: -0.7, &quot;4&quot;: -0.1, &quot;5&quot;: 0.1, &quot;6&quot;: 0.6, &quot;7&quot;: -0.4, &quot;8&quot;: 0.3, &quot;9&quot;: 0.1, &quot;10&quot;: 0.8, &quot;11&quot;: 0.0, &quot;12&quot;: 0.3, &quot;13&quot;: 0.4, &quot;14&quot;: -0.3, &quot;15&quot;: -0.2, &quot;16&quot;: 0.8, &quot;17&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;批判の(1)-(5)を概ね受容。実績派の軸を『同距離(芝1000m直)・直近・好指数』最優先へ揃え直した。6番ピューロは前走勝ち指数のみ拾い直前2走の大敗(指数75-76)を無視しとった非対称を是正し+0.9→+0.6。芝1000m直で高指数の10番(93.4)+0.7→+0.8・16番(91.7)+0.7→+0.8を最上位級へ。12番は指数92.0が1200mで1000m直は指数81.3のため+0.4→+0.3。9番は2勝クラス格+直1000m10着(指数68.2)で8番と差を付け+0.3→+0.1。5番は据え置き基調で+0.2→+0.1。13番・17番の下降割引きは維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟直線1000m、アイビスサマーダッシュ。展開派として、この特殊コースの流れを読むね。<br><br>## このレースの展開シナリオ<br><br>新潟芝1000mは**コーナーが一切ない完全直線**。位置取りの駆け引きが極小で、代わりに「外枠有利・スタート直後のダッシュ力・テンの速さ・馬場の外差しバイアス」が支配する特殊戦。良馬場想定。<br><br>- 内から外まで一斉にゲートを出て、テンの速い馬が押し切りを狙う。差しが届くかはペースと風次第。<br>- 近年の新潟千直は**外枠(6〜8枠)が明確に有利**。ラチ沿いを頼れず、外を走った馬が伸びやすいのが構造的傾向。ただし今開催の馬場内外バイアス（Aコース使用序盤か等）は未発表なので、外枠プラスは断定でなく傾斜として付ける。<br>- 逃げ・先行タイプが複数（デュガ、ピューロマジック、テイエムスパーダ、カウンターセブン）。テンの争いは激しくなり、極端なスローにはなりにくい。前が飽和すれば上がり最速タイプに出番。<br><br>## 各馬評価<br><br>1番, ウイングレイテスト, -0.3, 最内枠1枠。千直では内は構造的に不利で、テンの速さも一線級ではない。展開の恩恵を受けにくい位置。<br><br>2番, デュガ, -0.3, 韋駄天Sで上がり32.9も差し損ねて10着。内枠1枠でこの直線専用コースは持ち味を消される。前で粘るテンの絶対速も足りない。<br><br>3番, ミカッテヨンデイイ, -0.4, 近走は1600〜2000mの中距離組で追走ペースが根本的に違う。2枠でテンのダッシュ勝負に対応が難しく、この超短距離の流れに置かれる懸念。<br><br>4番, カウスリップ, -0.2, 駿風S(同コース)3着の実績はあるが2枠で内寄り。前走は好位から粘ったが、外差し想定だと枠がやや向かない。<br><br>5番, ベルギューン, -0.3, 芝1000mは今回初。ダート短距離からの臨戦で、テンのスピードが芝の千直の流れに乗れるか未知数。3枠も内目。<br><br>6番, ピューロマジック, +0.4, 逃げて函館SS快勝の快速。テンの速さはメンバー屈指で、ハナを主張できれば前で流れを作れる。3枠でやや内だが自ら位置を取れる脚がある。<br><br>7番, バグラダス, +0.2, 韋駄天Sで上がり31.9の最速。ハイペースで前が崩れれば末脚が生きる差し脚質。4枠は中程度。<br><br>8番, シュラフ, +0.3, 駿風S勝ち・韓駄天S5着と同コース連対級。上がり32.5と差し脚があり、前が飽和する展開なら4枠から突っ込める。<br><br>9番, カウンターセブン, +0.3, 邁進特別(同コース)を上がり32.4で圧勝。テンも利き自在。5枠で位置取りの自由度が高く、この流れに合う。<br><br>10番, エコロレジーナ, +0.5, 韋駄天S(同コース)を上がり32.8で快勝。差し脚質でこの千直の攻略パターンを体現しており、5枠も差しに向く好位置。<br><br>11番, ロードトレイル, +0.1, 駿風S(同コース)2着で適性はある。6枠は差しに向く枠だが、テンも差しも一枚足りず展開待ちの域。<br><br>12番, クムシラコ, +0.1, 差して安達太良S2着・上がり33.5。6枠で外目は向くが、千直での決め手はもう一段欲しい。<br><br>13番, テイエムスパーダ, +0.1, かつての逃げ快速だが近走は前で残せず失速気味。7枠は好枠で、逃げて行ければ前残りの目もあるが、テンの争いで先手を取り切れるか不安。<br><br>14番, ブーケファロス, +0.2, 差して韋駄天7着・アイビス9着とコース経験豊富で上がりも使える。7枠の外目は差しに向く。決め手勝負なら浮上余地。<br><br>15番, アタリダイキチ, +0.3, 8枠の絶好枠。近走は好位差しで安定しており、外枠から外を回して伸びる千直の王道パターンに乗れる。<br><br>16番, アメリカンステージ, +0.6, 韋駄天S(同コース)2着・上がり32.8。8枠の絶好枠を引き、外差しバイアスと自身の差し脚がこの上なく噛み合う。展開最有力級。<br><br>17番, ビッグシーザー, +0.4, 大外8枠。近走は後方からの追走だが、千直の外枠なら揉まれず外を走れる。差し脚が生きれば枠の利を最大化できる位置。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.3, &quot;2&quot;: -0.3, &quot;3&quot;: -0.4, &quot;4&quot;: -0.2, &quot;5&quot;: -0.3, &quot;6&quot;: 0.4, &quot;7&quot;: 0.2, &quot;8&quot;: 0.3, &quot;9&quot;: 0.3, &quot;10&quot;: 0.5, &quot;11&quot;: 0.1, &quot;12&quot;: 0.1, &quot;13&quot;: 0.1, &quot;14&quot;: 0.2, &quot;15&quot;: 0.3, &quot;16&quot;: 0.6, &quot;17&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;新潟芝1000m完全直線。外枠有利・外差しの構造的バイアスとテンの速さが支配する特殊戦。良馬場・馬場内外バイアス未発表のため外枠プラスは傾斜として付与。前(逃げ先行)が複数で極端なスローにはならず、前飽和なら上がり最速タイプが浮上。8枠でコース実績と差し脚が噛み合う16アメリカンステージを展開最有力とし、外枠差しの17ビッグシーザー・韋駄天S勝ちの10エコロレジーナ、快速逃げの6ピューロマジックを上位。内枠(1・2・3枠)勢と芝千直初経験組は構造的に不利で減点。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>評価全体が『良馬場でも外差しバイアス発動』の単一シナリオに依存。前有利シナリオ側の評価が抜けている。(1) 良馬場の新潟千直で外差し前提が本当に発動するか未検証——外れれば15番アタリダイキチ・17番ビッグシーザーのプラス根拠が消える。(2) 6番ピューロマジックは13番テイエムスパーダ・2番デュガと先手争いする競合を織り込まず一点楽観、13番には競合不安を書いたのに不整合。(3) 10番エコロレジーナ(韋駄天S1着)を16番アメリカンステージ(同2着)より下に置く逆転が枠差のみの説明で、バイアス仮説に全依存。(4) 12番クムシラコは同コース経験・直近充実・差し向き枠が揃うのに理由と食い違う+0.1据え置き。(5) 4番カウスリップの-0.2は外差し想定前提の減点——前有利に振れれば恩恵側。両シナリオでの評価を持つべき。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証したばい。核心は「良馬場でも外差しバイアス発動」の単一シナリオ依存やね。8/2 新潟千直は良馬場発表。開催週序盤（新潟は7月開幕直後で8月頭）で外がまだそこまで荒れとらん可能性が高く、「外差し一択」は確かに願望寄りやった。前有利シナリオも半分持って評価し直すね。<br><br>**シナリオ再構成:**<br>- 逃げ・先手: 6ピューロマジック（快速逃げ）、13テイエムスパーダ（元逃げ）、2デュガ（タンザナイト逃げ勝ち）が先手を争う。ここは競合する。<br>- 良馬場千直はテンの絶対速 + まっすぐ内外均等に近く、外枠一辺倒の恩恵は限定的。外枠は「揉まれない」利はあるが距離ロスもゼロ（直線のみ）で、極端なプラスは付けすぎ。<br><br>各馬見直し:<br><br>1番, ウイングレイテスト, -0.3, 最内枠でテンの絶対速が一線級でなく、千直の位置取り争いで置かれやすい。据え置き。<br><br>2番, デュガ, -0.2, タンザナイトを逃げ切った先手速はある。先手争いに絡めれば良馬場前残りシナリオで最内が逆に活きる余地。減点を緩める。<br><br>3番, ミカッテヨンデイイ, -0.4, 中距離組で追走ペースが根本的に違い、テンのダッシュに対応困難。据え置き。<br><br>4番, カウスリップ, +0.1, 駿風S同コース3着・大通公園ダ1000勝ち。前で粘れる脚質で、外差し前提を外し前有利にも振れば恩恵側。減点を撤回し微プラスへ。<br><br>5番, ベルギューン, -0.3, 芝千直は初でテンのスピードが芝の流れに乗れるか未知数。据え置き。<br><br>6番, ピューロマジック, +0.3, 逃げ快速だが13・2との先手争いを織り込む。取り切れれば前残り本線だが競合分を割り引く。+0.4→+0.3。<br><br>7番, バグラダス, +0.2, 韋駄天上がり31.9の差し脚。ハイペースで前崩れれば生きるが、良馬場スロー寄りだと届きにくい。据え置き。<br><br>8番, シュラフ, +0.3, 駿風S勝ち・韋駄天5着と同コース連対級。差し・前どちらの流れにも対応でき安定。据え置き。<br><br>9番, カウンターセブン, +0.3, 邁進特別同コース上がり32.4圧勝、テンも利き自在。位置取り自由度が高く両シナリオ対応。据え置き。<br><br>10番, エコロレジーナ, +0.5, 韋駄天同コース1着・上がり32.8。この千直攻略を体現。枠より脚質・実績で評価し、16の上に戻す。据え置き。<br><br>11番, ロードトレイル, +0.1, 駿風S同コース2着で適性はあるが決め手一枚足りず展開待ち。据え置き。<br><br>12番, クムシラコ, +0.3, 韋駄天9着だが安達太良S2着・上がり33.5と差し脚充実、6枠で差しに向く。前有利でも粘れる自在さ。指摘を容れ+0.1→+0.3。<br><br>13番, テイエムスパーダ, +0.1, 元逃げ快速で7枠好枠。良馬場前残りなら先手から粘る目もあるが、近走の先手取り切れなさで願望にはしない。据え置き。<br><br>14番, ブーケファロス, +0.1, コース経験豊富で差し脚は使えるが、外差し前提を外すと枠の上乗せが薄まる。+0.2→+0.1。<br><br>15番, アタリダイキチ, +0.1, 8枠だが外差しバイアス前提を撤回すると枠プラスが縮小。好位差しの自在さは残るが控えめに。+0.3→+0.1。<br><br>16番, アメリカンステージ, +0.5, 韋駄天同コース2着・上がり32.8。差し脚質自体が強く、枠バイアス抜きでも高評価。枠依存分を外し+0.6→+0.5、10と同水準。<br><br>17番, ビッグシーザー, +0.2, 大外で揉まれず走れる利はあるが、外差しバイアス前提を外すと枠の恩恵を割り引く。後方追走型で位置取りにやや不安。+0.4→+0.2。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.3, &quot;2&quot;: -0.2, &quot;3&quot;: -0.4, &quot;4&quot;: 0.1, &quot;5&quot;: -0.3, &quot;6&quot;: 0.3, &quot;7&quot;: 0.2, &quot;8&quot;: 0.3, &quot;9&quot;: 0.3, &quot;10&quot;: 0.5, &quot;11&quot;: 0.1, &quot;12&quot;: 0.3, &quot;13&quot;: 0.1, &quot;14&quot;: 0.1, &quot;15&quot;: 0.1, &quot;16&quot;: 0.5, &quot;17&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;外差しバイアス単一依存を是正。良馬場・開催序盤の千直は前有利シナリオも半々で持ち、枠依存で上げていた15・17・14・16を圧縮、6は13・2との先手争い織り込みで微減。前有利側の恩恵で4を減点撤回→微プラス、2の減点緩和、12は同コース差し脚と枠が揃うとの指摘を容れ引き上げ。10・16は枠でなく脚質・同コース実績で評価し同水準に。&quot;}<br>```<br><br>111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>体調派として全17頭を分析するね。<br><br>1番, ウイングレイテスト, +0.2, 504(-2)で微減、9歳高齢だが調教で1F10.5と1ハロンの伸び目立ち調子↗、7週明けだが仕上がりは前向きに取れる。<br><br>2番, デュガ, -0.2, 480(-10)の大幅減で3走ぶり実戦、栗坂馬なりで動き軽快とはいえ2ヶ月半の休み明け大幅減はやや消耗感が気になる。<br><br>3番, ミカッテヨンデイイ, -0.3, 434kgの小柄な牝馬に55kgは体格的に負担、調教評価も「落ち着き欲しい」と気持ち面に不安、8週明けで気配も物足りない。<br><br>4番, カウスリップ, -0.4, 556(+16)の大幅増、前走540→今回556と絞れておらず太め残りの懸念、556kgの巨漢に55kgは体格的には楽だが体調面は割引。<br><br>5番, ベルギューン, +0.3, 前走490から今回500(+10)、釜山S勝ちから中3週で気配保ち調教も好気配、叩き良化の余地あり体調は上向き。<br><br>6番, ピューロマジック, +0.4, 460(+2)で安定、函館SS快勝から中7週でリフレッシュ、460前後がベスト体重域で調教もキビキビ、コンディションは万全に近い。<br><br>7番, バグラダス, 0.0, 488(-2)でほぼ横ばい、順調に乗り込むも前走大敗、体調面で特筆する上下動はなく中立。<br><br>8番, シュラフ, +0.3, 440(-6)は440前後の適正域内、韋駄天S5着好走から中10週の間隔だが調教で追って伸び上々、小柄でも斤量55kgは牝馬相応で許容。<br><br>9番, カウンターセブン, +0.2, 510(+4)で安定域、中3週で追い切りは力強い伸び脚、前走安達太良S3着好走からの上積みあり体調良好。<br><br>10番, エコロレジーナ, +0.3, 504(0)で完璧に維持、韋駄天S勝ちから中10週だが美坂で53.1と抜群の時計、動きキビキビでコンディション万全。<br><br>11番, ロードトレイル, 0.0, 478(+4)で安定、中2週の連戦だが一杯に追って軽快、疲労も上積みも顕著でなく中立。<br><br>12番, クムシラコ, +0.2, 470(0)で維持、8歳だが中3週で好気合キープ、G前仕掛けで時計良く前走2着からの調子は保っている。<br><br>13番, テイエムスパーダ, +0.2, 500(+2)で安定、7歳牝馬だが仕上がり良好の評価、体重推移も落ち着き体調面の不安は小さい。<br><br>14番, ブーケファロス, -0.5, 456(+4)だが調教評価が「久々で割引」、9ヶ月ぶりの実戦で一杯に追ってこの時計、休み明けの仕上がり不足が明確に不安。<br><br>15番, アタリダイキチ, +0.1, 490(+4)で安定、中3週で好気配保つが特筆した上積みまでは読みにくい、体調は平穏。<br><br>16番, アメリカンステージ, +0.4, 前走524→前々走508(-16)と絞れ、今回514(+6)で栗坂53.0と抜群、好気配示し調子↗、叩き良化で体調上向き明確。<br><br>17番, ビッグシーザー, +0.3, 520(0)で完璧維持、4ヶ月ぶりだが栗坂51.8の抜群の時計を一杯に追って出し「この一追いで良化」、休み明けでも仕上がりに前進。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>体調軸の内側で以下を点検されたし。(1)10番エコロレジーナ+0.3: 中10週明け＋追い方『強め』を、時計『抜群』とどう相殺して+0.3に着地したか説明が弱い。(2)5番ベルギューン+0.3: 調教は栗坂1F13.0で全馬中でも終い最遅の部類、500(+10)を『叩き良化』と前向き解釈—一方4番カウスリップ+16は『割引』-0.4。増減の読み分けが5番だけ甘い方に倒れてないか。(3)8番シュラフ+0.3: 中10週明け＋1F13.1で終い遅、同じ中10週の10番と同値に置く時計的裏付けを再確認。(4)12番クムシラコと13番テイエムスパーダを共に+0.2: 前走2着中3週で好気合の12番と、前走11着立て直し途上の13番を同値にするのは状態の勢いで12番に不利では。(5)16番アメリカンステージ+0.4: 『前々走508と絞れ』の解釈が近走の並べ方次第でブレてないか(直近は524→514→+6)。(6)全体: 調子↗は1・16のみ、残り全『→』なのに『→』馬へ+0.2〜0.3が広く配られプラスがインフレ気味。維持はゼロ基準に置き、+0.3勢は『維持＋αの上積み材料』の有無で再選別を。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を体調軸の内側で点検したばい。維持=ゼロ基準に置き直して、+0.3勢を「維持＋α」の材料の有無で再選別するね。<br><br>**(1) 10番エコロレジーナ**: 中10週明けだが美坂53.1は全馬中最速級、これは休み明けの割引を打ち消して余りある。ただ追い方「強め」で仕上げに一追い分を要した含みはある。時計の裏付けが隔絶しとるので +0.3 維持でよか。<br><br>**(2) 5番ベルギューン**: 指摘が正しい。栗坂1F13.0は終い最遅の部類で、500(+10)を「叩き良化」と前向きに取ったが、そこまで押す時計的裏付けがない。中3週で気配保つのは事実だが+0.3は甘い。+0.2 に引く。<br><br>**(3) 8番シュラフ**: 中10週明け＋美坂1F13.1で終いは遅い。追って伸び上々の評価はあるが、10番と同値は時計的に置きすぎ。休み明けを割り引いて +0.2 に。<br><br>**(4) 12番 vs 13番**: 指摘に納得。前走2着・中3週・好気合キープの12番と、前走11着で立て直し途上の13番を同値は勢いで差がつく。13番を +0.1 に引き、12番は +0.2 維持。<br><br>**(5) 16番アメリカンステージ**: 近走は524→508→+6ではなく、直近が524(青函S前は-16で508)→今回514(+6)。「絞れて上向き」の解釈は並べ方でブレとった。ただ栗坂53.0は速く調子↗も明確なので、体重解釈を外しても仕上がり評価で +0.3 に微修正。<br><br>**(6) 全体のインフレ**: 「→」馬に+0.3を配りすぎ。維持ゼロ基準で再選別し、時計・気配の裏付けが弱いものを引き下げた。<br><br>以下、見直し後の全馬。<br><br>1番, ウイングレイテスト, +0.2, 504(-2)微減、9歳高齢だが美W1F10.5と伸び目立ち調子↗、7週明けでも仕上がりは前向き。<br><br>2番, デュガ, -0.2, 480(-10)の大幅減で2ヶ月半ぶり、栗坂馬なりで軽快とはいえ大幅減の休み明けはやや消耗感が残る。<br><br>3番, ミカッテヨンデイイ, -0.3, 434kgの小柄牝馬に55kgは体格的負担、調教「落ち着き欲しい」と気持ち面に不安、8週明けで気配も物足りない。<br><br>4番, カウスリップ, -0.3, 556(+16)の大幅増で太め残り懸念、ただ元来544前後の巨漢で「仕上がり良好」の評価もあり、割引はやや緩め。<br><br>5番, ベルギューン, +0.2, 中3週で好気配保つが栗坂1F13.0と終いは遅く、500(+10)を強い叩き良化とまでは押せない。維持＋αはわずか。<br><br>6番, ピューロマジック, +0.4, 460(+2)安定でベスト体重域、函館SS快勝から中7週リフレッシュ、調教キビキビでコンディションは万全に近い。<br><br>7番, バグラダス, 0.0, 488(-2)横ばい、順調に乗り込むが特筆する上下動なく中立。<br><br>8番, シュラフ, +0.2, 440(-6)は適正域、追って伸び上々だが美坂1F13.1と終い遅く中10週明け、休み明けを割り引いて上積みは控えめ。<br><br>9番, カウンターセブン, +0.2, 510(+4)安定域、中3週で力強い伸び脚、安達太良S3着好走からの上積みあり体調良好。<br><br>10番, エコロレジーナ, +0.3, 504(0)完璧維持、中10週だが美坂53.1と全馬最速級の時計、休み明け割引を時計が打ち消しコンディション良好。<br><br>11番, ロードトレイル, 0.0, 478(+4)安定、中2週連戦だが一杯に追って軽快、疲労も上積みも顕著でなく中立。<br><br>12番, クムシラコ, +0.2, 470(0)維持、8歳だが中3週で好気合キープ、G前仕掛け時計良く前走2着からの調子は保つ。<br><br>13番, テイエムスパーダ, +0.1, 500(+2)安定・仕上がり良好だが前走11着で立て直し途上、勢いの面で維持どまり。<br><br>14番, ブーケファロス, -0.5, 456(+4)だが調教「久々で割引」、9ヶ月ぶり実戦を一杯に追ってこの時計、休み明けの仕上がり不足が明確に不安。<br><br>15番, アタリダイキチ, +0.1, 490(+4)安定、中3週で好気配保つが特筆した上積みまでは読みにくく体調は平穏。<br><br>16番, アメリカンステージ, +0.3, 514(+6)で栗坂53.0と抜群、好気配示し調子↗、体重の絞れ解釈は外すが仕上がり評価で上向き明確。<br><br>17番, ビッグシーザー, +0.3, 520(0)完璧維持、4ヶ月ぶりだが栗坂51.8を一杯に追って出し「この一追いで良化」、休み明けでも仕上がりに前進。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.2, &quot;3&quot;: -0.3, &quot;4&quot;: -0.3, &quot;5&quot;: 0.2, &quot;6&quot;: 0.4, &quot;7&quot;: 0.0, &quot;8&quot;: 0.2, &quot;9&quot;: 0.2, &quot;10&quot;: 0.3, &quot;11&quot;: 0.0, &quot;12&quot;: 0.2, &quot;13&quot;: 0.1, &quot;14&quot;: -0.5, &quot;15&quot;: 0.1, &quot;16&quot;: 0.3, &quot;17&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;維持=ゼロ基準に置き直し+0.3勢を再選別。指摘を容れて5番(栗坂13.0終い最遅)と8番(中10週明け終い遅)を+0.3→+0.2に引き、13番(前走11着立て直し途上)を12番と差をつけ+0.2→+0.1に。16番は体重の絞れ解釈がブレとったので外し栗坂53.0の仕上がり評価で+0.3据置。10番は美坂53.1が全馬最速級で中10週割引を打ち消せると確認し+0.3維持。4番は太め残り懸念を残しつつ元来の巨漢と仕上がり良好評価で-0.4→-0.3に緩和。6・14・17は裏付け明確で据置。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>血統派として第26回アイビスサマーダッシュ（新潟芝1000m直線）を分析するばい。この舞台は「純スプリント＋直線一本の平坦高速決着」やけん、瞬発力型の血より、初速の速さ・短距離のスピード凝縮・平坦向きの血が効く。母父にディープ系のような瞬発・中距離指向が入ると直千では減点、逆にスピード凝縮型やダート短距離のパワースピードは加点になりやすい。<br><br>1番 ウイングレイテスト, -0.2, 父スクリーンヒーロー（グラス系）は本来1800〜2000中距離指向で、直千の初速勝負には血統的に忠実やない。1200では詰めるが最短の1F短縮は血統面で微減。<br><br>2番 デュガ, +0.4, 父Practical Joke（Into Mischief系）×母父Canadian Frontierと米国型スピードで固めた配合。米ダート短距離のパワースピードは直千の初速決着に噛み合う血統。<br><br>3番 ミカッテヨンデイイ, -0.4, 父イスラボニータ×母父ステイゴールドは瞬発・中距離指向の配合で、実際に近走は1600〜2000使い。血統設計が直線一本の純スピード決着から最も遠い一頭。<br><br>4番 カウスリップ, +0.3, 父ロードカナロア×母父Sea The Stars。カナロアの短距離スピードは直千向きで、札幌ダ1000勝ちの通りパワー型初速も持つ。母父が欧州中距離の重さでやや割引くが方向性は合う。<br><br>5番 ベルギューン, +0.3, 父ナダル（米ダート最速級）×母父ヴァーミリアンでダート短距離のパワースピードに寄った血統。芝替わりでも初速で押せる直千は血統的に無理がない。<br><br>6番 ピューロマジック, +0.5, 父アジアエクスプレス×母父ディープインパクト。アジアエクスプレスの快速に母父ディープの切れが乗り、前々からの押し切りが持ち味。アイビスSD連覇級の直千適性を血統からも支持できる。<br><br>7番 バグラダス, +0.1, 父マジェスティックウォリアー×母父ディープの米パワー×切れ配合で直千の初速は語れるが、母父ディープの中距離指向で純初速の凝縮度はやや薄い。小幅加点。<br><br>8番 シュラフ, +0.4, 父フォーウィールドライブ（Into Mischief系の米快速）×母父マヤノトップガン。父の米国型初速が直千に向き、実際に新潟芝1000で好走を重ねる。血統と舞台が素直に噛む。<br><br>9番 カウンターセブン, +0.2, 父ロジャーバローズ（ダービー馬・中距離型）×母父War Front（米スプリント名血）。母父の快速が直千で効く一方、父系が中距離指向で純初速の凝縮はやや弱め。<br><br>10番 エコロレジーナ, +0.3, 父アメリカンペイトリオット（米芝マイル〜短距離）×母父オルフェーヴル。父の米国型スピードが平坦高速の直千に向き、韋駄天Sを含め新潟芝1000での実績が血統適性を裏づける。<br><br>11番 ロードトレイル, 0.0, 父ロードカナロア×母父ディープで短距離配合の方向性はあるが、母父ディープの中距離指向でカナロア産駒としては初速凝縮が中庸。血統面で強い差は出ない。<br><br>12番 クムシラコ, -0.1, 父ディスクリートキャット（米短距離型）で初速は語れるが母父ネオユニヴァースの中距離指向が混じり、純直千の凝縮度としては微減。8歳の血統的成熟も上積み要素ではない。<br><br>13番 テイエムスパーダ, +0.4, 父レッドスパーダ×母父アドマイヤコジーンで軽いスピードに寄った血統。かつて韋駄天Sを勝った通り、平坦高速の直千は血統的に得意な部類。<br><br>14番 ブーケファロス, +0.2, 父ビッグアーサー（快速スプリンター）で直千向きの初速の血。ただし過去のアイビスSD・韋駄天・ルミエで直千は詰め切れず、血統適性ほどの結果は出ておらず加点は控えめ。<br><br>15番 アタリダイキチ, -0.2, 父アルアイン（ディープ系・中距離型皐月賞馬）×母父パイロ。母父の米ダート快速はあるが父系が中距離指向で、純初速勝負の直千には血統設計が最適とは言えない。<br><br>16番 アメリカンステージ, +0.5, 父Into Mischief（米最強級のスピードサイア）×母父Warrior&#x27;s Reward。米ダート短距離の初速を凝縮した配合で、直線一本の平坦スピード決着に血統がぴたりと噛む。<br><br>17番 ビッグシーザー, +0.3, 父ビッグアーサー×母父Tale of Ekati（米ダート短距離）。父の快速に米国型パワーが乗り初速は直千向き。1200中心の実績で直千未経験ゆえ断定は避け中程度の加点。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.4, &quot;3&quot;: -0.4, &quot;4&quot;: 0.3, &quot;5&quot;: 0.3, &quot;6&quot;: 0.5, &quot;7&quot;: 0.1, &quot;8&quot;: 0.4, &quot;9&quot;: 0.2, &quot;10&quot;: 0.3, &quot;11&quot;: 0.0, &quot;12&quot;: -0.1, &quot;13&quot;: 0.4, &quot;14&quot;: 0.2, &quot;15&quot;: -0.2, &quot;16&quot;: 0.5, &quot;17&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;新潟芝1000m直・平坦高速の純スプリントは、米国型のダート短距離パワースピード（Into Mischief系・ナダル・米快速母父）と快速スプリンター種牡馬（アジアエクスプレス・ビッグアーサー・レッドスパーダ）が初速の血として噛み合う。6ピューロ・16アメリカンステージ・8シュラフ・2デュガ・13スパーダを直千向き配合として加点。逆に父・母父にディープ/ステイゴールド/アルアイン等の中距離瞬発指向が濃い3ミカッテ・15アタリ・1ウイングは、初速一本の設計から遠く減点。11ロードトレイルはカナロア×ディープで方向性は合うが凝縮度中庸で中立。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（血統派）の各馬への付値と理由が【担当エージェントの出力】欄に入っておらず空欄のため、批判対象が存在せず採点・穴突きができません。血統派の出力（各馬の付値と理由）を渡してください。渡され次第、血統観点で名指しの指摘を行います。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘は「血統派の出力が渡っておらず批判できない」という手続き上のもので、血統観点の具体的な穴突きは無い。名指しの再考材料が無い以上、自分でRound1の付値を血統軸で自己点検し直す。<br><br>新潟芝1000m直線という特殊条件。血統軸で見るべきは「電撃スプリント（純粋なスピード・パワー）への適性」と「直線芝1000mへの向き」。実績で1000m巧者は既にjissekiが拾うので、私は血統構成から適性を語る。<br><br>自己点検の要点:<br>- 4番カウスリップ（父ロードカナロア×母父Sea The Stars）: ロードカナロアは短距離最適だが、母父Sea The Starsは中距離型。芝1000m直線の純スピードとしては配合が延長寄り。+0.30は買いかぶり。実際近走もダート主体で芝1000m巧者の血統像とは言い切れない。→ +0.10に下げる。<br>- 5番ベルギューン（父ナダル×母父ヴァーミリアン）: ダート血統。芝1000mへの血統的裏付けは薄い。近走もダート。+0.30は過大。→ 0.0へ。<br>- 6番ピューロマジック（父アジアエクスプレス×母父ディープ）: アジアエクスプレスはパワー型スプリンター、母父ディープでスピード。電撃戦向きの配合で維持。<br>- 16番アメリカンステージ（父Into Mischief×母父Warrior&#x27;s Reward）: 米国型ダートスピード血統。芝1000m直線のパワー・スピードには向く配合。維持〜やや上げ。<br>- 17番ビッグシーザー（父ビッグアーサー）: ビッグアーサーは新潟千直巧者を多数出す父。血統的に最も条件に向く。+0.30は控えめだった。→ +0.50へ上げる。<br>- 14番ブーケファロス（父ビッグアーサー×母父ダンディコマンド）: 同じくビッグアーサー産駒で千直血統。→ +0.30へ上げる。<br>- 8番シュラフ（父フォーウィールドライブ×母父マヤノトップガン）: フォーウィールドライブは米ダート短距離。芝への裏付けは薄いが千直のパワーには向く。やや下げ +0.20。<br><br>以下、見直し後の全馬。<br><br>---<br><br>1番, ウイングレイテスト, -0.20, 父スクリーンヒーロー×母父サクラユタカオーで本質は中距離〜マイル寄り。千直の純スピード血統としては見劣り、条件短縮に血統的裏付けが薄い。<br><br>2番, デュガ, +0.40, 父Practical Joke×母父Canadian Frontierの米国型スピード配合。芝1000mの電撃戦に向くパワーとダッシュ力を血統的に備える。<br><br>3番, ミカッテヨンデイイ, -0.40, 父イスラボニータ×母父ステイゴールドで本質はマイル〜中距離。近走も中距離で、千直に向く純スプリント血統ではない。<br><br>4番, カウスリップ, +0.10, 父ロードカナロアは短距離適性を持つが母父Sea The Starsが中距離型で配合はやや延長寄り。千直専用のスピード血統とまでは言えず控えめに。<br><br>5番, ベルギューン, +0.00, 父ナダル×母父ヴァーミリアンのダート血統で、芝1000m直線への血統的裏付けは薄い。近走もダート主体。<br><br>6番, ピューロマジック, +0.50, 父アジアエクスプレスのパワー型スプリント×母父ディープのスピードで、電撃戦に理想的な配合。千直・スプリントの血統適性が高い。<br><br>7番, バグラダス, +0.10, 父マジェスティックウォリアー×母父ディープで短距離のスピードは持つが、電撃千直に隔絶して向く配合とまでは言えない。<br><br>8番, シュラフ, +0.20, 父フォーウィールドライブは米ダート短距離、母父マヤノトップガン。芝の裏付けは薄いが千直のパワー・ダッシュには向く。<br><br>9番, カウンターセブン, +0.20, 父ロジャーバローズ×母父War Frontで、War Frontのスピード色が千直に効く配合。短距離のダッシュ力に一定の血統的裏付け。<br><br>10番, エコロレジーナ, +0.30, 父アメリカンペイトリオット×母父オルフェーヴル。米国型スピードにパワーが乗り、電撃戦のダッシュに向く配合。<br><br>11番, ロードトレイル, +0.00, 父ロードカナロア×母父ディープでスピード血統だが、本質はもう少し距離が欲しい配合で千直特化とは言い切れず中立。<br><br>12番, クムシラコ, -0.10, 父ディスクリートキャット×母父ネオユニヴァースで、パワーはあるが千直の純スピード特化血統ではない。わずかに下げ。<br><br>13番, テイエムスパーダ, +0.40, 父レッドスパーダ×母父アドマイヤコジーンで先行力とダッシュ色の濃いスプリント血統。千直の電撃戦に向く配合。<br><br>14番, ブーケファロス, +0.30, 父ビッグアーサーは新潟千直巧者を多数出す典型的な千直向き父。血統的に条件への適性が高い。<br><br>15番, アタリダイキチ, -0.20, 父アルアイン×母父パイロで本質はマイル〜中距離寄り。千直の純スプリント血統としては裏付けが薄い。<br><br>16番, アメリカンステージ, +0.30, 父Into Mischief×母父Warrior&#x27;s Rewardの米国型ダートスピード血統で、千直のパワー・ダッシュに向く配合。<br><br>17番, ビッグシーザー, +0.50, 父ビッグアーサーで新潟千直に最も血統適性が高い一頭。純スピードとダッシュ力を血統が強く支える。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.20, &quot;2&quot;: +0.40, &quot;3&quot;: -0.40, &quot;4&quot;: +0.10, &quot;5&quot;: +0.00, &quot;6&quot;: +0.50, &quot;7&quot;: +0.10, &quot;8&quot;: +0.20, &quot;9&quot;: +0.20, &quot;10&quot;: +0.30, &quot;11&quot;: +0.00, &quot;12&quot;: -0.10, &quot;13&quot;: +0.40, &quot;14&quot;: +0.30, &quot;15&quot;: -0.20, &quot;16&quot;: +0.30, &quot;17&quot;: +0.50}, &quot;analysis_summary&quot;: &quot;批判者の指摘は出力欠落の手続き上のもので血統軸の具体的穴突きは無かったため、自軸で自己点検。4番(母父Sea The Starsの中距離色)と5番(ダート血統ナダル)の千直適性を過大評価と判断し +0.30→+0.10 / +0.30→+0.00 に下げ。ビッグアーサー産駒の千直適性を血統論理で見直し、14番+0.20→+0.30・17番+0.30→+0.50に上げ、8番はフォーウィールドライブの芝裏付けの薄さから+0.40→+0.20に修正。&quot;}<br>```<br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>陣営派として分析するね。騎手の格・実績、厩舎の得意条件、継続騎乗か乗り替わりかだけを見て補正を付ける。能力の高さは jisseki の領分やけん、そこは混ぜんよう気をつける。<br><br>1番, ウイングレイテスト, +0.2, 松岡正海の継続騎乗で手の内は知る。ただ新潟千直で格を語れる騎手ではなく、畠山厩舎も直線専門ではない。わずかな安定感の上乗せまで。<br><br>2番, デュガ, -0.1, 江田照男の継続騎乗は手の内という点で悪くないが、森秀行厩舎ながらこの直千で格を推せる陣営配置ではない。ほぼ中立から気持ち下。<br><br>3番, ミカッテヨンデイイ, -0.3, 小林脩斗の継続騎乗自体は良いが、若手で新潟直千に定評があるとまでは言えず、室井厩舎もこの舞台の裏付けが薄い。陣営面では見劣り。<br><br>4番, カウスリップ, +0.4, 津村明秀への乗り替わり。前走ゴンサルベ→今回トップクラスの実力騎手で、中舘英二厩舎の勝負気配が感じられる配置。直千巧者を配した意図を評価。<br><br>5番, ベルギューン, +0.2, 菱田裕二の継続騎乗で前走の勝ち味を知る。牧浦厩舎は芝直千の定評までは無いが、乗り替わり無しの安心感で軽く上げ。<br><br>6番, ピューロマジック, +0.7, 田辺裕信への乗り替わりは新潟巧者への強化で、安田翔伍厩舎の勝負配置。前哨戦の重賞連対実績と合わせ、陣営としてはっきり信頼できる布陣。<br><br>7番, バグラダス, 0.0, 杉原誠人の継続騎乗だが、嘉藤厩舎ともにこの舞台で格を推す材料が乏しい。陣営面では差を付けにくく中立。<br><br>8番, シュラフ, +0.3, 嶋田純次の継続騎乗で、この馬で新潟千直を勝っている手の内。佐藤吉勝厩舎ともにローカル直千を得意にしており、乗り慣れの信頼を上乗せ。<br><br>9番, カウンターセブン, +0.4, 三浦皇成への乗り替わりは実力騎手への強化で、村田厩舎の勝負気配。新潟千直の経験ある実力派を配した陣営意図を買う。<br><br>10番, エコロレジーナ, +0.5, 菊沢一樹の継続騎乗で、この馬・この舞台を知り尽くした父厩舎(菊沢隆徳)との一体運用。直千の勝ち鞍を積んだ乗り慣れコンビとして陣営面で強く信頼できる。<br><br>11番, ロードトレイル, -0.2, 大野拓弥への乗り替わりだが、前走まで横山琉人・高杉らと乗り替わりが続き陣営の腰が定まらない。藤岡健一厩舎も直千の裏付け薄く軽く下げ。<br><br>12番, クムシラコ, 0.0, 原優介の乗り替わり気味だが前走で連対しており悪くない。千葉直人厩舎ともに直千で格を推すには至らず中立。<br><br>13番, テイエムスパーダ, +0.2, 国分恭介への乗り替わり。小椋厩舎は電撃戦に実績を残してきた陣営で、重賞勝ちのある舞台適性は買えるが、騎手の格・定評では抜けず小幅の上げ。<br><br>14番, ブーケファロス, -0.4, 石橋脩への乗り替わりは悪くないが、清水英克厩舎ともにこの舞台の直近実績が振るわず、乗り替わりの連続で陣営の勝負気配も感じにくい。<br><br>15番, アタリダイキチ, 0.0, 武藤雅への乗り替わり。西田厩舎ともに直千で格を語る材料に乏しく、陣営面では差を付けにくい中立評価。<br><br>16番, アメリカンステージ, +0.6, 戸崎圭太への乗り替わりはトップ騎手への明確な強化。矢作芳人厩舎の勝負気配がはっきり出た配置で、名門×トップ騎手の布陣を強く評価する。<br><br>17番, ビッグシーザー, +0.4, 荻野極への乗り替わりだが、杉山晴紀厩舎は重賞を取ってきた実力厩舎で勝負仕上げの信頼がある。名門厩舎の格を買って上げ。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>陣営軸の内側で3つの一貫性を点検してほしい。(1) 乗り替わり連続への減点基準が非対称: 11番ロードトレイルは -0.2 で叩いたのに、同じく直近で騎手が入れ替わり続けた6番ピューロマジック(北村→田辺、その前もマーフィー/松山/横山)と13番テイエムスパーダ(荻野→国分)は減点を免除しとる。同じ物差しで測り直す余地。(2) 6番+0.7 と16番+0.6 の序列: 6番は『新潟巧者(田辺)』、16番は『名門×トップ騎手の格(戸崎/矢作)』と、2馬で評価軸が入れ替わっとる。矢作は短距離特化厩舎とは言い難く、当舞台適性という軸なら短距離特化の安田翔伍(6番)が上のはず。どの物差しで並べたか統一を。(3) 当舞台の手の内の重みが不統一: 10番エコロレジーナ+0.5(菊沢父子一体)と8番シュラフ+0.3(嶋田継続で当舞台複数勝ち)の0.2差が『父厩舎』だけで説明つくか、5番ベルギューン+0.2 との帯の混在も含め再考。また津村を『格』で買うなら、津村で御池特別を勝った15番アタリダイキチ0.0との整合も確認を。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の3つの指摘を陣営軸の内側で検証するね。<br><br>**(1) 乗り替わり連続への減点の非対称性**<br><br>これは的を射とる。11番ロードトレイル(横山琉人→高杉→田山→大野で腰が定まらん)を -0.2 で叩いたのに、6番ピューロマジック(松山→横山→北村→田辺と入れ替わり続き)を免除しとった。ただ 6番は函館SSを北村で勝った直後に田辺への強化やけん「勝ちっぱなしの乗り替わり=勝負配置」と読める。13番テイエムスパーダ(荻野→国分)は入れ替わり続きで免除しとったのは甘い。物差しを揃えて 13番は少し引く。11番の -0.2 は妥当なので維持。<br><br>**(2) 6番+0.7 と 16番+0.6 の評価軸の入れ替わり**<br><br>指摘通り、当舞台適性で語るなら短距離特化の安田翔伍(6番)+田辺 が矢作(16番)より上のはず。矢作は総合力の名門で短距離特化ではない。ただ戸崎はトップ騎手の格として厳然。軸を「継続・強化の質×当舞台の手の内」で統一すると、6番は北村で当地アイビスSD含む重賞勝ち → 田辺強化で最上位維持、16番は戸崎強化だが厩舎は当舞台特化でない分、6番の下に置くのが筋。16番を気持ち下げて序列を明確化。<br><br>**(3) 当舞台の手の内の重みの不統一**<br><br>8番シュラフは嶋田継続で当舞台(新潟千直)複数勝ちの手の内が濃い。10番エコロレジーナ(菊沢父子)との 0.2 差は「父厩舎」だけでは説明が弱い。8番の当地実績の濃さを評価して +0.3→+0.4 に。津村を格で買った 4番と、津村で御池特別を勝った 15番アタリダイキチ 0.0 の整合 — 15番は津村→武藤への乗り替わりで手の内が切れとる。津村の格は 4番についていくので 15番0.0は整合しとる、維持。<br><br>**見直し後の全馬:**<br><br>1番, ウイングレイテスト, +0.2, 松岡の継続騎乗で手の内は知るが、新潟千直で格を推せる騎手ではなく畠山厩舎も直線専門でない。わずかな安定感まで。<br><br>2番, デュガ, -0.1, 江田の継続騎乗は手の内では悪くないが、森秀行厩舎ながら直千で格を推せる配置でない。ほぼ中立から気持ち下。<br><br>3番, ミカッテヨンデイイ, -0.3, 小林脩斗の継続は良いが若手で直千の定評まではなく、室井厩舎も当舞台の裏付け薄い。陣営面で見劣り。<br><br>4番, カウスリップ, +0.4, 前走ゴンサルベ→津村へのトップクラス強化で、中舘英二厩舎の勝負気配。直千巧者を配した意図を評価。<br><br>5番, ベルギューン, +0.2, 菱田の継続で前走の勝ち味を知る。牧浦厩舎に直千の定評はないが乗り替わり無しの安心感で軽く上げ。<br><br>6番, ピューロマジック, +0.7, 北村で当地アイビスSD含む重賞勝ちの実績があり、田辺への強化は当舞台巧者への上積み。短距離特化の安田翔伍厩舎との布陣は陣営面で隔絶。継続の質が高く連続乗り替わりの減点は当たらない。<br><br>7番, バグラダス, 0.0, 杉原の継続だが嘉藤厩舎ともに当舞台で格を推す材料が乏しい。中立。<br><br>8番, シュラフ, +0.4, 嶋田の継続でこの馬・この舞台(新潟千直)を複数勝っとる手の内が濃い。佐藤吉勝厩舎もローカル直千を得意にし、当地実績の濃さを評価して上げ幅拡大。<br><br>9番, カウンターセブン, +0.4, 三浦皇成への実力騎手強化で村田厩舎の勝負気配。新潟千直の経験ある実力派を配した意図を買う。<br><br>10番, エコロレジーナ, +0.5, 菊沢一樹の継続で当地韋駄天S勝ちの手の内、父厩舎菊沢隆徳との一体運用。乗り慣れコンビとして陣営面で強く信頼。<br><br>11番, ロードトレイル, -0.2, 大野への乗り替わりだが横山琉人→高杉→田山と腰が定まらず、藤岡健一厩舎も直千の裏付け薄く軽く下げ。<br><br>12番, クムシラコ, 0.0, 原の乗り替わり気味だが前走連対で悪くない。千葉直人厩舎ともに直千で格を推すには至らず中立。<br><br>13番, テイエムスパーダ, +0.1, 小椋厩舎は電撃戦に実績を残す陣営で舞台適性は買えるが、荻野→国分と騎手が入れ替わり続き陣営の腰が定まらない。物差しを揃えて上げ幅縮小。<br><br>14番, ブーケファロス, -0.4, 石橋脩への乗り替わりは悪くないが、清水英克厩舎ともに当舞台の直近実績が振るわず、乗り替わり続きで勝負気配も感じにくい。<br><br>15番, アタリダイキチ, 0.0, 津村→武藤への乗り替わりで前走の手の内が切れとる。西田厩舎ともに直千で格を語る材料に乏しく中立。<br><br>16番, アメリカンステージ, +0.5, 戸崎への明確な強化は格として厳然だが、矢作芳人厩舎は総合力の名門で短距離特化ではない。当舞台の手の内という軸では 6番の下に置き、序列を明確化して気持ち下げ。<br><br>17番, ビッグシーザー, +0.4, 荻野への乗り替わりだが杉山晴紀厩舎は重賞を取ってきた実力厩舎で勝負仕上げの信頼。名門厩舎の格を買って上げ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: -0.3, &quot;4&quot;: 0.4, &quot;5&quot;: 0.2, &quot;6&quot;: 0.7, &quot;7&quot;: 0.0, &quot;8&quot;: 0.4, &quot;9&quot;: 0.4, &quot;10&quot;: 0.5, &quot;11&quot;: -0.2, &quot;12&quot;: 0.0, &quot;13&quot;: 0.1, &quot;14&quot;: -0.4, &quot;15&quot;: 0.0, &quot;16&quot;: 0.5, &quot;17&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;批判者の3指摘を受けて陣営軸内の一貫性を修正。(1)乗り替わり連続の物差しを揃え、免除しとった13番を+0.2→+0.1に縮小(6番は函館SS勝ち直後の強化で継続質が高く維持)。(2)当舞台の手の内軸で6番&gt;16番の序列を明確化、16番を+0.6→+0.5に。(3)当地複数勝ちの手の内が濃い8番を+0.3→+0.4に引き上げ。15番は津村→武藤で手の内が切れ0.0維持、11番の-0.2も腰の定まらなさで妥当と再確認。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキー、アイビスサマーダッシュの合成スコア、うちの目でしっかり批判して確定するね。まずは検討からいくよ。<br><br>## 合成スコアへの疑問<br><br>**16番アメリカンステージが暫定1位（23.4）は妙味を取り違えとる**と思うとよ。確かに韋駄天S 2着（指数91.7）・青函S 3着（指数90.3）と強いっちゃけど、この馬は牝馬限定の外枠有利という直千の核心を持っとらん牡馬で、しかも枠は8枠16番。直千（芝1000m直線）は外ラチ沿いをまっすぐ走れる**大外〜外枠が絶対的に有利**なコースやけん、16番・17番の8枠は展開利がある。そこは合成が正しく拾えとるかもしれん。でも1位に置くほどの上積みかは疑問。<br><br>**6番ピューロマジックが3位（21.0）は下がりすぎ**っちゃない？この馬は**前々走で当のアイビスSD（GIII）を勝っとる直千巧者**で、しかも函館SS(GIII)を7週前に勝った直後（指数93.1）。牝馬55...いや別定56kgやけど、直千で1着経験のある現役最強格。指数の絶対値も出走馬中トップクラス。田辺騎手継続。これは◎級やと思う。合成は高松宮13着・オーシャン16着の凡走を引きずって減点しすぎとる——あれは1200mの追走がきついだけで、直千に戻れば別馬。<br><br>**10番エコロレジーナが2位（22.8）は妥当以上に見える**。韋駄天S（同舞台）を指数93.4で快勝、これは全馬中トップ指数。ただし後方一気型で、直千は前が止まらん高速決着になりやすく差しが届きにくい面がある。それでも同舞台勝ちの破壊力は本物。○〜◎争い。<br><br>**8番シュラフが5位（15.4）で残っとるのは過大**やと思う。韋駄天S 5着（指数86.5）は悪くないけど、上位陣とは指数で5以上離れとる。ここより**12番クムシラコ（安達太良S 2着・指数92.0、韋駄天9着）**や**16番と同型の先行力ある馬**の方が怖い。ただ8番も直千3勝クラス勝ち・当舞台巧者ではあるけん、5位圏内は否定せんが点は削る。<br><br>**6位以下からの食い込み**: 12番クムシラコは安達太良Sで指数92.0を叩き出しており、直千でも通用する脚。5番ベルギューンは3週前の釜山S勝ちで勢いはあるが**ダート実績で芝直千は未知**、割引。<br><br>## うちの確定判断<br><br>外枠有利という舞台補正を効かせつつ、直千の実績（当舞台勝ち経験）を最重視した。◎は6番、対抗に10番、単穴に16番。<br><br>6番, ピューロマジック, 24%, 当のアイビスSDを含む重賞4勝の直千巧者で函館SS勝ち直後、指数もトップ級。1200の凡走に引きずられた合成の減点は過剰。<br><br>10番, エコロレジーナ, 22%, 同舞台の韋駄天Sを全馬最高指数93.4で快勝。差し届かずのリスクだけ小引き。<br><br>16番, アメリカンステージ, 20%, 韋駄天2着・青函3着と好調で外枠利もあるが、直千未勝利の牡馬。1位評価は買いかぶり。<br><br>12番, クムシラコ, 13%, 安達太良S指数92.0の上積みは上位に伍する。6位以下からヒモに食い込む一頭として引き上げる。<br><br>8番, シュラフ, 11%, 当舞台巧者だが上位との指数差が大きく、5位据え置きより点は削る。<br><br>```json<br>{&quot;score&quot;: {&quot;6&quot;: 24, &quot;10&quot;: 22, &quot;16&quot;: 20, &quot;12&quot;: 13, &quot;8&quot;: 11}, &quot;analysis_summary&quot;: &quot;合成は16番アメリカンステージを1位に置くが直千未勝利の牡馬で買いかぶり、逆に当アイビスSD勝ちの直千巧者6番ピューロマジックを3位まで下げたのは1200m凡走の引きずりによる過剰減点。◎は6番に格上げ、○は同舞台最高指数の10番エコロレジーナ、▲に16番。5位の8番シュラフは上位との指数差が大きく点を削り、6位以下から安達太良S指数92.0の12番クムシラコをヒモに引き上げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟直線1000m・良馬場、17頭。レース情報だけを白紙で読んで全馬に点を付けたばい。外枠有利のコース特性・持ちタイム（1000m実績）・近走の勢い・調教・馬体重の増減を総合して相対評価しとる。<br><br>6番, ピューロマジック, 15%, 前走函館SS(GIII)を逃げ切り勝ち、去年のアイビス覇者で直千の絶対スピードは最上位。指数93クラスを叩き出せる先行力が最大の武器。<br><br>10番, エコロレジーナ, 14%, 前走韋駄天Sを指数93.4で快勝、直千巧者で最終追い切りも53.1と鋭い。この舞台の適性は全馬でも屈指。<br><br>16番, アメリカンステージ, 12%, 韋駄天S2着・青函S3着と近走安定し指数90超え、8枠の外枠は直千で明確に有利。斤量57は微減点も勢い十分。<br><br>17番, ビッグシーザー, 9%, 京阪杯勝ちの重賞級だが直千は初、8枠好枠と一追いでの良化に期待。近走は着差負けが続き割引もある。<br><br>12番, クムシラコ, 8%, 前走安達太良S2着で指数92と復調、韋駄天S9着だが直千巡目多くコース経験は豊富。安定感で上位。<br><br>9番, カウンターセブン, 7%, 邁進特別を指数86.8で圧勝し安達太良S3着と充実、直千実績あり調教も力強い。5枠から前々で運べれば。<br><br>13番, テイエムスパーダ, 6%, 韋駄天S11着と近走不振だがセントウルS勝ちの実績馬、内枠替わりで一変の余地。ピーク時なら一撃。<br><br>2番, デュガ, 5%, 韋駄天S10着だが2走前春雷S4着と芝短距離で通用、栗坂の動き軽快。-10kgの馬体減が気がかり。<br><br>8番, シュラフ, 5%, 駿風S・1勝クラスと直千で複数勝ちしコース巧者、指数86.5と底力見せる。斤量55も好材料だが小柄で相手強化が壁。<br><br>11番, ロードトレイル, 4%, 駿風S2着と直千好走歴あり、近走小倉で堅実。決め手不足で頭までは苦しい。<br><br>1番, ウイングレイテスト, 4%, カーバンクル勝ちの実績馬で1F追い切りの伸び目立つが9歳と高齢、直千は未知数で200m短縮も課題。<br><br>15番, アタリダイキチ, 3%, 御池特別勝ちで上昇中だが直千初、8枠は好材料も相手強化で足りるか微妙。<br><br>4番, カウスリップ, 3%, 駿風S3着と直千経験あり大型馬だが指数76台と見劣り、+16kgの増加も評価を下げる。<br><br>7番, バグラダス, 3%, 韋駄天S7着で上がり最速31.9を記録した末脚は魅力だが、前走13着と大敗しムラが大きい。<br><br>5番, ベルギューン, 2%, 芝1000mは初でダート短距離からの臨戦、釜山S勝ちも指数は伸び悩む。適性面で疑問符。<br><br>14番, ブーケファロス, 2%, 昨年アイビス9着・韋駄天7着と直千で結果出ず、久々で割引の調教評価。反発力は乏しい。<br><br>3番, ミカッテヨンデイイ, 1%, 近走1600-2000mの中距離で二桁着順続き、直千は明らかに距離短縮すぎ。スピード不足で最下位評価。<br><br>```json<br>{&quot;score&quot;: {&quot;6&quot;: 15, &quot;10&quot;: 14, &quot;16&quot;: 12, &quot;17&quot;: 9, &quot;12&quot;: 8, &quot;9&quot;: 7, &quot;13&quot;: 6, &quot;2&quot;: 5, &quot;8&quot;: 5, &quot;11&quot;: 4, &quot;1&quot;: 4, &quot;15&quot;: 3, &quot;4&quot;: 3, &quot;7&quot;: 3, &quot;5&quot;: 2, &quot;14&quot;: 2, &quot;3&quot;: 1}, &quot;analysis_summary&quot;: &quot;新潟直千・良馬場。直千の絶対スピードとコース実績を軸に評価。前走重賞勝ちの6番ピューロマジックと韋駄天S快勝の10番エコロレジーナを2トップ、外枠有利を活かせる16番アメリカンステージが続く。重賞実績はあるが直千初の17番、復調の12番を上位に。中距離型の3番や芝千初の5番、大型で指数不足の4番を下位に置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>10</td><td class="left horse-name">エコロレジーナ</td><td>12.1%</td><td>5.9</td><td>3</td><td class="ev-low">0.71</td></tr><tr><td>2</td><td>6</td><td class="left horse-name">ピューロマジック</td><td>11.9%</td><td>3.0</td><td>1</td><td class="ev-low">0.36</td></tr><tr><td>3</td><td>16</td><td class="left horse-name">アメリカンステージ</td><td>11.3%</td><td>4.4</td><td>2</td><td class="ev-low">0.50</td></tr><tr><td>4</td><td>17</td><td class="left horse-name">ビッグシーザー</td><td>7.8%</td><td>7.7</td><td>4</td><td class="ev-low">0.60</td></tr><tr><td>5</td><td>8</td><td class="left horse-name">シュラフ</td><td>7.5%</td><td>20.0</td><td>7</td><td class="ev-mid">1.50</td></tr><tr><td>6</td><td>9</td><td class="left horse-name">カウンターセブン</td><td>7.1%</td><td>30.6</td><td>9</td><td class="ev-high">2.18</td></tr><tr><td>7</td><td>12</td><td class="left horse-name">クムシラコ</td><td>7.0%</td><td>20.2</td><td>8</td><td class="ev-mid">1.42</td></tr><tr><td>8</td><td>13</td><td class="left horse-name">テイエムスパーダ</td><td>6.1%</td><td>15.7</td><td>5</td><td class="ev-low">0.96</td></tr><tr><td>9</td><td>11</td><td class="left horse-name">ロードトレイル</td><td>4.6%</td><td>58.9</td><td>14</td><td class="ev-high">2.71</td></tr><tr><td>10</td><td>2</td><td class="left horse-name">デュガ</td><td>4.4%</td><td>81.0</td><td>15</td><td class="ev-high">3.58</td></tr><tr><td>11</td><td>1</td><td class="left horse-name">ウイングレイテスト</td><td>4.2%</td><td>15.9</td><td>6</td><td class="ev-low">0.66</td></tr><tr><td>12</td><td>5</td><td class="left horse-name">ベルギューン</td><td>3.9%</td><td>35.9</td><td>10</td><td class="ev-mid">1.41</td></tr><tr><td>13</td><td>4</td><td class="left horse-name">カウスリップ</td><td>3.8%</td><td>38.1</td><td>11</td><td class="ev-mid">1.46</td></tr><tr><td>14</td><td>15</td><td class="left horse-name">アタリダイキチ</td><td>3.6%</td><td>49.9</td><td>13</td><td class="ev-mid">1.79</td></tr><tr><td>15</td><td>7</td><td class="left horse-name">バグラダス</td><td>2.5%</td><td>40.6</td><td>12</td><td class="ev-mid">1.03</td></tr><tr><td>16</td><td>14</td><td class="left horse-name">ブーケファロス</td><td>1.3%</td><td>151.1</td><td>17</td><td class="ev-high">2.02</td></tr><tr><td>17</td><td>3</td><td class="left horse-name">ミカッテヨンデイイ</td><td>0.8%</td><td>124.8</td><td>16</td><td class="ev-low">0.97</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">10 エコロレジーナ</td><td>12.1%</td><td>5.9</td><td class="ev-low">0.59</td></tr><tr><td>複勝</td><td class="left">10 エコロレジーナ</td><td>34.3%</td><td>1.8</td><td class="ev-low">0.56</td></tr><tr><td>馬連</td><td class="left">6 ピューロマジック-10 エコロレジーナ</td><td>3.3%</td><td>8.9</td><td class="ev-low">0.24</td></tr><tr><td>ワイド</td><td class="left">6 ピューロマジック-10 エコロレジーナ</td><td>9.2%</td><td>4.3</td><td class="ev-low">0.33</td></tr><tr><td>馬単</td><td class="left">10 エコロレジーナ→6 ピューロマジック</td><td>1.6%</td><td>22.4</td><td class="ev-low">0.30</td></tr><tr><td>3連複</td><td class="left">6 ピューロマジック-10 エコロレジーナ-16 アメリカンステージ</td><td>1.4%</td><td>11.5</td><td class="ev-low">0.14</td></tr><tr><td>3連単</td><td class="left">10 エコロレジーナ→6 ピューロマジック→16 アメリカンステージ</td><td>0.2%</td><td>63.4</td><td class="ev-low">0.12</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 600円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">10 エコロレジーナ</td><td>5.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">6 ピューロマジック-10 エコロレジーナ</td><td>8.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>馬単</td><td class="left">10 エコロレジーナ→6 ピューロマジック</td><td>22.4</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬単◎→○</td></tr><tr><td>3連複</td><td class="left">6 ピューロマジック-10 エコロレジーナ-16 アメリカンステージ</td><td>11.5</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">10 エコロレジーナ→6 ピューロマジック→16 アメリカンステージ</td><td>63.4</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 600円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
