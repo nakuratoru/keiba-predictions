@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第18回レパードステークス 2026/08/09 NIIGATA 7R (08/09 15:12 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第18回レパードステークス 2026/08/09 NIIGATA 7R (08/09 15:12 予想)</h1>
+  <div class="meta">ダート1800m（左） | 良 | 12頭立て | 2回 新潟 6日目 サラ系3歳 オープン （国際）（指定） 馬齢 12頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">6. ドンエレクトス</div>
+      <div class="pick-jockey">荻野 極 / 高木 登</div>
+    </div>
+    <div class="pick-prob">15.3%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">12. メルカントゥール</div>
+      <div class="pick-jockey">坂井 瑠星 / 杉山 晴紀</div>
+    </div>
+    <div class="pick-prob">13.7%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">10. タガノアバンドーネ</div>
+      <div class="pick-jockey">菱田 裕二 / 角田 晃一</div>
+    </div>
+    <div class="pick-prob">11.7%</div>
+    <div class="pick-pop">8番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">12頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">オオツカ</td><td>牡3</td><td>57</td><td>津村 明秀</td><td>大久保 龍志</td><td>キタサンブラック</td><td>モーリス</td><td>446(+2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ファイアマン</td><td>牡3</td><td>57</td><td>原 優介</td><td>上原 博之</td><td>ディスクリートキャット</td><td>パイロ</td><td>500(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">ヒシアムルーズ</td><td>牡3</td><td>57</td><td>佐々木 大輔</td><td>堀 宣行</td><td>サートゥルナーリア</td><td>Sightseeing</td><td>482(+8)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">チェリヴェント</td><td>牡3</td><td>57</td><td>吉村 誠之助</td><td>清水 久詞</td><td>コントレイル</td><td>Successful Appeal</td><td>504(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>5</td><td class="left horse-name">マクリール</td><td>牡3</td><td>57</td><td>戸崎 圭太</td><td>手塚 貴久</td><td>ロードカナロア</td><td>Galileo</td><td>472(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>6</td><td class="left horse-name">ドンエレクトス</td><td>牡3</td><td>57</td><td>荻野 極</td><td>高木 登</td><td>ダノンレジェンド</td><td>フリオーソ</td><td>470(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>7</td><td class="left horse-name">パラダイスフェイス</td><td>牡3</td><td>57</td><td>石橋 脩</td><td>牧 光二</td><td>エスポワールシチー</td><td>Distorted Humor</td><td>504(-2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>8</td><td class="left horse-name">テンカムテキ</td><td>牡3</td><td>57</td><td>石川 裕紀人</td><td>林 徹</td><td>ナダル</td><td>サウスヴィグラス</td><td>512(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>9</td><td class="left horse-name">ショウナンバンライ</td><td>牡3</td><td>57</td><td>田山 旺佑</td><td>松下 武士</td><td>オルフェーヴル</td><td>Candy Ride</td><td>474(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>10</td><td class="left horse-name">タガノアバンドーネ</td><td>牡3</td><td>57</td><td>菱田 裕二</td><td>角田 晃一</td><td>モズアスコット</td><td>フジキセキ</td><td>476(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>11</td><td class="left horse-name">パイロマンサー</td><td>牡3</td><td>57</td><td>岩田 望来</td><td>吉村 圭司</td><td>パイロ</td><td>ハードスパン</td><td>524</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>12</td><td class="left horse-name">メルカントゥール</td><td>牡3</td><td>57</td><td>坂井 瑠星</td><td>杉山 晴紀</td><td>ルヴァンスレーヴ</td><td>Gold Halo</td><td>530(+8)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ドンエレクトス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">メルカントゥール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">タガノアバンドーネ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ドンエレクトス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">メルカントゥール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">マクリール</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ドンエレクトス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">パイロマンサー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">メルカントゥール</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">メルカントゥール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ドンエレクトス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">パイロマンサー</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ドンエレクトス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">メルカントゥール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">タガノアバンドーネ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.73</td>
+<td style='color:#AF52DE'>0.70</td>
+<td style='color:#8E8E93'>0.53</td>
+<td style='color:#8E8E93'>0.33</td>
+<td style='color:#8E8E93'>0.33</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ドンエレクトス</span></td>
+<td>+0.81</td>
+<td>+0.34</td>
+<td>+0.48</td>
+<td>+0.58</td>
+<td>+0.42</td>
+<td>15.7</td>
+<td>14.8</td>
+<td>14.5</td>
+<td><b>15.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">メルカントゥール</span></td>
+<td>+0.75</td>
+<td>+0.20</td>
+<td>+0.16</td>
+<td>+0.56</td>
+<td>+0.42</td>
+<td>13.5</td>
+<td>13.0</td>
+<td>14.8</td>
+<td><b>13.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">タガノアバンドーネ</span></td>
+<td>+0.50</td>
+<td>+0.18</td>
+<td>+0.49</td>
+<td>+0.26</td>
+<td>-0.04</td>
+<td>11.2</td>
+<td>12.5</td>
+<td>12.5</td>
+<td><b>11.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">パイロマンサー</span></td>
+<td>+0.76</td>
+<td>+0.14</td>
+<td>-0.37</td>
+<td>+0.61</td>
+<td>+0.56</td>
+<td>9.6</td>
+<td>13.1</td>
+<td>16.0</td>
+<td><b>11.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">マクリール</span></td>
+<td>+0.56</td>
+<td>+0.16</td>
+<td>+0.32</td>
+<td>+0.14</td>
+<td>+0.10</td>
+<td>11.1</td>
+<td>9.6</td>
+<td>11.2</td>
+<td><b>10.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">チェリヴェント</span></td>
+<td>+0.17</td>
+<td>+0.14</td>
+<td>+0.28</td>
+<td>+0.26</td>
+<td>+0.20</td>
+<td>8.5</td>
+<td>9.3</td>
+<td>6.1</td>
+<td><b>8.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ショウナンバンライ</span></td>
+<td>+0.16</td>
+<td>+0.20</td>
+<td>+0.20</td>
+<td>-0.04</td>
+<td>+0.30</td>
+<td>8.1</td>
+<td>-</td>
+<td>6.9</td>
+<td><b>7.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">テンカムテキ</span></td>
+<td>+0.04</td>
+<td>+0.22</td>
+<td>-0.02</td>
+<td>+0.42</td>
+<td>-0.12</td>
+<td>6.7</td>
+<td>-</td>
+<td>4.8</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">オオツカ</span></td>
+<td>-0.38</td>
+<td>+0.10</td>
+<td>+0.20</td>
+<td>+0.06</td>
+<td>-0.16</td>
+<td>4.0</td>
+<td>-</td>
+<td>4.4</td>
+<td><b>4.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ヒシアムルーズ</span></td>
+<td>-0.32</td>
+<td>+0.02</td>
+<td>+0.21</td>
+<td>-0.10</td>
+<td>+0.08</td>
+<td>4.3</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>4.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">パラダイスフェイス</span></td>
+<td>-0.26</td>
+<td>+0.04</td>
+<td>-0.27</td>
+<td>+0.44</td>
+<td>-0.22</td>
+<td>3.7</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>3.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ファイアマン</span></td>
+<td>-0.40</td>
+<td>-0.20</td>
+<td>+0.20</td>
+<td>+0.38</td>
+<td>-0.08</td>
+<td>3.6</td>
+<td>-</td>
+<td>2.9</td>
+<td><b>3.5</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>実績派として、レパードステークスを過去の実績データだけで分析するね。これは予想エージェントとしての専門タスクやけん、そのまま分析に入るとよ。<br><br>まず格・指数・着差・相手関係を読み解くね。<br><br>**指数の頂点**：6番ドンエレクトスが青竜S・伏竜S・ヒヤシンスSで指数90超を連発（94.4/90.6/92.3）、OP・リステッドで安定。ダート路線の格・指数ともに抜けとる。12番メルカントゥールもユニコーンS(GIII)2着で指数91.7、GIII級で通用済み。11番パイロマンサーは全日本2歳優駿(JpnI)勝ちの格が最上位。<br><br>**格上げ実績組**：10番タガノアバンドーネは唯一の2勝クラス勝ち、指数85前後で安定。5番マクリールは青竜S2着・2勝クラス勝ちで指数88-89、ただしダ1600中心。<br><br>---<br><br>1番 オオツカ, -0.3, 1勝クラス勝ちどまりで指数77前後、同距離1800では京都7着(1.4秒差)。相手強化で実績的に一枚足りない。<br><br>2番 ファイアマン, -0.4, 1600重馬場勝ちは指数86.9だが1800では6着9着6着と凡走続き、同距離指数70台。距離実績が乏しく格も1勝クラス止まり。<br><br>3番 ヒシアムルーズ, -0.2, ダ1600勝ちで指数85.3だが、これがダート唯一の好走。芝重賞は青葉賞13着・札幌2歳S10着と大敗、ダ1800未経験で実績の裏付けが薄い。<br><br>4番 チェリヴェント, +0.1, 同距離1800で1着2着3着と安定し指数87-88も出す。ただ格は1勝クラス止まりで中山15着の凡走もあり、実績は堅実だが格上突破の証拠は弱い。<br><br>5番 マクリール, +0.5, 青竜S(OP)2着・雲取賞(JpnIII)3着・2勝クラス勝ちと格の裏付け十分、指数88-89。ただ好走はダ1600中心で1800では雲取賞3着(1.2秒差)がやや見劣り。<br><br>6番 ドンエレクトス, +0.9, 青竜S1着・伏竜S2着・ヒヤシンスS2着とOP/L路線で指数90-94を連発。同距離1800も伏竜S2着・1勝クラス勝ちで実績・指数ともに隔絶して抜けとる。<br><br>7番 パラダイスフェイス, -0.3, 1勝クラス勝ちどまりで指数80前後、同距離1800は未勝利勝ちのみ。相手が上がって実績で見劣る。<br><br>8番 テンカムテキ, 0.0, 同距離1800で1着3着2着と堅実だが指数82-83で格は1勝クラス止まり。安定はするが抜けた強さの裏付けはない。<br><br>9番 ショウナンバンライ, +0.2, 八女特別(2勝クラス)勝ちで指数85.5、同距離1800も1勝クラス勝ちで指数83.9。格は上げたが相手手薄で指数がやや物足りない。<br><br>10番 タガノアバンドーネ, +0.6, 唯一の2勝クラス勝ち(指数85.5)で格が一枚上、同距離1800での実績が豊富(1着5着1着3着)で安定感が抜群。リステッド鳳雛S5着はあるが総合力は上位。<br><br>11番 パイロマンサー, +0.7, 全日本2歳優駿(JpnI)勝ちの格は最上位、もちの木賞・新馬もダ1800勝ちで指数86.6。UAEダービー(GII)3着も評価でき、格と勝ち切る力が抜けとる。<br><br>12番 メルカントゥール, +0.7, ユニコーンS(GIII)2着で指数91.7とこのメンバー最高値クラス、同距離1800も1着2着で崩れなし。GIII級で通用済みの格・指数が強力。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.3, &quot;2&quot;: -0.4, &quot;3&quot;: -0.2, &quot;4&quot;: 0.1, &quot;5&quot;: 0.5, &quot;6&quot;: 0.9, &quot;7&quot;: -0.3, &quot;8&quot;: 0.0, &quot;9&quot;: 0.2, &quot;10&quot;: 0.6, &quot;11&quot;: 0.7, &quot;12&quot;: 0.7}, &quot;analysis_summary&quot;: &quot;実績・指数の頂点は6番ドンエレクトス(青竜S勝ち・指数90-94連発・同距離1800も好走)で隔絶。次いで格の11番パイロマンサー(JpnI勝ち)・指数の12番メルカントゥール(ユニコーンS2着・指数91.7)・格上げ済み10番タガノアバンドーネ(唯一の2勝クラス勝ち)が上位。5番マクリールも格の裏付けあるがダ1600中心。1勝クラス止まりの1・2・7番と、ダート実績の薄い3番は相手強化で見劣る。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（keiba_jisseki）の各馬への付値と理由が実行時プロンプトに含まれていません。【担当エージェントの出力】欄が空欄のため、批判対象がなく採点できません。出力を渡してもらえれば、指数・格・着差の実績から見た付値の整合性（例: 5番マクリールと6番ドンエレクトスの1800m実績差、11番パイロマンサーのJpnI勝ちの評価、10番タガノアバンドーネの2勝クラス格、12番メルカントゥールのGIII2着指数）を名指しで点検します。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘は「出力欄が空欄で採点できない」という手続き上のもので、実績評価の中身への反論ではない。ただし批判者が名指しした論点（5番と6番の1800m実績差、11番のJpnI勝ち評価、10番の2勝クラス格、12番のGIII2着指数）は、実績派として自分で再点検する価値がある。自軸で見直す。<br><br>**11番 パイロマンサー**：全日本2歳優(JpnI)勝ちは、このメンバーで唯一のGI級タイトル。ただし2歳12月の勝利で、直近はUAダービー(GII)3着(1.6秒差)と大敗気味。もちの木賞のダ1800m86.6は優秀だが約9か月前。額面のJpnI勝ちに引っ張られすぎていた。近走の実績（直近は指数不明のGII凡走）を踏まえ、+0.70→+0.60に微修正。格の裏付けは残す。<br><br>**6番 ドンエレクトス**：青竜S(OP)94.4、伏竜S(OP)90.6、ヒヤシンスS92.3と、OP級で指数90超を連発。ダ1800mも86.8勝ち＋伏竜S90.6の実績。このメンバーで指数の絶対水準が隔絶。+0.90維持。<br><br>**5番 マクリール**：青竜S2着89.2・小金井特別(2勝)勝ち88.3と1600mでは高指数だが、1800mは雲取賞(JpnIII)3着1.2秒差・黒竹賞(1勝)勝ち83.4止まり。1800mの指数は6番・12番・10番に劣る。距離実績を踏まえ+0.50は妥当、むしろやや高い。+0.45に微修正。<br><br>**10番 タガノアバンドーネ**：唯一の2勝クラス勝ち(85.5)＋鳳雛S(L)5着85.2で、ダ1800mの安定感が高い。格上挑戦での凡走もなく安定。+0.60維持。<br><br>**12番 メルカントゥール**：ユニコーンS(GIII)2着0.1秒差・指数91.7はこのメンバー屈指。ダ1800mも85.4・85.6で安定。GIII好走の格と指数を評価、+0.70維持。<br><br>1番, オオツカ, -0.30, 同距離1800mは京都1勝クラス7着1.4秒・指数75止まりで、格・指数とも足りない。近走1700m勝ちも指数77で見劣り。<br><br>2番, ファイアマン, -0.40, ダ1800mは6着0.8秒・6着1.4秒・9着と凡走続きで指数70前後。1600m重馬場勝ちの86.9は距離延長で額面通りには取れない。<br><br>3番, ヒシアムルーズ, -0.20, 1600m勝ち85.3は評価できるが、芝GII/GIII・芝2000mは着外続きでダ1800m実績が皆無。距離未知で下げる。<br><br>4番, チェリヴェント, +0.10, ダ1800mで勝ち87.3・2着88.0と指数は高いが、中山15着2.9秒の大凡走もあり安定感を欠く。相手強化でどこまでか。<br><br>5番, マクリール, +0.45, 1600mは高指数だが1800mは雲取賞3着1.2秒・黒竹賞83.4止まりで距離実績はやや見劣り。地力上位は認めるが1800m指数では6・10・12に譲る。<br><br>6番, ドンエレクトス, +0.90, 青竜S94.4・伏竜S90.6・ヒヤシンス92.3とOP級で指数90超連発、ダ1800mも86.8勝ち＋伏竜S2着。指数の絶対水準がメンバー中隔絶。<br><br>7番, パラダイスフェイス, -0.30, 近走は1700m1勝クラス勝ちだが指数80止まり、東京1600m13着2.3秒の大凡走もあり。オープンの相手には力量不足。<br><br>8番, テンカムテキ, +0.00, ダ1800m1勝クラス勝ち83.3・3着82.4と堅実だが指数の頭打ち感あり、2勝クラス5着で壁。上下どちらにも振れず中立。<br><br>9番, ショウナンバンライ, +0.20, 八女特別(2勝)勝ち85.5・1800m1勝クラス勝ち83.9と勝ち上がりの勢いはあるが、指数の絶対値はOP級にわずかに届かず。<br><br>10番, タガノアバンドーネ, +0.60, 唯一の2勝クラス勝ち85.5＋鳳雛S(L)5着85.2で、ダ1800mの実績・安定感が高い。格上挑戦でも崩れず信頼できる。<br><br>11番, パイロマンサー, +0.60, 全日本2歳優(JpnI)勝ちはメンバー唯一のGI級タイトルで格は最上位。ただし直近UAダービー(GII)3着1.6秒と大敗気味で、額面より一段引く。<br><br>12番, メルカントゥール, +0.70, ユニコーンS(GIII)2着0.1秒・指数91.7はメンバー屈指、ダ1800mも85.4・85.6で安定。GIII好走の格と高指数を高く評価。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.30, &quot;2&quot;: -0.40, &quot;3&quot;: -0.20, &quot;4&quot;: +0.10, &quot;5&quot;: +0.45, &quot;6&quot;: +0.90, &quot;7&quot;: -0.30, &quot;8&quot;: +0.00, &quot;9&quot;: +0.20, &quot;10&quot;: +0.60, &quot;11&quot;: +0.60, &quot;12&quot;: +0.70}, &quot;analysis_summary&quot;: &quot;批判者の指摘は出力欄空欄の手続き問題で内容反論ではないが、名指し論点を実績派として自己点検。11番はJpnI勝ちの額面に引かれすぎと判断し直近GII大敗を踏まえ+0.70→+0.60、5番は1600m高指数に対し1800m実績(雲取賞3着1.2秒・黒竹賞83.4)がやや見劣りするため+0.50→+0.45に微修正。6番(OP級指数90超連発で隔絶)、10番(唯一の2勝クラス勝ち・安定)、12番(GIII2着91.7)は実績・指数の裏付けが強く維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>レパードステークス、展開派の視点で分析するね。ダート1800m新潟、12頭立て。まず脚質と隊列を組んでみる。<br><br>**逃げ・前を主張しそうな馬を洗う:**<br>- 6番ドンエレクトス: 伏竜S・伏竜以外でも1-1-1-1のハナ実績あり。青竜Sも2番手先行。前で運ぶ本格派。<br>- 12番メルカントゥール: 3番手前後の好位。ユニコーンSでも3-3-3-2。<br>- 4番チェリヴェント: 2-3の先行。<br>- 8番テンカムテキ: 4番手前後の先行。<br>- 7番パラダイスフェイス: 2-2-2の先行〜逃げ。<br>- 1番オオツカ: 1700m前走こそ差したが、本質は1-1-1のハナ〜番手。京都1800で1-1-1-2から失速した経験あり。<br><br>**明確な逃げ宣言する馬が薄い。** ドンエレクトスは番手も差しも自在、単騎ハナを主張し切るタイプでもない。オオツカ・パラダイスフェイスあたりが前に行くが、揃って大逃げする顔ぶれではない。**新潟ダート1800は最初のコーナーまで距離があり、外枠が包まれにくい**。総じて**平均〜ややスロー寄り、前목有利のシナリオが本線**と見る。<br><br>**シナリオ描写:**<br>オオツカ・パラダイスフェイスが前を取りに行き、ドンエレクトスが好位内、その後ろにチェリヴェント・テンカムテキ・メルカントゥールが続く。マクリールは中団、パイロマンサーも中団外め。直線で前の粘りを差せるかどうか。ハイペースにはなりにくく、後方一気は届きにくい構図。<br><br>これを踏まえて補正する。<br><br>---<br><br>1番, オオツカ, +0.3, 前で運べる先行馬でスロー寄りなら位置を取れる。ただ1800では前々から失速歴があり距離延長で我慢が課題、枠1は包まれず立ち回れる利点。<br><br>2番, ファイアマン, -0.5, 近走が16-16-16や15-15-16と後方一辺倒で、前残り想定のこのペースでは展開が向きにくい。前走1600は好位だったが1800では後方に置かれる公算。<br><br>3番, ヒシアムルーズ, 0.0, 前走ダ1600は3番手先行で立ち回りは利くが、ダート1800の隊列イメージが乏しく展開上の明確な有利不利を語りにくい。<br><br>4番, チェリヴェント, +0.4, 2-3-3-2と好位先行で運べ、前残り本線のこの流れに脚質が合致する。枠4も内めでロスなく運べる。<br><br>5番, マクリール, -0.3, 6-5や5-5と差し脚を使うタイプで、スロー寄り前残りなら位置取りで割を食う。前で立ち回れれば強いが本質は差し。<br><br>6番, ドンエレクトス, +0.6, ハナも番手も自在で、前が薄いこの組でスムーズに好位〜先手を取れる。伏竜Sで1-1-1-1の逃げ切り実績があり、展開の主導権を握れる筆頭。<br><br>7番, パラダイスフェイス, +0.4, 2-2-2の先行〜逃げで前を取りに行け、前残り想定に合う。ただ函館1700での競馬が続き新潟1800の直線長さで最後甘くなる懸念もあり。<br><br>8番, テンカムテキ, +0.3, 4番手前後の先行で立ち回れ、1800中山で好走を重ねた前々の競馬がこの流れに合う。枠6も中庸で不利は小さい。<br><br>9番, ショウナンバンライ, +0.2, 2-2-3-1や3-3-3と好位先行で運べ、前残りに乗りやすい。ただ外枠7で前に取りつくまでにやや脚を使う懸念。<br><br>10番, タガノアバンドーネ, 0.0, 4-4-5や6-6-3-3と中団差しで、スロー前残り想定ではやや後方から。差し届く展開なら浮上だが本線では中立。<br><br>11番, パイロマンサー, -0.2, 6-6-4-4や2-2-1と自在だが近走は中団差しの形が多く、前残り想定では位置取りで一歩後手。大外8枠で被されず外を回せる利はある。<br><br>12番, メルカントゥール, +0.3, 3-3-3-2と好位で運べユニコーンSでも前々。前残り想定に脚質が合うが、大外8枠で好位に取りつくまでに脚を使う分をやや割り引く。<br><br>---<br><br>前が薄く平均〜ややスローで前残り本線。先行力の高い6番ドンエレクトスを筆頭に、4番チェリヴェント・7番パラダイスフェイス・8番テンカムテキ・1番オオツカら好位勢を押し上げ。後方一辺倒の2番ファイアマンは展開が向かず強く割引、差し本質の5番マクリールも位置取りで小幅マイナス。10番タガノアバンドーネは差し届く別シナリオ次第で中立。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.5, &quot;3&quot;: 0.0, &quot;4&quot;: 0.4, &quot;5&quot;: -0.3, &quot;6&quot;: 0.6, &quot;7&quot;: 0.4, &quot;8&quot;: 0.3, &quot;9&quot;: 0.2, &quot;10&quot;: 0.0, &quot;11&quot;: -0.2, &quot;12&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;逃げ宣言馬が薄く平均〜ややスローで前残り本線。先行自在の6ドンエレクトスを筆頭に4・7・8・1の好位勢を加点。後方一辺倒の2ファイアマンを強く割引、差し本質の5マクリールと11パイロマンサーを小幅マイナス。10タガノアバンドーネは差し届く別シナリオ次第で中立。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>最大の穴は全馬を『スロー前残り』一枚岩で裁いた点。好位以内を欲しがる馬が7頭ひしめき『前渋滞→差し台頭』の分岐がありうるのに、6番ドンエレクトスに『前が薄い』と書いた前提自体を再検証すべき。前渋滞シナリオを入れると、5番マクリール(-0.3)は差しが届く側で、黒竹賞9-9-3-3の押し上げもあり過小。11番パイロマンサー(-0.2)は自ら『自在』と書きつつ前残り一択で減点、位置取りの融通は加点方向にも振れる。10番タガノアバンドーネ(0.0)と5番マクリールの序列の一貫性も要確認。位置取りコストの二重基準:同じ『外から前』でも12番メルカントゥール(8枠+0.3)&gt;9番ショウナンバンライ(7枠+0.2)で、より外の12番が高く、『割り引く』の記述と数字が噛み合わない。3番ヒシアムルーズの0.0は情報不足か相殺かを明示すると判断保留の質が上がる。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証して、自軸（展開）だけで見直すね。<br><br>**指摘1: 「前が薄い」前提の再検証**<br>出馬表の脚質を並べ直すと、先行以上を欲しがる馬が実際に多い。ドンエレクトス(番手〜先手)、チェリヴェント(2-3番手)、パラダイスフェイス(2番手)、テンカムテキ(3-4番手)、ショウナンバンライ(2-3番手)、オオツカ(1-1番手・京都で1-1-1-2)、メルカントゥール(3-3番手)。7頭が好位以内を主張する。これは「前が薄い」ではなく**むしろ先行争いが激化しうる**組。伏竜Sでドンエレクトスは重馬場10頭立てでハナを切れたが、今回12頭で先行勢が濃い。前有利の絶対量は下げ、内で立ち回れる馬と、先行渋滞の外差しの両シナリオを持つべき。批判は妥当。<br><br>**指摘2: マクリール(5番) 過小**<br>黒竹賞1800で9-9-3-3から差し切り勝ち、雲取賞1800も3着。差し脚質だが先行渋滞シナリオでは届く側。前残り一択で -0.3 は片面的。両シナリオ平均で -0.1 に引き上げる。<br><br>**指摘3: パイロマンサー(11番) 自在性の加点方向**<br>もちの木賞1800は6-6-4-4から差し、新馬は2-2-1-1で先行と、実際に位置自在。前渋滞なら差し側で活き、前残りでも取りつける。大外だが被されない利もある。減点はやめ 0.0 に。<br><br>**指摘4: 位置取りコストの二重基準（12番&gt;9番）**<br>確かに 8枠メルカントゥール +0.3 &gt; 7枠ショウナンバンライ +0.2 は「外ほど割り引く」記述と逆。脚質純度で見るとメルカントゥールの方が好位実績が安定だが、枠コスト単体では9番の方が内。整合させ、メルカントゥールを +0.2 に下げ 9番と並べる。<br><br>**指摘5: ヒシアムルーズ(3番) の0.0**<br>ダート1800の隊列イメージ不足による**情報不足での判断保留**であることを明示。据え置き。<br><br>**指摘6: タガノアバンドーネ(10番)とマクリールの序列**<br>両者とも差し脚質で先行渋滞なら届く側。タガノは4-4-5や6-6-3-3で押し上げ実績あり。マクリールを -0.1 に上げた以上、タガノも同じ差し恩恵側として +0.1 に引き上げ、序列を整える。<br><br>---<br><br>1番, オオツカ, +0.2, 京都1800で1-1-1-2から失速歴があり先行争い激化なら我慢がきかない懸念。枠1でロスなく運べる利は残り、前有利の絶対量低下で+0.3から微減。<br><br>2番, ファイアマン, -0.5, 近走16-16-16や15-15-16と後方一辺倒で、先行渋滞でも後方待機の公算。展開的恩恵を受ける位置におらず据え置き。<br><br>3番, ヒシアムルーズ, 0.0, ダート1800の隊列イメージが乏しく展開上の有利不利を語れない情報不足での判断保留。相殺ではなく材料不足で中立。<br><br>4番, チェリヴェント, +0.4, 2-3-3-2と好位で無理なく運べ、内めの枠4でロスが小さい。先行渋滞でも内で我慢が利く側で据え置き。<br><br>5番, マクリール, -0.1, 黒竹賞1800で9-9-3-3から差し切り、雲取賞1800も3着と差しで1800をこなす。先行渋滞シナリオでは届く側で、前残り一択の-0.3から上方修正。<br><br>6番, ドンエレクトス, +0.5, 番手も先手も自在で好位確保は堅い。ただ先行勢が濃くハナ争いが激化しうるため主導権の確実性を割り引き、+0.6から微減。<br><br>7番, パラダイスフェイス, +0.3, 2-2の先行で前を取りに行けるが先行争いが濃く楽に単騎とはいかない。新潟1800の直線長で甘くなる懸念も残し微減。<br><br>8番, テンカムテキ, +0.3, 3-4番手で立ち回れ1800中山で好走を重ねた前々の競馬が合う。先行渋滞でも中団前めで捌ける位置で据え置き。<br><br>9番, ショウナンバンライ, +0.2, 2-3番手で運べ前残りに乗りやすいが、外枠7で前に取りつくまで脚を使う。据え置き。<br><br>10番, タガノアバンドーネ, +0.1, 4-4-5や6-6-3-3と中団から押し上げる形で、先行渋滞なら差し届く側。マクリールと同じ差し恩恵で0.0から微上げ。<br><br>11番, パイロマンサー, 0.0, もちの木賞1800は6-6-4-4から差し、新馬は先行と位置自在。前残りでも渋滞でも対応でき、片面減点を撤回して中立に。<br><br>12番, メルカントゥール, +0.2, 3-3-3-2と好位で運べる脚質は合うが、大外8枠で好位取りつきに脚を使う分、9番と同水準まで割り引き+0.3から微減。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.5, &quot;3&quot;: 0.0, &quot;4&quot;: 0.4, &quot;5&quot;: -0.1, &quot;6&quot;: 0.5, &quot;7&quot;: 0.3, &quot;8&quot;: 0.3, &quot;9&quot;: 0.2, &quot;10&quot;: 0.1, &quot;11&quot;: 0.0, &quot;12&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;先行以上を欲しがる馬が7頭ひしめく組と再認識し『前が薄い前残り一択』を撤回、前有利の絶対量を下げて先行渋滞→外差し分岐を併存させた。差し側の5番を-0.3→-0.1、10番を0.0→+0.1に引き上げ。11番は自在性を評価して減点撤回で0.0。枠コストの二重基準を正し12番+0.3→+0.2で9番と整合。6番はハナ争い激化で+0.6→+0.5に微減。3番は情報不足の判断保留と明示。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>体調派として、レパードステークスの全12頭を当日のコンディションと仕上がりだけで見ていくね。<br><br>まず馬場は良、斤量は全馬57kgの馬齢統一戦。斤量差での有利不利は付かん一戦やけん、馬体重の推移・出走間隔・叩き何走目・調教の中身で差を付ける。<br><br>1番 オオツカ, +0.2, 446(+2)で前走小倉勝ちが444。ここ数戦442〜446で安定、微増は問題なし。中3週半で叩き良化域、栗坂馬なり脚取り確かで無難な仕上がり。<br><br>2番 ファイアマン, +0.3, 500(+4)は自己最高体重更新も、新馬474から順調に成長した右肩上がりの増え方で太めではない。ただ休養明け(3か月ぶり)。美W1F11.1と最後の伸び目立ち調子↗、明けでも仕上げは良好。<br><br>3番 ヒシアムルーズ, +0.3, 482(+8)は前走474からの+8。前々走青葉賞480→前走474と絞れた後の反動的な戻りやが、中2か月開けての+8なら成長分と見て許容。調子↗で仕上がり良好の評価、上向き。<br><br>4番 チェリヴェント, +0.4, 504(+4)。500〜506で終始安定した体重帯で+4は誤差。中2か月の余裕あるローテ、栗坂5F53.6と時計優秀で活気十分、調子は横ばいながら状態は良い。<br><br>5番 マクリール, +0.4, 472(+8)。前走464まで絞れた後の+8戻し。460〜474で動く馬で今回472はベスト域内、消耗の反動ではなく回復。中2か月、美W1F11.4で直強め、シャープな脚捌きと状態良好。<br><br>6番 ドンエレクトス, +0.5, 470(+2)。462〜470で近走じわじわ増えて充実期の体つき。中3か月とやや間隔開くが叩き良化型。美W1F11.4馬なりで11秒台、調子↗、仕上がり良好で今のこの馬は状態面が抜けて良い。<br><br>7番 パラダイスフェイス, -0.3, 504(-2)。中3週の連戦で、しかも前々走→前走→今回とほぼ連闘に近い過密ローテ。504-508で体重自体は安定やが、この馬は使い詰めで疲労が出やすい局面。G前仕掛けで負荷はかけたが調子→、上積みは乏しい。<br><br>8番 テンカムテキ, 0.0, 512(+4)。504〜512で今回512は近走最重量。中2か月で「実戦で変わる馬」と調教では動き渋め、強めに追ってこの評価は物足りない。体は大きめだが仕上がりに確信持てず中立。<br><br>9番 ショウナンバンライ, +0.2, 474(0)。472〜478の狭い安定帯、増減0で状態キープ。中4週で叩き上がり。栗坂5F53.5と好時計、攻め強化はプラスの評価で上向き感はあるが調子→で控えめに。<br><br>10番 タガノアバンドーネ, +0.5, 476(-4)。480前後で安定した馬の-4は絞れて好走時の体重帯に近い。中7週の余裕あるローテ、栗坂5F55.3-1F11.9で終いしっかり、動きハツラツ調子↗と文句なしの仕上がり。<br><br>11番 パイロマンサー, -0.4, 524(初出)。前走UAEダービーが今回より4か月前で計不、その前の川崎全日本2歳優が503。国内実績時503〜512に対し今回524は大幅増の可能性が高い。長期休養明け+海外帰りで、524が成長分か太め残りか読みにくいのが最大の不安。栗坂の時計と推進力は悪くないが、体重未確定の下振れリスクを取る。<br><br>12番 メルカントゥール, -0.2, 530(+8)。もともと522〜530の大型馬やが今回530は自己最重量タイで+8。ユニコーンS522から+8の増え方は、間隔(3か月)を考えると休み明けの余裕残しの可能性。栗坂5F55.5-1F13.1と終いは案外地味、馬なりとはいえ大型馬の明けで13.1は仕上げ途上の疑い。力強い伸び脚の評価と調子↗は救いだが、太め残りリスクで小幅マイナス。<br><br>体調面で明確に上がるのは6・10（仕上がり良好かつ状態上向き）、続いて4・5。逆に11は体重未確定の下振れ、7は過密ローテ、12は明けの余裕残しでマイナス。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.3, &quot;3&quot;: 0.3, &quot;4&quot;: 0.4, &quot;5&quot;: 0.4, &quot;6&quot;: 0.5, &quot;7&quot;: -0.3, &quot;8&quot;: 0.0, &quot;9&quot;: 0.2, &quot;10&quot;: 0.5, &quot;11&quot;: -0.4, &quot;12&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;良馬場・全馬57kgで斤量差の効かない一戦。仕上がりと体重推移で差を付けた。6ドンエレクトス(470+2で充実期・仕上がり良好・調子↗)と10タガノアバンドーネ(絞れた-4・余裕ローテ・動きハツラツ↗)が状態面で最上位、+0.5。4・5も好時計と回復体重で+0.4。逆に11パイロマンサーは長期明け+海外帰りで524が太めか成長か読めず下振れリスクで-0.4、7パラダイスフェイスは連戦の過密ローテで-0.3、12メルカントゥールは大型馬の明けで自己最重量+8・終い13.1と余裕残し疑いで-0.2。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（体調派）の各馬への付値と理由が渡されておらず、出力欄が空のため本来の採点ができない。データ配線の確認を推奨。予防的な体調派論点として: (1)11番パイロマンサーは4ヶ月半の休み明けで馬体重増減表記なし、休み明けの仕上がり評価が甘くないか要点検。(2)3番ヒシアムルーズ+8kg・8番テンカムテキ+4kg(512kg)・12番メルカントゥール+8kg(530kg)など大型馬の体重増を成長と見たか余分と見たか、根拠を明示できているか。(3)5番マクリール+8kg(前走464→472)は絞れていた馬の戻しで、増加を上昇か緩みかで評価が割れる。(4)10番タガノアバンドーネは-4kgかつ栃坂好時計・馬なり・動きハツラツ↗という減量好調の典型で、付値が理由通り伸びているか。実出力を渡してもらえれば付値と理由の食い違いを名指しで指摘する。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>体調派の観点で、批判者の指摘を検証しながら見直すね。<br><br>批判者は「出力欄が空だった」と言うとるけど、実際には各馬に P を付けとる。指摘の中身（休み明け・大型馬の体重増・叩き2走目の絞り込み・減量好調）は体調派の本筋なので、そこを一つずつ点検するね。<br><br>**11番パイロマンサー（+休み明け点検）**: 4ヶ月半ぶり（UAEダービー3/28→8/9）で、しかも当日馬体重が「計不」表記のまま増減不明。前々走もちの木賞では512kg、全日本2歳優で503kg。524kgという数字自体は過去より重め寄りで、休み明け+体重不明の二重の不確実性がある。栗坂53.5-25.4は動けとるが「末強め追う・調子→」で上向きとまでは言えない。休み明けの不安を Round1 の -0.40 では甘く見とった。-0.55 に。<br><br>**3番ヒシアムルーズ（+8kg点検）**: 482kg(+8)。前走ダート1600で474kg、その前の芝は480kg。もともと470台の馬で+8は緩みかもしれんが、調教は美W67.5「仕上がり良好・調子↗」と好材料。ダート替わりで馬体が実の入った成長増とも取れ、増減を過剰に嫌う理由は薄い。+0.30 維持。<br><br>**8番テンカムテキ（+4kg/512kg点検）**: 512kg(+4)は自己最大級だが、この馬は500台後半で安定して走る大型馬で、+4は誤差範囲。調教「強めに追う・実戦で変わる馬・調子→」で、太め残りというより力を出せる範囲。Round1 の 0.00 は「体調で差が出ない」の正しい表現。維持。<br><br>**12番メルカントゥール（+8kg/530kg点検）**: 530kg(+8)。過去も522〜530kgで、この馬格が平常。栗坂「力強い伸び脚・調子↗」で仕上がりは前向き。+8を余分と見る根拠は弱く、むしろ好気配。Round1 -0.20 はやや嫌い過ぎ。-0.10 に緩める。<br><br>**5番マクリール（+8kg点検）**: 前走464(-6)→今回472(+8)。ここが批判者の言う通り評価が割れる。前走は絞れた状態で勝っており、+8は緩みか戻しか。ただ470前後がこの馬の標準体重で、464はむしろ絞れ過ぎだった可能性がある。調教は美W「直強め追う・シャープな脚捌き」で動きは良好。標準への回帰と見て +0.40 維持。<br><br>**10番タガノアバンドーネ（-4kg好調点検）**: 476(-4)。栗坂55.3-24.3、1F11.9の好時計を馬なりで「動きハツラツ・調子↗」。減量+好調教の典型で、批判者が言う通りここは体調派が最も強く推せる馬。Round1 +0.50 を +0.60 に引き上げる。<br><br>**7番パラダイスフェイス（連戦点検）**: 7/11→7/18→8/9 と使い込み。函館連闘を挟んでの3走目で、504(-2)。使い詰めの疲労懸念はあるが、直近が僅差好走で状態は保てとる。-0.30 → -0.25 にわずかに緩める。<br><br>以下、見直し後の全馬:<br><br>1番, オオツカ, +0.20, 446(+2)で前走444から順当な微増、栗坂馬なりで脚取り確か・調子→。小柄だが平常体重で状態は安定、わずかに前向き。<br><br>2番, ファイアマン, +0.30, 500(+4)で近走494前後から実の入った増、美W1F11.1の伸びが目立ち調子↗。仕上がり上向きで好感。<br><br>3番, ヒシアムルーズ, +0.30, 482(+8)は緩みより成長増寄り、美W仕上がり良好・調子↗で好気配。増加を過剰に嫌う理由は薄い。<br><br>4番, チェリヴェント, +0.40, 504(+4)で前走500から自然な戻し、栗坂53.6-25.2の好時計で活気十分・調子→。叩き上がりで状態良好。<br><br>5番, マクリール, +0.40, 前走464(-6)から472(+8)は絞れ過ぎからの標準回帰、美Wシャープな脚捌き。緩みでなく好バランスと見る。<br><br>6番, ドンエレクトス, +0.50, 470(+2)で460台後半から微増安定、美W1F11.4を馬なりで仕上がり良好・調子↗。コンディション文句なし。<br><br>7番, パラダイスフェイス, -0.25, 7/11-7/18-8/9の3走目で使い込みの疲労懸念、504(-2)。直近好走で状態は保つが連戦の反動をやや警戒。<br><br>8番, テンカムテキ, +0.00, 512(+4)は大型馬の標準内で太め残りではない、強めに追い調子→。体調面で差が出ず中立。<br><br>9番, ショウナンバンライ, +0.20, 474(0)で前走から増減なく好調キープ、栗坂強め追いで攻め強化はプラス。連勝中の状態を維持。<br><br>10番, タガノアバンドーネ, +0.60, 476(-4)の適度な減量に栗坂1F11.9の好時計馬なり、動きハツラツ・調子↗。減量好調の典型で体調派最右翼。<br><br>11番, パイロマンサー, -0.55, 4ヶ月半の休み明けで当日馬体重が計不表記のまま増減不明、524kgは過去より重め寄り。休み明けの仕上がりに二重の不安。<br><br>12番, メルカントゥール, -0.10, 530(+8)は530前後で走る大型馬の平常域、栗坂力強い伸び脚・調子↗で好気配。嫌い過ぎを緩め軽度マイナスに留める。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>血統派として分析するね。<br><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>レパードSは3歳ダート1800m、新潟の左回り。血統から適性を読むと、ダート1800mへの向き・不向きがはっきり出るメンバー構成やね。<br><br>**1番 オオツカ**, +0.1, 父キタサンブラック×母父モーリスは芝寄りの配合。ただ産駒はダート中距離もこなし、実際ダ1800でも走れとる。血統的に強い後押しはできんけど、母父モーリスのパワーで消し材料でもない。<br><br>**2番 ファイアマン**, +0.3, 父ディスクリートキャット×母父パイロはダート適性の塊。パイロ持ちはダート中距離のパワー勝負に強く、湿った馬場も苦にしない配合。1800でも血統的な裏付けは十分。<br><br>**3番 ヒシアムルーズ**, -0.5, 父サートゥルナーリア×母父Sightseeingで芝血統の色が濃い。ダ1600は走ったが、これはスピードで押し切った面が大きく、1800のパワー負荷が増す条件では血統的な後押しが弱い。左回り芝2400で大敗しとる通り本質は中距離向きの造りだが、ダート1800の底力面は不安。<br><br>**4番 チェリヴェント**, +0.4, 父コントレイル×母父Successful Appeal。父コントレイルのダート産駒はパワーとスタミナを備え、Successful Appealの米国ダート血統が加わってダート1800にどんぴしゃ。稍重・重で好走しとる通り、道悪も血統的にプラス材料。<br><br>**5番 マクリール**, +0.3, 父ロードカナロア×母父Galileo。カナロア×欧州名血の配合はスピードと持続力を兼ね、ダート短中距離に高い適性。1800はやや長い可能性はあるが、血統のスケールで対応できる範囲。<br><br>**6番 ドンエレクトス**, +0.5, 父ダノンレジェンド×母父フリオーソ。両親ともダートの一流血統で、ダート適性は当メンバー屈指。フリオーソのパワーとスタミナで1800も守備範囲、道悪でも崩れない鉄板のダート配合。<br><br>**7番 パラダイスフェイス**, +0.4, 父エスポワールシチー×母父Distorted Humor。父はダートGI馬でDistorted Humorも米ダートの名血。パワーとスタミナに富み、ダート1800の消耗戦に血統的に向く。重馬場実績も血統通り。<br><br>**8番 テンカムテキ**, +0.2, 父ナダル×母父サウスヴィグラス。ナダルは米ダート血統、サウスヴィグラスはダート短距離のスピード源。パワーは十分だが母父が短距離寄りで、1800のスタミナ面はわずかに疑問符。ダート適性自体は高い。<br><br>**9番 ショウナンバンライ**, -0.2, 父オルフェーヴル×母父Candy Ride。オルフェは本質芝のスタミナ血統で、Candy Rideは芝ダート兼用。ダートをこなしとるが血統の主軸は芝スタミナ型で、ダート1800のパワー質でみると当メンバーではやや軽い。<br><br>**10番 タガノアバンドーネ**, 0.0, 父モズアスコット×母父フジキセキ。モズアスコットは芝ダート兼用でダート中距離実績あり、血統的にはニュートラル。適性面で強く上げも下げもしにくい配合。<br><br>**11番 パイロマンサー**, +0.5, 父パイロ×母父ハードスパン。両親とも米国ダートの本流で、ダート1800の一線級適性。パイロ産駒はパワー・スタミナに優れダート中距離の中心血統、道悪も含めこの条件への向きは隔絶。<br><br>**12番 メルカントゥール**, +0.5, 父ルヴァンスレーヴ×母父Gold Halo。父はダート王者でダート中距離適性を強く伝える。ルヴァンスレーヴ産駒のパワーと持続力はダート1800にぴったりで、稍重実績も血統通り。<br><br>血統の観点では、ダート本流配合（パイロ、ルヴァンスレーヴ、ダノンレジェンド系）が並ぶ中で、芝色の濃いヒシアムルーズが一段沈み、ダート専用血統の6・11・12が抜けて向いとる構図。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: 0.3, &quot;3&quot;: -0.5, &quot;4&quot;: 0.4, &quot;5&quot;: 0.3, &quot;6&quot;: 0.5, &quot;7&quot;: 0.4, &quot;8&quot;: 0.2, &quot;9&quot;: -0.2, &quot;10&quot;: 0.0, &quot;11&quot;: 0.5, &quot;12&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;ダート1800はパワー×スタミナ配合が向く条件。ダート本流のパイロ(11)・ルヴァンスレーヴ(12)・ダノンレジェンド(6)が血統適性で抜け、コントレイル×米国ダート(4)、エスポワールシチー×Distorted Humor(7)も好相性。逆に父サートゥルナーリア×芝母父のヒシアムルーズ(3)は芝色が濃くダート1800の底力面で不安、オルフェ産駒ショウナンバンライ(9)も本質芝スタミナ型でやや軽い。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（keiba_kettou）の各馬への付値と理由が実行時プロンプトに含まれておらず【担当エージェントの出力】が空欄です。批判対象の出力が無いため、付値の甘さや論理の食い違いを名指しで指摘できません。担当エージェントの評価結果（各馬の付値＋理由）を渡してください。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘は「私の出力が渡っていない」という技術的な運用上の指摘で、血統軸の中身への反論ではない。私の Round1 の付値・理由はここに提示されているので、自軸で再点検して確定させるね。<br><br>血統軸で新潟ダ1800m(左)良を見る観点で各馬を再確認する。<br><br>- **6番 ドンエレクトス**（父ダノンレジェンド×母父フリオーソ）: 父はゴールドアリュールの流れを汲む生粋のダート短中距離血統、母父フリオーソも南関ダートの雄。ダート適性は血統的に隔絶。良〜道悪不問。1800mも守備範囲。血統軸で最上位。+0.6 に微増。<br>- **11番 パイロマンサー**（父パイロ×母父ハードスパン）: 父パイロ・母父ハードスパン(Danzig系)ともダート血統の塊。全日本2歳優勝という結果も血統の方向性と完全一致。+0.5 維持。<br>- **12番 メルカントゥール**（父ルヴァンスレーヴ）: 父はフェブラリー・チャンピオンズC勝ちのダート王道血統。1800mも合う。+0.5 維持。<br>- **8番 テンカムテキ**（父ナダル×母父サウスヴィグラス）: 父ナダルは米ダート、母父サウスヴィグラスは日本ダート短距離の名種牡馬。ダート適性は高いが、母父がスピード寄りで1800mはやや長い含み。+0.2 → +0.3 に微増（ダート血統としての濃さを評価）。<br>- **3番 ヒシアムルーズ**（父サートゥルナーリア×母父Sightseeing）: 父は芝中距離血統でダートは疑問符。母父Sightseeingに米ダート色があり前走ダ1600m快勝で適性は見せたが、血統の主軸は芝寄り。1800mへの距離延長も血統的な後押しは弱め。-0.4 に微修正（前走ダート実績を考慮し-0.5からやや戻す）。<br>- **9番 ショウナンバンライ**（父オルフェーヴル×母父Candy Ride）: 父は芝中長距離のステイヤー血統。ダート1800mは血統的に本領ではない。ただ母父Candy Rideは米ダート血統で、ダートで勝ち上がっている実績が血統の一面を裏づける。-0.2 維持。<br>- **4番 チェリヴェント**（父コントレイル×母父Successful Appeal）: 父は芝血統だが母父Successful AppealはNorthern Dancer系の米ダート血統で、ダート1800mでの好走を血統面から支える。+0.4 維持。<br>- **5番 マクリール**（父ロードカナロア×母父Galileo）: 父は芝スプリント〜マイル、母父Galileoは芝中長距離。血統は芝寄りだがロードカナロア産駒はダートもこなす。距離は1800mでこなせる範囲。+0.3 維持。<br>- **7番 パラダイスフェイス**（父エスポワールシチー×母父Distorted Humor）: 父はダートGⅠ7勝の名ダート馬、母父Distorted Humorも米ダート血統。ダート1800mへの適性は血統的に濃い。+0.4 維持。<br>- **2番 ファイアマン**（父ディスクリートキャット×母父パイロ）: 父・母父ともにダート血統。1800mも守備範囲。+0.3 維持。<br>- **1番 オオツカ**（父キタサンブラック×母父モーリス）: どちらも芝血統でダートは血統的な後押しが薄い。ダートで勝ち上がっているが血統は芝寄り。+0.1 維持。<br>- **10番 タガノアバンドーネ**（父モズアスコット×母父フジキセキ）: 父モズアスコットは芝マイル〜ダートをこなす二刀流、母父フジキセキ。ダート適性はあるが血統として抜けてはいない。0.0 維持。<br><br>見直し結果:<br><br>1番, オオツカ, +0.10, 父キタサンブラック×母父モーリスと芝血統寄り。ダートは血統的後押しが薄く小幅プラスに留める。<br><br>2番, ファイアマン, +0.30, 父ディスクリートキャット×母父パイロの純ダート配合。1800mも守備範囲で堅実にプラス。<br><br>3番, ヒシアムルーズ, -0.40, 父サートゥルナーリアは芝中距離血統でダートは血統主軸でない。母父Sightseeingの米ダート色と前走ダ好走を汲み-0.5から微戻し。<br><br>4番, チェリヴェント, +0.40, 父コントレイルは芝だが母父Successful Appealの米ダート血統がダ1800好走を支える。<br><br>5番, マクリール, +0.30, 父ロードカナロア×母父Galileoで血統は芝寄りだがカナロア産駒はダートも対応、1800mもこなせる。<br><br>6番, ドンエレクトス, +0.60, 父ダノンレジェンド×母父フリオーソの生粋ダート配合。良〜道悪不問で1800mも守備範囲、血統軸で隔絶。<br><br>7番, パラダイスフェイス, +0.40, 父エスポワールシチー×母父Distorted Humorの濃いダート血統。ダ1800適性は血統的に高い。<br><br>8番, テンカムテキ, +0.30, 父ナダル×母父サウスヴィグラスのダート血統。母父がスピード寄りで1800mやや長い含みはあるが血統の濃さを評価。<br><br>9番, ショウナンバンライ, -0.20, 父オルフェーヴルの芝中長距離血統でダ1800は本領外。母父Candy Rideの米ダート色で下げ幅は抑える。<br><br>10番, タガノアバンドーネ, +0.00, 父モズアスコット×母父フジキセキ。ダートはこなすが血統として抜けず自軸で差が出ない。<br><br>11番, パイロマンサー, +0.50, 父パイロ×母父ハードスパンのダート血統の塊。全日本2歳優勝と血統の方向性が完全一致。<br><br>12番, メルカントゥール, +0.50, 父ルヴァンスレーヴのダート王道血統。1800mも合い血統軸で高評価。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.10, &quot;2&quot;: 0.30, &quot;3&quot;: -0.40, &quot;4&quot;: 0.40, &quot;5&quot;: 0.30, &quot;6&quot;: 0.60, &quot;7&quot;: 0.40, &quot;8&quot;: 0.30, &quot;9&quot;: -0.20, &quot;10&quot;: 0.00, &quot;11&quot;: 0.50, &quot;12&quot;: 0.50}, &quot;analysis_summary&quot;: &quot;批判は私の出力欠落という運用指摘で血統軸への反論ではないため、自軸で再点検。純ダート配合の6番を+0.5→+0.6に微増して血統軸の隔絶を明示。3番は父サートゥルナーリアの芝主軸を根拠に-0.5としたが、母父Sightseeingの米ダート色と前走ダ好走を汲んで-0.4に微戻し。8番は母父サウスヴィグラスの短距離色より父ナダル含むダート血統の濃さを評価し+0.2→+0.3。他は据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>陣営派として、騎手の格・実績、厩舎、継続騎乗の有無だけを見て補正を付けるね。能力の高さ（指数・実績）は自軸に紛れ込ませんように気をつけるとよ。<br><br>1番 オオツカ, -0.3, 津村は堅実だが重賞級の格としては一枚落ち、大久保龍志厩舎もこの舞台での勝負気配は薄い。前走は高杉、今回津村への乗り替わりで手の内共有も乏しい。<br><br>2番 ファイアマン, -0.2, 原優介は継続騎乗で手の内は知るが、重賞での実績・格は限定的。上原厩舎も派手さはなく、陣営の後押しは中立寄り。<br><br>3番 ヒシアムルーズ, +0.3, 堀宣行厩舎は名門で仕上げ・格ともに信頼できる。前走レーンから佐々木大輔への乗り替わりで格はやや落ちるが、厩舎力で下支え。<br><br>4番 チェリヴェント, +0.2, 吉村誠之助が4戦継続騎乗で手の内を完全に知る点は好材料。清水久詞厩舎もダート中距離に実績あり、継続騎乗の信頼を買う。<br><br>5番 マクリール, +0.5, 戸崎圭太への乗り替わりは陣営の勝負気配。手塚貴久厩舎はトップ厩舎で格が高く、トップジョッキー配置は明確な後押し。<br><br>6番 ドンエレクトス, +0.4, 荻野極が継続騎乗で青竜S・伏竜Sを共に乗り、手の内を完全に知る。高木登厩舎もダート路線に定評があり、継続騎乗の信頼が厚い。<br><br>7番 パラダイスフェイス, -0.3, 前走まで古川吉洋、今回石橋脩への乗り替わりで手の内共有は薄い。牧光二厩舎は重賞での勝負気配に乏しく、陣営の後押しは弱い。<br><br>8番 テンカムテキ, -0.2, 前走まで丹内祐次で継続的だったが今回石川裕紀人へ乗り替わり、手の内共有がリセット。林徹厩舎は堅実だが格として抜けはない。<br><br>9番 ショウナンバンライ, +0.3, 田山旺佑が3戦継続騎乗で手の内を知り、連勝中で手が合っている。若手だが継続騎乗の信頼を買う。松下厩舎も上り調子。<br><br>10番 タガノアバンドーネ, +0.2, 前走まで川田将雅を配していた馬で陣営の格は高いが、今回菱田裕二へ乗り替わりでトップ騎手が降りた点はやや割引。角田厩舎の格は買える。<br><br>11番 パイロマンサー, +0.6, 岩田望来が全日本2歳優・もちの木賞を共に制した継続騎乗で手の内を完全掌握。吉村圭司厩舎の勝負気配も強く、トップ級陣営の信頼度が抜けている。<br><br>12番 メルカントゥール, +0.5, 坂井瑠星が継続的に手綱を取り手の内を熟知、杉山晴紀厩舎はトップ厩舎で格が高い。ユニコーンS2着時は川田だったが、坂井復帰で継続騎乗の信頼を買う。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.3, &quot;2&quot;: -0.2, &quot;3&quot;: 0.3, &quot;4&quot;: 0.2, &quot;5&quot;: 0.5, &quot;6&quot;: 0.4, &quot;7&quot;: -0.3, &quot;8&quot;: -0.2, &quot;9&quot;: 0.3, &quot;10&quot;: 0.2, &quot;11&quot;: 0.6, &quot;12&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;陣営軸で上げるのは継続騎乗＋トップ厩舎の11パイロマンサー(岩田継続で2つのタイトル奪取)を筆頭に、戸崎への勝負乗り替わりの5マクリール、坂井継続＋名門杉山の12メルカントゥール、荻野継続の6ドンエレクトス。逆に古川→石橋・丹内→石川と手の内共有がリセットされた7・8、格・厩舎ともに後押しの薄い1を下げた。名門堀の3、田山継続で手の合う9も加点。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>担当エージェント（陣営派）の付値・理由が渡されておらず、出力が空のため採点・穴の指摘ができません。出力の提供をお願いします。提供され次第、次の観点で突く準備あり: 11番パイロマンサー（岩田の継続騎乗評価 vs 直近ドイル騎乗との整合）、10番タガノアバンドーネ（川田→菱田の乗り替わり割引の有無）、5番マクリール（ルメール/横山→戸崎への乗り替わり評価）、6番ドンエレクトス（荻野極の継続騎乗を高評価に反映しているか）、1番オオツカ（乗り替わり続き+津村、大久保厩舎)、12番メルカントゥール（坂井継続+杉山厩舎とユニコーン2着=川田との整合）。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>陣営派として批判者の指摘を検証したばい。批判者は「出力が空」と言うとるけど、Round1 の付値は手元にあるけん、そこに準備された6つの突きを自分で当てて再考するね。<br><br>**11番パイロマンサー（岩田継続 vs 直近ドイル）**: 全日本2歳優(JpnI)・もちの木賞を岩田で勝っとる継続騎乗。直近UAダービーはドイルやったけど、それは遠征時の現地起用で、今回は手の内を知る岩田に戻る「戻り継続」。JpnI 制覇コンビの再結成は陣営として最上位級。+0.60 → **+0.70** に引き上げ。<br><br>**10番タガノアバンドーネ（川田→菱田）**: 直近3走すべて川田の主戦だったのが菱田への乗り替わり。トップジョッキーからの乗り替わりは陣営として明確な割引材料。Round1 の +0.20 は甘い。**+0.05** に下げる。<br><br>**5番マクリール（ルメール/横山→戸崎）**: ルメール継続だったのが戸崎へ乗り替わり。戸崎はトップ級で腕は落ちんけど、ルメールとの好相性を手放すのはわずかにマイナス。ただし手塚厩舎×戸崎は鉄板の組み合わせで信頼できる。Round1 +0.50 は高すぎた。**+0.30** に下げる。<br><br>**6番ドンエレクトス（荻野極継続）**: 青竜S・伏竜Sを荻野極で連続好走の継続騎乗。手の内を知る継続は信頼できる。+0.40 維持。<br><br>**1番オオツカ（乗り替わり続き+津村、大久保厩舎）**: 近5走で騎手がバラバラ、今回また津村へ。継続性がなく陣営の一貫性を欠く。-0.30 維持。<br><br>**12番メルカントゥール（坂井継続+杉山厩舎、ユニコーン2着=川田）**: 直近ユニコーンS2着は川田だが、それ以外は坂井の継続騎乗で、今回も坂井。杉山厩舎×坂井は勝負気配十分。ただユニコーンの好走が川田だった点は割り引くべきで、+0.50 → **+0.45** に微調整。<br><br>---<br><br>1番, オオツカ, -0.30, 近走で騎手が毎回替わり陣営の一貫性を欠く。今回津村も定跡的な信頼までは持てず。<br><br>2番, ファイアマン, -0.20, 原優介の継続騎乗自体は悪くないが、上原厩舎ともにこの舞台で強く推す格・実績に乏しい。<br><br>3番, ヒシアムルーズ, +0.30, 堀宣行厩舎は格が高く、佐々木大輔の継続騎乗も手の内を知る強み。<br><br>4番, チェリヴェント, +0.20, 吉村誠之助の継続騎乗が3走続き手が合う。清水厩舎とも堅実。<br><br>5番, マクリール, +0.30, 手塚厩舎×戸崎は鉄板だが、ルメール継続を手放す乗り替わりでRound1から小幅減。<br><br>6番, ドンエレクトス, +0.40, 荻野極が青竜S・伏竜Sから継続騎乗で手の内を熟知、信頼できる継続。<br><br>7番, パラダイスフェイス, -0.30, 古川吉洋から石橋脩への乗り替わり、牧厩舎とも重賞級の陣営とは言い難い。<br><br>8番, テンカムテキ, -0.20, 丹内継続だったのが石川裕紀人へ乗り替わり、陣営の後押しは限定的。<br><br>9番, ショウナンバンライ, +0.30, 田山旺佑の継続騎乗で連勝中、手が合っており松下厩舎も勢いあり。<br><br>10番, タガノアバンドーネ, +0.05, 川田の主戦3走から菱田への乗り替わりは陣営として明確な割引材料でRound1から大幅減。<br><br>11番, パイロマンサー, +0.70, JpnI制覇コンビの岩田望来に戻る継続騎乗、遠征時のドイル起用を経ての主戦回帰で陣営最上位級。<br><br>12番, メルカントゥール, +0.45, 坂井継続×杉山厩舎で勝負気配十分だが、ユニコーン2着は川田騎乗だった点を割り引く。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.30, &quot;2&quot;: -0.20, &quot;3&quot;: +0.30, &quot;4&quot;: +0.20, &quot;5&quot;: +0.30, &quot;6&quot;: +0.40, &quot;7&quot;: -0.30, &quot;8&quot;: -0.20, &quot;9&quot;: +0.30, &quot;10&quot;: +0.05, &quot;11&quot;: +0.70, &quot;12&quot;: +0.45}, &quot;analysis_summary&quot;: &quot;10番は川田→菱田の乗り替わり割引を反映し+0.20→+0.05へ大幅減。5番はルメール継続を手放す乗り替わりで+0.50→+0.30、12番はユニコーン好走が川田騎乗だった点を割り引き+0.50→+0.45。11番は岩田(JpnI制覇コンビ)への主戦回帰継続を評価し+0.60→+0.70。6番荻野極・9番田山・4番吉村の継続騎乗評価は維持。1番の乗り替わり続きの割引も維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者として、合成スコアの上位5頭を検討するね。<br><br>## 合成スコアへの疑問<br><br>**最大の疑問は「11番パイロマンサーが上位5頭に入っとらん」こと。** ただし今回のお題は提示された5頭の点数付けやけん、まずその中で判断するけど、11番の扱いには強く引っかかる。全日本2歳優駿(JpnI)勝ち・4戦3勝、同距離ダ1800での実績もある。UAEダービー(GII)3着帰り。これが上位5頭に入らんのは合成の見落とし疑いが濃い。指摘だけしとくね。<br><br>以下、提示5頭の中で。<br><br>- **6番ドンエレクトス(27.6)は妥当、むしろ本命格。** 青竜S(OP)勝ち、伏竜S(OP)2着、ヒヤシンスS2着とOP級ダート短中距離で安定。スピード指数が94.4・92.3・90.6と抜けて高い。先行力もある。ここは1位で異論なし。<br><br>- **12番メルカントゥール(20.3)がやや過大。** ユニコーンS(GIII)2着は光るが、これはダ1900、上がり36.8で前々の位置取り。指数91.7は立派やけど、それ以外は1勝クラス勝ち止まりで新潟1800(左回り)の実績が薄い。530kg(+8)の馬体増も気になる。悪くはないが2番手断定は買いかぶり気味。<br><br>- **10番タガノアバンドーネ(19.4)はこの中で最も評価を上げてよい。** 唯一の2勝クラス勝ち馬(6/21阪神ダ1800、重を差し切り)。同距離ダ1800の[3-0-1-3]で条件はドンピシャ。調教も栗坂53秒台で動きハツラツ↗。相手強化で条件クラスからの昇級だが、実績とレース適性は12番より上と見る。<br><br>- **5番マクリール(18.2)は距離不安で過大気味。** 3勝は立派だが直近2走(小金井特別・青竜S)はダ1600で、ダ1800は雲取賞3着(1.2秒差)・黒竹賞勝ちのみ。マイル指数は高いが1800延長で12番・10番相手にどこまで、は疑問。ルメールでなく戸崎乗り替わりも小さくない。<br><br>- **4番チェリヴェント(14.5)は妥当〜やや過小。** 1勝クラス勝ち上がったばかりだが同距離ダ1800の指数が87〜88と安定して高く、5番より1800実績は確か。5位は妥当、むしろ5番と入れ替わってもよい水準。<br><br>## 私の確定点数<br><br>6番, ドンエレクトス, 26%, 青竜S勝ち・OP級で指数最上位94.4、先行力も安定。本命格で1位に異論なし。<br><br>10番, タガノアバンドーネ, 21%, 唯一の2勝クラス勝ち馬で同距離ダ1800がドンピシャ、調教も上昇。12番より条件適性が上と見て2番手に押し上げる。<br><br>12番, メルカントゥール, 19%, ユニコーンS2着の指数91.7は光るが新潟左1800の実績薄く馬体増も気になり、断定的2番手からは一段下げる。<br><br>4番, チェリヴェント, 16%, 同距離ダ1800で指数87〜88と安定、1800実績は5番より確か。過小気味の合成から少し引き上げる。<br><br>5番, マクリール, 15%, 3勝の実績は上位だが好走は主にダ1600、1800延長と戸崎乗り替わりで割引き、距離不安ぶん下げる。<br><br>なお11番パイロマンサー(JpnI勝ち・同距離実績あり)が上位5頭外なのは合成の見落とし疑いが強い、と記録しとく。<br><br>```json<br>{&quot;score&quot;: {&quot;6&quot;: 26, &quot;10&quot;: 21, &quot;12&quot;: 19, &quot;4&quot;: 16, &quot;5&quot;: 15}, &quot;analysis_summary&quot;: &quot;6番ドンエレクトスは指数最上位で本命格1位、異論なし。合成の最大の疑問は11番パイロマンサー(JpnI勝ち・同距離実績)が上位5頭外なこと。提示5頭内では12番メルカントゥールを断定的2番手から下げ、唯一の2勝クラス勝ちで同距離適性の高い10番タガノアバンドーネを2番手に押し上げた。5番マクリールはダ1600主体で1800延長+戸崎乗替りを割引き下げ、4番チェリヴェントは同距離指数安定でやや引き上げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1番, オオツカ, 4%, 前走小倉1700の1勝クラスを差し切ったが指数77前後止まり。同距離1800では京都7着と足踏みしとり、オープンの相手強化で見劣り。<br><br>11番, パイロマンサー, 18%, 全日本2歳優(JpnI)勝ち+UAEダービー3着とメンバー中唯一の重賞級実績。京都ダ1800もちの木賞・新馬勝ちで舞台実績十分、栗坂53.5-末強めの動きも良く総合力最上位。<br><br>12番, メルカントゥール, 17%, ユニコーンS2着(指数91.7)が抜けて高く、ダ1800も新馬・1勝クラスで崩れなし。4戦[2-2-0]の堅実さと坂井瑠星継続騎乗で中心格。<br><br>6番, ドンエレクトス, 16%, 青竜S・伏竜S・1勝クラスと指数90前後を連発しダート短中距離のスピードは断然。ダ1800も先行して好走実績あり、調子↗も後押し。<br><br>10番, タガノアバンドーネ, 15%, 唯一の2勝クラス勝ち馬でダ1800を[3-0-1]、指数85超で安定。栗坂24.3の好時計と動きハツラツで格上挑戦組に対し実力上位。<br><br>5番, マクリール, 12%, 小金井特別・青竜S2着と指数88-89の高水準、ダ1800も雲取賞3着・黒竹賞勝ち。距離延長とマイル巧者色がやや割引だが戸崎で軽視できない。<br><br>9番, ショウナンバンライ, 7%, 八女特別・1勝クラスを連勝し勢いあり、ダ替わりで一変した口。ただ指数83-85で上位のスピード馬に一歩譲る印象。<br><br>4番, チェリヴェント, 4%, 阪神1勝クラス勝ち(指数87.3)とダ1800巧者だが稍重・重で走る印象で良馬場の一線級相手には力不足感。<br><br>8番, テンカムテキ, 3%, ダ1800の1勝クラス勝ちはあるが指数82-84でやや足りず、小金井特別5着も0.5秒差で決め手に欠ける。<br><br>7番, パラダイスフェイス, 2%, 函館1700勝ちで復調も指数80前後、東京不良で13着と崩れる脆さあり相手強化は厳しい。<br><br>3番, ヒシアムルーズ, 1%, 東京ダ1600勝ちはあるがダ1800未経験、青葉賞13着・芝重賞で結果出ず総合力で見劣る。<br><br>2番, ファイアマン, 1%, 東京ダ1600重馬場勝ちのみ光るがダ1800は6着・9着と苦戦続き、指数も一枚落ちる。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>6</td><td class="left horse-name">ドンエレクトス</td><td>15.3%</td><td>5.5</td><td>4</td><td class="ev-low">0.84</td></tr><tr><td>2</td><td>12</td><td class="left horse-name">メルカントゥール</td><td>13.7%</td><td>3.2</td><td>1</td><td class="ev-low">0.44</td></tr><tr><td>3</td><td>10</td><td class="left horse-name">タガノアバンドーネ</td><td>11.7%</td><td>19.3</td><td>8</td><td class="ev-high">2.25</td></tr><tr><td>4</td><td>11</td><td class="left horse-name">パイロマンサー</td><td>11.0%</td><td>5.1</td><td>3</td><td class="ev-low">0.56</td></tr><tr><td>5</td><td>5</td><td class="left horse-name">マクリール</td><td>10.9%</td><td>12.5</td><td>5</td><td class="ev-mid">1.36</td></tr><tr><td>6</td><td>4</td><td class="left horse-name">チェリヴェント</td><td>8.1%</td><td>18.5</td><td>6</td><td class="ev-mid">1.51</td></tr><tr><td>7</td><td>9</td><td class="left horse-name">ショウナンバンライ</td><td>7.9%</td><td>4.0</td><td>2</td><td class="ev-low">0.32</td></tr><tr><td>8</td><td>8</td><td class="left horse-name">テンカムテキ</td><td>6.3%</td><td>58.9</td><td>11</td><td class="ev-high">3.73</td></tr><tr><td>9</td><td>1</td><td class="left horse-name">オオツカ</td><td>4.0%</td><td>35.2</td><td>9</td><td class="ev-mid">1.42</td></tr><tr><td>10</td><td>3</td><td class="left horse-name">ヒシアムルーズ</td><td>4.0%</td><td>36.7</td><td>10</td><td class="ev-mid">1.47</td></tr><tr><td>11</td><td>7</td><td class="left horse-name">パラダイスフェイス</td><td>3.5%</td><td>101.1</td><td>12</td><td class="ev-high">3.58</td></tr><tr><td>12</td><td>2</td><td class="left horse-name">ファイアマン</td><td>3.5%</td><td>19.3</td><td>7</td><td class="ev-low">0.67</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">6 ドンエレクトス</td><td>15.3%</td><td>5.5</td><td class="ev-low">0.70</td></tr><tr><td>複勝</td><td class="left">6 ドンエレクトス</td><td>42.8%</td><td>1.7</td><td class="ev-low">0.67</td></tr><tr><td>馬連</td><td class="left">6 ドンエレクトス-12 メルカントゥール</td><td>4.9%</td><td>7.7</td><td class="ev-low">0.31</td></tr><tr><td>ワイド</td><td class="left">6 ドンエレクトス-12 メルカントゥール</td><td>13.6%</td><td>3.5</td><td class="ev-low">0.41</td></tr><tr><td>馬単</td><td class="left">6 ドンエレクトス→12 メルカントゥール</td><td>2.5%</td><td>17.9</td><td class="ev-low">0.36</td></tr><tr><td>3連複</td><td class="left">6 ドンエレクトス-10 タガノアバンドーネ-12 メルカントゥール</td><td>2.3%</td><td>32.9</td><td class="ev-low">0.62</td></tr><tr><td>3連単</td><td class="left">6 ドンエレクトス→12 メルカントゥール→10 タガノアバンドーネ</td><td>0.4%</td><td>149.1</td><td class="ev-low">0.48</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">6 ドンエレクトス</td><td>5.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>馬連</td><td class="left">6 ドンエレクトス-12 メルカントゥール</td><td>7.7</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬連◎○</td></tr><tr><td>馬単</td><td class="left">6 ドンエレクトス→12 メルカントゥール</td><td>17.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">馬単◎→○</td></tr><tr><td>3連複</td><td class="left">6 ドンエレクトス-10 タガノアバンドーネ-12 メルカントゥール</td><td>32.9</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">6 ドンエレクトス→12 メルカントゥール→10 タガノアバンドーネ</td><td>149.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
