@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>長岡ステークス 2026/08/22 NIIGATA 6R (08/22 16:19 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>長岡ステークス 2026/08/22 NIIGATA 6R (08/22 16:19 予想)</h1>
+  <div class="meta">芝1600m（左 外） | 良 | 18頭立て | 3回 新潟 1日目 サラ系3歳以上 3勝クラス （混合）［指定］ ハンデ 18頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">10. ジャサルディア</div>
+      <div class="pick-jockey">津村 明秀 / 辻 哲英</div>
+    </div>
+    <div class="pick-prob">12.7%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">2. コートアリシアン</div>
+      <div class="pick-jockey">田辺 裕信 / 伊藤 大士</div>
+    </div>
+    <div class="pick-prob">11.8%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">12. ケーブパール</div>
+      <div class="pick-jockey">富田 暁 / 友道 康夫</div>
+    </div>
+    <div class="pick-prob">11.4%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">18頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">ミッキーソルジャー</td><td>牡4</td><td>56</td><td>菊沢 一樹</td><td>菊沢 隆徳</td><td>エピファネイア</td><td>Sir Prancealot</td><td>506(0)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">コートアリシアン</td><td>牝4</td><td>55</td><td>田辺 裕信</td><td>伊藤 大士</td><td>サートゥルナーリア</td><td>ハーツクライ</td><td>444(+2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">ジェットマグナム</td><td>牡4</td><td>54</td><td>大野 拓弥</td><td>安達 昭夫</td><td>ヘンリーバローズ</td><td>ルーラーシップ</td><td>496(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">マトラコーニッシュ</td><td>牝4</td><td>53</td><td>原 優介</td><td>池添 学</td><td>サートゥルナーリア</td><td>ジャングルポケット</td><td>434(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">ウィステリアリヴァ</td><td>牡6</td><td>55</td><td>石橋 脩</td><td>小野 次郎</td><td>ロゴタイプ</td><td>プリサイスエンド</td><td>506(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">ガルダイア</td><td>せん4</td><td>55</td><td>杉原 誠人</td><td>浅利 英明</td><td>エピファネイア</td><td>ネオユニヴァース</td><td>476(-8)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">コスモサガルマータ</td><td>せん6</td><td>55</td><td>三浦 皇成</td><td>嘉藤 貴行</td><td>ヴィクトワールピサ</td><td>More Than Ready</td><td>496(-2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">ラージギャラリー</td><td>牝4</td><td>53</td><td>丸山 元気</td><td>高橋 亮</td><td>American Pharoah</td><td>Victoire Pisa</td><td>476(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">レディーミコノス</td><td>牝4</td><td>53</td><td>坂井 瑠星</td><td>寺島 良</td><td>Le Havre</td><td>Motivator</td><td>464(0)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">ジャサルディア</td><td>牝4</td><td>55</td><td>津村 明秀</td><td>辻 哲英</td><td>キズナ</td><td>Frankel</td><td>480(+4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">テウメッサ</td><td>牝5</td><td>53</td><td>武藤 雅</td><td>金成 貴史</td><td>ハービンジャー</td><td>キングカメハメハ</td><td>478(-4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">ケーブパール</td><td>牝5</td><td>54</td><td>富田 暁</td><td>友道 康夫</td><td>ブリックスアンドモルタル</td><td>ディープインパクト</td><td>456(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">ショーマンフリート</td><td>牡5</td><td>53</td><td>嶋田 純次</td><td>手塚 貴久</td><td>スワーヴリチャード</td><td>Siyouni</td><td>516(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">グラニット</td><td>牡6</td><td>55</td><td>江田 照男</td><td>大和田 成</td><td>ダノンバラード</td><td>フサイチコンコルド</td><td>472(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>15</td><td class="left horse-name">ホウオウムサシ</td><td>牡6</td><td>55</td><td>酒井 学</td><td>蛯名 正義</td><td>ドゥラメンテ</td><td>ホワイトマズル</td><td>446(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">マルチャン</td><td>牡6</td><td>53</td><td>丸田 恭介</td><td>武市 康男</td><td>ラブリーデイ</td><td>スウェプトオーヴァーボード</td><td>476(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>17</td><td class="left horse-name">サトノヴィレ</td><td>せん6</td><td>56</td><td>斎藤 新</td><td>鹿戸 雄一</td><td>デクラレーションオブウォー</td><td>フジキセキ</td><td>494(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>18</td><td class="left horse-name">マイエレメント</td><td>牝4</td><td>52</td><td>石川 裕紀人</td><td>福永 祐一</td><td>エピファネイア</td><td>ディープインパクト</td><td>492(-2)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ジャサルディア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ケーブパール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">コートアリシアン</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ジャサルディア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">コートアリシアン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ケーブパール</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ジャサルディア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">コートアリシアン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ケーブパール</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ジャサルディア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ケーブパール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">コートアリシアン</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ジャサルディア</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">コートアリシアン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ケーブパール</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>0.93</td>
+<td style='color:#8E8E93'>0.57</td>
+<td style='color:#8E8E93'>0.53</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.53</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ジャサルディア</span></td>
+<td>+0.79</td>
+<td>+0.40</td>
+<td>+0.40</td>
+<td>+0.64</td>
+<td>-0.20</td>
+<td>12.5</td>
+<td>12.0</td>
+<td>14.0</td>
+<td><b>12.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">コートアリシアン</span></td>
+<td>+0.74</td>
+<td>+0.24</td>
+<td>+0.50</td>
+<td>+0.22</td>
+<td>+0.24</td>
+<td>12.0</td>
+<td>11.8</td>
+<td>11.0</td>
+<td><b>11.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ケーブパール</span></td>
+<td>+0.62</td>
+<td>+0.40</td>
+<td>+0.28</td>
+<td>+0.50</td>
+<td>+0.24</td>
+<td>11.2</td>
+<td>11.2</td>
+<td>12.0</td>
+<td><b>11.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ミッキーソルジャー</span></td>
+<td>+0.15</td>
+<td>+0.26</td>
+<td>+0.29</td>
+<td>+0.30</td>
+<td>+0.30</td>
+<td>7.8</td>
+<td>10.7</td>
+<td>7.8</td>
+<td><b>8.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">レディーミコノス</span></td>
+<td>+0.23</td>
+<td>+0.18</td>
+<td>+0.16</td>
+<td>+0.26</td>
+<td>+0.30</td>
+<td>7.9</td>
+<td>7.0</td>
+<td>8.6</td>
+<td><b>7.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">サトノヴィレ</span></td>
+<td>+0.19</td>
+<td>-0.10</td>
+<td>+0.33</td>
+<td>+0.20</td>
+<td>+0.16</td>
+<td>7.1</td>
+<td>7.7</td>
+<td>6.4</td>
+<td><b>7.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">マイエレメント</span></td>
+<td>-0.13</td>
+<td>+0.32</td>
+<td>+0.19</td>
+<td>+0.48</td>
+<td>+0.34</td>
+<td>6.0</td>
+<td>7.2</td>
+<td>7.0</td>
+<td><b>6.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">マトラコーニッシュ</span></td>
+<td>+0.06</td>
+<td>+0.22</td>
+<td>+0.11</td>
+<td>-0.28</td>
+<td>-0.02</td>
+<td>5.7</td>
+<td>7.6</td>
+<td>4.5</td>
+<td><b>5.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ラージギャラリー</span></td>
+<td>-0.13</td>
+<td>-0.10</td>
+<td>+0.31</td>
+<td>-0.06</td>
+<td>+0.40</td>
+<td>5.1</td>
+<td>-</td>
+<td>4.8</td>
+<td><b>5.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">コスモサガルマータ</span></td>
+<td>-0.26</td>
+<td>+0.50</td>
+<td>+0.04</td>
+<td>+0.18</td>
+<td>+0.28</td>
+<td>4.9</td>
+<td>-</td>
+<td>2.9</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">テウメッサ</span></td>
+<td>-0.18</td>
+<td>+0.42</td>
+<td>-0.28</td>
+<td>+0.08</td>
+<td>+0.06</td>
+<td>4.0</td>
+<td>-</td>
+<td>5.2</td>
+<td><b>4.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">マルチャン</span></td>
+<td>-0.23</td>
+<td>+0.18</td>
+<td>-0.23</td>
+<td>-0.14</td>
+<td>+0.02</td>
+<td>3.4</td>
+<td>-</td>
+<td>2.5</td>
+<td><b>3.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ジェットマグナム</span></td>
+<td>-0.19</td>
+<td>-0.32</td>
+<td>-0.16</td>
+<td>-0.26</td>
+<td>-0.10</td>
+<td>3.0</td>
+<td>-</td>
+<td>4.1</td>
+<td><b>3.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">ホウオウムサシ</span></td>
+<td>-0.42</td>
+<td>+0.10</td>
+<td>-0.22</td>
+<td>-0.14</td>
+<td>+0.04</td>
+<td>2.5</td>
+<td>-</td>
+<td>3.2</td>
+<td><b>2.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ガルダイア</span></td>
+<td>-0.49</td>
+<td>+0.04</td>
+<td>-0.13</td>
+<td>-0.14</td>
+<td>-0.16</td>
+<td>2.3</td>
+<td>-</td>
+<td>1.6</td>
+<td><b>2.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ウィステリアリヴァ</span></td>
+<td>-0.55</td>
+<td>-0.28</td>
+<td>-0.03</td>
+<td>-0.48</td>
+<td>+0.18</td>
+<td>1.9</td>
+<td>-</td>
+<td>1.2</td>
+<td><b>1.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ショーマンフリート</span></td>
+<td>-0.66</td>
+<td>-0.14</td>
+<td>-0.08</td>
+<td>+0.10</td>
+<td>+0.14</td>
+<td>1.7</td>
+<td>-</td>
+<td>1.5</td>
+<td><b>1.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">グラニット</span></td>
+<td>-0.55</td>
+<td>-0.30</td>
+<td>-0.48</td>
+<td>-0.30</td>
+<td>-0.02</td>
+<td>0.9</td>
+<td>-</td>
+<td>1.6</td>
+<td><b>1.0</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行2</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行2の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>実績軸で新潟6R 長岡ステークス（3勝クラス・芝1600m外）を評価するね。<br><br>**軸の置き方**: 3勝クラスの芝マイルなので、(a) 3勝クラスで通用する指数水準（85前後以上）を実際に出しているか、(b) 芝1600mでの実績か、(c) 2勝クラス突破が最近で3勝クラス実績が薄いか、の3点で切る。ダート実績・2400m実績は素の能力の裏付けとして割り引く。<br><br>---<br><br>1番, ミッキーソルジャー, +0.15, 4戦3勝で崩れたのは長期休養明けの1回のみ、前走葉山特別を58kg背負って上がり33.3秒・指数83.0で勝ち切った内容は優秀。ただし3勝クラスでの実績はまだゼロで、指数83.0はこのメンバーの上位（85-89）にわずかに届かず、キャリアの浅さ分の未知数を差し引く。<br><br>2番, コートアリシアン, +0.85, 3勝クラスで4着-2着-3着-5着-2着と5走連続で掲示板を外さず、指数も85.2/88.9/84.8/86.5/91.1と全て高位安定。同距離1600mでも幕張S5着0.2秒差・若潮S2着（指数91.1はメンバー最高値）と実績十分で、この軸では隔絶に近い安定感。<br><br>3番, ジェットマグナム, -0.15, 3勝クラス5走で7着・14着・15着と頭打ち、勝ち鞍は2勝クラスの稲荷特別（2000m）まで。ただし前走同距離1600mの錦S7着は0.2秒差・指数84.7と決して悪くなく、大きく下げるほどではない。<br><br>4番, マトラコーニッシュ, +0.1, 3勝クラスでセンテニアル4着（指数86.3）・博多S4着と2度掲示板があり底は見せていないが、好走は全て1800m以上で1600mの実績が皆無。指数86.3の一発はあるものの安定感を欠き、実績軸では小幅プラスに留める。<br><br>5番, ウィステリアリヴァ, -0.55, 直近5走のうち4走がダートで、芝の3勝クラスは13ヶ月前の佐渡S8着（指数82.4）のみ。ダート市川S2着（指数85.6）は評価できるが芝1600mでの3勝クラス実績が事実上ゼロで、しかも半年の休み明け。<br><br>6番, ガルダイア, -0.5, 通算8戦1勝で勝ち鞍は2歳新馬のみ、3勝クラス3走は11着・17着・11着と全て大敗。毎日杯2着（指数91.1）の素質は本物だが17ヶ月前の3歳春の話で、以降の実績が能力の裏付けを何ひとつ与えていない。<br><br>7番, コスモサガルマータ, -0.25, 22戦3勝で勝ち鞍は2勝クラスまで、3勝クラスでは分倍河原S4着（同距離1600m・0.6秒差・上がり32.4）が最高。指数80.7-84.0は通用線ぎりぎりで、大敗（17着・15着・14着）の割合も高い。<br><br>8番, ラージギャラリー, -0.35, 前走相模湖特別を勝って昇級初戦、3勝クラスでの実績はゼロ。しかも昇級勝ちの指数は81.0と3勝クラスの上位水準に届かず、同距離1600mでは2勝クラスで13着・8着と大きく崩れた過去がある。<br><br>9番, レディーミコノス, +0.3, 3勝クラス3走でセンテニアル5着（指数86.3）・博多S6着0.9秒差と大崩れせず、2勝クラス勝ちは同距離1600m（阪神・指数82.3）。ただし3勝クラスでの好走は全て1800mで掲示板止まり、勝ち切るには一段足りない。<br><br>10番, ジャサルディア, +0.7, 8戦3勝[3-3-1-1]で連対率75%、着外は1度だけという抜群の安定感。前走むらさき賞2着は3勝クラスで0.1秒差・上がり33.0・指数85.6、さらに1600mでは1着-3着-2着と同距離実績が固く、実力の裏付けが最も厚い一頭。<br><br>11番, テウメッサ, -0.2, 3勝クラスで5走して14着・10着・8着・5着・6着と一度も連対がなく、指数も78.5-84.4で頭打ち。同距離1600mを4度使って掲示板は1度のみと、このクラスでの決め手不足が数字に出ている。<br><br>12番, ケーブパール, +0.5, 3走前まで8着・6着と足りなかったが、前走豊橋S3着は0.1秒差・上がり32.9・指数86.2とこのクラスで初めて勝ち負けの内容。芝1600mを主戦場に3勝クラスを5走使って底は割れておらず、指数82-86の水準は通用圏内。<br><br>13番, ショーマンフリート, -0.7, 3勝クラス5走で9着・16着・13着・15着・9着と一度も掲示板がなく、指数も58.5-79.6と低位。しかも同舞台の昨年長岡S13着1.2秒差という直接的な敗戦データがあり、このクラスでの能力不足が明白。<br><br>14番, グラニット, -0.6, 31戦2勝で勝ち鞍は2勝クラスの白井特別まで、3勝クラスでは佐渡S4着（1800m重）が最高で以降7着・7着・10着。同距離1600mでは指数78.6/80.7と通用水準に届かず、6歳で上積みも見込みにくい。<br><br>15番, ホウオウムサシ, -0.4, 3勝クラス5走で6着・18着・16着・8着・8着と勝ち負けにならず、指数77.3-83.7で頭打ち。同距離1600mの分倍河原S6着0.8秒差が最高で、[3-6-3-9]の善戦マンぶりも2勝クラスまでの話。<br><br>16番, マルチャン, -0.3, 3勝クラス・OPで11着・14着・13着・9着・13着と5走全て二桁前後の凡走。ただしジューンS(OP)11着で指数86.5、若潮S9着で指数83.8と指数だけは上位級を出しており、着順ほど能力は低くないと見て下げ幅を抑える。<br><br>17番, サトノヴィレ, +0.2, 前走佐渡S3着は3勝クラスで0.4秒差・58kg・上がり33.7と評価できるが、指数83.3は上位馬に一歩譲る。27戦3勝で3勝クラス通算は3着1回のみ、1600mは15年前の葉山特別6着だけと同距離実績が薄い。<br><br>18番, マイエレメント, -0.1, 3勝クラス3走で10着・14着・6着と足りていないが、マレーシアC6着0.5秒差（指数83.5）・花のみちS10着0.6秒差と大敗はしておらず差は小さい。芝1600mで2勝を挙げた実績はあるものの、3勝クラスの上位水準には未到達。<br><br>---<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.15, &quot;2&quot;: 0.85, &quot;3&quot;: -0.15, &quot;4&quot;: 0.1, &quot;5&quot;: -0.55, &quot;6&quot;: -0.5, &quot;7&quot;: -0.25, &quot;8&quot;: -0.35, &quot;9&quot;: 0.3, &quot;10&quot;: 0.7, &quot;11&quot;: -0.2, &quot;12&quot;: 0.5, &quot;13&quot;: -0.7, &quot;14&quot;: -0.6, &quot;15&quot;: -0.4, &quot;16&quot;: -0.3, &quot;17&quot;: 0.2, &quot;18&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;3勝クラスで実際に通用する指数（85前後以上）を安定して出せているかで切った。最上位は2番コートアリシアン（3勝クラス5走連続掲示板・指数84.8-91.1、1600mでも幕張S5着0.2秒差と若潮S2着で指数91.1はメンバー最高）と10番ジャサルディア（8戦3勝で着外1回のみ、前走むらさき賞2着0.1秒差指数85.6、1600m1着-3着-2着）。12番ケーブパールは前走豊橋S3着0.1秒差・指数86.2でこのクラス初めて勝ち負けの内容を見せた。9番レディーミコノス・17番サトノヴィレは3勝クラスで掲示板圏だが指数が一歩譲り小幅プラス。1番ミッキーソルジャーは4戦3勝の内容は優秀だが3勝クラス実績ゼロで指数83.0とキャリアの浅さを差し引いた。下は3勝クラスで5走全滅の13番ショーマンフリート（同舞台昨年長岡S13着1.2秒差）、31戦2勝で1600m指数80前後止まりの14番グラニット、芝の3勝クラス実績が事実上ない5番ウィステリアリヴァ、3勝クラス3走全て二桁大敗の6番ガルダイア。8番ラージギャラリーは昇級初戦で3勝クラス未経験、昇級勝ちの指数81.0もこのクラスの水準に届かない。16番マルチャンは着順は悪いが指数86.5を出しており下げ幅を抑えた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>6点。(1) 2番コートアリシアン+0.85: 直近3走は全て1400mで、1600m実績は5-7ヶ月前の中山2走のみ。今回は新潟外回り。10番ジャサルディア(+0.7)は1600mで1着-3着-2着と直近同距離実績が連続してあり、+0.15差は逆方向ではないか。(2) 12番ケーブパール+0.5: 前走指数86.2は2番の直近3走(85.2/84.8/86.5)と同水準以上、かつ直近5走中4走が芝1600mで条件一貫性は上。8着・6着も0.3-0.4秒差・指数82-83で着順ほど負けておらず、指数軸なら評価が着順に引きずられていないか。(3) 1番ミッキーソルジャー+0.15: 唯一の敗戦が13着11.2秒差・上がり44.3という壊滅的内容だが下振れ幅として評価されていない。加点材料の指数83.0は11頭立て2勝クラスでのもので、同じ3勝クラス実績ゼロの8番ラージギャラリー(-0.35)と0.5差をつける根拠が指数2.0差だけに見える。(4) 6番ガルダイア(-0.5) vs 13番ショーマンフリート(-0.7): 直近走指数は13番79.3 &gt; 6番74.4。6番の毎日杯91.1は17ヶ月前で理由文自身が切り捨てているのに、付値には残っていないか。(5) 16番マルチャン(-0.3) vs 11番テウメッサ(-0.2): 16番はジューンS86.5・若潮S83.8とメンバー2番手級の指数、11番は78.5-84.4で全て下。16番は指数優先、11番は着順優先と物差しが入れ替わっており序列が逆ではないか。(6) 5番ウィステリアリヴァ(-0.55) vs 14番グラニット(-0.6): 5番は芝1600m実績が無い(未知数)、14番は芝1600mで指数78.6/80.7と使って足りない(既知の不足)。実績軸で両者を同列に近く扱ってよいか。全体として指数軸か着順軸かが馬ごとに揺れている。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の6点を検証した。指数軸と着順軸の揺れという全体指摘は妥当なので、「3勝クラスでどれだけの指数を、どれだけの頻度で出せたか」に物差しを統一して付け直す。<br><br>(1) 2番の1600m実績が5-7ヶ月前という指摘は事実だが、幕張S指数86.5・若潮S91.1はメンバー最高値であり、直近1400m3走も85.2/88.9/84.8と全て高位。距離替わりの適性は自軸の管轄外で、3勝クラス5走連続で指数84.8以上を出し続けた再現性は他馬にない。ただし10番との差が+0.15しかないのは指摘どおり薄いので、10番を引き上げて整理する。<br><br>(2) 12番は指摘を受け入れる。8着・6着も0.3-0.4秒差・指数82.4/83.2で、5走全て指数82以上・うち4走が芝1600m。着順に引きずられていた。<br><br>(3) 1番は指摘を受け入れる。13着11.2秒差・上がり44.3は競走中止級の内容で、実績の分散が極端に大きい証拠。かつ加点材料が11頭立て2勝クラスの指数83.0のみで、3勝クラス実績ゼロは8番と同じ。0近辺まで落とす。<br><br>(4) 6番は指摘を受け入れる。17ヶ月前の毎日杯を理由文で切り捨てながら付値に残していた。直近3勝クラス3走が74.4/56.2/73.9で13番より悪い。<br><br>(5) 16番と11番は物差しが逆転していた。指数で統一すれば16番86.5/83.8 &gt; 11番79.2/79.7/83.8/78.5/84.4。序列を入れ替える。<br><br>(6) 5番は「芝1600m未知数」、14番は「芝1600mで既知の不足」。実績軸は示された証拠で測るので、既知の不足である14番をより深く下げ、5番は下げ幅を緩める。<br><br>1番, ミッキーソルジャー, -0.05, 4戦3勝だが3勝クラス実績はゼロで、加点材料は11頭立て2勝クラスの葉山特別・指数83.0のみ。唯一の敗戦が13着11.2秒差・上がり44.3という壊滅的内容で下振れの幅が極端に大きく、実績の証拠量としては中立まで。<br><br>2番, コートアリシアン, +0.8, 3勝クラス5走で4着-2着-3着-5着-2着、指数85.2/88.9/84.8/86.5/91.1と全走が84.8以上という再現性はメンバー随一。1600mは5-7ヶ月前だが幕張S86.5・若潮S91.1はこのメンバーの最高水準で、示された能力の高さと安定度で最上位。<br><br>3番, ジェットマグナム, -0.15, 3勝クラス5走で7着・14着・15着と頭打ちで、勝ち鞍は2勝クラス稲荷特別(2000m)まで。ただし前走同距離1600mの錦S7着は0.2秒差・指数84.7と通用圏内の数字を出しており、大きく下げる根拠はない。<br><br>4番, マトラコーニッシュ, +0.1, 3勝クラスでセンテニアル4着・指数86.3という一発はあるが、他は81.6/73.8と落差が大きく再現性を欠く。好走は全て1800m以上で1600mの3勝クラス実績が皆無、小幅プラスに留める。<br><br>5番, ウィステリアリヴァ, -0.4, 芝の3勝クラス実績は13ヶ月前の佐渡S8着(指数82.4)のみで、芝1600mは事実上未知数。ダート市川S2着・指数85.6は能力の証拠として残るため、既知の不足がある14番より下げ幅を緩める。<br><br>6番, ガルダイア, -0.65, 3勝クラス3走が11着・17着・11着で指数74.4/56.2/73.9とメンバー最低水準。毎日杯2着・指数91.1は17ヶ月前の3歳春で、以降の実績が能力の裏付けを一切与えていない以上、付値に残す根拠がない。<br><br>7番, コスモサガルマータ, -0.25, 22戦3勝で勝ち鞍は2勝クラスまで、3勝クラス最高は分倍河原S4着(同距離1600m・0.6秒差・指数80.7)。近走指数84.0/80.7は通用線ぎりぎりで、17着・15着・14着の大敗比率も高い。<br><br>8番, ラージギャラリー, -0.35, 3勝クラス実績ゼロで、昇級を決めた相模湖特別の指数81.0は3勝クラス上位水準に届かない。同距離1600mでは2勝クラスで13着(指数66.9)・8着(74.4)と崩れた実績があり、示された数字が足りない。<br><br>9番, レディーミコノス, +0.25, 3勝クラス3走でセンテニアル5着・指数86.3と博多S6着0.9秒差(80.7)は水準だが、むらさき賞15着(79.2)を挟んで再現性が2番・12番に劣る。同距離1600m勝ちは2勝クラス・指数82.3止まり。<br><br>10番, ジャサルディア, +0.75, 8戦[3-3-1-1]で着外1度のみ、前走むらさき賞2着は3勝クラスで0.1秒差・上がり33.0・指数85.6。1600mで1着(86.4)-3着(81.2)-2着(79.6)と直近同距離実績が連続し、崩れない裏付けの厚さで2番に次ぐ。<br><br>11番, テウメッサ, -0.3, 3勝クラス5走で一度も連対がなく、指数も78.5/79.2/79.7/83.8/84.4と大半が80前後。同距離1600mを4度使って掲示板1度のみで、指数軸で見ても16番より明確に下。<br><br>12番, ケーブパール, +0.6, 芝1600mの3勝クラスを主戦場に指数82.4/83.2/86.2と全走80台を維持し、8着・6着も0.3-0.4秒差と着順ほど負けていない。前走豊橋S3着0.1秒差・上がり32.9・指数86.2は2番の直近と同水準で、条件一貫性を加味して引き上げる。<br><br>13番, ショーマンフリート, -0.6, 3勝クラス5走で9着・16着・13着・15着・9着と掲示板ゼロ、指数も58.5-79.6と低位。同舞台の昨年長岡S13着1.2秒差という直接の敗戦データもあるが、直近79.3は6番より上のため下げ幅は6番と同水準に揃える。<br><br>14番, グラニット, -0.65, 31戦2勝で勝ち鞍は2勝クラスの白井特別まで。同距離1600mを3勝クラスで2度使って7着・7着、指数78.6/80.7と足りないことが既に確定しており、未知数の5番より深く下げる。<br><br>15番, ホウオウムサシ, -0.4, 3勝クラス5走で6着・18着・16着・8着・8着、指数77.3-83.7で頭打ち。同距離1600mの分倍河原S6着0.8秒差(78.6)が最高で、[3-6-3-9]の善戦ぶりも2勝クラスまでの話。<br><br>16番, マルチャン, -0.15, 着順は11着・14着・13着・9着・13着と揃って悪いが、ジューンS(OP)で指数86.5、若潮S9着で83.8とメンバー2番手級の数字を出している。指数軸で統一すれば11番より上で、着順優先だった評価を修正する。<br><br>17番, サトノヴィレ, +0.2, 前走佐渡S3着は3勝クラスで0.4秒差・58kg・上がり33.7と評価できるが指数83.3は上位に一歩譲り、その前は多摩川S13着(71.1)と落差が大きい。27戦3勝で3勝クラスの好走は今回の1回のみ、1600mも15年前の葉山特別6着だけ。<br><br>18番, マイエレメント, -0.1, 3勝クラス3走で10着・14着・6着だが、マレーシアC6着0.5秒差(指数83.5)・花のみちS10着0.6秒差(80.3)と大敗はしていない。芝1600mで2勝を挙げた実績はあるものの、3勝クラスの上位水準には未到達。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.05, &quot;2&quot;: 0.8, &quot;3&quot;: -0.15, &quot;4&quot;: 0.1, &quot;5&quot;: -0.4, &quot;6&quot;: -0.65, &quot;7&quot;: -0.25, &quot;8&quot;: -0.35, &quot;9&quot;: 0.25, &quot;10&quot;: 0.75, &quot;11&quot;: -0.3, &quot;12&quot;: 0.6, &quot;13&quot;: -0.6, &quot;14&quot;: -0.65, &quot;15&quot;: -0.4, &quot;16&quot;: -0.15, &quot;17&quot;: 0.2, &quot;18&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;物差しを「3勝クラスでどれだけの指数を、どれだけの頻度で出せたか」に統一して付け直した。修正6点: (1) 1番は+0.15→-0.05、加点材料が11頭立て2勝クラスの指数83.0のみで3勝クラス実績ゼロ、かつ13着11.2秒差・上がり44.3の下振れを織り込む。(2) 12番は+0.5→+0.6、5走全て指数82以上・4走が芝1600mで条件一貫性が高く、8着・6着も0.3-0.4秒差と着順に引きずられていた。(3) 6番は-0.5→-0.65、17ヶ月前の毎日杯91.1を理由文で切り捨てながら付値に残していた矛盾を解消し、直近指数74.4/56.2/73.9で13番と同水準に。(4) 16番と11番の序列を逆転（-0.3/-0.2 → -0.15/-0.3）、指数86.5/83.8 対 78.5-84.4 で16番が明確に上。(5) 5番(-0.55→-0.4)と14番(-0.6→-0.65)を分離、未知数より既知の不足を重く見る。(6) 10番は+0.7→+0.75、1600mでの連続実績を評価して2番との差を縮めた。2番は1600m実績が5-7ヶ月前という指摘は事実だが、その2走の指数86.5/91.1がメンバー最高値である事実は変わらず、5走連続84.8以上の再現性で最上位を維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>## 展開分析<br><br>**コース: 新潟芝1600m外回り、直線658.7m。日本一の長い直線。**<br><br>このコースの本質は「前が止まる」ではなく「4角までほぼ動けない、直線一本勝負」。3〜4角が緩やかで加速しづらく、ペースが緩めば前は残るが、658mの直線で末脚を使える馬は外から一気に届く。18頭立てフルゲートだが、外回りコースは外枠のロスが小さく、むしろ内で包まれるリスクの方が実質的なマイナスになりやすい。<br><br>**逃げ・先行馬の顔ぶれ:**<br><br>明確な逃げ宣言はいない。前走で先手を取ったのは17番サトノヴィレ（前走新潟芝1800で通過1-1で3着、粘って0.4差）と8番ラージギャラリー（前走東京1400で1-1の逃げ切り）。3番ジェットマグナムも京都1800で1-1、京都2000で1-1-1-1と行った経験がある。14番グラニットも2-2、2-3-3のタイプ。<br><br>つまり**ハナを主張しうる馬が3〜4頭いる**。ただし全部が全部ゴリ押しで行くタイプでもない。8番は1400からの延長で、逃げ切ったのは稍重の東京1400。マイルの新潟外回りで同じテンを踏めば明らかに行き過ぎになる。17番は大外18番枠に近い8枠17番からの先行で、外から被されずハナを取りに行くと相当なロスを食う。3番は2枠で内、テンの主張はしやすい。<br><br>**想定シナリオ（主）:**<br>内の3番ジェットマグナムがスッと出て、外から8番ラージギャラリー、17番サトノヴィレが並びかける形。テンは締まるが、新潟外回りの1000m通過はどうしても緩む傾向で、極端なハイペースにはなりにくい。**平均〜やや速いペース**。3〜4角で外を回りながら11頭ほどが横一線、直線658mで一斉に脚を使う「よーいドン」。<br><br>**この展開で効くのは:**<br>- 上がり33秒台前半を確実に使える差し馬<br>- かつ**中団より前**にいて、直線で早めに外に出せる馬<br><br>新潟外回りで最も損をするのは「後方一気」ではなく「中団の内で包まれた馬」。それと「前で早めに動いて坂のない直線を長く走らされる馬」。<br><br>**副シナリオ:**<br>3頭が競り合って1000m57秒台に入れば、前は総崩れ。この場合は11番テウメッサのような後方待機の上がり最速型に大きな恩恵。ただし主シナリオよりは確率が低いと見る。両にらみで、極端な後方馬にも中立以上は置く。<br><br>---<br><br>## 全馬評価<br><br>1番, ミッキーソルジャー, +0.3, 前走東京1600を2-2の好位から上がり33.3で押し切っており、位置を取って長い直線で伸ばす形は新潟外回り向き。1枠だが4戦3勝のキャリア浅い馬で包まれる不安は残り、大きくは振れない。<br><br>2番, コートアリシアン, +0.4, 3-3、6-6と自在に好位が取れる先行力があり、新潟1400で4着した実績通り当地の流れに乗れる。1枠2番から内をロスなく回り、直線で外に持ち出す形が描きやすい。<br><br>3番, ジェットマグナム, -0.2, 2枠でハナを取りやすいが、京都1800で1-1から14着、錦Sで2-2から7着と、前に行っても直線で止まる負け方が続く。658mの長い直線は最も苦手な形で、逃げても粘り切れない。<br><br>4番, マトラコーニッシュ, -0.1, 12-12-11-9、10-11と後方からの競馬が定着しており、新潟外回りの直線一気は形としては合う。ただ主シナリオの平均ペースでは位置取りの差を埋め切れず、届いても4着まで。<br><br>5番, ウィステリアリヴァ, -0.5, 直近3走がダートで、芝は13ヶ月前の新潟1800重馬場8着まで遡る。ダートで通過1-1-1-2から失速する近走の形は、緩んだ流れでも直線で脚を使えないことを示しており、この舞台では位置も取れず終いも甘い。<br><br>6番, ガルダイア, -0.1, 前走東京1600で12-12から上がり33.2は使えており、直線の長いコースで末脚を伸ばす形自体は悪くない。ただ後方待機で主シナリオでは届き切らず、位置取りの不利が残る。<br><br>7番, コスモサガルマータ, +0.2, 12-12から上がり32.4、11-11から32.8と、直線の長い東京で確実に最速級の脚を繰り出す純粋な追込馬。新潟外回り658mは最も条件が合う舞台で、4枠から外に出しやすいのも利点だが、位置が後ろすぎる分は割り引く。<br><br>8番, ラージギャラリー, -0.4, 1-1の逃げ切りは東京1400稍重でのもので、200m延長かつ17番など外から先手を主張されるとテンで無理をする。京都1600で2-2から13着と、マイルで前に行って崩れた実績があり、この面子相手の先行争いは不利。<br><br>9番, レディーミコノス, 0.0, 3-6の好位も8-10-12-12の後方もこなす自在型で、脚質面での有利不利がはっきりしない。5枠中枠で包まれるリスクと出しやすさが相殺する。<br><br>10番, ジャサルディア, +0.6, 5-7-7から上がり33.0で2着、6-5から差し切りと、中団前めで折り合って直線で伸ばす形が完成している。新潟外回りで最も勝ちやすい「中団やや前から早めに外」のポジションを自然に取れるタイプで、5枠のスムーズさも味方する。<br><br>11番, テウメッサ, +0.3, 16-16-16から上がり32.5、11-12から32.9と極端な後方からの最速上がりが持ち味で、658mの直線は数少ない届く舞台。主シナリオの平均ペースだと足りないが、先行争いが激化する副シナリオでは一変があり、その分を上乗せする。<br><br>12番, ケーブパール, +0.7, 前走中京1600で3-3-3の好位から上がり32.9で3着と、前めからキレる形に脚質が変わってきた。13-12や17-17の後方時は届かず、10-12でも8着だったのに対し好位で結果が出ており、新潟外回りで最も勝ち筋に近い位置取りを今の状態で取れる。<br><br>13番, ショーマンフリート, -0.3, 12ヶ月前の同舞台長岡Sで15-15から上がり33.1を使って13着と、この直線で追い込んで届かない経験を既にしている。前走も9-9-7-8から上がり35.8と脚が上がっており、位置も末も中途半端。<br><br>14番, グラニット, -0.4, 2-2、2-3-3と先行するが、東京1600で2-2から上がり34.1の7着、中山1600でも同様と、直線が長いほど失速幅が大きい。3頭の先行争いに巻き込まれれば、658mを持たせるのは苦しい。<br><br>15番, ホウオウムサシ, +0.1, 東京1600で6-6から上がり33.6の6着と、直線の長いコースで好位から脚を使える形はある。ただ突き抜ける決め手までは無く、位置取りの利は小さい。<br><br>16番, マルチャン, 0.0, 8-10-10から上がり33.8、12-13-11から34.1と後方から伸びるが決め手が突出せず、8枠から外を回るロスと外に出しやすい利点が拮抗する。展開面で明確な傾きは無い。<br><br>17番, サトノヴィレ, -0.3, 2週前の新潟1800で1-1から3着と当地の先行は形になっているが、今回は8枠17番。外から無理にハナを主張すれば道中で脚を使い、控えれば持ち味を失う。3頭の先行争いで最も損な枠順にいる。<br><br>18番, マイエレメント, +0.2, 10-12、10-12-11と後方から上がり33.3、33.8を使うタイプで、直線の長い新潟外回りは向く。大外18番枠は外回りでロスが小さく、むしろ包まれず自由に外へ持ち出せる分だけプラスに働く。<br><br>---<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.4, &quot;3&quot;: -0.2, &quot;4&quot;: -0.1, &quot;5&quot;: -0.5, &quot;6&quot;: -0.1, &quot;7&quot;: 0.2, &quot;8&quot;: -0.4, &quot;9&quot;: 0.0, &quot;10&quot;: 0.6, &quot;11&quot;: 0.3, &quot;12&quot;: 0.7, &quot;13&quot;: -0.3, &quot;14&quot;: -0.4, &quot;15&quot;: 0.1, &quot;16&quot;: 0.0, &quot;17&quot;: -0.3, &quot;18&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;新潟芝1600m外回り、直線658.7mの直線一本勝負。明確な逃げ馬不在だが3番・8番・17番の3頭が先手を主張しうる形で、テンは締まるものの外回り特有の中盤の緩みで極端なハイペースにはなりにくい。主シナリオは平均〜やや速いペースからの4角横一線、直線でのヨーイドン。この形で最も有利なのは『中団やや前から早めに外へ出せる馬』で、12番ケーブパール（前走3-3-3から上がり32.9）と10番ジャサルディア（5-7-7から33.0で2着）が該当し高く評価した。逆に前で粘り込むタイプ（3番・14番・8番）は658mの直線を持たせられず、特に8番は1400からの延長で先行争いに巻き込まれる不利が大きい。17番は前走当地で逃げて好走も今回は8枠で先手を取るコストが高い。純粋な追込型（7番・11番・4番）は主シナリオでは届き切らないが、先行争いが激化する副シナリオでの一変を考慮して7番・11番はプラス圏に留めた。18番の大外は外回りではロスが小さく包まれない利点が上回る。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 最大の問題はペースシナリオの二重基準。差し馬(4番マトラコーニッシュ/6番ガルダイア/11番テウメッサ)には「平均ペースで届かない」と言いつつ、先行馬(8番ラージギャラリー/14番グラニット/17番サトノヴィレ)には「先行争い激化で潰れる」と減点している。同一レースに矛盾する二つのペース像を当てている。結果として「前も後ろも減点、中団だけ加点」となり、展開分析ではなくコース一般則からの逆算に見える。(2) その先行争い自体が実在するか要検証。3番ジェットマグナムはマイルでは2-2で1-1は1800m以上のみ、8番ラージギャラリーの1-1は1400m稍重、14番グラニットは近走ハナなし、17番サトノヴィレの1-1も1800m。ハナを主張する馬が不在でスロー化する可能性があり、その場合3番・17番の減点と7番・11番・18番の加点が両方逆を向く。11番に「先行激化」の副シナリオだけ上乗せして逆方向のスロー副シナリオを誰にも織り込まないのは非対称。(3) 12番ケーブパール+0.7は3週前の豊橋S(11頭立て中京)1走のみが根拠で、それ以前は13-12/10-12/17-17と一貫後方。18頭立て新潟で同じ3-3が取れる保証がない。9番レディーミコノスには5枠の包まれリスクを指摘しながら隣の6枠12番には適用しておらず非対称。(4) 1番ミッキーソルジャーの理由が実データと逆。この馬の唯一の新潟1600(18頭立て未勝利)は11-10から上がり32.8で勝っており、新潟では後方から差して勝っている。「位置を取る形が新潟向き」は当馬の最重要データを取りこぼしている。同じ12ヶ月前の新潟マイルを13番ショーマンフリートには「届かない経験」と減点材料にしており、読み方が馬ごとに逆。(5) 10番ジャサルディア+0.6は新潟初参戦への言及がない。2番コートアリシアンには当地実績をプラス材料にしているのに物差しが違う。むらさき賞5-7-7は17頭立て、阪神1600の6-5は11頭立てで、18頭立てでの位置再現性の検討が要る。(6) 5番ウィステリアリヴァ-0.5はダート適性の話が中心で展開軸から外れている。展開軸ならダート1800で1-1-1-2を取れるテンの速さ+ブリンカー着用を「先行争いの構図に加わる要素」として扱うべきで、想定先行メンバーから抜けているのは展開図の描き漏れ。(7) 16番マルチャン/9番レディーミコノスの0.0が「拮抗」で終わっている。16番は近走の位置取りが2-2-2から12-13-11までブレており、それ自体を分散の大きさとして表現できる。9番の自在性は展開に合わせられる利点でもあり、無評価とする根拠が不明。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証した。核心の (1) と (2) は正しい。まず展開図を一本に描き直す。<br><br>**先行争いの実在性を再検証**<br>- 3番ジェットマグナム: 1-1 は 2000m のみ。マイル(錦S)では 2-2、1800(センテニアル18頭)でも 1-1 だが 14着。マイルでハナ主張の意思は薄い。<br>- 8番ラージギャラリー: 1-1 は東京1400稍重と東京1600稍重(10ヶ月前 1着)。マイルでも 1-1 で勝っている。ここは主張する。<br>- 14番グラニット: 近5走の通過は 5-5-5-5 / 2-2 / 2-3-3 / 2-2。ハナは無い。2〜3番手。<br>- 17番サトノヴィレ: 2週前の新潟1800で 1-1。1400では 13-14 で後方。マイルは境界だが、新潟で先手を取った直後で意思はある。ただし外枠17番。<br>- 5番ウィステリアリヴァ: 指摘どおり描き漏れ。ダート1800で 1-1-1-2 のテンの速さ + ブリンカー。芝マイルでもテンには行ける可能性があり、先行の頭数に加えるべき。<br><br>結論: 明確なハナ主張は 8番、それに 17番(外から)、5番(ブリンカーで一変あり)。3番・14番は番手。つまり「先行馬が壊滅的に潰れるハイペース」でも「誰も行かないドスロー」でもなく、**8番が内から先手、17番が外から絡み、5番次第で締まる程度の平均〜やや速め**が主シナリオ。これを全馬に一貫して適用する。<br><br>その帰結:<br>- 先行馬への「激化で潰れる」大幅減点は撤回(8番・14番・17番を戻す)。ただし17番の外枠ロスは枠順の事実として残す。<br>- 差し馬への「届かない」減点も撤回。658m の直線で平均ペースなら差しは十分届く射程にある(4番・6番を 0 付近へ)。<br>- 11番の「激化なら一変」という一方向の副シナリオ上乗せは非対称なので外し、658m 適性そのものだけで評価する。<br><br>**個別の誤りの訂正**<br>- 1番: 指摘どおり。新潟1600(18頭)で 11-10 → 上がり32.8 で勝っている。この馬は新潟では差して勝った馬で、「位置を取る形が新潟向き」は逆読み。むしろ好位でも後方でも新潟マイルで結果が出ており、位置取りの自由度が高い。上方修正。<br>- 13番: 同じ12ヶ月前の新潟マイルを 1番はプラス、13番はマイナスに読んでいた。13番は 15-15 から上がり33.1 で 13着 = 実際に届かなかった側の実データなので減点自体は残すが、幅を縮める。<br>- 12番: 好位取りの根拠が 11頭立て1走のみ。18頭で同じ 3-3 は保証されない。大幅に下げる。ただし後方時も上がり33.1/33.6 を使えており、658m ではどちらの位置でも形にはなる。<br>- 10番: 新潟初参戦。位置取り再現性は 17頭立てむらさき賞 5-7-7 があるので極端には割らないが、当地実績を 2番に加点した物差しと揃えて幅を縮める。<br>- 9番・16番: 「拮抗して0」ではなく、自在性(9番)は展開適応力としてプラス、位置取り分散の大きさ(16番)は展開依存度の高さとしてマイナス寄りに表現し直す。<br><br>1番, ミッキーソルジャー, +0.5, 12ヶ月前の新潟1600(18頭)で11-10から上がり32.8で勝っており、この直線を後方から差し切った実データがある。前走東京1600は2-2から33.3で勝っており、好位でも後方でも新潟マイルで結果を出せる位置取りの自由度が最大の強み。<br><br>2番, コートアリシアン, +0.4, 3-3、6-6、9-9と位置をどこにでも置ける自在型で、4週前の新潟1400で6-6から4着と当地の流れに実際に乗れている。1枠2番から内をロスなく回り直線で外に持ち出す形が最も描きやすい。<br><br>3番, ジェットマグナム, -0.2, マイルでは2-2で1-1は1800m以上に限られ、今回ハナを主張する側ではなく番手。錦Sで2-2から上がり33.3でも7着、センテニアルで1-1から14着と、前めに付けても658mの直線で最後に止まる形が続いている。<br><br>4番, マトラコーニッシュ, +0.1, 12-12-11-9、10-11と後方待機が定着しており、658mの長い直線は形として合う。ただ先行争いが壊滅するほどの激流ではない想定なので、差し込む余地はあっても決定的な追い風とまでは言えない。<br><br>5番, ウィステリアリヴァ, -0.2, ダート1800で1-1-1-2を取れるテンの速さとブリンカー着用で、先行争いの一角に加わる可能性がある馬。ただし芝で先手を取っても13ヶ月前の新潟1800重で8着、ダートでも1-1-1-2から失速しており、658mを前で持たせる形は描きにくい。<br><br>6番, ガルダイア, +0.1, 前走東京1600で12-12から上がり33.2は使えており、直線の長いコースで末を伸ばす形自体は成立する。位置は後ろだが平均ペース想定なら射程に入り、大きな不利とは見ない。<br><br>7番, コスモサガルマータ, +0.5, 12-12から上がり32.4、11-11から32.8と、直線の長い東京で最速級の脚を確実に繰り出す純粋な追込馬。新潟外回り658mはこのタイプに最も適した舞台で、4枠から外に持ち出しやすいのも利点。位置が後ろすぎる分だけ割り引く。<br><br>8番, ラージギャラリー, +0.2, 東京1600稍重で1-1から上がり33.7で勝った実績があり、マイルでも先手を取れる。今回ハナを主張する筆頭で、内枠4枠から無理なく先手を取れれば新潟外回りでも自分の形に持ち込める。京都1600の2-2から13着という崩れ方が振れ幅として残る。<br><br>9番, レディーミコノス, +0.2, 3-6の好位も8-10-12-12の後方もこなし、4-3で阪神1600を勝っている。どのペースにも合わせられる自在性は展開の読み違いに強く、シナリオが割れる今回の構図ではそれ自体が利点になる。<br><br>10番, ジャサルディア, +0.4, 5-7-7から上がり33.0で2着、6-5から差し切りと、中団前めで折り合って直線で伸ばす形が完成している。新潟外回りで最も勝ちやすい位置を自然に取れるタイプ。ただし新潟初参戦で18頭立ての経験もなく、位置取り再現性は割り引く。<br><br>11番, テウメッサ, +0.3, 16-16-16から上がり32.5、11-12から32.9と極端な後方から最速上がりを繰り出す脚質で、658mの直線は数少ない届く舞台。ただし平均ペース想定では位置の差を埋め切るところまでは行かない。<br><br>12番, ケーブパール, +0.2, 3週前の中京1600で3-3-3から上がり32.9は魅力だが11頭立て1走のみで、それ以前は13-12、10-12、17-17と一貫して後方。18頭立ての新潟で同じ位置が取れる保証はない。後方でも33.1、33.6を使えるので658mでは形にはなる。<br><br>13番, ショーマンフリート, -0.3, 12ヶ月前の同舞台長岡Sで15-15から上がり33.1を使って13着と、この直線を後方から追い込んで実際に届かなかった経験がある。前走も9-9-7-8から上がり35.8で、位置も末も中途半端。<br><br>14番, グラニット, -0.2, 近走は2-2、2-3-3、5-5-5-5とハナは主張せず番手からの競馬。東京1600で2-2から上がり34.1の7着、中山1600でも2-3-3から34.5の7着と、直線が長いほど終いの甘さが出る。658mを前めで持たせるのは苦しい。<br><br>15番, ホウオウムサシ, +0.1, 東京1600で6-6から上がり33.6の6着と、直線の長いコースで好位から脚を使える形はある。位置取りは無難だが突き抜ける決め手までは無く、展開の恩恵は小さい。<br><br>16番, マルチャン, -0.2, 通過が2-2-2から12-13-11まで振れ、位置取りが安定しない。自分のポジションを決めきれないタイプは18頭立ての外枠だと流れ任せになりやすく、8枠から外を回るロスも重なる。<br><br>17番, サトノヴィレ, -0.2, 2週前の新潟1800で1-1から3着と当地の先行は形になっているが、8枠17番から先手を取りに行けば道中で脚を使い、控えれば1400で13-14に沈んだ形になる。枠順が持ち味と噛み合っていない。<br><br>18番, マイエレメント, +0.3, 10-12、10-12-11と後方から上がり33.3、33.8を使うタイプで、直線の長い新潟外回りは向く。大外18番は外回りコースではコーナーのロスが小さく、包まれずに自由に外へ持ち出せる分だけ有利に働く。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: 0.4, &quot;3&quot;: -0.2, &quot;4&quot;: 0.1, &quot;5&quot;: -0.2, &quot;6&quot;: 0.1, &quot;7&quot;: 0.5, &quot;8&quot;: 0.2, &quot;9&quot;: 0.2, &quot;10&quot;: 0.4, &quot;11&quot;: 0.3, &quot;12&quot;: 0.2, &quot;13&quot;: -0.3, &quot;14&quot;: -0.2, &quot;15&quot;: 0.1, &quot;16&quot;: -0.2, &quot;17&quot;: -0.2, &quot;18&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;ペースシナリオの二重基準を解消し、展開図を一本化した。ハナ主張は8番が筆頭、17番が外から絡み、5番がブリンカーで加わる程度の平均〜やや速めを主シナリオに固定。これに伴い先行馬への『激化で潰れる』減点(8番/14番/17番)と差し馬への『届かない』減点(4番/6番)を両方撤回し、11番への片側だけの副シナリオ上乗せも外した。1番は新潟1600(18頭)を11-10から上がり32.8で勝った最重要データを取りこぼしていたので読みを反転させ+0.5に上げた。12番は好位取りの根拠が11頭立て1走のみと認めて+0.7から+0.2に大きく下げ、10番も新潟初参戦を割り引いた。5番はダート適性の話から展開軸(テンの速さ+ブリンカー=先行構図の一員)に組み替えて幅を縮小。9番の自在性は展開適応力としてプラス、16番の位置取り分散は展開依存度としてマイナスに、それぞれ0.0から傾けた。17番の減点は先行争いではなく8枠17番という枠順と持ち味の不整合を根拠に残した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ミッキーソルジャー, +0.2, 3ヶ月ぶりでも506kgと前走・前々走から寸分違わぬ体重で戻ってきており、この馬は自己ベスト体重帯が安定しとる。調教評価「久々も好気配」・調子↗は仕上げの手応えを裏づけるが、休養明けで一度使ってからのタイプでもあり大きくは押さない。<br><br>2番, コートアリシアン, +0.5, 4週前と間隔が詰まっとるが442→444kgと反動なく微増、440台後半で走れとった頃に向かう推移で消耗の気配がない。坂路53.1-12.0の切れた時計に「小気味いい走り」「調子↗」が重なり、連戦を苦にしない仕上がり。<br><br>3番, ジェットマグナム, -0.2, 3ヶ月の休み明けで496kgは前走同値、体調面で崩れはないが上積みを示すものもない。CW74.8-41.1-12.9は馬なりとはいえ平凡で、評価「先週強い稽古消化」・調子→は現状維持の域。<br><br>4番, マトラコーニッシュ, +0.3, 434kgは434〜428kgで推移してきたこの馬の上限側で、7週の間隔を挟んで+6kgと絞れすぎを回避できたのは小柄な牝馬には好材料。ハンデ53kgと最軽量級で434kgの馬格に対する負担が軽く、斤量的な余裕は約1馬身分ある。<br><br>5番, ウィステリアリヴァ, +0.4, 5ヶ月半の長期休養明けだが506kgは近走500〜504kgを上回る過去最高体重で、緩んだ増ではなく立て直しの成果と見る。美W66.2-36.5-11.0のラスト1F11秒台前半は今回のメンバーで最も鋭く、6歳馬が馬なりで出す時計としては明確な好仕上がり。<br><br>6番, ガルダイア, -0.4, 3ヶ月半ぶりで-8kgの476kgは、近走474〜484kgの中では下限寄りに落ちた形。強めに追われての54.3-24.6は動けとるが、休み明けで体を減らして出てくるパターンは前走11着からの反発力に不安が残る。<br><br>7番, コスモサガルマータ, +0.2, 528→510→496kgと大きく減らした波が496kgで止まり、-2kgと横ばいに落ち着いたのは体重推移が安定域に入った証。3ヶ月ぶりでも美W66.1-37.1-11.2は水準以上で、消耗ではなく調整で絞れた体と読む。<br><br>8番, ラージギャラリー, +0.4, 前走から2ヶ月で-2kgの476kg、478kg前後の好走時体重をきっちり保っとる。坂路52.9で一杯に追われて「力強い伸び脚」、休み明けを最終追いでしっかり負荷をかけて仕上げてきた形で、53kgのハンデも476kgの馬格には軽い。<br><br>9番, レディーミコノス, +0.2, 7週の間隔で464kg変わらず、近走468→464kgと微減で落ち着いており増減の心配がない。CW67.5-37.6-11.9に「デキ安定」の評価どおり、良くも悪くも一定のコンディション。<br><br>10番, ジャサルディア, +0.5, 3ヶ月の休養を挟んで+4kgの480kgは、464→466→470→476kgと使うごとに増えてきた成長線の延長線上にあり、太めではなく身になった増加。「仕上がり良好」で美W67.2-37.5-11.7と休み明けでもラストが引き締まっとる。<br><br>11番, テウメッサ, -0.3, 3ヶ月ぶりで-4kgの478kgは近走480〜490kgより軽く、休養で緩むどころか減って出てくる形。坂路56.5-26.7-13.4は今回のメンバーで最も遅い部類で、「まずまず仕上がる」は物足りない評価と受け取る。<br><br>12番, ケーブパール, +0.6, 3週の詰まった間隔ながら448→456kgと+8kg、430kg台で苦戦しとった時期から一貫して増えてきた馬体増が続いとる小柄牝馬には最良の推移。CWラスト1F11.1の「軽快な動き目立つ」・調子↗と、間隔を詰めても反動が出ない今の状態は文句なし。<br><br>13番, ショーマンフリート, -0.1, 5週で+2kgの516kgは510〜514kgの推移から見て自然な範囲で、大型馬らしく安定はしとる。ただ坂路54.5-26.2-12.8は516kgの巨漢にしても軽い負荷で、「多少上向く」止まりの評価では前走9着からの前進材料に乏しい。<br><br>14番, グラニット, -0.5, 前走で-14kgの470kgまで一気に減らした後の+2kgで、484kg前後で走れとった頃から見ると10kg以上絞れたまま戻せとらん。6歳で31戦を経ての「久々叩くもひと息」という評価と、美W69.5-39.2の平凡な時計は消耗の色が濃い。<br><br>15番, ホウオウムサシ, -0.3, 3ヶ月半ぶりで-6kgの446kgは452〜458kgで推移してきた過去最軽量に近く、もともと小柄な馬がさらに減った形は歓迎できない。「立て直し良化」でラスト11.5は動けとるが、446kgに55kgのハンデは体重比では今回最も重い部類で1馬身近い不利。<br><br>16番, マルチャン, -0.3, 2ヶ月ぶりの476kgは-10kgした前走からさらに横ばいで、488→478→476kgと右肩下がりの推移が止まっとらん。調教評価「馬体は仕上がるも」は仕上げは認めつつ内容に留保のついた言い回しで、26戦を消化した6歳馬の状態としては上向きと見にくい。<br><br>17番, サトノヴィレ, +0.3, 2週の詰まったローテだが494kgと前走から変わらず、「疲れなく」の評価どおり連戦の反動が出ていない。ただ美W71.4-39.2は緩めの時計で、あくまで前走の good condition を維持する調整であり上積みまでは求めにくい。<br><br>18番, マイエレメント, +0.2, 2ヶ月の間隔で-2kgの492kgは486〜494kgの安定帯の中央で、増減の不安がない。「ひと追い毎に良化」は上昇途上を示すが坂路56.7-26.1-12.6は目立たず、52kgの最軽量ハンデが492kgの馬格に対して効いてくる分をプラスに見る。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.5, &quot;3&quot;: -0.2, &quot;4&quot;: 0.3, &quot;5&quot;: 0.4, &quot;6&quot;: -0.4, &quot;7&quot;: 0.2, &quot;8&quot;: 0.4, &quot;9&quot;: 0.2, &quot;10&quot;: 0.5, &quot;11&quot;: -0.3, &quot;12&quot;: 0.6, &quot;13&quot;: -0.1, &quot;14&quot;: -0.5, &quot;15&quot;: -0.3, &quot;16&quot;: -0.3, &quot;17&quot;: 0.3, &quot;18&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;体調面で最も評価できるのは12番ケーブパール。3週間隔でも+8kgと馬体増が続き、430kg台で苦戦した時期からの一貫した増加線が今も伸びとる小柄牝馬で、CWラスト11.1と調子↗が仕上がりを裏づける。次いで2番コートアリシアンは4週の連戦でも+2kgと反動なく坂路53.1-12.0の切れ、10番ジャサルディアは休み明け+4kgが成長線の延長で「仕上がり良好」。5番ウィステリアリヴァは長期休養明けながら506kgの自己最高体重＋美W11.0のラストで、緩んだ増ではなく立て直しの成果と読んだ。8番ラージギャラリーは478kg前後の好走体重をキープし一杯に追って力強い伸び脚。逆に14番グラニットは前走-14kgの体重が戻らず「久々叩くもひと息」で消耗の色、6番ガルダイアは休み明けに-8kgと減って出てくる形、15番ホウオウムサシは446kgの過去最軽量に55kgのハンデで体重比の負担が今回最も重い。11番テウメッサは-4kg＋坂路56.5-13.4と時計が最も遅く、16番マルチャンは488→478→476kgの右肩下がりが止まっとらん。斤量は53kg前後の軽ハンデ馬でも434kg(4番)と516kg(13番)では意味が違うため、馬格との比で見て4番・18番を軽く押し、15番を引いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>1) 同じ現象への符号が馬ごとに逆転しとる箇所が複数。7番コスモサガルマータ(-32kg を「調整」で+0.2)と16番マルチャン(-12kg を「右肩下がり」で-0.3)、11番テウメッサ(坂路56.5を「最も遅い」で-0.3)と18番マイエレメント(坂路56.7でより遅いのに+0.2)。同一の物差しで順序が説明できるか要確認。2) 斤量/体重比を一部の馬にしか適用しとらん。4番マトラコーニッシュ12.2%を「1馬身有利」、15番ホウオウムサシ12.3%を「今回最も重い・1馬身不利」と真逆に扱った。2番コートアリシアン12.4%が実は最高だが言及なし。比率ではなく体重増減方向を斤量の言葉にすり替えとらんか。3) 5番ウィステリアリヴァ+0.4: 5ヶ月半明けで自己最高506kgを「立て直しの成果」とする根拠が調教時計頼みの循環。芝での好走時は494kg前後で、500kg台の実績は全てダート。4) 12番ケーブパール+0.6: 推移は単調増加でなく436→450(+12)→448(-2)→456(+8)で、直近は軽い方(448kg)で3着。3週間隔の+8kgは緩みの可能性も五分。加えて12番だけ調教5Fが欠測で全体負荷が不明なのに最高付値。5) 17番サトノヴィレ+0.3: 中2週かつ前走逃げて体重据え置きは反動なしの証拠として2番(4週)より強いはず。「美W71.4は緩め」は5F全体だけの評価で、ラスト1F11.3はメンバー4番手。6) 6番ガルダイア-0.4: 476kgは近走474〜478の常用帯そのもので、484kgだった前走が上振れ。-8kgだけでメンバー2番目の低評価は根拠が薄い。7) 1番ミッキーソルジャー: 「休養明けは一度使ってから」の根拠が不明。直前の休み明け(9ヶ月ぶり葉山特別)は58kgで勝っとる。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証した。物差しを揃え直した箇所と、据え置いた箇所を分けて出す。<br><br>**検証したこと**<br><br>指摘1（符号の逆転）は妥当。7番と16番は「減量の中身」で分けたつもりやったが、7番の 528→510→496 は 12月ダート重で+20kg した異常値からの正常化で、直近2走は498→496 とほぼ止まっとる。16番も 478→476 と直近は止まっとって、動き幅では両者に差がない。7番を据え置き、16番を -0.3 → -0.15 に緩める。坂路の 11番56.5 と 18番56.7 は、ラスト1F が 13.4 と 12.6 で意味が逆。時計の順序を評価軸にしたのは誤りやったので、11番の理由を「ラスト13.4」に置き換える（P は据え置き）。<br><br>指摘2（斤量/体重比）も妥当。比率で並べると 2番12.4% &gt; 15番12.3% &gt; 4番12.2% で、4番だけを有利、15番だけを不利にした扱いは通らん。斤量比は上位3頭でほぼ差がないので、この軸を体調評価から外し、4番は馬体の推移だけで +0.3 → +0.15、15番は減少分だけで -0.3 → -0.2 に直す。<br><br>指摘3（5番）は一部受け入れる。500kg台が全てダートというのは事実で、芝好走時 494kg から見た 506kg を「立て直しの成果」と断定する根拠はない。ただ美W 66.2-36.5-11.0 のラスト1F 11.0 はメンバー最速で、これは体重解釈と独立した事実。+0.4 → +0.25。<br><br>指摘4（12番）も受け入れる。推移は単調増加ではなく、直近3着は軽い 448kg の方。3週で+8kg を無条件に良化と読むのは行き過ぎで、調教5F 欠測で全体負荷も不明。+0.6 → +0.35。<br><br>指摘5（17番）は妥当。中2週で体重据え置きは 4週の2番より反動なしの証拠として強く、ラスト1F 11.3 はメンバー4番手。5F だけで「緩め」と切ったのは片手落ち。+0.3 → +0.45。<br><br>指摘6（6番）も受け入れる。474〜478 が常用帯で、484kg だった前走の方が上振れ。-8kg の見かけに引っ張られとった。-0.4 → -0.15。<br><br>指摘7（1番）は事実誤認を認める。9ヶ月ぶりの葉山特別を 58kg で勝っとる以上、この馬に「一度使ってから」は当てはまらん。+0.2 → +0.35。<br><br>---<br><br>1番, ミッキーソルジャー, +0.35, 3ヶ月ぶりで506kgと前走・前々走から寸分違わぬ体重、この馬は休み明けを苦にせず9ヶ月ぶりの前走を58kgで勝っており休養明け割引は当たらない。調教「久々も好気配」・調子↗で、体重帯も仕上げも前走勝利時を再現しとる。<br><br>2番, コートアリシアン, +0.5, 4週で442→444kgと反動なく微増、消耗の気配がない。坂路53.1-12.0の切れた時計に「小気味いい走り」「調子↗」が重なり、連戦を苦にしない仕上がり。<br><br>3番, ジェットマグナム, -0.2, 3ヶ月の休み明けで496kgは前走同値、崩れはないが上積みを示すものもない。CW74.8-41.1-12.9のラスト12.9は今回のメンバーでは重い部類で、「先週強い稽古消化」・調子→は現状維持の域。<br><br>4番, マトラコーニッシュ, +0.15, 434kgは428〜434kgで推移してきたこの馬の上限側で、7週の間隔を挟んで+6kgと絞れすぎを回避できたのは小柄な牝馬には好材料。ただ斤量比12.2%は2番12.4%・15番12.3%とほぼ並びで、斤量面に特別な優位はない。<br><br>5番, ウィステリアリヴァ, +0.25, 5ヶ月半ぶりの506kgは自己最高だが、500kg台は全てダート時のもので芝好走時は494kg前後、この増加を良化と断ずる根拠はない。それでも美W66.2-36.5でラスト1F11.0はメンバー最速、馬なりでこれを出せる時点で仕上げ自体は良い。<br><br>6番, ガルダイア, -0.15, -8kgの見た目ほど減っておらず、476kgは474〜478kgの常用帯そのもので484kgだった前走の方が上振れ。強めに追われて54.3-24.6と動けており、休み明けの体重で嫌う材料は乏しい。<br><br>7番, コスモサガルマータ, +0.2, 528kgは12月ダート重での+20kgという異常値で、そこからの減少は正常化の過程、直近は498→496kgと横ばいに落ち着いとる。3ヶ月ぶりでも美W66.1-37.1-11.2は水準以上で、消耗ではなく調整で絞れた体と読む。<br><br>8番, ラージギャラリー, +0.4, 前走から2ヶ月で-2kgの476kg、478kg前後の好走時体重をきっちり保っとる。坂路52.9で一杯に追われて「力強い伸び脚」、間隔を空けた分を最終追いでしっかり負荷をかけて埋めてきた形。<br><br>9番, レディーミコノス, +0.2, 7週の間隔で464kg変わらず、468→464kgと微減で落ち着いており増減の心配がない。CW67.5-37.6-11.9に「デキ安定」の評価どおり、良くも悪くも一定のコンディション。<br><br>10番, ジャサルディア, +0.5, 3ヶ月の休養を挟んで+4kgの480kgは、464→466→470→476kgと使うごとに増えてきた成長線の延長線上にあり、太めではなく身になった増加。「仕上がり良好」で美W67.2-37.5-11.7と休み明けでもラストが引き締まっとる。<br><br>11番, テウメッサ, -0.3, 3ヶ月ぶりで-4kgの478kgは近走480〜490kgより軽く、休養で緩むどころか減って出てくる形。坂路のラスト1F13.4は今回18頭で最も遅く、「まずまず仕上がる」の評価と合わせて追い切りに物足りなさが残る。<br><br>12番, ケーブパール, +0.35, 3週で+8kgの456kgは436→450→448と上下しとる推移の中では上振れ側で、直近3着はむしろ軽い448kgの方、緩みの可能性も残る。ただCWラスト1F11.1の「軽快な動き目立つ」・調子↗は良く、間隔を詰めても動けとる点は買える。<br><br>13番, ショーマンフリート, -0.1, 5週で+2kgの516kgは510〜514kgの推移から見て自然な範囲で、大型馬らしく安定はしとる。ただ坂路54.5-26.2-12.8は516kgの巨漢にしても軽い負荷で、「多少上向く」止まりでは前走9着からの前進材料に乏しい。<br><br>14番, グラニット, -0.5, 前走で-14kgの470kgまで一気に減らした後の+2kgで、484kgで走れとった頃から10kg以上戻せとらん。6歳で31戦を経ての「久々叩くもひと息」という評価と、美W69.5-39.2の平凡な時計は消耗の色が濃い。<br><br>15番, ホウオウムサシ, -0.2, 3ヶ月半ぶりで-6kgの446kgは452〜458kgで推移してきた過去より軽く、もともと小柄な馬がさらに減った形は歓迎できない。斤量比12.3%は2番・4番とほぼ同水準なので斤量面での不利は取り消し、体重減の分だけ引く。<br><br>16番, マルチャン, -0.15, 488→478→476kgと減ってきたが、直近2走は-10kgのあと-2kgで動きが止まっており、7番と同じ物差しで見れば下降が続いとるとは言えない。「馬体は仕上がるも」と留保のついた評価と、6歳26戦の履歴の分だけわずかに引く。<br><br>17番, サトノヴィレ, +0.45, 中2週で前走逃げながら494kgと変わらず、「疲れなく」の評価どおり連戦の反動が出とらん。これは4週の2番より強い反動なしの証拠で、美W71.4の5F は緩いがラスト1F11.3はメンバー4番手と終いはしっかり伸びとる。<br><br>18番, マイエレメント, +0.15, 2ヶ月の間隔で-2kgの492kgは486〜494kgの安定帯の中央で、増減の不安がない。坂路56.7-26.1-12.6は5Fこそ遅いがラスト12.6で減速しておらず、「ひと追い毎に良化」の上昇途上を素直に取る。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.35, &quot;2&quot;: 0.5, &quot;3&quot;: -0.2, &quot;4&quot;: 0.15, &quot;5&quot;: 0.25, &quot;6&quot;: -0.15, &quot;7&quot;: 0.2, &quot;8&quot;: 0.4, &quot;9&quot;: 0.2, &quot;10&quot;: 0.5, &quot;11&quot;: -0.3, &quot;12&quot;: 0.35, &quot;13&quot;: -0.1, &quot;14&quot;: -0.5, &quot;15&quot;: -0.2, &quot;16&quot;: -0.15, &quot;17&quot;: 0.45, &quot;18&quot;: 0.15}, &quot;analysis_summary&quot;: &quot;指摘7点のうち6点を受け入れて修正。(1)7番と16番の体重減を同一の物差しで再評価し16番を-0.3→-0.15、11番と18番は5F時計でなくラスト1F(13.4 vs 12.6)で分けて理由を訂正しPは据え置き。(2)斤量/体重比は上位3頭(2番12.4/15番12.3/4番12.2%)でほぼ差がないため体調評価から除外、4番+0.3→+0.15、15番-0.3→-0.2。(3)5番の506kgは芝好走時494kg・500kg台は全てダートのため良化の根拠にせず、調教のラスト11.0だけを残して+0.4→+0.25。(4)12番の推移は単調増加でなく直近3着は軽い448kg、5F欠測もあり+0.6→+0.35。(5)17番の中2週据え置きは4週の2番より強い反動なしの証拠、ラスト11.3も評価して+0.3→+0.45。(6)6番476kgは474〜478の常用帯で前走484kgが上振れ、-0.4→-0.15。(7)1番は9ヶ月ぶりを58kgで勝っており休養明け割引が当たらない、+0.2→+0.35。8/9/10/13/14は指摘なく据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟外回り1600m・良、3勝クラスのハンデ戦。血統軸で見ていくね。<br><br>新潟外回りマイルは直線659m、長い脚を使える持続力型・軽い芝適性が問われるコース。切れ味というより「4F近い持続ラップ」に耐えられる血統が向く。逆に小回り・パワー型、あるいは中距離寄りの血統は末が甘くなる。<br><br>**1番 ミッキーソルジャー**：父エピファネイア×母父Sir Prancealot（速い欧州スプリント寄り）。エピファネイアは本来1800〜2400の中距離型だが、母系にスピード源を持つ配合はマイル前後で機能する。実際に新潟外回り1600の未勝利を上がり32.8で勝っており、血統の出方とコースが噛み合っている。父系の晩成傾向と4歳という年齢も上向き。<br><br>**2番 コートアリシアン**：父サートゥルナーリア×母父ハーツクライ。ロベルト系×サンデーで本質は1800前後の持続型。近走1400を使われているが、血統的にはマイル延長のほうが向く。ただし新潟外回りの極端な瞬発力勝負では、この配合は「粘って伸びる」タイプで抜群の切れは出にくい。<br><br>**3番 ジェットマグナム**：父ヘンリーバローズ（ディープ系）×母父ルーラーシップ。血統構成は明確に2000m前後の中距離型で、母父キングマンボ系のパワーも中距離寄り。新潟外回りマイルの持続的な高速決着はやや忙しい。1600への短縮は血統的にプラスとは見にくい。<br><br>**4番 マトラコーニッシュ**：父サートゥルナーリア×母父ジャングルポケット。両親ともスタミナ・パワー方向で、配合の方向は明らかに1800〜2200。434kgの小柄な牝馬という点も、新潟外回りの持続ラップでは血統の得意分野から外れる。距離短縮は歓迎材料と見にくい。<br><br>**5番 ウィステリアリヴァ**：父ロゴタイプ×母父プリサイスエンド。ダート寄りのパワー配合で、近走もダート路線。ロゴタイプ産駒は芝でも走るが本質は中山・小回りのパワー型。新潟外回りの軽い芝・末脚勝負は血統適性の逆方向。<br><br>**6番 ガルダイア**：父エピファネイア×母父ネオユニヴァース。サンデー系の重ね方で、本質は1800〜2400の中距離型（青葉賞・毎日杯を使われた配合どおり）。マイルの速い流れは血統的に忙しい。<br><br>**7番 コスモサガルマータ**：父ヴィクトワールピサ×母父More Than Ready。母父の米国スピードが効いてマイル前後の適性はある配合。実際に新潟でも勝ち鞍あり。ただし6歳せん馬で、成熟タイプとしてはすでに完成域。<br><br>**8番 ラージギャラリー**：父American Pharoah×母父Victoire Pisa。米国二冠馬の産駒でスピードとパワーの持続型。ただし本質は先行して押し切る形で、日本の高速上がり勝負より前々の競馬向き。新潟外回りの長い直線での上がり勝負は父系の得意分野ではない。<br><br>**9番 レディーミコノス**：父Le Havre×母父Motivator。フランス血統の芝マイル〜中距離型で、欧州系らしい持続的な末脚を使う。Le Havre産駒は日本の芝でも走るが、本領は緩みない流れの持続戦。新潟外回りの長い直線は形として合う。<br><br>**10番 ジャサルディア**：父キズナ×母父Frankel。キズナ産駒は新潟の広いコースで数字が良く、母父Frankelがマイル〜中距離の高速決着適性を補強する。この配合は東京・新潟外回りマイルとして理想に近い噛み合い。4歳牝馬で成熟期にも入っている。<br><br>**11番 テウメッサ**：父ハービンジャー×母父キングカメハメハ。欧州スタミナ×パワーで、本質は1800〜2400の持続型。マイルの高速決着では位置取りが後手になりやすいのが血統由来（近走の後方追走も配合と整合）。新潟外回りの長い直線は末脚を活かせる形ではあるが、配合の距離適性はマイルより上。<br><br>**12番 ケーブパール**：父ブリックスアンドモルタル×母父ディープインパクト。父は芝マイル〜中距離の一流種牡馬で、母父ディープが軽さと瞬発力を加える。新潟外回りマイルの高速持続戦に対して、この配合はほぼ設計どおり。5歳で完成期。<br><br>**13番 ショーマンフリート**：父スワーヴリチャード×母父Siyouni。父は中距離型、母父Siyouni（仏マイル〜中距離）でマイル適性はある配合。ただし516kgの大型でパワー寄りに出ており、軽い芝の持続戦よりは力の要る条件向き。<br><br>**14番 グラニット**：父ダノンバラード×母父フサイチコンコルド。ディープ系だが産駒傾向は中距離・パワー寄りで、母父もスタミナ源。マイルの高速決着では血統的な後押しが乏しい。6歳で成熟による上積みも見込みにくい。<br><br>**15番 ホウオウムサシ**：父ドゥラメンテ×母父ホワイトマズル。ドゥラメンテは2000m前後の中距離型で、母父ホワイトマズルは欧州スタミナ。配合の方向は明確に中距離〜長め。マイルは血統的に忙しい。<br><br>**16番 マルチャン**：父ラブリーデイ×母父スウェプトオーヴァーボード。母父の米国スピードがマイル適性を支える配合。父は中距離型だが、この母父の入り方ならマイルは守備範囲。6歳で血統的な伸びしろはない。<br><br>**17番 サトノヴィレ**：父デクラレーションオブウォー×母父フジキセキ。父は欧米のパワー型マイラー〜中距離、母父フジキセキがスピードを供給。マイル適性はある配合だが、父系のパワー寄りは新潟外回りの軽い芝より力の要る馬場向き。<br><br>**18番 マイエレメント**：父エピファネイア×母父ディープインパクト。エピファネイア×ディープ母父はマイル〜中距離で高い成功率を示す黄金配合パターン。軽い芝の高速決着で瞬発力を活かす形は、この配合が最も得意とする条件。新潟外回りマイルとの相性は血統面で上位。<br><br>---<br><br>1番, ミッキーソルジャー, +0.5, 父エピファネイア×母父Sir Prancealotで母系にスプリント色のスピード源を持ち、中距離型の父をマイル寄りに引き寄せた配合。新潟外回り1600を上がり32.8で勝っており血統の出方とコース形態が噛み合っている。<br><br>2番, コートアリシアン, +0.2, サートゥルナーリア×ハーツクライは本質1800前後の持続型で、近走の1400からの距離延長は血統的に歓迎。ただし新潟外回りの瞬発力勝負で抜群の切れを出す配合ではない。<br><br>3番, ジェットマグナム, -0.3, ヘンリーバローズ×ルーラーシップは中距離のパワー持続型で、配合の重心は2000m前後。新潟外回りマイルの軽い高速決着は血統の得意条件から外れる。<br><br>4番, マトラコーニッシュ, -0.4, サートゥルナーリア×ジャングルポケットは父母ともスタミナ・パワー方向で、配合の設計は1800〜2200。マイル短縮は血統的なプラス材料と見にくい。<br><br>5番, ウィステリアリヴァ, -0.6, ロゴタイプ×プリサイスエンドはダート・小回りのパワー配合で、近走もダート路線。新潟外回りの軽い芝を長く伸びる形は血統適性の逆方向。<br><br>6番, ガルダイア, -0.3, エピファネイア×ネオユニヴァースはサンデー系を重ねた中距離型で、青葉賞・毎日杯を使われた路線が配合どおり。マイルの速い流れは血統的に忙しい。<br><br>7番, コスモサガルマータ, +0.2, ヴィクトワールピサ×More Than Readyで母父の米国スピードがマイル適性を供給する配合。ただし6歳せん馬で血統的な成熟の上積みはもう望めない。<br><br>8番, ラージギャラリー, 0.0, American Pharoah×Victoire Pisaはスピードとパワーの持続型で先行押し切りが本領。新潟外回りの長い直線での上がり勝負は父系の得意分野ではなく、マイル適性のプラスと相殺される。<br><br>9番, レディーミコノス, +0.3, Le Havre×Motivatorの仏血統で、緩みない流れを持続的に伸びる欧州型の末脚。新潟外回りの長い直線は形として合うが、日本の軽い高速決着そのものへの適性は父系として最上位ではない。<br><br>10番, ジャサルディア, +0.8, キズナ×Frankelは新潟・東京の広いコースのマイル高速決着に対してほぼ設計どおりの配合で、父の広いコース適性を母父Frankelのマイル適性が補強する。4歳牝馬で成熟期に入っており血統の描く条件と現状が最も噛み合う。<br><br>11番, テウメッサ, -0.2, ハービンジャー×キングカメハメハは欧州スタミナ×パワーで配合の重心が1800〜2400にある。長い直線は末脚を活かせる形だが、マイルの高速決着では血統由来の追走の重さが出やすい。<br><br>12番, ケーブパール, +0.7, ブリックスアンドモルタル×ディープインパクトは芝マイルの一流父系に母父の軽さと瞬発力が乗った配合で、新潟外回りの高速持続戦に対する設計適合度が高い。5歳で完成期という年齢も血統の描く成熟曲線と合う。<br><br>13番, ショーマンフリート, 0.0, スワーヴリチャード×Siyouniで母父由来のマイル適性はあるが、516kgの大型でパワー寄りに出ており軽い芝の持続戦より力の要る条件向き。プラスとマイナスが打ち消し合う。<br><br>14番, グラニット, -0.4, ダノンバラード×フサイチコンコルドはディープ系ながら産駒傾向が中距離・パワー寄りで、母父もスタミナ源。マイルの高速決着で血統的な後押しが乏しく、6歳で成熟の上積みもない。<br><br>15番, ホウオウムサシ, -0.4, ドゥラメンテ×ホワイトマズルは中距離型に欧州スタミナを重ねた配合で、方向性は明確に2000m以上。マイルは血統設計より短く追走が忙しくなる。<br><br>16番, マルチャン, -0.1, ラブリーデイ×スウェプトオーヴァーボードで母父の米国スピードがマイルを守備範囲にする配合だが、父は中距離型で新潟外回りの持続的な上がり勝負を積極的に後押しする血統ではない。<br><br>17番, サトノヴィレ, +0.1, デクラレーションオブウォー×フジキセキはマイル適性を持つ配合だが、父系のパワー寄りの資質は軽い芝より力の要る馬場・コース向き。良馬場の新潟外回りでは血統の長所が最大化しない。<br><br>18番, マイエレメント, +0.7, エピファネイア×母父ディープインパクトはマイル〜中距離で成功率の高い配合パターンで、軽い芝の高速決着で瞬発力を活かす形が最も得意とする条件。新潟外回りマイルとの血統的な相性は上位。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: 0.2, &quot;3&quot;: -0.3, &quot;4&quot;: -0.4, &quot;5&quot;: -0.6, &quot;6&quot;: -0.3, &quot;7&quot;: 0.2, &quot;8&quot;: 0.0, &quot;9&quot;: 0.3, &quot;10&quot;: 0.8, &quot;11&quot;: -0.2, &quot;12&quot;: 0.7, &quot;13&quot;: 0.0, &quot;14&quot;: -0.4, &quot;15&quot;: -0.4, &quot;16&quot;: -0.1, &quot;17&quot;: 0.1, &quot;18&quot;: 0.7}, &quot;analysis_summary&quot;: &quot;新潟外回り1600m良は直線659mの持続的な高速上がり勝負で、軽い芝適性とマイル前後に重心を置く配合が有利。最上位は10番ジャサルディア（キズナ×Frankel）で、父の広いコース適性と母父のマイル高速決着適性が設計どおりに噛み合う。次いで12番ケーブパール（ブリックスアンドモルタル×ディープ）と18番マイエレメント（エピファネイア×ディープ母父）が、軽い芝の瞬発力勝負に対する配合適合度で上位。1番ミッキーソルジャーは母父Sir Prancealotのスピード源が中距離型の父をマイル寄りに引き寄せ、新潟外回り1600での実際の走りとも整合する。逆に5番ウィステリアリヴァ（ロゴタイプ×プリサイスエンド）はダート・パワー配合で軽い芝の逆方向、4番・14番・15番は配合の重心が1800〜2400にありマイルの高速決着で血統的な後押しを欠く。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>1) 同父・同系統の付値が割れている根拠が理由文にない: 18番マイエレメント(エピファネイア×ディープ,+0.7)と6番ガルダイア(エピファネイア×ネオユニ,-0.3)は母父サンデー系を『軽さ』と『中距離型』で逆向きに読んでいる。2番コートアリシアン(+0.2)と4番マトラコーニッシュ(-0.4)も同父サートゥルナーリアで、両馬とも『本質1800以上』と書きながら差がついており、実質の分岐点が前走距離という近走情報になっていないか。2) 9番レディーミコノスは理由文が『日本の軽い高速決着への適性は父系として最上位でない』とマイナスを述べながら+0.3。同構図の11番テウメッサ(欧州スタミナ×長い直線)を-0.2にしたのと矛盾し、『相殺』で0.0にした8番ラージギャラリー・13番ショーマンフリートとも整合しない。3) 12番ケーブパールと18番マイエレメントは同点+0.7だが、父のマイル寄りの度合い(ブリックスアンドモルタル vs エピファネイア)の差を付値に反映しなくてよいか。4) 1番ミッキーソルジャーの+0.5は後半の実績記述(新潟外回り32.8)が支柱になっており、Sir Prancealot が母父として日本で配合実績の薄い種牡馬である不確実性が織り込まれていない。9番には『父系として最上位でない』と留保を付けたのに1番には付けていない。5) 年齢・成熟の物差しが片側バイアス: 4歳(10番)も5歳(12番)もプラス、6歳(7番・14番)だけマイナスで、同じ6歳の5番・15番・16番・17番には言及がない。言及した馬にだけペナルティが乗る運用になっていないか。また晩成型・初年度産駒など血統別の成熟曲線を無視した一律加減点は血統軸から外れる。6) 17番サトノヴィレはデクラレーションオブウォー自身が英2000ギニー2着・クイーンアンS勝ちのマイル高速決着型で、母父フジキセキも軽い芝向き。『パワー寄りで軽い芝は長所が最大化しない』という読みが父の現役適性と噛み合うか。7) 上位4頭(10番+0.8/12番+0.7/18番+0.7/1番+0.5)が僅差の団子。0.1差に血統的意味がないなら同値に寄せるか、父系のマイル適性の質で差を開くか、どちらかに整理した方が伝わる。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証し、血統軸の一貫性を整理し直した。<br><br>指摘1（同父の割れ）は妥当。エピファネイア産駒3頭は「母父が軽さを供給するか、スタミナを重ねるか」で分けるという原則を明示し、サートゥルナーリア2頭は父の重心が同じである以上、母父ハーツクライ（マイル〜中距離で切れを供給）と母父ジャングルポケット（明確にスタミナ方向）の差だけで測り直した。指摘2は再考して9番を下げた。指摘5の年齢バイアスも、6歳全馬に同じ物差しを当て直した。指摘6は父の現役適性の読みが不正確だったので上方修正した。指摘4は1番を実績依存から血統の読みに戻して下げた。<br><br>1番, ミッキーソルジャー, +0.3, エピファネイア×Sir Prancealotで母父が欧州スプリント種牡馬、父の中距離型をマイル方向に引き寄せる配合の方向性は明確。ただしSir Prancealotは日本での配合実績が薄く、産駒傾向として断定できる材料が乏しいので+0.5から下げる。<br><br>2番, コートアリシアン, +0.2, サートゥルナーリア×ハーツクライは父の重心1800前後に母父の切れを重ねた配合で、マイルは血統設計の内側。母父が瞬発力の供給源になる点だけを取ってわずかにプラス。<br><br>3番, ジェットマグナム, -0.3, ヘンリーバローズ×ルーラーシップは中距離のパワー持続型で、配合の重心は2000m前後。新潟外回りマイルの軽い高速決着は血統の得意条件から外れる。<br><br>4番, マトラコーニッシュ, -0.4, サートゥルナーリア×ジャングルポケットは父の中距離型に母父のスタミナを重ねた配合で、方向性は1800〜2200。2番との差は母父が切れを供給するかスタミナを足すかの一点で、マイル短縮は血統的な後押しに欠ける。<br><br>5番, ウィステリアリヴァ, -0.6, ロゴタイプ×プリサイスエンドはダート・パワー方向の配合。新潟外回りの軽い芝を長く伸びる形は血統適性の逆方向で、6歳という年齢に関係なく配合の向きが合わない。<br><br>6番, ガルダイア, -0.3, エピファネイア×ネオユニヴァースは母父がサンデー系でも軽さより持続力を供給する型で、18番とは母父の質が違う。父の中距離傾向を打ち消す軽さが配合にないため、マイルの速い流れは忙しい。<br><br>7番, コスモサガルマータ, +0.2, ヴィクトワールピサ×More Than Readyで母父の米国スピードがマイル適性を供給する配合。6歳という年齢は血統別の成熟曲線を示す材料がないので減点材料にはせず、配合の向きだけで評価する。<br><br>8番, ラージギャラリー, 0.0, American Pharoah×Victoire Pisaはスピードとパワーの持続型で、マイル適性はあるが新潟外回りの長い直線での上がり勝負は父系の得意分野ではない。二方向が拮抗するため中立。<br><br>9番, レディーミコノス, +0.1, Le Havre×Motivatorの仏血統は緩みない流れを持続的に伸びる欧州型で、長い直線という形は合う。ただし日本の軽い高速決着への適性は父系として上位でないという留保を付値に反映させ、11番との整合を取って+0.3から下げる。<br><br>10番, ジャサルディア, +0.8, キズナ×Frankelは母父が世界最高峰のマイル種牡馬で、父の広いコース適性と噛み合う。高速マイルへの設計適合度が配合の両側から支えられており、本レースで血統的に最も条件と合致する。<br><br>11番, テウメッサ, -0.2, ハービンジャー×キングカメハメハは欧州スタミナ×パワーで配合の重心が1800〜2400。長い直線は末脚を活かせる形だが、マイルの高速決着では血統由来の追走の重さが出やすい。<br><br>12番, ケーブパール, +0.8, ブリックスアンドモルタル×ディープインパクトは父がマイル〜9Fの一流馬で芝の高速決着そのものが本領、そこに母父の軽さと瞬発力が乗る。父のマイル適性の質は18番のエピファネイアより直接的なので10番と同水準に置く。<br><br>13番, ショーマンフリート, 0.0, スワーヴリチャード×Siyouniで母父由来のマイル適性はあるが、父はパワー寄りで力の要る条件向き。二方向が打ち消し合い血統軸では差が出ない。<br><br>14番, グラニット, -0.4, ダノンバラード×フサイチコンコルドはディープ系ながら中距離・パワー寄りの産駒傾向で、母父もスタミナ源。マイルの高速決着に対して配合の後押しが乏しい。<br><br>15番, ホウオウムサシ, -0.4, ドゥラメンテ×ホワイトマズルは中距離型に欧州スタミナを重ねた配合で、方向性は明確に2000m以上。マイルは血統設計より短く追走が忙しくなる。<br><br>16番, マルチャン, -0.1, ラブリーデイ×スウェプトオーヴァーボードで母父の米国スピードがマイルを守備範囲にする配合だが、父は中距離型で持続的な上がり勝負を積極的に後押しする血統ではない。<br><br>17番, サトノヴィレ, +0.3, デクラレーションオブウォー自身が英2000ギニー2着・クイーンアンS勝ちのマイル高速決着型で、母父フジキセキも軽い芝向き。父をパワー型と読んだのは現役時の適性と噛み合わないので上方修正する。<br><br>18番, マイエレメント, +0.6, エピファネイア×ディープインパクトは母父が軽い芝の瞬発力を供給する成功パターンで、6番との差はここにある。父のマイル適性は12番の父ほど直接的ではないので12番より一段下に置く。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.2, &quot;3&quot;: -0.3, &quot;4&quot;: -0.4, &quot;5&quot;: -0.6, &quot;6&quot;: -0.3, &quot;7&quot;: 0.2, &quot;8&quot;: 0.0, &quot;9&quot;: 0.1, &quot;10&quot;: 0.8, &quot;11&quot;: -0.2, &quot;12&quot;: 0.8, &quot;13&quot;: 0.0, &quot;14&quot;: -0.4, &quot;15&quot;: -0.4, &quot;16&quot;: -0.1, &quot;17&quot;: 0.3, &quot;18&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;同父の割れに原則を明示: エピファネイア3頭は母父が軽さを供給するか(18番ディープ=+0.6)持続力を足すか(6番ネオユニ=-0.3)、サートゥルナーリア2頭は母父ハーツクライ(切れ供給=+0.2)と母父ジャングルポケット(スタミナ=-0.4)で分岐。9番は理由文の留保を付値に反映させ+0.3→+0.1に下げ11番と整合。1番は母父Sir Prancealotの日本での配合実績の薄さという不確実性を織り込み+0.5→+0.3。17番はデクラレーションオブウォーが現役でマイル高速決着型だった事実を認め+0.1→+0.3に修正。上位は父のマイル適性の質で整理し、10番・12番(父母ともマイル方向)を+0.8、18番(母父側でマイル方向)を+0.6と差を付けた。年齢の物差しは血統別の成熟曲線を示す材料がないため全馬から外し、7番・14番の減点理由から成熟の記述を削除して配合の向きだけで測り直した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>**陣営派の視点 — 長岡ステークス（新潟6R 芝1600m外・3勝クラス）**<br><br>このレースは在厩ローカル色が濃く、関東の中堅ジョッキーが並ぶ中で、関西からの遠征組に上位騎手が乗っている構図。継続騎乗の厚みと、乗り替わりの向き（格上げか格下げか）で明確に差が出るレースと見た。<br><br>1番, ミッキーソルジャー, +0.3, 菊沢隆徳厩舎に菊沢一樹の父子タッグで、未勝利勝ちも葉山特別勝ちもこの手綱。3ヶ月の休み明けを自厩舎の子飼いで仕上げてくる形は手の内どおりで、乗り替わりリスクがない分だけ上げる。<br><br>2番, コートアリシアン, -0.2, 戸崎圭太・津村明秀と上位騎手を並べてきた馬が、今回は田辺裕信。田辺の腕を疑うわけではないが、直前の新潟で戸崎を確保できた陣営が今回は取れなかった格好で、陣営の力の入り方としては横ばい以下と見る。<br><br>3番, ジェットマグナム, -0.1, 松山弘平・鮫島克駿・田口貫太と関西の乗り替わりを繰り返してきた馬で、今回は関東遠征で大野拓弥。大野は新潟マイルの外回りを知り尽くしたベテランで手綱としては悪くないが、コロコロ替わる陣営の迷いは減点材料。<br><br>4番, マトラコーニッシュ, 0.0, 池添学厩舎で池添謙一・西塚洸二と乗ってきて、今回は関東の原優介。若手の抜擢だが遠征でこの起用は現地騎手の確保という色が強く、上げも下げもしにくい。<br><br>5番, ウィステリアリヴァ, +0.4, 小野次郎厩舎で石橋脩が5走続けての継続騎乗。ダートを使われていた馬を芝に戻すという判断も、手の内を知る主戦がずっと乗っているからこそ下せるもので、陣営の一貫性を評価する。<br><br>6番, ガルダイア, +0.2, 藤岡佑介・岩田望来・池添謙一とかつては大物を乗せていた馬が、前走から杉原誠人の継続騎乗。格としては下がっているが、不振期に手綱を任され続けている形は把握度という意味では前向きに取れる。<br><br>7番, コスモサガルマータ, +0.4, 菅原明良・横山和生・丹内祐次と毎回替わり続けてきた馬に、ここで三浦皇成を配した。関東の一線級への乗り替わりは陣営の勝負気配と読めるし、三浦は新潟外回りのマイルで信頼の置ける腕。<br><br>8番, ラージギャラリー, +0.5, 高橋亮厩舎の遠征馬で、前走を勝った丸山元気が続けて騎乗。西村淳也・石川裕紀人・鮫島克駿と替わり続けていた中で、勝った手綱をわざわざ関東まで乗せに来る形になっており、陣営が組み合わせに手応えを持っている証と見る。<br><br>9番, レディーミコノス, +0.3, 寺島良厩舎が坂井瑠星を確保。松山弘平を主戦としていた馬だが、坂井は同格以上のトップジョッキーで、関西の有力厩舎が遠征でこの騎手を押さえるのは明確な勝負気配。<br><br>10番, ジャサルディア, -0.3, ルメールで2走、その前は戸崎圭太・キング、と一貫してトップクラスを乗せてきた馬が今回は津村明秀。津村は堅実な腕だが、ルメールからの乗り替わりは陣営の手当てとして一段落ちるのは否めず、格の後退分を引く。<br><br>11番, テウメッサ, 0.0, 金成貴史厩舎で武藤雅。杉原誠人・野中悠太郎・吉村誠之助・プーシャンと騎手が定まらない馬で、武藤も特に強化とも弱化とも言えない横並びの起用。<br><br>12番, ケーブパール, +0.4, 友道康夫厩舎という名門が関東遠征で富田暁を配してきた。小崎綾也・西塚洸二と若手中心だった鞍上から一段上げてきた形で、前走3着からの上積みを狙う陣営の意欲が見える。<br><br>13番, ショーマンフリート, +0.2, 手塚貴久厩舎の管理馬で、嶋田純次が4走続けての継続騎乗。厩舎の格は高く、53kgのハンデで手の内を知る騎手を据える形は悪くないが、その継続騎乗で結果が出ていない点は割り引く。<br><br>14番, グラニット, -0.2, 大和田成厩舎で江田照男の継続騎乗。ベテランの手綱で把握度は高いものの、この組み合わせで3勝クラスを長く足踏みしており、陣営として上積みを生む材料が乏しい。<br><br>15番, ホウオウムサシ, 0.0, 蛯名正義厩舎が関西の酒井学を確保。菅原明良・佐々木大輔・プーシャンと替わってきた中での起用で、酒井は堅実だが強化とまでは言えず中立。<br><br>16番, マルチャン, 0.0, 武市康男厩舎で丸田恭介。大野拓弥・小崎綾也を挟みつつ基本は丸田という馴染みの組み合わせで、把握度はあるが陣営の勝負気配は感じにくい。<br><br>17番, サトノヴィレ, +0.2, 鹿戸雄一厩舎で、前走3着の荻野極から斎藤新への乗り替わり。斎藤は同格以上の腕で新潟の長丁場も苦にせず、前走好走を受けて手当てを緩めていないのは前向きに取れる。<br><br>18番, マイエレメント, +0.3, 福永祐一厩舎が関東遠征に石川裕紀人を配した。斎藤新・吉村誠之助・岩田望来と乗り替わりが続いていた馬だが、石川は新潟外回りの直線を知る関東の中堅上位で、現地騎手として妥当以上の確保。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.2, &quot;3&quot;: -0.1, &quot;4&quot;: 0.0, &quot;5&quot;: 0.4, &quot;6&quot;: 0.2, &quot;7&quot;: 0.4, &quot;8&quot;: 0.5, &quot;9&quot;: 0.3, &quot;10&quot;: -0.3, &quot;11&quot;: 0.0, &quot;12&quot;: 0.4, &quot;13&quot;: 0.2, &quot;14&quot;: -0.2, &quot;15&quot;: 0.0, &quot;16&quot;: 0.0, &quot;17&quot;: 0.2, &quot;18&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;陣営面では、関西の有力厩舎が遠征でトップ級を確保してきた組（9番レディーミコノス=寺島良×坂井瑠星、12番ケーブパール=友道康夫×富田暁）と、勝った鞍上をそのまま乗せに来た8番ラージギャラリー（丸山元気の継続騎乗）を最上位に取る。7番コスモサガルマータは毎走替わっていた鞍上に三浦皇成を配した点で勝負気配。5番ウィステリアリヴァは石橋脩の長期継続騎乗、1番ミッキーソルジャーは菊沢厩舎の父子タッグで手の内を知る強み。逆に10番ジャサルディアはルメール→津村、2番コートアリシアンは戸崎→田辺と、鞍上の格が一段下がる乗り替わりで減点。14番グラニットは継続騎乗ながらこの組み合わせで長く結果が出ておらず、陣営面の上積みが乏しい。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 継続騎乗の扱いが揺れとる。5番ウィステリアリヴァ(+0.4)は石橋脩5走継続だが中身は12着9着2着7着8着でダート。13番ショーマンフリート(+0.2)・14番グラニット(-0.2)の継続と『結果が出とらん』点では同類なのに0.6差。5番の芝替わりは『主戦だから下せる判断』でなく『ダートで行き詰まった手替え』とも読める。(2) 遠征×現地騎手の評価が非対称。12番ケーブパール(+0.4)は前走3着の西塚洸二を降ろしての富田暁だが、8番ラージギャラリー(+0.5)では『勝った手綱を続投＝手応え』を高評価しとる。好走鞍上の降板を12番では減点していない。また同じく前走3着から乗り替わる17番サトノヴィレは+0.2で、騎手の格は斎藤新&gt;富田暁と見る余地があり逆転の可能性。(3) 10番ジャサルディアの-0.3が重すぎんか。2番コートアリシアン(-0.2)の田辺裕信は関東トップ級で戸崎から同格〜微減の範囲、差0.1は説明が弱い。10番は近5走[1-3-1-0]で崩れとらず、夏の新潟土曜3勝クラスにルメールが乗る前提自体が疑わしいので『取れんかった』という減点の土台が成り立つか。(4) 1番ミッキーソルジャー(+0.3)は横山典弘を確保した実績がある馬で、菊沢一樹への回帰は『手の内』とも『上位騎手を配してこない様子見』とも読める。10番に適用した『トップを取れなかった＝減点』の論理を1番に適用しとらん非対称。父子タッグは『上げる』でなく『下げない』根拠に留まる可能性。(5) 7番コスモサガルマータ(+0.4)は22戦3勝・近5走6/4/17/15/14着の6歳せん馬。3番ジェットマグナム(-0.1)では『コロコロ替わる＝陣営の迷い』を減点にしとるのに、7番では同じ乗り替わり癖を『ここで三浦＝勝負気配』とプラス転換しとる。符号反転の根拠は。(6) 6番ガルダイア(+0.2)は理由文と付値が逆向き。トップ級からの下降線で杉原前走11着。14番グラニットの『この組み合わせで結果なし＝上積み乏しい』を適用すれば符号は逆。同じ杉原騎乗の11番テウメッサ前走14着は0.0にしとる。(7) 厩舎ファクターが実質効いとらん。付値がほぼ騎手の乗り替わりだけで説明され、厩舎は枕詞。小野次郎(5番+0.4)が友道・寺島・福永と同格、手塚貴久(13番+0.2)が下という並びは厩舎軸として整合しとらん。騎手上下と厩舎格を分けて足す形を検討してほしか。(8) レンジが上に偏っとる。プラス11頭(+3.2)/マイナス4頭(-0.8)。『継続騎乗＝プラス』『上位騎手確保＝プラス』の両取りで中立が消える構造になっとらんか。上位3-4頭の持ち上げ幅を含め全体レンジの再確認を。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>指摘を検証していきます。<br><br>(1) 5番の継続騎乗評価 — 妥当な指摘。石橋脩5走継続の中身はダート1800中心で12着9着2着7着、そして今回は芝1600への大幅な条件替わり。「主戦だから下せる判断」は美化しすぎで、ダートで頭打ちになった馬の試行錯誤と読む方が素直。しかも新潟芝1800の佐渡Sで石橋脩騎乗の8着という前例もある。+0.4 は過大、13番・14番の継続組と揃える水準に下げる。<br><br>(2) 12番と8番の非対称 — これは受け入れる。8番は「前走勝った鞍上の続投」で組み合わせの手応えが明確だが、12番は前走3着の西塚洸二を降ろしての富田暁で、格として明確な強化とは言い切れない。友道厩舎の遠征という点は残るが +0.4 は買いかぶり。17番との序列も、斎藤新の格を考えれば逆転が自然。<br><br>(3) 10番の -0.3 — 半分受け入れる。夏の新潟土曜3勝クラスにルメールが来る前提自体が非現実的で、「取れなかった」という減点の土台は弱い。ただ津村明秀は前走ルメールが乗った馬の鞍上としては一段下がるのは事実で、辻厩舎の関東遠征で津村という手当ては手堅い範囲。2番との差を詰めて -0.2 に揃える。<br><br>(4) 1番の非対称 — 部分的に受け入れる。横山典弘を確保した実績のある馬が父子タッグに戻る形は、「手の内」と「上位騎手を配してこない」の両義がある。ただ菊沢一樹はこの馬で未勝利勝ち・葉山特別勝ちと結果を出している組み合わせで、結果が伴う継続は結果の伴わない継続とは扱いを分けるべき。据え置きでなく小幅に下げる。<br><br>(5) 7番の符号反転 — 受け入れる。3番の乗り替わり癖を「陣営の迷い」と減点しながら、7番の同じ癖を「ここで三浦＝勝負気配」と加点するのは二重基準。三浦皇成の起用自体は関東一線級で前向きだが、+0.4 は過大。<br><br>(6) 6番 — 受け入れる。理由文が下降線を語りながらプラスは矛盾。杉原継続で前走11着なら、14番と同じ論理で符号は下向き。<br><br>(7) 厩舎ファクター — 受け入れる。騎手の上下と厩舎の格を分けて足す形に整理し直した。厩舎格は友道・寺島・福永・手塚・池添学・高橋亮を上位、蛯名・鹿戸・伊藤大士を中位、小野・大和田・武市・嘉藤を並と置き、騎手の上下に小さく上乗せする。<br><br>(8) レンジの上偏り — 受け入れる。上記の見直しで自然に是正される。<br><br>1番, ミッキーソルジャー, +0.2, 菊沢隆徳厩舎に菊沢一樹の父子タッグで、この組み合わせで未勝利勝ち・葉山特別勝ちと結果が出とる点は継続として実質がある。ただ横山典弘を確保できた馬でもあり、3勝クラスで上位騎手を配してこない点は差し引いて小幅に留める。<br><br>2番, コートアリシアン, -0.1, 戸崎圭太・津村明秀と上位を並べてきた馬の田辺裕信で、田辺自体は関東トップ級だけん格の後退はごく僅か。伊藤大士厩舎は中位の格で、陣営の力の入り方は横ばい。<br><br>3番, ジェットマグナム, -0.2, 松山弘平・鮫島克駿・田口貫太・吉村誠之助と関西で乗り替わりを繰り返し、今回は関東遠征で大野拓弥。大野は新潟外回りを知り尽くしたベテランやが、安達厩舎として鞍上が定まらんまま3勝クラスを回しとる形は減点。<br><br>4番, マトラコーニッシュ, +0.1, 池添学厩舎という格のある関西厩舎の遠征馬。ただ池添謙一・西塚洸二から関東の原優介への起用は現地騎手確保の色が濃く、騎手軸では中立。厩舎格の分だけ僅かに上げる。<br><br>5番, ウィステリアリヴァ, 0.0, 石橋脩5走継続だが中身はダート1800で12着9着2着7着と行き詰まっており、今回の芝替わりは主戦の手綱があるから下せた判断というより手替えの試行錯誤。小野次郎厩舎の格も並で、継続騎乗の把握度と結果の乏しさが相殺して中立。<br><br>6番, ガルダイア, -0.2, 藤岡佑介・岩田望来・池添謙一と大物を乗せとった馬が杉原誠人に落ち着き、その杉原で前走11着。浅利厩舎として上積みを生む手当てが見えず、鞍上の格の下降線をそのまま減点に反映する。<br><br>7番, コスモサガルマータ, +0.2, 菅原明良・横山和生・丹内祐次と替わり続けた馬への三浦皇成配置で、関東一線級への乗り替わりは前向き。ただ3番の乗り替わり癖を減点しとる以上、同じ癖をここだけ勝負気配と読むのは不整合で、嘉藤厩舎の格も並。騎手強化分だけの小幅に留める。<br><br>8番, ラージギャラリー, +0.4, 高橋亮厩舎が関東遠征に前走勝った丸山元気を続けて乗せてきた。西村淳也・石川裕紀人・鮫島克駿と替わり続けとった中で勝った手綱をわざわざ関東まで運ぶ形は、陣営がこの組み合わせに手応えを持っとる証。結果の伴う継続として最上位に置く。<br><br>9番, レディーミコノス, +0.4, 寺島良厩舎という関西の有力厩舎が遠征で坂井瑠星を確保。松山弘平が主戦やった馬で坂井は同格以上のトップジョッキー、厩舎格と騎手格の両方が揃った明確な勝負手当て。<br><br>10番, ジャサルディア, -0.2, ルメール2走からの津村明秀で格の後退はあるが、夏の新潟土曜3勝クラスにルメールが乗る前提自体が非現実的で「取れんかった」という減点の土台は弱い。辻厩舎の関東遠征として津村は手堅い範囲、2番と同水準に揃える。<br><br>11番, テウメッサ, 0.0, 金成貴史厩舎で武藤雅。杉原誠人・野中悠太郎・吉村誠之助・プーシャンと鞍上が定まらん馬で、武藤も強化とも弱化とも言えん横並びの起用。<br><br>12番, ケーブパール, +0.2, 友道康夫厩舎という名門の関東遠征は評価するが、前走3着の西塚洸二を降ろしての富田暁で、8番の「好走鞍上続投」とは逆の形。騎手軸では明確な強化と言えず、厩舎格の分を主とした小幅の加点に留める。<br><br>13番, ショーマンフリート, +0.1, 手塚貴久厩舎という上位厩舎で嶋田純次が4走続けての継続騎乗。厩舎格は高いが、この組み合わせで13着16着9着と結果が出とらん点を引いて、厩舎分だけの僅かなプラス。<br><br>14番, グラニット, -0.2, 大和田成厩舎で江田照男の継続騎乗。ベテランで把握度は高いが、この組み合わせで7着7着10着と足踏みが続き、厩舎格も並で上積みを生む材料が乏しい。<br><br>15番, ホウオウムサシ, +0.1, 蛯名正義厩舎が関西の酒井学を確保。菅原明良・佐々木大輔・プーシャンと替わってきた中での起用で、酒井は堅実だが強化とまでは言えず、厩舎格の分だけ僅かに上げる。<br><br>16番, マルチャン, 0.0, 武市康男厩舎で丸田恭介。大野拓弥・小崎綾也を挟みつつ基本は丸田という馴染みの組み合わせで、把握度はあるが勝負気配は感じにくく厩舎格も並。<br><br>17番, サトノヴィレ, +0.3, 鹿戸雄一厩舎で、前走3着の荻野極から斎藤新への乗り替わり。斎藤は荻野より格上と見てよく、前走好走を受けて手当てをむしろ強めとる形。同じ「前走3着からの乗り替わり」でも12番の富田暁より騎手の格が上で、序列を逆転させる。<br><br>18番, マイエレメント, +0.2, 福永祐一厩舎が関東遠征に石川裕紀人を配した。斎藤新・吉村誠之助・岩田望来と替わってきた馬で、石川は新潟外回りを知る関東の中堅上位として現地騎手の妥当な確保。厩舎格と合わせて小幅の加点。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>## 合成スコアへの疑問<br><br>**疑問1: 10番ジャサルディアの24.6は「ルメール込みの数字」を引きずっとらんか**<br><br>10番ジャサルディアは8戦3勝[3-3-1-1]で連対率75%、確かに崩れん。ただし前走むらさき賞2着はC.ルメール、その前の阪神1着もルメールで、今回は津村明秀への乗り替わり。加えて前走54kgから今回55kg、ハンデ戦で3勝クラス連対を評価された分の斤量。決定的な減点材料ではないが、24.6という単独首位の数字は「安定感」を額面通り足し込んだ結果で、新潟外1600の18頭立て・スローからの上がり勝負という高速決着適性の裏取りが弱い。この馬の好走はすべて東京・阪神の11頭以下〜17頭で、新潟外回りは未経験。指数も85.6が上限で、2番・12番と横並び。単独トップに置くほどの差はない。<br><br>**疑問2: 2番コートアリシアンの23.5は3勝クラス通用度としては正当だが、距離が本線でない**<br><br>2番コートアリシアンは近5走すべて3勝クラスで4着・2着・3着・5着・2着、指数84.8〜91.1と最も安定して高い。ここは素直に評価してよい。ただし直近3走はすべて1400mで、1600mの実績は7か月前の若潮S2着（91.1）と5か月前の幕張S5着。新潟外1600は前走1400の4着からの距離延長で、上がり34.2は新潟外の33秒前半決着だと足りない可能性がある。田辺裕信・内枠1番枠は好材料。合成の23.5は妥当な水準だが、10番との差23.5対24.6は逆でよいと考える。<br><br>**疑問3: 12番ケーブパールの22.1が3番手なのは低い。ここが最大の疑問**<br><br>12番ケーブパールは3週前の豊橋S（芝1600m）3着、指数86.2、上がり32.9で先行3-3-3から粘っての0.1秒差。この5頭の中で「今回と同じ距離・同じ良馬場・最近走・高指数・速い上がり」の4条件が全部揃っとるのはこの馬だけ。しかも馬体456(+8)で調教評価「軽快な動き目立つ」調子↗、休み明けでもない。斤量54kgは10番55kg・2番55kgより軽い。ローテも3週前で新潟開催に間に合う仕上がり。合成が22.1に留めたのは、16戦3勝[3-3-1-9]という勝ち切れなさと3勝クラス9走未勝利の頭数を減点した結果だろうが、ここは3着以内に来ればよい◎○▲の選定であって、勝ち切れなさは減点材料として重すぎる。指数の質と条件適合で見れば、この馬が上位3頭の筆頭格。<br><br>**疑問4: 17番サトノヴィレの14.5は低い。2週前3着の内容が軽く見られとる**<br><br>17番サトノヴィレは2週前の同じ新潟芝1800m佐渡S、58kgを背負って1-1の逃げで3着0.4秒差、上がり33.7。**新潟コース・直近・逃げて粘れた**という3点が揃い、今回56kgで2kg減。27戦3勝[3-4-2-18]と勝ち切れんタイプだが、この5頭の中で唯一「新潟で近走好走」の実績を持つ。18頭立ての外枠17番は逃げ馬としてマイナスだが、斎藤新なら控えて先行に回せる。合成の14.5は「勝率の低さ」と「大外枠」を二重に引いた印象。ただし1800→1600の短縮でペースが上がる分、この馬の粘りが削られるリスクは実在するので、大きくは上げない。<br><br>**疑問5: 9番レディーミコノスの15.4は買い被り気味**<br><br>9番レディーミコノスは3勝クラス3走で6着・15着・5着といずれも掲示板外か下位。唯一の1600m勝ちは2勝クラス（6か月前・阪神10頭立て）。前走博多S6着は0.9秒差で、指数80.7と5頭中最下位。坂井瑠星への乗り替わりと53kgの軽ハンデは魅力だが、3勝クラスで通用しとる証拠がまだない。調教も「デキ安定」で上向きの気配なし。ここは17番より下に置くべきで、5番手が妥当。<br><br>---<br><br>## 最終評価<br><br>12番, ケーブパール, 25.0%, 3週前の同距離・良馬場で指数86.2・上がり32.9の先行粘り込み、条件適合が5頭中もっとも純度が高い。54kgの軽ハンデ・馬体+8kg・調教↗と上積みも揃い、勝ち切れなさは3着内狙いなら減点しすぎ。<br><br>2番, コートアリシアン, 23.0%, 3勝クラス5走すべて0.3秒差以内・指数84.8〜91.1という水準の高さは5頭中随一で、内枠1番枠に田辺裕信も好配置。ただし直近3走が1400で本線が短距離寄りな点だけ割り引いた。<br><br>10番, ジャサルディア, 21.5%, 連対率75%の安定感と前走むらさき賞2着（指数85.6）は本物だが、ルメール→津村の乗り替わり・55kgへの増量・新潟外回り未経験を考えると単独首位に置くほどの上積みはない。合成の24.6は安定感を額面通り足しすぎ。<br><br>17番, サトノヴィレ, 17.0%, 2週前に同じ新潟芝1800mで58kg背負って逃げ3着0.4秒差、今回2kg減という最も直接的なコース実績を持つのに合成では低く見られすぎ。大外17番枠と1800→1600の短縮で粘りが削られるリスクを引いてこの水準。<br><br>9番, レディーミコノス, 13.5%, 3勝クラス3走が6着・15着・5着で指数80.7は5頭中最下位、1600m勝ちは2勝クラスの10頭立てのみと通用の裏付けが薄い。坂井瑠星＋53kgの魅力は認めるが、17番より上に置く根拠にはならない。<br><br>```json<br>{&quot;score&quot;: {&quot;12&quot;: 25.0, &quot;2&quot;: 23.0, &quot;10&quot;: 21.5, &quot;17&quot;: 17.0, &quot;9&quot;: 13.5}, &quot;analysis_summary&quot;: &quot;合成が首位に置いた10番ジャサルディアは、好走がすべてルメール騎乗かつ東京・阪神の少頭数で、津村への乗り替わり・55kg増量・新潟外回り未経験を踏まえると単独トップの根拠が薄いと判断し3番手に下げた。代わりに12番ケーブパールを筆頭に引き上げ——3週前の同距離良馬場で指数86.2・上がり32.9の先行粘り、54kgの軽量、馬体+8kgと調教↗という条件適合の純度が5頭で最も高く、合成の22.1は16戦3勝という勝ち切れなさを減点しすぎている（3着内狙いでは過剰な減点）。2番コートアリシアンは3勝クラス5走すべて0.3秒差以内・指数84.8〜91.1と水準が最も高く内枠+田辺で2番手据え置き、ただし直近3走が1400で1600が本線でない分だけ割引。17番サトノヴィレは2週前に同じ新潟で58kg背負い逃げて3着0.4秒差という直接的なコース実績があり、今回2kg減。合成14.5は勝率の低さと大外枠を二重に引きすぎと見て17.0へ引き上げた。9番レディーミコノスは3勝クラス3走が6着・15着・5着、指数80.7で5頭中最下位、1600m勝ちも2勝クラス10頭立てのみと通用の裏付けが乏しく、坂井瑠星+53kgを加味しても5番手が妥当と判断した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>新潟芝1600m外・18頭・ハンデ戦の3勝クラス。外回りマイルは直線658mで上がり勝負になりやすく、瞬発力とマイル適性、そして軽ハンデの現級実績馬が有利という前提で全馬を並べたっちゃん。<br><br>10番, ジャサルディア, 15%, 東京マイル2勝クラスを上がり33.5で勝ち上がり、前走むらさき賞3勝クラスでも上がり33.0で2着と一気に通用しとる。8戦[3-3-1-1]の安定感、東京マイル巧者ぶりは新潟外回りに直結し、55kgなら現級最上位の器と見る。<br><br>12番, ケーブパール, 12%, 3週前の豊橋S3着で上がり32.9・指数86.2と現級で最も新鮮な好走、しかも今回と同じ芝1600m。馬体+8kgで調教も軽快、54kgの軽ハンデと直線長い外回りは末脚型の彼女に噛み合う。<br><br>2番, コートアリシアン, 11%, 4週前の新潟日報賞4着（同コース1400m）で指数85.2、若潮S2着の指数91.1はメンバー最高値。距離200m延長でも幕張S5着があり、田辺で55kgなら差し切りまで届く。<br><br>9番, レディーミコノス, 9%, 3勝クラスで5着・6着と大崩れせず、センテニアル5着時の指数86.3は上位。得意はマイルで阪神1600mを勝っており、53kgの軽ハンデと坂井瑠星への乗り替わりは前進材料っちゃん。<br><br>18番, マイエレメント, 8%, 前走花のみちS10着は着順ほど負けとらん0.6秒差で上がり33.3、マイル戦は全て崩れず走っとる。52kgの最軽量ハンデは大きな武器で、外枠から流れに乗れれば一発ある。<br><br>1番, ミッキーソルジャー, 8%, 4戦3勝でキャリアが浅く底を見せとらん。3か月前の葉山特別を58kgで上がり33.3の楽勝、しかも新潟マイル未勝利勝ちの実績あり。休み明けでも調教好気配、56kgで一気の通過も。<br><br>17番, サトノヴィレ, 7%, 2週前の佐渡S3着で逃げて上がり33.7と新潟適性を証明したばかり。ただし58kg背負ってのもので今回56kg、間隔詰まる点と1600mへの短縮が微妙。それでも同開催の実績は軽視できん。<br><br>11番, テウメッサ, 5%, 3勝クラスのマイルを何度も走って着差は小さく、雲雀S指数83.8、むらさき賞では最速上がり32.5を使っとる。53kgの軽ハンデで直線長い新潟外回りは条件好転。<br><br>4番, マトラコーニッシュ, 5%, センテニアル4着の指数86.3は優秀で、追い込み一手ながら末脚は確か。ただ距離短縮でマイルは経験薄く、434kgの小柄な牝馬に18頭立て外回りは忙しい可能性。53kgは魅力。<br><br>8番, ラージギャラリー, 4%, 前走相模湖特別を逃げ切って昇級直後、53kgも恵まれた。ただし過去の1600m3勝クラス級では13着・8着と苦戦、新潟外回りの長い直線は逃げ切りに向かんのが減点。<br><br>3番, ジェットマグナム, 4%, 錦S7着で0.2秒差・上がり33.3と3勝クラスマイルで形にはなっとる。54kgの軽ハンデも良いが、前々で運ぶタイプで新潟外回りの決め手勝負では分が悪い。<br><br>15番, ホウオウムサシ, 3%, 分倍河原S6着で上がり33.6と東京マイルでは走れる。ただ勝ち切れず[3-6-3-9]、距離不問ながら決め手不足で、馬体-6kgの446kgも気になる。<br><br>7番, コスモサガルマータ, 3%, 分倍河原S4着・フリーウェイ6着で上がり32.4を使えるのは新潟外回り向き。ただ22戦3勝で決め手を出しても届かん競馬が多く、3か月の休み明け。<br><br>14番, グラニット, 2%, 阿武隈S10着、分倍河原S7着と現級では常に一歩足りず、31戦2勝の戦績が力量を示す。ただ佐渡S4着の指数85.1のように新潟は悪くなく、江田騎手の逃げ残しに一縷の望み。<br><br>16番, マルチャン, 2%, ジューンS11着でも指数86.5は数字上優秀だが、着順は二桁続きで勝ち味に遠い。53kgの軽ハンデが唯一の武器で、若潮S9着のマイル戦もひと押し足らん。<br><br>6番, ガルダイア, 2%, 毎日杯2着の素質は魅力だが、以降11着・17着・11着と壊滅的で3勝クラスでは全く通用しとらん。3か月半の休み明け、馬体-8kgも上向き材料に欠ける。<br><br>13番, ショーマンフリート, 1%, 阿武隈S9着で0.9秒差、昨年の同レース長岡S13着と新潟マイルで結果が出とらん。53kgでも近走の指数79前後では足りん。<br><br>5番, ウィステリアリヴァ, 1%, 近走はダート路線で12着・9着と不振、芝は13か月前の佐渡S8着まで遡る。5か月半の休み明けにブリンカー着用と立て直し途上で、芝1600mの流れには対応が難しい。<br><br>```json<br>{&quot;score&quot;: {&quot;10&quot;: 15, &quot;12&quot;: 12, &quot;2&quot;: 11, &quot;9&quot;: 9, &quot;18&quot;: 8, &quot;1&quot;: 8, &quot;17&quot;: 7, &quot;11&quot;: 5, &quot;4&quot;: 5, &quot;8&quot;: 4, &quot;3&quot;: 4, &quot;15&quot;: 3, &quot;7&quot;: 3, &quot;14&quot;: 2, &quot;16&quot;: 2, &quot;6&quot;: 2, &quot;13&quot;: 1, &quot;5&quot;: 1}, &quot;analysis_summary&quot;: &quot;新潟芝1600m外の長い直線と上がり勝負を前提に、現級で通用する末脚と軽ハンデを重視した。10番ジャサルディアは東京マイル巧者で3勝クラス2着済み・8戦で連対を外したのが1度だけという安定感を最上位に評価。12番ケーブパールは3週前の同距離3着が最も新鮮な好走で54kg、2番コートアリシアンは同開催1400mで4着＋若潮S指数91.1のメンバー最高値。9番レディーミコノス・18番マイエレメント・11番テウメッサは53kg以下の軽ハンデ＋差し脚で圏内。1番ミッキーソルジャーはキャリア4戦3勝の未知の伸びしろ、17番サトノヴィレは2週前の同コース3着を買うが斤量差と距離短縮で一歩下げた。逃げ・先行一手の8番ラージギャラリーと3番ジェットマグナムは外回りの決め手勝負で割引。5番ウィステリアリヴァ(芝実績なし・長期休養明け)、13番ショーマンフリート(新潟マイルで惨敗続き)、6番ガルダイア(現級全敗)を最下位群とした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>10</td><td class="left horse-name">ジャサルディア</td><td>12.7%</td><td>4.3</td><td>2</td><td class="ev-low">0.55</td></tr><tr><td>2</td><td>2</td><td class="left horse-name">コートアリシアン</td><td>11.8%</td><td>4.7</td><td>3</td><td class="ev-low">0.55</td></tr><tr><td>3</td><td>12</td><td class="left horse-name">ケーブパール</td><td>11.4%</td><td>12.9</td><td>6</td><td class="ev-mid">1.47</td></tr><tr><td>4</td><td>1</td><td class="left horse-name">ミッキーソルジャー</td><td>8.0%</td><td>3.3</td><td>1</td><td class="ev-low">0.26</td></tr><tr><td>5</td><td>9</td><td class="left horse-name">レディーミコノス</td><td>7.9%</td><td>21.9</td><td>8</td><td class="ev-mid">1.73</td></tr><tr><td>6</td><td>17</td><td class="left horse-name">サトノヴィレ</td><td>7.0%</td><td>40.3</td><td>10</td><td class="ev-high">2.82</td></tr><tr><td>7</td><td>18</td><td class="left horse-name">マイエレメント</td><td>6.2%</td><td>11.9</td><td>4</td><td class="ev-low">0.74</td></tr><tr><td>8</td><td>4</td><td class="left horse-name">マトラコーニッシュ</td><td>5.5%</td><td>21.3</td><td>7</td><td class="ev-mid">1.17</td></tr><tr><td>9</td><td>8</td><td class="left horse-name">ラージギャラリー</td><td>5.1%</td><td>38.3</td><td>9</td><td class="ev-mid">1.95</td></tr><tr><td>10</td><td>7</td><td class="left horse-name">コスモサガルマータ</td><td>4.5%</td><td>12.9</td><td>5</td><td class="ev-low">0.58</td></tr><tr><td>11</td><td>11</td><td class="left horse-name">テウメッサ</td><td>4.2%</td><td>68.3</td><td>15</td><td class="ev-high">2.87</td></tr><tr><td>12</td><td>16</td><td class="left horse-name">マルチャン</td><td>3.3%</td><td>40.7</td><td>11</td><td class="ev-mid">1.32</td></tr><tr><td>13</td><td>3</td><td class="left horse-name">ジェットマグナム</td><td>3.2%</td><td>60.4</td><td>14</td><td class="ev-mid">1.94</td></tr><tr><td>14</td><td>15</td><td class="left horse-name">ホウオウムサシ</td><td>2.6%</td><td>84.3</td><td>16</td><td class="ev-high">2.20</td></tr><tr><td>15</td><td>6</td><td class="left horse-name">ガルダイア</td><td>2.1%</td><td>58.2</td><td>13</td><td class="ev-mid">1.25</td></tr><tr><td>16</td><td>5</td><td class="left horse-name">ウィステリアリヴァ</td><td>1.8%</td><td>49.4</td><td>12</td><td class="ev-low">0.87</td></tr><tr><td>17</td><td>13</td><td class="left horse-name">ショーマンフリート</td><td>1.7%</td><td>132.9</td><td>18</td><td class="ev-high">2.23</td></tr><tr><td>18</td><td>14</td><td class="left horse-name">グラニット</td><td>1.0%</td><td>85.4</td><td>17</td><td class="ev-low">0.86</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">10 ジャサルディア</td><td>12.7%</td><td>4.3</td><td class="ev-low">0.46</td></tr><tr><td>複勝</td><td class="left">10 ジャサルディア</td><td>35.8%</td><td>1.5</td><td class="ev-low">0.50</td></tr><tr><td>馬連</td><td class="left">2 コートアリシアン-10 ジャサルディア</td><td>3.4%</td><td>6.9</td><td class="ev-low">0.20</td></tr><tr><td>ワイド</td><td class="left">2 コートアリシアン-10 ジャサルディア</td><td>9.6%</td><td>3.1</td><td class="ev-low">0.26</td></tr><tr><td>馬単</td><td class="left">10 ジャサルディア→2 コートアリシアン</td><td>1.7%</td><td>12.9</td><td class="ev-low">0.18</td></tr><tr><td>3連複</td><td class="left">2 コートアリシアン-10 ジャサルディア-12 ケーブパール</td><td>1.5%</td><td>20.3</td><td class="ev-low">0.25</td></tr><tr><td>3連単</td><td class="left">10 ジャサルディア→2 コートアリシアン→12 ケーブパール</td><td>0.3%</td><td>67.8</td><td class="ev-low">0.14</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 400円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">10 ジャサルディア</td><td>4.3</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連複</td><td class="left">2 コートアリシアン-10 ジャサルディア-12 ケーブパール</td><td>20.3</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 400円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
