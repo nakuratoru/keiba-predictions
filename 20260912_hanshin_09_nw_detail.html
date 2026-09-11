@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瀬戸内海特別 2026/09/12 HANSHIN 9R (09/11 22:25 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>瀬戸内海特別 2026/09/12 HANSHIN 9R (09/11 22:25 予想 馬体重なし)</h1>
+  <div class="meta">芝1400m（右） | 稍重 | 13頭立て | 4回 阪神 3日目 サラ系3歳以上 2勝クラス （混合）［指定］ 定量 13頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">12. ロンドボス</div>
+      <div class="pick-jockey">幸 英明 / 藤原 英昭</div>
+    </div>
+    <div class="pick-prob">14.0%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">4. ダガーリング</div>
+      <div class="pick-jockey">坂井 瑠星 / 柴田 卓</div>
+    </div>
+    <div class="pick-prob">12.5%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">13. キャッスルレイク</div>
+      <div class="pick-jockey">田口 貫太 / 松下 武士</div>
+    </div>
+    <div class="pick-prob">11.2%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">13頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">カウンティフェア</td><td>牝4</td><td>56</td><td>田山 旺佑</td><td>高野 友和</td><td>サートゥルナーリア</td><td>クロフネ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>2</td><td class="left horse-name">ライラ</td><td>牝4</td><td>56</td><td>松山 弘平</td><td>吉岡 辰弥</td><td>キタサンブラック</td><td>コロナドズクエスト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>3</td><td class="left horse-name">リアライズ</td><td>牡6</td><td>58</td><td>角田 大和</td><td>石橋 守</td><td>シルバーステート</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>4</td><td class="left horse-name">ダガーリング</td><td>牡4</td><td>58</td><td>坂井 瑠星</td><td>柴田 卓</td><td>タワーオブロンドン</td><td>ロードカナロア</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>5</td><td class="left horse-name">プレセピオ</td><td>牝3</td><td>54</td><td>浜中 俊</td><td>笹田 和秀</td><td>パドトロワ</td><td>エピファネイア</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>6</td><td class="left horse-name">アムールリーベ</td><td>牝5</td><td>56</td><td>荻野 琢真</td><td>宮地 貴稔</td><td>シルバーステート</td><td>Tapit</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>7</td><td class="left horse-name">ネッタイヤライ</td><td>牡3</td><td>56</td><td>北村 友一</td><td>矢作 芳人</td><td>コントレイル</td><td>キンシャサノキセキ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>8</td><td class="left horse-name">ワンコールアウェイ</td><td>牝4</td><td>56</td><td>松若 風馬</td><td>杉山 晴紀</td><td>サートゥルナーリア</td><td>ブライアンズタイム</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>9</td><td class="left horse-name">ジッピーレーサー</td><td>せん9</td><td>58</td><td>秋山 稔樹</td><td>天間 昭一</td><td>City Zip</td><td>Banker&#x27;s Gold</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>10</td><td class="left horse-name">キングケープ</td><td>牡3</td><td>56</td><td>西塚 洸二</td><td>大橋 勇樹</td><td>フィエールマン</td><td>Cape Cross</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>11</td><td class="left horse-name">アジュマン</td><td>牡4</td><td>58</td><td>岩田 望来</td><td>石坂 公一</td><td>アルアイン</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>12</td><td class="left horse-name">ロンドボス</td><td>牝4</td><td>56</td><td>幸 英明</td><td>藤原 英昭</td><td>モーリス</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>13</td><td class="left horse-name">キャッスルレイク</td><td>牝4</td><td>56</td><td>田口 貫太</td><td>松下 武士</td><td>サートゥルナーリア</td><td>ディープインパクト</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ロンドボス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">キャッスルレイク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アムールリーベ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ロンドボス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">キャッスルレイク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アムールリーベ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ロンドボス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ダガーリング</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">アジュマン</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ロンドボス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ダガーリング</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">アジュマン</span></td></tr>
+<tr><td>4</td><td class='left'>-</td><td class='left'>-</td><td class='left'>-</td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#8E8E93'>0.00</td>
+<td style='color:#8E8E93'>0.00</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ロンドボス</span></td>
+<td>+0.54</td>
+<td>+0.40</td>
+<td>+0.70</td>
+<td>+0.38</td>
+<td>+0.61</td>
+<td>14.1</td>
+<td>13.1</td>
+<td>13.0</td>
+<td><b>14.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ダガーリング</span></td>
+<td>+0.39</td>
+<td>+0.33</td>
+<td>+0.65</td>
+<td>+0.50</td>
+<td>+0.49</td>
+<td>12.5</td>
+<td>10.7</td>
+<td>10.5</td>
+<td><b>12.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">キャッスルレイク</span></td>
+<td>+0.51</td>
+<td>-0.08</td>
+<td>+0.25</td>
+<td>+0.38</td>
+<td>+0.39</td>
+<td>11.4</td>
+<td>11.7</td>
+<td>12.0</td>
+<td><b>11.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">アムールリーベ</span></td>
+<td>+0.39</td>
+<td>+0.25</td>
+<td>+0.23</td>
+<td>+0.20</td>
+<td>+0.26</td>
+<td>10.7</td>
+<td>11.0</td>
+<td>13.5</td>
+<td><b>10.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">アジュマン</span></td>
+<td>+0.26</td>
+<td>+0.45</td>
+<td>+0.45</td>
+<td>+0.20</td>
+<td>+0.47</td>
+<td>10.9</td>
+<td>11.0</td>
+<td>9.8</td>
+<td><b>10.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">プレセピオ</span></td>
+<td>+0.30</td>
+<td>+0.00</td>
+<td>+0.25</td>
+<td>+0.35</td>
+<td>+0.25</td>
+<td>9.7</td>
+<td>-</td>
+<td>6.5</td>
+<td><b>9.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ライラ</span></td>
+<td>+0.31</td>
+<td>-0.08</td>
+<td>-0.40</td>
+<td>+0.23</td>
+<td>+0.45</td>
+<td>7.7</td>
+<td>-</td>
+<td>8.8</td>
+<td><b>7.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">キングケープ</span></td>
+<td>-0.14</td>
+<td>+0.23</td>
+<td>+0.35</td>
+<td>-0.02</td>
+<td>+0.02</td>
+<td>6.2</td>
+<td>-</td>
+<td>6.8</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">リアライズ</span></td>
+<td>-0.11</td>
+<td>+0.00</td>
+<td>-0.18</td>
+<td>+0.00</td>
+<td>-0.08</td>
+<td>5.3</td>
+<td>-</td>
+<td>5.7</td>
+<td><b>5.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ワンコールアウェイ</span></td>
+<td>-0.15</td>
+<td>+0.25</td>
+<td>-0.42</td>
+<td>-0.04</td>
+<td>+0.17</td>
+<td>4.9</td>
+<td>-</td>
+<td>5.0</td>
+<td><b>4.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ネッタイヤライ</span></td>
+<td>-0.40</td>
+<td>-0.28</td>
+<td>+0.23</td>
+<td>-0.38</td>
+<td>+0.33</td>
+<td>3.6</td>
+<td>-</td>
+<td>4.3</td>
+<td><b>3.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">カウンティフェア</span></td>
+<td>-0.40</td>
+<td>-0.33</td>
+<td>-0.28</td>
+<td>-0.00</td>
+<td>-0.23</td>
+<td>2.8</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>2.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ジッピーレーサー</span></td>
+<td>-0.88</td>
+<td>-0.15</td>
+<td>-0.73</td>
+<td>-0.35</td>
+<td>-0.38</td>
+<td>0.3</td>
+<td>-</td>
+<td>1.2</td>
+<td><b>0.4</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行3</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行3の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, カウンティフェア, -0.4, 2勝クラスでは0.4〜0.7秒差の5〜8着止まりで指数77前後が上限、昇級後7戦で連対なし。1勝クラス勝ちは18頭立てで指数73.0と価値が低く、このクラスでは実績が足りない。<br><br>2番, ライラ, +0.4, 2勝クラス3戦で2着・3着・4着、フィリピンT2着は0.0秒差で指数83.0、丹波特別3着も0.1秒差・指数79.5。同距離実績は最上位級だが4か月の休み明けで実戦を使えていない点は割り引く。<br><br>3番, リアライズ, -0.2, 5月の京都2勝クラス2着(0.0秒差・指数81.4)、2月阪神3着(0.2秒差・指数81.1)と好走歴はあるが、前走桑名特別は11着1.1秒差・指数68.6と大きく崩れた。33戦4勝の頭打ち感と6歳58kgを考えれば上位評価はしにくい。<br><br>4番, ダガーリング, +0.5, 2勝クラスで2着・3着・2着と連続好走、相模湖特別2着は0.0秒差・指数81.0、久御山特別2着も0.1秒差・指数81.9。前走7着も0.5秒差で上がり33.2と負けて強い内容、安定度は当メンバー最上位。<br><br>5番, プレセピオ, +0.3, Fレビュー(GII)5着0.4秒差・指数87.3は当メンバーで最高の絶対値で、格上での通用実績は評価できる。ただし桜花賞16着、紅梅S8着2.6秒差、前走1200m9着と凡走も多く、額面どおりには取れない。<br><br>6番, アムールリーベ, +0.4, 前走桑名特別2着0.1秒差・指数80.6、5月京都も2着0.0秒差と2勝クラスで詰め切れないが力は示している。21戦1勝で勝ち切れない分だけ上限は抑えるが、同距離の安定感は上位。<br><br>7番, ネッタイヤライ, -0.3, 前走は1勝クラス勝ちで指数75.0、5走すべて1500m以上で1400mの実績が皆無。2勝クラスでの経験ゼロ、昇級初戦の実績面では裏付けが薄い。<br><br>8番, ワンコールAWAY, 0.0, 6月に1勝クラスを指数78.0で勝ち上がったが、初の2勝クラスは9着0.6秒差・指数74.6。上がり33.3は使えており力量不足とは断じないが、昇級後の実績はまだ足りない。<br><br>9番, ジッピーレーサー, -0.9, 52戦2勝で2勝クラスは前走12着1.8秒差・指数62.2、東京1800m12着1.7秒差と壊滅的。1月の4着(指数78.4)が唯一の見せ場で、9歳せん馬58kgの実績面は隔絶して下位。<br><br>10番, キングケープ, -0.1, 前走中京1勝クラスを1:19.4・指数78.6で勝ち切った内容は優秀で、同距離2連勝と適性は明白。ただし7戦のみで2勝クラス経験がなく、実績としての裏付けは上位馬に届かない。<br><br>11番, アジュマン, +0.3, 仲春特別2着は0.0秒差・指数85.7で当メンバー2勝クラス最高値、丹波特別2着も0.0秒差・指数80.7と阪神1400mの実績は明確。ただし前走9着0.5秒差・指数71.2と4か月の間隔があり、安定度では割り引く。<br><br>12番, ロンドボス, +0.6, 前走中京スポニチ3着は1:18.8・0.1秒差で指数84.3、京都3着・舞子特別2着と2勝クラス5戦すべて掲示板内。着順の安定と指数の裏付けが両立しており、実績面では最も信頼できる一頭。<br><br>13番, キャッスルレイク, +0.5, 2勝クラス5戦で3着・4着・5着・5着・5着と指数79〜83を毎回出す高い安定度、前走桑名特別4着0.2秒差・指数79.4。勝ち切れないのが弱点だが同距離の実績値は上位。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>指数の絶対値と着順の安定度、2つの物差しを馬ごとに使い分けており序列にねじれがある。(1)12番ロンドボス+0.6の根拠84.3は、同レース出走の13番キャッスルレイク80.7と0.3秒差しかなく指数差が説明できない。2勝クラス5戦の指数帯は13番(79-83)のほうが上位安定で、12番&gt;13番の逆転は再検証を。(2)4番ダガーリング+0.5の根拠81.9・77.7はいずれも芝1600m。1400m2勝クラスの最高は81.0で、11番85.7・13番83.0・2番83.0に劣る。また『前走7着0.5秒差・上がり33.2は負けて強い』は通過8-8の展開由来で、実績派が禁じる読み方では。同レースの6番は同じ上がり33.2で指数80.6。(3)5番プレセピオの割引根拠3走のうち桜花賞1600m・HBC賞1200mは距離違い。1400mでの凡走実績は実質無く、87.3を『最高値』と認めながら+0.3に留める構成が説明できていない。(4)11番アジュマンと2番ライラは構造が同一(同距離最高指数・前走凡走・4か月間隔)なのに11番のほうが最高指数が高くて付値が低い。斤量差を見ているなら理由文に明記を。(5)10番キングケープ-0.1の1400m実績78.6/79.1は8番ワンコールアウェイ78.0を上回るのに付値が下。『2勝クラス未経験』で引くなら7番と同格、実績値で引くなら8番より上のはずで、10/8/7の序列がどちらの基準でも成立しない。(6)1番カウンティフェアは2勝クラス1400mで77.0/77.1/78.3を再現しており、74.6一戦の8番より指数では上。着順重視と指数重視の混在。(7)3番リアライズを前走1走(68.6)で-0.2まで落とす一方、同じく前走凡走の11番(71.2)が+0.3に残る基準差。総じて指数トップの5番・11番が付値6-7位、指数中位の4番が付値2位というねじれの解消を。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>阪神芝1400m、13頭立て。阪神の1400は2コーナー奥のポケットから発走で、スタートしてすぐ下り坂に入り、そのまま勢いがついたまま直線へ。最後は内回りの急坂。テンが速くなりやすく、前が止まりやすいコース形態。ただし今回は13頭と頭数が少なく、逃げ馬の顔ぶれ次第ではペースが落ち着く。<br><br>逃げ・先行の脚質を整理する。前走通過順1番手を取ったことがある馬は、1番カウンティフェア（前走1-1）、2番ライラ（1-1を複数回）、3番リアライズ（2月に1-1）、13番キャッスルレイク（1-1、2-2が定番）、7番ネッタイヤライ（札幌1500で1-1-1）。このうち1400mで実際にハナを主張してきているのは2番ライラと13番キャッスルレイク、そして前走で1-1を取った1番カウンティフェア。<br><br>ただしこの3頭、質が違う。13番キャッスルレイクは8枠13番で外。ここからハナを取りにいくと相当な脚を使うことになり、実際は2〜3番手の形が濃い。2番ライラは2枠でハナ争いには最も有利な位置。1番カウンティフェアは最内だが、ハナを取れなければ包まれる。<br><br>想定するシナリオはこうだ。2番ライラが内から出て、1番カウンティフェアが競りかける形。外の13番キャッスルレイクも下り坂の勢いで押していけば2〜3番手。3番リアライズ、6番アムールリーベ、7番ネッタイヤライが4〜6番手。中団に5番プレセピオ、10番キングケープ、12番ロンドボス。後方に4番ダガーリング、8番ワンコールアウェイ、11番アジュマン。<br><br>ペースは「明確な単騎逃げが不在で、同型が3頭いる」形。13頭立てなので極端なハイペースにはなりにくいが、ライラとカウンティフェアのハナ争いが起きれば前半は緩まない。阪神1400の下り坂も加勢する。**中〜やや速めのペースで、直線で前が止まり、中団〜差しが届く**というのが主線。ただし外の13番が無理をせず、ライラがすんなり単騎で行けてしまう別シナリオも二割程度は残る。その場合は前残り。<br><br>この読みで一番恩恵を受けるのは、末脚が確かで中団以降から運べる馬。前走桑名特別（中京1400）で8-8から上がり33.2を使って0.5秒差の4番ダガーリング、同じレースで9-8から33.3の8番ワンコールアウェイ、そして阪神1400で10-8から33.6、8-8から33.3と2度差し切り寸前まで来ている11番アジュマン。特に11番アジュマンは阪神1400の差し脚に実績が集中していて、この展開想定なら最も向く。<br><br>逆に苦しいのは、ハナ争いに巻き込まれる馬。2番ライラは通過1-1でしか好走がなく、絡まれると弱い。1番カウンティフェアは前走ハナを切って5着どまりで、ここでライラと競れば持たない。13番キャッスルレイクは2番手の形なら粘れる余地があるが、8枠から前に行くロスが重い。前走も2-2から0.2秒差4着で「粘るが差される」を繰り返しており、この展開では同じ結末になりやすい。<br><br>12番ロンドボスは8枠だが自在で、3-3でも7-7でも対応でき、中京1400で3-3から33.6を使っている。外枠の不利を差し引いても位置取りの自由度でプラス。<br><br>9番ジッピーレーサーは前走5-6の位置から1.8秒差の惨敗。展開以前の問題で、この軸では下げる材料がない代わりに上げる材料もない。<br><br>7番ネッタイヤライは前走まで1500〜1800mで前々の競馬。1400への短縮で位置取りが後ろになる可能性が高く、この距離のテンの速さに戸惑うリスクがある。5枠から流れに乗れるかは微妙。<br><br>10番キングケープは前走中京1400で7-7から33.8の差し切り。中団差しの形が確立しており、この展開は向く。ただし3歳で初の阪神。<br><br>5番プレセピオは前走札幌1200で11-11と後方から。1400に戻って中団が取れれば向くが、位置取りが読みにくい。<br><br>---<br><br>1番, カウンティフェア, -0.5, 最内からハナを主張するが2番ライラと同型で競り合い必至、前走も逃げて5着と粘り切れておらず、この隊列では最も損な役回りになる。<br><br>2番, ライラ, -0.4, 通過1-1でしか好走がない典型的なハナ依存型で、隣の1番と外の13番に絡まれる形は最も苦手、単騎で行ければ一変の余地は残すが主線ではない。<br><br>3番, リアライズ, -0.1, 3-5番手の先行集団で無難に運べるが、前が止まる想定では中途半端な位置、内枠でロスがない分だけ減点を浅くする。<br><br>4番, ダガーリング, +0.6, 前走桑名特別で8-8から上がり33.2を繰り出しており、前がやり合って止まる展開なら最も脚を使える一頭、枠も4枠で中団の外を取りやすい。<br><br>5番, プレセピオ, 0.0, 1200から1400への延長で位置取りが読みにくく、前走は11-11と後方すぎた、中団を取れれば向くが想定が定まらないため中立。<br><br>6番, アムールリーベ, +0.2, 前走は4-4から上がり33.2で2着と、先行しつつ末脚も使える形、ハナ争いの直後を取れれば恩恵はあるが、前々すぎると巻き込まれるリスクも同居する。<br><br>7番, ネッタイヤライ, -0.3, 1500〜1800で前々に付ける競馬をしてきた馬が1400に短縮、テンの速い阪神1400では追走に手一杯で持ち味の位置取りが作れない公算が大きい。<br><br>8番, ワンコールアウェイ, +0.5, 9-8から33.3、9-9から33.3と後方待機からの末脚が安定、前が崩れる展開でこそ生きるタイプで6枠から進路も取りやすい。<br><br>9番, ジッピーレーサー, 0.0, 前走は5-6の中団から1.8秒差と展開以前の内容で、位置取りの有利不利で語れる段階にない。<br><br>10番, キングケープ, +0.4, 前走中京1400で7-7から33.8で差し切っており中団差しの形が固まっている、この隊列想定なら位置取りは理想的。<br><br>11番, アジュマン, +0.8, 阪神1400で10-8から33.6、8-8から33.3といずれも0.0秒差まで詰めており、この舞台の追い込み適性が突出、前3頭がやり合う想定は最大の追い風。<br><br>12番, ロンドボス, +0.4, 3-3でも7-7でも走れる自在性が最大の武器で、隊列がどう転んでも対応できる、8枠のロスを差し引いても位置取りの自由度で上回る。<br><br>13番, キャッスルレイク, -0.5, 8枠から前を取りにいくロスが重く、2-2の形で粘っても直線で差される結末を繰り返している、前が止まる想定では被害を受ける側に回る。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 「前3頭がやり合って潰れる」という単一シナリオに全体が依存しているが、根拠が薄い。2週前の中京桑名特別で1番カウンティフェア(1-1)と13番キャッスルレイク(2-2)が実際に同じ隊列を組み、前残り決着(6番アムールリーベ4-4で2着)になっている。直近の同型レース結果と逆の想定を置いている点に説明がない。(2) 13番キャッスルレイクの-0.5は理由と矛盾。近5走で0.0〜0.2秒差が3走、上がりも33.6/33.8/33.9と先行して止まっていない。展開派の軸なら『前々で残せている側』のはず。同じ8枠の12番ロンドボスを枠のロス込みで+0.4にしている扱いとの非対称も未説明。(3) 11番アジュマン+0.8の根拠2走はいずれも9〜11頭の少頭数で、今回13頭の8番手とは意味が違う。直近5/30京都では5-5から上がり33.5でも9着0.5秒差=展開が向かねば沈むリスク側面。また好走時は10-8/8-8で『追い込み』より『下げすぎない差し』。+0.8は上振れのみを見た値ではないか。(4) 5番プレセピオと9番ジッピーレーサーの0.0同値は情報を捨てている。前者は『読み切れない中立』、後者は『評価対象外』で性質が別。5番はFレビューで6-6から0.4秒差・指数87.3と中団実績があり、1200→1400の延長でテンが楽になり位置が前進する読みを出せる局面。(5) 7番ネッタイヤライは8/8札幌で通過1-1-1、6/28函館で道中ハナ奪取と自ら先手を取れる馬。4頭目のハナ主張馬になる可能性を検討していない。もしそうなら自説の『やり合い』は強まり、-0.3と自シナリオが整合しない。(6) 3番リアライズも2/28阪神1400で1-1から3着0.2差とハナを取れる。3-5番手固定の前提が甘い。(7) 加点合計+2.9 vs 減点-1.8と差し勢に大きく傾斜。単一シナリオへの賭けが強すぎないか、分布を薄めるかシナリオを補強するか検討を。</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, カウンティフェア, -0.3, 2週前の中京から連戦だが466kgは自己ベスト圏で体はできている。ただ栗坂5F59.0は今回の中で最も遅く、追い方も末強めで「上昇味薄いが」と評価も横ばい、仕上がりの上積みが感じられない。<br><br>2番, ライラ, -0.5, 3か月半の休養明けで、しかも休み明けの調教が5F58.6・1F14.3と緩い馬なり。加えて「テンション高め」は牝馬の休み明けで最も嫌いたい要素で、体は絞れても気持ちが先に消耗するパターン。<br><br>3番, リアライズ, -0.2, 2週前の中京11着から中2週の連戦で506kg。5F57.0は6歳馬の栗坂としては悪くなく「余裕ある動き」だが、58kg背負って前走大敗した直後で上向きの材料も乏しく、現状維持どまり。<br><br>4番, ダガーリング, +0.7, 前走540kg(-8)とやや減ったが550前後の大型馬で許容範囲、それ以上に栗坂5F54.9・1F12.6は当日最速級の時計を馬なりで出しており、「ひと叩きで上昇」で調子↗。叩き2走目の上昇サインが調教でも体でも揃った。<br><br>5番, プレセピオ, +0.3, 3歳牝馬で472kgと成長分の体はキープ、栗坂5F55.0を馬なりで「シャープな脚捌き」は good。斤量も前走52kgから54kgへ戻るが馬格があるので負担は小さい。<br><br>6番, アムールリーベ, +0.2, 前走496kg(-10)の大幅減で2着なので消耗ではなく絞れた形、5F55.0を馬なりで「好調持続」も裏付ける。ただ中2週で減った体から更に絞れると危険で、体重発表待ちの分やや慎重に見る。<br><br>7番, ネッタイヤライ, 0.0, 446kg前後で体重が全く動かない安定型で「変わりなく順調」、洋芝から輸送を挟む中2週だが調教時計も平凡ながら悪くない。斤量は前走55kgから56kgへ増えるが小柄な馬にはやや重く、上げ下げ相殺で中立。<br><br>8番, ワンコールアウェイ, -0.6, 前走484kg(+16)はこの馬の本来の466-470から大きく外れた太め残りで、それで9着なら仕上がり不足がそのまま出た形。今回もまだ「さほど良化なく」と調教評価が伸びず、2週で体を戻し切れたとは見にくい。<br><br>9番, ジッピーレーサー, -0.8, 9歳せん馬で前走482kg(-14)の大幅減は絞れたというより消耗の色が濃く、実際1.8秒差の大敗。美坂で「上積み薄」、58kg据え置きで体は痩せる一方と、コンディション面で最も買いにくい。<br><br>10番, キングケープ, +0.4, 436kg前後で安定して推移する小柄な3歳馬、前走圧勝から4週の間隔も連戦にならず理想的。「フットワーク軽快」で栗坂5F57.5・上がり3F26.6は馬なりとして十分、55kg→56kgの斤量増だけ小柄さを考えて割り引く。<br><br>11番, アジュマン, +0.5, 3か月半の休み明けだが栗坂5F53.8・1F12.8を一杯に追って当日最速、「この一追いで良化」と休養明けを見越した強い仕上げが入っている。476kg前後で体重変動が±2kg以内の管理しやすい馬で、間隔があっても体は崩れにくい。<br><br>12番, ロンドボス, +0.8, 466kg前後で増減±2kgの極めて安定した体で、6週の余裕ある間隔から5F55.9・1F13.2を馬なり、評価「ますます快調」で調子↗。前走から今回へ上昇一途というコメントと数字が完全に一致し、当日のコンディションでは最も信頼できる。<br><br>13番, キャッスルレイク, +0.1, 486kg(0)で2走続けて体重が動かず状態は平行線、「動きキビキビ」も5F58.0・1F13.8は時計自体が地味で追い切りの強度が低い。中2週の連戦で悪くはないが上積みを積極的に買う材料に欠ける。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>7点指摘。(1)栗坂5Fを13頭横並びで比較しとるが、4番ダガーリング(馬なり54.9)と11番アジュマン(一杯追い53.8)を同列に「当日最速級」と扱うのは追い方を無視。11番の休み明け一杯追いは割り引く余地。また1番カウンティフェア59.0・13番キャッスルレイク58.0の「遅い」判定は、その馬自身の平常値と比較すべきで横断順位では体調の上下は読めん。(2)「体重±2kg安定」を12番ロンドボス+0.8/11番+0.5/7番0.0で同じ根拠に使いながら付値がばらけとる。安定は不在証明で加点根拠にはなりにくい。7番ネッタイヤライは436→446と3か月前に10kg増えた水準で安定しとる3歳馬で、「動かない」より「成長した」と読む余地。(3)「絞れた」と「消耗」を着順で事後判定しとる(6番アムールリーベ-10は2着だから絞れた/9番ジッピーレーサー-14は大敗だから消耗)。因果が逆向き。9番は前走496(+18)からの-14で、太め分が戻っただけとも読め、-0.8の全根拠がこの解釈一つに乗っとる。(4)8番ワンコールアウェイの+16を太め残りと断定しとるが、6/20が除外で実質3か月ぶりの休み明け増と読める。上がり33.3で脚は使えとり、今回は叩き2走目＝4番と同じ上昇局面の可能性。-0.6は重すぎないか。(5)2番ライラの「緩い調教」と「テンション高め」は同一事象の表裏で二重減点。また3/28に休み明け+14kgで2着した実績があり、休み明けに弱い根拠は薄い。(6)斤量の扱いが不統一(7番10番は小柄で割引、5番プレセピオ472kgは「馬格がある」で不問)。(7)全馬未発表なのに6番だけ「体重発表待ち」で慎重視するのは筋が通らん。同じ警戒は直近増減の大きい4番8番9番にも等しくかかる。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>血統派として、阪神芝1400m（外回りではなく内回りのスプリント寄り）というコース条件と各馬の配合を突き合わせて評価するね。<br><br>阪神1400mは向正面からの下り坂で流れが速くなりやすく、直線に急坂がある。求められるのは「スピード持続＋坂をこなすパワー」。純粋な瞬発力型より、マイル〜スプリントの中間に収まるスピード寄りの配合が向く。<br><br>---<br><br>1番, カウンティフェア, -0.2, サートゥルナーリア×クロフネで本来はパワーとスピードを兼ねる好配合だが、父の産駒傾向は1600m以上に重心があり1400mの忙しさは最適とは言い難い。母父クロフネの砂適性が前走ダートで機能しなかった点も、この配合の芝スピード方向への振れ幅の狭さを示す。<br><br>2番, ライラ, +0.3, キタサンブラック×コロナドズクエストは本来ステイヤー寄りの父にアメリカン・スピードの母父を配して距離を詰めた形で、1400mでの好走実績はこの配合の方向性と一致する。父産駒は阪神の急坂を苦にしないパワーがあり、条件替わりというより適条件に戻る形。<br><br>3番, リアライズ, +0.2, シルバーステート×キングカメハメハは阪神芝の中距離〜マイル寄りに強い組み合わせで、父産駒は坂のあるコースで粘りを見せる。6歳という年齢は父系の晩成傾向とは噛み合うが、1400mではやや長めの脚を持て余す配合。<br><br>4番, ダガーリング, +0.5, タワーオブロンドン×ロードカナロアは短距離スピードを二重に重ねた濃いスプリント配合で、1400mはど真ん中。540kg級の大型馬体もこの父系らしい筋肉量の出方で、阪神の急坂をパワーで押し切る型に合う。<br><br>5番, プレセピオ, +0.4, パドトロワ×エピファネイアは父がスプリント色の強いサクラバクシンオー系統寄りで、母父の底力が加わる形。1200mでは忙しく1600mでは長いという中間適性で、1400mが配合上の最適距離。前走の1200m凡走はむしろ距離適性の裏返し。<br><br>6番, アムールリーベ, +0.3, シルバーステート×Tapitはパワー色が強く、阪神の急坂と時計のかかる芝で持ち味が出る配合。父産駒らしく本格化が遅く、5歳の今が配合的な完成期に当たる。<br><br>7番, ネッタイヤライ, -0.4, コントレイル×キンシャサノキセキは母父で短距離を補ってはいるが、父は明確に中距離〜クラシックディスタンス型で、1400mのスピード勝負は配合の主軸から外れる。洋芝の1500mでの勝利は父系の持続力が効いた形で、阪神のスピード質とは別物。<br><br>8番, ワンコールアウェイ, -0.1, サートゥルナーリア×ブライアンズタイムは重厚なパワー配合で、坂は歓迎だが1400mの速い流れに置かれやすい。上がり最速級を使えているのは配合の底力ゆえで、位置取りが要る条件では割り引く。<br><br>9番, ジッピーレーサー, -0.3, City Zip×Banker&#x27;s Goldは典型的な米国ダートスプリント配合で、日本の芝の軽さに合わない。9歳せん馬で成熟タイプ云々を語る段階を過ぎており、血統的な一変余地は乏しい。<br><br>10番, キングケープ, -0.3, フィエールマン×Cape Crossは父がステイヤー、母父も欧州中距離型で、1400mは配合上明らかに短い。前走の1400m勝ちは評価すべきだが、血統の設計図としてはスピード勝負より消耗戦向き。<br><br>11番, アジュマン, +0.2, アルアイン×キングカメハメハでディープ系のスピードにキンカメのパワーを重ねた形。阪神芝1400mでの複数の好走は配合と条件の一致を示すが、父産駒はマイル寄りで1400mは僅かに短い部類。<br><br>12番, ロンドボス, +0.4, モーリス×ディープインパクトは阪神芝の王道配合で、父のパワーと母父の切れが噛み合う。父産駒はマイル前後が主戦場だが坂のあるコースでの1400mは守備範囲内で、4歳秋という本格化時期とも合う。<br><br>13番, キャッスルレイク, +0.3, サートゥルナーリア×ディープインパクトは12番と同系の方向性で、阪神の急坂に強い配合。父産駒としては珍しくスピードが出る配合で1400m連続好走と整合するが、勝ち切れないのは父系の短距離適性がもう一歩という表れ。<br><br>---<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.3, &quot;3&quot;: 0.2, &quot;4&quot;: 0.5, &quot;5&quot;: 0.4, &quot;6&quot;: 0.3, &quot;7&quot;: -0.4, &quot;8&quot;: -0.1, &quot;9&quot;: -0.3, &quot;10&quot;: -0.3, &quot;11&quot;: 0.2, &quot;12&quot;: 0.4, &quot;13&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;阪神芝1400mは下り坂からの加速に急坂フィニッシュが続く条件で、スプリントスピードと坂をこなすパワーの両立が要る。上げたのは4番ダガーリング(タワーオブロンドン×ロードカナロア=純スプリント二重配合、1400mど真ん中、大型馬体も父系らしい)、5番プレセピオ(パドトロワ×エピファネイア=1200では忙しく1600では長い中間型で1400が最適、前走1200凡走は距離適性の裏返し)、12番ロンドボス(モーリス×ディープ=阪神芝の王道、4歳秋の本格化と合致)。2番ライラ、6番アムールリーベ、13番キャッスルレイクも坂適性のある配合で小幅プラス。下げたのは7番ネッタイヤライ(コントレイルは中距離型、洋芝1500の勝利は持続力型の勝ち方で阪神のスピード質と別物)、10番キングケープ(フィエールマン×Cape Crossは配合上明らかに長い方向)、9番ジッピーレーサー(米国ダートスプリント配合で日本の軽い芝に不適、9歳で一変余地なし)。血統の方向性が条件と合うか否かだけで付けており、能力の高低は含めていない。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 5番プレセピオ: パドトロワはクロフネ産駒でサクラバクシンオー系ではない。系統認識の誤りが+0.4の土台になっている。(2) サートゥルナーリア3頭(1番/8番/13番)の基準が不統一。特に1番の母父クロフネを『芝スピードの振れ幅が狭い』とするのは、クロフネがマイラー〜スプリンターを多く出す父系である点と逆向き。(3) 13番キャッスルレイクの説明が『父産駒としては珍しくスピードが出る』と『父系の短距離適性がもう一歩』で自己矛盾。(4) 12番ロンドボスと13番の0.1差に血統上の根拠が示されていない(母父は同じディープ、父はロベルト系 vs キングマンボ系で、むしろ逆の序列も成り立つ)。(5) 10番キングケープの母父Cape CrossはGreen Desert系でスプリンター〜マイラーも出す。『ステイヤー父×スピード母父で距離を詰める』構図は2番ライラ(+0.3)と同型なのに-0.3で、基準が揺れている。(6) シルバーステート2頭で、母父キンカメの3番リアライズを長め・母父Tapitの6番アムールリーベをパワー寄りとする整理は母父の向きと逆ではないか。(7) 9番ジッピーレーサーのCity Zipは北米で芝スプリンターを多数出した種牡馬で『米国ダートスプリント配合』は事実として弱い。付値は動かなくとも理由の整合を取り直す価値がある。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, カウンティフェア, -0.2, 田山旺佑は若手で2勝クラスでの信頼度は高くない、高野友和厩舎は名門だが前走から継続騎乗とはいえ乗り替わりを繰り返してきた不安定な手配。<br><br>2番, ライラ, +0.5, 松山弘平が戻る。4月の丹波特別で自ら乗って3着の馬で、手の内を知る鞍上への戻し。吉岡辰弥厩舎が4か月の間隔を空けて松山を確保した点に勝負気配を見る。<br><br>3番, リアライズ, 0.0, 角田大和の継続騎乗は手の内を知る強みだが、石橋守厩舎ともども2勝クラス上位を押し上げる格ではない。プラスマイナスで中立。<br><br>4番, ダガーリング, +0.5, 坂井瑠星の継続騎乗。リーディング上位の鞍上が前走に続いて手綱を取り、東京・京都では松山・戸崎・菱田と有力どころを並べてきた柴田卓厩舎の手配も一貫している。<br><br>5番, プレセピオ, +0.3, 浜中俊への乗り替わり。前走の川又賢治、その前の富田暁から一枚上の鞍上に替わる格上げで、笹田和秀厩舎が阪神で浜中を配する構えは立て直しの本気度と読む。<br><br>6番, アムールリーベ, +0.2, 荻野琢真の継続騎乗が定着しており手の内は知り尽くしている。ただ鞍上の格そのものは上位ではなく、宮地貴稔厩舎も条件戦を押し上げる看板ではない。<br><br>7番, ネッタイヤライ, +0.4, 矢作芳人厩舎という名門で、札幌で横山武史を配して1勝クラスを勝った直後。今回は北村友一への乗り替わりだが関西の実績十分な騎手で、厩舎の鞍上手配は格が落ちていない。<br><br>8番, ワンコールアウェイ, +0.2, 杉山晴紀厩舎は条件戦でも仕上げてくる厩舎で、春は川田将雅・ルメールを配してきた背景がある。今回は松若風馬で格は落ちるが、前走の吉村誠之助からは一枚上がる。<br><br>9番, ジッピーレーサー, -0.4, 秋山稔樹への乗り替わりは前走石神深道から上がるが、天間昭一厩舎の関東馬が阪神まで遠征してくる割に陣営の勝負手が見えない。9歳せん馬で陣営が押し上げる材料に乏しい。<br><br>10番, キングケープ, -0.1, 西塚洸二の継続騎乗で前走勝利という繋がりは良いが、大橋勇樹厩舎ともども2勝クラスで格を頼れる陣営ではない。岩田望来が別馬に回った点も引っかかる。<br><br>11番, アジュマン, +0.4, 岩田望来への乗り替わり。菱田裕二で4戦続けた馬にトップクラスの鞍上を用意してきた石坂公一厩舎の手配は明確な強化で、一杯に追った最終追い切りとも歩調が合う。<br><br>12番, ロンドボス, +0.6, 藤原英昭厩舎に幸英明の継続騎乗。名門厩舎がベテランの職人を前走に続けて配し、前走3着と結果も出ている。厩舎の格と鞍上の安定感が噛み合った一頭。<br><br>13番, キャッスルレイク, +0.3, 田口貫太の継続騎乗。前走を含め過去5走のうち4走を任されており手の内を知る鞍上、松下武士厩舎が若手を継続して乗せる方針も一貫している。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 乗り替わりの向きの扱いが非対称: 7番ネッタイヤライは横山武史→北村友一で格が下がっとるのに+0.4、10番キングケープは西塚洸二の継続騎乗+前走勝利なのに『岩田望来が別馬へ』を減点して-0.1。同じ事象を片方は不問、片方は減点しとる。理由文の構造がほぼ同一の6番アムールリーベ(+0.2)と10番(-0.1)の0.3差も説明が要る。(2) 4番ダガーリングの『手配が一貫』は近5走で4人替わっとる事実と食い違う。1番カウンティフェアは替わった回数がむしろ少ないのに『乗り替わりを繰り返す不安定な手配』で減点。同じ現象を鞍上の格で正負に振り分けとるなら、理由文をそう書くべき。(3) 5番プレセピオの浜中俊は『格上げ』でなく、紅梅S 8着2.6秒差の出戻り。2番ライラの『3着に導いた松山弘平への戻し』とは結果が真逆なので、+0.3の根拠を書き直すか下げる余地。(4) 9番ジッピーレーサーの秋山稔樹も近走最良の4着を出した鞍上への出戻りだが、2番では加点根拠にした構造をここでは無視しとる。-0.4は過剰の可能性。(5) 11番アジュマンの岩田望来は他馬(10番)から流れてきた鞍上で『厩舎が用意した強化』とは限らん。2番と11番はどちらも4か月の休み明け＋鞍上強化だが両方加点にしとるので識別力が落ちる。(6) 12番ロンドボスの幸英明は前走が初騎乗で継続は2走目。13番キャッスルレイク(過去5走中4走で田口貫太)より手の内は浅いのに+0.6 vs +0.3。差が厩舎格だけで説明できるか。藤原英昭が2勝クラスに幸英明は通常運転の可能性も。(7) 8番ワンコールアウェイは川田・ルメール→吉村→松若という長期の下降トレンドを『前走比で一枚上』の直近2走比較で加点方向に読んどる。(8) 根本問題として『継続騎乗の評価』と『乗り替わりの向きの評価』は衝突する軸で、格が高い馬では向きを、低い馬では継続を持ち出す使い分けが起きとる。優先順位を固定して全馬を同じ順序で通し直すことを勧める。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>12</td><td class="left horse-name">ロンドボス</td><td>14.0%</td><td>4.1</td><td>2</td><td class="ev-low">0.58</td></tr><tr><td>2</td><td>4</td><td class="left horse-name">ダガーリング</td><td>12.5%</td><td>11.3</td><td>5</td><td class="ev-mid">1.41</td></tr><tr><td>3</td><td>13</td><td class="left horse-name">キャッスルレイク</td><td>11.2%</td><td>5.0</td><td>3</td><td class="ev-low">0.56</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">アムールリーベ</td><td>10.9%</td><td>17.1</td><td>8</td><td class="ev-mid">1.87</td></tr><tr><td>5</td><td>11</td><td class="left horse-name">アジュマン</td><td>10.9%</td><td>13.9</td><td>6</td><td class="ev-mid">1.51</td></tr><tr><td>6</td><td>5</td><td class="left horse-name">プレセピオ</td><td>9.4%</td><td>15.5</td><td>7</td><td class="ev-mid">1.46</td></tr><tr><td>7</td><td>2</td><td class="left horse-name">ライラ</td><td>7.8%</td><td>3.6</td><td>1</td><td class="ev-low">0.28</td></tr><tr><td>8</td><td>10</td><td class="left horse-name">キングケープ</td><td>6.3%</td><td>44.6</td><td>12</td><td class="ev-high">2.80</td></tr><tr><td>9</td><td>3</td><td class="left horse-name">リアライズ</td><td>5.3%</td><td>23.1</td><td>9</td><td class="ev-mid">1.22</td></tr><tr><td>10</td><td>8</td><td class="left horse-name">ワンコールアウェイ</td><td>4.9%</td><td>8.1</td><td>4</td><td class="ev-low">0.40</td></tr><tr><td>11</td><td>7</td><td class="left horse-name">ネッタイヤライ</td><td>3.7%</td><td>44.6</td><td>11</td><td class="ev-mid">1.64</td></tr><tr><td>12</td><td>1</td><td class="left horse-name">カウンティフェア</td><td>2.8%</td><td>29.1</td><td>10</td><td class="ev-low">0.82</td></tr><tr><td>13</td><td>9</td><td class="left horse-name">ジッピーレーサー</td><td>0.4%</td><td>83.8</td><td>13</td><td class="ev-low">0.34</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">12 ロンドボス</td><td>14.0%</td><td>4.1</td><td class="ev-low">0.49</td></tr><tr><td>複勝</td><td class="left">12 ロンドボス</td><td>39.8%</td><td>1.5</td><td class="ev-low">0.56</td></tr><tr><td>馬連</td><td class="left">4 ダガーリング-12 ロンドボス</td><td>4.0%</td><td>11.6</td><td class="ev-low">0.38</td></tr><tr><td>ワイド</td><td class="left">4 ダガーリング-12 ロンドボス</td><td>11.4%</td><td>5.3</td><td class="ev-low">0.51</td></tr><tr><td>馬単</td><td class="left">12 ロンドボス→4 ダガーリング</td><td>2.0%</td><td>19.7</td><td class="ev-low">0.32</td></tr><tr><td>3連複</td><td class="left">4 ダガーリング-12 ロンドボス-13 キャッスルレイク</td><td>1.8%</td><td>63.7</td><td class="ev-low">0.92</td></tr><tr><td>3連単</td><td class="left">12 ロンドボス→4 ダガーリング→13 キャッスルレイク</td><td>0.3%</td><td>191.4</td><td class="ev-low">0.47</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連複</td><td class="left">4 ダガーリング-12 ロンドボス-13 キャッスルレイク</td><td>63.7</td><td>8</td><td style='text-align:right;font-weight:600;'>800円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">12 ロンドボス→4 ダガーリング→13 キャッスルレイク</td><td>191.4</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
