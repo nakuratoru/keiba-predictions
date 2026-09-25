@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>勝浦特別 2026/09/26 NAKAYAMA 10R (09/25 22:39 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>勝浦特別 2026/09/26 NAKAYAMA 10R (09/25 22:39 予想 馬体重なし)</h1>
+  <div class="meta">芝1200m（右 外） | 良 | 16頭立て | 4回 中山 8日目 サラ系3歳以上 2勝クラス （混合）［指定］ 定量 16頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">11. ビービーエフォート</div>
+      <div class="pick-jockey">田辺 裕信 / 高柳 瑞樹</div>
+    </div>
+    <div class="pick-prob">11.3%</div>
+    <div class="pick-pop">10番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">7. ドリーミングアップ</div>
+      <div class="pick-jockey">横山 武史 / 高橋 文雅</div>
+    </div>
+    <div class="pick-prob">10.0%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">1. デンプシー</div>
+      <div class="pick-jockey">戸崎 圭太 / 上原 佑紀</div>
+    </div>
+    <div class="pick-prob">9.6%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">デンプシー</td><td>牡3</td><td>56</td><td>戸崎 圭太</td><td>上原 佑紀</td><td>ビッグアーサー</td><td>マルカシェンク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">イゾラフェリーチェ</td><td>牝5</td><td>56</td><td>津村 明秀</td><td>鹿戸 雄一</td><td>サトノクラウン</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">ウィングブルー</td><td>牝3</td><td>54</td><td>横山 琉人</td><td>斎藤 誠</td><td>アドマイヤマーズ</td><td>Anabaa</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">ジョヴィアン</td><td>牡6</td><td>58</td><td>杉原 誠人</td><td>井上 智史</td><td>Justify</td><td>Majestic Warrior</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">ヴィヴァクラウン</td><td>牡5</td><td>58</td><td>岩田 康誠</td><td>杉浦 宏昭</td><td>サトノクラウン</td><td>タイキシャトル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">トラスコンガーデン</td><td>牝3</td><td>54</td><td>江田 照男</td><td>竹内 正洋</td><td>ダノンスマッシュ</td><td>Bernardini</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">ドリーミングアップ</td><td>牡5</td><td>58</td><td>横山 武史</td><td>高橋 文雅</td><td>エピファネイア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">レオアジャイル</td><td>牝3</td><td>54</td><td>原 優介</td><td>杉浦 宏昭</td><td>ダノンスマッシュ</td><td>ステイゴールド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">ビッグフラワー</td><td>牡5</td><td>58</td><td>C.ルメール</td><td>加藤 征弘</td><td>ビッグアーサー</td><td>ハーツクライ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">セレッソデアモール</td><td>牝6</td><td>56</td><td>M.ミシェル</td><td>庄野 靖志</td><td>リオンディーズ</td><td>アドマイヤコジーン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">ビービーエフォート</td><td>牝4</td><td>56</td><td>田辺 裕信</td><td>高柳 瑞樹</td><td>グレーターロンドン</td><td>シンボリクリスエス</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">アイムインディ</td><td>牝3</td><td>54</td><td>丹内 祐次</td><td>蛯名 正義</td><td>インディチャンプ</td><td>Invincible Spirit</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">レザンノワール</td><td>牡5</td><td>58</td><td>菊沢 一樹</td><td>伊藤 圭三</td><td>シルバーステート</td><td>スペシャルウィーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">スミッコディスコ</td><td>牡3</td><td>56</td><td>横山 和生</td><td>鈴木 慎太郎</td><td>ダノンプレミアム</td><td>Into Mischief</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>15</td><td class="left horse-name">メローネ</td><td>牝3</td><td>54</td><td>佐々木 大輔</td><td>西園 翔太</td><td>ビッグアーサー</td><td>オルフェーヴル</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">ピコアーガイル</td><td>牡5</td><td>58</td><td>小林 美駒</td><td>伊藤 大士</td><td>Justify</td><td>Lonhro</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ビービーエフォート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ドリーミングアップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">デンプシー</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ビービーエフォート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ドリーミングアップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">デンプシー</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ビービーエフォート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ドリーミングアップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">デンプシー</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ビービーエフォート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ドリーミングアップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">デンプシー</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ビービーエフォート</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">デンプシー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ドリーミングアップ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.80</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ビービーエフォート</span></td>
+<td>+0.61</td>
+<td>+0.36</td>
+<td>+0.36</td>
+<td>+0.02</td>
+<td>+0.32</td>
+<td>11.1</td>
+<td>9.8</td>
+<td>13.5</td>
+<td><b>11.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ドリーミングアップ</span></td>
+<td>+0.46</td>
+<td>+0.48</td>
+<td>+0.24</td>
+<td>-0.30</td>
+<td>+0.62</td>
+<td>10.2</td>
+<td>9.0</td>
+<td>10.5</td>
+<td><b>10.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">デンプシー</span></td>
+<td>+0.30</td>
+<td>+0.16</td>
+<td>+0.29</td>
+<td>+0.54</td>
+<td>+0.48</td>
+<td>9.5</td>
+<td>10.7</td>
+<td>9.0</td>
+<td><b>9.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">トラスコンガーデン</span></td>
+<td>+0.18</td>
+<td>+0.34</td>
+<td>+0.44</td>
+<td>+0.38</td>
+<td>+0.22</td>
+<td>8.5</td>
+<td>9.0</td>
+<td>4.7</td>
+<td><b>7.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">レオアジャイル</span></td>
+<td>+0.27</td>
+<td>-0.00</td>
+<td>+0.20</td>
+<td>+0.40</td>
+<td>-0.20</td>
+<td>7.6</td>
+<td>10.5</td>
+<td>6.5</td>
+<td><b>7.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ウィングブルー</span></td>
+<td>+0.12</td>
+<td>+0.18</td>
+<td>+0.44</td>
+<td>+0.32</td>
+<td>-0.20</td>
+<td>7.2</td>
+<td>7.9</td>
+<td>8.1</td>
+<td><b>7.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">イゾラフェリーチェ</span></td>
+<td>+0.47</td>
+<td>-0.04</td>
+<td>+0.08</td>
+<td>-0.48</td>
+<td>-0.14</td>
+<td>7.2</td>
+<td>9.6</td>
+<td>3.7</td>
+<td><b>6.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">アイムインディ</span></td>
+<td>-0.02</td>
+<td>+0.14</td>
+<td>+0.02</td>
+<td>+0.32</td>
+<td>+0.08</td>
+<td>6.1</td>
+<td>-</td>
+<td>7.1</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">ピコアーガイル</span></td>
+<td>+0.41</td>
+<td>-0.30</td>
+<td>-0.32</td>
+<td>-0.10</td>
+<td>-0.44</td>
+<td>5.2</td>
+<td>7.3</td>
+<td>10.3</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">スミッコディスコ</span></td>
+<td>+0.26</td>
+<td>-0.24</td>
+<td>-0.35</td>
+<td>+0.04</td>
+<td>+0.50</td>
+<td>6.2</td>
+<td>-</td>
+<td>5.9</td>
+<td><b>6.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ビッグフラワー</span></td>
+<td>-0.07</td>
+<td>+0.28</td>
+<td>-0.31</td>
+<td>+0.40</td>
+<td>+0.60</td>
+<td>5.9</td>
+<td>6.7</td>
+<td>6.6</td>
+<td><b>6.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">レザンノワール</span></td>
+<td>+0.26</td>
+<td>-0.06</td>
+<td>-0.24</td>
+<td>-0.24</td>
+<td>-0.30</td>
+<td>5.5</td>
+<td>-</td>
+<td>5.2</td>
+<td><b>5.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">メローネ</span></td>
+<td>-0.32</td>
+<td>-0.26</td>
+<td>-0.37</td>
+<td>+0.48</td>
+<td>-0.30</td>
+<td>3.0</td>
+<td>-</td>
+<td>3.1</td>
+<td><b>3.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヴィヴァクラウン</span></td>
+<td>-0.32</td>
+<td>+0.20</td>
+<td>-0.42</td>
+<td>-0.22</td>
+<td>-0.22</td>
+<td>2.9</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>2.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">セレッソデアモール</span></td>
+<td>-0.32</td>
+<td>-0.16</td>
+<td>-0.53</td>
+<td>+0.16</td>
+<td>-0.02</td>
+<td>2.7</td>
+<td>-</td>
+<td>1.8</td>
+<td><b>2.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ジョヴィアン</span></td>
+<td>-0.69</td>
+<td>-0.20</td>
+<td>+0.09</td>
+<td>-0.56</td>
+<td>-0.44</td>
+<td>1.3</td>
+<td>-</td>
+<td>1.0</td>
+<td><b>1.2</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>実績派として、中山芝1200m・2勝クラスの近5走を洗い出した。この条件は「2勝クラスの芝1200で通用する実績があるか」が全て。1勝クラス勝ち上がり直後の馬と、2勝クラスで掲示板を外さん馬とを、格と着差で線引きする。<br><br>11番, ビービーエフォート, +0.85, 2勝クラスの芝1200で前々走 WASJ1 2着（0.1差・指数80.6）、3月の中山芝1200では2着（指数80.8）と、同コース・同格での実績が抜けとる。前走も札幌稍重で3着0.7差と崩れず、2勝クラス芝1200での安定度はメンバー最上位。<br><br>16番, ピコアーガイル, +0.6, 函館 STV杯2着（0.1差・指数80.0）、HTB杯2着（0.1差・指数77.0）と2勝クラスで連続して勝ち負け。ただし3月の中山芝1200で16着0.7差と大敗しとるのが割り引きで、同コースの実績は裏付けにならん。<br><br>7番, ドリーミングアップ, +0.55, 前走の白井特別（中山芝1200・2勝クラス）で3着0.4差・上がり33.1・指数80.1と、今回と全く同じ舞台・同じ格で通用する数字を出しとる。31戦2勝と勝ち切れん点は引くが、実績の額面は信頼できる。<br><br>1番, デンプシー, +0.45, 前々走の苫小牧特別で2着0.0差（指数75.9）、前走 HBC賞も5着0.4差と2勝クラスで既に足りとる。芝1200を5走続けて[2-2-0-1]、5月のゆきつばき賞で指数81.4を計時しており実績の裏付けあり。<br><br>13番, レザンノワール, +0.35, 函館 STV杯3着0.3差（指数77.2）、中山芝1200の2勝クラスで4着0.1差・7着0.4差と、同コース同格で常に僅差に踏みとどまっとる。勝ち切れんが2勝クラス芝1200の地力は確か。<br><br>2番, イゾラフェリーチェ, +0.3, 前走の郡山特別（2勝クラス芝1200）で2着0.3差・指数82.2は今回メンバーで最上位級の数字。ただし3か月の間隔と17戦2勝という勝ち味の遅さ、1600で10着1.1差もあり上積みは限定的。<br><br>8番, レオアジャイル, +0.3, フェアリーS(GIII)3着・指数92.4はメンバー随一の格上実績で、前走も函館芝1200を勝ち上がり指数80.5。ただし2勝クラスは初挑戦で、1400では7着1.0差と取りこぼしもある。<br><br>5番, ヴィヴァクラウン, +0.1, 2勝クラス芝1200を6走続けて使われて掲示板が前走の4着0.7差のみ、26戦2勝で指数も70台中心。格には足りとるが上位争いの実績が乏しい。<br><br>6番, トラスコンガーデン, +0.1, 前走の白井特別で5着0.7差・指数77.0と2勝クラスで一応形にはなった。フェアリーS 11着・橘S 10着1.6差と重賞では通用しておらず、1200の2勝クラス実績はまだ1走のみ。<br><br>3番, ウィングブルー, 0.0, 前走の札幌1勝クラスを勝ったばかりで2勝クラスは未経験。芝1200で[1-2-0-1]と堅実だが指数は79前後で頭打ち、格上げ分の上積みが読めない。<br><br>14番, スミッコディスコ, 0.0, 下北半島特別（1勝クラス）勝ちと東京1400での2着0.0差（指数83.3）は評価できるが、3か月の休み明けで2勝クラス初戦。クロッカスS 6着0.5差（指数84.9）は格上挑戦として悪くない。<br><br>12番, アイムインディ, -0.1, 前走の中山芝1200・1勝クラスを重馬場で勝ったが指数79.2止まりで、その前は福島ダ7着・函館芝1200で4着0.7差。2勝クラスで通用する実績はまだ示せていない。<br><br>15番, メローネ, -0.2, 2勝クラスは耶馬渓特別の12着0.7差が唯一で、着差ほど負けてないが着順は最下位級。1勝クラス勝ちも9頭立ての小頭数で、指数も75〜77と物足りない。<br><br>9番, ビッグフラワー, -0.3, 前走で1勝クラスを勝ったばかり（重馬場・指数80.0）だが、その前は福島芝1200で6着・6着・6着と1勝クラスで頭打ちだった。19戦2勝、2勝クラスの実績は皆無で連闘も裏付けにならん。<br><br>10番, セレッソデアモール, -0.55, 実戦が9か月前の鹿ケ谷特別4着0.9差で止まっとり、直近の近走実績が無い。21戦2勝・2勝クラスでは4着・4着・5着と掲示板止まりで、勝ち負けした実績が見当たらない。<br><br>4番, ジョヴィアン, -0.8, 近5走で芝は前走の1400で9着0.4差のみ、残りは全てダートで12着・2着・8着・11着と二桁が並ぶ。23戦2勝、芝1200の実績は近走に一つも無く、指数も60台が中心で2勝クラス芝1200の裏付けが最も薄い。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.45, &quot;2&quot;: 0.3, &quot;3&quot;: 0.0, &quot;4&quot;: -0.8, &quot;5&quot;: 0.1, &quot;6&quot;: 0.1, &quot;7&quot;: 0.55, &quot;8&quot;: 0.3, &quot;9&quot;: -0.3, &quot;10&quot;: -0.55, &quot;11&quot;: 0.85, &quot;12&quot;: -0.1, &quot;13&quot;: 0.35, &quot;14&quot;: 0.0, &quot;15&quot;: -0.2, &quot;16&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;2勝クラス芝1200での実績を軸に線引きした。最上位は11番ビービーエフォート——WASJ1 2着0.1差（指数80.6）と中山芝1200の2勝クラス2着（指数80.8）で、同コース・同格の裏付けが揃う唯一の馬。次いで16番ピコアーガイルが2勝クラスで連続2着0.1差、7番ドリーミングアップが前走の白井特別（今回と同舞台・同格）で3着0.4差・指数80.1と直接的な裏付けを持つ。1番デンプシー・13番レザンノワールも2勝クラス芝1200で僅差の実績あり。2番イゾラフェリーチェは指数82.2が光るが勝ち味の遅さで抑えた。8番レオアジャイルのフェアリーS 3着（指数92.4）は格上実績として高く買えるが、2勝クラス初戦・1400での凡走があり中位評価に留めた。下げたのは、1勝クラスを勝ったばかりで2勝クラスの裏付けが無い9番・12番と、9か月の実戦間隔で近走実績そのものが無い10番。最下は4番ジョヴィアンで、近走が芝1400の9着1走を除き全てダートの大敗、芝1200の実績が近走に一つも無い。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 11番ビービーエフォートの+0.85: 近5走指数は76.4/80.6/72.6/75.7/80.8とブレが大きく、前走0.7差3着(76.4)を『崩れず』と加点に使うのは論理が緩い。『安定度最上位』の断定は13番レザンノワール(77.2/74.2/77.4)より下限が低い点と矛盾。理由を『ピークの高さ』に改めるか付値を見直す余地。(2) 2番イゾラフェリーチェ+0.3: 指数82.2(メンバー最上位級)と阪神1600の2着0.1差・指数85.4を持つのに、同じ1600の10着1.1差だけを引用している。同コース区分で悪い方だけ拾うのは不公平。減点理由の『3か月の間隔』は実績でなくローテの話で軸外。『勝ち味の遅さ』を引くなら31戦2勝の7番ドリーミングアップ(+0.55)にも同強度で効くはず。(3) 8番レオアジャイル+0.3: 指数92.4はメンバー2位以下を7pt以上引き離す最高値。『2勝クラス未経験』を減点するなら3番・14番・12番・9番も同条件で、その中で唯一GIII3着の格を持つ馬が2番と同値なのは説明が要る。1400の凡走を引くなら11番の1400・6着0.7差(72.6)が理由文に無いのも不整合。(4) 16番ピコアーガイル+0.6 &gt; 13番レザンノワール+0.35: 2026/03/08中山の同一レースで13番4着(74.2)・16番16着(65.5)と直接対決で負けている。中山実績を重く見て16番に但し書きを付けながら13番を下に置く序列は通るか。(5) 14番スミッコディスコ0.0: 指数84.9(メンバー2位)・83.3(3位)を持ち、理由文の3材料中2つが肯定で否定は『休み明け』のみ=状態面。付値を支える実績上の否定材料が不足。0.0で据え置くなら『高指数は全て1400以上、1200では73.9止まり』という距離別内訳を根拠にすべき。(6) 1番デンプシー+0.45: 裏付けの指数81.4は1勝クラスの数字。同じ扱いなら6番トラスコンガーデンの1勝クラス指数82.2も同格のはずだが6番は+0.1と厳しい。また2勝クラスで着差0.0の苫小牧特別が指数75.9と、着差と指数が逆行している点に言及が無い。(7) 10番セレッソデアモール-0.55: 『実績が古い』のであって『実績が悪い』のではない。中山芝1200汐留特別4着0.2差(77.8)は13番の中山実績と同水準以上で、0.9の差は説明を要する。ブランク減点は状態軸寄り。(8) 全体構造: 上位4頭が全て『2勝クラス1200の使われ回数』で選ばれ、指数上位3頭(8番92.4/2番85.4/14番84.9)が中位以下に沈んでいる。『クラス経験の累積』に寄り切った配置で、軸の定義『どれだけの能力を示したか』からは後者に寄せる余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を1件ずつ検証した。指数上位3頭の扱いは確かに緩かったので、「クラス経験の累積」より「示した能力の高さ」に寄せて配置を直す。ただし2勝クラス1200での実測値を持つ馬の優位は残す — 1400/1600の高指数を1200に丸ごと持ち込める根拠は自軸には無い。<br><br>1番, デンプシー, +0.4, 2勝クラス芝1200で2着0.0差・5着0.4差と既に足りとる一方、裏付けに挙げた指数81.4は1勝クラスの数字で、2勝クラスでは75.9・79.5に留まる。着差0.0の苫小牧特別が指数75.9と逆行しとる点を踏まえ、僅かに下げる。<br><br>2番, イゾラフェリーチェ, +0.5, 前走2勝クラス1200で2着0.3差・指数82.2、阪神1600でも2着0.1差・指数85.4とメンバー最上位級の数字を2つ持つ。同じ1600の10着1.1差だけを引いたのは不公平だったので上げる。17戦2勝の勝ち味の遅さは7番と同強度で見る。<br><br>3番, ウィングブルー, 0.0, 前走の札幌1勝クラス勝ちまで芝1200で[1-2-0-1]と堅実だが、指数は78.5〜79.2に5走とも収まり2勝クラスの実測が無い。上下どちらにも振る材料が無い。<br><br>4番, ジョヴィアン, -0.8, 近5走で芝は前走1400の9着0.4差のみ、他は全てダートで12着・2着・8着・11着。23戦2勝、2勝クラス芝1200の実績はゼロで指数も60台中心、自軸で最も裏付けが薄い。<br><br>5番, ヴィヴァクラウン, 0.0, 2勝クラス芝1200を6走続けて使われとるが指数は75.8/70.9/70.1/62.9と下降、掲示板は前走4着0.7差だけ。26戦2勝で経験量だけは十分でも示した能力は下位。<br><br>6番, トラスコンガーデン, +0.25, 1勝クラス1400で指数82.2、フェアリーSでも11着ながら指数81.9を計時しており、額面は1番の1勝クラス指数と同格以上。前走白井特別5着0.7差・指数77.0で2勝クラス1200も形にはなっとる。<br><br>7番, ドリーミングアップ, +0.55, 前走が今回と同じ中山芝1200・2勝クラスで3着0.4差・上がり33.1・指数80.1。同舞台同格での実測値という点で自軸最上位級、31戦2勝の勝ち味の遅さを引いてもこの数字は動かさん。<br><br>8番, レオアジャイル, +0.6, フェアリーS(GIII)3着・指数92.4はメンバー2位以下を7pt以上離す最高値で、前走も函館芝1200を指数80.5で勝ち上がり。1400の7着1.0差と2勝クラス未経験は残るが、示した能力の高さを優先して上げる。<br><br>9番, ビッグフラワー, -0.3, 前走で1勝クラスを勝ったが重馬場・0.8差の指数80.0で、その前は福島芝1200で6着・6着・6着（指数66.7/68.9/72.8）と1勝クラスで頭打ち。19戦2勝、2勝クラスの実績は皆無。<br><br>10番, セレッソデアモール, -0.3, 中山芝1200汐留特別4着0.2差・指数77.8は13番の同コース実績と同水準で、実績が「悪い」のではなく「古い」。ブランク減点は状態軸に寄りすぎとったので戻すが、2勝クラス5走で4着・4着・5着と勝ち負けした実績が無い点は引く。<br><br>11番, ビービーエフォート, +0.7, 2勝クラス1200でWASJ1 2着0.1差・指数80.6、3月の中山芝1200でも2着・指数80.8とピークの高さは確か。ただし近5走の指数は76.4〜80.6とブレがあり1400で6着0.7差・72.6もあるので、「安定度最上位」の断定は取り下げて評価は「ピークの高さ」に置き換える。<br><br>12番, アイムインディ, -0.1, 前走の中山芝1200・1勝クラス勝ちは重馬場で指数79.2止まり、前々走は函館芝1200で4着0.7差・指数69.4。7戦2勝で2勝クラスの実測が無い。<br><br>13番, レザンノワール, +0.4, 2勝クラス芝1200で指数77.2/74.2/77.4と下限が高く、中山では4着0.1差・7着0.4差。3/8中山で16番に4着対16着で直接勝っとる事実を踏まえ、16番との序列を逆転させる。<br><br>14番, スミッコディスコ, +0.25, クロッカスS 6着・指数84.9、東京1400で2着0.0差・指数83.3はメンバー2位・3位の数字。ただし高指数は全て1400以上で、芝1200は下北半島特別の1着・指数73.9止まり。距離別の内訳を根拠にこの水準に置く。<br><br>15番, メローネ, -0.2, 2勝クラスは耶馬渓特別の12着0.7差が唯一で、着差の割に着順は最下位級。1勝クラス勝ちも9頭立て、指数は72.6〜77.6と物足りない。<br><br>16番, ピコアーガイル, +0.45, 2勝クラス1200でSTV杯2着0.1差・指数80.0、HTB杯2着0.1差と連続して勝ち負けした実績は本物。ただし中山芝1200では16着0.7差・指数65.5で13番に直接負けており、13番より上に置いた序列を改めて下げる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.4, &quot;2&quot;: 0.5, &quot;3&quot;: 0.0, &quot;4&quot;: -0.8, &quot;5&quot;: 0.0, &quot;6&quot;: 0.25, &quot;7&quot;: 0.55, &quot;8&quot;: 0.6, &quot;9&quot;: -0.3, &quot;10&quot;: -0.3, &quot;11&quot;: 0.7, &quot;12&quot;: -0.1, &quot;13&quot;: 0.4, &quot;14&quot;: 0.25, &quot;15&quot;: -0.2, &quot;16&quot;: 0.45}, &quot;analysis_summary&quot;: &quot;指摘(3)(8)を受け、8番レオアジャイルを+0.3→+0.6に上げた。指数92.4はメンバー最高値で7pt以上の差があり、これを『2勝クラス未経験』で中位に沈めるのは『どれだけの能力を示したか』という自軸の定義に反する。同じ理由で2番を+0.3→+0.5（阪神1600の指数85.4を拾い直し、1600の悪い方だけ引用した不公平を是正。減点材料の『3か月の間隔』はローテ=軸外なので撤回）。指摘(4)を採用し16番+0.6→+0.45、13番+0.35→+0.4で序列を逆転。3/8中山の同一レースで13番4着・16番16着の直接対決があり、中山実績に但し書きを付けながら16番を上に置くのは矛盾だった。指摘(1)は妥当で、11番の『安定度最上位』は取り下げ『ピークの高さ』に置き換えた上で+0.85→+0.7に下げた（近5走76.4〜80.6のブレと1400の72.6を反映）。指摘(6)も認め、1番の裏付け指数81.4が1勝クラスの数字である点を踏まえ+0.45→+0.4、逆に6番は1勝クラス指数82.2・フェアリーS 81.9を同格に扱い+0.1→+0.25。指摘(7)を採用し10番は『古い』と『悪い』を分離してブランク減点を撤回、-0.55→-0.3。指摘(5)を採用し14番は0.0→+0.25（指数84.9/83.3を評価、ただし高指数は全て1400以上・1200は73.9止まりという距離別内訳で上限を抑える）。5番は経験量だけ多く指数下降なので+0.1→0.0。維持したのは、1400/1600の高指数をそのまま1200の能力証明に読み替えない線引き（8番・14番を最上位に置かない理由）と、同舞台同格の実測値を持つ7番・11番の評価。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>中山芝1200m、外回りスタートから下り坂を一気に加速する、ペースが上がりやすいコース。外枠のほうがスタート後の下りで勢いをつけやすく、逆に内枠は前が壁になると詰まる。これが基本骨格。<br><br>**逃げ・先行勢の顔ぶれ**<br><br>近走の通過順を見ると、ハナを主張しそうなのは 3番ウィングブルー（前走2-2、ゆきつばき賞1-1）、16番ピコアーガイル（3月中山で1-1）、1番デンプシー（2-2が2回）、10番セレッソデアモール（2-2）あたり。2番イゾラフェリーチェも3-2で前に行ける。つまり**先行意欲のある馬が5〜6頭**いて、しかも中山1200mは下りスタート。これはスローには落ち着かない。平均〜やや速めのペースになる公算が高い。<br><br>そこで効いてくるのが、前走9/5の白井特別（同じ中山芝1200m）の中身。勝ち時計1:07.0クラスの決着で、3着ドリーミングアップが上がり33.1、4着ヴィヴァクラウン33.6、5着トラスコンガーデン33.5。**後方から上がり上位を使った馬が上位を占めた**レースで、この日の中山1200mは差しが決まる形になっていた。今回も同じ流れなら、追い込み勢に分がある。<br><br>ただし一面的に決めつけるのは危険で、逃げ候補が「多い」といっても2勝クラスの短距離としては特別な数ではない。3番ウィングブルーが楽に単騎で行けるようなら前残りもある。その両にらみでポイントを振る。<br><br>**描く展開**<br><br>ゲートが開いて内から3番ウィングブルーと1番デンプシーが出て、外の16番ピコアーガイルも被されまいと押していく。2番・10番も続き、4コーナー手前で先頭集団は5頭ほど。下り加速で34秒台前半の前半3Fになり、直線の急坂で前が止まる。そこへ外から7番ドリーミングアップ、11番ビービーエフォート、6番トラスコンガーデンが差してくる——これがメインシナリオ。<br><br>---<br><br>1番, デンプシー, -0.2, 好位先行型で内枠を引けたのはロスがない点で悪くないが、逃げ・先行が5頭以上ひしめく中で最内枠は前を塞がれるリスクと表裏。札幌HBC賞で2-2から0.4秒差5着と、締まった流れで粘り切れなかった形が今回も出やすい。<br><br>2番, イゾラフェリーチェ, -0.3, 3-2の位置取りで前に行くタイプだが、最内枠2番で先行争いに巻き込まれると窮屈。中山の下り加速で初速の要る形は、東京・福島でのびのび運べていた過去とは条件が違う。<br><br>3番, ウィングブルー, +0.1, ハナを主張できる数少ない存在で、単騎なら残る余地がある。ただ今回は先行勢が多く楽に行ける保証がなく、絡まれれば共倒れ。プラス材料とリスクが相殺してほぼ中立。<br><br>4番, ジョヴィアン, +0.2, 通過15-14・14-14と極端な追い込み一手で、ハイペース想定なら脚は活きる。ただし2枠4番の内目で、後方から外に持ち出す手間がかかる点は割り引く。<br><br>5番, ヴィヴァクラウン, +0.3, 前走同舞台で7-6から上がり33.6を使って0.7秒差。同じ流れなら再現しやすい位置取りで、中団やや後ろから差す形が今回のペースに噛み合う。<br><br>6番, トラスコンガーデン, +0.5, 16-16から上がり33.3、8-8から33.5と、後方待機でメンバー最速級の脚を使えるのが持ち味。先行多数でペースが流れる想定なら最も恩恵を受けるタイプで、3枠から外に出すのも難しくない。<br><br>7番, ドリーミングアップ, +0.6, 8-8から上がり33.1で同舞台3着という、まさに今回想定する展開の答えがそのまま出ている。中団後方から中山の急坂で止まる前を捉える形が最もはまり、4枠で進路も選びやすい。<br><br>8番, レオアジャイル, -0.4, 通過2-3、2-2、1-1と一貫して前に行くタイプで、今回の先行激化はもろに向かい風。1200m戦での成功は13頭立ての函館で楽に2番手を取れた時のもので、16頭の中山でそれは望みにくい。<br><br>9番, ビッグフラワー, -0.1, 前走は重馬場の6-3で押し切ったが、それは1勝クラスで前が止まらなかった形。今回は差し優勢の想定で中途半端な位置になりやすく、連闘で気配の読みづらさもあって小幅マイナス。<br><br>10番, セレッソデアモール, -0.3, 中山汐留特別で2-2から上がり33.3と、前々から粘る形が持ち味。先行争いが激しくなれば同じ位置は取れず、実戦から9か月空いてゲートの出脚も不安。<br><br>11番, ビービーエフォート, +0.5, 9-8、5-5、16-15と後方から差す競馬で結果を出しており、新潟では16番手から上がり33.4。中山3月に2着がある通り急坂も苦にせず、流れる展開での差し脚は計算が立つ。<br><br>12番, アイムインディ, 0.0, 前走は重馬場の4-3で粘ったが、良馬場想定の今回は同じ形が効くか読みにくい。位置取りの自由度はあり、展開で明確に有利とも不利とも言えない。<br><br>13番, レザンノワール, -0.2, 5-3、3-3、4-2と好位につける形が定着しており、先行密集の今回は苦しい枠取り争いになる。7枠の外から前を取りに行けば消耗も大きい。<br><br>14番, スミッコディスコ, -0.3, 3-2、2-2、1-1と前で運んでこその馬で、1200mの勝ち鞍も12頭立ての函館で楽に2番手を取れた形。16頭の中山で外枠から同じポジションを取るには脚を使わされる。<br><br>15番, メローネ, -0.2, 3-3の位置を取りに行くタイプだが、18頭立ての小倉で同じ形を試みて12着と、頭数が増えて流れが速くなると苦しくなる傾向。大外に近い8枠から前を取るコストも重い。<br><br>16番, ピコアーガイル, -0.1, 大外枠は中山1200mでは下り加速を活かせる利点があり、前に行く脚もある。ただ3月の中山では1-1から16着に沈んでおり、外から無理に主張して先行争いに参加すると同じ轍を踏みかねず、利点と危険が拮抗。<br><br>---</p>
+<p style="margin:4px 0;"><b>批判:</b><br>① 『先行激化→差し有利』の前提が全16頭中9頭の減点根拠になっているが、根拠に使った9/5白井特別では7番ドリーミングアップが8-8から上がり33.1で3着止まり（勝ち馬は0.4秒前）。同舞台の唯一のサンプルが差し馬の勝利を示していない矛盾を検証してほしい。② 実際にハナを主張する頭数の特定が甘い。8番レオアジャイル・14番スミッコディスコは1200mでは2-3/3-2に控えており、『5頭が競り合う』は過大見積もりの可能性。ここが崩れると6・7・11番のプラス根拠が同時に薄くなる（付値が相関している）。③ 3番ウィングブルー+0.1：9/6札幌5-6で1着・8/9は2-2・5/9は1-1と位置取りの自由度がメンバー最大。先行が激化するなら控える選択を取れる側で、『共倒れリスク相殺』は一貫していない。④ 9番ビッグフラワー-0.1：連闘の気配は展開軸外。通過6-3/6-6/13-12/9-9と自在で、3週前に中山1200mを実際に勝っている。7番を『同舞台の答え』で+0.6にした論理との整合を。⑤ 4番ジョヴィアン+0.2と6番トラスコンガーデン+0.5：同じ後方一手論理なのに、2枠と3枠の1枠差で『外に出す手間』の評価が割れている。差をつけるなら枠以外の理由を。⑥ 12番アイムインディ0.0：9/6中山1200mを4-3で勝っており、担当の論理では好位＝不利側。13番レザンノワール-0.2・10番セレッソデアモール-0.3との整合が取れていない。⑦ 15番メローネ-0.2：18頭小倉での12着を中山16頭に持ち込むのは割引の二重計上。また8枠の下り加速の利点を16番ピコアーガイルには認めて15番には認めておらず、枠評価がぶれている。⑧ 11番ビービーエフォート+0.5の根拠に使った新潟16-15→33.4は0.4秒差5着、中山の実績は11頭立て2着のみ。6番も中山1200mは13頭立て5着だけ。上位3頭が揃って『16頭の中山1200mで差し切った実績なし』である点を、付値の絶対水準に反映すべきでは。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ検証した。<br><br>**①（白井特別の解釈）は最も重い指摘で、受け入れる。** 9/5 白井特別は13頭立てで、前が止まらず8-8の7番が0.4秒差3着、同じ8-8の6番が0.7秒差5着。つまり「中山1200mは差しが決まる」を示すサンプルではない。むしろ中山芝1200mは外回りスタート→下り→急坂で、前が止まらず粘る側の舞台。差し有利前提を全面に敷いていたのは補正の掛け過ぎだった。よって先行馬の減点幅を全体的に縮め、差し馬のプラスも上限を下げる。<br><br>**②（ハナ主張頭数）も受け入れる。** 1200mでの実際の通過を数え直すと、明確にハナを取りに行くのは3番（5/9に1-1）・16番（3月中山1-1）くらいで、8番は2-3、14番は3-2、1番・2番・10番・13番は2〜5番手。つまり「先行密集」ではなく「好位の枠取りが窮屈になる」程度。ハイペース断定を撤回する。<br><br>**⑤ ⑦の枠評価のぶれ**も認める。2枠と3枠で外に出す手間を差別化した根拠は薄く、8枠の下り加速を16番だけに認めていたのも一貫していない。**④は半分受け入れ**（連闘の気配は展開軸外なので除外）、**⑥は受け入れ**（12番も好位取りのコスト側に置く）、**③は受け入れ**（自在性は展開軸のプラス材料）。**⑧も受け入れ**、上位のプラスを+0.4を上限に抑える。<br><br>見直した展開像: 3番か16番が主張してハナ、1番・14番・8番・13番が好位、12番・2番が中団前、5番・6番・7番・11番が中団後方、4番が最後方。中山1200mの標準ペースで前は簡単に止まらず、差し勢は前が崩れた分だけ届く形。<br><br>---<br><br>1番, デンプシー, -0.1, 好位先行で最内枠はロスがなく、中山1200mの前残り傾向を考えれば減点材料は乏しい。好位の枠取りで窮屈になるリスク分だけの小幅マイナス。<br><br>2番, イゾラフェリーチェ, -0.2, 3-2で運ぶ型だが最内2番で好位を取りに行くと進路が限られる。福島16頭で3-2から2着があり、極端に不利な形ではないので幅は小さく。<br><br>3番, ウィングブルー, +0.3, 1-1でも5-6でも運べる位置取りの自由度がメンバー最大で、前が有利なら行き、締まれば控えられる。前が止まりにくい中山1200mでこの自在性は素直な加点。<br><br>4番, ジョヴィアン, +0.1, 15-14・14-14の追い込み一手で、前が止まらない想定の中山1200mでは脚を余す危険が大きい。ペースが流れれば出番があるという条件付きの小幅プラス。<br><br>5番, ヴィヴァクラウン, +0.2, 3週前の同舞台で7-6から上がり33.6。同じ位置取りは再現しやすいが、その時が0.7秒差4着で前を捉え切れておらず、位置取りの適性分だけを見る。<br><br>6番, トラスコンガーデン, +0.3, 16-16から33.3、8-8から33.5と後方から最速級の脚を使える。ただ同舞台では前が止まらず0.7秒差5着で、脚質が刺さる保証はないため上限は抑える。<br><br>7番, ドリーミングアップ, +0.4, 8-8から上がり33.1で同舞台3着と、中団後方から差す形でこのコースの結果を出している事実は重い。前が止まり切らない舞台でも位置取りとして最も計算できる。<br><br>8番, レオアジャイル, -0.2, 1400mでは1-1・2-2だが1200mでは2-3で、行き切らずに好位で運べる。16頭の中で好位を取るコストはかかるが、前有利の舞台では減点を大きく取る理由がない。<br><br>9番, ビッグフラワー, +0.2, 6-3・6-6・13-12・9-9と位置取りの幅が広く、3週前に同じ中山1200mを6-3で勝っている。前でも中団でも対応できる自在性を展開軸の加点として取る。<br><br>10番, セレッソデアモール, -0.2, 2-2から上がり33.3で中山汐留特別4着と舞台適性はあるが、それは11頭立ての話。16頭で同じ位置を取る負荷と、9か月の実戦間隔でゲートの出脚が読めない点を引く。<br><br>11番, ビービーエフォート, +0.3, 9-8・5-5・16-15と自在に構えられ、中山1200mで2着もある。ただその2着は11頭立てで、16頭の中山を後ろから差し切った形はまだ無いため上限は抑える。<br><br>12番, アイムインディ, -0.1, 4-3で中山1200mを勝っており位置取りの適性は示しているが、16頭でその位置を取るコストは10番・13番と同じ側。重馬場で前が止まらなかった形が良馬場で再現するかも一段読みにくい。<br><br>13番, レザンノワール, -0.2, 5-3・3-3・4-2と好位固定で、中山1200mでは3-3から4着・4-2から7着と前で運んでも詰め切れていない。7枠の外から好位を取る消耗分を引く。<br><br>14番, スミッコディスコ, -0.2, 3-2・2-2で運ぶ型で、7枠外から好位を取るには脚を使わされる。ただ1200mでは行き切らずに2番手で収まっており、前有利の舞台なら致命傷ではない。<br><br>15番, メローネ, -0.1, 3-3で運ぶ型で、8枠から好位を取るコストはかかる。一方で中山1200mの8枠は下り加速を活かせる側でもあり、16番と同じ利点を認めて幅を縮める。<br><br>16番, ピコアーガイル, -0.1, 8枠から下り加速を使える利点はあるが、3月の中山で1-1から16着に沈んだ形が唯一の同舞台サンプル。外から主張するリスクと枠の利点が拮抗してほぼ中立。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.1, &quot;2&quot;: -0.2, &quot;3&quot;: 0.3, &quot;4&quot;: 0.1, &quot;5&quot;: 0.2, &quot;6&quot;: 0.3, &quot;7&quot;: 0.4, &quot;8&quot;: -0.2, &quot;9&quot;: 0.2, &quot;10&quot;: -0.2, &quot;11&quot;: 0.3, &quot;12&quot;: -0.1, &quot;13&quot;: -0.2, &quot;14&quot;: -0.2, &quot;15&quot;: -0.1, &quot;16&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;指摘①②を受けて『先行激化→ハイペース→差し有利』の前提を撤回。1200m戦の実際の通過を数え直すとハナを主張するのは3番・16番程度で、8番は2-3、14番は3-2に控えており密集は過大見積もりだった。さらに同舞台唯一のサンプル9/5白井特別が前残り決着（8-8の7番が0.4秒差3着、6番が0.7秒差5着）である事実を重く見て、中山1200mは前が止まりにくい舞台と再定義。結果、先行型の減点を-0.4〜-0.2から-0.2〜-0.1へ縮小し、差し型のプラスも+0.6→+0.4、+0.5→+0.3へ引き下げた（⑧の16頭中山での差し切り実績なしも反映）。③を受けて3番の自在性を+0.3へ、④を受けて9番は連闘の気配（軸外）を外し位置取りの幅で+0.2へ修正。⑤の枠差別化は根拠薄と認め4番の割引を後方一手のリスクのみに、⑦は8枠の下り加速を15番にも認めて幅を縮小。⑥は12番を10番・13番と同じ好位コスト側に置いて整合させた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>体調派の視点で、出走間隔・馬体重推移・斤量・調教の仕上がりを軸に全16頭を見ていくね。<br><br>芝1200m・定量戦。馬体重は未発表やけん増減ゼロ前提で、近走の推移パターンと出走間隔、調教の動きと調子矢印で判断するとよ。<br><br>**ステップ1: 各馬の評価**<br><br>1番, デンプシー, +0.3, 448→454→458→464→462kg と一貫した右肩上がりで3歳の成長が体に出とる、中4週の良間隔で斤量は前走55→56kgの+1kg増は軽微。美坂5F55.4は馬なり余力で手応え十分やが調子は横ばい、上積みより現状維持の仕上がり。<br><br>2番, イゾラフェリーチェ, -0.2, 前走7/5から約12週の休み明けで、502kgの牝馬としては大型だけに使い込んでいない分の余裕残りが気になる。美W5F68.5・1F11.5の伸び良く調子↗は救いやが、休養明け初戦で斤量54→56kgの+2kg増（約1馬身相当の負担増）が重なるのはマイナス。<br><br>3番, ウィングブルー, +0.5, 中3週で490→492→500→498kg と500kg前後で安定、大型牝馬が体を保ったまま連勝態勢にある。美坂5F52.9は当週の坂路としてかなり速く、フットワーク軽快の評価どおり仕上がりは文句なし、斤量54kg据え置きで負担増もない。<br><br>4番, ジョヴィアン, -0.4, 前走6/6から約16週の長期休養明け。6歳で510→500kgと前走で-10kg減っており、絞れたのか消耗なのか判断がつかん状態のまま間隔が開いた。栗坂5F52.1・久々も好気配で調子↗は評価できるが、58kg背負っての休み明け初戦は体調面の担保が薄い。<br><br>5番, ヴィヴァクラウン, -0.4, 中3週は良いが468〜472kgで体は動かず、5歳26戦の使い込みで上昇の余地が見えん。美Wで強めに追って「鋭さ欠く」・調子→は仕上がりの物足りなさをそのまま示しており、58kg定量も小柄な470kg台には重い。<br><br>6番, トラスコンガーデン, +0.4, 中3週、前走446kg（+6kg）で3歳牝馬として体が戻ってきた。美W5F65.2を馬なりで「動き目立つ」・調子↗は当週の状態が上向いている証拠で、54kg据え置き（前走54kg）で負担も変わらん。<br><br>7番, ドリーミングアップ, +0.2, 中3週、462kgを3走連続でキープしており体調の安定度が高い。美Wで直線強めに追って「遅れ心配なし」・調子→は平行線やが、58kgを31戦こなしてきた体で不安材料はない。<br><br>8番, レオアジャイル, +0.3, 前走6/28から約13週の休み明けやが、482→466kg（-16kg）と大きく絞れた状態で勝った実績があり、今回もその路線で仕上げられとる。美W5F67.2・1F11.4を馬なりで「仕上がり良好」は休み明けを感じさせず、斤量は前走53→54kgの+1kgのみ。<br><br>9番, ビッグフラワー, -0.5, 9/20から中0週の連闘。調教欄が「連闘のため中間軽め」と明示され、前走の重馬場を1:10.5・上がり35.9で走った消耗を回復しきれるか疑問。58kg定量で連闘、体調面では最も割引が要る一頭。<br><br>10番, セレッソデアモール, -0.6, 前走が2026/1/10で約8か月半の長期休養明け、6歳牝馬。その前走も494kg（+14kg）と太め残りでの4着、さらにその前には競走中止があり、体調面の履歴が不安定。栗CWを馬なりで「丹念に乗り込む」は好意的やが3F37.3のみで5Fの追い切りが記載なく、実戦を使える状態かの確証が乏しい。<br><br>11番, ビービーエフォート, +0.4, 中3週、420〜428kgの小柄な牝馬ながら420→424kgと体を減らさずに使えとる。美芝5F67.8・1F11.2を馬なりで「フットワーク軽快」は好仕上がり、56kg据え置きも小柄な体には楽ではないが近走同斤量でこなしており許容範囲。<br><br>12番, アイムインディ, +0.3, 中3週、446→450→456kg と3歳牝馬らしい成長ぶりで前走+6kgでの勝利。美坂5F57.6・1F13.8は数字が地味やがホライゾネット着用の調整的な内容で、54kg据え置きなら状態維持は十分。<br><br>13番, レザンノワール, -0.3, 前走6/20から約14週の休み明け。474→468→464kgと体が細くなる傾向にあり、5歳で58kgを背負う体格としては余裕がない。美坂5F52.7の時計自体は良いが6日前の追いで「日曜追いで仕上る」と当週は軽めの調整、休み明け初戦の上積みには期待しづらい。<br><br>14番, スミッコディスコ, -0.3, 前走6/20から約14週の休み明けで、444〜454kgの3歳牡馬が56kg。美W5F68.0を一杯に追って3F38.7・「反応ひと息」はこの日の動きが良くなかったことを素直に示しており、休み明けとの重なりで仕上がり途上と見る。<br><br>15番, メローネ, -0.4, 前走7/11から約11週の休み明け。402〜410kgと全馬中で最も小柄で、54kgは体重比で他馬より重く響く（410kg台に54kgは500kg級の66kg相当）。栗坂を一杯に追って「先着も伸び案外」・調子→は追った割に反応が乏しく、体調面の後押しがない。<br><br>16番, ピコアーガイル, -0.3, 前走7/11から約11週の休み明け。480〜488kgで体は安定しとるが、美坂5F57.4・3F28.5・1F14.4は馬なりとはいえ明らかに緩く、「先週強い稽古消化」の当週流し。58kgでの休み明け初戦として、初戦から動ける仕上がりとは読みにくい。<br><br>**ステップ2: JSON**<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.2, &quot;3&quot;: 0.5, &quot;4&quot;: -0.4, &quot;5&quot;: -0.4, &quot;6&quot;: 0.4, &quot;7&quot;: 0.2, &quot;8&quot;: 0.3, &quot;9&quot;: -0.5, &quot;10&quot;: -0.6, &quot;11&quot;: 0.4, &quot;12&quot;: 0.3, &quot;13&quot;: -0.3, &quot;14&quot;: -0.3, &quot;15&quot;: -0.4, &quot;16&quot;: -0.3}, &quot;analysis_summary&quot;: &quot;馬体重未発表のため増減ゼロ前提で、出走間隔・体重推移・斤量・当週の追い切り内容で判断した。最大の分かれ目は出走間隔で、中3〜4週で使えている3・6・11・12・1・7と、11〜16週の休み明けである2・4・8・10・13・14・15・16に大きく二分される。上位は3番ウィングブルー（中3週+体重安定+坂路52.9の好時計+斤量据え置き）、6番トラスコンガーデンと11番ビービーエフォート（ともに中3週で当週の動き良く斤量据え置き）。休み明け組の中では8番レオアジャイルだけは大幅減量時に勝った実績と「仕上がり良好」の評価で例外的に上げた。下げたのは9番ビッグフラワー（中0週の連闘で調教も中間軽めと明記）と10番セレッソデアモール（8か月半ぶり・前走太め残り・競走中止歴・5Fの追い切り記載なし）。14番スミッコディスコ・15番メローネ・16番ピコアーガイルは休み明けに当週の動きの鈍さが重なる。5番ヴィヴァクラウンは間隔は良いが強めに追って「鋭さ欠く」で仕上がりに物足りなさ。斤量は定量戦で差が小さいが、410kg台の15番と420kg台の11番は体重比の負担が大きく、11番は近走同斤量で結果を出している点を踏まえて減点せず据え置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>① 9番ビッグフラワーの-0.5が最大の疑問。連闘は減点材料やが、1週前に1着で終えて即連闘という厩舎判断は『今が絶好調』の最強シグナルの一つ。調教は『中間軽め』と書かれながら美坂5F53.4を一杯に追えとる（矛盾を軽め側だけ採っとる）、体重488(-2)維持。-0.2程度〜0.0も検討の余地はないか。② 調子矢印と付値が逆配置。調子↗は2番・4番・6番の3頭だけで、うち2番・4番はマイナス。逆にプラス評価の1番・3番・7番・8番・11番は全て調子→で、理由文でも『横ばい』『平行線』と自認しとる。休み明け軸が体調矢印を押し潰しとらんか。体調派なら当週の動きのウェイトを上げるべきでは。③ 同一指標の扱いが馬で逆。坂路時計は3番ウィングブルー52.9を加点根拠にしながら、より速い13番レザンノワール52.7は『時計自体は良いが』と割引。緩い坂路は12番アイムインディ(57.6/1F13.8)をホライゾネットで免責しながら、ほぼ同等の16番ピコアーガイル(57.4/1F14.4)は『明らかに緩く』と減点（16番にも先週強い稽古という免責材料あり）。④ 10番セレッソデアモールの『5F記載なし』は体調不良の証拠でなくデータ欠損。CWの1F11.1は全馬最速。8か月半+競走中止歴の減点に欠損分を上乗せして最大減点は二重計上にならんか。⑤ 2番イゾラフェリーチェの『+2kg=約1馬身』と15番メローネの『410kgに54kgは500kg級の66kg相当』は斤量派の領分。15番の小柄は恒常的な体質で当日のコンディションやない。体調軸に絞るなら『一杯に追って伸び案外』の一点で足りるのでは。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>指摘を一つずつ検証するね。<br><br>**① 9番ビッグフラワー** — 調教欄を読み直すと、たしかに「連闘のため中間軽め」と書きながら美坂5F53.4を一杯に追えとる。これは軽めの馬に課す内容やない。中間を軽くしたのは疲労を抜くための意図的な調整で、その上で当週に53.4を出せたなら回復は済んどる読みが自然。加えて体重488(-2)維持、前走1着で即連闘という厩舎判断。連闘そのものの消耗リスクは残るけん0.0までは上げんが、-0.5は明らかに取りすぎ。**-0.5 → -0.2** に改める。<br><br>**② 調子矢印と付値の逆配置** — これは自軸の重心の問題として認める。ただし全部は動かさん。調子↗の2番・4番は「休み明け×体調上向き」の組み合わせで、上向きを評価する分マイナス幅を縮める（2番 -0.2→-0.1、4番 -0.4→-0.25）。逆に調子→でプラスを付けとる馬は、体重推移と当週の動きの良さが根拠であって矢印だけで付けとるわけやない。ただ1番デンプシーは自分で「上積みより現状維持」と書いとる通りで、+0.3は矢印以上に読んどる。**+0.3 → +0.2**。<br><br>**③ 同一指標の扱いが逆** — 13番レザンノワールの52.7は速い。ただし6日前の追いで当週は軽めという時点差があるけん、3番と同格には置けん。とはいえ「体が細る傾向」に時計の割引まで重ねたのは二重で、**-0.3 → -0.2**。16番ピコアーガイルは、12番に免責を認めるなら「先週強い稽古消化」も同じ免責やという指摘が通る。**-0.3 → -0.15**。<br><br>**④ 10番セレッソデアモール** — 「5F記載なし」はデータ欠損で、体調不良の証拠にはできん。むしろCWの1F11.1は全馬最速で、これは当週動けとる証拠として加算方向。8か月半の休養明けと競走中止歴という履歴の不安は残るけん減点方向は維持するが、欠損分の上乗せは撤回して **-0.6 → -0.4**。<br><br>**⑤ 斤量派の領分** — 2番の「+2kg=約1馬身」も15番の「500kg級の66kg相当」も、当日のコンディションやなく恒常的な体格と負担重量の話で、自軸の範囲を越えとる。15番は「一杯に追って伸び案外」の一点に絞り直して **-0.4 → -0.3**。2番は上記②と合わせて調整。<br><br>---<br><br>1番, デンプシー, +0.2, 448→454→458→464→462kg と一貫した右肩上がりで3歳の成長が体に出とり、中4週の良間隔。美坂5F55.4は馬なり余力で手応え十分やが調子→で上積みは薄く、現状維持の仕上がりとして小幅の加点に留める。<br><br>2番, イゾラフェリーチェ, -0.1, 前走7/5から約12週の休み明けで、502kgの牝馬としては使い込んでいない分の余裕残りが気になる。ただ美W5F68.5・1F11.5の伸び良く調子↗は当週の状態が上を向いとる証拠で、休み明けの減点をほぼ打ち消す水準。<br><br>3番, ウィングブルー, +0.5, 中3週で490→492→500→498kg と500kg前後で安定、大型牝馬が体を保ったまま使えとる。美坂5F52.9は当週追いとしてかなり速く、フットワーク軽快の評価どおり仕上がりは文句なし。<br><br>4番, ジョヴィアン, -0.25, 前走6/6から約16週の長期休養明けで、6歳、前走で510→500kgと-10kg減っており絞れたのか消耗なのか判断がつかん。栗坂5F52.1を馬なりで「久々も好気配」・調子↗は当週の動きが良いことを示しとり、休み明けの不安を相当埋めとる。<br><br>5番, ヴィヴァクラウン, -0.4, 468〜472kgで体は動かず、5歳26戦の使い込みで上昇の余地が見えん。美Wで強めに追って「鋭さ欠く」・調子→は当週の動きが物足りないことを直接示しており、追った割に手応えが出とらん。<br><br>6番, トラスコンガーデン, +0.4, 中3週、前走446kg（+6kg）で3歳牝馬として体が戻ってきた。美W5F65.2を馬なりで「動き目立つ」・調子↗は当週の状態が上向いとる証拠で、体調面の後押しがはっきりある。<br><br>7番, ドリーミングアップ, +0.2, 中3週、462kgを3走連続でキープしており体調の安定度が高い。美Wで直線強めに追って「遅れ心配なし」・調子→は平行線やが、崩れる兆しは無い。<br><br>8番, レオアジャイル, +0.3, 前走6/28から約13週の休み明けやが、482→466kg（-16kg）と大きく絞れた状態で勝った実績があり、今回もその路線で仕上げられとる。美W5F67.2・1F11.4を馬なりで「仕上がり良好」は休み明けを感じさせん内容。<br><br>9番, ビッグフラワー, -0.2, 中0週の連闘で疲労の抜けは読みきれんが、「中間軽め」と書きながら美坂5F53.4を一杯に追えとるのは回復が進んどる証拠で、軽めの馬に課す内容やない。体重488(-2)維持、前走1着で即連闘という仕上がり判断も評価でき、連闘のリスク分だけの小幅な割引に留める。<br><br>10番, セレッソデアモール, -0.4, 前走が2026/1/10で約8か月半の長期休養明け、その前走も494kg（+14kg）と太め残り、さらにその前に競走中止があり体調面の履歴が不安定。ただ栗CWの1F11.1は全馬最速で当週は動けとり、「丹念に乗り込む」の内容も含めて休養明けの不安を割り引く方向。<br><br>11番, ビービーエフォート, +0.4, 中3週、420〜428kgの小柄な牝馬ながら420→424kgと体を減らさずに使えとる。美芝5F67.8・1F11.2を馬なりで「フットワーク軽快」は仕上がりの良さを示しており、近走同斤量をこなしとる体で不安材料はない。<br><br>12番, アイムインディ, +0.3, 中3週、446→450→456kg と3歳牝馬らしい成長ぶりで前走+6kgでの勝利。美坂5F57.6・1F13.8は数字が地味やがホライゾネット着用の調整的な内容で、状態維持は十分と見る。<br><br>13番, レザンノワール, -0.2, 前走6/20から約14週の休み明けで、474→468→464kgと体が細くなる傾向にある。美坂5F52.7の時計自体は速く6日前でも動けとるのは確かで、当週は軽めの調整という時点差の分だけ割り引くに留める。<br><br>14番, スミッコディスコ, -0.3, 前走6/20から約14週の休み明け。美W5F68.0を一杯に追って3F38.7・「反応ひと息」はこの日の動きが良くなかったことを素直に示しており、休み明けとの重なりで仕上がり途上と見る。<br><br>15番, メローネ, -0.3, 栗坂を一杯に追って「先着も伸び案外」・調子→で、追った割に反応が乏しいのが当週の状態。前走7/11から約11週の休み明けも重なり、体調面の後押しがない。<br><br>16番, ピコアーガイル, -0.15, 480〜488kgで体は安定しており、美坂5F57.4・1F14.4の緩さは「先週強い稽古消化」後の当週流しと読めるので、それ自体を減点材料にはできん。前走7/11から約11週の休み明け初戦という点だけ小幅に割り引く。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: 0.5, &quot;4&quot;: -0.25, &quot;5&quot;: -0.4, &quot;6&quot;: 0.4, &quot;7&quot;: 0.2, &quot;8&quot;: 0.3, &quot;9&quot;: -0.2, &quot;10&quot;: -0.4, &quot;11&quot;: 0.4, &quot;12&quot;: 0.3, &quot;13&quot;: -0.2, &quot;14&quot;: -0.3, &quot;15&quot;: -0.3, &quot;16&quot;: -0.15}, &quot;analysis_summary&quot;: &quot;5点の指摘のうち4点を受け入れた。①9番は『中間軽め』と53.4一杯追いの矛盾を軽め側だけ採っとったのを認め、-0.5→-0.2。②調子↗の2番・4番のマイナス幅を縮小（-0.2→-0.1、-0.4→-0.25）し、逆に自分で『上積みより現状維持』と書いた1番を+0.3→+0.2に下げて、当週の動きの重心を揃えた。③坂路時計の扱いの非対称を修正し13番-0.3→-0.2、16番は12番と同様に『先週強い稽古』を免責として認め-0.3→-0.15。④10番の『5F記載なし』はデータ欠損で体調不良の証拠にできず、CW1F11.1が全馬最速である点を加算方向に取って-0.6→-0.4。⑤斤量の馬身換算・体重比換算は斤量派の領分として2番・15番の理由文から撤回し、15番は当週の追い切り内容一点に絞って-0.4→-0.3。3番・5番・6番・7番・8番・11番・12番・14番は体重推移と当週の追い切り内容がそのまま根拠になっており据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>中山芝1200m（外回り、Aコース想定）は序盤から下り勾配でスピードが要求されつつ、最後に急坂が待つ。純粋な短距離スピード血統に加え、坂をこなすパワー要素がないと止まる。この観点で16頭を見る。<br><br>---<br><br>1番, デンプシー, +0.5, 父ビッグアーサーは高松宮記念勝ちの短距離王で産駒も芝1200m特化、母父マルカシェンク（サンデー系）でパワー面も補われる。芝1200mのみ7戦を使われた配合通りの使われ方で、中山の急坂に必要な持続力も1200m戦の先行実績から裏付けがある。<br><br>2番, イゾラフェリーチェ, -0.4, 父サトノクラウン・母父ハーツクライで本来は中距離〜長距離向きの持続系配合であり、芝1200mは血統的な適性の外側。実際に1600mで好走歴があり2勝クラスで1200mを使うのは短縮のごまかしで、中山の上がり勝負では血統の持ち味が出にくい。<br><br>3番, ウィングブルー, +0.3, 父アドマイヤモーズ（ダイワメジャー系）はマイル〜1400m中心だが母父Anabaaは典型的なスプリント〜マイルのスピード血統で、この組み合わせは1200mへ寄せられる。ダイワメジャー系のパワーは中山の坂に向き、1000mから1600mまで走れている融通性も配合と合う。<br><br>4番, ジョヴィアン, -0.5, 父Justify（Scat Daddy系）・母父Majestic Warriorは米国ダート志向の配合で、芝1200mの高速決着は血統の適性外。ダート中心のキャリアがそれを裏書きしており、芝の瞬発力勝負で血統が助ける形になりにくい。<br><br>5番, ヴィヴァクラウン, -0.3, 父サトノクラウンは本来中距離型で、母父タイキシャトルのスピードで1200mを使えてはいるが芝1200mでの頭打ちは配合の限界に近い。5歳で成熟も終わっており、血統面の伸びしろが見込めない。<br><br>6番, トラスコンガーデン, +0.4, 父ダノンスマッシュはロードカナロア系の純スプリンターで、母父Bernardini（A.P. Indy系）が米国型のパワーを加える配合は中山の坂込み1200mに合致する。1400m以上では血統相応に足りず、1200mへ絞った前走で見せた上がり33.5はこの配合の本領。<br><br>7番, ドリーミングアップ, -0.2, 父エピファネイア・母父ディープインパクトは中距離の持続力配合で、1200mはスピードの絶対値で見劣る血統。上がり勘定で好走できているのは持続力側の資質であり、中山の速い流れでは血統的な後押しが薄い。<br><br>8番, レオアジャイル, +0.4, 父ダノンスマッシュのスプリント資質に母父ステイゴールドの粘りが乗り、短距離での持続力型スプリンターという中山向きの配合。1400m以上では血統通り止まっており、1200m回帰は配合の方向に沿った条件替わり。<br><br>9番, ビッグフラワー, +0.2, 父ビッグアーサーで芝1200m適性は保証される配合だが、母父ハーツクライの分だけ純スプリント色は1番より薄い。前走の重馬場勝ちは母父の持続力側が効いた形で、道悪含みなら血統の幅が生きる。<br><br>10番, セレッソデアモール, +0.1, 父リオンディーズ・母父アドマイヤコジーンはスピード寄りで1200m自体は血統的に無理がないが、6歳で成熟の上積みはなく長期休養明けを血統で補える要素もない。中山1200mで4着があり適性は否定しないという程度。<br><br>11番, ビービーエフォート, +0.2, 父グレーターロンドンはマイル型で母父シンボリクリスエスのパワーが効く配合、純スプリンターではないが中山の坂には母父側が向く。420kg台の小柄な馬体でスプリント特化とは言いにくく、血統からの押し上げは控えめにとどめる。<br><br>12番, アイムインディ, +0.3, 父インディチャンプ（ステイゴールド系のマイラー）に母父Invincible Spirit（欧州スプリント〜マイルの主流種牡馬）で、1200mへ寄せる母父の影響が明確。ダートもこなす配合のパワーは中山の重馬場勝ちと整合し、3歳秋の本格化期と血統の成長曲線が噛み合う。<br><br>13番, レザンノワール, -0.1, 父シルバーステートはマイル〜中距離型で母父スペシャルウィークも持続力系、1200mは配合の本来の距離より短い。中山1200mを何度も使われて4着前後で止まるのは血統的な上限を示している。<br><br>14番, スミッコディスコ, -0.2, 父ダノンプレミアムはマイル〜中距離型で、母父Into Mischiefのスピードが1200m対応を可能にしている配合。1400m〜1600mでの指数が1200mより高く、血統の重心は今回よりやや長い側にある。<br><br>15番, メローネ, +0.3, 父ビッグアーサーで芝1200m一本に絞られた血統、母父オルフェーヴルの勝負根性が加わる配合。410kg前後の小柄さは中山の坂でマイナスに働きうるが、血統の方向性自体は今回の条件に素直に合う。<br><br>16番, ピコアーガイル, -0.3, 父Justify・母父Lonhroは芝の高速スプリントより米豪型のパワー勝負向きで、洋芝の函館で2着を続け中山の芝1200mで大敗している落差は血統適性の差として読める。中山の締まった馬場で血統が助ける形にはなりにくい。<br><br>---</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 3番ウィングブルーの父を「アドマイヤモーズ」と誤記（正:アドマイヤマーズ）。系統の読みは合っとるが根拠記述が出馬表とずれとる。(2) 母父ハーツクライの扱いが不統一：2番イゾラフェリーチェでは-0.4の主因、9番ビッグフラワーでは小さな減点、一方8番レオアジャイルの母父ステイゴールド・15番メローネの母父オルフェーヴルは同じ『スプリント父×サンデー系中距離母父』なのに加点。同一パターンに3通りの符号。9番は自ら『母父の持続力が効いた』と中山1200m重馬場勝ちを説明しており、母父ハーツクライは中山では加点側では。(3) 11番ビービーエフォートは父グレーターロンドン(マイル型)×母父シンボリクリスエス(中長距離)で、7番ドリーミングアップ(-0.2)・13番レザンノワール(-0.1)と同じ『父母父とも今回より長い』構造なのに+0.2。理由文で『純スプリンターではない』『スプリント特化とは言いにくい』と2つ否定材料を挙げながら付値はプラスで、理由と付値の向きが食い違う。(4) 11番・15番だけ馬体重(420kg台/410kg)を減点材料に混ぜとる。6番446kg・8番466kgには同基準を当てとらず不公平。15番は血統だけ見れば1番デンプシーと同型(父ビッグアーサー+1200m専一)で、+0.5と+0.3の差が血統以外の要素で作られとらんか。(5) 5番ヴィヴァクラウン・10番セレッソデアモールの年齢減点が父系の早熟/晩成特性を挙げず年齢だけで処理。同じ5歳の9番・13番には成熟の話を出しておらず、血統論でなく近走不振の後付けに見える。(6) 16番ピコアーガイルの-0.3は『函館2着・中山大敗の落差』という戦績読みで、血統からの演繹になっとらん。母父Lonhroは豪州のスプリント主流種牡馬で、血統的にはむしろ1200m適性を肯定しうる。(7) 6番トラスコンガーデンの『1400m以上では血統相応に足りず』は戦績と逆：最高指数は東京1400m 1着82.2とフェアリーS1600m 81.9で、前走1200mは77.0。血統の読み自体は妥当でも裏付けの解釈が成立しとらん。(8) 16頭が-0.5〜+0.5に収まり絶対値0.5は2頭のみ。父ビッグアーサー×1200m専一と父Justify×米ダート型の差は担当の論理なら1.0では足りんはずで、レンジの使い方に見直す余地がないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ検証した。血統軸として認めるところと、譲らんところを分けて整理する。<br><br>**認める点**<br>- (1) 父名の誤記は完全にこちらの誤り。アドマイヤマーズ。系統の読み（ダイワメジャー系のマイラー）は変わらん。<br>- (2) 母父サンデー系中距離型の扱いが不統一やった。「父が純スプリンター系なら母父の持続力はスプリントの中の持続力になり中山向きの加点」「父が中距離型なら母父も中距離で短縮が効かん減点」に一本化する。この基準で 9番は加点方向に寄せ、2番の減点は「父母父ともに中距離」という構造に限定して維持。<br>- (3) 11番は理由文と付値の向きが食い違っとった。構造は 7番・13番と同型やけん、マイナス側に揃える。<br>- (4) 馬体重は血統軸の材料やない。11番・15番から除く。15番は 1番と同型配合として 1番に近づける。<br>- (5) 年齢だけの減点は血統論になっとらん。サトノクラウン産駒は本来晩成型で 5歳での短距離頭打ちは配合と条件の不一致（父系の成長曲線の話ではない）に限定。10番のリオンディーズ×アドマイヤコジーンは配合自体は 1200m に無理がないけん、年齢由来の減点は外して 0 付近に置く。<br>- (7) 6番の裏付け解釈は誤り。最高指数は東京1400m 82.2 で、1200m の 77.0 より高い。「1400m以上で足りん」は成立せん。血統の読み（ダノンスマッシュ×Bernardini の坂込み1200m適性）は保つが、根拠から戦績の誤読を外して値を下げる。<br>- (8) レンジは使う。父ビッグアーサー×1200m 専一と父Justify×米ダート型の差は自軸で最大級。<br><br>**譲らん点**<br>- (6) Lonhro は豪州のスプリント主流種牡馬という指摘は正しいが、16番の減点主因は父 Justify（Scat Daddy 系の米ダート志向）側にある。豪州型の Lonhro は洋芝・パワー馬場向きで、洋芝函館 2着連続と中山の締まった芝での 16着は血統の馬場適性差として血統から読める。減点は弱めるが符号は維持。<br><br>---<br><br>1番, デンプシー, +0.9, 父ビッグアーサーは芝1200m特化の短距離王で、母父マルカシェンク（サンデー系）がパワーと粘りを補う配合。芝1200m一本で使われてきた血統通りの使われ方で、自軸ではこのレースの条件にもっとも素直に合う一頭。<br><br>2番, イゾラフェリーチェ, -0.6, 父サトノクラウン×母父ハーツクライは父も母父も中距離〜長距離の持続系で、1200m を支えるスピード血統がどこにも入っとらん。同じ母父ハーツクライでも父が純スプリンターなら加点側やが、この馬は父側にも短縮の根拠がなく、配合の重心が今回より明確に長い。<br><br>3番, ウィングブルー, +0.3, 父アドマイヤマーズ（ダイワメジャー系）はマイル〜1400m中心やが、母父Anabaa は典型的なスプリント〜マイルのスピード血統で 1200m 側へ寄せる配合。ダイワメジャー系のパワーは中山の急坂に向く。<br><br>4番, ジョヴィアン, -1.0, 父Justify（Scat Daddy 系）×母父Majestic Warrior は米国ダート志向を二重に持つ配合で、芝1200m の高速決着は血統の適性外。自軸で見てこのレースに最も向かん配合であり、これ以上下はない水準。<br><br>5番, ヴィヴァクラウン, -0.4, 父サトノクラウンは本来中距離型で、母父タイキシャトルのスピードで 1200m を使えてはいるが、父側の持続力が主導する配合では中山の一瞬の脚を要求される流れで持ち味が出にくい。年齢ではなく配合と条件の不一致として減点する。<br><br>6番, トラスコンガーデン, +0.3, 父ダノンスマッシュ（ロードカナロア系の純スプリンター）に母父Bernardini（A.P. Indy 系）の米国型パワーが乗る配合は、坂込みの中山1200m に向く。ただし血統の重心が 1200m 専一とまでは言えず、加点は中程度に置く。<br><br>7番, ドリーミングアップ, -0.3, 父エピファネイア×母父ディープインパクトは中距離の持続力配合で、1200m はスピードの絶対値で見劣る。上がり上位で詰めてくるのは持続力側の資質で、血統から今回の条件を後押しする要素がない。<br><br>8番, レオアジャイル, +0.5, 父ダノンスマッシュのスプリント資質に母父ステイゴールドの粘りが乗り、短距離の中の持続力型という中山1200m 向きの配合。父が純スプリント系であることで母父の中距離色が「坂で止まらん粘り」として機能する。<br><br>9番, ビッグフラワー, +0.5, 父ビッグアーサーで芝1200m 適性が担保され、母父ハーツクライの持続力は中山の坂と時計のかかる馬場で加点側に働く配合。前走の重馬場勝ちはまさに母父側が効いた形で、1番よりスピード一辺倒ではない分の幅がある。<br><br>10番, セレッソデアモール, 0.0, 父リオンディーズ×母父アドマイヤコジーンはスピード寄りで 1200m 自体に血統的な無理はなく、かといって中山1200m へ強く寄せる要素もない。自軸では上下どちらにも振る根拠がない。<br><br>11番, ビービーエフォート, -0.2, 父グレーターロンドン（マイル型）×母父シンボリクリスエス（中長距離）で、配合の重心は今回より長い側。母父のパワーは中山の坂に向くが、それは純スプリント配合の相手に対して優位を作るものではなく、7番・13番と同じ構造として弱い減点に揃える。<br><br>12番, アイムインディ, +0.4, 父インディチャンプ（ステイゴールド系マイラー）に母父Invincible Spirit（欧州スプリント〜マイルの主流種牡馬）で、母父が明確に 1200m 側へ寄せる配合。ダートもこなす配合のパワーは中山の重馬場勝ちと整合し、3歳秋という本格化の時期とも噛み合う。<br><br>13番, レザンノワール, -0.2, 父シルバーステートはマイル〜中距離型、母父スペシャルウィークも持続力系で、1200m は配合の本来の距離より短い。母父のパワーで中山自体はこなせるが、血統から短縮を後押しする材料がない。<br><br>14番, スミッコディスコ, -0.2, 父ダノンプレミアムはマイル〜中距離型で、母父Into Mischief のスピードが 1200m 対応を可能にしとる配合。母父が短縮側に効く形は 12番と同じやが、父の重心が 12番より長く、配合全体としては今回よりやや長い側にある。<br><br>15番, メローネ, +0.7, 父ビッグアーサーで芝1200m 一本に絞られた血統に、母父オルフェーヴルの勝負根性が乗る配合。1番と同型の「父ビッグアーサー×1200m 専一」で、母父の粘りは坂のある中山で活きる方向。母父のサンデー系中距離色の分だけ 1番よりわずかに純度を落とす。<br><br>16番, ピコアーガイル, -0.2, 母父Lonhro は豪州のスプリント主流種牡馬で 1200m 適性自体は肯定できるが、父Justify（Scat Daddy 系）と合わせた配合はパワー・洋芝寄りで、締まった中山の芝で求められる軽い脚とは方向が違う。洋芝函館で 2着を続け中山の良馬場で崩れた落差は、この馬場適性の偏りとして血統から読める。減点は弱める。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.9, &quot;2&quot;: -0.6, &quot;3&quot;: 0.3, &quot;4&quot;: -1.0, &quot;5&quot;: -0.4, &quot;6&quot;: 0.3, &quot;7&quot;: -0.3, &quot;8&quot;: 0.5, &quot;9&quot;: 0.5, &quot;10&quot;: 0.0, &quot;11&quot;: -0.2, &quot;12&quot;: 0.4, &quot;13&quot;: -0.2, &quot;14&quot;: -0.2, &quot;15&quot;: 0.7, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;(1)3番の父名誤記を訂正（アドマイヤマーズ）、系統の読みは不変。(2)母父サンデー系中距離型の扱いを『父が純スプリント系なら母父の持続力は中山向きの加点／父も中距離なら減点』に一本化。9番を+0.2→+0.5に、2番は父母父ともに中距離という構造に限定して-0.6へ。(3)11番は理由と付値の食い違いを認め、7番・13番と同型として+0.2→-0.2。(4)馬体重は血統軸の材料でないため11番・15番から除去。15番は1番と同型配合として+0.3→+0.7。(5)年齢単独の減点を撤回。10番は+0.1→0.0、5番はサトノクラウン配合と1200mの不一致に限定して-0.4。(6)Lonhroのスプリント適性は認めるが、減点主因は父Justifyの米ダート志向と洋芝寄りのパワー配合にあるため符号は維持し-0.3→-0.2に弱める。(7)6番の『1400m以上で足りず』は指数（東京1400m 82.2 &gt; 前走1200m 77.0）と逆で誤りと認め、根拠から戦績誤読を外して+0.4→+0.3。(8)レンジ指摘を受け上下を開いた。1番+0.9、4番-1.0。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>陣営派として、中山芝1200m の 2 勝クラス戦を騎手・厩舎の軸だけで見ていくね。<br><br>**ステップ1: 全馬評価**<br><br>1番, デンプシー, +0.6, 戸崎圭太が 7 月の福島 1 勝クラス勝ちで跨った鞍上に戻る形で、間に舟山・横山和生を挟んだ後の主戦復帰は陣営の勝負気配と見る。上原佑紀厩舎の 3 歳スプリンターに関東リーディング上位を確保した点を素直に評価する。<br><br>2番, イゾラフェリーチェ, -0.2, 荻野極が 4 戦続けて手綱を取っていたところから津村明秀への乗り替わりで、継続騎乗の利が切れる。鹿戸雄一厩舎は名門だが牝 5 歳の 17 戦 2 勝馬にこの乗り替わりでは強調材料に乏しい。<br><br>3番, ウィングブルー, -0.1, 前走 1 勝クラス勝ちの斎藤新から横山琉人への乗り替わりで、継続騎乗の積み重ねが途切れる。横山琉人は若手ながら中山の短距離で乗れる部類で、斎藤誠厩舎の管理も堅実なので下げ幅は最小にとどめる。<br><br>4番, ジョヴィアン, -0.4, 北村宏司・丸山元気・浜中俊・坂井瑠星・戸崎圭太と 5 走続けて鞍上が入れ替わっており、陣営として手の内を固められていない。井上智史厩舎で杉原誠人への乗り替わりは、勝負気配というより手が回らない印象を受ける。<br><br>5番, ヴィヴァクラウン, -0.1, 大野拓弥・フーリー・横山武史・大野・横山琉人と毎走鞍上が替わる中で岩田康誠が新たに跨る。岩田は 2 勝クラスなら十分格のある騎手だが、杉浦宏昭厩舎のこの馬に初騎乗では上げる根拠にならない。<br><br>6番, トラスコンガーデン, +0.4, 江田照男が前走の中山 白井特別に続く継続騎乗で、その前の東京戦も同じ手綱。竹内正洋厩舎と江田のコンビは中山の短距離で手堅く、コースを知り尽くした鞍上の継続は素直に加点材料になる。<br><br>7番, ドリーミングアップ, +0.5, 横山武史が前走 3 着・前々走の長万部特別 1 着と続けて跨っており、手の内を完全に知る継続騎乗。高橋文雅厩舎が 31 戦 2 勝の馬にトップジョッキーを確保し続けている点は、陣営の本気度として評価できる。<br><br>8番, レオアジャイル, -0.3, 横山典弘・武豊・松山弘平・大野拓弥と重賞級の鞍上が続いた後、原優介への乗り替わりは騎手の格としては明確な後退。杉浦宏昭厩舎の 3 歳牝馬で仕上げ自体は良いが、陣営の軸では上げられない。<br><br>9番, ビッグフラワー, +0.8, ルメールが跨る一点で陣営の格は当レース最上位。前走を西村淳也で勝った直後の連闘にトップジョッキーを確保した加藤征弘厩舎の姿勢は、明確な勝負気配と読む。<br><br>10番, セレッソデアモール, -0.2, 9 か月の休養明けで田口貫太・川須栄彦・丹内祐次と鞍上が定まらない流れの後、ミシェルへの乗り替わり。西の庄野靖志厩舎が関東遠征でミシェルを確保した点は前向きに取れるが、手の内を知らない初コンビで長期休養明けでは差し引き小さくマイナス。<br><br>11番, ビービーエフォート, +0.3, 鮫島克駿・ロイド・三浦皇成・丹内祐次・横山武史と入れ替わりは激しいが、田辺裕信は 2 月の 1 勝クラス勝ち（トラスコンガーデン）を含め中山巧者で格は確か。高柳瑞樹厩舎が関東主力を押さえてきた点を小幅に加点する。<br><br>12番, アイムインディ, +0.7, 前走の中山 1200m を勝ったルメールがそのまま継続騎乗で、短期免許の中でこの馬を選び直した意味は大きい。蛯名正義厩舎が 3 歳牝馬にルメールを再確保した形は、陣営の勝負気配として上位に取る。<br><br>13番, レザンノワール, -0.2, 丹内祐次で 3 走続けた後の菊沢一樹への乗り替わりで、継続騎乗の積み重ねが切れる。伊藤圭三厩舎で 3 か月ぶりの実戦を関東の中堅どころで迎える形は、陣営の後押しとしては中立からやや下。<br><br>14番, スミッコディスコ, +0.4, 横山和生が下北半島特別 1 着・東京 2 着と手綱を取ってきた本来の鞍上に戻る継続的な関係で、鈴木慎太郎厩舎とのコンビは手の内が入っている。騎手の格も関東上位で、陣営の軸では素直に加点できる。<br><br>15番, メローネ, -0.4, 松若風馬・斎藤新・松山弘平と西のジョッキーが乗ってきた馬で、西園翔太厩舎の関東遠征で佐々木大輔への乗り替わり。佐々木は伸び盛りだが初コンビかつ遠征、陣営の後押しとしては手薄に映る。<br><br>16番, ピコアーガイル, -0.5, 函館で 2 着 2 回と結果を出した横山和生が同レースの 14 番に乗る一方、この馬には減量の小林美駒が回る。伊藤大士厩舎の鞍上選択として格の後退は明白で、佐々木大輔で中山 16 着だった過去も踏まえ陣営の軸では最も下げる。<br><br>**ステップ2: JSON**<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.6, &quot;2&quot;: -0.2, &quot;3&quot;: -0.1, &quot;4&quot;: -0.4, &quot;5&quot;: -0.1, &quot;6&quot;: 0.4, &quot;7&quot;: 0.5, &quot;8&quot;: -0.3, &quot;9&quot;: 0.8, &quot;10&quot;: -0.2, &quot;11&quot;: 0.3, &quot;12&quot;: 0.7, &quot;13&quot;: -0.2, &quot;14&quot;: 0.4, &quot;15&quot;: -0.4, &quot;16&quot;: -0.5}, &quot;analysis_summary&quot;: &quot;陣営の軸では騎手の格と継続騎乗の有無で差がついた。最上位は 9番ビッグフラワー（ルメール新規騎乗＋連闘での確保＝勝負気配）と 12番アイムインディ（前走中山勝ちのルメール継続騎乗）。7番ドリーミングアップは横山武史の 3 走連続騎乗、14番スミッコディスコは横山和生の実質主戦復帰、1番デンプシーは勝ち鞍のある戸崎圭太への戻りで加点。6番トラスコンガーデンの江田照男継続、11番ビービーエフォートの田辺裕信確保も小幅プラス。下げたのは鞍上の格が明確に後退した 16番ピコアーガイル（横山和生→減量の小林美駒）、8番レオアジャイル（重賞級の連続騎乗から原優介）、15番メローネ（西の主戦から関東遠征で初コンビ）、4番ジョヴィアン（5 走連続の乗り替わりで手の内が定まらない）。2番・13番は継続騎乗が切れた分の小幅マイナス。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 9番ビッグフラワー+0.8と12番アイムインディ+0.7の序列が、担当自身の『継続騎乗＝加点』の軸と矛盾。12番はルメール継続騎乗（3月中山ダートでも騎乗済）、9番は西村淳也で勝った直後のルメール初騎乗＋連闘。同じ物差しなら12番&gt;9番では。また9番の乗り替わりだけ純プラス扱いで、2番・3番の『継続騎乗が切れる』マイナスと非対称。(2) 5番ヴィヴァクラウン-0.1が甘い。理由文は全てネガティブ（毎走乗り替わり＋岩田初騎乗）なのに、同条件の4番ジョヴィアンは-0.4。初コンビを10番・15番ではマイナスにしているのに5番だけ軽い。(3) 11番ビービーエフォートの根拠に事実誤認：田辺のトラスコンガーデン1勝クラス勝ちは2026/02/14『東京』芝1400mで中山ではない。『中山巧者』の論拠にならない。加えて田辺はこの馬に初騎乗なのに+0.3で、初コンビ減点の軸がぶれている。(4) 1番デンプシー+0.6の『主戦復帰』は騎乗歴が薄い（7戦中戸崎1回、最多は舟山瑠泉3回）。直前2走から見れば乗り替わり。13番レザンノワール-0.2との扱いが非対称。(5) 落ちている論点：杉浦宏昭厩舎が5番（岩田）と8番（原）の2頭出し——どちらが勝負かの読みは陣営派の本丸では。10番は西厩舎が9か月明けで中山遠征＋ミシェル確保という行動の重さを天秤に載せていない。(6) 16番ピコアーガイルの『減量の小林美駒』は定量戦なので減量が効かない。また14番は別厩舎なので『横山和生を取られた』構図ではない。(7) 継続騎乗組（6・7・12・14）と初コンビ組（5・10・11・15）の間に段差が付いていない（11番+0.3と14番+0.4がほぼ同値）。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を検証した。(1)(2)(3)(4)(6)(7) は概ね妥当と判断して直す。(3) の田辺=トラスコンガーデンは東京戦であり中山の論拠にならない、かつこの馬に初騎乗——これは自軸の一貫性を壊す誤りなので下げる。(5) の杉浦厩舎 2 頭出しは自軸の本丸なので読みを入れる。ただし (1) の 9 番は、連闘でルメールを押さえた行動の重さ自体は陣営の勝負気配として残す（ただし 12 番の継続騎乗より下に置く）。<br><br>1番, デンプシー, +0.3, 戸崎圭太は 7 戦中 1 回の騎乗で「主戦復帰」とまでは言えず、直近 2 走（横山和生・舟山瑠泉）から見れば乗り替わり。ただし戸崎を土曜の中山でこの馬に確保した上原佑紀厩舎の選択は騎手の格として明確な上積みで、継続騎乗組より一段下の加点にとどめる。<br><br>2番, イゾラフェリーチェ, -0.3, 荻野極が 4 戦続けて手綱を取ってきた継続関係が切れ、津村明秀への乗り替わり。鹿戸雄一厩舎は名門だが、初コンビで手の内が入っていない点を素直に減点する。<br><br>3番, ウィングブルー, -0.3, 前走 1 勝クラス勝ちを含め斎藤新で 3 回乗った積み重ねが途切れ、横山琉人への乗り替わり。斎藤誠厩舎の管理は堅実で横山琉人も短距離は乗れる部類だが、初コンビ組として他馬と同じ物差しで下げる。<br><br>4番, ジョヴィアン, -0.5, 北村宏司・丸山元気・浜中俊・坂井瑠星・戸崎圭太と 5 走すべて鞍上が替わり、陣営として手の内が固まっていない。井上智史厩舎で 3 か月半ぶりに杉原誠人が初騎乗という形は、勝負気配より手が回っていない印象で本レース最低水準の一角。<br><br>5番, ヴィヴァクラウン, -0.4, 大野拓弥・フーリー・横山武史・大野・横山琉人と毎走鞍上が替わった末の岩田康誠初騎乗で、4 番と同条件と見て同水準まで下げる。杉浦宏昭厩舎の 2 頭出しでは、勝ち味の遅い 5 歳の当馬より 8 番が主戦線と読む。<br><br>6番, トラスコンガーデン, +0.5, 江田照男が前走の中山 白井特別・その前の東京戦と続けて手綱を取る継続騎乗で、竹内正洋厩舎とのコンビで中山の短距離を使い続けている。コースを知り尽くした鞍上の継続として、継続騎乗組の段に明確に置く。<br><br>7番, ドリーミングアップ, +0.6, 横山武史が前走 3 着・前々走の長万部特別 1 着と続けて跨る継続騎乗で、手の内は完全に入っている。高橋文雅厩舎が 31 戦 2 勝の馬にトップジョッキーを確保し続けている点は、陣営の本気度として継続騎乗組の上位に取る。<br><br>8番, レオアジャイル, -0.2, 横山典弘・武豊・松山弘平・大野拓弥と重賞級が続いた後の原優介は騎手の格として後退で、初コンビでもある。ただし杉浦宏昭厩舎の 2 頭出しで 3 か月明けの 3 歳牝馬を仕上げてきた側と見て、5 番ほどは下げない。<br><br>9番, ビッグフラワー, +0.5, 西村淳也で勝った直後の連闘でルメールを押さえた加藤征弘厩舎の行動自体は勝負気配として重いが、ルメールはこの馬に初騎乗で継続騎乗の利は無い。行動の重さと初コンビの減点を相殺し、継続騎乗組の 12 番より下に置く。<br><br>10番, セレッソデアモール, -0.2, 田口貫太・川須栄彦・丹内祐次と鞍上が定まらない流れの後、9 か月明けでミシェルへの乗り替わり。西の庄野靖志厩舎が関東遠征でミシェルを確保した行動の重さは評価するが、初コンビであることと差し引いて小幅マイナスにとどめる。<br><br>11番, ビービーエフォート, -0.2, 田辺裕信が中山巧者という前回の論拠は誤りで、田辺のトラスコンガーデン 1 勝クラス勝ちは東京芝 1400m だった。鮫島克駿・ロイド・三浦皇成・丹内祐次・横山武史と毎走替わる流れでの田辺初騎乗であり、初コンビ組の物差しに合わせてマイナスに改める。<br><br>12番, アイムインディ, +0.7, 前走の中山 1200m を勝ったルメールがそのまま継続騎乗で、3 月の中山ダート戦でも跨っておりこの馬との関係は当レース最上位。短期免許の限られた騎乗数の中で蛯名正義厩舎がルメールを再確保した形は、継続騎乗と勝負気配の両方が揃う唯一の馬。<br><br>13番, レザンノワール, -0.3, 丹内祐次で 3 走続けた継続関係が切れ、菊沢一樹への初コンビ。伊藤圭三厩舎で 3 か月ぶりの実戦を迎える形として、2 番・3 番と同じ水準で下げる。<br><br>14番, スミッコディスコ, +0.5, 横山和生が下北半島特別 1 着・東京 2 着・中山 1 着と手綱を取ってきた本来の鞍上に戻る形で、鈴木慎太郎厩舎とのコンビは手の内が入っている。騎手の格も関東上位で、継続騎乗組の段に置く。<br><br>15番, メローネ, -0.4, 松若風馬・斎藤新・松山弘平と西のジョッキーが乗ってきた馬に、西園翔太厩舎の関東遠征で佐々木大輔が初騎乗。遠征かつ初コンビで、陣営の後押しとしては手薄。<br><br>16番, ピコアーガイル, -0.4, 函館で 2 着 2 回と結果を出した横山和生から小林美駒への乗り替わりだが、定量戦なので減量の利は無く、騎手の格としては純粋な後退。伊藤大士厩舎の鞍上選択として初コンビ組と同等以上に下げるが、14 番は別厩舎で「取られた」構図ではないので前回の -0.5 からは戻す。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.3, &quot;3&quot;: -0.3, &quot;4&quot;: -0.5, &quot;5&quot;: -0.4, &quot;6&quot;: 0.5, &quot;7&quot;: 0.6, &quot;8&quot;: -0.2, &quot;9&quot;: 0.5, &quot;10&quot;: -0.2, &quot;11&quot;: -0.2, &quot;12&quot;: 0.7, &quot;13&quot;: -0.3, &quot;14&quot;: 0.5, &quot;15&quot;: -0.4, &quot;16&quot;: -0.4}, &quot;analysis_summary&quot;: &quot;指摘を受けて軸の一貫性を立て直した。(a) 継続騎乗組（7:+0.6 / 6:+0.5 / 14:+0.5 / 12:+0.7）と初コンビ組（2・3・13:-0.3、5・15:-0.4、4:-0.5、10・11:-0.2）で段差を明確化。(b) 12番&gt;9番へ序列を入れ替え。12番はルメール継続騎乗（3月中山でも騎乗）で唯一「継続+勝負気配」が揃う。9番は連闘でルメールを押さえた行動は重いが初騎乗なので +0.5 に下げた。(c) 11番は田辺の1勝クラス勝ちが中山でなく東京だった事実誤認を認め、初騎乗でもあるため +0.3 → -0.2 に反転。(d) 1番は戸崎が7戦中1回で「主戦復帰」は過大、+0.6 → +0.3。ただし戸崎確保自体は格の上積みとして残した。(e) 5番は4番と同条件（毎走乗り替わり+初騎乗）なので -0.1 → -0.4 に揃えた。(f) 杉浦厩舎2頭出しは、勝ち味の遅い5歳の5番より3歳牝馬の8番が主戦線と読み、8番を -0.3 → -0.2 に。(g) 16番は定量戦で減量が効かない指摘を受け入れ、14番を別厩舎と訂正した上で -0.5 → -0.4。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>## 合成スコアへの疑問<br><br>暫定スコアは上位5頭が 21.5〜18.7 と**ほぼ横一線で、実質的に順位を付けとらん**。これは5人の平均が互いを打ち消した結果で、判断の放棄に近い。買い目は◎○▲で決まるけん、ここは差を付けんといかん。<br><br>**疑問1: 7番ドリーミングアップが1位なのは「見た目の前走」に引きずられとる。** 通算31戦2勝[2-3-7-19]で、3着7回という典型的な詰め切れんタイプ。前走白井特別3着（差0.4秒）は確かに同コース同距離で良い内容やが、58kg背負っての33.1の上がりは「差し損ね」の形。中山芝1200mは外回りのスタートから下り坂で流れが速く、8番手からの追い込みが毎回届く保証はない。1勝クラスの長万部特別（9頭立て）を勝ち上がったばかりの馬を、この頭数で本命格に置くのは買い被り。<br><br>**疑問2: 8番レオアジャイルが4位は逆に低すぎる。** フェアリーS3着（スピード指数92.4）は今回のメンバーで唯一の抜けた数字で、前走函館1勝クラスを1着、しかも-16kgの絞れた体で。3歳牝馬54kgの斤量は58kg組との比較で実質的に大きい。調教も美W 1F 11.4 の馬なり余力で「仕上がり良好」。**3か月の休み明けが唯一の減点だが、それを織り込んでも4位は下げすぎ。**<br><br>**疑問3: 11番ビービーエフォートは妥当だが、馬体424kgという小柄さと中山の急坂がノーマークになっとる。** 2勝クラスで3着→2着と安定しとるのは事実やが、中山芝1200mの3月は2着。ここは評価を据え置きにする。<br><br>**疑問4: 上位5頭の外から6番トラスコンガーデンより上に入れるべき馬がおる。** 16番ピコアーガイルは函館で2着・2着（スピード指数80.0/77.0）と2勝クラスで詰めとるのに5位圏外。ただし中山2勝クラスで16着の大敗があり、小林美駒騎手への乗り替わりも割引。上位5頭を入れ替えるまでには至らんが、6番トラスコンガーデンは前走5着（差0.7秒）だけで、それ以前は1400m以上で二桁着順ばかり。**1200m実績が前走1走しかない馬を5位に置くのは、「動き目立つ・調子↗」の調教評価を過大に効かせた結果**と見る。ここは下げる。<br><br>---<br><br>## 確定点数<br><br>8番, レオアジャイル, 25.0%, フェアリーS3着の指数92.4は当メンバーで断然、前走1勝クラスを-16kgの絞れた体で完勝し3歳牝馬54kgの恩恵も大きい。休み明けは減点だが調教1F11.4馬なり「仕上がり良好」で態勢は整っており、合成4位は明確に過小評価。<br><br>11番, ビービーエフォート, 22.0%, 2勝クラスで2着→3着と詰め、中山芝1200mでも2着の実績がある堅実型で上位評価は妥当。424kgの小柄さと急坂への不安は残るが、田辺裕信への乗り替わりはプラスで評価据え置き。<br><br>1番, デンプシー, 20.0%, 芝1200m一本で7戦2勝、前走札幌5着も0.4秒差で先行位置を取れる強み。最内枠＋戸崎圭太で流れに乗れる形が描け、7番ドリーミングアップより信頼できる。<br><br>7番, ドリーミングアップ, 17.0%, 前走の同コース3着は認めるが31戦で3着7回の詰め切れん馬で、58kg・8番手からの形は再現性に乏しい。1位に置くほどの裏付けはなく1枚下げる。<br><br>6番, トラスコンガーデン, 13.0%, 1200m実績が前走5着の1走だけで、それ以前は1400m以上で二桁着順が並ぶ。調教の動きと54kgは魅力だが、5位は調教評価を効かせすぎと判断して下げる。<br><br>```json<br>{&quot;score&quot;: {&quot;8&quot;: 25.0, &quot;11&quot;: 22.0, &quot;1&quot;: 20.0, &quot;7&quot;: 17.0, &quot;6&quot;: 13.0}, &quot;analysis_summary&quot;: &quot;合成スコアは上位5頭が21.5〜18.7とほぼ横一線で実質的に順位付けを放棄しており、差を付ける必要があると判断。最大の疑問は7番ドリーミングアップの1位で、前走の同コース3着だけを見て31戦2勝・3着7回という詰め切れん本質と58kg・後方からの再現性の低さを見落としている（21.5→17.0へ下げ）。逆に8番レオアジャイルはフェアリーS3着の指数92.4が当メンバーで断然、前走を-16kgで完勝、54kgの斤量利、調教1F11.4馬なりで仕上がり良好と条件が揃うのに4位止まりで、休み明けを織り込んでも下げすぎと判断し最上位に置いた（19.1→25.0）。6番トラスコンガーデンは1200m実績が前走1走のみで1400m以上では二桁着順が並び、調教評価（動き目立つ・調子↗）を過大に効かせた結果と見て下げた（18.7→13.0）。1番デンプシーは芝1200m専門で先行力があり内枠＋戸崎で7番より信頼でき据え置き上位。11番ビービーエフォートは2勝クラスで安定し中山1200mでも2着があり妥当と判断して据え置き。なお圏外では16番ピコアーガイルが函館2勝クラスで2着連続と指数上位だが、中山16着の大敗と小林美駒への乗り替わりで上位5頭の入れ替えまでは至らないと判断した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>11番, ビービーエフォート, 14%, 札幌2勝クラスで2着→3着と2走続けて上位をキープし、中山芝1200mでも2着実績があるのが一番の強み。美芝で1F11.2の軽快な動き、424kgの小柄な牝馬ながらスピード指数80台を安定して出しており、この相手なら能力上位と見た。<br><br>7番, ドリーミングアップ, 12%, 前走白井特別3着で上がり33.1の最速級、同じ中山芝1200mの2勝クラスで通用する脚を見せたばかり。31戦2勝の頭打ち感はあるが、横山武史継続騎乗で差し届く展開なら最有力の一頭。<br><br>16番, ピコアーガイル, 11%, 函館2勝クラスで2着→2着と連続好走、同距離での安定感は上位。中山芝1200mで16着の大敗歴が引っかかるが、あれは逃げて崩れた一戦で、先行して押し切る形なら巻き返せる。<br><br>12番, アイムインディ, 10%, 前走中山芝1200mでルメール騎乗で完勝、3週前の同コース勝ちがそのまま活きる。今回もルメール継続で、7戦2勝の上昇度と54kgの軽ハンデを評価。調教の時計は地味だが本数より実戦内容を取る。<br><br>3番, ウィングブルー, 10%, 3週前に札幌1勝クラスを勝ち上がったばかりで、13戦2勝ながら2着5回と崩れにくい堅実型。芝1200mで78-79の指数を繰り返しており、横山琉人に乗り替わるが54kgの軽さと勢いは無視できない。<br><br>1番, デンプシー, 9%, 2勝クラスの札幌HBC賞5着・苫小牧特別2着と既にこのクラスで通用の目処、全て芝1200m戦の完成型スプリンター。戸崎に戻って56kgなら見直せるが、462kg前後で内枠の1番はスタート直後に包まれるリスクがある。<br><br>8番, レオアジャイル, 8%, フェアリーS3着で指数92.4という突出した数値を持ち、素材は明らかにこの中で最上位。ただ3か月の間隔と芝1400m以上での凡走が続いた点、2勝クラス初挑戦の未知が割り引き要素。<br><br>14番, スミッコディスコ, 6%, 東京芝1400mで指数83.3、クロッカスSで84.9と高い数値を出しており能力は足りる。ただ3か月ぶりで調教評価が「反応ひと息」、初の2勝クラス芝1200mで忙しくならないか半信半疑。<br><br>9番, ビッグフラワー, 6%, 1週前に中山芝1200mを勝った直後の連闘で、鉄は熱いうちに打ての一頭。ただ勝ち時計1:10.5は重馬場でも平凡、その前は6着6着6着と足踏みしており、連闘の反動も気になる。<br><br>6番, トラスコンガーデン, 5%, 前走白井特別5着で上がり33.5、同じ中山芝1200mを一度経験済み。調教で「動き目立つ」と調子↗なのは好材料だが、大外から差す形で届きそうな脚質ではなく、2勝クラスで一枚足りない印象。<br><br>13番, レザンノワール, 4%, 函館STV杯3着で指数77.2、中山芝1200mも4着7着と大崩れはない安定型。だが16戦2勝で頭打ち、3か月ぶりの58kgでは決め手不足が響きそう。<br><br>2番, イゾラフェリーチェ, 4%, 郡山特別2着で指数82.2はこのメンバー上位の数値、芝短距離に絞ってからの内容は悪くない。ただ17戦2勝で12回着外という取りこぼしの多さ、3か月ぶりと5歳牝馬の限界が見え隠れする。<br><br>15番, メローネ, 3%, 小倉1勝クラスを勝った後の2勝クラス初戦が12着、408kg前後の小柄な馬体で相手強化に対応できるか疑問。調教評価も「伸び案外」で3か月ぶり、ここは様子見。<br><br>5番, ヴィヴァクラウン, 3%, 前走白井特別4着で上がり33.6は見どころだが、26戦2勝で2勝クラス滞留が長く、直近5走で勝ち星なし。調教の「鋭さ欠く」もマイナスで、58kgでは決め手が足りない。<br><br>10番, セレッソデアモール, 2%, 9か月ぶりの休養明けで、京都鹿ケ谷特別4着が最後の実戦。21戦2勝で18回着外、6歳牝馬の実戦不足は致命的で、栗東からの遠征も重い。<br><br>4番, ジョヴィアン, 1%, 直近5走で芝は1回だけ（9着）、残りは全てダートで大敗続き。23戦2勝の6歳馬が4か月ぶりに芝1200mへ、後方一気しかない脚質で58kg、ここは最も苦しい。</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>11</td><td class="left horse-name">ビービーエフォート</td><td>11.3%</td><td>24.7</td><td>10</td><td class="ev-high">2.79</td></tr><tr><td>2</td><td>7</td><td class="left horse-name">ドリーミングアップ</td><td>10.0%</td><td>4.8</td><td>3</td><td class="ev-low">0.48</td></tr><tr><td>3</td><td>1</td><td class="left horse-name">デンプシー</td><td>9.6%</td><td>4.1</td><td>2</td><td class="ev-low">0.39</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">トラスコンガーデン</td><td>7.9%</td><td>14.9</td><td>5</td><td class="ev-mid">1.17</td></tr><tr><td>5</td><td>8</td><td class="left horse-name">レオアジャイル</td><td>7.4%</td><td>22.4</td><td>7</td><td class="ev-mid">1.67</td></tr><tr><td>6</td><td>3</td><td class="left horse-name">ウィングブルー</td><td>7.4%</td><td>30.9</td><td>11</td><td class="ev-high">2.27</td></tr><tr><td>7</td><td>2</td><td class="left horse-name">イゾラフェリーチェ</td><td>6.6%</td><td>3.9</td><td>1</td><td class="ev-low">0.26</td></tr><tr><td>8</td><td>12</td><td class="left horse-name">アイムインディ</td><td>6.3%</td><td>44.9</td><td>14</td><td class="ev-high">2.81</td></tr><tr><td>9</td><td>16</td><td class="left horse-name">ピコアーガイル</td><td>6.3%</td><td>10.7</td><td>4</td><td class="ev-low">0.67</td></tr><tr><td>10</td><td>14</td><td class="left horse-name">スミッコディスコ</td><td>6.1%</td><td>22.4</td><td>9</td><td class="ev-mid">1.37</td></tr><tr><td>11</td><td>9</td><td class="left horse-name">ビッグフラワー</td><td>6.0%</td><td>15.9</td><td>6</td><td class="ev-low">0.96</td></tr><tr><td>12</td><td>13</td><td class="left horse-name">レザンノワール</td><td>5.4%</td><td>44.9</td><td>15</td><td class="ev-high">2.43</td></tr><tr><td>13</td><td>15</td><td class="left horse-name">メローネ</td><td>3.0%</td><td>32.9</td><td>13</td><td class="ev-mid">1.00</td></tr><tr><td>14</td><td>5</td><td class="left horse-name">ヴィヴァクラウン</td><td>2.9%</td><td>70.6</td><td>16</td><td class="ev-high">2.07</td></tr><tr><td>15</td><td>10</td><td class="left horse-name">セレッソデアモール</td><td>2.5%</td><td>22.4</td><td>8</td><td class="ev-low">0.56</td></tr><tr><td>16</td><td>4</td><td class="left horse-name">ジョヴィアン</td><td>1.2%</td><td>32.9</td><td>12</td><td class="ev-low">0.40</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">11 ビービーエフォート</td><td>11.3%</td><td>24.7</td><td class="ev-high">2.26</td></tr><tr><td>複勝</td><td class="left">11 ビービーエフォート</td><td>32.3%</td><td>3.4</td><td class="ev-low">0.94</td></tr><tr><td>馬連</td><td class="left">7 ドリーミングアップ-11 ビービーエフォート</td><td>2.5%</td><td>61.5</td><td class="ev-mid">1.25</td></tr><tr><td>ワイド</td><td class="left">7 ドリーミングアップ-11 ビービーエフォート</td><td>7.3%</td><td>7.9</td><td class="ev-low">0.47</td></tr><tr><td>馬単</td><td class="left">11 ビービーエフォート→7 ドリーミングアップ</td><td>1.3%</td><td>60.9</td><td class="ev-low">0.63</td></tr><tr><td>3連複</td><td class="left">1 デンプシー-7 ドリーミングアップ-11 ビービーエフォート</td><td>0.9%</td><td>88.6</td><td class="ev-low">0.65</td></tr><tr><td>3連単</td><td class="left">11 ビービーエフォート→7 ドリーミングアップ→1 デンプシー</td><td>0.2%</td><td>2064.0</td><td class="ev-high">2.58</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,800円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連複</td><td class="left">1 デンプシー-7 ドリーミングアップ-11 ビービーエフォート</td><td>88.6</td><td>16</td><td style='text-align:right;font-weight:600;'>1,600円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">11 ビービーエフォート→7 ドリーミングアップ→1 デンプシー</td><td>2064.0</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,800円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
