@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第60回スプリンターズステークス 2026/09/27 NAKAYAMA 11R (09/27 15:07 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第60回スプリンターズステークス 2026/09/27 NAKAYAMA 11R (09/27 15:07 予想)</h1>
+  <div class="meta">芝1200m（右 外） | 稍重 | 16頭立て | 4回 中山 9日目 サラ系3歳以上 オープン （国際）（指定） 定量 16頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">15. フリッカージャブ</div>
+      <div class="pick-jockey">西村 淳也 / 西園 翔太</div>
+    </div>
+    <div class="pick-prob">10.4%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">11. ルガル</div>
+      <div class="pick-jockey">鮫島 克駿 / 杉山 晴紀</div>
+    </div>
+    <div class="pick-prob">8.7%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">13. パンジャタワー</div>
+      <div class="pick-jockey">松山 弘平 / 橋口 慎介</div>
+    </div>
+    <div class="pick-prob">8.5%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">レッドモンレーヴ</td><td>牡7</td><td>58</td><td>酒井 学</td><td>蛯名 正義</td><td>ロードカナロア</td><td>ディープインパクト</td><td>510(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">アイサンサン</td><td>牝4</td><td>56</td><td>幸 英明</td><td>橋田 宜長</td><td>キズナ</td><td>シンボリクリスエス</td><td>454(-4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">ママコチャ</td><td>牝7</td><td>56</td><td>武 豊</td><td>池江 泰寿</td><td>クロフネ</td><td>キングカメハメハ</td><td>500(-2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">ジューンブレア</td><td>牝5</td><td>56</td><td>坂井 瑠星</td><td>武 英智</td><td>American Pharoah</td><td>Galileo</td><td>496(+12)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">サウンドモリアーナ</td><td>牝4</td><td>56</td><td>吉田 隼人</td><td>武 英智</td><td>ミッキーアイル</td><td>ケイムホーム</td><td>454(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">ワールズエンド</td><td>牡5</td><td>58</td><td>津村 明秀</td><td>池添 学</td><td>ロードカナロア</td><td>ゼンノロブロイ</td><td>472(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">ペアポルックス</td><td>牡5</td><td>58</td><td>岩田 康誠</td><td>梅田 智之</td><td>キンシャサノキセキ</td><td>ディープインパクト</td><td>482(+4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">エーティーマクフィ</td><td>牡7</td><td>58</td><td>富田 暁</td><td>武 英智</td><td>マクフィ</td><td>ハーツクライ</td><td>476(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">スターアニス</td><td>牝3</td><td>54</td><td>C.ルメール</td><td>高野 友和</td><td>ドレフォン</td><td>ダイワメジャー</td><td>484(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">レイピア</td><td>牡4</td><td>58</td><td>横山 武史</td><td>中竹 和也</td><td>タワーオブロンドン</td><td>エンパイアメーカー</td><td>508(0)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">ルガル</td><td>牡6</td><td>58</td><td>鮫島 克駿</td><td>杉山 晴紀</td><td>ドゥラメンテ</td><td>New Approach</td><td>532</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">ブラックチャリス</td><td>牝3</td><td>54</td><td>浜中 俊</td><td>武 幸四郎</td><td>キタサンブラック</td><td>トゥザワールド</td><td>464(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">パンジャタワー</td><td>牡4</td><td>58</td><td>松山 弘平</td><td>橋口 慎介</td><td>タワーオブロンドン</td><td>ヴィクトワールピサ</td><td>490(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">ウインカーネリアン</td><td>牡9</td><td>58</td><td>三浦 皇成</td><td>鹿戸 雄一</td><td>スクリーンヒーロー</td><td>マイネルラヴ</td><td>518(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>15</td><td class="left horse-name">フリッカージャブ</td><td>牡4</td><td>58</td><td>西村 淳也</td><td>西園 翔太</td><td>サートゥルナーリア</td><td>サクラバクシンオー</td><td>504(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">ピューロマジック</td><td>牝5</td><td>56</td><td>岩田 望来</td><td>安田 翔伍</td><td>アジアエクスプレス</td><td>ディープインパクト</td><td>464(+4)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">フリッカージャブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">サウンドモリアーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">スターアニス</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">フリッカージャブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">パンジャタワー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">サウンドモリアーナ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">フリッカージャブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ルガル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">パンジャタワー</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">フリッカージャブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ルガル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">サウンドモリアーナ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">フリッカージャブ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ルガル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ウインカーネリアン</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.53</td>
+<td style='color:#8E8E93'>0.53</td>
+<td style='color:#8E8E93'>0.20</td>
+<td style='color:#8E8E93'>0.20</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">フリッカージャブ</span></td>
+<td>+0.54</td>
+<td>+0.04</td>
+<td>+0.40</td>
+<td>+0.48</td>
+<td>-0.10</td>
+<td>8.9</td>
+<td>9.1</td>
+<td>16.4</td>
+<td><b>10.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ルガル</span></td>
+<td>+0.50</td>
+<td>+0.06</td>
+<td>+0.14</td>
+<td>+0.22</td>
+<td>+0.36</td>
+<td>8.4</td>
+<td>8.5</td>
+<td>9.8</td>
+<td><b>8.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">パンジャタワー</span></td>
+<td>+0.42</td>
+<td>+0.16</td>
+<td>+0.32</td>
+<td>+0.32</td>
+<td>+0.46</td>
+<td>8.8</td>
+<td>8.4</td>
+<td>7.2</td>
+<td><b>8.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">サウンドモリアーナ</span></td>
+<td>+0.34</td>
+<td>+0.14</td>
+<td>+0.46</td>
+<td>+0.16</td>
+<td>-0.06</td>
+<td>7.7</td>
+<td>8.2</td>
+<td>10.2</td>
+<td><b>8.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ウインカーネリアン</span></td>
+<td>+0.38</td>
+<td>+0.00</td>
+<td>+0.06</td>
+<td>+0.20</td>
+<td>+0.54</td>
+<td>7.7</td>
+<td>8.2</td>
+<td>9.2</td>
+<td><b>8.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">スターアニス</span></td>
+<td>+0.32</td>
+<td>-0.04</td>
+<td>+0.28</td>
+<td>+0.32</td>
+<td>+0.46</td>
+<td>7.8</td>
+<td>7.5</td>
+<td>7.8</td>
+<td><b>7.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">ピューロマジック</span></td>
+<td>+0.30</td>
+<td>-0.14</td>
+<td>+0.16</td>
+<td>+0.26</td>
+<td>+0.14</td>
+<td>6.8</td>
+<td>-</td>
+<td>7.4</td>
+<td><b>6.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ワールズエンド</span></td>
+<td>+0.36</td>
+<td>-0.04</td>
+<td>+0.04</td>
+<td>-0.12</td>
+<td>+0.20</td>
+<td>6.6</td>
+<td>-</td>
+<td>6.8</td>
+<td><b>6.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">レイピア</span></td>
+<td>+0.14</td>
+<td>+0.24</td>
+<td>-0.04</td>
+<td>+0.44</td>
+<td>+0.32</td>
+<td>6.6</td>
+<td>-</td>
+<td>6.0</td>
+<td><b>6.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ママコチャ</span></td>
+<td>+0.02</td>
+<td>+0.24</td>
+<td>+0.20</td>
+<td>+0.26</td>
+<td>+0.48</td>
+<td>6.3</td>
+<td>-</td>
+<td>3.9</td>
+<td><b>5.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">エーティーマクフィ</span></td>
+<td>-0.02</td>
+<td>+0.20</td>
+<td>+0.20</td>
+<td>+0.28</td>
+<td>-0.06</td>
+<td>5.5</td>
+<td>-</td>
+<td>2.9</td>
+<td><b>5.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">レッドモンレーヴ</span></td>
+<td>+0.10</td>
+<td>-0.16</td>
+<td>+0.16</td>
+<td>-0.04</td>
+<td>-0.02</td>
+<td>5.2</td>
+<td>-</td>
+<td>2.4</td>
+<td><b>4.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ジューンブレア</span></td>
+<td>-0.04</td>
+<td>-0.02</td>
+<td>-0.20</td>
+<td>+0.22</td>
+<td>-0.02</td>
+<td>4.1</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>3.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ペアポルックス</span></td>
+<td>-0.08</td>
+<td>+0.12</td>
+<td>-0.26</td>
+<td>+0.28</td>
+<td>+0.10</td>
+<td>3.9</td>
+<td>-</td>
+<td>3.1</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ブラックチャリス</span></td>
+<td>-0.38</td>
+<td>-0.16</td>
+<td>+0.26</td>
+<td>+0.00</td>
+<td>-0.08</td>
+<td>3.0</td>
+<td>-</td>
+<td>1.9</td>
+<td><b>2.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">アイサンサン</span></td>
+<td>-0.36</td>
+<td>-0.10</td>
+<td>-0.08</td>
+<td>-0.16</td>
+<td>-0.08</td>
+<td>2.7</td>
+<td>-</td>
+<td>1.9</td>
+<td><b>2.6</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行3</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行3の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, レッドモンレーヴ, -0.1, 高松宮記念(GI)で2着、0.3秒差、指数92.0とGIで通用する力は見せている。ただ前走セントウルS(GII)は2.6秒差の16着で指数55.9。7歳でもあり、割り引く。<br><br>2番, アイサンサン, -0.4, 愛知杯(GIII)は1400mの逃げ切りで指数90.8。GIのヴィクトリアマイルでは13着に負けている。1200mの実績がなく、GIで戦える根拠が乏しい。<br><br>3番, ママコチャ, 0.0, 前走セントウルS(GII)は0.3秒差の3着だが指数は88.9にとどまる。高松宮記念は9着で1.0秒差、ダートの交流重賞も5着が続いた。GI勝ちは過去のもので、全盛期ほどの数字は出ていない。<br><br>4番, ジューンブレア, -0.1, 昨年のスプリンターズSは0.0秒差の2着で指数93.3、函館SSも2着で94.5と、同コース・同距離でGI級の数字がある。一方で直近は阪神カップ11着、高松宮記念17着で2.3秒差・指数63.6と崩れており、そこから6か月の休み明けになる。<br><br>5番, サウンドモリアーナ, +0.4, 前走キーンランドC(GIII)は1着で指数94.8。そのレースでパンジャタワーとウインカーネリアンに先着した。1200mでOPとGIIIを勝っており、成績は右肩上がり。ただGIでの実績はない。<br><br>6番, ワールズエンド, +0.4, 京王杯SC(GII)を勝って指数95.3、続く安田記念(GI)も0.0秒差の2着で、能力はGIでも上位。ただ近5走はすべて1400〜1600mで、1200mの裏付けがないぶん控えめにした。<br><br>7番, ペアポルックス, -0.2, オーシャンS(GIII)は勝って指数94.6。ただGIでは高松宮記念10着(1.1秒差)、昨年のスプリンターズS13着(0.8秒差)と通用していない。<br><br>8番, エーティーマクフィ, -0.2, 函館SS2着、キーンランドC4着と、GIIIなら安定して走る。ただ高松宮記念は0.9秒差の8着で、GIでは力が足りない。指数も90前後で頭打ち。<br><br>9番, スターアニス, +0.4, 桜花賞(GI)を0.4秒差で勝って指数96.3、阪神JF(GI)も勝っている。GIを2勝した能力は上位で、斤量54kgも有利。ただ1200mは未勝利戦の1走だけで、古馬スプリンターとの力関係は未知数。<br><br>10番, レイピア, +0.3, オーシャンS2着(指数94.6)、シルクロードS2着、CBC賞2着、高松宮記念5着(0.7秒差)と崩れない。成績の安定感は上位だが、勝ち切れていない。<br><br>11番, ルガル, +0.6, 阪神カップ(GII)を勝って指数96.8はメンバー中上位。海外GIのアル・クオーツスプリントでも0.0秒差の2着、過去にスプリンターズS勝ちもあり、格と指数の両方が揃っている。<br><br>12番, ブラックチャリス, -0.5, 青函S(OP)の勝ち(指数93.1)は53kgの軽ハンデでのもの。前走UHB賞(OP)は6着、桜花賞は2.0秒差の15着。GIで戦える実績がない。<br><br>13番, パンジャタワー, +0.5, 高松宮記念4着(0.4秒差、指数90.5)、安田記念5着(0.1秒差)、前走キーンランドC2着(指数92.1)。GIで僅差の競馬を続けており、NHKマイルC勝ちの格もある。<br><br>14番, ウインカーネリアン, +0.6, 昨年のスプリンターズSを勝っている(同コース・同距離、指数93.3)。今年も高松宮記念で0.3秒差の3着、キーンランドCでも59kgを背負って3着。GIで上位を続けているのが大きく、9歳の年齢を差し引いても上位。<br><br>15番, フリッカージャブ, +0.8, 鞍馬S(指数95.2)、北九州記念(94.2)、セントウルS(GII、93.2)と重賞を含む3連勝中。1200mでは[5勝]と距離実績も厚い。前走はピューロマジックとママコチャを下しており、現在の充実度はメンバー中で抜けている。<br><br>16番, ピューロマジック, +0.4, 函館SS1着、アイビスSD1着(指数97.3)、セントウルS2着(0.1秒差)と夏以降は高い水準で走っている。ただ高松宮記念13着(指数76.4)、オーシャンS16着と、GIや中山ではまだ結果が出ていない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.1, &quot;2&quot;: -0.4, &quot;3&quot;: 0.0, &quot;4&quot;: -0.1, &quot;5&quot;: 0.4, &quot;6&quot;: 0.4, &quot;7&quot;: -0.2, &quot;8&quot;: -0.2, &quot;9&quot;: 0.4, &quot;10&quot;: 0.3, &quot;11&quot;: 0.6, &quot;12&quot;: -0.5, &quot;13&quot;: 0.5, &quot;14&quot;: 0.6, &quot;15&quot;: 0.8, &quot;16&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;実績軸ではセントウルS(GII)を含む重賞連勝中で1200m[5勝]のフリッカージャブが最上位。次点は昨年の覇者で今年も高松宮記念3着のウインカーネリアンと、阪神カップ勝ち(指数96.8)・海外GI2着のルガル。高松宮記念4着・安田記念5着とGIで僅差のパンジャタワーが続く。キーンランドC勝ちのサウンドモリアーナ、1200m未経験ながら京王杯SC勝ち・安田記念2着のワールズエンド、GI2勝の3歳スターアニス、夏に重賞2勝のピューロマジックは中程度のプラス。GIで通用していないペアポルックス・エーティーマクフィ、直近で崩れているジューンブレア、OP止まりのブラックチャリスはマイナス。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 15番フリッカージャブ+0.8: 指数は95.2→94.2→93.2と下がっており、GI実績はなく、中山のオーシャンSは6着(7・10・11・3番に先着を許した)。5番・9番を『GI実績なし/未知数』で割り引いたのと同じ物差しを当てていないのではないか。(2) 11番ルガルの96.8は1400m、16番ピューロマジックの97.3は1000mの指数。6番ワールズエンドは距離を理由に割り引いたのと一貫しない。11番はQE2世JS 8着にも触れていない。(3) 5番サウンドモリアーナのキーンランドC勝ちは55kgで、58kgの13番・59kgの14番に先着したもの。12番ブラックチャリスを軽ハンデで割り引いたのと扱いが逆ではないか。94.8以外の指数は84〜92。(4) 10番レイピア+0.3と8番エーティーマクフィ-0.2: 函館SSは8番(58kg)が10番(57kg)に先着、高松宮もほぼ同じ着差。10番の直近3走は86〜88台で、8番より低い。0.5差の根拠を示せるか。(5) 14番ウインカーネリアン+0.6と1番レッドモンレーヴ-0.1: 高松宮は1番が先着で指数も同じ92.0。4番ジューンブレアも昨年スプリンターズSで93.3と同じ数字。14番の香港11着(2.2秒差)と9歳を差し引いていないのではないか。(6) 3番ママコチャ0.0と7番ペアポルックス-0.2: オーシャンSは7番が上、高松宮はほぼ同じ。順番が逆でないか見直す余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, レッドモンレーヴ, 0.0, 高松宮記念(GI)では2着・0.3秒差・指数92.0で、14番と同じ着差と指数で先着している。前走セントウルSの16着(2.6秒差)は休み明けで最後方から上がり32.6の内容なので、実力の目安にはしない。7歳なので上げもしない。<br><br>2番, アイサンサン, -0.4, 愛知杯(GIII)は1400mの逃げ切りで指数90.8。GIのヴィクトリアマイルは13着で指数86.4、1200mでは一度も走っていない。GIで通用する根拠が乏しい。<br><br>3番, ママコチャ, 0.0, 前走セントウルS(GII)で0.3秒差の3着・指数88.9と、直近の同距離重賞で上位に来ている。一方で高松宮記念は9着・1.0秒差・指数82.0と、今年のGIでは力が足りなかった。<br><br>4番, ジューンブレア, -0.1, 昨年のスプリンターズSは同じコースで0.0秒差の2着・指数93.3と、GI級の数字を持っている。ただ直近は阪神カップ11着、高松宮記念17着(2.3秒差・指数63.6)と大きく崩れ、そこから6か月の休み明けになる。<br><br>5番, サウンドモリアーナ, +0.3, 前走キーンランドC(GIII)を勝って指数94.8。ただこのときは55kgで、58kgの13番・59kgの14番より有利だった。それ以外の指数は84〜92にとどまり、GIの実績もないので一段下げた。<br><br>6番, ワールズエンド, +0.4, 京王杯SC(GII)の勝ちが指数95.3、安田記念(GI)も0.0秒差の2着と、GIで上位を争える能力を示している。ただ近5走はすべて1400〜1600mで、1200mでの裏付けがない分は割り引く。<br><br>7番, ペアポルックス, -0.1, オーシャンS(GIII)は中山の同条件で勝って指数94.6と、この舞台で3番に先着している。ただGIでは高松宮記念10着(1.1秒差・指数80.6)、昨年のスプリンターズS13着と通用しておらず、6か月の休み明けでもある。<br><br>8番, エーティーマクフィ, -0.1, 函館SSでは58kgで2着(指数90.3)、57kgの10番に先着した。キーンランドC4着(90.7)とGIIIなら安定して走るが、高松宮記念は8着・0.9秒差で、指数も90前後が上限。<br><br>9番, スターアニス, +0.3, 桜花賞(GI)を0.4秒差で勝って指数96.3、阪神JF(GI)も勝っており、格は上位。ただ1200mは未勝利戦の1走(指数84.9)だけで、前走オークスは12着。古馬スプリンターとの力関係は数字で裏付けられていない。<br><br>10番, レイピア, +0.1, オーシャンS2着(0.0秒差・指数94.6)、シルクロードS2着(92.9)と春は高い水準だった。ただ直近3走の指数は86.3〜88.8と下がっており、函館SSでは8番に後れを取った。安定感の分だけわずかに上げる。<br><br>11番, ルガル, +0.5, 指数96.8は1400mの阪神カップで出したもの。1200mでもオーシャンS3着(0.1秒差・指数93.1)、アル・クオーツスプリント(GI)0.0秒差の2着、過去のスプリンターズS勝ちがあり、GIの格は揃っている。ただQE2世JS(GI)8着の分を差し引く。<br><br>12番, ブラックチャリス, -0.5, 青函S(OP)の勝ち(指数93.1)は53kgの軽ハンデでのもの。前走UHB賞(OP)は6着で指数84.6、GIの桜花賞も2.0秒差の15着と、GIで戦える実績がない。<br><br>13番, パンジャタワー, +0.5, 高松宮記念4着(0.4秒差・指数90.5)、安田記念5着(0.1秒差)とGIで僅差が続いている。前走キーンランドC(GIII)も58kgで2着(指数92.1)、NHKマイルC勝ちの格もあり、成績が安定している。<br><br>14番, ウインカーネリアン, +0.4, 昨年のスプリンターズSを同じコース・同じ距離で勝ち(指数93.3)、今年の高松宮記念も0.3秒差の3着。ただ高松宮では1番と同じ着差・同じ指数で、香港スプリント11着(2.2秒差)や9歳という年齢も踏まえて一段下げた。<br><br>15番, フリッカージャブ, +0.6, 1200mで重賞を含む3連勝中(指数95.2→94.2→93.2)。前走セントウルS(GII)では16番・3番を下しており、今の充実度は上位。ただ指数は緩やかに下がっていて、GI実績はない。中山のオーシャンSも6着(0.3秒差)だったので、上限手前まで下げた。<br><br>16番, ピューロマジック, +0.3, 1200mでは函館SS1着(指数93.1)、セントウルS2着(0.1秒差・91.7)と夏以降は高い水準で走っている。ただ97.3は1000mのアイビスSDの指数で、GIの高松宮記念13着、中山のオーシャンS16着と、GIや中山ではまだ結果が出ていない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.0, &quot;2&quot;: -0.4, &quot;3&quot;: 0.0, &quot;4&quot;: -0.1, &quot;5&quot;: 0.3, &quot;6&quot;: 0.4, &quot;7&quot;: -0.1, &quot;8&quot;: -0.1, &quot;9&quot;: 0.3, &quot;10&quot;: 0.1, &quot;11&quot;: 0.5, &quot;12&quot;: -0.5, &quot;13&quot;: 0.5, &quot;14&quot;: 0.4, &quot;15&quot;: 0.6, &quot;16&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;批判を検証し、6点とも一部を受け入れた。15番はGI実績がなく中山オーシャンSが6着、指数も緩やかに下がっているため+0.8から+0.6へ。距離の物差しを揃え、11番(96.8は1400m)を+0.5、16番(97.3は1000m)を+0.3、9番(1200m実績は未勝利戦のみ)を+0.3に下げた。5番はキーンランドC勝ちに55kgの恩恵があり、他の指数も84〜92のため+0.3。10番は直近の指数が86〜88台で8番に先着を許しているため+0.1、8番は-0.1とし、2頭の差を縮めた。14番は高松宮記念で1番と同じ着差・同じ指数のため+0.4に下げ、1番は前走の大敗を度外視して0.0に上げた。7番はオーシャンSで3番に先着しているため-0.1。軸の上位は15・11・13番で、実績から見て抜けた馬はいない。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>**展開の見立て**<br>スタートから下り坂の中山外回り1200mで、馬場は稍重。前に行きたい馬がそろっているので、前半3Fは33秒前後の締まったペースになるとみる。<br><br>- **隊列**：外から16番ピューロマジックがスピードの違いでハナを取りに行く。内からは4番ジューンブレアと2番アイサンサン、中ほどから12番ブラックチャリスも前へ出る。15番フリッカージャブと14番ウインカーネリアンは外の2〜4番手、5番サウンドモリアーナと11番ルガルはその直後につける。<br>- **直線**：残り310mで急坂がある。先行勢の中で消耗の少ない好位勢（5・11・3番）と、中団の内で脚をためた馬（8・10番）が浮上するとみる。<br>- **別シナリオ**：先行馬に1400m・1600m組が多いので、先行争いが落ち着いて流れが緩む場合もある。そのときは好位勢がそのまま粘り込み、中団勢の上積みは消える。どちらの展開でも楽ではない後方一気の追込は割り引く。<br>- **枠と馬場**：開催終盤の稍重なので、内側がやや荒れているかもしれない。枠の差は軽めに扱い、各馬の脚質との噛み合わせを重く見た。<br><br>1番, レッドモンレーヴ, -0.3, 後方待機の追込型で、直線が短い中山では前が止まらないと届きにくい。1枠から内に詰まる恐れもあり、ハイペースでも割引とする。<br><br>2番, アイサンサン, +0.1, 1枠で内ラチ沿いをロスなく先行できるのはプラス。ただ1400mで逃げてきた馬で今回は初めての1200m、G1の速い流れでハナを取れるかは疑問なので、上積みはわずかにとどめる。<br><br>3番, ママコチャ, +0.3, 2枠から中団前寄りの内で脚をためられる自在型。流れが速くなれば、内を通った距離ロスの少なさが直線の坂で生きる。<br><br>4番, ジューンブレア, +0.2, 内枠のスピード型で、昨年のこのレースは逃げて2着と中山での型がある。ただ今回は先行争いが激しく、息を入れにくい点は差し引く。<br><br>5番, サウンドモリアーナ, +0.3, 3枠から2〜3番手の好位を取りやすい先行型。ペースが速くても遅くても、好位の内でスムーズに運べるポジションに収まる。<br><br>6番, ワールズエンド, -0.2, 1400m・1600mの逃げ馬で、1200mは初めて。スプリントG1の前半の速さでハナを取れず、中途半端な位置で脚を使わされる恐れがある。<br><br>7番, ペアポルックス, +0.2, 同じ舞台のオーシャンSを後方から勝っており、先行勢が競り合って流れが速くなれば差しが届く下地がある。スローなら届かないので控えめのプラスとする。<br><br>8番, エーティーマクフィ, +0.2, 中団につける型で、流れが締まれば前を射程に入れられる。稍重の函館SSで2着があり、渋った馬場も問題ない。<br><br>9番, スターアニス, -0.2, 1600m中心で中団からの競馬をしてきた3歳馬。1200mの速い前半で置かれて後方寄りになりやすく、直線の短い中山では位置取りが不安。<br><br>10番, レイピア, +0.2, 中山1200mのオーシャンSを中団から2着しており、速い流れの中団差しがこのコースに合う。<br><br>11番, ルガル, +0.3, 2〜4番手につける先行型で、先行争いの外で競り合わずに運べる枠。532kgのパワー型なので、稍重の坂も苦にしない。<br><br>12番, ブラックチャリス, -0.3, 逃げ・先行型だが、前走は逃げて止まった。6枠から前を取りに行けば脚を使わされ、先行勢が多い中で消耗戦に巻き込まれやすい。<br><br>13番, パンジャタワー, +0.1, 好位から中団まで自在に運べる。外枠で多少の距離ロスはあるが、外目でスムーズに運べる利点と相殺して小さなプラスとする。<br><br>14番, ウインカーネリアン, +0.1, 昨年このレースを2番手から勝っており、中山1200mの先行策は合っている。ただ7枠から前を取りに行く距離ロスがあり、プラスは小さい。<br><br>15番, フリッカージャブ, +0.2, 2番手が定位置で、隣の16番を行かせてその直後につける形が描きやすい。重馬場の北九州記念を勝っていて稍重も好材料だが、外枠で前が厳しい流れになる点は差し引く。<br><br>16番, ピューロマジック, -0.1, 1000mも勝つスピードで大外からでもハナは取れそうだが、外から内へ切れ込むのに脚を使い、ペースをつくる立場で標的にもなる。楽に単騎で逃げられればプラスに転じる余地もある。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>先行馬が多い（16,15,4,2,6,12,14,5,11）と認めながら、+0.3が先行型の5番サウンドモリアーナ・11番ルガルで、追込の1番レッドモンレーヴは『ハイペースでも』−0.3。本線のペースを決め直してほしい。4番ジューンブレアは直近2走とも先行して大敗（11着・17着）、半年ぶりで+12kgなのに+0.2。『逃げて止まった』で−0.3の12番ブラックチャリスと基準が違わないか。2番アイサンサンと6番ワールズエンドは同じ懸念（1400m逃げ馬で1200m初、ハナを取れるか）なのに0.3差。1枠で包まれる危険は1番と同じ理屈で、前走も16-15から13着。15番フリッカージャブは『16番の直後』の形でセントウルSを実際に勝ち、重馬場も勝っているのに11番・5番より低い。11番の外には先行馬4頭がいて『競り合わずに』は疑わしく、中山のオーシャンSでは2-2から上がり34.5秒の3着。5番は重馬場の北九州記念で3-2から6着に失速しており、『速くても好位でスムーズ』は楽観的では。13番パンジャタワーは4-4・6-6型で、速い流れなら恩恵が大きい位置ではないか（+0.1は低い？）。16番ピューロマジックは稍重の函館SS逃げ切りをプラスに数えていない。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, レッドモンレーヴ, -0.1, 先行馬が多く前が速くなる流れなら、追込でも届く余地は出てくる。ただ1枠から最後方に控えると外へ出すのに手間取り、直線の短い中山では詰まる危険も残るので小幅な割引にとどめる。<br><br>2番, アイサンサン, -0.2, 1400mで逃げてきた馬で1200mは初めて、ハナを取れるかどうかが6番と同じく不安。1枠でハナを取れないと内に包まれ、前走も16-15から13着と控えて良かった形はない。<br><br>3番, ママコチャ, +0.3, 2枠から中団前寄りの内で脚をためられ、先行勢が消耗する流れなら距離ロスの少なさが直線の坂で生きる。<br><br>4番, ジューンブレア, -0.1, 内枠から先行できるスピードはある。ただ2・6・16番が前を主張するので楽に行けず、直近2走も先行して上がり35秒台で止まっているため、厳しい流れで粘るのは難しいとみる。<br><br>5番, サウンドモリアーナ, +0.1, 3枠から好位の内を取りやすいのは利点。ただ本線は前が厳しくなる流れで、重馬場の北九州記念でも3-2から失速しているので、2番手の定位置では消耗の危険を差し引く。<br><br>6番, ワールズエンド, -0.2, 1400m・1600mの逃げ馬で、1200mは初めて。スプリントG1の前半の速さでハナを取れず、中途半端な位置で脚を使わされる恐れがある。<br><br>7番, ペアポルックス, +0.2, 同じ舞台のオーシャンSを14-12から差し切っていて、前が崩れる流れなら届く下地がある。昨年のこのレースは16-14から13着で、流れが落ち着くと届かないので控えめのプラスとする。<br><br>8番, エーティーマクフィ, +0.2, 6〜8番手の中団につける型で、流れが締まれば前を射程に入れられる。稍重の函館SSで7-8から2着に来ていて、渋った馬場も問題ない。<br><br>9番, スターアニス, -0.1, マイルで中団から運んできた3歳馬で、1200mの速い前半では置かれて位置が下がりやすい。ただ前が速い本線なら後ろからでも致命的ではないので、割引は小さくする。<br><br>10番, レイピア, +0.3, 中団の5〜8番手が定位置で、中山1200mのオーシャンSは11-10から2着。前が消耗する本線の流れでいちばん恩恵を受ける位置取りをする馬。<br><br>11番, ルガル, +0.1, 先行力はあるが、外側の12・14・15・16番がみな前を狙うので、競り合わずに運べるとは言い切れない。中山のオーシャンSも2-2から上がり34.5秒で3着と、前が厳しい流れでは最後に甘くなる。<br><br>12番, ブラックチャリス, -0.2, 逃げ・先行型だが、6枠から前を取りに行くと外を回って脚を使わされる。前走も逃げて上がり35.6秒と止まっていて、消耗戦に巻き込まれやすい。内枠の4番よりも位置取りのコストが大きい。<br><br>13番, パンジャタワー, +0.3, 4〜6番手の好位〜中団につける型で、先行勢が競り合う流れなら直後で脚をためてから抜け出せる位置にいる。7枠の外で多少のロスはあるが、外目でスムーズに運べる利点のほうが大きい。<br><br>14番, ウインカーネリアン, 0.0, 昨年このレースを2番手から勝っていて中山1200mの先行策は合うが、今年は前に行きたい馬が多く、7枠から前を取りに行くと距離ロスも加わる。有利と不利が釣り合って中立。<br><br>15番, フリッカージャブ, +0.3, 16番を行かせて直後の2番手につける形で、セントウルSを実際に勝っている。重馬場の北九州記念も逃げ・2番手から勝っていて、稍重の前残りにも対応できる。外枠でも外から被せられる心配が少ない位置。<br><br>16番, ピューロマジック, 0.0, 1000mも勝つスピードで、大外からでもハナは取れる。稍重の函館SSを逃げ切っているのは材料だが、内へ切れ込むのに脚を使い、ペースをつくる立場で標的にもなるので差し引きゼロ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.1, &quot;2&quot;: -0.2, &quot;3&quot;: 0.3, &quot;4&quot;: -0.1, &quot;5&quot;: 0.1, &quot;6&quot;: -0.2, &quot;7&quot;: 0.2, &quot;8&quot;: 0.2, &quot;9&quot;: -0.1, &quot;10&quot;: 0.3, &quot;11&quot;: 0.1, &quot;12&quot;: -0.2, &quot;13&quot;: 0.3, &quot;14&quot;: 0.0, &quot;15&quot;: 0.3, &quot;16&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;本線のペースを『先行馬が多い前傾の流れで、先行勢は消耗し、4〜8番手の好位〜中団が最も有利』に決め直した。16番がハナ、15番が2番手、2・4・6・12・14番が前を取りに来て競り合い、直線で3・10・13番が差す形を描く。この本線に合わせ、2番手が定位置の5番・11番を+0.3→+0.1に下げ、好位〜中団型の13番(+0.1→+0.3)と10番(+0.2→+0.3)を上げた。追込の1番は-0.3→-0.1、3歳の9番は-0.2→-0.1に割引を縮めた。15番は、16番の直後につける形でセントウルSを勝った実績と重馬場の勝ちを評価して+0.2→+0.3。4番は直近2走の先行大敗を踏まえて+0.2→-0.1とし、12番(-0.3→-0.2)とは同じ基準で、内枠と外枠の差だけを残した。2番は6番と同じ懸念(1400m逃げ馬で1200m初)があるので-0.2に揃えた。別シナリオとして、16番が楽に単騎で逃げて後続が控えた場合は前残りになり、15・16・5番が上位に浮上する。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, レッドモンレーヴ, +0.2, 叩き2走目で、半年ぶりだった前走は512kg(+12)の太め残りで16着でした。今回は510(-2)とわずかに絞れ、オーロC2着時と同じ510kgです。美W終い11.5で「前走以上の動き」の評価も付いており上昇サインと見ますが、高松宮記念2着時の500kgまではまだ絞れておらず、斤量も57→58kg(+1kg≒0.2馬身)なので控えめにします。<br><br>2番, アイサンサン, -0.1, ヴィクトリアマイル以来4か月ぶりで、454(-4)は近走でいちばん軽い数字です。好走時の458〜462kgを下回っています。坂路は馬なりで「仕上がり良好」ですが、小柄な牝馬が休み明けで細化している点をわずかに割り引きます。<br><br>3番, ママコチャ, +0.3, 叩き2走目です。前走セントウルSは502(+10)と太めで3着でした。今回は500(-2)と絞れる方向です。坂路54.4を末強めで追って「フットワーク軽快」の評価で、7歳でも叩いた上積みが見込めます。<br><br>4番, ジューンブレア, -0.2, 6か月ぶりで496(+12)です。大敗した高松宮記念の484kgからの回復ともとれますが、昨年スプリンターズS2着時のベスト490kgを6kg上回っています。調教も馬なりで終い13.5と時計が物足りず、太め残りの不安があります。<br><br>5番, サウンドモリアーナ, +0.5, 馬体重が442→448→450→454kgと右肩上がりで、成長の過程にあります。キーンランドC勝ちと同じ454kgを維持しています。坂路で「終いの伸び良」、調子↗です。454kgの小柄な馬に55→56kg(+1kg)は小さくない負担ですが、それを上回る上昇ぶりです。<br><br>6番, ワールズエンド, 0.0, 安田記念以来4か月ぶりで、472(+2)です。468〜472kgの範囲で非常に安定しており、10か月ぶりの京王杯SCを勝った実績もあって、休み明けは苦にしません。坂路は末強めで「まずまず仕上がる」の評価で、良くも悪くもなく平常どおりです。<br><br>7番, ペアポルックス, -0.3, 6か月ぶりで482(+4)です。過去最高の馬体重で、好走時の472〜476kgより重い状態です。5日前の日曜追いで、坂路は終い13.9と遅く、太め残りと仕上がり不足の両方が心配です。<br><br>8番, エーティーマクフィ, +0.3, 前走キーンランドCは482(+8)の太め残りで4着でした。今回は476(-6)で、函館SS2着の474kg・京阪杯勝ちの480kgの間にあるベスト圏まで絞れています。「好気配保つ」の評価で、叩き2走目の上昇パターンに当てはまります。<br><br>9番, スターアニス, +0.3, オークス以来4か月ぶりで484(+4)です。3歳夏の成長分と見れば自然な増え方です。坂路は馬なりで終い11.8と鋭く「動きキビキビ」です。斤量も前走から-1kgの54kgで、古馬牡馬58kgとの4kg差(≒0.8馬身)は負担面で楽です。<br><br>10番, レイピア, 0.0, 508(0)で、オーシャンS2着時の510kgに近い安定した馬体です。坂路5F52.3を一杯に追う意欲的な内容ですが、終いは13.3と甘くなっています。2月から6戦を使い込んできた疲れも少し考えられ、プラスマイナスで中立とします。<br><br>11番, ルガル, +0.1, 532kg(前走は海外で計量なしのため、前後比は出せません)。オーシャンS時の528kg・阪神C勝ちの532kgと同じ水準です。ドバイ・英国と海外遠征が続いた疲れは気になりますが、3か月空けて「久々も力強く」の評価です。海外での59.5〜60kgから58kgに戻り、530kg超の大型馬なので斤量負担も軽いです。<br><br>12番, ブラックチャリス, +0.3, 前走UHB賞は470(+10)の太めで6着でした。今回は464(-6)と絞れ、青函S勝ちの460kgに近づいています。CWは馬なりで終い11.7、「好気配保つ」の評価です。斤量も55→54kgで、立て直しは成功と見ます。<br><br>13番, パンジャタワー, +0.4, 前走キーンランドCは494(+6)でも2着でした。今回は490(-4)と絞れて、高松宮記念4着の486kg・安田記念5着の488kgというベスト圏に近づいています。坂路5F52.4を馬なりで出して「好調持続」の評価で、叩き2走目の上昇が見込めます。<br><br>14番, ウインカーネリアン, +0.2, 昨年優勝時と同じ「キーンランドC→スプリンターズS」のローテーションで、前走59kg→今回58kg(-1kg)です。518(+4)は昨年勝った時の514kgより少し重いですが、許容範囲です。美W終い11.4で「年齢感じさせず」の評価です。9歳という年齢を考えて控えめにします。<br><br>15番, フリッカージャブ, +0.5, 中2週の続戦ですが、504(-2)は502〜510kgの安定した範囲にあり、消耗のサインはありません。坂路は馬なりで53.5-12.0、「依然動き絶好」で調子↗と好調を保っています。斤量57→58kg(+1kg)はありますが、500kg超の馬なので気になるほどではありません。<br><br>16番, ピューロマジック, 0.0, 6月から4戦目で、アイビスSDの1000mを挟む夏の連戦です。ただ馬体重は460→464(+4)と増えており、消耗は見えません。「デキ安定」の評価で平行線と見ます。464kgの牝馬に55→56kg(+1kg)も加わり、上積みは期待しにくいため中立とします。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①馬体重の基準がぶれている: 過去最高体重で7番ペアポルックスは太めとして-0.3なのに、14番ウインカーネリアン（518kg、前走から叩いて+4kg）は許容、16番ピューロマジック（464kg）は消耗なしとして好材料扱い。基準を揃えては。②『太め残りで負け→絞れて上昇』の前提が怪しい馬: 8番エーティーマクフィは482kgで指数90.7（函館SS 2着と同等）、今回と同じ476kg(-6)の高松宮記念は8着。13番パンジャタワーは494kgで最高指数の2着。絞れたことが上積みと言えるか。3番ママコチャも春の492〜494kgより6〜8kg重く、1番レッドモンレーヴを控えめにした理屈と矛盾していないか。③疲れの判定が逆向き: 15番フリッカージャブは510→504kgと毎走2kgずつ減り、6着時の502kgに接近、中2週で夏3戦目なのに『消耗なし』で+0.5（2番アイサンサンは軽さで減点）。10番レイピアは中7週空いているのに疲れで中立。11番ルガルは馬体重がベスト532kgに戻り調教評価も良いのに、漠然とした遠征疲れで+0.1と9番スターアニスより下。④5番サウンドモリアーナは5F 57.4が栗東坂路組で最も遅い点に触れていない。15番と16番の0.5差がほぼ調子矢印だけで説明されている。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, レッドモンレーヴ, +0.2, 叩き2走目です。前走の512kg(+12)から510(-2)へ絞れ、オーロC2着(指数92.6)と同じ体重に戻りました。美W終い11.5で「前走以上の動き」の評価も上昇サインです。ただ高松宮記念2着時の500kgまではまだ10kgあり、斤量も57→58kg(+1kg≒0.2馬身)に増えるので控えめにします。<br><br>2番, アイサンサン, -0.1, 4か月空けたのに体重は増えず、454(-4)と近走でいちばん軽い数字です。愛知杯勝ちなど好走時の458〜462kgを下回っています。坂路は「仕上がり良好」ですが、休み明けで細くなっている小柄な牝馬として、わずかに割り引きます。<br><br>3番, ママコチャ, +0.2, 叩き2走目で502→500(-2)と絞れる方向ですが、芝で好走した春の492〜494kg(オーシャンS4着・指数93.1)よりまだ6〜8kg重いです。1番と同じ基準で「絞り切れていない」と見て一段下げました。坂路54.4を末強めで追って「フットワーク軽快」なので、上積みはわずかにあると見ます。<br><br>4番, ジューンブレア, -0.2, 6か月ぶりで496(+12)です。スプリンターズS2着など好走が続いた頃の490kgを6kg上回っています。坂路は馬なりで終い13.5と時計が物足りず、太め残りの不安があります。<br><br>5番, サウンドモリアーナ, +0.4, 体重は442→448→450→454kgと増え続けており、キーンランドC勝ちと同じ454kgを保っています。成長過程の増量と見ます。坂路3F24.3は栗東坂路組で最速ですが、5F57.4は最も遅く、全体の負荷が軽い調整です。これで仕上がり切ったとまでは言えません。454kgで斤量+1kg(56kg)の負担も合わせ、一段下げました。<br><br>6番, ワールズエンド, 0.0, 安田記念以来4か月ぶりで472(+2)です。体重は468〜472kgで非常に安定しており、10か月ぶりの京王杯SCも勝っています。坂路末強め54.7で「まずまず仕上がる」の評価で、良くも悪くもない平常どおりの状態です。<br><br>7番, ペアポルックス, -0.3, 6か月ぶりで482(+4)と過去最高の体重です。オーシャンS勝ちの474kgなど好走時の472〜476kgより6〜10kg重くなっています。5日前の日曜追いで終いは13.9と遅く、休み明けの太め残りと仕上がり不足の両方が重なります。叩いて重くなった14番とは状況が違うと見ます。<br><br>8番, エーティーマクフィ, +0.1, 476(-6)まで絞れましたが、482kgで指数90.7、474kgで90.3、同じ476kgの高松宮記念は8着(83.5)でした。この馬は体重と成績の相関が薄く、「絞れたから上昇」とは言えないという指摘を受け入れます。「好気配保つ」の評価で状態は維持と見て、わずかな加点にとどめます。<br><br>9番, スターアニス, +0.3, オークス以来4か月ぶりで484(+4)です。3歳夏の成長分として自然な増え方です。坂路は馬なりで終い11.8と鋭く「動きキビキビ」の評価です。斤量も前走より1kg軽い54kgで、58kgの古馬牡馬との4kg差(≒0.8馬身)は負担面で楽です。<br><br>10番, レイピア, +0.1, 中7週あるので、疲れを理由に割り引いたのは根拠が弱かったと改めます。508(0)はオーシャンS2着の510kgに近い安定した馬体です。坂路5F52.3は全体時計が優秀ですが、一杯に追って終い13.3と甘くなっているので、わずかな加点にとどめます。<br><br>11番, ルガル, +0.3, 532kgは阪神C勝ちと同じベスト体重です。3か月空いているので、漠然とした遠征疲れで割り引く根拠は弱いと改めました。坂路54.2-12.0を馬なりで出して「久々も力強く」の評価です。海外での59.5〜60kgから58kgに戻り、530kg超の大型馬なので斤量負担も軽いです。<br><br>12番, ブラックチャリス, +0.3, 470kgのUHB賞は6着(指数84.6)、460kgの青函Sは勝利(93.1)と、この馬は体重と結果の対応がはっきりしています。今回464(-6)と勝った時に近づいているのは好材料です。CW終い11.7で「好気配保つ」の評価、斤量も55→54kgに減ります。<br><br>13番, パンジャタワー, +0.3, 494kgでも指数92.1の2着だったので、490(-4)に絞れたこと自体を上積みとは見なさず、一段下げました。それでも486〜494kgの好走レンジの中にあります。坂路5F52.4を馬なりで出して「好調持続」の評価なので、状態の良さは確かです。<br><br>14番, ウインカーネリアン, +0.1, 昨年優勝時と同じローテーションですが、昨年は叩いて512→514kgだったのに対し、今年は514→518(+4)と優勝時より4kg重くなっています。7番と基準を揃えて許容範囲の上限と見直しました。斤量59→58kg(-1kg)と美W終い11.4「年齢感じさせず」の評価はプラスですが、9歳でもあり控えめにします。<br><br>15番, フリッカージャブ, +0.4, 510→508→506→504kgと毎走2kgずつ減っていて、今回は初めての中2週です。消耗の兆しがゼロとは言えないので一段下げました。ただ494kgで勝った実績もあり、6着時の502kgは休み明けで増えた数字なので、504kgで細いとまでは言えません。坂路53.5-12.0を馬なりで「依然動き絶好」・調子↗なので、現状の好調は維持と見ます。<br><br>16番, ピューロマジック, +0.1, 6月から4戦目の連戦ですが、464(+4)と体重が増えており、消耗は見えません。460kg前後で3連勝(2着を含む好走続き)した直後なので、4kg増も太めとまでは言えません。CW終い11.6を馬なりで出して「デキ安定」の評価です。15番との差は矢印の向きではなく、15番の体重の減り方との比較で付けました。斤量+1kg(56kg)があるので小幅にします。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>血統派として見た今回の条件は、**中山芝1200m外回り・稍重**。下り坂から入ってゴール前に急坂があるけん、軽いスピードより**坂を上り切るパワー**と**少し渋った馬場をこなせる血**が効くっちゃん。この軸で補正を付けたよ。<br><br>1番, レッドモンレーヴ, -0.1, 父ロードカナロアはスプリント向きやけど、母父ディープインパクト由来の瞬発力で1400mの上がり勝負を得意にしとる馬っちゃん。稍重の中山で急坂を上る形は、キレを活かす血統にとってわずかに割引。<br><br>2番, アイサンサン, -0.1, 母父シンボリクリスエスのパワーで稍重は問題なか。ただ父キズナは1400〜1600m寄りの配合で、今回は初めての1200m。G1のスプリントのペースへの対応は血統上やや疑問。<br><br>3番, ママコチャ, +0.4, 父クロフネ×母父キングカメハメハはダートもこなすパワー型の配合で、実際に交流重賞にも使われとる。中山の坂と稍重に向く血で、このレースを勝った実績とも噛み合っとる。<br><br>4番, ジューンブレア, +0.3, 父American Pharoah（米ダートのスピード）×母父Galileo（欧州の力のいる馬場）で、渋った馬場と坂に強い配合。昨年このレースで2着に来たコース適性とも合っとる。<br><br>5番, サウンドモリアーナ, +0.1, 父ミッキーアイル×母父ケイムホームはスピード寄りのスプリント配合で、中山1200mは勝ち鞍もある守備範囲。重馬場の北九州記念で6着やったけん、稍重での上積みは小さい。<br><br>6番, ワールズエンド, -0.2, 父ロードカナロアでも母父ゼンノロブロイがスタミナ寄りで、実績は1400〜1600mに集中しとる。G1スプリントの速い流れへの距離短縮は、血統面でわずかにマイナス。<br><br>7番, ペアポルックス, +0.3, 父キンシャサノキセキの産駒は中山1200mの坂や時計のかかる馬場を得意にする傾向があって、この馬もオーシャンSを勝っとる。稍重はプラス材料。<br><br>8番, エーティーマクフィ, +0.3, 父マクフィ（Dubawi系）×母父ハーツクライは欧州系のパワー型で、稍重の函館SSでも2着に来とる。7歳でも持続力のある血で、渋った馬場は歓迎。<br><br>9番, スターアニス, +0.3, 父ドレフォンは米国のスプリント王で、産駒はパワーとスピードを兼ね備えとる。母父ダイワメジャーも中山向きの先行力を伝える血。マイルG1の勝ち馬でも配合の本質は1200m寄りで、距離短縮と稍重はむしろ合う。<br><br>10番, レイピア, +0.5, 父タワーオブロンドンはこのレースの勝ち馬で、産駒は中山1200mへの適性が高い。母父エンパイアメーカーの米ダート系のパワーも加わって、稍重の急坂は血統的に最も合うタイプの1頭。<br><br>11番, ルガル, +0.3, 父ドゥラメンテ×母父New Approachは大型でパワーのある配合で、稍重や坂のあるコースは苦にしない。このレースの勝ち馬で、コース適性の裏付けもある。<br><br>12番, ブラックチャリス, -0.1, 父キタサンブラックは中長距離寄りの種牡馬で、G1級の1200mのスピード勝負は血統上は本来の舞台やない。ただ稍重の青函Sを勝っとる通り、パワーで補える部分もあるけん小さい減点にとどめる。<br><br>13番, パンジャタワー, +0.4, 父タワーオブロンドンの中山1200m適性に、母父ヴィクトワールピサ（皐月賞馬で中山巧者）のパワーが重なる配合。稍重も問題なく、ここは適性で上げたい。<br><br>14番, ウインカーネリアン, +0.3, 父スクリーンヒーロー（Roberto系）×母父マイネルラヴは坂と時計のかかる馬場に強い配合。Roberto系は長持ちする血で9歳でも適性は落ちとらんし、このレースの前年覇者。<br><br>15番, フリッカージャブ, +0.5, 母父サクラバクシンオーは純粋なスプリント血統で、父サートゥルナーリアも成長力とパワーを伝える血。重馬場の北九州記念を勝っとる通り稍重は得意で、4歳秋の本格化とも噛み合っとる。<br><br>16番, ピューロマジック, +0.2, 父アジアエクスプレス（Henny Hughes系のダートのパワーとスピード）で稍重は歓迎。ただ本質は平坦の直線競馬や小回りの逃げに向くスピード型で、中山の急坂では前走ほどの上積みは期待しにくい。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.1, &quot;2&quot;: -0.1, &quot;3&quot;: 0.4, &quot;4&quot;: 0.3, &quot;5&quot;: 0.1, &quot;6&quot;: -0.2, &quot;7&quot;: 0.3, &quot;8&quot;: 0.3, &quot;9&quot;: 0.3, &quot;10&quot;: 0.5, &quot;11&quot;: 0.3, &quot;12&quot;: -0.1, &quot;13&quot;: 0.4, &quot;14&quot;: 0.3, &quot;15&quot;: 0.5, &quot;16&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;中山芝1200m外回り・稍重は、下り坂のあとの急坂を上るパワーと渋った馬場への適性が問われる。父タワーオブロンドン（このレースの勝ち馬で中山1200m適性が高い）×米ダート系・中山巧者の母父を持つレイピアとパンジャタワー、母父サクラバクシンオーで重馬場実績もあるフリッカージャブを上位に置いた。クロフネ・American Pharoah・Roberto系・欧州のパワー系の血を持つ馬も稍重で浮上。一方、1400〜1600mが本職の配合（ワールズエンド・アイサンサン）、中長距離系の父（ブラックチャリス）、瞬発力型の配合（レッドモンレーヴ）は小さく割り引いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>同じ血統要素の扱いが馬ごとにぶれていないか再点検を提案。(1) 米ダート系のパワーを4番ジューンブレア・10番レイピアでは急坂への加点にしながら、16番ピューロマジック（父アジアエクスプレス）だけ急坂で割引している。稍重の函館SSは16番1着・8番2着・10番3着なのに、評価は10番が最上位で16番が最下位。急坂への不安はオーシャンS16着という実績で語るべきで、前走のセントウルSも阪神の急坂なので『平坦向き』の読みとは合わない。(2) 6番ワールズエンドは母父ゼンノロブロイのスタミナで減点、4番・11番ルガルは母父Galileo系で加点と、基準が逆。4番は渋った馬場の実績がなく+0.3は推測頼み。(3) 母父ディープの割引が1番レッドモンレーヴだけで、同じ母父の7番ペアポルックス（稍重の実績なし）と16番は無視されている。(4) 父タワーオブロンドンは『このレースの勝ち馬』で加点しているのに、スプリンターズS連覇の父ロードカナロア（1番・6番）には同じ加点がない。(5) 15番フリッカージャブの父サートゥルナーリアは中距離系で、12番の父キタサンブラック・2番の父キズナを距離で減点した基準と揃っていない。中山の急坂の裏付けもオーシャンS6着だけ。(6) 3番ママコチャのダート交流重賞は5着が2回で、芝適性の加点根拠としては弱い。同じくこのレースの勝ち馬である11番・14番より上に置く理由を血統で説明できるか確認を。(7) +0.3に7頭が並んで差が付いていないので、物差しを揃えて並べ直す余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, レッドモンレーヴ, 0.0, 父ロードカナロアはこのレースを連覇した種牡馬で、中山1200mの下地はある。ただ母父ディープインパクト由来のキレを活かす配合なので、稍重の急坂では少し割り引く。プラスとマイナスが打ち消し合うので中立にするね。<br><br>2番, アイサンサン, -0.1, 母父シンボリクリスエスのパワーがあるので、稍重は問題なか。ただ父キズナは1400〜1600m寄りの配合で、今回は初めての1200m。G1スプリントの流れに血統が合うかは少し疑問っちゃん。<br><br>3番, ママコチャ, +0.2, 父クロフネ×母父キングカメハメハはパワー型の配合で、中山の坂にも稍重にも合う。ただダートの交流重賞で5着2回という実績は芝の馬場適性の裏付けとしては弱いので、11番や14番と同じくらいまで下げるね。<br><br>4番, ジューンブレア, +0.2, 父American Pharoah×母父Galileoは、力のいる馬場をこなせる配合ではある。ただ渋った馬場での実績は無く推測に頼る部分が大きいので、小さめの加点にとどめる。<br><br>5番, サウンドモリアーナ, +0.1, 父ミッキーアイル×母父ケイムホームはスピード寄りのスプリント配合。中山1200mは勝ち鞍のある守備範囲やけど、重馬場の北九州記念で6着なので、稍重で上積みがあるとは言いにくい。<br><br>6番, ワールズエンド, -0.1, 母父ゼンノロブロイでスタミナ寄りの配合で、1200mは初めて。減点の理由は馬場やなく距離短縮っちゃん。ただ父ロードカナロアはこのレースを連覇したスプリンターで、1200mへの下地も持っとるので、減点は小さくするね。<br><br>7番, ペアポルックス, +0.2, 父キンシャサノキセキの産駒は中山1200mの坂で走る傾向があって、この馬もオーシャンSを勝っとる。ただ母父ディープインパクトでキレ寄りの面もあるうえ、稍重の実績も無いので、馬場を理由にした加点は控えるね。<br><br>8番, エーティーマクフィ, +0.3, 父マクフィ（Dubawi系）×母父ハーツクライは欧州系のパワー型。稍重の函館SSで2着に来て、血統どおりの裏付けがあるので、渋った馬場は歓迎っちゃん。<br><br>9番, スターアニス, +0.2, 父ドレフォンは米国のスプリント王で、産駒はパワーとスピードを兼ね備えとる。1200mへの距離短縮も稍重も血統的には合う。ただ1200mを走ったのは新馬期の1回だけで裏付けが薄いので、控えめにするね。<br><br>10番, レイピア, +0.4, 父タワーオブロンドンはこのレースの勝ち馬で、産駒は中山1200mへの適性が高い。母父エンパイアメーカーの米ダート系のパワーもあって、稍重の函館SSで3着、オーシャンSで2着と実績も血統どおり。ただ16番の方が稍重の実績は上なので、最上位からは外すね。<br><br>11番, ルガル, +0.2, 父ドゥラメンテ×母父New Approachは大型でパワーのある配合で、坂は苦にしない。ただ渋った馬場での実績は無く、Galileo系の母父を理由にした加点は推測の部分が残るので、+0.2にとどめる。<br><br>12番, ブラックチャリス, -0.1, 父キタサンブラックは中長距離寄りの種牡馬で、G1級の1200mのスピード勝負は血統的に本来の舞台やない。稍重の青函Sを勝っとるので、パワーで補える分として小さい減点にとどめるね。<br><br>13番, パンジャタワー, +0.3, 父タワーオブロンドンの中山1200m適性に、母父ヴィクトワールピサ（中山で皐月賞を勝った馬）のパワーが重なる配合。ただ稍重での裏付けは豪州の重馬場で5着だけなので、10番より少し下にするね。<br><br>14番, ウインカーネリアン, +0.3, 父スクリーンヒーロー（Roberto系）×母父マイネルラヴは、坂や時計のかかる馬場に強い配合。Roberto系は長く活躍できる血で、9歳でも適性は衰えとらん。前年のこのレースの勝ち馬で、コースの裏付けもある。<br><br>15番, フリッカージャブ, +0.4, 父サートゥルナーリアは中距離系やけど、自身はロードカナロア産駒でスプリントの血も持っとる。母父サクラバクシンオーは純粋なスプリント血統なので、キズナやキタサンブラックとは事情が違うっちゃん。重馬場の北九州記念を勝っとって稍重は得意。ただ中山の坂での裏付けはオーシャンS6着だけなので、少し下げるね。<br><br>16番, ピューロマジック, +0.3, 父アジアエクスプレス（Henny Hughes系）のダートのパワーとスピードで、稍重の函館SSを勝っとる。坂のある阪神のセントウルSでも2着なので、「平坦でしか走れんスピード型」という見立ては取り下げて、8番と同じ水準まで上げるね。オーシャンSの16着は血統やなく実績の話なので、この軸では減点せん。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, レッドモンレーヴ, -0.1, 酒井学騎手は高松宮記念2着の実績がある継続騎乗だが、GⅠで頼れる格ではない。蛯名正義厩舎は開業からまだ日が浅く、GⅠでの後押しは弱い。<br><br>2番, アイサンサン, 0.0, 幸英明騎手の継続騎乗で、逃げの手の内は分かっている。一方で橋田宜長厩舎はGⅠでの実績が乏しく、プラスとマイナスが打ち消し合う。<br><br>3番, ママコチャ, +0.5, 名門の池江泰寿厩舎で、この馬ですでにスプリンターズSを勝っている。武豊騎手が前走から継続して乗り、格と手の内がそろった陣営。<br><br>4番, ジューンブレア, +0.2, 武豊騎手がママコチャに回った一方、代わりに入るのはGⅠを勝っている坂井瑠星騎手で、先行馬の扱いがうまい。武英智厩舎はスプリント路線に強く、半年の休み明けでも仕上げの信頼度は高い。<br><br>5番, サウンドモリアーナ, -0.1, 前走キーンランドCを勝った武豊騎手が降り、OPを勝たせた吉田隼人騎手に戻る。GⅠでの格はわずかに下がる。<br><br>6番, ワールズエンド, +0.2, 津村明秀騎手は京王杯SC勝ち・安田記念2着と継続して乗っており、逃げの呼吸を分かっている。池添学厩舎の中距離からの転戦も組み立てが明確。<br><br>7番, ペアポルックス, +0.1, 同じ中山1200mのオーシャンSを勝たせた岩田康誠騎手の継続騎乗。コース実績と手の内の分だけわずかにプラス。<br><br>8番, エーティーマクフィ, -0.1, 富田暁騎手の長い継続騎乗で手の内は分かっているが、騎手・厩舎ともGⅠでの後押しは弱め。<br><br>9番, スターアニス, +0.7, 松山弘平騎手から、中山のGⅠで最も頼れるC.ルメール騎手へ乗り替わる。高野友和厩舎がオークスの後にあえてスプリントGⅠへ使ってきたことと合わせ、陣営の勝負気配が最もはっきりしている。<br><br>10番, レイピア, +0.4, 中山を得意とする関東のトップ騎手・横山武史騎手が3戦続けて乗り、重賞2・3着と手応えをつかんでいる。<br><br>11番, ルガル, +0.3, 杉山晴紀厩舎は海外遠征もこなす一流厩舎で、2年前にこのレースを勝った陣営。鮫島克駿騎手が国内外で5戦続けて乗っていて、手の内の信頼がある。<br><br>12番, ブラックチャリス, 0.0, 浜中俊騎手は2歳時に乗った経験があり、武幸四郎厩舎も含めて陣営面で上げ下げする材料は乏しい。<br><br>13番, パンジャタワー, +0.4, 松山弘平騎手はスターアニスとフリッカージャブにも乗ってきたが、その中からこの馬を選んで継続騎乗する。騎手自身の選択は強い裏付けになる。<br><br>14番, ウインカーネリアン, +0.5, 昨年このレースを制した三浦皇成騎手と鹿戸雄一厩舎の組み合わせが継続。関東馬が地元の中山で走り、コンビの手の内は完全に分かっている。<br><br>15番, フリッカージャブ, -0.2, 3連勝を含め5戦続けて乗った松山弘平騎手が他の馬を選んだため乗り替わりになる。西村淳也騎手はこのレースを勝った経験があるものの、手の内を知る騎手を失うのは減点。<br><br>16番, ピューロマジック, +0.1, 勢いのある岩田望来騎手が前走2着から継続して乗る。ただしこれまで騎手がたびたび替わっており、コンビとしての蓄積は薄い。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)『騎手の選択』の論理(13番パンジャタワー+/15番フリッカージャブ−)を一貫適用していない。9番スターアニスは6戦継続の松山騎手に選ばれなかったのに減点ゼロで+0.7最高評価、4番ジューンブレアは5戦継続・昨年2着の武豊騎手に選ばれず(3番ママコチャへ)、坂井騎手は騎乗実績なしなのに+0.2、12番ブラックチャリスも青函S勝ちの吉田隼人騎手が5番へ回ったことに言及なし。逆に3番ママコチャは武豊騎手が2頭から選んだプラスを取り込んでいない。(2)武英智厩舎を4番ジューンブレアでは『スプリントに強い』、8番エーティーマクフィでは『GⅠで後押し弱め』と矛盾。(3)4番ジューンブレアと5番サウンドモリアーナは同厩舎・武豊騎手離脱で条件が同じ、5番は手の内のある吉田隼人騎手に戻るのに4番より低いのは説明がつかない。(4)事実誤り: 10番レイピアの横山武史騎手の継続は2戦(3戦ではない)、11番ルガルの鮫島騎手の継続は4戦(5戦ではない)。(5)『関東馬が地元中山』を14番ウインカーネリアンだけに適用し1番レッドモンレーヴに不適用、休み明けの仕上げ評価も4番ジューンブレアだけで7番ペアポルックス・11番ルガルには不適用、6番ワールズエンドの初1200mを陣営プラスとする根拠が薄い。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, レッドモンレーヴ, 0.0, 酒井学騎手は高松宮記念で2着に導いた継続騎乗で、手の内を知っている点はプラスです。ただしGⅠで頼れる格ではなく、差し引きで中立とします（関東馬の地元という理由は陣営の力ではないので使いません）。<br><br>2番, アイサンサン, 0.0, 幸英明騎手が愛知杯勝ちを含めて3戦続けて乗っており、逃げの手の内は分かっています。一方で騎手・厩舎ともGⅠでの後押しは弱く、プラスとマイナスが打ち消し合います。<br><br>3番, ママコチャ, +0.6, 武豊騎手はジューンブレアとサウンドモリアーナにも乗ってきましたが、その中からこの馬を選んで継続騎乗します。この馬でスプリンターズSを勝っている池江泰寿厩舎と合わせ、騎手の選択・格・手の内がそろった陣営です。<br><br>4番, ジューンブレア, -0.1, 昨年このレースで2着に導き、5戦続けて乗っていた武豊騎手が他の馬を選んだため、乗り替わりになります。坂井瑠星騎手はGⅠを勝っている騎手ですが、この馬に乗るのは初めてで、手の内を失う分がわずかに上回ります。<br><br>5番, サウンドモリアーナ, 0.0, 前走勝たせた武豊騎手が降りたのはマイナスです。ただし代わりに乗るのはモルガナイトSを勝たせた吉田隼人騎手で、しかもブラックチャリスではなくこの馬を選んでの騎乗なので、差し引き中立とします。<br><br>6番, ワールズエンド, +0.1, 津村明秀騎手が京王杯SC勝ち・安田記念2着と2戦続けて乗っており、コンビの呼吸は良好です（初めての1200mを陣営のプラスとする根拠は取り下げます）。<br><br>7番, ペアポルックス, +0.1, 同じ中山1200mのオーシャンSを勝たせた岩田康誠騎手が継続して乗ります。手の内とコース実績の分だけ、わずかにプラスです。<br><br>8番, エーティーマクフィ, 0.0, 京阪杯を勝たせた富田暁騎手が長く乗り続けていて、手の内は十分です。一方で騎手のGⅠでの格は見劣りし、差し引き中立とします（厩舎の評価は同じ厩舎の4・5番とそろえて中立）。<br><br>9番, スターアニス, +0.4, 中山のGⅠで最も頼れるC.ルメール騎手への乗り替わりは、はっきりしたプラスです。ただしデビューから6戦続けて乗った松山弘平騎手が他の馬を選び、手の内を知る騎手を失った分は差し引きます。<br><br>10番, レイピア, +0.3, 中山を得意とする関東のトップ騎手・横山武史騎手が、重賞2・3着だった前2走に続いて乗ります（継続は2戦で、今回が3戦目）。<br><br>11番, ルガル, +0.3, 2年前にこのレースを勝った杉山晴紀厩舎は一流の陣営です。鮫島克駿騎手が阪神カップ勝ちから海外遠征まで4戦続けて乗っていて、手の内の信頼があります。<br><br>12番, ブラックチャリス, -0.2, 前走まで2戦乗り、青函Sを勝たせた吉田隼人騎手がサウンドモリアーナを選んだため乗り替わりになります。浜中俊騎手が乗ったのは2歳時の1戦だけで、手の内の蓄積は乏しいです。<br><br>13番, パンジャタワー, +0.5, 松山弘平騎手は、GⅠを2勝したスターアニスと3連勝中のフリッカージャブを降りてまでこの馬を選び、継続騎乗します。騎手自身の選択として最も強い裏付けです。<br><br>14番, ウインカーネリアン, +0.5, 昨年このレースを勝った三浦皇成騎手と鹿戸雄一厩舎のコンビが継続します。GⅠを勝った組み合わせで、手の内は完全に分かっています。<br><br>15番, フリッカージャブ, -0.2, 3連勝を含めて5戦続けて乗った松山弘平騎手が他の馬を選び、手の内を失います。代わりの西村淳也騎手はこのレースを勝った経験があるため、減点は小幅にとどめます。<br><br>16番, ピューロマジック, +0.1, 勢いのある岩田望来騎手が前走2着から継続して乗ります。ただし騎手がたびたび替わっていて、コンビの蓄積は薄いです。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、スプリンターズSの合成スコアを見たばい。うちが気になったところから先に書くね。<br><br>**合成スコアで引っかかったところ**<br>- **13番パンジャタワーが1位（22.2）なのは上がりすぎ。** 直近のキーンランドCは2着で、指数は92.1。そのレースで5番サウンドモリアーナに0.2秒負けとる。高松宮記念も4着で、3着の14番ウインカーネリアンより後ろやった。最近は勝ち切れとらんけん、1位にするほどの材料は無いと思う。<br>- **15番フリッカージャブは実質トップでよか。** 鞍馬Sが95.2、北九州記念（重馬場）が94.2、セントウルSが93.2で3連勝しとる。今回と同じ1200mの指数がこの中でいちばん安定しとるし、重馬場で勝っとるけん稍重も不安は無いと。マイナスは8枠の外枠と、松山騎手から西村騎手への乗り替わりくらいやね。<br>- **11番ルガルは低く見られすぎ。** 2年前のこのレースの勝ち馬で、阪神Cの96.8は出走馬の中で1200〜1400mの最高指数。532kgの大型馬やけん、稍重のパワー勝負も合っとる。海外遠征明けで3か月ぶりやけど、調教評価は「久々も力強く」やった。<br>- **9番スターアニスは能力を高く見すぎ。** 桜花賞の96.3は立派たい。ただ1200mを走るのはデビュー戦以来で、前走はオークス12着、そこから4か月ぶり。54kgとルメール騎手はプラスやけど、GIで初めてスプリント戦に挑む3歳牝馬の割には点が高いと思う。<br>- **6位以下で気になる馬。** 5番サウンドモリアーナ（キーンランドC 1着・94.8・内寄りの3枠・調子↗）は、上位5頭と並べて考えてもよか馬。16番ピューロマジック（アイビスSD 97.3、函館SS 1着、セントウルS 2着）も、状態だけならこの中で上位たい。ただ先行馬（15・16・14・5・2・12番）が多くてペースは流れそうやけん、外枠の逃げ・先行馬には少し割り引きが要ると思う。<br><br>**うちの確定スコア**<br><br>15番, フリッカージャブ, 23%, 1200mで3連勝していて指数は93〜95で安定しとる。重馬場でも勝っとるけん稍重も苦にせんし、外枠と乗り替わりを差し引いてもいちばん上に置く。<br><br>11番, ルガル, 22%, 2年前のこのレースの勝ち馬で、阪神Cの96.8は同距離帯の最高指数。大型のパワー型で稍重が合うけん、合成の3位から2位に上げる。<br><br>14番, ウインカーネリアン, 19%, 昨年の勝ち馬で中山1200mの先行策がはまる。高松宮記念では13番に先着しとって、キーンランドCも59kgで3着やけん、9歳でも13番より上に置く。<br><br>13番, パンジャタワー, 18%, 高松宮記念4着・キーンランドC 2着と安定はしとる。でも最近は勝ち切れとらんし、キーンランドCでは5番に負けとるけん、合成の1位は高すぎる。<br><br>9番, スターアニス, 14%, 桜花賞の96.3は能力として一番上の水準。ただ久々に1200mを走ることと、オークス大敗から4か月ぶりの休み明けを割り引く。<br><br>```json<br>{&quot;score&quot;: {&quot;15&quot;: 23, &quot;11&quot;: 22, &quot;14&quot;: 19, &quot;13&quot;: 18, &quot;9&quot;: 14}, &quot;analysis_summary&quot;: &quot;合成で1位の13番パンジャタワーは、キーンランドCで5番サウンドモリアーナに負けていて高松宮記念でも14番ウインカーネリアンより後ろだったため過大評価と判断し4位に下げた。15番フリッカージャブは1200mで3連勝して指数も安定しており重馬場実績もあるので1位。11番ルガルは2年前の勝ち馬で阪神Cの96.8があり稍重のパワー勝負も合うので2位に上げた。14番ウインカーネリアンは昨年の勝ち馬で中山1200mの先行策が合うため3位。9番スターアニスは能力は高いが1200mへの距離短縮と休み明けで割り引いた。6位以下では5番サウンドモリアーナと16番ピューロマジックを上位と比べてもよい存在として注意。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、スプリンターズSの全16頭、レース情報だけ見て点を付けたけん。今日は稍重やけん、渋った馬場での実績と、中山の外回り1200mで前に付けられるかを重く見とるよ。<br><br>15番, フリッカージャブ, 18%, セントウルS・北九州記念・鞍馬Sと3連勝中で、スピード指数も93〜95と安定して高いっちゃん。重馬場の北九州記念も勝っとって、調教も「依然動き絶好」で上向きやけん、8枠でも本命にしとる。<br><br>5番, サウンドモリアーナ, 11%, キーンランドCを指数94.8で勝っとって、2番手から運べる脚質は中山1200mに合っとる。調教も上向きなんやけど、重の北九州記念で6着やけん、渋った馬場は少し割り引いとる。<br><br>11番, ルガル, 11%, スプリンターズSの勝ち馬で、阪神C勝ちのときは指数96.8。海外GIでもアル・クオーツ・スプリント2着と力は見せとる。前に行ける脚質やけど、久々で馬体重がわからんのは不安材料になっとる。<br><br>14番, ウインカーネリアン, 10%, 去年のこのレースの勝ち馬で、高松宮記念3着、キーンランドCでは59kgで3着と9歳でも力は落ちとらん。中山のGIで先行して粘れる実績は大きいとよ。<br><br>16番, ピューロマジック, 8%, 函館SS・アイビスSD勝ちからセントウルS2着と絶好調で、スピードはメンバー上位っちゃん。ただ大外16番の逃げ馬で、GIの高松宮記念は13着やけん少し下げとる。<br><br>13番, パンジャタワー, 8%, NHKマイルCを勝ったGI馬で、高松宮記念4着・キーンランドC2着と1200mでも崩れとらん。安定しとるけど、決め手はもう一段ほしいところ。<br><br>6番, ワールズエンド, 8%, 京王杯SCを指数95.3で勝って、安田記念もハナ差の2着と能力は高いと。ただ1200mは初めてで、1400〜1600mの逃げとはペースが違うけん、そこを割り引いとる。<br><br>10番, レイピア, 7%, 重賞で2着を続けとって、中山のオーシャンSも0.0秒差の2着。安定感はあるけど勝ち切れんし、GIの高松宮記念は5着やった。<br><br>9番, スターアニス, 7%, 桜花賞を指数96.3で勝った3歳女王で、54kgで出られてルメール騎手が乗るのも魅力やね。ただ1200mは2歳の未勝利戦以来で、中身が一気に変わるスプリントGIに対応できるかが未知数っちゃん。<br><br>3番, ママコチャ, 5%, スプリンターズSの勝ち馬で、セントウルSも3着と力は残っとる。ただ7歳になって、高松宮記念9着と最近は上位と差があるとよ。<br><br>4番, ジューンブレア, 4%, 去年のこのレースで逃げて2着やったけど、最近2走は大敗しとる。6か月ぶりで馬体重も+12kgやけん、評価を下げとる。<br><br>7番, ペアポルックス, 4%, 中山のオーシャンSは差して勝っとるけど、それ以外は凡走が多いと。去年のこのレースも13着やけん、ムラ駆けの印象やね。<br><br>8番, エーティーマクフィ, 3%, 函館SS2着・キーンランドC4着と崩れにくいけど、GIで勝ち負けするには指数90前後では足りん。<br><br>1番, レッドモンレーヴ, 3%, 高松宮記念2着の末脚はあるけど、前走のセントウルSは16着で2.6秒も離されとる。1枠の追い込み馬で、稍重の中山は割り引いとる。<br><br>12番, ブラックチャリス, 2%, 稍重の青函Sを勝っとって馬場は合いそうやけど、前走のUHB賞は6着。3歳牝馬で、GIで通用する指数はまだ出とらん。<br><br>2番, アイサンサン, 2%, 1400mの逃げで重賞を勝っとるけど、1200mは初めてで、GIのヴィクトリアマイルは13着。速い流れで先手を取れるかが疑わしいと。<br><br>```json<br>{&quot;score&quot;: {&quot;15&quot;: 18, &quot;5&quot;: 11, &quot;11&quot;: 11, &quot;14&quot;: 10, &quot;16&quot;: 8, &quot;13&quot;: 8, &quot;6&quot;: 8, &quot;10&quot;: 7, &quot;9&quot;: 7, &quot;3&quot;: 5, &quot;4&quot;: 4, &quot;7&quot;: 4, &quot;8&quot;: 3, &quot;1&quot;: 3, &quot;12&quot;: 2, &quot;2&quot;: 2}, &quot;analysis_summary&quot;: &quot;稍重の中山1200m外回りでは、先行力と渋った馬場での実績を重く見た。重の北九州記念を含む3連勝中で調教も上向きの15番フリッカージャブを最上位にした。キーンランドCの勝ち馬5番サウンドモリアーナ、GIの実績がある11番ルガルと14番ウインカーネリアンが続く。16番ピューロマジックは好調だが大外の逃げ馬なので少し割り引いた。6番ワールズエンドと9番スターアニスは能力は高いが、1200mへの対応が未知数とみた。最近の成績が落ちている4番・1番・7番は評価を下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>15</td><td class="left horse-name">フリッカージャブ</td><td>10.4%</td><td>7.1</td><td>3</td><td class="ev-low">0.74</td></tr><tr><td>2</td><td>11</td><td class="left horse-name">ルガル</td><td>8.7%</td><td>9.4</td><td>4</td><td class="ev-low">0.82</td></tr><tr><td>3</td><td>13</td><td class="left horse-name">パンジャタワー</td><td>8.5%</td><td>4.8</td><td>2</td><td class="ev-low">0.41</td></tr><tr><td>4</td><td>5</td><td class="left horse-name">サウンドモリアーナ</td><td>8.2%</td><td>31.8</td><td>11</td><td class="ev-high">2.62</td></tr><tr><td>5</td><td>14</td><td class="left horse-name">ウインカーネリアン</td><td>8.0%</td><td>13.0</td><td>6</td><td class="ev-mid">1.04</td></tr><tr><td>6</td><td>9</td><td class="left horse-name">スターアニス</td><td>7.7%</td><td>3.5</td><td>1</td><td class="ev-low">0.27</td></tr><tr><td>7</td><td>16</td><td class="left horse-name">ピューロマジック</td><td>6.9%</td><td>21.0</td><td>9</td><td class="ev-mid">1.45</td></tr><tr><td>8</td><td>6</td><td class="left horse-name">ワールズエンド</td><td>6.7%</td><td>11.2</td><td>5</td><td class="ev-low">0.74</td></tr><tr><td>9</td><td>10</td><td class="left horse-name">レイピア</td><td>6.5%</td><td>20.3</td><td>8</td><td class="ev-mid">1.32</td></tr><tr><td>10</td><td>3</td><td class="left horse-name">ママコチャ</td><td>5.8%</td><td>15.5</td><td>7</td><td class="ev-low">0.90</td></tr><tr><td>11</td><td>8</td><td class="left horse-name">エーティーマクフィ</td><td>5.0%</td><td>23.0</td><td>10</td><td class="ev-mid">1.15</td></tr><tr><td>12</td><td>1</td><td class="left horse-name">レッドモンレーヴ</td><td>4.7%</td><td>48.9</td><td>15</td><td class="ev-high">2.29</td></tr><tr><td>13</td><td>4</td><td class="left horse-name">ジューンブレア</td><td>3.9%</td><td>34.7</td><td>13</td><td class="ev-mid">1.35</td></tr><tr><td>14</td><td>7</td><td class="left horse-name">ペアポルックス</td><td>3.8%</td><td>31.9</td><td>12</td><td class="ev-mid">1.20</td></tr><tr><td>15</td><td>12</td><td class="left horse-name">ブラックチャリス</td><td>2.8%</td><td>77.8</td><td>16</td><td class="ev-high">2.17</td></tr><tr><td>16</td><td>2</td><td class="left horse-name">アイサンサン</td><td>2.6%</td><td>47.2</td><td>14</td><td class="ev-mid">1.22</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">15 フリッカージャブ</td><td>10.4%</td><td>7.1</td><td class="ev-low">0.61</td></tr><tr><td>複勝</td><td class="left">15 フリッカージャブ</td><td>29.8%</td><td>2.5</td><td class="ev-low">0.66</td></tr><tr><td>馬連</td><td class="left">11 ルガル-15 フリッカージャブ</td><td>2.0%</td><td>31.3</td><td class="ev-low">0.50</td></tr><tr><td>ワイド</td><td class="left">11 ルガル-15 フリッカージャブ</td><td>5.8%</td><td>15.0</td><td class="ev-low">0.70</td></tr><tr><td>馬単</td><td class="left">15 フリッカージャブ→11 ルガル</td><td>1.0%</td><td>68.4</td><td class="ev-low">0.55</td></tr><tr><td>3連複</td><td class="left">11 ルガル-13 パンジャタワー-15 フリッカージャブ</td><td>0.6%</td><td>46.4</td><td class="ev-low">0.23</td></tr><tr><td>3連単</td><td class="left">15 フリッカージャブ→11 ルガル→13 パンジャタワー</td><td>0.1%</td><td>315.4</td><td class="ev-low">0.27</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 1,000円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連複</td><td class="left">11 ルガル-13 パンジャタワー-15 フリッカージャブ</td><td>46.4</td><td>8</td><td style='text-align:right;font-weight:600;'>800円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">15 フリッカージャブ→11 ルガル→13 パンジャタワー</td><td>315.4</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 1,000円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
