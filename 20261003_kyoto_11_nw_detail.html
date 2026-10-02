@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>オパールステークス 2026/10/03 KYOTO 11R (10/02 21:28 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; width: 22px; height: 22px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    margin-right: 2px; border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>オパールステークス 2026/10/03 KYOTO 11R (10/02 21:28 予想 馬体重なし)</h1>
+  <div class="meta">芝1200m（右） | 良 | 18頭立て | 4回 京都 1日目 サラ系3歳以上 オープン （国際）（特指） ハンデ 18頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">16. フロムダスク</div>
+      <div class="pick-jockey">中井 裕二 / 森 秀行</div>
+    </div>
+    <div class="pick-prob">8.9%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">10. ヒシアイラ</div>
+      <div class="pick-jockey">荻野 極 / 池江 泰寿</div>
+    </div>
+    <div class="pick-prob">8.4%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">18. ディアナザール</div>
+      <div class="pick-jockey">川田 将雅 / 斉藤 崇史</div>
+    </div>
+    <div class="pick-prob">8.3%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">18頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>枠</th><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>調教師</th><th>父</th><th>母父</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>1</td><td class="left horse-name">カルチャーデイ</td><td>牝5</td><td>55</td><td>酒井 学</td><td>四位 洋文</td><td>ファインニードル</td><td>マイネルラヴ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td>2</td><td class="left horse-name">ショウナンアビアス</td><td>牡6</td><td>56</td><td>北村 友一</td><td>加藤 士津八</td><td>ドレフォン</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>3</td><td class="left horse-name">タマモイカロス</td><td>牡3</td><td>55</td><td>松山 弘平</td><td>藤岡 健一</td><td>デクラレーションオブウォー</td><td>ダンスインザダーク</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td>4</td><td class="left horse-name">メイショウヨゾラ</td><td>牝5</td><td>53</td><td>吉村 誠之助</td><td>高柳 瑞樹</td><td>グレーターロンドン</td><td>ヨハネスブルグ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>5</td><td class="left horse-name">フィオライア</td><td>牝5</td><td>55</td><td>松若 風馬</td><td>柴田 卓</td><td>ファインニードル</td><td>サクラバクシンオー</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td>6</td><td class="left horse-name">リリージョワ</td><td>牝3</td><td>54</td><td>浜中 俊</td><td>武 幸四郎</td><td>シルバーステート</td><td>キングカメハメハ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>7</td><td class="left horse-name">テーオーダヴィンチ</td><td>牡8</td><td>54</td><td>菱田 裕二</td><td>岡田 稲男</td><td>ダイワメジャー</td><td>Sea of Secrets</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">4</span></td><td>8</td><td class="left horse-name">レッドエヴァンス</td><td>せん5</td><td>55</td><td>西村 淳也</td><td>東田 明士</td><td>ロードカナロア</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>9</td><td class="left horse-name">タマモブラックタイ</td><td>牡6</td><td>57</td><td>幸 英明</td><td>角田 晃一</td><td>デクラレーションオブウォー</td><td>ブラックタイド</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">5</span></td><td>10</td><td class="left horse-name">ヒシアイラ</td><td>牡3</td><td>55</td><td>荻野 極</td><td>池江 泰寿</td><td>モーリス</td><td>Rock of Gibraltar</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>11</td><td class="left horse-name">オタルエバー</td><td>牡7</td><td>56</td><td>角田 大和</td><td>中竹 和也</td><td>リオンディーズ</td><td>Redoute&#x27;s Choice</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">6</span></td><td>12</td><td class="left horse-name">デイトナモード</td><td>牡6</td><td>54</td><td>斎藤 新</td><td>千田 輝彦</td><td>アメリカンペイトリオット</td><td>スズカマンボ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>13</td><td class="left horse-name">クラスペディア</td><td>牡4</td><td>57.5</td><td>小崎 綾也</td><td>河嶋 宏樹</td><td>ミスターメロディ</td><td>アグネスタキオン</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>14</td><td class="left horse-name">ヤマニンアルリフラ</td><td>牡5</td><td>57.5</td><td>M.デムーロ</td><td>斉藤 崇史</td><td>イスラボニータ</td><td>スウェプトオーヴァーボード</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">7</span></td><td>15</td><td class="left horse-name">タガノアラリア</td><td>牡3</td><td>55</td><td>鮫島 克駿</td><td>西園 翔太</td><td>ミスターメロディ</td><td>ディープインパクト</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>16</td><td class="left horse-name">フロムダスク</td><td>牡6</td><td>57.5</td><td>中井 裕二</td><td>森 秀行</td><td>Bolt d&#x27;Oro</td><td>Giant&#x27;s Causeway</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>17</td><td class="left horse-name">ヨシノイースター</td><td>牡8</td><td>58</td><td>坂井 瑠星</td><td>中尾 秀正</td><td>ルーラーシップ</td><td>ゼンノロブロイ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">8</span></td><td>18</td><td class="left horse-name">ディアナザール</td><td>牡4</td><td>56</td><td>川田 将雅</td><td>斉藤 崇史</td><td>ロードカナロア</td><td>ディープインパクト</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">フロムダスク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ヒシアイラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ディアナザール</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">フロムダスク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ヒシアイラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ディアナザール</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">フロムダスク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ヒシアイラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ディアナザール</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">フロムダスク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ヒシアイラ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">レッドエヴァンス</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">フロムダスク</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ディアナザール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ヒシアイラ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#AF52DE'>0.60</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">フロムダスク</span></td>
+<td>+0.48</td>
+<td>-0.06</td>
+<td>+0.26</td>
+<td>+0.34</td>
+<td>+0.18</td>
+<td>8.1</td>
+<td>7.7</td>
+<td>12.8</td>
+<td><b>8.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ヒシアイラ</span></td>
+<td>+0.30</td>
+<td>+0.24</td>
+<td>+0.40</td>
+<td>+0.20</td>
+<td>+0.34</td>
+<td>7.8</td>
+<td>8.0</td>
+<td>10.6</td>
+<td><b>8.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">18</span><span style="display:inline-block;margin-left:0.5em;">ディアナザール</span></td>
+<td>+0.34</td>
+<td>-0.10</td>
+<td>+0.20</td>
+<td>+0.20</td>
+<td>+0.50</td>
+<td>7.4</td>
+<td>7.5</td>
+<td>12.0</td>
+<td><b>8.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">レッドエヴァンス</span></td>
+<td>+0.36</td>
+<td>+0.26</td>
+<td>+0.20</td>
+<td>+0.22</td>
+<td>+0.20</td>
+<td>7.9</td>
+<td>8.0</td>
+<td>8.8</td>
+<td><b>8.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">クラスペディア</span></td>
+<td>+0.32</td>
+<td>-0.04</td>
+<td>+0.16</td>
+<td>+0.18</td>
+<td>+0.18</td>
+<td>7.0</td>
+<td>7.2</td>
+<td>7.6</td>
+<td><b>7.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">メイショウヨゾラ</span></td>
+<td>+0.14</td>
+<td>+0.44</td>
+<td>+0.38</td>
+<td>+0.24</td>
+<td>-0.08</td>
+<td>6.8</td>
+<td>7.2</td>
+<td>5.4</td>
+<td><b>6.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ヨシノイースター</span></td>
+<td>+0.34</td>
+<td>-0.18</td>
+<td>+0.16</td>
+<td>-0.04</td>
+<td>+0.28</td>
+<td>6.6</td>
+<td>7.0</td>
+<td>6.0</td>
+<td><b>6.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">タガノアラリア</span></td>
+<td>+0.22</td>
+<td>-0.16</td>
+<td>+0.28</td>
+<td>+0.00</td>
+<td>+0.08</td>
+<td>6.0</td>
+<td>-</td>
+<td>6.6</td>
+<td><b>6.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">フィオライア</span></td>
+<td>+0.16</td>
+<td>+0.10</td>
+<td>+0.12</td>
+<td>+0.30</td>
+<td>-0.08</td>
+<td>6.2</td>
+<td>-</td>
+<td>5.0</td>
+<td><b>5.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">タマモイカロス</span></td>
+<td>+0.12</td>
+<td>-0.04</td>
+<td>+0.04</td>
+<td>+0.06</td>
+<td>+0.26</td>
+<td>5.8</td>
+<td>-</td>
+<td>5.0</td>
+<td><b>5.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ヤマニンアルリフラ</span></td>
+<td>+0.06</td>
+<td>-0.28</td>
+<td>+0.02</td>
+<td>+0.08</td>
+<td>+0.18</td>
+<td>5.0</td>
+<td>-</td>
+<td>3.9</td>
+<td><b>4.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">カルチャーデイ</span></td>
+<td>-0.12</td>
+<td>+0.32</td>
+<td>+0.38</td>
+<td>+0.06</td>
+<td>+0.00</td>
+<td>5.0</td>
+<td>-</td>
+<td>3.1</td>
+<td><b>4.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">リリージョワ</span></td>
+<td>-0.04</td>
+<td>+0.00</td>
+<td>-0.06</td>
+<td>+0.04</td>
+<td>+0.08</td>
+<td>4.7</td>
+<td>-</td>
+<td>3.8</td>
+<td><b>4.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">タマモブラックタイ</span></td>
+<td>-0.04</td>
+<td>-0.16</td>
+<td>+0.36</td>
+<td>+0.02</td>
+<td>+0.08</td>
+<td>4.8</td>
+<td>-</td>
+<td>3.1</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">オタルエバー</span></td>
+<td>-0.18</td>
+<td>+0.02</td>
+<td>-0.22</td>
+<td>+0.00</td>
+<td>-0.18</td>
+<td>3.5</td>
+<td>-</td>
+<td>1.8</td>
+<td><b>3.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">テーオーダヴィンチ</span></td>
+<td>-0.32</td>
+<td>-0.02</td>
+<td>-0.18</td>
+<td>-0.04</td>
+<td>-0.10</td>
+<td>3.0</td>
+<td>-</td>
+<td>2.1</td>
+<td><b>2.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ショウナンアビアス</span></td>
+<td>-0.38</td>
+<td>-0.26</td>
+<td>-0.06</td>
+<td>-0.48</td>
+<td>+0.00</td>
+<td>2.4</td>
+<td>-</td>
+<td>1.1</td>
+<td><b>2.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">デイトナモード</span></td>
+<td>-0.50</td>
+<td>-0.02</td>
+<td>-0.24</td>
+<td>-0.02</td>
+<td>-0.14</td>
+<td>2.1</td>
+<td>-</td>
+<td>1.1</td>
+<td><b>1.9</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, カルチャーデイ, -0.2, 1400mのリステッドでは0.1〜0.4秒差（指数87〜88）まで来ているが、今回と同じ1200mでは米子城S 12着・指数82.7、京阪杯 16着・指数69.4と崩れていて、この距離で通用した実績がない。<br><br>2番, ショウナンアビアス, -0.4, 近5走はすべてダートで、水無月S 2着（指数92.4）などダートのOPなら上位。ただ芝1200mでの最近の裏付けがまったくなく、芝に替わると実績面の根拠が乏しい。<br><br>3番, タマモイカロス, +0.1, 葵S(GIII) 3着・0.2秒差・上がり32.7・指数89.5、マーガレットS 1着・指数91.6と3歳の同距離実績はある。ただ前走のセントウルSは14着・1.8秒差・指数68.4と大敗し、成績に波がある。<br><br>4番, メイショウヨゾラ, +0.1, 会津S(3勝クラス)を勝ってすぐ格上のセントウルS(GII)に挑み、6着・0.7秒差・指数83.1。昇級直後としては悪くなく、53kgの恩恵もあるが、OPで上位に入った実績はまだない。<br><br>5番, フィオライア, +0.1, シルクロードS(GIII) 1着・指数94.4は今回のメンバーで最上位級の勝ち鞍。ただ近3走は10着・18着・13着、直近2走の指数は59.4と82.2で、下降傾向を割り引く。<br><br>6番, リリージョワ, 0.0, 紅梅Sを0.7秒差で圧勝した指数94.1は高いが、9頭立てで1400mの逃げ切り。古馬相手の1600mでは11着・14着（指数84前後）で、1200mは未経験。実績からは評価を定めにくい。<br><br>7番, テーオーダヴィンチ, -0.3, 前走は3勝クラスを勝ったが、8頭立てで指数86.7。8歳での昇級初戦で、OPでの実績もない。<br><br>8番, レッドエヴァンス, +0.4, 3勝クラスを勝ってすぐのCBC賞(GIII)で3着・0.4秒差・指数88.0。直近の指数は88〜89でそろっていて、通算3着10回の堅実さも軸向き。<br><br>9番, タマモブラックタイ, -0.1, 米子城S 1着・指数92.7は今回のメンバーでも上位の数字。ただその後は春雷S 8着、CBC賞 16着、セントウルS 10着（指数78〜80）と下降が続いている。<br><br>10番, ヒシアイラ, +0.4, 葵S(GIII) 2着・0.1秒差・指数91.0、マーガレットS 2着・0.1秒差・指数90.1と、同距離の重賞級で崩れていない。4か月ぶりの休み明けだけが割引材料。<br><br>11番, オタルエバー, -0.3, 近5走は重賞で11着・14着・16着・14着、OPの鞍馬Sでも6着・0.6秒差。指数は72〜86どまりで、この距離のOP・重賞では力が足りない。<br><br>12番, デイトナモード, -0.5, OPに上がってから18着・10着・17着で、指数は68〜82。3勝クラスの巌流島S勝ち（指数86.6）以降、通用していない。<br><br>13番, クラスペディア, +0.3, 前走のセントウルS(GII)で4着・0.4秒差・指数87.4、春雷Sは1着・指数91.9と同距離の格上で走れている。CBC賞11着の取りこぼしがあり、57.5kgもやや重い。<br><br>14番, ヤマニンアルリフラ, -0.1, 北九州記念(GIII)勝ちとシルクロードS 3着・指数92.9の格はある。ただ近走の芝は高松宮記念14着、北九州記念9着（指数76〜80）と下降していて、57.5kgも重い。<br><br>15番, タガノアラリア, +0.2, 朱鷺Sで0.0秒差の5着・指数91.4、橘S 1着・指数92.3と1400mでは上位級。1200mの葵Sでは7着・0.4秒差・指数86.5で、短縮は少し不安。<br><br>16番, フロムダスク, +0.6, 前走のCBC賞(GIII)を0.4秒差で完勝し、走破1:06.5・指数93.6は今回のメンバーで直近最高。鞍馬Sでも上がり32.5で0.5秒差と、同距離の実績が裏付けている。<br><br>17番, ヨシノイースター, +0.4, 北九州記念(GIII) 3着・0.1秒差・指数92.9、オーシャンS 5着・指数91.7、安土城S 4着・指数90.0と、高い指数を安定して出している。前走セントウルS 11着と8歳・58kgの重さは割り引く。<br><br>18番, ディアナザール, +0.4, 鞍馬S 3着・0.3秒差・指数90.9、阪急杯(GIII) 4着・指数87.8と、OP・重賞で崩れていない。CBC賞は17番手から上がり32.8で0.7秒差まで詰めていて、通算8戦4勝の底力もある。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: -0.4, &quot;3&quot;: 0.1, &quot;4&quot;: 0.1, &quot;5&quot;: 0.1, &quot;6&quot;: 0.0, &quot;7&quot;: -0.3, &quot;8&quot;: 0.4, &quot;9&quot;: -0.1, &quot;10&quot;: 0.4, &quot;11&quot;: -0.3, &quot;12&quot;: -0.5, &quot;13&quot;: 0.3, &quot;14&quot;: -0.1, &quot;15&quot;: 0.2, &quot;16&quot;: 0.6, &quot;17&quot;: 0.4, &quot;18&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;実績面ではCBC賞(GIII)を0.4秒差で完勝し指数93.6を出したフロムダスクが最上位。次いで、同距離の重賞・OPで指数88〜93を安定して出しているレッドエヴァンス、ヒシアイラ、ヨシノイースター、ディアナザールが上位で、セントウルS 4着のクラスペディアが続く。フィオライア、ヤマニンアルリフラ、タマモブラックタイは格こそ高いが近走が下降していて割り引いた。OPで大敗が続くデイトナモード、芝での最近の実績がないショウナンアビアス、重賞で着外続きのオタルエバーは下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①16番フロムダスク+0.6はCBC賞1戦だけの突出が根拠。斤量55→57.5kgへの言及がない（13番・14番は57.5kgで減点しているのに不整合）。鞍馬Sは5着で18番ディアナザールに負けており、59kgの11番オタルエバーとも0.1秒差しかない。②10番ヒシアイラ+0.4は古馬との対戦がなく、3番タマモイカロスとは直接対決で互角（葵S 0.1秒先着、マーガレットS 0.1秒負け）。古馬相手に実績のある3番(+0.1)・15番タガノアラリア(+0.2)より上に置く根拠を見直してはどうか。③8番レッドエヴァンスの『88〜89でそろう』は実際の指数88.0/88.9/81.6/89.1/78.4と合わない。最高値も13番・17番・18番より低く、OPで勝った実績もない。④17番ヨシノイースターの『安定』は5走中2走が76〜80と崩れており、8歳でメンバー最重量の58kg。⑤6番リリージョワ(0.0)は古馬相手の指数が83〜84で、古馬リステッドで87〜88の1番カルチャーデイ(-0.2)を上回る理由が弱い。⑥11番オタルエバーは鞍馬Sの0.6秒差が59kgでのもの。OP経験のない7番テーオーダヴィンチと同じ-0.3でよいか。⑦18番ディアナザールのCBC賞を位置取りで擁護するのは評価軸の外。5番フィオライアのオーシャンS 10着は0.4秒差・指数88.8で、崩れた走りには当たらない。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, カルチャーデイ, -0.1, 古馬の1400mリステッドでは朱鷺S 0.1秒差・指数88.4、安土城S 0.4秒差・指数87.5と通用している。ただ1200mでは米子城S 12着・指数82.7、京阪杯 16着・指数69.4と崩れていて、距離の不安は残る（指摘を受けて-0.2から緩めた）。<br><br>2番, ショウナンアビアス, -0.4, 近5走はすべてダートで、水無月S 2着・指数92.4などダートのOPなら上位。ただ芝1200mでの最近の実績がなく、芝替わりを裏付ける材料がない。<br><br>3番, タマモイカロス, +0.1, 葵S(GIII)で3着・0.2秒差・指数89.5、マーガレットSは1着・指数91.6。ただ古馬との対戦ではCBC賞6着・指数86.8、セントウルS 14着・1.8秒差・指数68.4で、古馬相手の実績はむしろ割引材料になる。<br><br>4番, メイショウヨゾラ, +0.1, 3勝クラスの会津Sを勝ってすぐ、格上のセントウルS(GII)で6着・0.7秒差・指数83.1。昇級初戦としては悪くないが、OPで上位に入った実績はまだない。<br><br>5番, フィオライア, +0.2, シルクロードS(GIII) 1着・指数94.4は今回のメンバーで最上位の勝ち鞍。オーシャンSも10着ながら0.4秒差・指数88.8で崩れてはいない（指摘を受け入れた）。CBC賞13着・指数82.2が直近の割引材料。<br><br>6番, リリージョワ, -0.1, 紅梅S・指数94.1は3歳同士の9頭立て、1400mの逃げ切り。古馬相手の重賞では指数83〜84にとどまり、古馬リステッドで87〜88を出している1番を上回る根拠はないので一段下げた。1200mは未経験。<br><br>7番, テーオーダヴィンチ, -0.3, 前走は3勝クラスを勝ったが、8頭立てで指数86.7。8歳での昇級初戦で、OPでの実績もない。<br><br>8番, レッドエヴァンス, +0.3, CBC賞(GIII)は3勝クラスを勝ってすぐの格上挑戦で、3着・0.4秒差・指数88.0。ただ近5走の指数は88.0/88.9/81.6/89.1/78.4と波があり、最高値も89.1どまり（「88〜89でそろう」は誤りだったので訂正）。<br><br>9番, タマモブラックタイ, -0.1, 米子城S 1着・指数92.7は上位の数字。ただその後は春雷S 8着、CBC賞16着、セントウルS 10着（指数78〜80）と下降が続いている。<br><br>10番, ヒシアイラ, +0.3, 葵S(GIII) 2着・0.1秒差・指数91.0、マーガレットS 2着・0.1秒差・指数90.1と、同距離で安定している。ただ古馬との対戦がなく、3番とは直接対決で互角。4か月ぶりの休み明けもあるので一段下げた。<br><br>11番, オタルエバー, -0.2, 重賞では11着・14着・16着・14着と通用していない。ただ鞍馬S 6着・0.6秒差・指数86.6は59kgを背負ってのもの。今回の56kgで斤量が3kg軽くなり、OP勝ちの実績もあるので、7番よりは上に置く。<br><br>12番, デイトナモード, -0.5, OPに上がってからは18着・10着・17着で、指数は68〜82。3勝クラスの巌流島Sを勝って以降（指数86.6）、通用していない。<br><br>13番, クラスペディア, +0.3, 前走のセントウルS(GII)は4着・0.4秒差・指数87.4、春雷Sは1着・指数91.9と、同距離の格上レースで走れている。CBC賞11着の取りこぼしと、57.5kgの重さは割り引く。<br><br>14番, ヤマニンアルリフラ, -0.1, 北九州記念(GIII)勝ち、シルクロードS 3着・指数92.9と格はある。ただ近走の芝は高松宮記念14着、北九州記念9着（指数76〜80）と下降しており、57.5kgも重い。<br><br>15番, タガノアラリア, +0.3, 朱鷺Sで古馬相手に0.0秒差の5着・指数91.4、橘Sは1着・指数92.3。3歳馬で唯一、古馬相手に高い指数を出しているので一段上げた。1200mの葵Sは7着・0.4秒差・指数86.5で、距離短縮は少し不安。<br><br>16番, フロムダスク, +0.4, CBC賞(GIII)を0.4秒差で完勝し、走破1:06.5・指数93.6は直近では最高の数字。ただ根拠はこの1戦に偏っている。鞍馬Sは5着・0.5秒差で18番に負けているうえ、今回は55kgから57.5kgに増量。他馬と同じ基準で斤量を割り引いた。<br><br>17番, ヨシノイースター, +0.3, 北九州記念 3着・指数92.9、オーシャンS 5着・指数91.7、安土城S 4着・指数90.0と、高い指数を出す力はある。ただ5走中2走は指数76〜80と崩れていて「安定」とは言えない。8歳でメンバー最重量の58kgも割り引く。<br><br>18番, ディアナザール, +0.3, 鞍馬S 3着・0.3秒差・指数90.9、阪急杯(GIII) 4着・指数87.8と、OP・重賞で上位に来ている。CBC賞9着・指数83.7は位置取りを理由に擁護せず、額面どおり受け取って一段下げた。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキー、オパールSの展開を読んでみたけん、置いとくね。<br><br>**展開シナリオ**<br>京都は秋開催の初週で、馬場は良と見とる。芝1200mは内回りで、坂の下りから入ってすぐ流れが速くなるコースっちゃん。直線は約328mと短いし、開幕週でまだ馬場がきれいやけん、内の前が止まりにくい。<br><br>- **隊列:** ハナは内から6番リリージョワか1番カルチャーデイ。そのすぐ後ろ、内の3番手に4番メイショウヨゾラがつけると思う。外からは13番クラスペディア、18番ディアナザール、16番フロムダスクが押して上がってきて、先行集団は外を回らされる形になりそう。<br>- **ペース:** 前に行きたい馬が多かけん、平均からやや速めの流れになると見とる。<br>- **直線:** 内の先行馬が粘るところへ、中団の8番レッドエヴァンスと10番ヒシアイラが差してくる絵やね。<br>- **別の展開:** 先行争いがやり合ってハイペースになったら、中団の差し馬が上位に来る。それでも直線が短いけん、後方一気の追込は届きにくいと思う。<br><br>1番, カルチャーデイ, +0.5, 毎回2〜3番手につける先行馬が1枠1番を引いた。開幕週の京都内回りなら、内ラチ沿いをロスなく回って先行できる、いちばんいい位置取りが見込めるっちゃん。<br><br>2番, ショウナンアビアス, -0.3, 近走はずっとダートで、中団から後ろの競馬。芝1200mのオープンだと序盤の速さで置かれて後ろになりやすいし、内枠やと前が壁になって詰まる心配もある。<br><br>3番, タマモイカロス, -0.3, 近走は11〜12番手からの差しばっかり。内枠の後方待機は、開幕週の短い直線で外へ出すのに手間取るし、前も開きにくいけん不利になると思う。<br><br>4番, メイショウヨゾラ, +0.5, 近3走はどれも3番手につけとる安定した先行馬で、2枠4番から内の好位を取りやすい。斤量53kgで楽に前へ行けるし、前が残りやすい馬場とも噛み合っとる。<br><br>5番, フィオライア, +0.3, 京都1200mのシルクロードSを1-2番手から勝っとる。内寄りの3枠やけん、もう一度前で運べたら開幕週の馬場を活かせる。ただ近走は位置取りが後ろになっとるけん、少しだけ上げる程度にしとくね。<br><br>6番, リリージョワ, +0.2, 1400〜1600mでは逃げとる馬で、内寄りの枠からハナを取れそう。ただ1200mは初めてで、スプリント戦の速い流れに外から競りかけられたら息が入らんで飲み込まれる心配があるけん、上げるのは小さめ。<br><br>7番, テーオーダヴィンチ, 0.0, 中団からの競馬が中心で、真ん中の枠。展開で有利にも不利にもなりにくいけん中立にしとく。<br><br>8番, レッドエヴァンス, +0.2, 4番手から11番手までどこからでも競馬ができて、上がりも毎回安定しとる。4枠から好位の後ろで脚をためられるし、流れが平均より速くなれば中団から差しが届く形になる。<br><br>9番, タマモブラックタイ, -0.2, 近2走は12〜15番手の後方。直線の短い京都内回りの開幕週やと、前の馬をとらえきるのは難しいと思う。<br><br>10番, ヒシアイラ, +0.2, 逃げても、京都の葵Sみたいに中団から差しても結果を出しとる、どっちもできる馬。先行馬同士がやり合えば中団から、流れが落ち着けば前の方からと、どっちの展開にも対応できる。<br><br>11番, オタルエバー, 0.0, 位置取りは3番手から12番手までレースによってバラバラで、6枠からやと有利不利ははっきりせんけん中立。<br><br>12番, デイトナモード, 0.0, 先行から中団につける馬やけど、6枠12番やとやや外を回らされる。前残りの馬場の恩恵とほぼ打ち消し合うけん中立にしとく。<br><br>13番, クラスペディア, 0.0, 2番手前後につける先行力は十分ある。けど7枠13番からやと先行集団の外を回らされるけん、展開面ではプラスマイナスなし。<br><br>14番, ヤマニンアルリフラ, -0.5, 10〜16番手からの追込ばっかりで、しかも外枠。開幕週の京都内回りの短い直線では、外を回して届く絵が描きにくい。展開面ではいちばんはっきりした不利っちゃん。<br><br>15番, タガノアラリア, -0.3, 逃げたのは少頭数の1400mで一回だけで、1200mやと11番手あたりからの競馬になっとる。7枠15番から外を回らされるのも重なってマイナス。<br><br>16番, フロムダスク, -0.1, CBC賞は3番手から勝って、京都の鞍馬Sは中団から差したり、位置はどこでも取れる馬。ただ8枠16番やと、前に行っても後ろで待っても外を回るロスが避けにくい。<br><br>17番, ヨシノイースター, -0.2, 4〜7番手の好位から中団につけるタイプ。8枠17番からやとずっと外々を回らされる形になりやすく、内が有利な馬場では少しマイナス。<br><br>18番, ディアナザール, -0.2, 京都1200mの鞍馬Sでは逃げて3着やけど、今回は大外18番。前に行くなら内へ切れ込むのに脚を使うし、控えたら前走みたいに後方になる。どっちにしても枠がはっきり重しになっとる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: -0.3, &quot;3&quot;: -0.3, &quot;4&quot;: 0.5, &quot;5&quot;: 0.3, &quot;6&quot;: 0.2, &quot;7&quot;: 0.0, &quot;8&quot;: 0.2, &quot;9&quot;: -0.2, &quot;10&quot;: 0.2, &quot;11&quot;: 0.0, &quot;12&quot;: 0.0, &quot;13&quot;: 0.0, &quot;14&quot;: -0.5, &quot;15&quot;: -0.3, &quot;16&quot;: -0.1, &quot;17&quot;: -0.2, &quot;18&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;京都の秋開催初週、内回り芝1200m（直線約328m）。開幕週で内の前が止まりにくい。逃げ・先行馬は6・1・4・13・18・16と多く、ペースは平均からやや速めと想定。内枠から好位を取れる1カルチャーデイと4メイショウヨゾラが最も有利で、京都1200mを前で勝っている5フィオライアも上げた。中団でどちらの展開にも対応できる8と10を少し上げる。後方からの追込で外枠の14ヤマニンアルリフラが最も不利、内枠で差す2と3、外枠の15・17・18も下げた。先行争いでハイペースになれば中団の差し馬が浮上するが、直線が短いので後方一気は届きにくい。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) ペースの見立てが抜けとる：1番カルチャーデイ・4番メイショウヨゾラ・6番リリージョワ・10番ヒシアイラ・13番クラスペディア・18番ディアナザール・16番フロムダスクと先行したい馬が多い18頭立てで、1・4・6番は内ラチも取り合う。速いペースになる筋を考えずに、先行プラス／差しマイナスを一方向に付けとらんか。馬場はまだ発表されとらん。(2) 京都1200mでは5月の葵Sで3番タマモイカロスが12-12から3着、10番ヒシアイラが9-10から2着、シルクロードSでは14番ヤマニンアルリフラが3着。『短い直線で差しは届かない』は同じコースの実績と食い違う。14番の-0.5は強すぎないか、3番の-0.3が9番タマモブラックタイ(-0.2、近走はもっと後ろ・真ん中の枠)より重いのは逆転していないか。(3) 先行が1回だけの馬の扱いが揃っていない：5番フィオライアは8か月前の1回だけ(近走は15-15、8-11)で+0.3、15番タガノアラリアは1回だけを割り引いて-0.3、18番ディアナザールは京都1200mの鞍馬Sで1-1の3着と新しい実績があるのに-0.2。京都1200mは最初のコーナーまで長く、大外からでも前に行ける点も踏まえて見直す余地はないか。(4) 1番・4番の+0.5：前に行っても負けとる(1番は米子城S12着・京阪杯16着、4番が3-3で勝ったのは9頭・12頭立てで、16頭立てのセントウルSは0.7秒負け)。多頭数で先行争いが激しいとき、1枠1番は被されたりハナ争いに付き合わされたりする怖さもあり、最大の加点が妥当か確かめてほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、批判者の指摘を一つずつ確かめたっちゃん。4点とも筋が通っとったけん、P を全体的に見直したよ。<br><br>**展開の描き直し**<br>- 先行したい馬がほんとに多いと。京都1200mの鞍馬Sを1-1で運んだ18番ディアナザール、2-1や2-2で運ぶ13番クラスペディア、2-2の1番カルチャーデイ、1200mは初めての逃げ馬6番リリージョワ。そこへ3-3の4番メイショウヨゾラと16番フロムダスクが続く形になるっちゃん。<br>- 京都1200mは最初のコーナーまで距離があるけん、外枠の馬も前へ行けるとよ。だけん、すんなりスローに落ちる見立ては願望やったと思う。<br>- 開幕週で内が有利なのは変わらんけど、平均より速く流れる筋も同じくらいあるっちゃん。<br>- 葵Sでは3番タマモイカロスが12-12から3着、10番ヒシアイラが9-10から2着。鞍馬Sではフロムダスクが上がり32.5で9-9から5着。下り坂からそのまま直線に入るこのコースは、中団や後ろからでも届いとるとよ。<br><br>**直したところ**<br>- 内の先行馬の加点を縮めたと。1番と4番は+0.5から下げて、2-2のハナ争いに付き合わされる1番は+0.3、3-3で一列後ろにつけられて53kgの4番は+0.4にしとる。<br>- 6番リリージョワは0.0に下げたと。初めての1200mで競り合いの矢面に立ちそうやけん。<br>- 後ろから行く馬の減点を軽くしたと。3番タマモイカロスは-0.1、14番ヤマニンアルリフラは-0.3にしとる。9番タマモブラックタイ(-0.2)との順番も直したよ。<br>- 先行が1回だけの馬の扱いを揃えたと。8か月前に1回先行しただけの5番フィオライアは+0.1、同じコースで最近1-1の3着がある18番ディアナザールは0.0、15番タガノアラリアは-0.2にしとる。<br>- どっちの流れにも合わせられる8番レッドエヴァンスと10番ヒシアイラは+0.3に上げたと。<br><br>1番, カルチャーデイ, +0.3, 2〜3番手につける先行馬が1枠1番やけん、内ラチ沿いをロスなく回れるのはやっぱり強み。ただ先行馬が多い18頭立てやと被されたりハナ争いに付き合わされたりする怖さがあるけん、+0.5から縮めとく。<br><br>2番, ショウナンアビアス, -0.3, 近走はずっとダートで、中団から後ろの競馬。芝1200mのオープンで流れが速くなったら序盤でさらに置かれやすいし、内枠で前が詰まる心配もあるっちゃん。<br><br>3番, タマモイカロス, -0.1, 後方待機で、内枠やと外へ出すのに手間取るリスクは残っとる。けど京都1200mの葵Sで12-12から3着まで届いとるし、速い流れなら差しも利くけん減点は小さくしとく。<br><br>4番, メイショウヨゾラ, +0.4, いつも3番手につける好位の先行馬で、2枠から内の好位を取りやすいし53kgで楽に前へ行ける。ハナを争うより一列後ろにつけるタイプやけん、速い流れでも1番よりは崩れにくいと見とる。<br><br>5番, フィオライア, +0.1, シルクロードSで1-2番手につけたのは8か月前の1回だけ。近走は6〜15番手やけん、内寄りの3枠で多少運びやすいぶんだけのわずかなプラスにしとく。<br><br>6番, リリージョワ, 0.0, 内寄りの枠からハナを取りにいけるけど、1200mは初めて。先行馬が多いスプリント戦でペースを作る役を背負わされて息が入らん恐れもあって、プラスとマイナスが打ち消し合うとよ。<br><br>7番, テーオーダヴィンチ, 0.0, 中団からの競馬が中心で、真ん中の枠。流れが速くても遅くても有利不利がはっきりせんけん中立。<br><br>8番, レッドエヴァンス, +0.3, 4番手から11番手までどこからでも競馬ができて、上がりも安定しとる。4枠から好位の後ろで脚をためられるけん、速い流れなら中団から差せるし、落ち着いても好位から運べる。どっちの展開にも合わせやすいっちゃん。<br><br>9番, タマモブラックタイ, -0.2, 近2走は12〜15番手で、メンバーの中でもいちばん後ろ寄り。速い流れなら差しは届くけど、ここまで後ろからやと開幕週の内有利の馬場では前をとらえきるのは楽やない。<br><br>10番, ヒシアイラ, +0.3, 逃げても控えてもよくて、京都1200mの葵Sでは9-10から2着に差しとる。先行争いが激しくなれば中団から、落ち着けば前目からと、どっちのペースにも対応できる強みがあるっちゃん。<br><br>11番, オタルエバー, 0.0, 位置取りは3番手から12番手までレースによってバラバラ。6枠からやと有利不利がはっきりせんけん中立。<br><br>12番, デイトナモード, 0.0, 先行から中団につける馬で、6枠からやとやや外を回らされる。内が有利な馬場の恩恵と外を回るロスがほぼ打ち消し合うけん中立。<br><br>13番, クラスペディア, -0.1, 2番手前後につけられる先行力はある。けど7枠から先行争いの外を回らされて、流れが速くなったら外の先行馬がいちばん苦しくなるけん、わずかにマイナス。<br><br>14番, ヤマニンアルリフラ, -0.3, 10〜16番手からの追込で外枠。京都1200mのシルクロードSで3着があるし、速い流れなら届く筋もあるけん-0.5は強すぎた。後ろからのうえに外を回るロスがあるぶん、-0.3にしとく。<br><br>15番, タガノアラリア, -0.2, 逃げたのは少頭数の1400mで1回だけ。1200mでは11番手あたりからの競馬になっとるけん、7枠15番から外を回らされるぶん少しマイナス。<br><br>16番, フロムダスク, -0.1, CBC賞を3-3で勝って、京都1200mの鞍馬Sは9-9から上がり32.5で差しとるけん、位置はどこでも取れる。ただ8枠16番やと外を回るロスが避けにくい。<br><br>17番, ヨシノイースター, -0.1, 4〜7番手の好位から中団につけるタイプ。流れが速ければ悪くない位置やけど、8枠17番から外々を回らされやすいけんわずかにマイナス。<br><br>18番, ディアナザール, 0.0, 京都1200mの鞍馬Sで1-1から3着と、このコースで前に行けた実績が最近ある。最初のコーナーまで長いけん大外からでも前は取れるけど、外を回るロスと先行争いの負担があって打ち消し合うけん、中立にしとく。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.3, &quot;3&quot;: -0.1, &quot;4&quot;: 0.4, &quot;5&quot;: 0.1, &quot;6&quot;: 0.0, &quot;7&quot;: 0.0, &quot;8&quot;: 0.3, &quot;9&quot;: -0.2, &quot;10&quot;: 0.3, &quot;11&quot;: 0.0, &quot;12&quot;: 0.0, &quot;13&quot;: -0.1, &quot;14&quot;: -0.3, &quot;15&quot;: -0.2, &quot;16&quot;: -0.1, &quot;17&quot;: -0.1, &quot;18&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;先行したい馬が多い18頭立てで京都1200mは最初のコーナーまで長く、外枠の馬も前へ行けるため、スロー前残りの一本の見立てを改めて平均〜速めのペースも同じ重さで考えた。内の先行馬1・4の加点を縮め（2-2の1番は+0.3、3-3で一列後ろにつける4番は+0.4）、1200mが初めての逃げ馬6は0.0にした。同じコースの葵S・シルクロードS・鞍馬Sで差しが届いているため後方の馬の減点を軽くし（3番-0.1、14番-0.3）、9番との順番も直した。先行が1回だけの馬の扱いを揃え、5番は+0.1、同じコースで最近1-1の18番は0.0、15番は-0.2。どちらのペースにも合わせられる8・10番は+0.3に上げた。馬場は未発表のため良馬場と仮定している。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, カルチャーデイ, +0.4, 4か月の休み明けだった朱鷺Sを叩いての2走目で、448kgは安定している。斤量は56kgから55kgへ1kg減り、坂路で55.9-12.7を馬なり余力、調子も↗で上昇サインがはっきり出ている。<br><br>2番, ショウナンアビアス, -0.1, 504kgを5走続けて維持しており、中3週の使い詰めにも疲れは見えない。ただ坂路を強めに追って終い1F13.9は止まり気味で、評価も「実戦で変わる」止まり。仕上がりの裏付けは弱い。<br><br>3番, タマモイカロス, +0.1, 叩き3走目で522kg。1着時の526kg、3着時の524kgとほぼ同じ水準にある。CWの1F11.5は馬なりで評価は「デキ落ちなし」の平行線。大型馬なので55kgは楽だが、上積みまでは読めない。<br><br>4番, メイショウヨゾラ, +0.4, 2か月空けたセントウルSを+4kgで叩き、2走目になる。斤量55kgから53kgへの2kg減は約1馬身強の恩恵で、486kgの大柄な牝馬には十分軽い。「好馬体目につく」評価でG前1F11.7と、仕上がりも良い。<br><br>5番, フィオライア, +0.1, 馬体重は464〜472kgの狭い幅で安定し、シルクロードS勝ち時の470kgに近い。中8週・斤量据え置きで、坂路は馬なりの「素軽さ出る」。悪い材料はないが、上昇気配も目立たない。<br><br>6番, リリージョワ, -0.3, 前走で-14kgの442kgまで減った小柄な3歳牝馬。そこへ斤量52kgから54kgへの2kg増は約1馬身分の負担になる。中7週で戻っている可能性はあるが、調教はCW3Fだけの軽め。回復を確かめられない。<br><br>7番, テーオーダヴィンチ, -0.1, 8歳で3か月ぶり。斤量は55kgから54kgへ1kg減るが、坂路の末強めで1F13.5は時計がかかっている。評価も「まずまず」止まりで、休み明けを一気に仕上げた様子はない。<br><br>8番, レッドエヴァンス, +0.2, 488〜498kgを行き来しており、前走も±0kgの492kgと体重管理は非常に安定している。中8週・斤量据え置きで坂路は馬なりの「動き軽快」。CBC賞3着時の状態を維持していると見る。<br><br>9番, タマモブラックタイ, +0.5, CBC賞の-16kg（520kg）からセントウルSで+10kgの530kgまで戻し、米子城S勝ち時の534kgに近づいた叩き3走目。CWを馬なりで1F10.8と鋭く、「前走以上の動き」の評価で上昇がはっきりしている。<br><br>10番, ヒシアイラ, +0.5, 4か月の休み明けだが、坂路で54.5-25.3-12.5と全体時計が速く、「久々も好仕上がり」で調子は↗。3歳の夏を越えた成長期で、斤量も57kgから55kgへ2kg（約1馬身）減る。休み明けの不安は調教が打ち消している。<br><br>11番, オタルエバー, -0.3, 重馬場の北九州記念以来3か月ぶりの7歳。坂路を一杯に追っても終い1F13.7と伸びず、評価は「徐々に良化」でまだ途上。休み明け初戦から100%の状態とは言えない。<br><br>12番, デイトナモード, -0.4, 542〜548kgの大型馬で、調教評価がはっきり「馬体絞り切れず」。CWは馬なりで3F39.1・1F13.0と時計も平凡。斤量57kgから54kgへの3kg減は恩恵になるが、大型馬は斤量の影響が小さく、太め残りの不安の方が大きい。<br><br>13番, クラスペディア, +0.2, 春雷S時の532kgは京阪杯514kgから+18kgの一時的な増量で、今の514kgが本来の水準と読める。セントウルSを4着と状態良く走っての叩き3走目で、「好調持続」。斤量+0.5kgは馬格からすれば誤差の範囲。<br><br>14番, ヤマニンアルリフラ, 0.0, 494〜504kgの範囲で安定し、中7週で間隔は適度。坂路は5F58.8と遅いが終い12.6をまとめ、「力強い脚捌き」。斤量57.5kgは据え置きで、良くも悪くも平行線。<br><br>15番, タガノアラリア, +0.3, 前走は3か月ぶりで+8kgの460kg。3歳夏の成長分と見られ、それでも0.0秒差の5着と走れた。今回は叩き2走目で、坂路の終い12.8は「小気味いい走り」。斤量1kg増を差し引いても上向き。<br><br>16番, フロムダスク, +0.2, 坂路で54.0-24.9-12.5と出走馬中で最速の時計を出し、「好気配保つ」。512〜520kgの体重も安定している。ただCBC賞勝ちの55kgから57.5kgへの2.5kg増は約1.5馬身分の負担。大型馬なので吸収できる範囲とみて、プラス幅は控えめにした。<br><br>17番, ヨシノイースター, +0.1, セントウルSは+8kgの494kgで11着。北九州記念3着やオーシャンS5着の好走は486kg前後だった。今回は「馬体引き締まる」評価の叩き2走目で絞れる方向。ただ8歳で斤量58kg（+1kg）を背負うので、プラスはわずかにとどめた。<br><br>18番, ディアナザール, +0.2, 496kgを3走連続で維持しており、8戦しか走っていない使い減りのない馬体。中8週・斤量据え置きで、CWは馬なりの「余裕ある動き」。鞍馬S3着時と変わらない状態とみる。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)16番フロムダスクを『最速時計』としたのは誤り：坂路5Fの最速は11番オタルエバーの53.8で、16番フロムダスクの最速は3Fだけ。10・16番では全体時計を評価し、11番では終いだけで減点している扱いの不一致を見直しては。17番ヨシノイースターの坂路54.1-12.9強め（坂路組で2番手水準）が+0.1に反映されていないのでは。(2)好走時体重の基準が馬ごとにぶれている：13番クラスペディアは勝ち時532kgから4戦連続で減って514kg、函館SS除外にも触れていない。6番リリージョワの442kgはもみじS1着時434kg・新馬勝ち444kgの範囲内で、-0.3は重すぎないか。12番デイトナモードの542kgは巌流島S1着時544kgより軽く、『絞り切れず』の一文だけで11番オタルエバーより下に置く根拠は弱い。(3)10番ヒシアイラの前3走の57kgは3歳戦の定量で、今回の55kgはハンデなので相対的な斤量減ではない。それを除いても単独トップの+0.5を保てるか。(4)4番メイショウヨゾラと2番ショウナンアビアスは美浦からの長距離輸送かつ中3週なのに未評価。4番メイショウヨゾラは調子→で、調子↗の1番カルチャーデイと同じ+0.4になっている。3番タマモイカロスのセントウルS14着1.8秒差を状態面で検証していない。9番タマモブラックタイ（調子→）が、実戦で状態を示した13番クラスペディアより0.3高い理由も整理を。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, カルチャーデイ, +0.4, 4か月ぶりだった朱鷺Sを叩いての2走目で、馬体重は446→448kgと安定している。斤量は56kgから55kgへ1kg減り、坂路を馬なり余力で終い12.7、調子も↗と上昇サインがそろっているので据え置く。<br><br>2番, ショウナンアビアス, -0.2, 504kgを5走続けて維持しており、阪神遠征の水無月Sでも504kgだったので輸送で体が減る心配は小さい。ただ美浦からの長距離輸送と中3週が重なるうえ、強めに追っても終い1F13.9と止まり気味で評価も「実戦で変わる」止まり。仕上がりの裏付けが弱いので少し下げる。<br><br>3番, タマモイカロス, 0.0, 522kgは好走した524〜526kgの範囲内で、体重からは不安が読めない。ただ叩き2走目のセントウルSで、CBC賞の0.6秒差から1.8秒差へ内容を落とした。今回の「デキ落ちなし」はその前走の状態を保っているという意味にとどまるため、叩き3走目の上積みは見込まずに中立へ下げる。<br><br>4番, メイショウヨゾラ, +0.3, 前走は美浦から阪神へ輸送しても+4kgの486kgで、袖ケ浦特別1着時と同じ体重で走れた。輸送で体が減る心配は小さい。斤量2kg減（約1馬身）と「好馬体目につく」評価はプラス材料だが、調子は→で中3週の再輸送になる。調子↗の1番より一段下げる。<br><br>5番, フィオライア, +0.1, 馬体重は464〜472kgの狭い幅で安定し、シルクロードS勝ち時の470kgに近い。中8週・斤量据え置きで、坂路を馬なりで回って「素軽さ出る」。悪い材料はないが、上昇気配も目立たない。<br><br>6番, リリージョワ, -0.1, 前走の442kgは新馬勝ちの444kgやもみじS勝ちの434kgと同じ範囲にある。-14kgは桜花賞時の456kgが重かった分の戻りで、消耗と読んだのは読み過ぎだったので減点を縮める。CWの終い11.9は「スピード感十分」で鋭いが、3Fだけの軽めの調整。小柄な牝馬に2kg増（約1馬身）がかかる分だけ、わずかにマイナスとする。<br><br>7番, テーオーダヴィンチ, -0.1, 8歳で3か月ぶり。斤量は55kgから54kgへ1kg減るが、坂路を末強めに追っても終い1F13.5と時計がかかっている。評価も「まずまず」止まりで、休み明けを一気に仕上げた様子はない。<br><br>8番, レッドエヴァンス, +0.2, 488〜498kgの範囲を行き来しており、前走も±0の492kgと体重管理は非常に安定している。中8週・斤量据え置きで、坂路を馬なりで回って「動き軽快」。CBC賞3着時の状態を維持していると見る。<br><br>9番, タマモブラックタイ, +0.4, CBC賞で-16kgの520kgまで減ったが、セントウルSで530kgまで戻し、米子城S勝ち時の534kgに近づいた叩き3走目。CWを馬なりで終い10.8と鋭く「前走以上の動き」と上昇の裏付けはある。ただ調子は→なので、一段控えめにする。<br><br>10番, ヒシアイラ, +0.4, 前3走の57kgは3歳戦の定量で、今回の55kgを相対的な斤量減とみたのは誤りだった。その分を外して下げる。それでも坂路を末強めに追って54.5-25.3-12.5と全体も終いもまとまり、「久々も好仕上がり」で調子↗。体重も454kgから466kgへ増えて成長が続いており、休み明けの不安は調教が打ち消している。<br><br>11番, オタルエバー, -0.2, 坂路5F53.8は出走馬中で最速で、量をこなして乗り込まれている点は認める。ただ一杯に追って終い13.7まで落ちる前傾ラップで、評価も「徐々に良化」と途上。3か月ぶりの7歳なので減点は残すが、全体時計の分だけ戻す。<br><br>12番, デイトナモード, -0.2, 前走542kgは巌流島S勝ち時の544kgより軽く、540〜548kgの普段の範囲内。数字の上では太め残りと言い切れないので減点を縮める。ただ当日の評価がはっきり「馬体絞り切れず」で、CWは馬なりの終い13.0と平凡。勝った時と同じ54kgに戻る点は考慮して、11番と同程度のマイナスとする。<br><br>13番, クラスペディア, +0.2, 春雷S勝ち時の532kgから4戦続けて減り、514kgになっている。函館SS除外からの臨戦過程もあり、この減少傾向は注意点として認める。それでも前走は514kgでセントウルS4着と実戦で状態を示しており、坂路を強めに追って55.0-26.0-13.0の「好調持続」。当日さらに大きく減っていなければ状態は保てていると見る。<br><br>14番, ヤマニンアルリフラ, 0.0, 494〜504kgの範囲で安定し、中7週で間隔は適度。坂路は5F58.8と遅いが終い12.6をまとめ、「力強い脚捌き」。斤量57.5kgは据え置きで、良くも悪くも平行線。<br><br>15番, タガノアラリア, +0.3, 前走は3か月ぶりで+8kgの460kgだったが、3歳夏の成長分と見られ、それでも0.0秒差の5着と走れた。今回は叩き2走目で、坂路を強めに追って終い12.8の「小気味いい走り」。斤量1kg増（約半馬身）を差し引いても上向き。<br><br>16番, フロムダスク, +0.2, 「出走馬中で最速」としたのは誤りで、5Fは11番の53.8に次ぐ54.0、最速だったのは3Fの24.9。終い12.5も10番と並んで最速で、全体も終いもまとまった内容は上位にある。512〜520kgの体重も安定しているが、CBC賞勝ちの55kgから57.5kgへの2.5kg増（約1馬身強）を割り引き、評価は据え置く。<br><br>17番, ヨシノイースター, +0.3, 坂路を強めに追って54.1-25.5-12.9は坂路組で上位の内容で、「馬体引き締まる」とも一致する。前走は+8kgの494kgで、北九州記念3着やオーシャンS5着時の486kg前後へ絞れる方向の叩き2走目。前回はこの点を反映しきれていなかったので上げる。8歳で58kg（+1kg）は差し引く。<br><br>18番, ディアナザール, +0.2, 496kgを3走続けて維持しており、8戦しか走っていない使い減りのない馬体。中8週・斤量据え置きで、CWを馬なりで回って「余裕ある動き」。鞍馬S3着時と変わらない状態とみる。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, カルチャーデイ, +0.2, 父ファインニードルも母父マイネルラヴもスプリント血統で、京都1200mの速い流れに合っとる。ただ同距離OPでの実績が薄く、近走は1400mで安定しとるけん、上げ幅は小さくしとく。<br><br>2番, ショウナンアビアス, -0.5, 父ドレフォン×母父キングカメハメハで、ダート短距離に寄った馬力型の配合。近走はダートばかりで、京都の高速芝1200mでスピードの持続を求められるのは血統面ではっきり割引。<br><br>3番, タマモイカロス, +0.2, 父デクラレーションオブウォーはWar Front系で、パワーとスピードを兼ね備えた短距離血統。京都芝1200mの葵Sで3着の実績とも噛み合っとるし、3歳秋で成長の余地も残しとる。<br><br>4番, メイショウヨゾラ, +0.3, 父グレーターロンドン×母父ヨハネスブルグはスピードに寄った配合。父と同じく古馬になって本格化する型で、5歳の今が充実期。平坦な京都で先行できるのは配合どおり。<br><br>5番, フィオライア, +0.5, 父ファインニードル×母父サクラバクシンオーは純粋なスプリント配合。京都芝1200mのシルクロードSを勝っとって、血統の適性と実績が一致しとる。<br><br>6番, リリージョワ, +0.1, 父シルバーステートの産駒は短距離でもスピードが通用する。ただ母父キングカメハメハで勝ち鞍は1400m以上、1200mは初めてで忙しくなる懸念もあるけん、わずかなプラスにとどめる。<br><br>7番, テーオーダヴィンチ, -0.1, 父ダイワメジャー譲りのパワー型で、1200mへの適性はある。ただ8歳で、母父Sea of Secretsも上積みを見込む材料にならんけん、年齢面でわずかに下げる。<br><br>8番, レッドエヴァンス, +0.3, 父ロードカナロア×母父ディープインパクトは、京都の高速芝の短距離〜マイルで王道の配合。CBC賞3着で、1200mの重賞でも通用するところを見せとる。<br><br>9番, タマモブラックタイ, +0.1, 父デクラレーションオブウォー×母父ブラックタイドで、スプリント適性は十分。6歳で上積みは見込みにくいけん、ほぼ中立に近いわずかなプラス。<br><br>10番, ヒシアイラ, +0.2, 父モーリスはマイル寄りやけど、母父Rock of Gibraltarのスピードが効いて1200mに適応しとる。京都1200mの葵Sで2着があるし、父の産駒は3歳秋以降に伸びる傾向があるのも追い風。<br><br>11番, オタルエバー, 0.0, 父リオンディーズ×母父Redoute&#x27;s Choiceのスプリント配合で、京都1200mの勝ち鞍もある。ただ7歳で下降気味で、適性のプラスと年齢のマイナスが打ち消し合うけん中立。<br><br>12番, デイトナモード, -0.1, 父アメリカンペイトリオットはWar Front系で、重厚なパワー型。小回り・時計のかかる馬場向きの傾向があって、京都の平坦な高速決着ではわずかに不利。<br><br>13番, クラスペディア, +0.3, 父ミスターメロディはScat Daddy系の米国スプリント血統で、母父アグネスタキオンのスピードも足されとる。4歳の充実期で、芝1200mのリステッド勝ちと配合が一致しとる。<br><br>14番, ヤマニンアルリフラ, +0.3, 父イスラボニータ×母父スウェプトオーヴァーボードで、スピードとパワーを兼ね備えとる。京都芝1200mでは淀S勝ちとシルクロードS3着があって、ダート帰りでも京都の芝への適性は血統と実績の両方で裏付けがある。<br><br>15番, タガノアラリア, -0.1, 父ミスターメロディでも母父ディープインパクトが距離を延ばす方向に働いとって、ベストは1400m。1200mの葵Sでは7着で、距離短縮はわずかに割引。<br><br>16番, フロムダスク, +0.3, 父Bolt d&#x27;Oro(Medaglia d&#x27;Oro系)×母父Giant&#x27;s Causewayは米国型のスピード配合。マイルから1200mに転じてCBC賞を勝っとって、血統どおり短距離向きのスピードがはっきり出とる。<br><br>17番, ヨシノイースター, -0.2, 父ルーラーシップ×母父ゼンノロブロイは中距離寄りの配合で、スプリント実績は配合を超えた個体の能力によるもの。8歳で血統面の後押しは無く、わずかに下げる。<br><br>18番, ディアナザール, +0.3, 父ロードカナロア×母父ディープインパクトは京都の高速芝に合う配合。4歳の伸び盛りで、京都1200mの鞍馬S3着もあって距離短縮に対応できとる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.5, &quot;3&quot;: 0.2, &quot;4&quot;: 0.3, &quot;5&quot;: 0.5, &quot;6&quot;: 0.1, &quot;7&quot;: -0.1, &quot;8&quot;: 0.3, &quot;9&quot;: 0.1, &quot;10&quot;: 0.2, &quot;11&quot;: 0.0, &quot;12&quot;: -0.1, &quot;13&quot;: 0.3, &quot;14&quot;: 0.3, &quot;15&quot;: -0.1, &quot;16&quot;: 0.3, &quot;17&quot;: -0.2, &quot;18&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;京都芝1200mの平坦・高速決着を想定。純粋なスプリント配合のフィオライア(ファインニードル×サクラバクシンオー)が京都1200mの重賞勝ちとも一致して最上位。ロードカナロア×ディープの8・18番、米国スピード系の13・16番、京都1200mの実績と配合が噛み合う4・14番を小幅に上げた。ダート短距離に寄った配合でダート戦続きのショウナンアビアスははっきり下げ、中距離配合の8歳ヨシノイースターと1400mがベストのタガノアラリアは軽く割引。馬場状態が未発表のため、道悪の補正は入れていない。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①母父ディープの扱いが逆：8番レッドエヴァンス・18番ディアナザールでは『京都高速芝の王道』でプラス、15番タガノアラリアでは『距離を延ばす』でマイナスにしとる。父による違いの説明が要るんやないか。②6番リリージョワは1200m未経験で理由も懸念ばかりなのに+0.1、15番タガノアラリアは葵S0.4秒差・朱鷺S0.0秒差なのに-0.1で、並びが逆転しとらんか。③1番カルチャーデイは京都1200mの京阪杯16着、米子城S12着で『京都1200mに合う』の反証が出とる。葵S好走の3番・10番と同じ+0.2は甘くないか。④12番デイトナモードを『時計のかかる馬場向き』としたが、1:06.8で勝っとって根拠と食い違う。母父スズカマンボにも触れとらん。⑤2番ショウナンアビアス(-0.5)と、母父スウェプトオーヴァーボードで近走ダート組の14番ヤマニンアルリフラ(+0.3)との差は説明しきれるか。14番の京都の好走は冬のもの。⑥5番フィオライア(+0.5)の根拠は冬の京都(1:08.0)の勝利。秋の高速馬場で実際に好時計(1:06.5、上がり32.5)を出しとる16番フロムダスク(+0.3)より上に置く根拠を見直す余地はないか。⑦年齢補正(7番・11番・16番・17番)を父系の成長曲線で揃えられんか。17番ヨシノイースターは北九州記念3着などで実績が配合を上回っとる。⑧3番タマモイカロスの母父ダンスインザダークが評価から抜けとる。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ確かめたとよ。主な見直しは次の5つ。<br><br>- **母父ディープの扱い（①）**：母父ディープは、どの父と組んでも距離を延ばし芝の切れを足す方向に働く。父による差やなく、各馬の1200m実績で分けるのが筋やった。15番の減点は外して、8番も18番も1200mの実績どおりの幅にしたけん、15番と18番の差が縮まっとる。<br>- **反証のある馬（③④）**：1番は京都1200mで京阪杯16着、12番は「時計のかかる馬場向き」と書いたのに1:06.8で勝っとる。どっちも 0.0 に戻したとよ。<br>- **5番と16番の上下（⑥）**：5番の勝利は冬の時計（1:08.0）で、高速決着では結果が出とらん。16番は京都の高速馬場で1:06.9（上がり32.5）を出しとる。16番を上、5番を下にしたとよ。<br>- **年齢の補正（⑦）**：17番の父ルーラーシップは息の長い晩成型やけん、8歳での減点は外した。残る減点は、京都の高速1200mに中距離血統が向かん分のわずかなマイナスだけ。<br>- **2番と14番の差（⑤）**：14番は芝重賞の勝ちがあるけん2番とは別物やけど、好走は冬と重馬場に寄っとる。+0.3 は高すぎたと判断して下げたとよ。<br><br>1番, カルチャーデイ, 0.0, 父ファインニードル×母父マイネルラヴは確かにスプリント配合やけど、京都芝1200mの京阪杯16着や米子城S12着と、1200mでは配合どおりの結果が出とらん。1400mの方が安定しとるけん、1200mへの適性で上げる根拠は消えて中立。<br><br>2番, ショウナンアビアス, -0.5, 父ドレフォン×母父キングカメハメハのダート短距離向きの配合で、実績もほぼダートだけ。芝重賞を勝っとる14番とは違って芝の高速1200mへの裏付けが無いけん、はっきり割り引いたまま。<br><br>3番, タマモイカロス, +0.2, 父デクラレーションオブウォーのパワー型スプリント血統に、母父ダンスインザダークの持続力と切れが加わって、後方から上がり32.7で伸びた葵S3着の脚につながっとる。京都1200mの差し脚は配合どおりで、わずかなプラス。<br><br>4番, メイショウヨゾラ, +0.3, 父グレーターロンドン×母父ヨハネスブルグはスピード寄りの配合で、古馬になって本格化する父の傾向どおり5歳で連勝しとる。良馬場1:07.1の勝ちもあって、平坦な京都で先行できるのは配合と一致しとる。<br><br>5番, フィオライア, +0.3, 父ファインニードル×母父サクラバクシンオーの純粋なスプリント配合で、京都1200mの重賞勝ちと噛み合っとる。ただ勝ち時計は冬の1:08.0で、CBC賞やオーシャンSのような高速決着では結果が出とらんけん、秋の京都の速い時計への上積みは控えめにした。<br><br>6番, リリージョワ, 0.0, 父シルバーステートの短距離スピードはあるけど、母父キングカメハメハで勝ち鞍はすべて1400m以上。1200mは初めてで、懸念の方が大きいけん中立に戻した。<br><br>7番, テーオーダヴィンチ, -0.1, 父ダイワメジャーの産駒は早めに完成するパワー型で、年齢を重ねて上積みが出る系統やない。8歳で、1200mの勝ちも3勝クラスの小倉やけん、わずかに下げる。<br><br>8番, レッドエヴァンス, +0.3, 母父ディープインパクトで距離に融通が利く分、父ロードカナロアのスプリント適性はちゃんと残っとって、1200mで3着を重ね、CBC賞では1:06.9も出しとる。高速の1200mへの適性は実績で裏付けられとる。<br><br>9番, タマモブラックタイ, +0.1, 父デクラレーションオブウォー×母父ブラックタイドで、1200mのOP勝ちもあってスプリント適性は十分。6歳で血統的な上積みは無いけん、わずかなプラス。<br><br>10番, ヒシアイラ, +0.2, マイル寄りの父モーリスに母父Rock of Gibraltarのスピードが加わって、1200mに適応しとる。京都1200mの葵Sで2着があって、父の産駒は3歳秋以降に伸びる傾向も追い風。<br><br>11番, オタルエバー, 0.0, 父リオンディーズ×母父Redoute&#x27;s Choiceのスプリント配合で、京都1200mの勝ち鞍もある。7歳で上積みが見込めんけん、適性と年齢が打ち消し合って中立。<br><br>12番, デイトナモード, 0.0, 「時計のかかる馬場向き」は、1:06.8で勝っとる実績と食い違うけん撤回する。父アメリカンペイトリオットのパワーと母父スズカマンボの持続力の組み合わせは、京都の高速1200mで有利とも不利とも言い切れんけん中立。<br><br>13番, クラスペディア, +0.3, 父ミスターメロディのScat Daddy系の米国スプリント血統に、母父アグネスタキオンのスピードが加わっとる。実績は全部1200mで、春雷S勝ちやセントウルS4着(1:07.3)と配合が一致しとる。<br><br>14番, ヤマニンアルリフラ, +0.1, 父イスラボニータ×母父スウェプトオーヴァーボードで、芝の重賞を勝っとる点が2番とは違う。ただ好走は冬の京都や重馬場に寄っとって、高松宮記念(1:07.7で14着)のような高速決着では伸びとらんけん、プラスは小さくした。<br><br>15番, タガノアラリア, 0.0, 母父ディープインパクトで距離が延びる方向なのは8番・18番と同じで、ベストは1400mやろう。でも1200mの葵Sでも0.4秒差やけん、1200mへの短縮で下げるほどの根拠は無くて中立に戻した。<br><br>16番, フロムダスク, +0.4, 父Bolt d&#x27;Oro×母父Giant&#x27;s Causewayの米国型スピード配合で、マイルから1200mに替わってCBC賞を1:06.5で勝ち、京都1200mでも1:06.9(上がり32.5)を出しとる。秋の京都の高速馬場への適性は、血統と実績の両方ではっきりしとる。<br><br>17番, ヨシノイースター, -0.1, 父ルーラーシップは晩成で息の長い系統やけん、年齢での減点は外した。ただ母父ゼンノロブロイと合わせて中距離寄りの配合で、ベストは安土城Sで上がり32.7を出した1400mや重馬場の1200m。京都の高速1200mだけわずかに割り引く。<br><br>18番, ディアナザール, +0.2, 父ロードカナロア×母父ディープインパクトで、京都1200mでも鞍馬Sで1:06.7の3着がある。ただ勝ち鞍は1400〜1600mで、母父ディープの距離を延ばす作用も考えて、1200mの実績が厚い8番より一段下げた。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.0, &quot;2&quot;: -0.5, &quot;3&quot;: 0.2, &quot;4&quot;: 0.3, &quot;5&quot;: 0.3, &quot;6&quot;: 0.0, &quot;7&quot;: -0.1, &quot;8&quot;: 0.3, &quot;9&quot;: 0.1, &quot;10&quot;: 0.2, &quot;11&quot;: 0.0, &quot;12&quot;: 0.0, &quot;13&quot;: 0.3, &quot;14&quot;: 0.1, &quot;15&quot;: 0.0, &quot;16&quot;: 0.4, &quot;17&quot;: -0.1, &quot;18&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;母父ディープは父を問わず距離を延ばす方向に働くとみて、1200m実績で差を付け直した（15番を0.0、18番を+0.2）。1200m実績が反証になっとる1番と12番は0.0に戻した。1200m未経験の6番も0.0にした。高速決着での実績から16番を+0.4に上げ、冬の時計で勝った5番は+0.3に下げた。14番は好走が冬と重馬場に寄っとるけん+0.1に下げた。17番はルーラーシップの晩成傾向から年齢での減点を外し、距離適性だけで-0.1にした。3番は母父ダンスインザダークの持続力を根拠に加えて+0.2のまま。2番の-0.5は、芝重賞実績のある14番と区別して据え置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, カルチャーデイ, -0.1, 酒井学騎手は3戦続けて乗っていて癖は分かっているが、重賞で上位に来る騎手ではない。四位厩舎もこの路線で目立った実績はなく、陣営の後押しは弱め。<br><br>2番, ショウナンアビアス, 0.0, 北村友一騎手への乗り替わりで、騎手の格は保たれている。ただ美浦の加藤士津八厩舎がダートから芝へ替えて関西まで遠征する形で、陣営としてプラスにもマイナスにも振りにくい。<br><br>3番, タマモイカロス, +0.4, 毎回騎手が替わっているが、今回はトップ騎手の松山弘平騎手が乗る。藤岡健一厩舎の短距離路線での実績も合わせて、勝負気配のある起用と見る。<br><br>4番, メイショウヨゾラ, -0.2, 2勝クラスと3勝クラスを勝ったときの騎手は横山武史騎手と三浦騎手で、今回は若手の吉村誠之助騎手が続けて乗る。53kgのハンデは生きるが、関東の高柳瑞樹厩舎が京都まで遠征する点も含めて、手綱の格は一枚落ちる。<br><br>5番, フィオライア, 0.0, 主戦の太宰騎手から松若風馬騎手への乗り替わりだが、騎手の格は同じくらい。柴田卓厩舎にも上げ下げする材料は特にない。<br><br>6番, リリージョワ, +0.2, 浜中俊騎手が続けて乗っていて、新馬戦を勝たせた手の内がある。武幸四郎厩舎の若い馬を任されている信頼もある。重賞で連続好走させてきたほどではなく、わずかに上げる程度。<br><br>7番, テーオーダヴィンチ, -0.1, 前走で勝たせた幸騎手から菱田裕二騎手への乗り替わり。オープンで勝ち切らせる手綱として後押しは弱い。<br><br>8番, レッドエヴァンス, +0.3, CBC賞で3着だった西村淳也騎手が続けて乗る。関西の上位騎手で、前走の手応えを知っているのはプラス。東田厩舎も勢いのある若い厩舎。<br><br>9番, タマモブラックタイ, +0.1, 米子城Sを勝たせたベテランの幸英明騎手が乗る。この馬を勝たせた経験があり、角田晃一厩舎との組み合わせもなじんでいるので少し上げる。<br><br>10番, ヒシアイラ, +0.4, 新馬戦から5戦すべて荻野極騎手が乗っていて、手の内を知り尽くしている。久々の一戦だが、池江泰寿厩舎は休み明けでもきっちり仕上げてくる名門なので、陣営の信頼は高い。<br><br>11番, オタルエバー, -0.2, 角田大和騎手が続けて乗っているが、近走は上位に絡めていない。若手の手綱で、中竹厩舎の後押しも目立たない。<br><br>12番, デイトナモード, -0.2, 斎藤新騎手が再び乗るが、前回組んだときは17着と大敗している。千田輝彦厩舎の格も含めて、陣営の後押しは乏しい。<br><br>13番, クラスペディア, +0.1, 小崎綾也騎手が一貫して乗っていて、春雷Sを勝たせ、セントウルSでも4着に持ってきた。手の内を知っている継続騎乗は評価できるが、騎手と河嶋厩舎の格は中くらいにとどまる。<br><br>14番, ヤマニンアルリフラ, +0.3, 北九州記念を勝ったときと同じ斉藤崇史厩舎で、今回はM.デムーロ騎手への乗り替わり。乗り替わりのたびに騎手の格は上がる方向で、名門厩舎の短距離馬に実績のある騎手を乗せてくる形は前向きにとらえる。<br><br>15番, タガノアラリア, +0.2, 橘Sを勝たせた鮫島克駿騎手が戻ってくる。手の内を知っている騎手が戻るのはプラス。<br><br>16番, フロムダスク, +0.1, CBC賞を勝たせた中井裕二騎手が続けて乗る。騎手の格は高くないが、この馬との相性は前走で実証済み。森秀行厩舎は使い方の判断がはっきりしていて、前走の勢いをそのまま生かしにくる構え。<br><br>17番, ヨシノイースター, +0.4, 主戦の田辺騎手から、トップクラスの坂井瑠星騎手へ乗り替わる。関西のトップ騎手を確保してきたのは、中尾秀正厩舎の勝負気配の表れと読む。<br><br>18番, ディアナザール, +0.7, 川田将雅騎手が続けて乗り、厩舎はトップの斉藤崇史厩舎。リーディング級の騎手と名門厩舎の組み合わせで、前走で後方から運んだ経験も今回の騎乗に生きる。このメンバーでは陣営の力がはっきり抜けている。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①乗り替わりの物差しがばらついている: 3番タマモイカロスは5走すべて騎手が違い手の内がないのに、松山騎手の格だけで+0.4（乗り替わりで-0.1の7番テーオーダヴィンチ、継続騎乗で+0.3の8番レッドエヴァンスと説明が合わない）。17番ヨシノイースターは5戦続けた主戦の田辺騎手を降ろしたマイナスを差し引いていない。15番タガノアラリアは前走で乗っていた坂井騎手が17番を選んで抜けた点が考慮されていない。5番フィオライアはGIIIを勝たせた主戦の太宰騎手が降りるのを0.0のまま判断していない。②18番ディアナザール+0.7: 川田騎手が乗ったのは1回で9着（後方17番手から）だけ。好走はすべて別の騎手の逃げ・先行で、『後方から運んだ経験が生きる』は言い換えでは。+0.4との差の根拠を確かめてほしい。③14番ヤマニンアルリフラは18番と同じ斉藤崇史厩舎で、川田騎手が18番に乗る以上14番は厩舎の二番手。芝とダートを行き来する使い方も踏まえると+0.3は甘いのでは。④16番フロムダスク+0.1は、同じ騎手でCBC賞を勝ったのに3着の8番(+0.3)より低い。⑤6番リリージョワのオープン・リステッド勝ちはルメール騎手で、浜中騎手の最近2戦は11着・14着。手の内の根拠は新馬戦だけ。⑥遠征を4番メイショウヨゾラだけ減点し2番ショウナンアビアスは0.0。吉村騎手が前走GIIで6着に導いた継続騎乗を-0.2にしてよいか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, カルチャーデイ, -0.1, 酒井学騎手が3戦続けて乗っていて、この馬の癖は分かっている。ただ重賞で上位に来る騎手ではなく、四位厩舎もこの路線で目立った実績がないため、陣営の後押しは弱め。<br><br>2番, ショウナンアビアス, 0.0, 毎回のように騎手が替わる馬で、今回は北村友一騎手。騎手の格は前走並みで、手の内を知る騎手でもない。加藤士津八厩舎の遠征も特に減点するほどではないので、中立とする。<br><br>3番, タマモイカロス, +0.3, 5走すべて騎手が違い、手の内を知る騎手はいない。それでもトップ騎手の松山弘平騎手を確保したことは、藤岡健一厩舎の勝負気配と読む。継続騎乗の裏付けがない分、Round1より少し下げる。<br><br>4番, メイショウヨゾラ, 0.0, 勝たせた横山武史騎手や三浦騎手と比べると、手綱の格は落ちる。一方で吉村誠之助騎手は前走のGIIで6着に持ってきた継続騎乗で、手の内はある。遠征だけを理由に下げるのはやめ、差し引きゼロとする。<br><br>5番, フィオライア, -0.1, シルクロードSを勝たせた主戦の太宰騎手が降り、手の内を知る騎手がいなくなる。松若騎手の格は太宰騎手と同じくらいだが、継続の利が消える分だけわずかに下げる。<br><br>6番, リリージョワ, +0.1, オープンとリステッドを勝たせたのはルメール騎手。浜中騎手は手の内を知るといっても新馬戦だけが根拠で、最近の2戦は11着と14着。武幸四郎厩舎の若い馬を任された信頼を考えても、わずかに上げる程度にとどめる。<br><br>7番, テーオーダヴィンチ, -0.1, 前走で勝たせた幸騎手が降りる。菱田騎手は以前2回乗った経験はあるが、そのときは13着と4着で結果が出ていない。オープンで後押しする手綱とは言えない。<br><br>8番, レッドエヴァンス, +0.2, CBC賞で3着に持ってきた西村淳也騎手が続けて乗るのはプラス。ただ、この馬に乗ったのは1回だけなので、手の内の厚みは限られる。16番と同じくらいの評価に揃える。<br><br>9番, タマモブラックタイ, +0.1, 米子城Sを勝たせたベテランの幸英明騎手が、前走に続いて乗る。角田晃一厩舎との組み合わせもなじんでいるので、少しだけ上げる。<br><br>10番, ヒシアイラ, +0.4, 新馬戦から5戦すべて荻野極騎手が乗っていて、手の内を知り尽くしている。池江泰寿厩舎は休み明けでも仕上げてくる名門。継続騎乗の厚みは、このメンバーで一番。<br><br>11番, オタルエバー, -0.2, 角田大和騎手が続けて乗っているが、近走は上位に絡めていない。若手の手綱で、中竹厩舎の後押しも目立たない。<br><br>12番, デイトナモード, -0.2, 斎藤新騎手が再び乗るが、前回組んだときは17着と大敗している。千田輝彦厩舎の格を含めても、陣営の後押しは乏しい。<br><br>13番, クラスペディア, +0.2, 小崎綾也騎手が一貫して乗り、春雷Sを勝たせ、セントウルSでも4着に持ってきた。結果の出ている継続騎乗なので、16番と同じ物差しで少し上げる。<br><br>14番, ヤマニンアルリフラ, +0.1, M.デムーロ騎手で格は保たれている。ただ、同じ斉藤崇史厩舎の川田騎手が18番に乗るため、この馬は厩舎の二番手。芝とダートを行き来する使い方にも勝負気配が見えにくく、大きく下げる。<br><br>15番, タガノアラリア, +0.1, 橘Sを勝たせた鮫島克駿騎手が戻るのはプラス。ただ、前走で乗った坂井騎手は17番を選んでこの馬を降りている。その分を差し引いて、わずかなプラスにとどめる。<br><br>16番, フロムダスク, +0.2, CBC賞を勝たせた中井裕二騎手が続けて乗る。騎手の格は高くないが、相性は重賞勝ちで実証済み。森秀行厩舎の使い方もはっきりしているので、8番と同じくらいに上げる。<br><br>17番, ヨシノイースター, +0.3, 5戦続けて乗った主戦の田辺騎手を降ろすので、手の内の面では減点になる。それでも坂井瑠星騎手は、前走で乗った15番ではなくこちらを選んだ。関西のトップ騎手を確保した勝負気配は残るので、Round1から少し下げて評価する。<br><br>18番, ディアナザール, +0.5, 川田騎手が乗ったのは1回だけで、そのときは後方17番手からの9着。「後方から運んだ経験が生きる」という理由は取り下げる。それでも、9着の後も川田騎手を乗せ続ける斉藤崇史厩舎の姿勢と、リーディング級騎手と名門厩舎の組み合わせは、このメンバーで最上位。ただし隔絶とまでは言えないので下げる。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>合成スコアの上位5頭、しずくの目で順番を見直したけん、まず疑問点から書くね。<br><br>**合成スコアへの疑問点**<br><br>- **10番ヒシアイラの1位は上がりすぎ**<br>  - 葵S 2着（SI 91.0）とマーガレット2着（SI 90.1）は確かに優秀っちゃん。<br>  - ただ、勝ち上がりは1勝クラスまでで、古馬相手は初めて。しかも4か月ぶりの実戦になる。<br>  - 葵Sで0.1秒差の3着やった3番タマモイカロスは、その後CBC賞6着・セントウルS14着と古馬の壁に当たっとる。3歳世代の物差しで見ると、首位まで押し上げる根拠は弱いと思うとよ。<br>  - 調教↗と55kgは魅力やけん、上位3頭圏内から落とすほどではなか。<br>- **16番フロムダスクが3位なのは下がりすぎ**<br>  - 前走CBC賞は1:06.5、0.4秒差の完勝でSI 93.6。今回の18頭の中で最高の数字っちゃん。<br>  - 斤量は+2.5kgの57.5kgやけど、それで目減りするのは0.4〜0.5秒程度。8番レッドエヴァンス（CBC 3着・同斤55kg）とほぼ並ぶ計算になる。<br>  - 京都開幕週の内回り1200mは先行有利。通過3-3で運べる脚質は、8番の中団差し（8-8）より展開面で上と見るね。<br>- **8枠・7枠の偏りを見落としとる**<br>  - 上位5頭のうち13番・16番・18番が外枠。京都1200mは最初のコーナーまでが短いけん、外枠の先行馬は位置取りでロスしやすか。<br>  - この不利は、18番ディアナザールと13番クラスペディアに特に効くと見て少し割り引いたとよ。<br>- **6位以下で気になる馬：4番メイショウヨゾラ**<br>  - 53kgの軽ハンデで内の2枠、通過3-3の先行脚質。セントウルS（GII）でも0.7秒差の6着に来とる。<br>  - 開幕週の内有利が噛み合えば、13番クラスペディアと入れ替わってもおかしくない妙味枠として指摘しとくね。<br><br>**しずくの最終評価**<br><br>16番, フロムダスク, 22%, CBC賞の完勝（SI 93.6）はメンバー最高の数字で、開幕週の京都で先行できる脚質も合っとる。57.5kgと外枠は割り引いても能力上位っちゃん。<br><br>8番, レッドエヴァンス, 20.5%, CBC賞3着から斤量据え置きの55kgで、16番との差は斤量で詰まる。複勝圏の安定感は抜群やけど、差し脚質と勝ち切れなさで2番手に置くとよ。<br><br>18番, ディアナザール, 20%, 京都1200mの鞍馬Sで1:06.7・SI 90.9の3着とコース適性は実証済み。前走は17-17の不完全燃焼で、川田騎手なら巻き返しが見込める。ただ大外18番の先行馬はロスが怖か。<br><br>10番, ヒシアイラ, 19.5%, 葵S 2着の能力と調教↗・55kgは買える材料。ただ古馬初対戦で4か月ぶりの休み明けやけん、合成の1位評価は過大と見て4番手に下げたとよ。<br><br>13番, クラスペディア, 18%, セントウルS 4着（0.4秒差）で状態は良好っちゃん。ただ57.5kgと13番枠での先行争いは厳しく、前々走CBC賞では2番手から11着に沈んどるけん、5番手据え置きにするね。<br><br>```json<br>{&quot;score&quot;: {&quot;16&quot;: 22, &quot;8&quot;: 20.5, &quot;18&quot;: 20, &quot;10&quot;: 19.5, &quot;13&quot;: 18}, &quot;analysis_summary&quot;: &quot;合成1位の10番ヒシアイラは古馬初対戦・4か月休み明けで過大評価と判断し4番手へ下げた。CBC賞をSI93.6で完勝した16番フロムダスクは+2.5kgと外枠を差し引いても能力最上位で、開幕週京都の先行有利も噛み合うため首位に上げた。8番レッドエヴァンスは斤量据え置きで16番との差が詰まり2番手、18番ディアナザールは京都1200m適性と川田騎手を評価する一方、大外枠の先行ロスを割り引いた。上位5頭に13・16・18番と外枠が3頭いる偏りも合成の盲点。6位以下では4番メイショウヨゾラ（53kg・2枠・先行）が開幕週の内有利で台頭しうる妙味枠。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>16番, フロムダスク, 13%, 前走CBC賞を1:06.5・指数93.6で4馬身近く突き放す完勝で、京都1200の鞍馬Sでも上がり32.5を使えとる。57.5kgへの増量と大外枠は気になるけど、坂路24.9の好時計で状態も落ちとらんけん本命評価っちゃん。<br><br>18番, ディアナザール, 12%, 京都1200の鞍馬Sで逃げて指数90.9の3着、CBC賞は17番手から上がり32.8と、前でも後ろでも脚を使える器用さがある。8戦4勝の底見せとらん素材に川田騎手で、18番枠でも上位評価にしとるとよ。<br><br>10番, ヒシアイラ, 10%, 京都1200の葵Sで指数91.0の2着、マーガレットSも0.1秒差の2着と崩れとらん3歳馬。55kgの斤量は手頃で、坂路25.3の好時計に調子↗と、久々でも仕上がっとる。<br><br>8番, レッドエヴァンス, 8%, CBC賞3着（指数88.0）を含めて近5走すべて3着以内で、安定感はメンバー随一。55kgに据え置かれたハンデも追い風で、勝ち切れるかが課題になっとる。<br><br>17番, ヨシノイースター, 7%, 北九州記念3着（指数92.9）・安土城S4着とオープン上位の地力はあるけど、8歳で58kgのトップハンデ。前走セントウルSの11着からの立て直しも条件になると。<br><br>13番, クラスペディア, 7%, セントウルSで0.4秒差の4着（指数87.4）と復調気配で、春雷S勝ちの先行力もある。ただ57.5kgの重いハンデのぶん少し割り引いとる。<br><br>15番, タガノアラリア, 6%, 朱鷺Sで勝ち馬と0.0秒差の5着（指数91.4）、橘S勝ちと地力は確かな3歳馬。1200では葵S7着とやや忙しかったけん、評価はこのくらいにしとる。<br><br>5番, フィオライア, 6%, 京都1200のシルクロードSを指数94.4で勝っとる舞台巧者。ただその後は大敗が続いとるけん、55kgの見込まれたハンデで復活できるかは半信半疑っちゃん。<br><br>4番, メイショウヨゾラ, 5%, 3勝クラスを連勝して挑んだセントウルSで、先行して0.7秒差の6着と健闘しとる。53kgの軽ハンデに内枠と条件は好転するけど、指数はまだ上位勢に一歩足りん。<br><br>14番, ヤマニンアルリフラ, 5%, シルクロードS3着（指数92.9）の実績はあるけど、最近は芝ダートどっちでも凡走が続いとる。57.5kgの見込まれた斤量で、M.デムーロ騎手の一変待ちになっとるね。<br><br>3番, タマモイカロス, 4%, 葵S3着・CBC賞6着と同世代の中では上位やけど、前走セントウルSの14着は物足りん。後方からの競馬で、届くかどうかは展開次第やね。<br><br>6番, リリージョワ, 4%, 紅梅Sを指数94.1で逃げ切ったスピードは魅力の3歳牝馬で、54kgも手頃。ただ1200は初めてやし、前走で−14kgの馬体減もあったけん未知数が大きいと。<br><br>9番, タマモブラックタイ, 3%, 米子城S勝ちの実績があって、CWで1F10.8と調教の動きは目立っとる。それでも57kgで近2走は凡走が続いとるけん、ここは控えめに見とるよ。<br><br>1番, カルチャーデイ, 3%, 1番枠から先行できるのは強みで、朱鷺Sも0.1秒差の8着と大きくは負けとらん。ただ1200の重賞・オープンでは粘り切れとらんけん、この評価にしとる。<br><br>7番, テーオーダヴィンチ, 2%, 3勝クラスを勝ち上がったばかりの8歳馬で、オープンでの指数はまだ足りとらん。54kgの軽ハンデでも上位進出は厳しいと思うっちゃん。<br><br>11番, オタルエバー, 2%, 鞍馬S6着がやっとで、重賞では二桁着順が続いとる7歳馬。調教で徐々に良化しとる気配はあるけど、上積みは小さめに見とる。<br><br>12番, デイトナモード, 1.5%, オープンに上がってからは二桁着順ばっかりで、調教でも「馬体絞り切れず」の評価。54kgに下がった恩恵はあっても狙いにくかね。<br><br>2番, ショウナンアビアス, 1.5%, ダート1200のオープンでは堅実やけど、芝の実績はほとんど無い。今回の芝替わりは割り引きが大きいとよ。<br><br>```json<br>{&quot;score&quot;: {&quot;16&quot;: 13, &quot;18&quot;: 12, &quot;10&quot;: 10, &quot;8&quot;: 8, &quot;17&quot;: 7, &quot;13&quot;: 7, &quot;15&quot;: 6, &quot;5&quot;: 6, &quot;4&quot;: 5, &quot;14&quot;: 5, &quot;3&quot;: 4, &quot;6&quot;: 4, &quot;9&quot;: 3, &quot;1&quot;: 3, &quot;7&quot;: 2, &quot;11&quot;: 2, &quot;12&quot;: 1.5, &quot;2&quot;: 1.5}, &quot;analysis_summary&quot;: &quot;CBC賞を1:06.5で完勝した16番フロムダスクを最上位、京都1200で好走実績があり脚質の幅も広い18番ディアナザールを次位に置いた。葵S2着で状態も上向きの3歳馬10番ヒシアイラ、近5走すべて3着以内の8番レッドエヴァンスが続く。17番ヨシノイースターと13番クラスペディアは地力上位でも重ハンデで割り引いた。シルクロードS勝ちの5番フィオライア、軽ハンデで内枠の4番メイショウヨゾラは穴候補。芝替わりの2番ショウナンアビアスと、オープンで凡走が続く12番デイトナモードは最下位評価。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>16</td><td class="left horse-name">フロムダスク</td><td>8.9%</td><td>11.2</td><td>5</td><td class="ev-low">1.00</td></tr><tr><td>2</td><td>10</td><td class="left horse-name">ヒシアイラ</td><td>8.4%</td><td>10.2</td><td>4</td><td class="ev-low">0.86</td></tr><tr><td>3</td><td>18</td><td class="left horse-name">ディアナザール</td><td>8.3%</td><td>6.5</td><td>2</td><td class="ev-low">0.54</td></tr><tr><td>4</td><td>8</td><td class="left horse-name">レッドエヴァンス</td><td>8.1%</td><td>2.4</td><td>1</td><td class="ev-low">0.19</td></tr><tr><td>5</td><td>13</td><td class="left horse-name">クラスペディア</td><td>7.1%</td><td>28.5</td><td>9</td><td class="ev-high">2.02</td></tr><tr><td>6</td><td>4</td><td class="left horse-name">メイショウヨゾラ</td><td>6.5%</td><td>16.9</td><td>7</td><td class="ev-mid">1.10</td></tr><tr><td>7</td><td>17</td><td class="left horse-name">ヨシノイースター</td><td>6.5%</td><td>36.3</td><td>11</td><td class="ev-high">2.36</td></tr><tr><td>8</td><td>15</td><td class="left horse-name">タガノアラリア</td><td>6.1%</td><td>94.8</td><td>16</td><td class="ev-high">5.78</td></tr><tr><td>9</td><td>5</td><td class="left horse-name">フィオライア</td><td>5.9%</td><td>21.1</td><td>8</td><td class="ev-mid">1.25</td></tr><tr><td>10</td><td>3</td><td class="left horse-name">タマモイカロス</td><td>5.6%</td><td>8.0</td><td>3</td><td class="ev-low">0.45</td></tr><tr><td>11</td><td>14</td><td class="left horse-name">ヤマニンアルリフラ</td><td>4.8%</td><td>52.5</td><td>13</td><td class="ev-high">2.52</td></tr><tr><td>12</td><td>1</td><td class="left horse-name">カルチャーデイ</td><td>4.6%</td><td>33.0</td><td>10</td><td class="ev-mid">1.53</td></tr><tr><td>13</td><td>6</td><td class="left horse-name">リリージョワ</td><td>4.6%</td><td>11.6</td><td>6</td><td class="ev-low">0.53</td></tr><tr><td>14</td><td>9</td><td class="left horse-name">タマモブラックタイ</td><td>4.5%</td><td>44.5</td><td>12</td><td class="ev-mid">1.99</td></tr><tr><td>15</td><td>11</td><td class="left horse-name">オタルエバー</td><td>3.2%</td><td>196.0</td><td>18</td><td class="ev-high">6.26</td></tr><tr><td>16</td><td>7</td><td class="left horse-name">テーオーダヴィンチ</td><td>2.8%</td><td>101.4</td><td>17</td><td class="ev-high">2.86</td></tr><tr><td>17</td><td>2</td><td class="left horse-name">ショウナンアビアス</td><td>2.2%</td><td>75.4</td><td>14</td><td class="ev-mid">1.65</td></tr><tr><td>18</td><td>12</td><td class="left horse-name">デイトナモード</td><td>1.9%</td><td>94.8</td><td>15</td><td class="ev-mid">1.81</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">16 フロムダスク</td><td>8.9%</td><td>11.2</td><td class="ev-low">0.82</td></tr><tr><td>複勝</td><td class="left">16 フロムダスク</td><td>25.9%</td><td>5.5</td><td class="ev-mid">1.19</td></tr><tr><td>馬連</td><td class="left">10 ヒシアイラ-16 フロムダスク</td><td>1.6%</td><td>34.5</td><td class="ev-low">0.45</td></tr><tr><td>ワイド</td><td class="left">10 ヒシアイラ-16 フロムダスク</td><td>4.8%</td><td>21.1</td><td class="ev-low">0.81</td></tr><tr><td>馬単</td><td class="left">16 フロムダスク→10 ヒシアイラ</td><td>0.8%</td><td>66.7</td><td class="ev-low">0.44</td></tr><tr><td>3連複</td><td class="left">10 ヒシアイラ-16 フロムダスク-18 ディアナザール</td><td>0.5%</td><td>84.0</td><td class="ev-low">0.33</td></tr><tr><td>3連単</td><td class="left">16 フロムダスク→10 ヒシアイラ→18 ディアナザール</td><td>0.1%</td><td>721.8</td><td class="ev-low">0.48</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 200円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連複</td><td class="left">10 ヒシアイラ-16 フロムダスク-18 ディアナザール</td><td>84.0</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 200円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
