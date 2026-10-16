@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第29回富士ステークス 2026/10/17 TOKYO 11R (10/16 21:12 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第29回富士ステークス 2026/10/17 TOKYO 11R (10/16 21:12 予想 馬体重なし)</h1>
+  <div class="meta">芝1600m（左） | 良 | 14頭立て | 4回 東京 6日目 サラ系3歳以上 オープン （国際）（指定） 別定 14頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">4. トロヴァトーレ</div>
+      <div class="pick-jockey">C.ルメール</div>
+    </div>
+    <div class="pick-prob">15.0%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">5. アドマイヤズーム</div>
+      <div class="pick-jockey">武 豊</div>
+    </div>
+    <div class="pick-prob">13.1%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">10. アンパドゥ</div>
+      <div class="pick-jockey">岩田 望来</div>
+    </div>
+    <div class="pick-prob">12.3%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">14頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">ファンダム</td><td>牡4</td><td>57</td><td>戸崎 圭太</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td class="left horse-name">ミトノオルフェ</td><td>牡4</td><td>57</td><td>菅原 明良</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td class="left horse-name">シンフォーエバー</td><td>牡4</td><td>57</td><td>岩田 康誠</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">4</span></td><td class="left horse-name">トロヴァトーレ</td><td>牡5</td><td>57</td><td>C.ルメール</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">5</span></td><td class="left horse-name">アドマイヤズーム</td><td>牡4</td><td>58</td><td>武 豊</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">6</span></td><td class="left horse-name">デビットバローズ</td><td>せん7</td><td>57</td><td>池添 謙一</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">7</span></td><td class="left horse-name">ウォーターリヒト</td><td>牡5</td><td>57</td><td>幸 英明</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">8</span></td><td class="left horse-name">マジックサンズ</td><td>牡4</td><td>57</td><td>横山 和生</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">9</span></td><td class="left horse-name">キープカルム</td><td>牡5</td><td>57</td><td>荻野 極</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">10</span></td><td class="left horse-name">アンパドゥ</td><td>牡5</td><td>57</td><td>岩田 望来</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">11</span></td><td class="left horse-name">ファーヴェント</td><td>牡5</td><td>57</td><td>三浦 皇成</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">12</span></td><td class="left horse-name">エンペラーズソード</td><td>せん4</td><td>57</td><td>木幡 巧也</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">13</span></td><td class="left horse-name">シュガークン</td><td>牡5</td><td>57</td><td>吉村 誠之助</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">14</span></td><td class="left horse-name">エコロアルバ</td><td>牡3</td><td>55</td><td>坂井 瑠星</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">トロヴァトーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">アドマイヤズーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アンパドゥ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">トロヴァトーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">アドマイヤズーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アンパドゥ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">トロヴァトーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">アドマイヤズーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アンパドゥ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">トロヴァトーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">アドマイヤズーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アンパドゥ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">トロヴァトーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アンパドゥ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">アドマイヤズーム</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.80</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">トロヴァトーレ</span></td>
+<td>+0.62</td>
+<td>+0.16</td>
+<td>+0.38</td>
+<td>+0.32</td>
+<td>+0.86</td>
+<td>13.6</td>
+<td>13.9</td>
+<td>20.6</td>
+<td><b>15.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">アドマイヤズーム</span></td>
+<td>+0.68</td>
+<td>+0.30</td>
+<td>+0.10</td>
+<td>+0.14</td>
+<td>+0.58</td>
+<td>13.2</td>
+<td>11.1</td>
+<td>14.9</td>
+<td><b>13.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">アンパドゥ</span></td>
+<td>+0.40</td>
+<td>+0.24</td>
+<td>+0.34</td>
+<td>+0.20</td>
+<td>+0.48</td>
+<td>11.1</td>
+<td>12.5</td>
+<td>16.1</td>
+<td><b>12.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">エコロアルバ</span></td>
+<td>+0.22</td>
+<td>-0.14</td>
+<td>+0.36</td>
+<td>+0.20</td>
+<td>+0.40</td>
+<td>8.7</td>
+<td>9.6</td>
+<td>9.6</td>
+<td><b>9.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ファンダム</span></td>
+<td>+0.18</td>
+<td>+0.12</td>
+<td>+0.20</td>
+<td>+0.18</td>
+<td>+0.22</td>
+<td>8.5</td>
+<td>8.0</td>
+<td>6.9</td>
+<td><b>8.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ファーヴェント</span></td>
+<td>+0.22</td>
+<td>+0.12</td>
+<td>+0.00</td>
+<td>+0.16</td>
+<td>-0.02</td>
+<td>8.1</td>
+<td>-</td>
+<td>5.9</td>
+<td><b>7.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ウォーターリヒト</span></td>
+<td>+0.22</td>
+<td>+0.00</td>
+<td>-0.02</td>
+<td>+0.12</td>
+<td>-0.18</td>
+<td>7.5</td>
+<td>8.0</td>
+<td>6.1</td>
+<td><b>7.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">マジックサンズ</span></td>
+<td>+0.06</td>
+<td>-0.06</td>
+<td>+0.18</td>
+<td>-0.14</td>
+<td>+0.34</td>
+<td>7.0</td>
+<td>-</td>
+<td>4.9</td>
+<td><b>6.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">キープカルム</span></td>
+<td>+0.08</td>
+<td>-0.06</td>
+<td>+0.06</td>
+<td>-0.10</td>
+<td>-0.16</td>
+<td>6.4</td>
+<td>-</td>
+<td>4.5</td>
+<td><b>6.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">デビットバローズ</span></td>
+<td>-0.04</td>
+<td>+0.06</td>
+<td>+0.08</td>
+<td>+0.04</td>
+<td>-0.20</td>
+<td>6.0</td>
+<td>-</td>
+<td>2.9</td>
+<td><b>5.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">エンペラーズソード</span></td>
+<td>-0.30</td>
+<td>+0.22</td>
+<td>-0.14</td>
+<td>-0.04</td>
+<td>-0.32</td>
+<td>4.2</td>
+<td>-</td>
+<td>2.4</td>
+<td><b>3.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ミトノオルフェ</span></td>
+<td>-0.36</td>
+<td>+0.02</td>
+<td>-0.06</td>
+<td>-0.04</td>
+<td>-0.12</td>
+<td>3.9</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>3.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">シュガークン</span></td>
+<td>-0.64</td>
+<td>-0.24</td>
+<td>-0.36</td>
+<td>-0.32</td>
+<td>-0.18</td>
+<td>1.5</td>
+<td>-</td>
+<td>1.2</td>
+<td><b>1.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">シンフォーエバー</span></td>
+<td>-0.88</td>
+<td>-0.02</td>
+<td>-0.48</td>
+<td>-0.46</td>
+<td>-0.22</td>
+<td>0.5</td>
+<td>-</td>
+<td>0.9</td>
+<td><b>0.5</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、富士Sを実績の目で見たけん、結果を置いとくね。<br><br>1番, ファンダム, +0.2, 京成杯AH(GIII)で4着・0.2秒差（指数90.4）、しらさぎS(GIII)で4着・0.1秒差と、マイル重賞の掲示板には安定して届いとる。でも勝ち切れとらんし、指数も90前後どまりやけん少しだけ上げるね。<br><br>2番, ミトノオルフェ, -0.4, 前走は心斎橋S(3勝クラス)の勝ちで、指数は88.5が最高。これでいきなりGII級の別定戦になるし、6か月ぶりでもあるけん、重賞経験の無さは実績面で明らかに足りとらん。<br><br>3番, シンフォーエバー, -0.9, 近5走は17着・14着・13着・13着・16着で、全部が大敗。しらさぎSでは1.8秒差、指数71.6まで落ちとるけん、実績では強く下げるしかなか。<br><br>4番, トロヴァトーレ, +0.7, 東京新聞杯(GIII)を1:32.2で勝って（指数92.8）、エプソムC(GIII)も勝っとる（指数94.1）。同じ東京のマイル重賞を勝っとるし、安田記念(GI)9着も0.7秒差やけん、格の上では上位に入るとよ。<br><br>5番, アドマイヤズーム, +0.8, マイラーズC(GII)を1:31.7で勝って、指数94.9はこのメンバーで最高。朝日杯FS(GI)を勝っとるし、NZT2着（93.6）とスワンS0.2秒差（93.4）もあって、GI・GII級の数字を続けて出しとる。休み明けを差し引いても実績はいちばん上やね。<br><br>6番, デビットバローズ, -0.1, 鳴尾記念(GIII)1着で指数93.3があるけど、どれも1800m以上での実績。マイルではしらさぎS5着・0.5秒差どまりで、最近は大阪杯8着・函館記念11着と下り坂やけん少し下げるね。<br><br>7番, ウォーターリヒト, +0.3, マイルCS(GI)3着・0.3秒差（93.2）と東京新聞杯3着（91.7）で、格の高い実績を持っとる。ただ直近のマイラーズC13着と安田記念13着は内容が悪かったし、去年の富士Sも9着やったけん少し上げにとどめるね。<br><br>8番, マジックサンズ, +0.1, エプソムC(GIII)ではトロヴァトーレと0.2秒差の4着（92.2）で、中距離の重賞なら大崩れしとらん。でもマイルは東京新聞杯12着（85.4）しかなくて、距離短縮の裏付けが弱かとよ。<br><br>9番, キープカルム, +0.1, しらさぎS(GIII)は0.1秒差の2着（89.4）。ただ前走の中京記念は9着・0.7秒差で、去年の富士Sも6着（86.4）やけん、このメンバーやと指数が少し足りとらん。<br><br>10番, アンパドゥ, +0.6, 関屋記念(GIII)を0.9秒差で圧勝して指数94.6、その前も分倍河原Sを東京マイルで勝って上がり32.7、通算7戦5勝。不良馬場で斤量56kgの大差勝ちは割り引いて見とるけど、勢いと東京マイルでの実績は本物っちゃん。<br><br>11番, ファーヴェント, +0.3, ダービーCT(GIII)は0.0秒差の3着（92.8）、マイラーズC(GII)は0.3秒差の6着（91.7）、京都金杯2着とマイル重賞で安定しとる。ただ関屋記念ではアンパドゥに0.9秒も離されとるし、まだ勝ち切れとらんね。<br><br>12番, エンペラーズソード, -0.3, 東京マイルの秋色S(3勝クラス)は1:31.9で勝っとる。でも重賞・リステッドに上がってからは、東京新聞杯11着・東風S7着・ダービーCT8着と全部掲示板の外やけん、格の壁に当たっとる。<br><br>13番, シュガークン, -0.6, 青葉賞(GII)の勝ちはもう2年半前。復帰してからは新潟大賞典15着、宝塚記念17着・3.2秒差と大敗が続いとるし、マイルの実績も無かけん大きく下げるね。<br><br>14番, エコロアルバ, +0.4, 東京マイルのサウジRC(GIII)を勝っとるし、しらさぎS3着・0.1秒差（92.2）、朝日杯FS4着・0.3秒差と、3歳でも古馬重賞に通用する数字を出しとる。しらさぎSは53kgやったけん、今回の55kgで少し割り引いてこの評価にしたとよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.4, &quot;3&quot;: -0.9, &quot;4&quot;: 0.7, &quot;5&quot;: 0.8, &quot;6&quot;: -0.1, &quot;7&quot;: 0.3, &quot;8&quot;: 0.1, &quot;9&quot;: 0.1, &quot;10&quot;: 0.6, &quot;11&quot;: 0.3, &quot;12&quot;: -0.3, &quot;13&quot;: -0.6, &quot;14&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;実績上位はアドマイヤズーム（マイラーズC勝ちで指数94.9、GI馬）、トロヴァトーレ（東京新聞杯・エプソムC勝ち）、アンパドゥ（関屋記念を0.9秒差で圧勝、指数94.6。不良馬場なので割り引き）の3頭。続くのはエコロアルバ、ウォーターリヒト、ファーヴェントで、マイル重賞の好走は多いが勝ち切れていない。シンフォーエバーは大敗続き、シュガークンは復帰後に崩れていてマイル実績もなく、ミトノオルフェは格上挑戦で、いずれも実績面で大きく下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①10番アンパドゥの関屋記念（不良馬場）は割り引いとるのに、11番ファーヴェントにはそのレースの0.9秒差をそのまま減点に使っとる。物差しをそろえるべきではないか。11番ファーヴェントの良馬場マイル重賞（92.8・91.7）は、10番アンパドゥの良馬場の最高87.0を上回る。重賞実績が不良馬場の1戦だけで+0.6は高くないか。②5番アドマイヤズームの+0.8は、ほぼマイラーズCの94.9頼み。17か月で2走、唯一の東京マイルはNHKマイル14着・1.0秒差、今回は58kg。4番トロヴァトーレに使った『東京マイル実績』の見方を5番アドマイヤズームにも当てて、上下を確かめてほしい。③しらさぎSは14番エコロアルバ（53kg）と9番キープカルム（58kg）、1番ファンダムが同じ1:33.3。14番エコロアルバの指数92.2を素直に信じすぎとらんか。サウジRCは8頭立てで1:33.8、NHKマイル9着0.7秒差には触れとらん。14番+0.4と9番+0.1・1番+0.2の差を説明し直してほしい。④7番ウォーターリヒトのマイラーズC13着は0.5秒差（89.6）で、11番ファーヴェント6着とは0.2秒差。安田記念は4番トロヴァトーレ0.7秒差を前向きに、7番1.0秒差を減点に使っとる。東京新聞杯は同じ58kgで0.1秒差、マイルCS93.2もある。4番+0.7と7番+0.3の差は開きすぎではないか。⑤8番マジックサンズは指数87.8〜92.2で安定していて9番キープカルムより上なのに、同じ+0.1。素の能力の評価に距離適性の減点を入れすぎとらんか。6番デビットバローズも同じ見方で見直す余地あり。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ファンダム, +0.2, 京成杯AH(GIII)は4着で勝ち馬と0.2秒差（指数90.4）、しらさぎS(GIII)も4着で0.1秒差（89.4）やった。マイル重賞の掲示板には安定して入っとるけど勝ち切れとらんけん、Round1と同じ少し上げのままにするね。<br><br>2番, ミトノオルフェ, -0.4, 前走の心斎橋S(3勝クラス)は勝っとるけど、指数88.5がいちばん高い数字で重賞にはまだ出とらん。6か月ぶりでいきなりオープンの別定戦やけん、実績はやっぱり足りとらん。<br><br>3番, シンフォーエバー, -0.9, 近5走は17着・14着・13着・13着・16着で、全部大きく負けとる。しらさぎSは1.8秒差で指数71.6やったけん、実績からは強く下げるしかなか。<br><br>4番, トロヴァトーレ, +0.7, 東京マイルの東京新聞杯(GIII)を58kgで1:32.2で勝って（92.8）、エプソムC(GIII)も勝っとる（94.1）。重賞2勝で東京の実績もあるけん、上位の評価はそのままにするね。<br><br>5番, アドマイヤズーム, +0.7, 指数はマイラーズC(GII)1着の94.9、スワンS(GII)0.2秒差の93.4、NZT(GII)2着の93.6で、GII級の数字を3回出しとる。ただ東京マイルはNHKマイル14着（1.0秒差）しかないし、今回は58kgで17か月に2走しかしとらん。そこを認めて4番と同じ評価に下げたとよ。<br><br>6番, デビットバローズ, 0.0, 鳴尾記念(GIII)1着の93.3と大阪杯(GI)8着・0.7秒差（88.0）は、素の能力として中位以上の数字っちゃん。マイルはしらさぎS5着（87.5）だけやし函館記念11着もあるけん、上げも下げもせん中立に戻すね。<br><br>7番, ウォーターリヒト, +0.4, マイルCS(GI)は3着・0.3秒差（93.2）、東京新聞杯は4番と同じ58kgで0.1秒差の3着（91.7）やった。マイラーズC13着も0.5秒差（89.6）で大負けやなかけん、指摘どおり少し上げるね。<br><br>8番, マジックサンズ, +0.2, エプソムC(GIII)4着・0.2秒差（92.2）のほか、中山記念と函館記念も89.8で、GII/GIIIの中距離戦で87.8〜92.2と安定しとる。マイルは東京新聞杯12着（85.4）だけで裏付けは弱かけど、素の能力の数字は9番より上と認めるね。<br><br>9番, キープカルム, +0.1, しらさぎS(GIII)は58kgを背負って0.1秒差の2着（89.4）。でも中京記念9着（85.7）や去年の富士S6着（86.4）を見ると、このメンバーやと指数がひと押し足りとらん。<br><br>10番, アンパドゥ, +0.4, 関屋記念(GIII)は0.9秒差の圧勝で94.6やけど、不良馬場で56kgやった1戦だけで、良馬場の最高は分倍河原S(3勝クラス)の87.0どまり。東京マイルで勝ち切っとる点は評価するけど、重賞の実績がまだ薄いけん下げたとよ。<br><br>11番, ファーヴェント, +0.3, ダービーCT(GIII)は0.0秒差の3着（92.8）、マイラーズC(GII)は0.3秒差の6着（91.7）、京都金杯2着（90.3）と、良馬場に近い条件のマイル重賞で数字がそろっとる。関屋記念の0.9秒差は不良馬場のことやけん大きくは引かんけど、重賞を勝っとらんぶん+0.3に置くね。<br><br>12番, エンペラーズソード, -0.3, 東京マイルの秋色S(3勝クラス)は1:31.9で勝っとる。けど重賞やリステッドでは東京新聞杯11着・東風S7着・ダービーCT8着で、指数も85〜88で頭打ちになっとる。<br><br>13番, シュガークン, -0.6, 青葉賞(GII)を勝ったのはもう2年半前。復帰してからは新潟大賞典15着・宝塚記念17着（3.2秒差）と大敗続きで、マイルの実績も無かけん大きく下げるね。<br><br>14番, エコロアルバ, +0.2, しらさぎSの92.2は、57kgのファンダム・58kgのキープカルムと同じ1:33.3を53kgで出した数字やけん、斤量の差を引くと2頭とほぼ同じ水準になる。サウジRCも8頭立てで1:33.8、NHKマイルは9着・0.7秒差（87.1）やけん、1番と同じ評価まで下げたとよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.4, &quot;3&quot;: -0.9, &quot;4&quot;: 0.7, &quot;5&quot;: 0.7, &quot;6&quot;: 0.0, &quot;7&quot;: 0.4, &quot;8&quot;: 0.2, &quot;9&quot;: 0.1, &quot;10&quot;: 0.4, &quot;11&quot;: 0.3, &quot;12&quot;: -0.3, &quot;13&quot;: -0.6, &quot;14&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;指摘①〜⑤はすべて納得したので見直した。①不良馬場の物差しをそろえた。10番は重賞実績が不良馬場の1戦だけなので+0.6→+0.4、11番は良馬場マイル重賞の92.8・91.7があるので+0.3を維持。②5番は東京マイルの実績が無いこと、58kg、間隔の長さを反映して+0.8→+0.7とし、4番と同じ評価にした。③14番のしらさぎSは斤量を補正すると1番・9番と同じ水準で、サウジRCは8頭立てでタイムも遅いので+0.4→+0.2。④7番は東京新聞杯で同じ斤量の4番と0.1秒差、マイルCSで93.2、マイラーズCも0.5秒差なので+0.3→+0.4。⑤素の能力を見る際に距離の減点を入れすぎていたので、8番を+0.1→+0.2、6番を-0.1→0.0に修正した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、富士Sの展開読み、まとめたっちゃん。<br><br>**想定する流れ**：逃げるのは12番エンペラーズソードの1頭だけで、ハナ争いはほとんど起きんと思うとよ。2番手は4番枠から出る5番アドマイヤズームで、11番ファーヴェント、6番デビットバローズ、13番シュガークンが先行集団を作るね。その後ろの中団に1・2・4・10・8番、最後方近くに7・9・14番がおる形。14頭立てで逃げ馬が1頭やけん、ペースは平均かやや遅めになりそう。東京の直線は525mあって坂もあるけん、前の馬も残りやすいし、中団から速い上がりを使える馬も届く、という読みになっとるよ。<br>別のシナリオもあるとよ。シュガークンが前に行って5番に競りかけたら流れが速くなって、外から差す馬が浮上する。どっちに転んでも振れが小さく済むように、後方の馬のマイナスは控えめにしとるけんね。<br><br>1番, ファンダム, +0.2, 最内枠で、1400mで2番手につけたスピードも、中団で待つ形も両方こなせる。ロスなく中団の内に入れて、33秒台の上がりを使える位置で運べそう。<br><br>2番, ミトノオルフェ, 0.0, 内枠の中団で位置取りには困らん。ただ上がりは34秒台が中心で、直線の長い東京で速い上がり勝負になったとき展開の後押しは見込みにくいけん、中立。<br><br>3番, シンフォーエバー, -0.1, 中団からも先行からも上がりが35〜36秒台にかかっとる。どの位置で運んでも展開の恩恵を受けにくい。<br><br>4番, トロヴァトーレ, +0.3, 内寄りの枠から中団の内でロスなく運べて、東京のマイルでは33秒0〜1の上がりで勝ちきっとる。ペースが平均でも遅めでも差し届く位置にいられる。<br><br>5番, アドマイヤズーム, +0.6, 単騎で逃げる馬の真後ろ、2番手の内でリラックスして運べそう。マイラーズCでも2番手から上がり33秒3で押し切った型で、今回の想定に一番はまる。<br><br>6番, デビットバローズ, +0.1, 先行集団の中ほどで運べる脚質。ただ2000mから距離を詰めるとマイルの序盤の速さに少し押され、位置が下がる恐れがある。<br><br>7番, ウォーターリヒト, -0.2, いつも後方16〜17番手からの競馬になる。平均から遅めの14頭立てでは、上がり33秒台を使っても前に届ききらん危険がある。<br><br>8番, マジックサンズ, 0.0, 2000m路線から短くなって、序盤は後ろめになりそう。東京の長い直線で33秒2を出した実績もあって、プラス面とマイナス面が打ち消し合うけん中立。<br><br>9番, キープカルム, -0.1, 東京では32秒6の上がりがあるけど、位置取りは13〜16番手。遅めの流れだと届かんリスクのほうがやや大きい。<br><br>10番, アンパドゥ, +0.3, 6番枠から中団の8番手あたりにつけられて、東京のマイルで32秒7の上がり。速い上がり勝負なら一番いい位置から伸びてこられる。<br><br>11番, ファーヴェント, +0.2, 3番手から運べる先行脚質で、前が有利になりやすい流れに合う。外枠のぶん、外を回る距離ロスが少しある。<br><br>12番, エンペラーズソード, +0.3, ハナを競る相手がおらず、自分のペースで逃げられそう。東京マイルを逃げて1分31秒9で勝った経験もある。外枠からハナを取りに行くぶんは割り引いた。<br><br>13番, シュガークン, -0.2, 2000〜2400mを使ってきた馬で、マイルの速い序盤についていけるか不安がある。外枠から前に取りつけないと中途半端な位置になる恐れ。<br><br>14番, エコロアルバ, -0.3, 大外枠で、近走は15〜16番手からの競馬。外を回ったうえに遅めの流れになると、展開面では一番厳しい。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.0, &quot;3&quot;: -0.1, &quot;4&quot;: 0.3, &quot;5&quot;: 0.6, &quot;6&quot;: 0.1, &quot;7&quot;: -0.2, &quot;8&quot;: 0.0, &quot;9&quot;: -0.1, &quot;10&quot;: 0.3, &quot;11&quot;: 0.2, &quot;12&quot;: 0.3, &quot;13&quot;: -0.2, &quot;14&quot;: -0.3}, &quot;analysis_summary&quot;: &quot;逃げは12エンペラーズソードの1頭だけでハナ争いは少なく、平均〜やや遅めの流れを想定。4番枠から逃げ馬の真後ろ・2番手の内で運べる5アドマイヤズームが展開面で最も有利。単騎で逃げられる12と先行の11にも前残りの目がある。東京の長い直線は中団から速い上がりを使える4トロヴァトーレと10アンパドゥを後押しする。後方一辺倒の7・9・14は遅めの流れで届かない危険があり、とくに大外の14は外を回るロスも重なる。シュガークンが前で競りかけて流れが速くなる別シナリオもあるため、後方勢のマイナスは控えめにした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)『12番エンペラーズソード単騎で平均〜遅め』の前提を見直す余地はないか。13番シュガークンは近走ずっと2〜4番手、6番デビットバローズもマイルでは2-2、11番ファーヴェントも3番手と、前に行く馬が多い。速い流れになった場合を見積もると、7番・9番・14番の減点が過大にならないか。(2)5番アドマイヤズーム+0.6は、隣の6番・外の11番・13番と2番手を取り合う可能性、そして同じ東京マイルのNHKマイル(3-2→上がり36.0で14着)を織り込んでいないのではないか。2番ミトノオルフェを『東京の長い直線』で下げた理屈と整合しているか。(3)7番ウォーターリヒトの『いつも16〜17番手』は誤り(東京新聞杯10-9で3着、マイルCS7-8で3着)。4番トロヴァトーレも後方からのレースが多く、東京新聞杯では同じ10-9で0.1秒差。両馬の0.5差は展開面で説明がつくか。(4)1番ファンダム・4番トロヴァトーレの内枠中団待ちは、前が詰まって抜け出せないリスクを見ていないのではないか。(5)12番の逃げは重賞では1-1-1で7・8着、+0.3は甘くないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘をひとつずつ確かめたけん、まとめるね。<br><br>- **(1) ペース**：12番以外に、13番（2〜3番手）・6番（マイルで2-2）・11番（3-3）・5番（2-2）と前に行く馬が多かとは、指摘のとおりやった。13番と12番はどっちも外枠やけん、ハナや2番手を取りに外からかぶせていく形になりやすか。単騎で平均〜遅めになる形を本線にはするけど、流れが締まる別の形も小さくなか。だけん後ろから行く馬（7・9・14番）の減点はやりすぎやったと納得したとよ。<br>- **(2) 5番**：同じ東京マイルのNHKマイルで、3-2の好位から上がり36.0で失速しとる。2番手の内を6・11・13番と取り合う恐れもある。マイラーズCの形をそのまま当てはめたのは都合がよすぎたけん、下げるね。<br>- **(3) 7番と4番**：東京新聞杯ではどっちも10-9、マイルCSの7番は7-8やけん、「いつも16〜17番手」はうちの読み違いやった。位置取りは4番とほとんど変わらん。0.5も差をつけた理由は展開では説明できんけん、差を縮める。<br>- **(4) 内枠で中団待ち**：14頭立てで東京は直線の幅も広かけん、大きな危険ではなか。ただ前が詰まる恐れはあるけん、1番と4番を少し割り引く。<br>- **(5) 12番**：重賞で1-1-1と逃げても、上がり35秒台に落ちて7・8着。外枠からハナを取りに行く負担もあるけん、少し下げる。<br><br>想定する展開はこう。12番が外から押してハナに立って、13番と5番が2番手の外と内、11番と6番がその後ろに続く。13番がしつこくかぶせてくれば、前半の800mは平均より速くなる。直線は中団の8番手あたりにいる10番が外に出して伸びてきて、内からは4番と1番が隙間を探す。後ろの7・9・14番は、流れが締まったときだけ届くという形やね。<br><br>1番, ファンダム, +0.1, 最内枠から中団の内でロスなく運べるし、前に付けても控えても走れる。ただ前が詰まって抜け出しが遅れる恐れがあるけん少し割り引いた。<br><br>2番, ミトノオルフェ, 0.0, 内枠の中団で位置取りには困らん。上がりは34秒台が中心で、展開の後押しも不利も特にないけん中立。<br><br>3番, シンフォーエバー, -0.1, 先行しても中団からでも上がりが35〜36秒台にかかっとる。どの流れになっても展開の恩恵は受けにくい。<br><br>4番, トロヴァトーレ, +0.2, 内寄りの枠から中団でロスなく運べて、東京マイルの上がり33秒台はペースを問わず生きる。位置取りは7番と同じくらいで、内で前が詰まる恐れも見て下げた。<br><br>5番, アドマイヤズーム, +0.4, 2番手の内は今回の想定で一番いい位置。ただ6・11・13番と取り合う恐れがあるし、同じ東京マイルのNHKマイルでは好位から失速しとるけん下げた。<br><br>6番, デビットバローズ, 0.0, マイルなら2番手にも付けられる。ただ2000mからの距離短縮で序盤の速さに押されやすく、前の位置を取り合う中で展開の利は打ち消されるけん中立。<br><br>7番, ウォーターリヒト, 0.0, 東京新聞杯は10-9、マイルCSは7-8と中団からの競馬もできる。流れが平均なら少し不利、締まれば有利で、差し引き中立。<br><br>8番, マジックサンズ, 0.0, 2000m路線からの短縮で序盤は後ろめになりそう。東京の長い直線で33秒2を出した実績もあって、プラスとマイナスが打ち消し合う。<br><br>9番, キープカルム, 0.0, 位置取りは13〜16番手と後ろやけど、東京で32秒6の上がりがある。前が競り合って流れが締まる形もあるけん、遅い流れで届かん危険と打ち消し合って中立。<br><br>10番, アンパドゥ, +0.3, 中団の8番手あたりから32秒7の上がりが使える。遅めの流れでも速い流れでも届きやすい位置で、ペースが読みにくい今回は一番安定して展開が向く。<br><br>11番, ファーヴェント, +0.1, 3番手から運べる先行型で、平均〜遅めの流れなら前が残りやすい。ただ外枠から前の位置を取り合ううえ、流れが締まると苦しくなるけん下げた。<br><br>12番, エンペラーズソード, +0.2, 本格的にハナを競る相手がおらんのは利点。ただ重賞では逃げても上がり35秒台に落ちとるし、外枠からハナを取りに行く負担と13番にかぶせられる恐れもあって控えめにした。<br><br>13番, シュガークン, -0.2, 2000m以上を使ってきた馬で、マイルの速い序盤に外枠から前を取りに行けば脚を使わされる。取りつけんと中途半端な位置になる恐れもある。<br><br>14番, エコロアルバ, -0.2, 大外枠で15〜16番手からの競馬が続いとって、外を回る距離ロスは避けられん。流れが締まれば届く余地もあるけん減点を少し緩めた。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: 0.0, &quot;3&quot;: -0.1, &quot;4&quot;: 0.2, &quot;5&quot;: 0.4, &quot;6&quot;: 0.0, &quot;7&quot;: 0.0, &quot;8&quot;: 0.0, &quot;9&quot;: 0.0, &quot;10&quot;: 0.3, &quot;11&quot;: 0.1, &quot;12&quot;: 0.2, &quot;13&quot;: -0.2, &quot;14&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;前に行く馬が多い（12・13・6・11・5番）ことを踏まえ、単騎で平均〜遅めを本線にしつつ流れが締まる別の形も加えた。後ろから行く7・9・14番の減点を緩め、5番は2番手の取り合いとNHKマイルでの失速から+0.6→+0.4。7番の位置取りは読み違いで、4番と同じくらいと見直して差を縮めた（7番0.0・4番+0.2）。内枠で前が詰まる恐れから1番を+0.1に、重賞では逃げても上がりが落ちとる12番を+0.2に下げた。ペースを問わず届きやすい10番の+0.3は据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>富士Sを体調派の目で見たよ。今回は馬体重がまだ出とらんけん、全頭「増減ゼロ」として、ここまでの体重の流れ・出走間隔・斤量・調教だけで補正しとるとよ。<br><br>1番, ファンダム, +0.2, 前走は約2か月半ぶりの京成杯AHで、今回は叩き2走目で中6週と間隔もちょうどよか。体重は492kgから474kgまで減り続けとるけど、着順と指数は逆に上がっとるし、追走先着で調教の評価もよかけん、消耗やなく絞れたと見て小さく上げるね。<br><br>2番, ミトノオルフェ, -0.1, 4月以来6か月半ぶりで、休み明けで重賞初挑戦になるとがちょっと気になる。ただ522kgから504kgへ絞れていく流れで勝ちが続いとって、CWのG前仕掛けで「仕上がり良好」やけん、下げ幅は小さめにしとる。<br><br>3番, シンフォーエバー, -0.4, 4か月ぶりで、調教評価が「立て直すもひと息」。坂路のラスト1Fも12.8秒とキレがない。近走は大敗続きで、立て直しが間に合っとらんように見えるけん下げるね。<br><br>4番, トロヴァトーレ, +0.5, 4か月ぶりやけど、508〜510kgでほとんど体重がブレん安定型。3か月ぶりのエプソムCも体重増減ゼロで勝っとるけん、休み明けは問題なか。美浦Wで1F11.3秒、「躍動感出る」で調子も上向きやけん、仕上がりははっきり良かと見とる。<br><br>5番, アドマイヤズーム, 0.0, 6か月ぶりやけど、前の年も6か月空けたマイラーズCを+8kgで勝っとるけん、休み明けは苦にせん馬。「久々も力強く」と調教もよか。ただ斤量は他の古馬より1kg重い58kgで、半馬身くらいの不利があるけん、差し引きでゼロにしとる。<br><br>6番, デビットバローズ, 0.0, 函館記念から4か月ぶり。体重の幅は502〜514kgで、いちばん良かった鳴尾記念は514kgで休み明けやった。坂路で「シャープな脚捌き」と動きは悪くなかけど、7歳やけん上積みは見込みにくい。体調面では中立にしとる。<br><br>7番, ウォーターリヒト, 0.0, 4か月ぶり。マイルCSで3着に来たときの472kgが目安で、前走もその体重。月曜に強めに追って仕上げとるけん、仕上がりの段取りはできとる。ただ近2走の大敗をはっきり立て直したサインも見えんけん、中立にしとる。<br><br>8番, マジックサンズ, +0.2, 函館記念、札幌記念と使ってきて、今回は叩き3走目で中8週と間隔もちょうどよか。体重は518kg、良かったエプソムCは528kgで、大きく減っとるわけやない。調教も「気配良化」で、少しずつ上向いとるけん小さく上げるね。<br><br>9番, キープカルム, +0.2, 中京記念から中8週の叩き2走目。体重は500kgでピタッと安定しとって、昨年の富士S（488kg）より馬体はしっかりしとる。坂路を一杯に追って5Fが52.6秒、「脚取り確か」で、使いながら良くなってきとると見とる。<br><br>10番, アンパドゥ, +0.4, 関屋記念から12週で、不良馬場を走った疲れも抜けとる間隔。体重は494〜498kgでかなり安定しとる。まだ7戦と使い込まれとらんけん状態は新鮮で、美浦Wのラスト1F11.2秒はメンバーでいちばん速い。「体も動きも良く」と評価も高かけん、上げるね。<br><br>11番, ファーヴェント, 0.0, 関屋記念から12週。体重は512〜514kgで、ずっと崩れんタイプ。調教は「まずまず仕上がる」で、坂路のラスト1Fも12.3秒と並みくらい。上にも下にもはっきりした材料がないけん中立にしとる。<br><br>12番, エンペラーズソード, -0.2, 4月以来6か月半ぶりの休み明け。最終追い切りは5日前の美浦坂路でラスト1F12.7秒と軽めで、「先週好調教」と評価されとるのも1週前の内容。今週の調教で仕上がりを確かめられんけん、少し下げとる。<br><br>13番, シュガークン, -0.5, 2年ぶりの復帰で+14kg、その次の宝塚記念は重馬場で3.2秒差の17着（上がり38.0秒）と完全にバテとって、その疲れが心配。体重も青葉賞を勝ったときの502kgから522kgまで増えとる。最終追い切りも5日前の坂路でラスト1F12.9秒と時計が出とらんけん、はっきり下げるね。<br><br>14番, エコロアルバ, +0.5, 3歳で斤量55kgやけん、古馬の57kgより2kg軽か。マイルなら1馬身くらいの得になるし、470kg台後半の中くらいの馬格でも負担は軽い。4か月ぶりでも、3歳秋は成長が見込める時期。坂路を一杯に追って5F52.5秒・ラスト1F11.6秒と力強くて、調子も上向きやけん、はっきり上げるね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: -0.4, &quot;4&quot;: 0.5, &quot;5&quot;: 0.0, &quot;6&quot;: 0.0, &quot;7&quot;: 0.0, &quot;8&quot;: 0.2, &quot;9&quot;: 0.2, &quot;10&quot;: 0.4, &quot;11&quot;: 0.0, &quot;12&quot;: -0.2, &quot;13&quot;: -0.5, &quot;14&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;馬体重未発表のため増減ゼロ仮定。上げるのは、体重が安定していて調教も上向きのトロヴァトーレ、3歳で斤量55kgと2kg軽く調教も力強く上向きのエコロアルバ、12週の間隔で疲れが抜け美浦W1F11.2のアンパドゥ。叩き2〜3走目のファンダム・マジックサンズ・キープカルムは小さく上げる。宝塚記念で大敗した後の疲れが心配で体重も増え、最終追いも軽いシュガークンと、立て直しがひと息のシンフォーエバーは下げる。6か月以上の休み明け組は、調教内容で差をつけた（ミトノオルフェは小さく下げ、最終追いが軽いエンペラーズソードは少し下げ、休み明けを苦にしないアドマイヤズームは58kgの不利と相殺して中立）。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)最終追い切りが5日前の扱いがバラバラ：12番エンペラーズソードは『今週の仕上がりを確かめられん』で減点しとるけど、5日前は今週月曜の追い切り。同じ月曜追いの7番ウォーターリヒトはプラス扱いになっとる。(2)終い1Fの物差し：9番キープカルムは一杯に追って1F12.5で、11番ファーヴェント(12.3を並み扱い)より遅いのに+0.2。(3)13番シュガークン-0.5：宝塚記念は4か月前で、10番アンパドゥの『12週で疲れ抜け』と矛盾。『乗り込み入念』を無視、+20kgも2年半の成長の可能性があり、3番シンフォーエバーより下に置く根拠が弱い。(4)8番マジックサンズ：指数は函館89.8→札幌87.8と叩き2走目で下降。『上向き』でなく夏3走目の下り坂の可能性。(5)1番ファンダム：9か月ずっと体重が減っとって、最高指数は最重量の492kg時。『絞れた』と言い切れるか。(6)14番エコロアルバ+0.5：斤量は前走53kgから+2kg、体重は1年ほぼ変わらず成長の裏付けなし。(7)2番ミトノオルフェ：前回の休み明け(+20kgで16着)を見落とし。減点理由の重賞初挑戦はクラスの話。(8)11番ファーヴェント：指数が92.8→85.5と下り続けとるのに『材料なし』。(9)4番トロヴァトーレ&gt;10番アンパドゥの差は調子↗だけで、時計の中身(5F69.5と67.2)は10番が上。(10)6番デビットバローズは鳴尾記念で休み明け勝ちがあるのに、5番アドマイヤズームと違って加点されとらん。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ファンダム, +0.2, 体重は492kgから474kgまで減り続けとって、いちばん指数が高かったとは492kgのとき、という指摘はもっともやね。ただ減り幅は-8→-4→-4→-2と小さくなってきとって、指数も85.9→88.1→89.4→90.4と上がっとる。叩き2走目で中6週、調教も追走先着やけん、消耗のサインは見えんとして据え置くね。<br><br>2番, ミトノオルフェ, -0.1, 重賞初挑戦はクラスの話やけん、減点の理由から外したと。代わりに、前に間隔が空いたときは+20kgで16着やったことを入れたけん、6か月半ぶりの休み明けはやっぱり不安が残る。ただCWのG前仕掛けで「仕上がり良好」、ベストの504kgで出られそうやけん、小さい減点はそのままにしとる。<br><br>3番, シンフォーエバー, -0.4, 4か月ぶりで、調教の評価が「立て直すもひと息」とはっきり物足りんし、坂路のラスト1Fも12.8秒とキレがない。立て直しが間に合っとらんと見て、下げたままにしとる。<br><br>4番, トロヴァトーレ, +0.4, 体重は508〜510kgでほとんど変わらんし、3か月ぶりのエプソムCも増減ゼロで勝っとるけん、休み明けは問題なか。ただ馬なりで5Fが69.5秒と全体の時計は軽めで、10番より上に置くほどの差はないけん、10番と同じ+0.4に下げたと。<br><br>5番, アドマイヤズーム, 0.0, 前の年も6か月空けたマイラーズCを+8kgで勝っとって、休み明けは苦にせん馬。調教も「久々も力強く」とよか。ただ前走から1kg増えて58kgで、他の古馬より半馬身くらい不利になるけん、差し引きでゼロにしとる。<br><br>6番, デビットバローズ, +0.1, 約5か月半ぶりの鳴尾記念を+10kgで勝っとるけん、休み明けはこなせる馬という指摘はそのとおりやね。斤量も57kgでほかの古馬と同じ。坂路で「シャープな脚捌き」なら仕上がりも悪くなかけん、少し上げるね。<br><br>7番, ウォーターリヒト, 0.0, 4か月ぶりで、目安の472kgで来られそう。月曜に強めに追って仕上げる段取りもできとる。ただ立て直したとはっきり言えるサインもないけん、これまでどおり中立（プラスにはしとらん）。<br><br>8番, マジックサンズ, +0.1, 指数が函館89.8から札幌87.8と、叩き2走目で下がっとるのは見落としとった。今年はこれで6走目になるけん、夏から使ってきた疲れもありうる。中8週で「気配良化」、坂路のラスト1Fも11.9秒と悪くなかけん、少しのプラスまで下げたと。<br><br>9番, キープカルム, +0.1, 一杯に追って5Fは52.6秒と速いけど、ラスト1Fは12.5秒で終いは止まり気味。叩き2走目で体重が500kgのまま安定しとる点は評価しとるけど、時計の中身を見て少し下げたと。<br><br>10番, アンパドゥ, +0.4, 関屋記念から12週で、疲れが抜けるには十分な間隔。体重も494〜498kgで安定しとる。美浦WでG前に仕掛けて5F67.2秒・ラスト1F11.2秒と、時計の中身はメンバーでいちばん良か。「体も動きも良く」の評価も合わせて、仕上がりにははっきり自信が持てる。<br><br>11番, ファーヴェント, 0.0, 指数は92.8から85.5まで下がっとるけど、下の2走は稍重と不良やけん、馬場の影響が大きか。体重は512〜514kgでブレんし、12週空けて間隔も十分。調教は「まずまず」で時計も並みやけん、体調面では中立のままにしとる。<br><br>12番, エンペラーズソード, -0.1, 5日前は今週月曜の追い切りやけん、「今週の状態を確かめられん」という理由は取り下げるね。ただ評価が「先週好調教」で今週の内容をほめとらんし、美浦坂路のラスト1Fも12.7秒と目立たん。6か月半ぶりのぶんだけ、小さく下げとる。<br><br>13番, シュガークン, -0.3, 宝塚記念は4か月前やけん疲れは抜けとるはず、という指摘は受け入れる。「乗り込み入念」で量も積んどる。それでも、2年ぶりに戻ってから2戦続けて大敗、坂路のラスト1Fは12.9秒でいちばん遅いけん、マイナスにはしとる。ただ3番みたいにはっきり悪い評価が付いとるわけやないけん、3番よりは上に置いたと。<br><br>14番, エコロアルバ, +0.3, 前走しらさぎSは53kgやったけん、今回は自分のなかでは+2kg。体重も472〜480kgで1年ほとんど変わらんで、成長の裏付けはない。この指摘は正しかね。それでも古馬より2kg軽いのは変わらんし、一杯に追って5F52.5秒・ラスト1F11.6秒、調子も上向きやけん、プラスは残して幅を縮めたと。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: -0.4, &quot;4&quot;: 0.4, &quot;5&quot;: 0.0, &quot;6&quot;: 0.1, &quot;7&quot;: 0.0, &quot;8&quot;: 0.1, &quot;9&quot;: 0.1, &quot;10&quot;: 0.4, &quot;11&quot;: 0.0, &quot;12&quot;: -0.1, &quot;13&quot;: -0.3, &quot;14&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;指摘を受け入れて見直した。12番は月曜追いを今週の追い切りとして扱い-0.1に。13番は宝塚記念の疲れは抜けたとみて-0.3に。14番は前走から斤量+2kgで成長の裏付けもないので+0.3に。8番は叩き2走目で指数が下がっていたので+0.1に。9番は一杯に追ったのに終いが12.5秒なので+0.1に。4番は時計の中身が10番より下なので同じ+0.4に。6番は休み明けの勝ち実績を認めて+0.1に。2番は減点理由をクラスから前回の休み明け大敗に差し替え、値は-0.1のまま。1番は体重減の幅が縮み指数も上がっているので、11番は指数低下が馬場によるものとみて、どちらも据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ファンダム, +0.2, 父サートゥルナーリアは1600〜2000mの中距離寄りで、母父ジャスタウェイも東京の長い直線で末脚を伸ばすのに向く。1200m・1400m戦で崩れた後にマイルへ戻して4着を2回続けており、血統どおり距離延長がプラスに出ているのが実績でも裏付けられている。<br><br>2番, ミトノオルフェ, -0.1, 父オルフェーヴルは力の要る馬場や持続力勝負に強く、母父Invincible Spiritは短距離のスピードを伝える配合。勝ち鞍は1400mに偏っていて、東京マイルの重賞で1分32秒台の速い決着になると、血統の噛み合いは少し足りない。<br><br>3番, シンフォーエバー, -0.5, 父Complexity・母父Pulpitとも米国ダート系で、芝の高速決着が求められる東京マイルには配合として向かない。芝の重賞・リステッドで大敗が続いているのも血統の方向性と一致しており、芝のまま一変する根拠は見当たらない。<br><br>4番, トロヴァトーレ, +0.5, 父レイデオロ（キングカメハメハ系）は東京の左回り・長い直線で末脚を生かすタイプで、母父エンパイアメーカーが馬力を補っている。東京新聞杯（東京1600m）とエプソムC（東京1800m）を勝っており、コース適性が血統と実績の両方で確かめられる。<br><br>5番, アドマイヤズーム, +0.3, 父モーリスはマイル〜2000mを主戦場にし、古馬になってから本格化する産駒が多い。母父ハーツクライも東京の直線向きで、4歳秋という年齢は血統的に充実期と噛み合う。NHKマイルでの大敗は前で踏ん張れなかった形なので、血統の補正は控えめにとどめる。<br><br>6番, デビットバローズ, +0.1, 父ロードカナロア・母父サンデーサイレンスでマイルは守備範囲。前2走の2000mから距離短縮になるのは配合的にプラス。ただし7歳で、ロードカナロア産駒の加齢による衰えも考えると上積みはわずか。<br><br>7番, ウォーターリヒト, 0.0, 父ドレフォンは本来ダート寄りだが、本馬は芝マイルでの末脚の実績をすでに積んでいて、血統面の不安は消えている。東京マイルでの成績は好走と凡走が混在しており、血統から加点も減点もしにくい。<br><br>8番, マジックサンズ, -0.2, 父キズナ・母父キングカメハメハは中距離寄りの配合で、近走も1800〜2000mで安定している。東京1600mの東京新聞杯では12着に敗れており、マイルへの短縮は血統的に少し不向き。<br><br>9番, キープカルム, -0.1, 父ロードカナロア・母父サクラバクシンオーで、スピードに偏った配合。1400mや内回りのマイルでは持ち味が出るが、東京マイルの長い直線では最後の持続力が少し足りない傾向で、昨年の富士Sも6着だった。<br><br>10番, アンパドゥ, +0.4, 父Iffraaj（Zafonic系）はマイルに特化した系統で、母父Dubawiが欧州的な底力と道悪への強さを加えている。東京マイルを32.7秒の上がりで勝ち、不良馬場の関屋記念を0.9秒差で圧勝。キャリア7戦の5歳で、晩成型の欧州血統らしく今が上り調子。<br><br>11番, ファーヴェント, +0.1, 父ハーツクライ・母父Street Cryは、5歳になって充実してきた晩成型の配合。マイルでも先行して粘れる実績があるが、ハーツクライ産駒の本質は1800m以上なので、東京マイルでの上積みは小さい。<br><br>12番, エンペラーズソード, -0.3, 父ドレフォン・母父Candy Rideは米国ダート色の濃いスピード配合。条件戦では逃げ切れたが、東京の重賞になると直線での持続力勝負で止まりやすく、東京新聞杯でも11着だった。<br><br>13番, シュガークン, -0.2, 父ドゥラメンテで、青葉賞（2400m）を勝った中長距離型。母父サクラバクシンオーがスピードを補ってはいるが、同じ母を持つキタサンブラックも長距離向きだったことを考えると、1分32秒台のマイル戦への一気の短縮で一変すると期待するのは根拠が薄い。<br><br>14番, エコロアルバ, +0.3, 父モズアスコット（Frankel系）は自身が東京マイルの安田記念を勝った馬で、母父フレンチデピュティが馬力を加えるマイル向きの配合。サウジRC（東京1600m）を勝っており、3歳秋で心身ともに伸びる時期とも噛み合う。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: -0.5, &quot;4&quot;: 0.5, &quot;5&quot;: 0.3, &quot;6&quot;: 0.1, &quot;7&quot;: 0.0, &quot;8&quot;: -0.2, &quot;9&quot;: -0.1, &quot;10&quot;: 0.4, &quot;11&quot;: 0.1, &quot;12&quot;: -0.3, &quot;13&quot;: -0.2, &quot;14&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;東京芝1600mは長い直線での持続力と高速決着への対応力が問われる。血統面ではキングカメハメハ系で東京巧者のトロヴァトーレ、欧州マイル血統のアンパドゥ（道悪ならさらに浮上）、モーリス×ハーツクライで4歳秋の本格化期にあるアドマイヤズーム、父が安田記念馬のエコロアルバを上位とした。米国ダート色の濃いシンフォーエバーとエンペラーズソード、中長距離型でマイルへの大幅短縮となるシュガークンとマジックサンズは割り引いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 同じ父ドレフォンなのに、7番ウォーターリヒトは「芝の実績で不安は消えた」として0.0、12番エンペラーズソードは東京1600mを1:31.9で勝っているのに「ダート色で止まる」として-0.3にしており、基準が食い違っていないか。(2) 13番シュガークンはマイル経験がなく近2走も大敗、自分でも「一変の根拠は薄い」と書いているのに-0.2で、東京マイルで勝っている12番エンペラーズソードより軽い理由が見えない。(3) 7番ウォーターリヒトは東京新聞杯・キャピタルS勝ちと東京新聞杯3着があり、4番トロヴァトーレの東京実績と大差ないのに0.0対+0.5になっている。7番は母父ヴィクトワールピサの評価も抜けている。4番の+0.5は重賞勝ちの実績を血統の加点として二重に数えていないか。(4) 5番アドマイヤズームは「母父ハーツクライで東京向き」が加点の柱だが、唯一の東京戦はNHKマイル14着で、実績が見立てを否定していないか。2歳でGIを勝っており、晩成型とみなすことにも疑問がある。(5) ハーツクライを5番では東京向きの加点、11番ファーヴェントでは「本質は1800m以上」の割引に使っており、向きが逆。11番は直近5走すべてマイルで好走している。(6) 8番マジックサンズはエプソムC（東京1800m）4着・上がり33.2の東京適性を拾っておらず、-0.2は重すぎないか。(7) 10番アンパドゥの「Dubawiの道悪適性」は馬場未発表の段階では条件付きの話。良馬場の前提でも+0.4が保てるか切り分けてほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ファンダム, +0.2, 父サートゥルナーリア・母父ジャスタウェイは中距離寄りで、長い直線で末脚を伸ばすのに向く配合。1200m・1400mで崩れ、マイルに戻して4着を2回続けており、この距離が血統の守備範囲であることは実績でも確かめられる。<br><br>2番, ミトノオルフェ, -0.1, 母父Invincible Spiritは短距離のスピードを伝え、勝ち鞍も1400mに偏っている。東京マイルの重賞で1分32秒台の速い決着になると、血統の噛み合いはわずかに足りない。<br><br>3番, シンフォーエバー, -0.5, 父Complexity・母父Pulpitはどちらも米国ダート系で、芝の高速決着には配合として向かない。芝のまま条件替わりで一変するとみる血統的な根拠はない。<br><br>4番, トロヴァトーレ, +0.3, 父レイデオロ（キングカメハメハ系）は東京の左回り・長い直線向き。母父エンパイアメーカーの馬力も加わった、コースと合う配合。重賞を勝った実績は能力の評価に回すので、血統の補正は「はっきりした有利」の手前にとどめる。<br><br>5番, アドマイヤズーム, +0.1, 父モーリスでマイルは主戦場。ただし唯一の東京戦はNHKマイル14着で、母父ハーツクライから東京向きとみる見立ては実績で裏付けられない。2歳でGIを勝っているので晩成型とみなす根拠もない。<br><br>6番, デビットバローズ, +0.1, 父ロードカナロア・母父サンデーサイレンスでマイルは守備範囲。2000mからの短縮は配合的にプラスだが、7歳という年齢を考えると上積みはわずか。<br><br>7番, ウォーターリヒト, +0.2, 父ドレフォンのダート色は母父ヴィクトワールピサ（サンデー系の芝中距離血統）が薄めていて、東京新聞杯を勝ち今年も3着と、東京マイルへの適性はすでに示している。富士S9着・安田記念13着もあるので、加点はわずかにとどめる。<br><br>8番, マジックサンズ, -0.1, 父キズナ・母父キングカメハメハで、エプソムC4着（上がり33.2）が示すとおり東京の長い直線には対応できる。ただ近走は1800〜2000mが中心で、マイルへの短縮は血統的に少しだけ不向き。<br><br>9番, キープカルム, -0.1, 父ロードカナロア・母父サクラバクシンオーでスピードに偏った配合。東京マイルの長い直線では、最後の持続力がわずかに足りない。<br><br>10番, アンパドゥ, +0.3, 父Iffraajはマイルに特化した系統で、良馬場でも東京マイルを3勝しており、上がり32.7の決め手も出せている。母父Dubawiの道悪適性は馬場が未発表のため加点に含めておらず、道悪になればさらに上積みがある。<br><br>11番, ファーヴェント, +0.2, 父ハーツクライの持続力と母父Street Cryのスピードがうまく噛み合ってマイル寄りに出ており、直近5走はすべてマイルで安定している。東京の長い直線にも合う配合で、わずかにプラス。<br><br>12番, エンペラーズソード, -0.1, 母父Candy Rideで米国色が濃いが、東京1600mを1分31秒9で勝っており、血統だけを理由に大きく下げる根拠は弱い。重賞で止まるのは主に能力の問題なので、血統の減点はわずかにとどめる。<br><br>13番, シュガークン, -0.4, 父ドゥラメンテで青葉賞（2400m）を勝った中長距離型。マイルは未経験で、600〜800mも一気に短縮して1分32秒台の決着に対応できる血統的な根拠は乏しく、はっきり不利とみる。<br><br>14番, エコロアルバ, +0.3, 父モズアスコット（Frankel系）は自身が東京マイルのGIを勝った馬で、母父フレンチデピュティが馬力を加えるマイル向きの配合。サウジRC（東京1600m）を勝っており、3歳秋に成長する時期とも噛み合う。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: -0.5, &quot;4&quot;: 0.3, &quot;5&quot;: 0.1, &quot;6&quot;: 0.1, &quot;7&quot;: 0.2, &quot;8&quot;: -0.1, &quot;9&quot;: -0.1, &quot;10&quot;: 0.3, &quot;11&quot;: 0.2, &quot;12&quot;: -0.1, &quot;13&quot;: -0.4, &quot;14&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;批判を受けて次のように見直した。(1) 同じ父ドレフォンの7番と12番は、母父（ヴィクトワールピサ/Candy Ride）と東京芝マイルの実績で評価をそろえ、7番を+0.2、12番を-0.1にした。(2) マイル未経験で大きく距離を短縮する13番は-0.4に強めた。(3) 4番は重賞勝ちを血統の加点に二重に数えていたため+0.3に下げた。(4) 5番は東京向き・晩成型という見立ての根拠が崩れたため+0.1に下げた。(5) ハーツクライの扱いがぶれていたので、マイルで安定している11番を+0.2に上げた。(6) 8番は東京の直線への対応を認めて-0.1に軽くした。(7) 10番は道悪の要素を外し、良馬場を前提に+0.3とした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ファンダム, +0.2, 戸崎圭太は前走の京成杯AHからの継続騎乗で、関東リーディング級として東京にも定評がある。辻哲英厩舎はまだ重賞の上積みが少ないので、上げ幅は小さめにとどめる。<br><br>2番, ミトノオルフェ, -0.2, 心斎橋Sを勝ったときのルメールから菅原明良への乗り替わりで、手綱の格は一段下がる。前川恭子厩舎も重賞での実績はまだ薄い。<br><br>3番, シンフォーエバー, -0.3, 毎回騎手が替わっていて、手の内を知る主戦がいない。森秀行厩舎は使い詰めのローテーションで、立て直しの勝負気配も感じにくい。<br><br>4番, トロヴァトーレ, +0.8, 東京新聞杯とエプソムCを勝ったルメールの継続騎乗で、東京マイルではこのコンビの裏付けが一番厚い。鹿戸雄一厩舎も東京の重賞で実績十分で、陣営の後押しはメンバー中で抜けている。<br><br>5番, アドマイヤズーム, +0.6, マイラーズCを勝った武豊の継続騎乗で、名門の友道康夫厩舎は休み明けでも仕上げてくる。名手と名門の組み合わせで、順当に信頼できる。<br><br>6番, デビットバローズ, -0.1, 主戦の岩田望来から池添謙一への乗り替わり。池添は東京マイルでとくに定評があるわけではない。上村洋行厩舎は中位なので、わずかなマイナスとする。<br><br>7番, ウォーターリヒト, -0.3, マイルCSで3着、東京新聞杯で3着に導いた高杉吏麒から幸英明への乗り替わり。幸は東京の重賞での定評が薄く、継続騎乗の利がなくなる。<br><br>8番, マジックサンズ, +0.2, 横山和生が4戦続けて乗っていて手の内を知っている。名門の須貝尚介厩舎の管理なので、小幅に上げる。<br><br>9番, キープカルム, -0.1, しらさぎSで2着の坂井瑠星から荻野極に替わり、騎手の格はやや下がる。荻野は京王杯SCで乗った経験があるので、下げ幅は小さめ。<br><br>10番, アンパドゥ, +0.5, 関屋記念を勝った岩田望来の継続騎乗で、木村哲也厩舎は東京マイルで仕上げに定評のある関東トップ厩舎。陣営の勝負気配ははっきり出ている。<br><br>11番, ファーヴェント, 0.0, 名門の藤原英昭厩舎はプラス材料。ただ三浦皇成は初騎乗の乗り替わりで騎手が定まっておらず、差し引きゼロとする。<br><br>12番, エンペラーズソード, -0.4, 木幡巧也は重賞での実績が乏しく、騎手も毎回替わっている。高木登厩舎もこのクラスでの裏付けは弱く、陣営の格はメンバー中で下位。<br><br>13番, シュガークン, -0.3, 吉村誠之助は継続騎乗だが若手で、武豊が降りた後の手綱は格が落ちる。清水久詞厩舎は長期休養明けから2戦凡走で、立て直しの気配も見えにくい。<br><br>14番, エコロアルバ, +0.5, サウジRCで東京マイルを勝ったときの坂井瑠星に手綱が戻り、トップ騎手が戻ってきたことは勝負気配と見る。手塚貴久厩舎は東京マイルの3歳路線で定評がある。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.2, &quot;3&quot;: -0.3, &quot;4&quot;: 0.8, &quot;5&quot;: 0.6, &quot;6&quot;: -0.1, &quot;7&quot;: -0.3, &quot;8&quot;: 0.2, &quot;9&quot;: -0.1, &quot;10&quot;: 0.5, &quot;11&quot;: 0.0, &quot;12&quot;: -0.4, &quot;13&quot;: -0.3, &quot;14&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;陣営の軸で一番強いのは、東京マイルの重賞を勝ったルメールが続けて乗り、鹿戸厩舎が管理するトロヴァトーレ。次いで、武豊が続けて乗り名門の友道厩舎が仕上げるアドマイヤズーム、関屋記念を勝った岩田望来が続けて乗り木村哲也厩舎が管理するアンパドゥ、サウジRCを勝った坂井瑠星に手綱が戻ったエコロアルバを上げた。逆に、高杉から幸に替わったウォーターリヒト、騎手の格が下位のエンペラーズソード、騎手が定まらないシンフォーエバーとシュガークンを下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 11番ファーヴェントも近5走で騎手が毎回替わっているのに0.0。同じ理由で3番シンフォーエバーを-0.3、12番エンペラーズソードを-0.4にしており、基準が揃っていない。12番は東京マイルで2勝していて、最下位の根拠が弱い。(2) 9番キープカルムの前走騎手は坂井ではなく柴田裕一郎。荻野極は京王杯SCで上がり32.6を出しており、手の内を知る騎手への戻りとも読める。中竹厩舎の評価も抜けている。(3) 7番ウォーターリヒトの-0.3は3番シンフォーエバーと同じ値。幸英明はG1を勝っているベテランで、高杉とのコンビは直近2戦13着。刺激策と読む余地がある。石橋守厩舎の評価もない。(4) 岩田望来は6番デビットバローズを降りて10番アンパドゥを選んだ。10番ではプラスにしたのに、6番側に反映していないのは非対称。(5) 13番シュガークンの初めてのマイル起用は清水厩舎の立て直し策と読めるのに見落としている。吉村は継続騎乗なのにマイナス扱いで、他馬の基準と食い違う。(6) 5番アドマイヤズームの武豊継続は1戦だけで、休み明けへの言及も一般論。4戦継続の8番マジックサンズ(+0.2)との差を説明できるか、見直しを。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ファンダム, +0.2, 戸崎圭太は前走の京成杯AHから続けての騎乗で、関東リーディング級の騎手として東京での定評もある。辻哲英厩舎は重賞での上積みがまだ少ないので、上げ幅は小さめにとどめる。<br><br>2番, ミトノオルフェ, -0.2, 心斎橋Sを勝ったときのルメールから菅原明良への乗り替わりで、騎手の格は一段下がる。前川恭子厩舎も重賞での実績はまだ薄い。<br><br>3番, シンフォーエバー, -0.2, 近5走は毎回騎手が替わっていて、手の内を知る主戦がいない点はマイナス。ただ、Round1で書いた「使い詰め」は誤りで実際は4か月の間隔が空いている。今回はG1騎手の岩田康誠で森秀行厩舎の管理なので、下げ幅を縮める。<br><br>4番, トロヴァトーレ, +0.8, 東京新聞杯とエプソムCを勝ったルメールが続けて乗り、東京マイルではこのコンビの裏付けが一番厚い。鹿戸雄一厩舎も東京の重賞で実績十分で、陣営の後押しはメンバー中で抜けている。<br><br>5番, アドマイヤズーム, +0.5, マイラーズCを勝った武豊がそのまま乗る。名門の友道康夫厩舎の管理で、名手と名門の組み合わせは信頼できる。ただ武豊とのコンビはまだ1戦だけなので、批判者の指摘を受けて一段下げる。<br><br>6番, デビットバローズ, -0.2, 主戦の岩田望来がこの馬を降りて10番アンパドゥを選んでおり、主戦に選ばれなかったことは陣営にとってのマイナス材料。池添謙一はベテランだが東京マイルでとくに定評があるわけではなく、上村洋行厩舎も中位。<br><br>7番, ウォーターリヒト, -0.1, 継続騎乗の利はなくなる。ただ高杉吏麒とのコンビは直近2戦続けて13着で、G1を勝っているベテランの幸英明への乗り替わりは刺激策とも読める。幸の東京での定評が薄い分だけ、わずかなマイナスとする。<br><br>8番, マジックサンズ, +0.2, 横山和生が4戦続けて乗っていて手の内を知っている。名門の須貝尚介厩舎の管理だが、このコンビで勝ち鞍がまだないので上げ幅は小さくする。<br><br>9番, キープカルム, +0.1, 前走の騎手は柴田裕一郎で、Round1で書いた坂井瑠星は誤りだった。荻野極は京王杯SCで東京を経験させた騎手で、その騎手に手綱が戻る形なので騎手の格は下がらない。しらさぎSで重賞2着の中竹和也厩舎が仕上げてくる点も含め、わずかなプラスとする。<br><br>10番, アンパドゥ, +0.6, 関屋記念を勝った岩田望来が続けて乗る。岩田は6番を降りてこの馬を選んでおり、騎手側からも勝負気配が読み取れる。木村哲也厩舎は東京マイルでの仕上げに定評がある関東のトップ厩舎。<br><br>11番, ファーヴェント, -0.1, 近5走は毎回騎手が替わっていて、今回の三浦皇成も初騎乗。3番・12番と同じ基準で見てマイナスとするが、名門の藤原英昭厩舎の管理と、三浦が関東所属で東京に慣れている点で下げ幅は小さくする。<br><br>12番, エンペラーズソード, -0.3, 近5走で騎手が固定されておらず、秋色Sを勝たせた荻野極でもなく、重賞での実績が乏しい木幡巧也が乗る。東京マイルでの2勝は能力面の話なので陣営の評価には入れない。ただ他馬との基準を揃えるため、下げ幅を少し縮める。<br><br>13番, シュガークン, -0.2, 吉村誠之助の継続騎乗はまだ1戦で、その1戦は宝塚記念の17着なので、手の内を知る利はほとんどない。初めてマイルを使うのは清水久詞厩舎の立て直し策とも読めるので、下げ幅を縮める。<br><br>14番, エコロアルバ, +0.5, サウジRCで東京マイルを勝ったときの坂井瑠星に手綱が戻る。トップ騎手が戻ってきたことは勝負気配と見る。手塚貴久厩舎は東京マイルの3歳路線で定評がある。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.2, &quot;3&quot;: -0.2, &quot;4&quot;: 0.8, &quot;5&quot;: 0.5, &quot;6&quot;: -0.2, &quot;7&quot;: -0.1, &quot;8&quot;: 0.2, &quot;9&quot;: 0.1, &quot;10&quot;: 0.6, &quot;11&quot;: -0.1, &quot;12&quot;: -0.3, &quot;13&quot;: -0.2, &quot;14&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;事実誤認を2件直した。9番の前走騎手は坂井ではなく柴田裕一郎、3番は使い詰めではなく4か月の休み明けだった。9番は東京を経験させた荻野極への戻りと読んで+0.1に、3番は-0.2に見直した。騎手が毎回替わる3番・11番・12番の基準を揃え、11番は-0.1、12番は-0.3にした。岩田望来が6番を降りて10番を選んだことを両馬に反映し、6番は-0.2、10番は+0.6とした。7番は直近不振からの乗り替わりを刺激策と読んで-0.1に、13番は初めてのマイル起用を立て直し策と読んで-0.2に縮めた。5番は武豊とのコンビがまだ1戦なので+0.5に下げた。4番のルメール継続(+0.8)と14番の坂井への手綱戻り(+0.5)は据え置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>合成スコアの疑問点は2つあるとよ。1つ目は5番アドマイヤズームの評価が高すぎること。58kgの斤量、6か月ぶりのレース、東京の長い直線で前に行く競馬という3つの割り引き材料があるのに、2位の23.3は高いと思うと。2つ目は7番ウォーターリヒトの評価。直近2走が13着、13着の馬が14番エコロアルバより上におるのは、昨秋の実績を引きずりすぎっちゃん。<br><br>10番アンパドゥは、東京マイルで上がり32.7、良馬場の東京で2勝しとるけん、関屋記念は不良馬場のおかげだけの勝ちやない。7戦5勝の上り馬で、5番アドマイヤズームより上に置くね。<br><br>6位以下では11番ファーヴェントが気になるとよ。スピード指数91〜92を安定して出しとって、先行もできる。1番ファンダムも京成杯AHで0.2秒差の4着で、叩き2戦目になる。どっちも紐としての注意は要るけど、上位5頭に入れるほどやなかったと。<br><br>4番, トロヴァトーレ, 26%, 東京新聞杯を1:32.2で勝っとって、エプソムCではスピード指数94.1を出しとる。東京適性は一番で、鞍上はルメール。調教も躍動感があって上向き(↗)やけん、◎はここで揺るがんとよ。<br><br>10番, アンパドゥ, 23%, 7戦5勝の上り馬で、東京マイルでは上がり32.7の切れ味を見せとる。関屋記念では0.9秒差の圧勝でスピード指数94.6を記録した。重賞連勝の勢いと間隔の取り方を買って、5番アドマイヤズームより上の○にするね。<br><br>5番, アドマイヤズーム, 20%, マイラーズCのスピード指数94.9は今回のメンバーで最高値で、能力自体は上位っちゃん。ただ58kgで1kg重いうえに、6か月の休み明け。前々で運ぶ脚質は東京の直線で目標にされやすいし、前回の東京はNHKマイルで14着やったけん、合成の2位からは一段下げとる。<br><br>14番, エコロアルバ, 17%, 3歳で55kgやけん、古馬より2kg軽い。しらさぎSは53kgで0.1秒差の3着(スピード指数92.2)、東京マイルではサウジRCを勝っとる。調教は一杯に追って3F 24.3と上向き(↗)で、7番ウォーターリヒトより上に評価するね。<br><br>7番, ウォーターリヒト, 14%, マイルCSと東京新聞杯の3着でG1級の地力は示しとる。でも直近2走はどっちも13着やし、前走から騎手も替わる。差し一辺倒で展開待ちになる面もあって、昨年の富士Sも9着やったけん、合成より少し下げたとよ。<br><br>```json<br>{&quot;score&quot;: {&quot;4&quot;: 26, &quot;10&quot;: 23, &quot;5&quot;: 20, &quot;14&quot;: 17, &quot;7&quot;: 14}, &quot;analysis_summary&quot;: &quot;4番トロヴァトーレは東京適性・鞍上・調教上向きで◎を維持。合成の疑問点は5番アドマイヤズームの過大評価（58kg・6か月休養明け・前に行く脚質で東京の長い直線）で、東京マイル上がり32.7・7戦5勝の上り馬10番アンパドゥを○に繰り上げた。7番ウォーターリヒトは直近2走が13着・13着で実績を引きずりすぎのため、斤量55kgで調教上向きの3歳14番エコロアルバを上位とした。6位以下では11番ファーヴェントと1番ファンダムが紐候補。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>4番, トロヴァトーレ, 22%, 東京芝1600mの東京新聞杯を1:32.2で勝ち、東京1800mのエプソムCも指数94.1で勝っとって、東京の決め脚はメンバー最上位。安田記念9着はGIの後方15番手からで、ルメール継続に調教も「躍動感出る」の上昇気配やけん軸にふさわしいっちゃん。<br><br>10番, アンパドゥ, 17%, 7戦5勝と底を見せとらん上に、関屋記念は不良馬場で0.9秒差の圧勝（指数94.6）。東京マイルでも3勝クラスを上がり32.7で勝っとって、重賞連勝の勢いは本物と見たとよ。<br><br>5番, アドマイヤズーム, 15%, マイラーズCを2番手から押し切った1:31.7（指数94.9）は今回のメンバーで最高値。半年ぶりと58kgの別定が引っかかるけど、調教は「久々も力強く」で地力は上位やけん。<br><br>14番, エコロアルバ, 10%, しらさぎSは後方16番手から0.1秒差の3着（指数92.2）で、東京のサウジRC勝ちもある。3歳で55kgの恩恵があって調教も↗、上の3頭を脅かせる伸びしろがあるっちゃん。<br><br>7番, ウォーターリヒト, 7%, 東京新聞杯3着・マイルCS3着とマイル重賞での最高値は高いんやけど、春2戦は後方からの13着続き。月曜追いで仕上げてきとって、東京で末脚がはまれば巻き返せる余地はあるとよ。<br><br>1番, ファンダム, 7%, 京成杯AHが0.2秒差、しらさぎSが0.1秒差の4着とマイルで崩れとらん。ただ勝ち切るにはひと押し足りん内容で、1枠から上手く立ち回っての上位争いが精一杯と見たっちゃん。<br><br>11番, ファーヴェント, 6%, ダービーCT3着・京都金杯2着・関屋記念3着と、マイル重賞では毎回指数85～93で安定しとる。先行力もあるけど重賞を勝ち切った実績がないけん、連下の評価にしとるとよ。<br><br>8番, マジックサンズ, 5%, 東京1800mのエプソムCで4着（指数92.2）と東京は合っとるけど、近2走は2000mで中位止まり。マイルへの距離短縮で追走が忙しくならんかが課題になるっちゃん。<br><br>9番, キープカルム, 5%, しらさぎSで0.1秒差の2着と力はあるけど、昨年の富士Sは6着で前走の中京記念も9着。調教は一杯に追って「脚取り確か」やけど、決め手比べになると分が悪いとよ。<br><br>2番, ミトノオルフェ, 3%, 1400mで2連勝して心斎橋Sを勝っての昇級初戦やけど、持ち時計と指数（88.5）は重賞ではまだ足りん。半年ぶりでもあって、まずは様子見の評価にしとるっちゃん。<br><br>6番, デビットバローズ, 3%, 鳴尾記念の勝ち馬で、最近は2000mのGI・GIIIを使われとる7歳馬。マイルではしらさぎS5着止まりで、東京の瞬発力勝負への適性は疑わしいとよ。<br><br>12番, エンペラーズソード, 2.5%, 逃げて秋色Sを1:31.9で勝った東京マイル巧者やけど、重賞では逃げてもダービーCT8着・東風S7着と止まっとる。単騎で行ければ粘り込みの目は残るっちゃん。<br><br>13番, シュガークン, 1%, 青葉賞勝ちはあるけど2024年の話で、今年の復帰2戦は15着・17着と大敗続き。中長距離からいきなりのマイル戦も合わんと見とるとよ。<br><br>3番, シンフォーエバー, 1%, 近5走がすべて二桁着順で、しらさぎSも1.8秒差の大敗。調教評価も「立て直すもひと息」で、今回は厳しいっちゃん。<br><br>```json<br>{&quot;score&quot;: {&quot;4&quot;: 22, &quot;10&quot;: 17, &quot;5&quot;: 15, &quot;14&quot;: 10, &quot;7&quot;: 7, &quot;1&quot;: 7, &quot;11&quot;: 6, &quot;8&quot;: 5, &quot;9&quot;: 5, &quot;2&quot;: 3, &quot;6&quot;: 3, &quot;12&quot;: 2.5, &quot;13&quot;: 1, &quot;3&quot;: 1}, &quot;analysis_summary&quot;: &quot;東京マイル重賞を勝っていて調教も上昇気配の4番トロヴァトーレを最上位に置き、重賞連勝で底を見せていない10番アンパドゥ、マイラーズCでメンバー最高の指数94.9を出した5番アドマイヤズーム（久々・58kgで割引）が続く上位3強の構図。55kgの3歳馬で調教↗の14番エコロアルバが4番手。7番・1番・11番はマイル重賞で安定しているが決め手か勝ち切る力に欠けるので連下、長距離組や大敗続きの13番・3番は低評価。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>4</td><td class="left horse-name">トロヴァトーレ</td><td>15.0%</td><td>4.1</td><td>1</td><td class="ev-low">0.61</td></tr><tr><td>2</td><td>5</td><td class="left horse-name">アドマイヤズーム</td><td>13.1%</td><td>6.0</td><td>3</td><td class="ev-low">0.79</td></tr><tr><td>3</td><td>10</td><td class="left horse-name">アンパドゥ</td><td>12.3%</td><td>4.1</td><td>2</td><td class="ev-low">0.50</td></tr><tr><td>4</td><td>14</td><td class="left horse-name">エコロアルバ</td><td>9.0%</td><td>7.1</td><td>4</td><td class="ev-low">0.64</td></tr><tr><td>5</td><td>1</td><td class="left horse-name">ファンダム</td><td>8.1%</td><td>17.0</td><td>7</td><td class="ev-mid">1.38</td></tr><tr><td>6</td><td>11</td><td class="left horse-name">ファーヴェント</td><td>7.7%</td><td>26.3</td><td>9</td><td class="ev-high">2.03</td></tr><tr><td>7</td><td>7</td><td class="left horse-name">ウォーターリヒト</td><td>7.2%</td><td>9.3</td><td>6</td><td class="ev-low">0.67</td></tr><tr><td>8</td><td>8</td><td class="left horse-name">マジックサンズ</td><td>6.6%</td><td>8.9</td><td>5</td><td class="ev-low">0.59</td></tr><tr><td>9</td><td>9</td><td class="left horse-name">キープカルム</td><td>6.0%</td><td>25.2</td><td>8</td><td class="ev-mid">1.52</td></tr><tr><td>10</td><td>6</td><td class="left horse-name">デビットバローズ</td><td>5.4%</td><td>75.6</td><td>13</td><td class="ev-high">4.11</td></tr><tr><td>11</td><td>12</td><td class="left horse-name">エンペラーズソード</td><td>3.9%</td><td>27.6</td><td>10</td><td class="ev-mid">1.07</td></tr><tr><td>12</td><td>2</td><td class="left horse-name">ミトノオルフェ</td><td>3.7%</td><td>31.8</td><td>11</td><td class="ev-mid">1.18</td></tr><tr><td>13</td><td>13</td><td class="left horse-name">シュガークン</td><td>1.4%</td><td>57.3</td><td>12</td><td class="ev-low">0.82</td></tr><tr><td>14</td><td>3</td><td class="left horse-name">シンフォーエバー</td><td>0.5%</td><td>171.9</td><td>14</td><td class="ev-low">0.91</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">4 トロヴァトーレ</td><td>15.0%</td><td>4.1</td><td class="ev-low">0.52</td></tr><tr><td>複勝</td><td class="left">4 トロヴァトーレ</td><td>41.8%</td><td>1.6</td><td class="ev-low">0.62</td></tr><tr><td>馬連</td><td class="left">4 トロヴァトーレ-5 アドマイヤズーム</td><td>4.6%</td><td>8.2</td><td class="ev-low">0.31</td></tr><tr><td>ワイド</td><td class="left">4 トロヴァトーレ-5 アドマイヤズーム</td><td>12.7%</td><td>3.4</td><td class="ev-low">0.37</td></tr><tr><td>馬単</td><td class="left">4 トロヴァトーレ→5 アドマイヤズーム</td><td>2.3%</td><td>17.5</td><td class="ev-low">0.33</td></tr><tr><td>3連複</td><td class="left">4 トロヴァトーレ-5 アドマイヤズーム-10 アンパドゥ</td><td>2.3%</td><td>11.6</td><td class="ev-low">0.22</td></tr><tr><td>3連単</td><td class="left">4 トロヴァトーレ→5 アドマイヤズーム→10 アンパドゥ</td><td>0.4%</td><td>48.5</td><td class="ev-low">0.15</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 500円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連複</td><td class="left">4 トロヴァトーレ-5 アドマイヤズーム-10 アンパドゥ</td><td>11.6</td><td>4</td><td style='text-align:right;font-weight:600;'>400円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">4 トロヴァトーレ→5 アドマイヤズーム→10 アンパドゥ</td><td>48.5</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 500円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
