@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>伊勢佐木ステークス 2026/10/17 TOKYO 10R (10/17 14:13 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>伊勢佐木ステークス 2026/10/17 TOKYO 10R (10/17 14:13 予想)</h1>
+  <div class="meta">ダート2100m（左） | 良 | 14頭立て | 4回 東京 6日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 14頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">10. ロングウェイホーム</div>
+      <div class="pick-jockey">荻野 極</div>
+    </div>
+    <div class="pick-prob">14.2%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">3. ビービーアジャイル</div>
+      <div class="pick-jockey">C.ルメール</div>
+    </div>
+    <div class="pick-prob">13.0%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">4. ライノ</div>
+      <div class="pick-jockey">北村 友一</div>
+    </div>
+    <div class="pick-prob">10.1%</div>
+    <div class="pick-pop">5番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">14頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">インペリアルライン</td><td>せん7</td><td>58</td><td>木幡 巧也</td><td>484(-2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td class="left horse-name">インジケーター</td><td>牡5</td><td>58</td><td>原 優介</td><td>496(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">3</span></td><td class="left horse-name">ビービーアジャイル</td><td>牡3</td><td>56</td><td>C.ルメール</td><td>496(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">4</span></td><td class="left horse-name">ライノ</td><td>せん4</td><td>58</td><td>北村 友一</td><td>520(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">5</span></td><td class="left horse-name">ヴァンドーム</td><td>牡5</td><td>58</td><td>岩田 望来</td><td>508(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">6</span></td><td class="left horse-name">モズロックンロール</td><td>牡6</td><td>58</td><td>幸 英明</td><td>522(0)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">7</span></td><td class="left horse-name">シャルクハフト</td><td>牡4</td><td>58</td><td>吉村 誠之助</td><td>502(0)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">8</span></td><td class="left horse-name">ヴァナルガンド</td><td>牡6</td><td>58</td><td>津村 明秀</td><td>472(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">9</span></td><td class="left horse-name">タンゴバイラリン</td><td>せん5</td><td>58</td><td>原田 和真</td><td>514(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">10</span></td><td class="left horse-name">ロングウェイホーム</td><td>牡4</td><td>58</td><td>荻野 極</td><td>548(+14)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">11</span></td><td class="left horse-name">オメガタキシード</td><td>せん6</td><td>58</td><td>岩田 康誠</td><td>468(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">12</span></td><td class="left horse-name">ロードブレイズ</td><td>牡5</td><td>58</td><td>横山 和生</td><td>514(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">13</span></td><td class="left horse-name">タイセイカイザー</td><td>牡4</td><td>58</td><td>横山 武史</td><td>508(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">14</span></td><td class="left horse-name">メイショウフジ</td><td>せん6</td><td>58</td><td>大野 拓弥</td><td>482(+2)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ロングウェイホーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ビービーアジャイル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ライノ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ロングウェイホーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ビービーアジャイル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ライノ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ロングウェイホーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ビービーアジャイル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ライノ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ロングウェイホーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ビービーアジャイル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ライノ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ロングウェイホーム</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ビービーアジャイル</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ライノ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ロングウェイホーム</span></td>
+<td>+0.64</td>
+<td>+0.34</td>
+<td>+0.02</td>
+<td>+0.32</td>
+<td>+0.16</td>
+<td>13.3</td>
+<td>13.0</td>
+<td>18.4</td>
+<td><b>14.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ビービーアジャイル</span></td>
+<td>+0.18</td>
+<td>+0.32</td>
+<td>+0.34</td>
+<td>+0.38</td>
+<td>+0.72</td>
+<td>11.5</td>
+<td>12.0</td>
+<td>19.4</td>
+<td><b>13.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ライノ</span></td>
+<td>+0.18</td>
+<td>+0.30</td>
+<td>+0.52</td>
+<td>-0.08</td>
+<td>+0.08</td>
+<td>10.1</td>
+<td>9.6</td>
+<td>11.0</td>
+<td><b>10.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">メイショウフジ</span></td>
+<td>+0.20</td>
+<td>-0.12</td>
+<td>+0.08</td>
+<td>+0.28</td>
+<td>+0.20</td>
+<td>8.9</td>
+<td>9.4</td>
+<td>8.4</td>
+<td><b>8.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">インペリアルライン</span></td>
+<td>+0.10</td>
+<td>+0.14</td>
+<td>+0.02</td>
+<td>+0.30</td>
+<td>+0.30</td>
+<td>8.8</td>
+<td>9.0</td>
+<td>8.0</td>
+<td><b>8.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヴァンドーム</span></td>
+<td>+0.36</td>
+<td>-0.32</td>
+<td>+0.08</td>
+<td>-0.24</td>
+<td>+0.26</td>
+<td>8.7</td>
+<td>7.7</td>
+<td>6.5</td>
+<td><b>8.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">タイセイカイザー</span></td>
+<td>-0.08</td>
+<td>+0.14</td>
+<td>-0.20</td>
+<td>+0.22</td>
+<td>+0.32</td>
+<td>6.3</td>
+<td>-</td>
+<td>6.9</td>
+<td><b>6.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ロードブレイズ</span></td>
+<td>+0.02</td>
+<td>+0.10</td>
+<td>-0.20</td>
+<td>-0.12</td>
+<td>+0.38</td>
+<td>6.5</td>
+<td>-</td>
+<td>4.5</td>
+<td><b>6.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ヴァナルガンド</span></td>
+<td>-0.12</td>
+<td>+0.00</td>
+<td>+0.20</td>
+<td>+0.10</td>
+<td>-0.02</td>
+<td>6.5</td>
+<td>-</td>
+<td>3.6</td>
+<td><b>5.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">オメガタキシード</span></td>
+<td>+0.00</td>
+<td>-0.26</td>
+<td>-0.30</td>
+<td>+0.06</td>
+<td>+0.16</td>
+<td>4.8</td>
+<td>-</td>
+<td>4.5</td>
+<td><b>4.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">モズロックンロール</span></td>
+<td>-0.34</td>
+<td>-0.16</td>
+<td>+0.06</td>
+<td>-0.10</td>
+<td>-0.02</td>
+<td>4.3</td>
+<td>-</td>
+<td>1.5</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">シャルクハフト</span></td>
+<td>-0.32</td>
+<td>-0.04</td>
+<td>-0.16</td>
+<td>+0.00</td>
+<td>-0.12</td>
+<td>3.9</td>
+<td>-</td>
+<td>2.5</td>
+<td><b>3.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">タンゴバイラリン</span></td>
+<td>-0.38</td>
+<td>-0.22</td>
+<td>+0.08</td>
+<td>-0.12</td>
+<td>-0.24</td>
+<td>3.8</td>
+<td>-</td>
+<td>2.0</td>
+<td><b>3.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">インジケーター</span></td>
+<td>-0.34</td>
+<td>+0.28</td>
+<td>-0.44</td>
+<td>+0.10</td>
+<td>-0.22</td>
+<td>2.8</td>
+<td>-</td>
+<td>2.8</td>
+<td><b>2.8</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, インペリアルライン, +0.1, 東京ダ2100では2勝クラスで1着・2着・2着・5着と崩れとらん。前走の日野特別は0.3秒差で勝ったけど指数79.6やけん、3勝クラスに入ると指数は平凡な水準で、昇級初戦の分は割り引くとよ。<br><br>2番, インジケーター, -0.3, 3勝クラスに上がってから10着・16着・5着。いちばん良かった丹沢Sの5着（0.8秒差、指数84.2）も53kgでの数字やけん、今回58kgに増えるのは額面どおりには受け取れん。<br><br>3番, ビービーアジャイル, +0.4, 通算8戦[3-2-2-1]で安定しとって、前走は2勝クラスの両津湾特別を勝っとる。東京ダ2100でも1勝クラス1着（0.5秒差、指数84.9）と日野特別3着（0.3秒差）があって、3歳の56kgで上積みも見込めるとよ。<br><br>4番, ライノ, +0.2, 前走の大府特別（2勝クラス）は0.4秒差の完勝で、指数84.1は昇級しても通用する数字。ただ東京ダ2100の勝ちは1勝クラスで指数72.3と低くて、この距離での裏付けはまだ薄かね。<br><br>5番, ヴァンドーム, +0.3, 3勝クラスで2着・4着・5着・3着・5着と、ずっと0.5〜0.7秒差にまとめとる。指数83〜87.6もメンバー上位やけど、全部1400〜1800mでの実績で、2100mの裏付けが無い分は割り引くとよ。<br><br>6番, モズロックンロール, -0.4, 近5走は全部芝で、3勝クラスでは13着・10着・9着・4着。ダートでの最近の実績が見えんし、格の面でも足りとらん。<br><br>7番, シャルクハフト, -0.4, 3勝クラスで5着・17着・11着・13着・9着。いちばん良かった白川郷Sの5着も54kgでの0.7秒差やけん、壁に当たっとる実績しか無かね。<br><br>8番, ヴァナルガンド, -0.2, 前走の古町Sは4着（0.3秒差、指数81.9）でちょっと持ち直したけど、東京ダ2100の3勝クラスでは7着（1.2秒差）と15着（3.8秒差）しか無いとよ。<br><br>9番, タンゴバイラリン, -0.4, 3勝クラスで9着・14着・4着・15着・7着。同じ条件の丹沢Sでも14着（1.8秒差）と大きく負けとって、実績の面では下位やね。<br><br>10番, ロングウェイホーム, +0.7, 3勝クラスで2着が2回続いとる。丹沢Sは0.2秒差で指数87.7（メンバー最高）、梅田Sは0.3秒差で指数84.8。東京ダ2100での実績も一番上やけど、5か月ぶりで+14kgやけん、上限の手前に留めたとよ。<br><br>11番, オメガタキシード, -0.1, 東京ダ2100の3勝クラスで3着・4着・9着と相性は悪くなか。ただ着差はいつも0.9〜1.3秒あって勝ち切れる指数やないし、6か月ぶりなのもあって中立よりちょっと下にしたとよ。<br><br>12番, ロードブレイズ, 0.0, 日吉特別（2勝クラス、東京ダ2100）を0.1秒差・指数83.2で勝っとる。けど3勝クラスの初戦は7着（1.7秒差、指数73.5）で、良い材料と悪い材料が打ち消し合って中立やね。<br><br>13番, タイセイカイザー, -0.1, 東京ダ2100の2勝クラスで1着・2着の実績はある。ただ勝ったときの指数は77.9と低めで、3勝クラスの初戦は11着（2.3秒差）。格の壁が見えとるけん少し下げたとよ。<br><br>14番, メイショウフジ, +0.3, 東京ダ2100の3勝クラスで丹沢S 4着（0.7秒差、指数84.8）と是政S 4着（0.9秒差）が続いとる。同じ条件で崩れとらんのは確かな材料やけど、勝ち負けまではあと一歩やね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: -0.3, &quot;3&quot;: 0.4, &quot;4&quot;: 0.2, &quot;5&quot;: 0.3, &quot;6&quot;: -0.4, &quot;7&quot;: -0.4, &quot;8&quot;: -0.2, &quot;9&quot;: -0.4, &quot;10&quot;: 0.7, &quot;11&quot;: -0.1, &quot;12&quot;: 0.0, &quot;13&quot;: -0.1, &quot;14&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;3勝クラスで2着2回、同コースの丹沢Sで指数87.7のロングウェイホームが実績では一番上（休み明けと+14kgの分は割り引き）。続くのは、安定していて東京ダ2100の実績もある3歳のビービーアジャイル、3勝クラスで僅差を続けて指数も高いヴァンドーム（距離実績は無し）、同条件の3勝クラスで4着2回のメイショウフジ。2勝クラスから上がってきた馬（インペリアルライン、ライノ、ロードブレイズ、タイセイカイザー）は指数の水準や昇級初戦の内容から中立付近。3勝クラスで大敗が続く馬（シャルクハフト、タンゴバイラリン）と、芝ばかり走っとるモズロックンロールは下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>同じレースで直接走った結果と付値の並びが逆になっとる組がある。(1) 東京ダ2100の日吉特別・日野特別では12番ロードブレイズ≧13番タイセイカイザー≧1番インペリアルライン＞3番ビービーアジャイルの順に先着しとるのに、付値は3番+0.4＞1番+0.1＞12番0.0＞13番-0.1で逆。3番の指数84.9は1勝クラスのもので、2勝クラスでは80.3/81.9、日野特別では3kg軽くて1番に負けとる。3勝クラスも未経験やけん、1番に使った昇級割引が3番に効いとらん。『3歳の上積み』は実績やないのでは。12番・13番の3勝初戦の負けは条件が違う距離・コースでのもので、重く見すぎてないか。(2) 白川郷Sでは7番シャルクハフト5着＞2番インジケーター10着＞13番タイセイカイザー11着やのに、付値は7番-0.4＜2番-0.3＜13番-0.1。7番は58kgでも上賀茂Sで0.8秒差・指数82.2を出しとる。(3) 5番ヴァンドームは3勝クラス5走とも58kgで指数83.4〜87.6と10番ロングウェイホームと同じ水準。差0.4はほぼ距離の割引だけで、10番は3勝クラス2走だけ・2勝クラス13着(66.6)の不安が点に入っとらん。(4) 14番メイショウフジ+0.3と11番オメガタキシード-0.1は東京ダ2100の3勝クラスでの成績・指数が近く、是政Sの直接対決も0.4秒差しかない。11番を下げた主な理由の休み明けは実績やない。(5) 9番タンゴバイラリンはアリエスSで14番メイショウフジと同タイムで先着、下鴨Sも58kgで0.9秒差・指数83.0。14番との差0.7は大きすぎんか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, インペリアルライン, +0.1, 東京ダ2100の2勝クラスで1着・5着・2着・2着と崩れとらん。日野特別では3番に3kg重い斤量で先着しとるけど指数は78.6〜82.0で、3勝クラスやと平凡な水準やけん小さめのプラスにしたとよ。<br><br>2番, インジケーター, -0.3, 3勝クラスでは10着・16着・5着。いちばん良かった丹沢Sの5着（指数84.2）も53kgのハンデ戦で、58kgやった阿見特別は8着（指数72.3）やけん、今回の58kgでは額面どおりに受け取れん。<br><br>3番, ビービーアジャイル, +0.1, 安定はしとるけど、指数84.9は1勝クラスでの数字で、2勝クラスでは80.3と81.9に留まっとる。日野特別では55kgで1番に負けとるし3勝クラスも未経験やけん、Round1で上積みを見込んだ分を外して1番と同じ水準に下げたとよ。<br><br>4番, ライノ, +0.2, 前走の大府特別（2勝クラス）は0.4秒差の完勝で、指数84.1は3勝クラスでも通用する数字。ただ東京ダ2100での勝ちは1勝クラスの指数72.3だけで、この距離の裏付けは薄かね。<br><br>5番, ヴァンドーム, +0.4, 3勝クラスで5走続けて58kgを背負い、0.5〜0.7秒差・指数83.4〜87.6で走っとって安定感はメンバーで一番やね。全部1400〜1800mでの数字やけん距離の分は割り引くけど、10番との差は詰めたとよ。<br><br>6番, モズロックンロール, -0.4, 近5走は全部芝で、3勝クラスでは13着・10着・9着・4着。ダートの最近の実績が見えんし、格の面でも足りとらん。<br><br>7番, シャルクハフト, -0.2, 白川郷Sでは5着（0.7秒差、指数81.8）で2番と13番に先着しとるし、58kgの上賀茂Sでも0.8秒差・指数82.2を出しとる。着順ほどは負けとらんけん少し戻したけど、3勝クラスで掲示板は1回だけやね。<br><br>8番, ヴァナルガンド, -0.2, 前走の古町Sは4着（0.3秒差、指数81.9）で少し持ち直したけど、東京ダ2100の3勝クラスでは7着（1.2秒差）と15着（3.8秒差）しか無かとよ。<br><br>9番, タンゴバイラリン, -0.3, アリエスSでは14番と同タイムで先着しとって、下鴨Sも58kgで0.9秒差・指数83.0やけん少し戻したとよ。ただ同じ条件の丹沢Sでは14番より2kg軽い54kgで14着（1.8秒差）と大きく負けとって、この条件では下位やね。<br><br>10番, ロングウェイホーム, +0.6, 3勝クラスで2着が2回で、丹沢Sは0.2秒差・指数87.7（メンバー最高）、梅田Sは0.3秒差・指数84.8と東京ダ2100でも一番の実績。ただ3勝クラスはまだ2走だけで、2勝クラスで13着（指数66.6）もあるし、5か月ぶりやけん少し下げたとよ。<br><br>11番, オメガタキシード, 0.0, 東京ダ2100の3勝クラスで3着・4着・9着、指数は82〜83と14番に近い水準やね。是政Sで14番に0.4秒負けとるのと、数字が古くて6か月ぶりなのを差し引いて中立にしたとよ。<br><br>12番, ロードブレイズ, +0.1, 日吉特別（東京ダ2100）を0.1秒差・指数83.2で勝って、13番と1番に先着しとる。3勝クラス初戦の7着は札幌ダ1700でのものやけん重くは見んけど、利根川特別5着（指数74.8）みたいに数字の波があるけん小さめのプラスやね。<br><br>13番, タイセイカイザー, 0.0, 日吉特別で2着（指数82.6）と1番に先着して、東京ダ2100の2勝クラスも勝っとる。中京ダ1900の白川郷Sで11着（2.3秒差、指数71.0）なのは条件が違うけん割り引いて、中立まで戻したとよ。<br><br>14番, メイショウフジ, +0.2, 東京ダ2100の3勝クラスで丹沢S 4着（0.7秒差、指数84.8）と是政S 4着（0.9秒差、指数81.0）が続いとって、この条件では崩れとらん。ただ11番とは数字が近いし勝ち切った実績も無かけん、少し下げたとよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: -0.3, &quot;3&quot;: 0.1, &quot;4&quot;: 0.2, &quot;5&quot;: 0.4, &quot;6&quot;: -0.4, &quot;7&quot;: -0.2, &quot;8&quot;: -0.2, &quot;9&quot;: -0.3, &quot;10&quot;: 0.6, &quot;11&quot;: 0.0, &quot;12&quot;: 0.1, &quot;13&quot;: 0.0, &quot;14&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;批判者の指摘のうち、直接対決の結果と格の補正は受け入れた。3番は1勝クラスの指数と3歳の上積みで上げとったぶんを外し、日野特別で負けとる1番と同じ水準にした。12番と13番は3勝クラス初戦の負けが条件の違うレースやけん割り引いて戻し、日吉特別の順（12≧13≧1）にほぼ合わせた。白川郷Sで2番に先着しとる7番は2番より上にした。5番と10番の差は0.4から0.2に詰めた（10番は3勝クラスの出走が2走だけで、2勝クラスの凡走もある）。14番と11番、14番と9番の差も詰めた。ただ休み明けかどうかは実績の軸で見る項目に入っとるけん、11番の割引は少し残した。最上位は東京ダ2100の3勝クラスで連続2着の10番、次が3勝クラスで58kgでも安定しとる5番。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>**展開の見立て**<br>東京ダート2100mは芝スタートで、最初のコーナーまでが短か。そのあと直線が501mあって坂もあるけん、先行馬も差し馬も戦える条件っちゃん。この組で毎回ハナを切っとるのは2番インジケーターだけ。2枠からすんなり逃げられそうやね。6番モズロックンロール（芝で逃げ・先行の経験あり）と10番ロングウェイホームが外から2〜3番手に付けて、4番ライノと3番ビービーアジャイルがその後ろの内寄り。13番・12番・8番は中団、1番・14番・9番は後方、5番と11番は最後方から、という隊列を描いとる。<br>ペースは平均からややスローを本線に見とる。逃げ馬が少なかけん、好位から抜け出す馬が有利と思うとよ。ただ6番が初めてのダートで掛かって2番に絡んでいけば、ペースが上がって差し馬が届く形にもなる。この別シナリオがあるけん、追込馬のマイナスは-0.4までにとどめたっちゃん。<br><br>**ステップ1：各馬の評価**<br><br>1番, インペリアルライン, 0.0, 東京2100mを何度も走って4角5番手まで押し上げる中団からの差し。1枠で内に閉じ込められる心配と、ロスなく回れる利点がだいたい釣り合うけん中立にしとる。<br><br>2番, インジケーター, +0.4, 他にハナを主張する馬がおらんけん、2枠からマイペースで逃げられる。スロー寄りなら東京の長い直線でも粘り込める形になっとる。<br><br>3番, ビービーアジャイル, +0.3, 4-4-2-3の好位からも、中団からでも運べる自在な脚質。3枠でロスなく好位の内を取れそうやけん、前が残る流れに合っとる。<br><br>4番, ライノ, +0.3, 3-3番手から運ぶ先行馬で、3枠から逃げ馬の直後の内を取りやすか。東京2100mでも3-4-5-4番手から勝っとる。<br><br>5番, ヴァンドーム, -0.4, 1600m以下でずっと最後方からの追込。距離が延びると前半の位置がさらに悪くなるし、スロー寄りの想定では長い直線でも届きにくかよ。<br><br>6番, モズロックンロール, -0.1, 芝では逃げ・先行しとったけん前には行けるはず。でも初めてのダートで砂を被ると嫌がる心配があるし、逃げ馬に絡んで自分から崩れる可能性もある。<br><br>7番, シャルクハフト, 0.0, いつも9番手前後の中団から。5枠で特に得も損もなく、展開の恩恵は受けにくい位置っちゃん。<br><br>8番, ヴァナルガンド, 0.0, 中団から好位まで位置取りが一定せん。5枠の真ん中で展開による差は出にくかね。<br><br>9番, タンゴバイラリン, -0.3, 12-14番手の後方待機ばかりで、東京2100mでも位置取りが悪かった。前が残る流れでは苦しかよ。<br><br>10番, ロングウェイホーム, +0.4, 先行もできるし、5-5番手で控えて東京2100mを上がり35.4で2着しとる。6枠からは芝部分を長く走れて好位の外を楽に取れるけん、この流れなら一番理想的な位置で運べる。<br><br>11番, オメガタキシード, -0.4, ここ数走はずっと15-16番手の最後方一辺倒。速いペースにならん想定やと、届くかどうかは他力頼みになるとよ。<br><br>12番, ロードブレイズ, +0.1, 東京2100mでは4-4番手の先行から勝っとる。7枠でやや外を回らされるけど、前目に付ければ流れには合っとる。<br><br>13番, タイセイカイザー, +0.1, 中団から3〜4角で前に押し上げる形がこのコースで合っとる。8枠は芝スタートの恩恵もあって、外を回るロスと差し引きわずかにプラスにしとる。<br><br>14番, メイショウフジ, -0.2, 東京2100mで11番手から上がり35.3が出せる差し脚はある。でも8枠の後方からやと外を回らされやすく、スロー寄りでは少し不利になるっちゃん。<br><br>**ステップ2：JSON**<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.0, &quot;2&quot;: 0.4, &quot;3&quot;: 0.3, &quot;4&quot;: 0.3, &quot;5&quot;: -0.4, &quot;6&quot;: -0.1, &quot;7&quot;: 0.0, &quot;8&quot;: 0.0, &quot;9&quot;: -0.3, &quot;10&quot;: 0.4, &quot;11&quot;: -0.4, &quot;12&quot;: 0.1, &quot;13&quot;: 0.1, &quot;14&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;東京ダ2100m・良。ハナを主張するのは2番インジケーターだけで、平均〜ややスローを本線と見た。2番が楽に逃げ、10番・6番が外の2〜3番手、4番・3番が内の好位。前で運べる2・10・3・4を上げ、最後方からの5・11と後方の9・14を下げた。6番が初めてのダートで逃げ馬に絡めばペースが上がって差しが届く別シナリオもあるため、追込馬のマイナスは-0.4までにとどめた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) ペース想定の整合: 6番モズロックンロールが逃げ馬に絡むリスクを自分で挙げとるのに、2番インジケーター(+0.4)と差し・追込勢の評価に入っとらんのでは。10番ロングウェイホームにも2-2-1-1で逃げた実績がある。2番インジケーターは53kg→58kgで、同じ舞台の丹沢Sでは1-1-2-2から5着、そのレースは差し・追込が上位やった。スロー寄りという前提の確かさを見直してはどうか。(2) 11番オメガタキシード(-0.4)は東京ダ2100mの3勝クラスで最後方から3着・4着がある。同じ舞台で14着の9番タンゴバイラリン(-0.3)より下なのは逆では。(3) 1番インペリアルライン(0.0)は13番タイセイカイザー(+0.1)と同じ中団から押し上げる形で東京ダ2100mを1・2・2着。日野特別では好位の3番ビービーアジャイル(+0.3)を差し切っとる。0.0の説明がつくか。(4) 8枠の芝スタートの得を13番タイセイカイザーにだけ足して、14番メイショウフジ(上がり35.3で4着)には付けとらん。(5) 5番ヴァンドームの『距離が延びると位置が悪くなる』は、前半が緩むぶん逆の可能性もあるのでは。(6) 12番ロードブレイズ(+0.1)は前目に付ける前提やけど、近走は位置を下げとる。(7) 3番ビービーアジャイルと4番ライノ(同じ3枠、ともに+0.3)が逃げ馬の後ろの内を同時に取れるかも確かめてほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ確かめたけど、だいたい納得できたけん、P を見直すね。<br><br>**見直しの考え方**<br>- **(1) ペース**：指摘を受け入れたとよ。ハナの候補は2番だけやなかった。芝で1-1-1の逃げがある6番、2-2-1-1で逃げ切った10番、3-3番手の4番もおる。それに2番は53kgから58kgに増えて、同じ舞台の丹沢Sでは1-1-2-2から5着、上位は差し馬やった。スロー寄りと決めつけるのはやめて、平均ペースを本線、緩んだ流れを別シナリオにしたっちゃん。<br>- **(2)〜(6)**：差しの評価が辛すぎたけん全体に戻した。東京ダ2100mで結果を出しとる「中団から押し上げる形」は、きちんとプラスに数えたとよ。<br>- **(7)**：3番と4番が逃げ馬の直後の内を同時に取るのは無理があるけん、2頭とも少し下げたっちゃん。<br>- **10番は+0.4のまま**：平均ペースでも緩んでも、5番手あたりで運べる点は変わらんけんね。<br><br>**描いとる展開**：2番がハナ。そこに6番が絡むか、4番・10番が早めにつついて、ペースは平均かやや速めになる。好位から10番と4番、中団の内から1番、外から13番が3〜4角で押し上げる。直線では中団勢と、11番・14番の差しも届く範囲に入ってくる、という流れっちゃん。<br><br>1番, インペリアルライン, +0.2, 東京ダ2100mで中団から3〜4角で押し上げる形で1・2・2着、日野特別では好位の3番を差し切っとる。平均ペースなら1枠で内をロスなく回って押し上げられるけん、このコースに合う脚質として少しプラスにしたとよ。<br><br>2番, インジケーター, +0.2, 単騎で逃げられる見込みはまだ一番高か。ただ6番・10番が前に来る可能性があるし、58kgで同じ舞台の丹沢Sは1-1-2-2から5着止まりやったけん、スローで逃げ残る前提は弱めたっちゃん。<br><br>3番, ビービーアジャイル, +0.2, 好位でも中団でも運べる自在さは、ペースが読みにくいこのレースではプラスになるとよ。ただ4番と内の好位を取り合う形になるけん、少し下げたっちゃん。<br><br>4番, ライノ, +0.2, 3〜4番手で運ぶ先行馬で、東京2100mでも3-4-5-4から勝っとる。ただ3番と内の位置を取り合うし、平均ペース寄りなら前にいる得も小さくなるけん下げたとよ。<br><br>5番, ヴァンドーム, -0.3, 2100mになって前半が緩めば位置が少し上がる可能性はある。ばってん末脚が生きたのは速い流れのマイル戦ばかりで、初めての中距離で最後方から届くかは不確かやけん、マイナスは少しだけ軽くしたっちゃん。<br><br>6番, モズロックンロール, -0.1, 前に行く脚はあるけど、初めてのダートで砂を被る心配があるとよ。2番に絡めばペースを上げる役になって自分も苦しくなりやすか。<br><br>7番, シャルクハフト, 0.0, いつも9番手前後の中団で、ペースがどうなっても恩恵も不利も受けにくか位置っちゃん。<br><br>8番, ヴァナルガンド, 0.0, 中団から好位まで位置取りが一定せんし、5枠の真ん中で展開による差は出にくかね。<br><br>9番, タンゴバイラリン, -0.2, 12〜14番手の後方待機で、同じ舞台の丹沢Sも12-13-12-11から伸びきれんかった。平均ペースなら不利は小さくなるけん、マイナスは軽くしたとよ。<br><br>10番, ロングウェイホーム, +0.4, 逃げも好位もできて、丹沢Sでは5-5-5-5から上がり35.4で2着しとる。6枠から芝部分を長く走れて好位の外を楽に取れるけん、平均でも緩んでもいちばん崩れにくい位置で運べるっちゃん。<br><br>11番, オメガタキシード, -0.2, 最後方からの追込一辺倒やけど、東京ダ2100mの3勝クラスでその形から3着・4着がある。この長い直線なら届く脚質やけん、9番より下にしたのは行き過ぎやったと認めて戻したとよ。<br><br>12番, ロードブレイズ, 0.0, 東京2100mで4-4番手から勝っとるけど、近走は14-14-14-13や5-5-8-8と位置を下げとる。7枠から前に付けられるとは言い切れんけん、中立に戻したっちゃん。<br><br>13番, タイセイカイザー, +0.1, 10-8-3-3と3〜4角で押し上げて勝ったのはこのコースに合った形。8枠は芝スタートで行き脚は付くけど外を回るロスもあるけん、差し引きでわずかにプラスとよ。<br><br>14番, メイショウフジ, 0.0, 同じ舞台で11番手から上がり35.3を使って4着がある。8枠の芝スタートの得を13番と同じように数えて、平均ペースなら差しも届くけん中立に戻したっちゃん。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.2, &quot;3&quot;: 0.2, &quot;4&quot;: 0.2, &quot;5&quot;: -0.3, &quot;6&quot;: -0.1, &quot;7&quot;: 0.0, &quot;8&quot;: 0.0, &quot;9&quot;: -0.2, &quot;10&quot;: 0.4, &quot;11&quot;: -0.2, &quot;12&quot;: 0.0, &quot;13&quot;: 0.1, &quot;14&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;スロー寄りの断定をやめて平均ペースを本線にした。前に行ける馬が2番以外にも6番・10番・4番とおり、2番は58kgで同じ舞台の丹沢Sでも粘れんかったため、2番を+0.4→+0.2に下げた。差し馬の減点は軽くした（11番-0.4→-0.2、9番-0.3→-0.2、14番-0.2→0.0、5番-0.4→-0.3）。東京ダ2100mで中団から押し上げて1・2・2着の1番を+0.2に上げた。3番と4番は同じ内の好位を取り合うため+0.3→+0.2、12番は近走で位置を下げとるため0.0。10番はどちらのペースでも好位で運べるため+0.4を維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, インペリアルライン, +0.1, 4か月の休み明けで484kg（-2）は、勝った前走の486kgや好走が続いた480〜488kgの範囲に入っている。調教評価は「馬体重め」だが当日は絞れており、馬なりで動きも良いので、仕上がりはわずかにプラスとみる。<br><br>2番, インジケーター, -0.6, 近4走はずっと53kgで、今回は58kgと5kg重くなる（約2.5〜3馬身の不利）。直近で58kgを背負った3/15は8着止まり。追い切りも一杯に追って「鋭さひと息」なので、体調面の上積みは見えない。<br><br>3番, ビービーアジャイル, +0.5, 休み明けの前走は+12kgの500kgで勝ち、叩き2走目の今回は-4kgの496kgに絞れてきた。3歳の成長分を残したまま締まった上昇サインと読む。一杯に追って「この一追いで良化」の評価で、斤量も古馬より2kg軽い56kg。<br><br>4番, ライノ, +0.5, 518〜522kgで体重がほとんどぶれない安定型で、今回の520kg（+2）は適正の範囲。4か月ぶりを勝った後の叩き2走目で8週の間隔もちょうどよく、「体も動きも良く」の評価で調子も上向き（↗）。<br><br>5番, ヴァンドーム, 0.0, 4か月ぶりで508kg（+2）は504〜508kgの安定圏にある。「乗り込み入念」の評価で調子は平行線（→）、斤量も58kgで変わらない。体調面で上げる材料も下げる材料もない。<br><br>6番, モズロックンロール, +0.1, 522kg（0）は518〜524kgの範囲内で、間隔は2か月と普通。直強めの追い切りで「反応良化」とあり、わずかに上向いている。<br><br>7番, シャルクハフト, -0.4, 前2走の54kgから58kgへ4kg増える（約2馬身）。58kgだった5月・4月は11着・13着と崩れている。502kg（0）で「余裕ある動き」なので体そのものは悪くないが、斤量増が重い。<br><br>8番, ヴァナルガンド, +0.2, 470〜474kgで体重が安定しており、今回の472kg（+2）も想定通り。8週の間隔で、一杯に追って「好馬体目につく」の評価なので、仕上がりは良好。小柄で58kgは楽ではないものの、いつもと同じ斤量。<br><br>9番, タンゴバイラリン, -0.3, 叩き2走目で4週の間隔、「多少上向く」の評価は好材料。それでも54kg→58kgの4kg増は大きく、58kgだった1月は15着・7着と結果が出ていない。<br><br>10番, ロングウェイホーム, -0.1, 5か月ぶりで548kg（+14）はこれまでで最も重い。好走した2走は534kgで、太め残りが心配。ただ+14kgの542kgで勝った実績があり、4歳の成長分も考えられる。追い切りもG前仕掛けで「スピード感十分」、調子も上向き（↗）なので、減点は小さくとどめる。<br><br>11番, オメガタキシード, -0.4, 6か月の長期休み明けで468kg（+8）はこれまでで最も重い。好走したのは456〜460kgの時期で、太め残りの懸念が大きい。「攻め動かぬタイプ」で調教からは仕上がりを測りづらく、小柄な馬に58kgも楽ではない。<br><br>12番, ロードブレイズ, -0.4, 勝ったときは504kgで、そこから508kg、514kgと増え続けて過去最高に達し、太めが心配。前走55kgから58kgへ3kg増える（約1.5馬身）。調教も「攻め動かぬタイプ」で、上向きのサインがない。<br><br>13番, タイセイカイザー, -0.5, 好走は492〜498kgの時期に集中している。休み明けで+6kgの504kgだった前走は11着と大敗し、叩き2走目の今回はさらに+4kgの508kgと逆に増えた。最終追い切りも5日前の馬なりだけと軽く、斤量も55kg→58kgの3kg増。<br><br>14番, メイショウフジ, 0.0, 5か月ぶりで482kg（+2）は、好走が続いた480〜484kgの範囲にある。「長め丹念に乗込む」の評価で、休み明けへの準備はできている。斤量は前走から2kg増えるが、58kgでも4着の実績があるので打ち消し合って中立。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 定量戦で3番ビービーアジャイル以外は全馬58kg。前走ハンデ戦の軽い斤量からの増量を馬身換算で引くと、体調シグナルが中立〜好材料の7番シャルクハフト（502kg±0・余裕ある動き）、9番タンゴバイラリン（叩き2走目・多少上向く）がマイナスに沈む。12番ロードブレイズと13番タイセイカイザーは58kgで勝っており、58kgは平常の斤量。斤量が体調軸を上書きしていないか。2番インジケーター-0.6と5番ヴァンドーム0.0の差も、体調で説明できるか。(2) 13番タイセイカイザーの評価は『月曜追いで仕上る』で仕上がりの意味なのに、軽いと逆に読んでいないか。11番オメガタキシード・12番ロードブレイズの『攻め動かぬタイプ』は中立情報で、減点の材料ではないのでは。1番インペリアルラインは『馬体重め』で4か月の休み明けなのに+0.1、準備が整った5番ヴァンドーム・14番メイショウフジより上なのは説明がつくか。(3) 6番モズロックンロールは好走が518kg、大敗が522〜524kgで、今回の522kgは前走13着と同じ体重。+0.1の根拠は弱くないか。3番ビービーアジャイルは好走時の488kgより+8kg、調子→、評価は『良化途中』、斤量も前走+1kg。4番ライノと同じ+0.5は甘くないか。10番ロングウェイホーム（+14kg・2.6%増、勝ったときの542kgよりさらに重い）が-0.1で11番オメガタキシード（+8kg）が-0.4なのは開きすぎではないか。11番の小柄+58kgの減点は、8番ヴァナルガンドと扱いが合わない。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, インペリアルライン, +0.1, 調教では「馬体重め」と言われたが、当日は484kg（-2）で、好走が続いた480〜488kgの範囲に収まっている。重め残りは解消したとみてよく、「動き良」の分だけわずかにプラス。<br><br>2番, インジケーター, -0.4, 53kg→58kgの5kg増（約2.5馬身）は物理的に重く、58kgを背負った3/15は8着。ただ前走の軽量はハンデ戦で能力を低く見られた結果でもあるので、二重に引かないよう減点を縮めた。一杯に追って「鋭さひと息」は体調面のはっきりした不安で、乗り込み入念だった5番との差はこの調教内容から来ている。<br><br>3番, ビービーアジャイル, +0.4, 前走は+12kgの500kgで勝っており、体の成長分は走りの邪魔になっていない。叩き2走目で-4kgの496kgに締まったのは上昇サイン。ただ評価は「この一追いで良化」でまだ良くなっている途中、調子も平行線（→）なので4番より一段下げる。古馬より2kg軽い56kgは楽。<br><br>4番, ライノ, +0.5, 518〜522kgでほとんどぶれない安定型で、今回の520kg（+2）も適正の範囲。休み明けを勝った後の叩き2走目で、8週の間隔もちょうどいい。「体も動きも良く」の評価に調子も上向き（↗）で、体調面ではこのレースで一番信頼できる。<br><br>5番, ヴァンドーム, +0.1, 4か月ぶりで508kg（+2）は504〜508kgの安定圏。「乗り込み入念」で休み明けの準備はできている。いつも58kgなので斤量の負担も変わらない。<br><br>6番, モズロックンロール, 0.0, 好走したのは518kgのときで、522〜524kgのときは13着・9着と崩れている。今回の522kgは前走13着と同じ体重。「反応良化」は好材料だが体重面の不安と打ち消し合うので中立にする。<br><br>7番, シャルクハフト, -0.2, 502kg（0）で「余裕ある動き」なので、体そのものは問題ない。58kgで崩れた過去はあるが、54kgだったのはハンデ戦の評価でもあるので、4kg増（約2馬身）の減点は小さめにした。<br><br>8番, ヴァナルガンド, +0.2, 470〜474kgで安定しており、472kg（+2）も想定通り。58kgはいつもの斤量で、一杯に追って「好馬体目につく」なので、仕上がりは良好。<br><br>9番, タンゴバイラリン, -0.1, 4週の間隔で叩き2走目、「多少上向く」は好材料。54kg→58kgの4kg増と打ち消し合い、わずかなマイナスにとどめる。<br><br>10番, ロングウェイホーム, -0.2, 5か月ぶりで548kg（+14、2.6%増）は過去最高で、勝ったときの542kgよりさらに重く、太め残りは否定できない。G前仕掛けで「スピード感十分」、調子も上向き（↗）と調教の好材料があるので、11番よりは軽い減点にする。<br><br>11番, オメガタキシード, -0.3, 6か月の休み明けで468kg（+8）は過去最高で、好走時の456〜460kgを上回っており太め残りが心配。「攻め動かぬタイプ」は減点材料にせず中立として扱い、小柄で58kgという減点も外した（58kgで4着の実績があり、8番と扱いをそろえた）。<br><br>12番, ロードブレイズ, -0.2, 58kgで勝った実績があるので、58kgは普段の斤量として扱う。ただ勝ったときの504kgから508kg、514kgと増え続けて過去最高に達しており、太めの懸念は残る。「攻め動かぬタイプ」は中立とする。<br><br>13番, タイセイカイザー, -0.3, 「月曜追いで仕上る」は仕上がったという意味で、最終追い切りが軽いという読みは誤りだったので撤回する。好走は492〜498kgに集中しており、前走の504kgで大敗した後、叩き2走目でさらに+4kgの508kgに増えたのは体調面でマイナス。<br><br>14番, メイショウフジ, +0.1, 5か月ぶりで482kg（+2）は好走が続いた480〜484kgの範囲にある。「長め丹念に乗込む」で休み明けの準備はできており、58kgでも4着の実績があるので斤量増は気にしない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: -0.4, &quot;3&quot;: 0.4, &quot;4&quot;: 0.5, &quot;5&quot;: 0.1, &quot;6&quot;: 0.0, &quot;7&quot;: -0.2, &quot;8&quot;: 0.2, &quot;9&quot;: -0.1, &quot;10&quot;: -0.2, &quot;11&quot;: -0.3, &quot;12&quot;: -0.2, &quot;13&quot;: -0.3, &quot;14&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;定量戦で、前走ハンデ戦の軽量から58kgに増える分は、能力評価と二重に引かないよう減点を縮めた（2番-0.6→-0.4、7番-0.4→-0.2、9番-0.3→-0.1）。58kgで勝っている12番・13番は58kgを普段の斤量として扱った。13番の『月曜追いで仕上る』を軽いと逆に読んでいたので訂正した。『攻め動かぬタイプ』は中立情報として減点を外し、11番の小柄+58kgの減点も8番と扱いをそろえて外した。休み明けで乗り込みが入念な5番・14番は+0.1に上げた。6番は前走13着と同じ522kgなので0、3番は良化途中なので+0.4、10番は過去最高体重なので-0.2に見直した。体調面で最も信頼できるのは4番ライノで、維持した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>東京ダート2100mの良馬場やけん、血統で見るポイントは三つにしたっちゃん。一つ目は、ダートの中距離から長距離をこなすスタミナを父と母父のどっちから受け継いどるか。二つ目は、米国のスピード型の血がこの距離で持つかどうか。三つ目は、芝向きの配合がどれだけダートに向くか。実績とぶつかるところは、実績を優先して振れ幅を小さくしとるよ。<br><br>1番, インペリアルライン, +0.3, 父ドゥラメンテの持続力に、母父Giant&#x27;s Causeway（Storm Cat系）のダートのパワーが加わった配合。東京ダ2100mで1-2-2着の実績とも合っていて、この舞台への適性は血統の面からも裏付けられる。<br><br>2番, インジケーター, +0.1, 父Liam&#x27;s Mapと母父Street Senseの米国ダート血統で、ダート適性そのものは確か。ただLiam&#x27;s Mapは本来マイル寄りのスピード型なので、距離で大きく上げる根拠はない。逃げてスタミナの不足を補っている形。<br><br>3番, ビービーアジャイル, +0.5, 父サンダースノーはドバイWCを連覇したダート中距離馬で、母父ゴールドアリュールは国内ダートの代表的な血。ダート中距離向きの裏付けが厚い。3歳秋の成長期とも重なり、東京ダ2100mの1着と3着も血統どおりの結果。<br><br>4番, ライノ, -0.2, 父Into Mischiefと母父Not This Timeは、どちらも米国のスプリント〜マイル型のスピード血統。東京2100mで1勝クラスを勝ってはいるが、3勝クラスのレベルでは距離が延びるほど血統面の不安が強まる。<br><br>5番, ヴァンドーム, -0.3, 父ロードカナロアのダート産駒は1400〜1600mが中心。母父マンハッタンカフェのスタミナはあるが、1600mからの500m延長を後押しするほどの配合ではない。<br><br>6番, モズロックンロール, -0.3, 父ビーチパトロール（Lemon Drop Kid系の米国芝馬）と母父マンハッタンカフェで、芝向きの成分が強い。近走はすべて芝で、初ダートで一変すると言えるだけの血統的な根拠は薄い。<br><br>7番, シャルクハフト, -0.1, 父リアルスティール（ディープインパクト系）と母父ワークフォースで、芝寄りの配合。距離のスタミナは足りるが、ダートの重い流れでのパワーにやや欠ける。<br><br>8番, ヴァナルガンド, +0.2, 父シビルウォーはダートの中長距離重賞で活躍したステイヤー。母父アドマイヤベガもスタミナを補い、2100mは血統的に守備範囲。<br><br>9番, タンゴバイラリン, -0.2, 父イスラボニータは芝マイル型。母父Smart Strikeでダート適性は補われているが、2100mは配合から見てやや長く、東京2100mの14着もそれに沿った結果。<br><br>10番, ロングウェイホーム, +0.3, 父ジャスタウェイ（ハーツクライ系）はダートの長めの距離で産駒が出る系統。母父Dansiliの底力もあり、548kgの大型馬で持続力型。2400m勝ちと東京2100m2着の実績と一致している。<br><br>11番, オメガタキシード, -0.2, 父ハービンジャーと母父デュランダルの芝血統で、ダートの産駒は少ない系統。差し脚で善戦はしているが、血統面でダート2100mのプラスはない。<br><br>12番, ロードブレイズ, -0.2, 父ロードカナロアと母父ダイワメジャーでスピード色が濃い配合。東京2100mの勝ちはあるものの、血統からはこの距離での上積みは見込みにくい。<br><br>13番, タイセイカイザー, +0.2, 父アジアエクスプレスはヘニーヒューズ系のダート血統で、母父エンパイアメーカーが距離をこなせるスタミナを補っている。4歳でまだ伸びしろがあり、東京2100mの勝ちとも合う。<br><br>14番, メイショウフジ, +0.4, 父ホッコータルマエはダート中長距離のG1を何勝もした馬で、産駒もダートの長めの距離に強い。母父ダイワメジャーが先行力を補う形で、東京ダ2100mの4着2回も血統どおり。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.1, &quot;3&quot;: 0.5, &quot;4&quot;: -0.2, &quot;5&quot;: -0.3, &quot;6&quot;: -0.3, &quot;7&quot;: -0.1, &quot;8&quot;: 0.2, &quot;9&quot;: -0.2, &quot;10&quot;: 0.3, &quot;11&quot;: -0.2, &quot;12&quot;: -0.2, &quot;13&quot;: 0.2, &quot;14&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;東京ダ2100m良馬場では、ダート中長距離のスタミナ血統を上位に取った。サンダースノー×ゴールドアリュールの3番、ホッコータルマエ産駒の14番、ジャスタウェイ産駒の10番、ドゥラメンテ×Giant&#x27;s Causewayの1番を評価。米国スプリント型のInto Mischief産駒4番、ロードカナロア産駒の5番と12番、芝寄り血統で初ダートの6番、ハービンジャー産駒の11番は割り引いた。全体として振れ幅は小さめ。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>同じ血統要素の読みが馬ごとに揃っていない。(1)母父ダイワメジャー：14番メイショウフジでは『先行力』としてプラス、12番ロードブレイズでは『スピード色』としてマイナス。しかも14番メイショウフジは毎回後方から運ぶ馬で、先行力の説明とも合わない。+0.4の根拠を見直す余地はないか。(2)1番インペリアルラインの母父Giant&#x27;s Causewayを『ダートのパワー』と評価しながら、その産駒が母父の4番ライノは『スプリント型』で-0.2。父Into Mischiefにもダート10ハロンの実績がある。(3)4番ライノと13番タイセイカイザーはどちらも米国ダート血統で東京ダ2100m勝ちがあるのに0.4差。差の根拠は何か。(4)実績の使い方が不統一。9番タンゴバイラリンは14着を減点材料にし、8番ヴァナルガンドの東京ダ2100m 7着・15着には触れていない。11番オメガタキシードは3勝クラスで3・4着があるのに芝血統として-0.2のまま。(5)欧州芝の母父がDansili（10番ロングウェイホーム）はプラス、ワークフォース（7番シャルクハフト）はマイナス。また丹沢Sで2着の10番ロングウェイホームが、4着の14番メイショウフジより下になっている。(6)2番インジケーターはダ2400m勝ちがあり母父Street Senseもダービー馬なので、『スタミナ不足』の読みが血統・実績と合わない。(7)6番モズロックンロールの『初ダート』という前提と、Lemon Drop Kid系を芝血統とした読みを確認してほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, インペリアルライン, +0.3, 父ドゥラメンテの持続力に、母父Giant&#x27;s Causewayのダート中距離をこなすパワーが加わった配合。東京ダ2100mで1・2・2着と実績も一致しているので、評価は据え置く。<br><br>2番, インジケーター, +0.2, 父Liam&#x27;s MapはダートのG1で9ハロンまで勝ち、母父Street Senseはケンタッキーダービー馬なので、配合は中距離以上に対応できる。Round1の「スタミナ不足」は誤読だったため撤回し、ダ2400m勝ちとも合う小幅なプラスに修正する。<br><br>3番, ビービーアジャイル, +0.5, 父サンダースノーはドバイWCを連覇したダート中距離馬で、母父ゴールドアリュールは国内ダートの主流血統。ダート中距離向きの裏付けが厚く、東京ダ2100mの1着と3着も血統どおりなので据え置く。<br><br>4番, ライノ, 0.0, 母父Not This TimeはGiant&#x27;s Causeway産駒の短めの距離型だが、父Into MischiefはAuthenticなどダート10ハロン級の産駒も出している。距離への不安は打ち消し合うと判断し、東京2100m勝ちと1800m勝ちも踏まえて-0.2から中立に戻す。<br><br>5番, ヴァンドーム, -0.3, 父ロードカナロアのダート産駒は1400〜1600mが主戦場で、本馬の好走も1400〜1600mに集中している。1800mでも5着止まりなので、500mの延長は血統面でも実績面でもマイナス材料。<br><br>6番, モズロックンロール, -0.2, 父ビーチパトロールは米国の芝G1馬。父系のLemon Drop Kid自体はダートのベルモントS馬なので、純粋な芝血統という断定は修正する。ただ戦績は芝が中心でダート適性の裏付けが乏しいため、Round1の「初ダート」の断定は外したうえで小幅なマイナスにとどめる。<br><br>7番, シャルクハフト, -0.1, 父リアルスティールはディープインパクト系の芝寄りの種牡馬。母父ワークフォースが距離のスタミナを補うが、ダート3勝クラスの1900〜2000mで5・11・13着と、ダートの重い流れへの適性は血統どおり一枚足りない。<br><br>8番, ヴァナルガンド, +0.1, 父シビルウォーはダートの長距離重賞を勝った馬で、配合上は2100mも守備範囲。ただ東京ダ2100mの3勝クラスで7着と15着なので、実績を加味して+0.2から引き下げる。<br><br>9番, タンゴバイラリン, -0.1, 母父Smart Strikeでダート適性は補われているが、父イスラボニータは芝マイル型なので2100mはやや長い。他馬と実績の扱いをそろえるため、同距離の14着だけを重く見る減点は弱めた。<br><br>10番, ロングウェイホーム, +0.3, プラスの根拠は母父Dansiliではなく父ジャスタウェイ（ハーツクライ系）の持続力とスタミナ。母父の欧州芝血統は評価の対象外とした。ダ2400m勝ちと東京ダ2100m2着も血統どおり。<br><br>11番, オメガタキシード, 0.0, 父ハービンジャーと母父デュランダルは芝血統だが、東京ダ2100mの3勝クラスで3着と4着の実績があり、ダート適性の不足は実績で否定されている。ハービンジャーのスタミナは距離に合っており、芝血統を理由にした減点は撤回する。<br><br>12番, ロードブレイズ, -0.1, マイナスの主因は父ロードカナロアのスピード色。母父ダイワメジャーは14番と同じく中立の扱いに統一する。東京ダ2100mの2勝クラス勝ちがあるため、減点は小幅にとどめる。<br><br>13番, タイセイカイザー, +0.2, 父アジアエクスプレスはヘニーヒューズ系で本来は短めの距離寄りだが、母父エンパイアメーカー（ベルモントS馬）がスタミナを補っている。4番ライノとの差は、この母父の距離適性の違い。2000〜2100mの好走も配合と合っている。<br><br>14番, メイショウフジ, +0.3, プラスの根拠は父ホッコータルマエがダート中長距離のG1を何勝もした血統である点だけで、毎回後方から運ぶ脚質に「母父ダイワメジャーの先行力」という説明は合わないので撤回する。東京ダ2100mの4着2回と上がり35.3秒は父系のスタミナどおりだが、母父の加点を外して+0.4から引き下げる。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、伊勢佐木Sを陣営の目で見たけん、まとめるね。<br><br>1番, インペリアルライン, +0.3, 木幡巧也は東京ダ2100mで4戦続けて乗っとって、2着・2着・5着・1着と結果を出しとる。中舘厩舎もこの条件の使い方に一貫性があって、手の内を知る継続騎乗は上げてよか。<br><br>2番, インジケーター, -0.2, 前走の酒井学から原優介に替わって、ここ5走は騎手がずっと定まっとらん。高橋康之厩舎の格も中位で、勝負気配は感じにくいっちゃん。<br><br>3番, ビービーアジャイル, +0.8, C.ルメールが4戦続けて乗っとって3勝しとる。この東京ダ2100mでもルメールで1着と3着がある。トップ騎手の継続騎乗で手の内も分かっとるけん、陣営の後押しはメンバーでいちばん強かよ。<br><br>4番, ライノ, 0.0, 3戦続けて乗っとった西村淳也から北村友一への乗り替わりで、騎手の格は同じくらい。高野友和厩舎は信頼できるけど、関東への遠征で特に上げる材料にはならんね。<br><br>5番, ヴァンドーム, +0.4, 5走続けて乗っとった大野拓弥から岩田望来への乗り替わりで、騎手の格がはっきり上がっとる。マイルから2100mに大きく距離を延ばすタイミングで有力騎手を確保しとって、安田翔伍厩舎の勝負気配が見えるとよ。<br><br>6番, モズロックンロール, 0.0, 芝からダートに替わるところでベテランの幸英明を迎えとる。ただ、ここ5走は毎回騎手が違っとって、陣営の軸がはっきりせんけん中立にしとくね。<br><br>7番, シャルクハフト, -0.1, 吉村誠之助の継続騎乗やけど、3勝クラスでは結果が出とらん。今回は58kgで減量の恩恵もないけん、騎手の格の面で少し割り引くね。<br><br>8番, ヴァナルガンド, 0.0, 津村明秀は2走前まで乗っとった騎手で、戻ってきた形。格の上げ下げはなくて、稲垣幸雄厩舎にもこの条件で目立つ材料はないっちゃん。<br><br>9番, タンゴバイラリン, -0.3, 原田和真の継続騎乗やけど、騎手の格はメンバーの中で低め。栗田徹厩舎もこの馬では3勝クラスで結果が出とらんけん、陣営からの後押しは乏しかね。<br><br>10番, ロングウェイホーム, 0.0, 前走2着のときのD.レーンから、主戦の荻野極に戻る。阿見特別を勝たせた手の内はあるけど、レーンからの格落ちと差し引きで中立にしたよ。<br><br>11番, オメガタキシード, +0.2, 岩田康誠は東京ダ2100mで3戦続けて乗っとって、3着と4着がある。後方から運ぶこの馬の乗り方を分かっとる継続騎乗やけん、少し上げとくね。<br><br>12番, ロードブレイズ, +0.3, 横山和生が5戦続けて乗っとる主戦で、東京ダ2100mの日吉特別も一緒に勝っとる。手の内を知る継続騎乗に、関東の上位騎手という格も加わっとるよ。<br><br>13番, タイセイカイザー, +0.5, 団野大成から横山武史への乗り替わりで、トップ騎手を確保しとる。この馬はルメールで東京ダ2100mを勝っとるし、栗東の奥村豊厩舎が関東遠征で一流騎手を押さえたのは勝負気配っちゃん。<br><br>14番, メイショウフジ, +0.1, 主戦の大野拓弥に戻る継続騎乗の形で、東京ダ2100mでもこの騎手で4着がある。騎手と厩舎の格は中位やけん、少しだけ上げとくね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.2, &quot;3&quot;: 0.8, &quot;4&quot;: 0.0, &quot;5&quot;: 0.4, &quot;6&quot;: 0.0, &quot;7&quot;: -0.1, &quot;8&quot;: 0.0, &quot;9&quot;: -0.3, &quot;10&quot;: 0.0, &quot;11&quot;: 0.2, &quot;12&quot;: 0.3, &quot;13&quot;: 0.5, &quot;14&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;陣営の後押しが一番強いのは3番で、C.ルメールが4戦続けて乗って3勝、東京ダ2100mでも1着と3着がある。次は13番で、横山武史への乗り替わりは栗東から遠征する奥村豊厩舎の勝負気配と見た。5番は大野拓弥から岩田望来に替わり、距離を延ばすところで騎手の格が上がっている。1番（木幡巧也）と12番（横山和生）は東京ダ2100mで手の内を知る継続騎乗なのでプラス。9番は騎手の格が低めで厩舎の後押しも乏しく、2番は騎手が定まらないのでマイナスにした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①13番タイセイカイザー: 『ルメールで東京ダ2100m勝ち』を加点材料にしとるけど、ルメールは今回3番ビービーアジャイルを選んどる。これは13番の割引・3番の加点材料ではないか。横山武史は初騎乗で、団野大成の手の内（日吉特別2着）を手放した分の差し引きもない。10番ロングウェイホームでは格と手の内を差し引いとるのと基準がずれていないか。②4番ライノと13番はどっちも栗東馬の東京遠征＋乗り替わりやのに、13番は『遠征で一流騎手確保』で+0.5、4番は『遠征で材料なし』で0.0。北村友一を連れてきとることや、川田将雅で東京ダ2100mを勝っとることを拾う余地はないか。③5番ヴァンドームに5走乗っとった大野拓弥が今回14番メイショウフジに乗る。5番の乗り替わりは大野が14番を選んだ結果である可能性が高く、『勝負気配』と読むのは強すぎないか。逆に14番は大野に選ばれた馬で、+0.1は低くないか。④同じ中舘厩舎の3番と1番に0.5の差。日野特別（同条件）では1番の木幡巧也が1着、3番のルメールは3着で、差を広げすぎていないか。⑤7番シャルクハフトの吉村誠之助は3勝クラス58kgで11着・13着。9番タンゴバイラリン（-0.3）より割引が軽く、清水久詞厩舎の評価も抜けていないか。⑥10番ロングウェイホームは主戦の荻野極が3勝クラス2着の実績持ちで、12番（+0.3）・11番（+0.2）と比べて0.0は低くないか。主戦に戻るのを『格落ち』で減点するのは厳しくないか。⑦11番オメガタキシードは同条件の3勝クラスで岩田康誠と3・4着。2勝クラスまでの実績の1番より下に置くのは妥当か。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, インペリアルライン, +0.3, 木幡巧也は東京ダ2100mで4戦続けて乗っとって、日野特別ではルメール騎乗の3番に先着して勝っとる。中舘厩舎が同じ条件で使い続けとって、手の内を知る継続騎乗の裏付けがしっかりあるけん、そのまま上げとくね。<br><br>2番, インジケーター, -0.2, 前走の酒井学から原優介に替わって、ここ5走は騎手がずっと定まっとらん。高橋康之厩舎の格も中位で、勝負気配は感じにくいっちゃん。<br><br>3番, ビービーアジャイル, +0.6, C.ルメールが4戦続けて乗っとって3勝、この東京ダ2100mでも1着と3着がある。13番やなくてこの馬を選んだことも、陣営の後押しとして大きかよ。ただ同じ条件の日野特別では1番の木幡に先着されとるけん、1番との差は詰めたっちゃん。<br><br>4番, ライノ, +0.1, 西村淳也から北村友一への乗り替わりで、騎手の格は横ばい。それでも高野友和厩舎が関東遠征に騎手を連れてきとる分の意欲は少し拾っとくね。川田で東京ダ2100mを勝っとるのは過去の騎手の話やけん、今回の上積みにはせんよ。<br><br>5番, ヴァンドーム, +0.3, 岩田望来への乗り替わりで騎手の格は上がっとる。けど、5走乗っとった大野拓弥は14番を選んだ形やけん、「勝負気配」とまでは言い切れん。格上げの分だけ上げとくね。<br><br>6番, モズロックンロール, 0.0, 芝からダートに替わるところでベテランの幸英明を迎えとる。ただ、ここ5走は毎回騎手が違っとって、陣営の軸がはっきりせんけん中立にしとくね。<br><br>7番, シャルクハフト, -0.2, 吉村誠之助の継続騎乗やけど、3勝クラスで58kgを背負ったときは11着と13着。今回は減量の恩恵もないけん、9番に近いところまで割り引くね。<br><br>8番, ヴァナルガンド, 0.0, 津村明秀は2走前まで乗っとった騎手で、戻ってきた形。格の上げ下げはなくて、稲垣幸雄厩舎にもこの条件で目立つ材料はないっちゃん。<br><br>9番, タンゴバイラリン, -0.3, 原田和真の継続騎乗やけど、騎手の格はメンバーの中で低め。栗田徹厩舎もこの馬では3勝クラスで結果が出とらんけん、陣営からの後押しは乏しかね。<br><br>10番, ロングウェイホーム, +0.2, 主戦の荻野極に戻る形で、阿見特別の勝利も梅田S（3勝クラス）の2着もこの騎手と一緒に出しとる。レーンからの格落ちより手の内のほうを重く見て、少し上げ直したよ。<br><br>11番, オメガタキシード, +0.3, 岩田康誠は東京ダ2100mの3勝クラスで3戦続けて乗っとって、3着と4着がある。後方から運ぶ乗り方を分かっとるベテランの継続騎乗やけん、1番と同じところまで上げとくね。<br><br>12番, ロードブレイズ, +0.3, 横山和生が5戦続けて乗っとる主戦で、東京ダ2100mの日吉特別も一緒に勝っとる。手の内を知る継続騎乗に、関東の上位騎手という格も加わっとるよ。<br><br>13番, タイセイカイザー, +0.3, 横山武史というトップ騎手を確保したのは評価するけど、初めての騎乗やし、ルメールには3番を選ばれとる。団野大成の手の内（日吉特別2着）を手放した分も差し引いて、下げ直したっちゃん。<br><br>14番, メイショウフジ, +0.2, 主戦の大野拓弥が5番やなくてこの馬を選んで戻ってきとって、東京ダ2100mでもこの騎手で4着がある。騎手に選ばれた継続騎乗として、少し上げ直すね。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>10番, ロングウェイホーム, 25%, 3勝クラスで2着が2回あり、丹沢S（東京ダ2100m）のスピード指数87.7は同条件でメンバー最高値なので首位は妥当と判断した。5か月休み明けで+14kgは不安材料だが、前回+14kgの休み明けで阿見特別を勝っており、調教も「スピード感十分・↗」なので大きくは割り引かない。<br><br>3番, ビービーアジャイル, 24%, 3歳馬で斤量56kgと古馬より2kg軽く、東京ダ2100mの1勝クラス勝ちは指数84.9と高い。ルメール騎乗で上昇中なので、合成の20.8は10番ロングウェイホームとの差が開きすぎと見て、ほぼ並ぶ水準まで引き上げた。<br><br>1番, インペリアルライン, 18%, 東京ダ2100mは[1-3-0-1]の舞台巧者で、日野特別では3番ビービーアジャイルに先着している。3勝クラスは初挑戦で指数も80前後と上積みは乏しいが、コース適性を考えると5位は低すぎるので3番手に上げた。<br><br>14番, メイショウフジ, 17%, 3勝クラスの東京ダ2100mで4着が2回（指数84.8・81.0）あり、このクラスで通用する目処は立っている。ただ毎回中団後方からの差し届かずで、8枠から3着内まで突き抜ける根拠は薄く、合成の18.3はやや高いと見た。<br><br>4番, ライノ, 16%, 前走の大府特別勝ち（指数84.1）と調教の「体も動きも良く・↗」は評価できる。ただ好走は1800mの先行策に偏っており、東京ダ2100mでは1勝クラス勝ちでも指数72.3止まり。3勝クラス初挑戦で距離延長も重なるため、合成の3位（19.9）は過大と判断して5番手に下げた。<br><br>合成への主な疑問は、4番ライノを距離実績の薄さに比して高く置きすぎている点と、3番ビービーアジャイルの斤量・上昇度を控えめに見すぎている点の2つ。6位以下では、11番オメガタキシード（東京ダ2100mの3勝クラスで3着・4着、指数82-83）が14番メイショウフジと同格の実績を持っている。また13番タイセイカイザーは横山武史への乗り替わりで東京2100m勝ちの舞台に戻る。この2頭は押さえ候補として注意したい。</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>10番, ロングウェイホーム, 20%, 3勝クラスで2着が2回あり、同条件の丹沢S（東京ダ2100m）ではメンバー最高のスピード指数87.7を出している。休み明けで+14kgだが、調教は「スピード感十分」で調子↗なので、太め残りより成長分と見て最上位にする。<br><br>3番, ビービーアジャイル, 18%, 3歳で斤量56kgと古馬より2kg軽く、8戦して馬券外は1回だけ。東京ダ2100mでは1勝クラス勝ち（指数84.9）と日野特別3着がある。前走で2勝クラスを勝った勢いもあり、C.ルメール騎手継続で昇級初戦から通用すると見る。<br><br>4番, ライノ, 11%, 前走の大府特別は好位から0.4秒差で勝ち、指数84.1は昇級組で最上位。東京ダ2100mの勝ち鞍もあり、調教は「体も動きも良く」で調子↗と状態面がいちばん良い。<br><br>14番, メイショウフジ, 9%, 3勝クラスの東京ダ2100mで4着が2回（指数84.8・81.0）あり、このクラスで安定して走れる。決め手が少し足りず勝ち切れていないが、展開が向けば差し届く。<br><br>13番, タイセイカイザー, 8%, 東京ダ2100mで2勝クラス勝ちと日吉特別2着があり、コース適性は高い。前走は3勝クラスで2.3秒差の大敗で、ここは評価を割り引く。横山武史騎手への乗り替わりで巻き返しの余地はある。<br><br>1番, インペリアルライン, 7%, 東京ダ2100mでは5走連続で0.3秒差以内（日野特別1着・2着2回）と、この条件は大の得意。ただ指数は80前後で、3勝クラスでは能力の上限が気になる。<br><br>5番, ヴァンドーム, 6%, 3勝クラスのマイルで指数87.6を出しており、能力そのものは上位。それでも最近の主戦場は1400〜1800mで、ダ2100mへの距離延長が大きいため評価を抑える。<br><br>11番, オメガタキシード, 5%, 東京ダ2100mの3勝クラスで3着と4着があり、コース相性は良い。ただ毎回最後方からの追い込み一辺倒で、6か月の休み明けでもある。<br><br>12番, ロードブレイズ, 4%, 日吉特別で13番と1番を抑えて勝っているが、指数は83.2止まり。前走の3勝クラスでは1.7秒差と完敗している。<br><br>2番, インジケーター, 3.5%, 逃げ馬で、丹沢S5着（指数84.2）の内容は悪くない。ただそれは53kgでの結果で、今回は58kgを背負ううえ、近2走は大敗が続いている。<br><br>8番, ヴァナルガンド, 3.5%, 前走の古町Sは0.3秒差の4着で状態は上向き。それでも東京ダ2100mの3勝クラスでは7着・15着と結果が出ていない。<br><br>9番, タンゴバイラリン, 2%, 3勝クラスでは54kgでも9着・14着と苦戦が続く。58kgに戻る今回は厳しい。<br><br>7番, シャルクハフト, 2%, 3勝クラスで5着が最高、ほかは二桁着順が並び、このクラスで通用する材料が乏しい。<br><br>6番, モズロックンロール, 1.5%, 近5走はすべて芝で、ダート実績は1勝クラス時代までしかない。初めてに近い東京ダ2100mは未知数で、最下位評価とする。<br><br>```json<br>{&quot;score&quot;: {&quot;10&quot;: 20, &quot;3&quot;: 18, &quot;4&quot;: 11, &quot;14&quot;: 9, &quot;13&quot;: 8, &quot;1&quot;: 7, &quot;5&quot;: 6, &quot;11&quot;: 5, &quot;12&quot;: 4, &quot;2&quot;: 3.5, &quot;8&quot;: 3.5, &quot;9&quot;: 2, &quot;7&quot;: 2, &quot;6&quot;: 1.5}, &quot;analysis_summary&quot;: &quot;3勝クラスで2着2回・同条件で指数87.7の10番ロングウェイホームを最上位、斤量56kgの3歳で昇級即通用が見込める3番ビービーアジャイルを僅差の2番手とした。状態が良い昇級組の4番ライノ、このクラスで安定して走る14番メイショウフジ、コース実績がある13番タイセイカイザーと1番インペリアルラインが続く。5番ヴァンドームは能力は上位だが大幅な距離延長で割り引き、芝からの転戦となる6番モズロックンロールなどクラスで実績の乏しい馬は下位にした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>10</td><td class="left horse-name">ロングウェイホーム</td><td>14.2%</td><td>4.4</td><td>2</td><td class="ev-low">0.63</td></tr><tr><td>2</td><td>3</td><td class="left horse-name">ビービーアジャイル</td><td>13.0%</td><td>2.8</td><td>1</td><td class="ev-low">0.37</td></tr><tr><td>3</td><td>4</td><td class="left horse-name">ライノ</td><td>10.1%</td><td>11.0</td><td>5</td><td class="ev-mid">1.12</td></tr><tr><td>4</td><td>14</td><td class="left horse-name">メイショウフジ</td><td>8.9%</td><td>9.1</td><td>4</td><td class="ev-low">0.81</td></tr><tr><td>5</td><td>1</td><td class="left horse-name">インペリアルライン</td><td>8.6%</td><td>17.4</td><td>7</td><td class="ev-mid">1.50</td></tr><tr><td>6</td><td>5</td><td class="left horse-name">ヴァンドーム</td><td>8.2%</td><td>5.5</td><td>3</td><td class="ev-low">0.45</td></tr><tr><td>7</td><td>13</td><td class="left horse-name">タイセイカイザー</td><td>6.4%</td><td>26.3</td><td>8</td><td class="ev-mid">1.68</td></tr><tr><td>8</td><td>12</td><td class="left horse-name">ロードブレイズ</td><td>6.1%</td><td>17.2</td><td>6</td><td class="ev-mid">1.05</td></tr><tr><td>9</td><td>8</td><td class="left horse-name">ヴァナルガンド</td><td>5.9%</td><td>31.0</td><td>10</td><td class="ev-mid">1.84</td></tr><tr><td>10</td><td>11</td><td class="left horse-name">オメガタキシード</td><td>4.7%</td><td>47.5</td><td>12</td><td class="ev-high">2.24</td></tr><tr><td>11</td><td>6</td><td class="left horse-name">モズロックンロール</td><td>3.8%</td><td>28.6</td><td>9</td><td class="ev-mid">1.07</td></tr><tr><td>12</td><td>7</td><td class="left horse-name">シャルクハフト</td><td>3.6%</td><td>33.9</td><td>11</td><td class="ev-mid">1.24</td></tr><tr><td>13</td><td>9</td><td class="left horse-name">タンゴバイラリン</td><td>3.4%</td><td>113.8</td><td>14</td><td class="ev-high">3.89</td></tr><tr><td>14</td><td>2</td><td class="left horse-name">インジケーター</td><td>2.8%</td><td>55.4</td><td>13</td><td class="ev-mid">1.56</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">10 ロングウェイホーム</td><td>14.2%</td><td>4.4</td><td class="ev-low">0.53</td></tr><tr><td>複勝</td><td class="left">10 ロングウェイホーム</td><td>39.7%</td><td>1.5</td><td class="ev-low">0.56</td></tr><tr><td>馬連</td><td class="left">3 ビービーアジャイル-10 ロングウェイホーム</td><td>4.3%</td><td>5.7</td><td class="ev-low">0.20</td></tr><tr><td>ワイド</td><td class="left">3 ビービーアジャイル-10 ロングウェイホーム</td><td>11.9%</td><td>2.6</td><td class="ev-low">0.27</td></tr><tr><td>馬単</td><td class="left">10 ロングウェイホーム→3 ビービーアジャイル</td><td>2.2%</td><td>12.0</td><td class="ev-low">0.21</td></tr><tr><td>3連複</td><td class="left">3 ビービーアジャイル-4 ライノ-10 ロングウェイホーム</td><td>1.7%</td><td>11.1</td><td class="ev-low">0.16</td></tr><tr><td>3連単</td><td class="left">10 ロングウェイホーム→3 ビービーアジャイル→4 ライノ</td><td>0.3%</td><td>41.8</td><td class="ev-low">0.10</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 2,400円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連複</td><td class="left">3 ビービーアジャイル-4 ライノ-10 ロングウェイホーム</td><td>11.1</td><td>20</td><td style='text-align:right;font-weight:600;'>2,000円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">10 ロングウェイホーム→3 ビービーアジャイル→4 ライノ</td><td>41.8</td><td>4</td><td style='text-align:right;font-weight:600;'>400円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 2,400円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
