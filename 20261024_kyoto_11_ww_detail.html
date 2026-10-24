@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カシオペアステークス 2026/10/24 KYOTO 11R (10/24 14:44 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>カシオペアステークス 2026/10/24 KYOTO 11R (10/24 14:44 予想)</h1>
+  <div class="meta">芝1800m（右 外） | 稍重 | 16頭立て | 4回 京都 8日目 サラ系3歳以上 オープン （国際）（特指） 別定 16頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">11. ジーティーアダマン</div>
+      <div class="pick-jockey">岩田 望来</div>
+    </div>
+    <div class="pick-prob">14.2%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">13. ガイアメンテ</div>
+      <div class="pick-jockey">武 豊</div>
+    </div>
+    <div class="pick-prob">14.0%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">12. ディールメーカー</div>
+      <div class="pick-jockey">川田 将雅</div>
+    </div>
+    <div class="pick-prob">10.3%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">オーロラエックス</td><td>牝5</td><td>56</td><td>松山 弘平</td><td>490(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">2</span></td><td class="left horse-name">バレエマスター</td><td>牡7</td><td>58</td><td>松若 風馬</td><td>472(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">3</span></td><td class="left horse-name">コルレオニス</td><td>牡5</td><td>57</td><td>M.デムーロ</td><td>460(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">4</span></td><td class="left horse-name">ナムラエイハブ</td><td>牡5</td><td>57</td><td>菱田 裕二</td><td>516(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">5</span></td><td class="left horse-name">エラトー</td><td>牝5</td><td>55</td><td>国分 優作</td><td>498(-14)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">6</span></td><td class="left horse-name">ゼンダンハヤブサ</td><td>牡4</td><td>58</td><td>酒井 学</td><td>456(+12)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">7</span></td><td class="left horse-name">アスクカムオンモア</td><td>牡5</td><td>57</td><td>鮫島 克駿</td><td>498(+4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">8</span></td><td class="left horse-name">アスクドゥポルテ</td><td>牡6</td><td>57</td><td>川須 栄彦</td><td>478(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">9</span></td><td class="left horse-name">アンリーロード</td><td>牝6</td><td>55</td><td>田口 貫太</td><td>486(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">10</span></td><td class="left horse-name">オールナット</td><td>牡5</td><td>59</td><td>北村 友一</td><td>526(-4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">11</span></td><td class="left horse-name">ジーティーアダマン</td><td>牡4</td><td>57</td><td>岩田 望来</td><td>502(+6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">12</span></td><td class="left horse-name">ディールメーカー</td><td>牡3</td><td>55</td><td>川田 将雅</td><td>496(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">13</span></td><td class="left horse-name">ガイアメンテ</td><td>牡5</td><td>58</td><td>武 豊</td><td>496(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">14</span></td><td class="left horse-name">サブマリーナ</td><td>牡5</td><td>58</td><td>浜中 俊</td><td>480(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">15</span></td><td class="left horse-name">タガノエルピーダ</td><td>牝5</td><td>55</td><td>古川 吉洋</td><td>484(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">16</span></td><td class="left horse-name">レディーヴァリュー</td><td>牝5</td><td>55</td><td>田山 旺佑</td><td>462(+2)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ジーティーアダマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ガイアメンテ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ディールメーカー</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ガイアメンテ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ジーティーアダマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ディールメーカー</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ジーティーアダマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ガイアメンテ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ディールメーカー</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ジーティーアダマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ガイアメンテ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ディールメーカー</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ジーティーアダマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ガイアメンテ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ディールメーカー</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.70</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.70</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.70</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ジーティーアダマン</span></td>
+<td>+0.66</td>
+<td>+0.44</td>
+<td>+0.36</td>
+<td>+0.26</td>
+<td>+0.38</td>
+<td>14.1</td>
+<td>13.2</td>
+<td>15.4</td>
+<td><b>14.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ガイアメンテ</span></td>
+<td>+0.68</td>
+<td>+0.22</td>
+<td>+0.24</td>
+<td>+0.22</td>
+<td>+0.48</td>
+<td>13.3</td>
+<td>13.3</td>
+<td>16.8</td>
+<td><b>14.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ディールメーカー</span></td>
+<td>+0.22</td>
+<td>+0.22</td>
+<td>+0.20</td>
+<td>+0.08</td>
+<td>+0.46</td>
+<td>9.4</td>
+<td>11.3</td>
+<td>12.5</td>
+<td><b>10.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">サブマリーナ</span></td>
+<td>+0.38</td>
+<td>-0.06</td>
+<td>+0.08</td>
+<td>+0.10</td>
+<td>-0.14</td>
+<td>8.6</td>
+<td>8.3</td>
+<td>9.3</td>
+<td><b>8.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">オーロラエックス</span></td>
+<td>-0.02</td>
+<td>+0.06</td>
+<td>+0.14</td>
+<td>+0.16</td>
+<td>+0.44</td>
+<td>7.2</td>
+<td>6.7</td>
+<td>6.5</td>
+<td><b>7.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">コルレオニス</span></td>
+<td>-0.22</td>
+<td>+0.28</td>
+<td>+0.30</td>
+<td>+0.12</td>
+<td>+0.38</td>
+<td>6.2</td>
+<td>-</td>
+<td>5.3</td>
+<td><b>6.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">タガノエルピーダ</span></td>
+<td>+0.04</td>
+<td>-0.12</td>
+<td>+0.26</td>
+<td>-0.08</td>
+<td>-0.24</td>
+<td>6.3</td>
+<td>5.9</td>
+<td>3.8</td>
+<td><b>5.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ナムラエイハブ</span></td>
+<td>-0.12</td>
+<td>+0.12</td>
+<td>-0.08</td>
+<td>+0.04</td>
+<td>-0.16</td>
+<td>5.4</td>
+<td>-</td>
+<td>3.5</td>
+<td><b>5.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">レディーヴァリュー</span></td>
+<td>-0.20</td>
+<td>+0.10</td>
+<td>+0.08</td>
+<td>+0.26</td>
+<td>-0.38</td>
+<td>5.1</td>
+<td>-</td>
+<td>3.8</td>
+<td><b>4.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ゼンダンハヤブサ</span></td>
+<td>-0.12</td>
+<td>+0.08</td>
+<td>-0.30</td>
+<td>+0.00</td>
+<td>+0.30</td>
+<td>4.5</td>
+<td>-</td>
+<td>6.7</td>
+<td><b>4.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">アンリーロード</span></td>
+<td>-0.18</td>
+<td>-0.16</td>
+<td>-0.06</td>
+<td>-0.04</td>
+<td>-0.02</td>
+<td>4.7</td>
+<td>-</td>
+<td>2.9</td>
+<td><b>4.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">バレエマスター</span></td>
+<td>-0.02</td>
+<td>-0.12</td>
+<td>-0.26</td>
+<td>-0.04</td>
+<td>-0.18</td>
+<td>4.3</td>
+<td>-</td>
+<td>4.6</td>
+<td><b>4.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">オールナット</span></td>
+<td>-0.32</td>
+<td>-0.10</td>
+<td>-0.04</td>
+<td>-0.06</td>
+<td>+0.08</td>
+<td>4.0</td>
+<td>-</td>
+<td>4.1</td>
+<td><b>4.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">アスクカムオンモア</span></td>
+<td>-0.20</td>
+<td>+0.02</td>
+<td>-0.42</td>
+<td>+0.06</td>
+<td>+0.02</td>
+<td>3.0</td>
+<td>-</td>
+<td>2.4</td>
+<td><b>2.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">エラトー</span></td>
+<td>-0.56</td>
+<td>+0.14</td>
+<td>+0.00</td>
+<td>+0.18</td>
+<td>-0.24</td>
+<td>2.8</td>
+<td>-</td>
+<td>1.6</td>
+<td><b>2.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">アスクドゥポルテ</span></td>
+<td>-0.76</td>
+<td>-0.36</td>
+<td>+0.04</td>
+<td>-0.14</td>
+<td>-0.32</td>
+<td>1.2</td>
+<td>-</td>
+<td>1.0</td>
+<td><b>1.2</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、カシオペアSば実績の目で見たけん、まとめとくね。<br><br>1番, オーロラエックス, +0.1, 昨年のこのレース（L、京都芝1800m）を1:45.0・指数90.6で勝っとる。ただその後は16着・9着・6着（都大路S、0.6秒差、89.8）・8着（七夕賞、1.6秒差）で、だいぶ下降しとるけん少しだけ上げる。<br><br>2番, バレエマスター, +0.1, 新潟大賞典（GIII）で2着・0.1秒差・指数91.5を出しとるし、重賞やリステッドでもだいたい0.5秒差・指数87前後に収まっとる。7歳で58kgやけど、格上での着差は安定しとる。<br><br>3番, コルレオニス, -0.3, 前走は西宮S（3勝クラス）の勝ち。ただ7頭立てで1:47.5のスローの逃げ、指数89.1。その前の3勝クラスでは10着・3着・5着と勝ち切れんかったけん、昇級初戦の相手強化は割り引く。<br><br>4番, ナムラエイハブ, -0.2, 小倉記念5着（0.4秒差、89.3）はあるけど、ほかのOP・Lでは7〜13着。同じ舞台の都大路Sも7着・0.8秒差で、このクラスでは足りとらん。<br><br>5番, エラトー, -0.6, 重賞・OPで13着・4着・13着・12着、指数は76.7〜83.5に低迷しとる。勝ったのは条件戦の壇之浦Sだけで、オープンの実績では明らかに見劣りする。<br><br>6番, ゼンダンハヤブサ, 0.0, 小倉記念（GIII）を1着・指数92.4で勝っとるけど、52kgの軽ハンデやった。その前は3勝クラスで5着が3回、前走の札幌記念も11着・1.3秒差。今回58kgを背負うけん、プラスとマイナスで相殺して中立にする。<br><br>7番, アスクカムオンモア, -0.2, チャレンジC7着（0.3秒差、89.2）の地力はある。ただ14か月ぶりの実戦で、近走の実績が無いけん少し下げる。<br><br>8番, アスクドゥポルテ, -0.8, 近4走は12着・12着・12着・6着。オールカマーは6.2秒差・指数47.7、福島民報杯も1.7秒差で、実績面ではっきり沈んどる。<br><br>9番, アンリーロード, -0.3, 都大路S5着（0.6秒差、89.8）や関越S11着は51kgの軽量での数字。重賞でも10〜12着が続いとる。今回55kgに増えるけん割り引く。<br><br>10番, オールナット, -0.3, 昨年のチャレンジC（GIII）を1着・指数91.6で勝っとるけど、その後は10着・13着・15着と指数が84.0→82.7→69.4まで落ちとる。59kgのトップハンデも重い。<br><br>11番, ジーティーアダマン, +0.6, チャレンジC3着（0.2秒差、91.0）、小倉記念6着（0.5秒差）、都大路S3着（京都芝1800m、0.4秒差、91.6）。重賞でずっと掲示板前後に来とって、このメンバーで一番安定しとる。<br><br>12番, ディールメーカー, +0.4, ラジオNIKKEI賞（GIII）2着（0.2秒差、90.9）、NZT（GII）4着（0.3秒差、89.9）と3歳重賞で上位。古馬相手の京成杯AHも0.6秒差の8着で、55kgならこのクラスで通用する。<br><br>13番, ガイアメンテ, +0.7, この舞台の都大路S（L）を1:43.4・指数95.4で勝っとって、指数はメンバー中トップ。その後も小倉記念4着（0.3秒差、90.1）、チャレンジC6着（0.4秒差）と重賞で崩れとらん。実績では一番上。<br><br>14番, サブマリーナ, +0.3, 大阪城S（L、芝1800m）で2着・0.1秒差・指数93.1。前走のポートアイSも5着・0.5秒差でまとまっとる。ただエプソムCは11着で、重賞では一枚足りん。<br><br>15番, タガノエルピーダ, -0.2, 安土城S2着（92.4）や朱鷺S6着（0.0秒差）と指数は高いけど、全部1400〜1600mでの数字。1800mでの実績が無いけん少し下げる。<br><br>16番, レディーヴァリュー, -0.2, 巴賞（OP）2着（0.5秒差、88.9）はあるけど、重賞は15着・16着と大敗が続いとる。重賞級が揃ったここでは割り引く。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: 0.1, &quot;3&quot;: -0.3, &quot;4&quot;: -0.2, &quot;5&quot;: -0.6, &quot;6&quot;: 0.0, &quot;7&quot;: -0.2, &quot;8&quot;: -0.8, &quot;9&quot;: -0.3, &quot;10&quot;: -0.3, &quot;11&quot;: 0.6, &quot;12&quot;: 0.4, &quot;13&quot;: 0.7, &quot;14&quot;: 0.3, &quot;15&quot;: -0.2, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;実績の上位は、同舞台の都大路Sを指数95.4で勝ち重賞でも0.3〜0.4秒差に収まるガイアメンテ（+0.7）と、重賞で3着・6着・3着と安定するジーティーアダマン（+0.6）。3歳重賞で2着・4着のディールメーカー（+0.4）、大阪城S2着・指数93.1のサブマリーナ（+0.3）が続く。小倉記念勝ちのゼンダンハヤブサは52kgの軽ハンデでの勝利なので中立。大敗続きのアスクドゥポルテ（-0.8）と、重賞で指数が低迷するエラトー（-0.6）は大きく下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)斤量の扱いが不統一ではないか：6番・9番・10番は斤量で減点しとるのに、2番バレエマスターの根拠（新潟大賞典2着）は55kgのハンデ戦で今回58kg。13番ガイアメンテの都大路S勝ちは56kg、今回58kgで11番ジーティーアダマン（57kg）との斤量差が逆転し、直近チャレンジCは11番が先着。13番&gt;11番の並びと2番の+評価は見直す余地はないか。(2)重賞0.6〜0.8秒差・指数87.5前後の同じような負けを、12番ディールメーカー（京成杯AH8着）は『通用』、14番サブマリーナ（エプソムC11着）は『一枚足りん』、4番ナムラエイハブは『足りとらん』と逆に読んどらんか。14番は58kgで指数93.1（メンバー2位）、12番の最高は3歳限定重賞の90.9。12番&gt;14番は実績で説明できるか。(3)6番ゼンダンハヤブサ0.0は甘くないか：好走は52kgでの1走だけで、それ以外は指数82〜84台。9番を軽量の数字として下げた基準と揃っとらん。(4)1番オーロラエックスは理由が『下降』なのに+0.1で向きが逆。同じ形（1年前に勝ち→崩れ）の10番オールナット−0.3と0.4差を付ける根拠を明確に。(5)15番タガノエルピーダは忘れな草賞（L・芝2000m）勝ちがあり『1800mの実績が無い』は事実と食い違うのでは。指数は上位なのに2番より下でよいか。(6)7番アスクカムオンモア（14か月休み・重賞の実績はチャレンジC7着だけ）と、近走で指数87〜89を重ねとる4番ナムラエイハブが同じ−0.2で釣り合うか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ数字で確かめ直したけん、その結果を書くね。<br><br>- **(1) 斤量の扱い**: 指摘は正しかった。2番の指数91.5は55kgのときの数字で、57〜58kgを背負ったときは86.8〜88.3しか出とらん。だけん0.0に下げる。13番と11番は、同じ斤量やった小倉記念で13番が先着、チャレンジCでは11番が先着しとる。都大路Sは13番が1kg軽くて0.4秒先着。今回13番が1kg重くなるけん、2頭とも+0.6で並べる。<br>- **(2) 12番と14番の比較**: これも指摘のとおりやった。14番は58kgで古馬相手に93.1を出しとる。12番の最高は3歳限定重賞での90.9。だけん14番を上（+0.4）、12番を下（+0.3）にする。4番は重賞・リステッドで0.4〜0.8秒差・87〜89を続けとって12番の京成杯AHと同じくらいやけん、-0.1に戻す。<br>- **(3) 6番**: 受け入れる。好走は52kgのときの1回だけで、それ以外は82〜85しか出とらん。だけん-0.2にする。9番は55kgでも重賞で86.7を出しとるけん、6番と同じ-0.2に揃える。<br>- **(4) 1番**: P の向きを直して0.0にする。10番より上に置く理由ははっきりしとる。1番は1800mで90.6と89.8を出しとるのに、10番は1800mの鳴尾記念でも84.0で、今回は59kgを背負う。<br>- **(5) 15番**: こっちの事実誤認やった。忘れな草賞（芝2000m）の勝ちがあるけん、+0.1に上げる。<br>- **(6) 7番**: 14か月ぶりの実戦は割り引くべきやけん、-0.2のままにする。<br><br>1番, オーロラエックス, +0.0, 1800mでは昨年のこのレースを勝って90.6、5か月前の都大路S（同じ舞台）も6着・0.6秒差・89.8でまとまっとる。ただ2000m以上だと78〜82に落ちて全体では下降気味やけん、差し引きで中立にする。<br><br>2番, バレエマスター, +0.0, 新潟大賞典2着（0.1秒差・91.5）は55kgの軽ハンデでの数字。57〜58kgではジューンS6着（88.3）・新潟記念10着（86.8）止まりで、今回は58kgやけん上積みは見込まん。<br><br>3番, コルレオニス, -0.3, 前走の西宮S（3勝クラス）勝ちは7頭立てでスローに逃げた1:47.5・89.1。その前の3勝クラスでは10着・3着・5着で指数77.8〜83.5やけん、昇級初戦のオープンでは割り引く。<br><br>4番, ナムラエイハブ, -0.1, 小倉記念5着（0.4秒差・89.3）と、都大路S・ジューンSは0.6〜0.8秒差で87〜88。このクラスとほぼ互角の数字やけど、前走のオクトーバーSが13着・80.6やったけん少しだけ下げる。<br><br>5番, エラトー, -0.6, 重賞・OPで13着・4着・13着・12着、指数は76.7〜83.5に低迷しとる。勝ったのは条件戦の壇之浦Sだけで、オープン級の実績では明らかに見劣りする。<br><br>6番, ゼンダンハヤブサ, -0.2, 小倉記念の勝ち（92.4）は52kgでの1回だけで、それ以外は3勝クラス5着が3回（82〜85）、58kgの札幌記念も11着・1.3秒差・83.8。今回58kgやけん、実績の額面は割り引く。<br><br>7番, アスクカムオンモア, -0.2, チャレンジC7着（0.3秒差・89.2）は出しとるけど、重賞の実績はこれだけで、新潟記念は12着・85.4。しかも14か月ぶりの実戦で近走の裏付けが無いけん少し下げる。<br><br>8番, アスクドゥポルテ, -0.8, 近4走は12着・12着・12着・6着。オールカマーは6.2秒差・47.7、福島民報杯も1.7秒差・77.7で、実績面ではっきり沈んどる。<br><br>9番, アンリーロード, -0.2, 都大路S5着（89.8）と関越S（87.6）は51kgでの数字やけど、55kgの福島牝馬Sでも0.5秒差・86.7を出しとる。重賞では10〜12着が続いとるけん、わずかに割り引く程度にする。<br><br>10番, オールナット, -0.3, 昨年チャレンジCを91.6で勝っとるけど、その後は84.0→82.7→69.4と落ち続けとって、同じ1800mの鳴尾記念でも10着・1.0秒差。今回は59kgのトップハンデも重い。<br><br>11番, ジーティーアダマン, +0.6, チャレンジC3着（0.2秒差・91.0）・小倉記念6着（0.5秒差・88.5）・都大路S3着（0.4秒差・91.6）と、全部57kgで崩れとらん。今回も57kgで、ガイアメンテより1kg軽くなるけん同じ評価にする。<br><br>12番, ディールメーカー, +0.3, ラジオNIKKEI賞2着（0.2秒差・90.9）とNZT4着（0.3秒差・89.9）は、どちらも3歳限定重賞での数字。古馬相手の京成杯AHは54kgで8着・0.6秒差・87.5やけん、サブマリーナより一段下に置く。<br><br>13番, ガイアメンテ, +0.6, この舞台の都大路Sを1:43.4・95.4で勝っとって、指数はメンバー中トップ。小倉記念4着（90.1）・チャレンジC6着（89.4）とも崩れとらんけど、95.4は56kgでの数字で今回は58kgやけん、ジーティーアダマンと並べる。<br><br>14番, サブマリーナ, +0.4, 大阪城S（L・芝1800m）2着（0.1秒差・93.1）は58kgで古馬相手に出したもので、メンバー2位の指数。前走のポートアイSも58kgで0.5秒差・88.1、エプソムCも0.7秒差・87.6で、重賞でも大きくは負けとらん。<br><br>15番, タガノエルピーダ, +0.1, 忘れな草賞（L・芝2000m）を勝っとって距離の実績もある。近走は安土城S2着（92.4）・朱鷺S6着（0.0秒差・89.6）・まほろばS（90.4）と指数は上位で、55kgで出られるけんわずかに上げる。<br><br>16番, レディーヴァリュー, -0.2, 巴賞（OP）2着（0.5秒差・88.9）はあるけど、重賞は15着・16着（75〜79）と大敗が続いとる。重賞級が揃ったここでは割り引く。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.0, &quot;2&quot;: 0.0, &quot;3&quot;: -0.3, &quot;4&quot;: -0.1, &quot;5&quot;: -0.6, &quot;6&quot;: -0.2, &quot;7&quot;: -0.2, &quot;8&quot;: -0.8, &quot;9&quot;: -0.2, &quot;10&quot;: -0.3, &quot;11&quot;: 0.6, &quot;12&quot;: 0.3, &quot;13&quot;: 0.6, &quot;14&quot;: 0.4, &quot;15&quot;: 0.1, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;斤量の基準を揃えて見直した。2番(91.5は55kgでの数字)を+0.1から0.0、6番(好走は52kgの1回だけ)を0.0から-0.2に下げ、9番は55kgでも86.7があるので-0.2に戻した。13番は95.4が56kgでの数字で今回58kgなので+0.6に下げ、11番と同評価にした。14番(58kgで古馬相手に93.1)を+0.4、12番(3歳限定重賞での数字)を+0.3とし、序列を入れ替えた。1番は下降の評価に合わせて0.0にし、1800mの実績で10番(-0.3)より上に置いた。15番は2000m L勝ちの見落としを訂正して+0.1にした。4番は重賞・Lで87〜89を出しているので-0.1に上げ、7番は14か月ぶりなので-0.2のままとした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>**展開予想**<br>京都の芝1800m外回りは、向正面のポケットからスタートします。最初のコーナーまで約900mあるため、枠の差は小さめです。3コーナーの坂を越えたあとは、約400mの平坦な直線での速さ比べになりやすいコースです。逃げそうなのは3番コルレオニス（前走は逃げ切り）と12番ディールメーカー（ラジオNIKKEI賞で1-1-1-1）です。15番タガノエルピーダは距離延長なので、無理にハナを奪いに行くとは考えにくいと見ます。<br>想定する隊列は次のとおりです。<br>- 3番が内から主導権を握り、12番が外2番手につける。<br>- その直後に4番ナムラエイハブ、16番レディーヴァリュー、15番、11番ジーティーアダマンが好位に並ぶ。<br>- 1番オーロラエックス、7番アスクカムオンモア、13番ガイアメンテが中団を進む。<br>- 9番、14番、2番、10番、6番、8番が後方に控える。<br><br>ペースは平均からやや遅めになると見ています。直線では好位から抜け出す馬と、粘り込む逃げ・先行馬の争いが本線です。<br>ただし3番・12番・15番が競り合ってペースが流れる別の展開もあり得るので、逃げ馬の評価は控えめにしました。稍重のぶん、瞬発力勝負の切れよりもパワーが少し要ります。<br><br>**ステップ1. 全馬の評価**<br><br>1番, オーロラエックス, +0.2, 昨年のこのレースと都大路Sで、6〜7番手から運ぶ形がこのコースで合っていた。1枠から距離ロスなく中団の内を進めるのはわずかに有利。<br><br>2番, バレエマスター, 0.0, 9〜12番手からの差し脚は長い直線向き。ただ平均以下のペースでは届きにくく、内枠で包まれる心配もあるので差し引きゼロ。<br><br>3番, コルレオニス, +0.4, 内枠から楽にハナを取れる最有力候補で、平均ペースなら直線で粘り込める。12番に外から突かれてペースが速くなる展開もあり得るので、少し割り引いた。<br><br>4番, ナムラエイハブ, +0.3, 本来は2〜3番手で運ぶ先行馬で、2枠から逃げ馬の直後の内を取れる。516kgのパワー型なので稍重も合う。<br><br>5番, エラトー, +0.1, 3〜4番手につける先行力がある。重馬場の巴賞でも4着と崩れていないので、前寄りの位置取りにわずかに分がある。<br><br>6番, ゼンダンハヤブサ, -0.1, 中団より後ろで速い上がりを使う馬で、良馬場の瞬発力勝負が得意。稍重で平均以下のペースでは切れが鈍る。<br><br>7番, アスクカムオンモア, +0.2, 3番手前後から運べる先行・好位型。4枠から好位の外を楽に取れる並びで、前が残りやすい展開とかみ合う。<br><br>8番, アスクドゥポルテ, -0.4, 12〜15番手の追い込みで、長い距離が得意な脚質。平均以下のペースの1800mでは位置が後ろすぎて届かない。<br><br>9番, アンリーロード, -0.2, 12〜14番手から32秒台の上がりを使う追い込み型。前が止まりにくい流れと稍重では、届く場面が少ない。<br><br>10番, オールナット, -0.2, 中団より後ろから運ぶ馬で、59kgを背負って稍重で後ろから外を回すのは苦しい。速い流れになったときだけ出番がある。<br><br>11番, ジーティーアダマン, +0.5, 4〜5番手の好位で安定して運べるのが最大の強み。どのペースでも理想の位置にいられ、都大路Sでもこの形で3着だった。外枠も最初のコーナーが遠いので問題ない。<br><br>12番, ディールメーカー, +0.4, ラジオNIKKEI賞で逃げて2着の先行馬で、川田騎手なら2番手から3番を見る形が取れる。3番と競り合わなければ、前残りの主役になる。<br><br>13番, ガイアメンテ, +0.1, 中団から運んで都大路Sをこのコースで勝っており、位置取りの形は合っている。7枠でやや外を回りそうなので、プラスはわずか。<br><br>14番, サブマリーナ, -0.2, 中団より後ろからの差し馬で、7枠から外を回る可能性が高い。平均以下のペースでは差し届きにくい。<br><br>15番, タガノエルピーダ, -0.1, 1400〜1600mで逃げ・先行してきた馬。8枠から前に行けば道中で力みやすく、1800mでは最後に脚が鈍る心配がある。<br><br>16番, レディーヴァリュー, +0.2, 2〜3番手から運ぶ先行馬で、重の巴賞2着、稍重の大原S勝ちと渋った馬場で前に行けるのが強み。8枠の外を回るロスを差し引いて小幅なプラス。<br><br>**ステップ2. JSON**<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.0, &quot;3&quot;: 0.4, &quot;4&quot;: 0.3, &quot;5&quot;: 0.1, &quot;6&quot;: -0.1, &quot;7&quot;: 0.2, &quot;8&quot;: -0.4, &quot;9&quot;: -0.2, &quot;10&quot;: -0.2, &quot;11&quot;: 0.5, &quot;12&quot;: 0.4, &quot;13&quot;: 0.1, &quot;14&quot;: -0.2, &quot;15&quot;: -0.1, &quot;16&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;京都芝1800m外回り・稍重。最初のコーナーまで約900mあり枠の差は小さい。逃げ候補は3番コルレオニスと12番ディールメーカーで、平均からやや遅めのペースを本線とし、好位から抜け出す馬と粘り込む先行馬を上げた。最上位は好位で安定して運べる11番ジーティーアダマン。3番・12番・15番が競り合って流れる別展開も残るので、逃げ馬は+0.4に抑えた。8番・9番など後方待機の馬は、平均以下のペースと稍重で届きにくいとして下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①『平均以下のペースで前残り』の前提を見直してほしい。3・12・15・4・16・5番と先行馬が多く、1400m型の15番タガノエルピーダが8枠から行けばペースが上がる筋もある。同じコースの都大路Sでは13番ガイアメンテ(7-6)が勝ち、2-2の4番ナムラエイハブは7着で、前残りの裏付けにならない。前提が崩れれば3・4・7・12番の加点と2・6・9・14番の減点が両方とも効きすぎる。②枠の扱いが一貫していない。11番ジーティーアダマンは『最初のコーナーが遠いので外枠は問題ない』としながら、13・14・16番は外枠で減点。1番オーロラエックスの『1枠で距離ロスなし』も同じ理屈なら小さくなるし、同じ1枠の2番バレエマスターだけに『包まれる』リスクを付けている。1番オーロラエックスは最近10-10-13-14、16-16-14-14で、6〜7番手の想定は楽観的ではないか。③1番オーロラエックス(+0.2)が13番ガイアメンテ(+0.1)より上、9番アンリーロード(-0.2)と0.4差なのは、都大路Sで1番と9番が同じ0.6秒差、13番が勝ちだったことと合わない。④競り合いリスクを3番コルレオニスだけに付け、競りかける側の12番ディールメーカーには付けていない。本来の逃げ馬は12番で、前走は2-5-6と飲み込まれている。⑤7番アスクカムオンモアは14か月の休み明け(太めも良化中)で通過順もばらつき、『3番手を楽に取れる』は根拠が弱い。先行が安定している5番エラトーより上に置く理由は何か。⑥4番ナムラエイハブは2週前に18-17-17と位置を取れなかった直後で、位置取りリスクを差し引いていない。⑦6番ゼンダンハヤブサは小倉記念8-6-7-6など実際は中団で、1番オーロラエックスとほぼ同じ位置なのに+0.2と-0.1で分かれている。2番バレエマスター(0.0)と14番サブマリーナ(-0.2)も位置取りが似ていて、差の根拠が薄い。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキー、批判者の指摘を一つずつ確かめて、納得できたところだけ P を見直したけんね。<br><br>**今回の展開の想定**<br>3番コルレオニスがハナを取りそうで、12番ディールメーカーと15番タガノエルピーダが外から競りかけてくる形になりそうっちゃん。そのすぐ後ろに16番・5番・4番、さらに11番が4〜5番手の外。13番・1番・6番は中団で、2番・9番・14番・8番は後ろから行く並びになると見とる。<br><br>京都外回りの1800mは最初のコーナーまでの直線が長いけん、先行争いが激しくならずに平均ペースで流れることが多いと。ただ、前に行きたい馬が6〜7頭おって馬場も稍重やけん、少し速くなる筋もちゃんと残っとる。同じコースの都大路Sでは、中団にいた13番が勝って、2番手にいた4番は7着やった。これを踏まえて、前が残る想定にかけとった重みを下げたっちゃん。<br><br>**指摘ごとの判断**<br>- ①は受け入れたとよ。先行馬への加点と後ろの馬への減点を、どっちも小さくしたけんね。<br>- ②も受け入れたと。このコースは最初のコーナーまでが遠いけん、枠の有利不利はもともと小さいっちゃん。それで1番の内枠への加点と、14番の外枠への減点を小さくしたとよ。<br>- ③④⑤⑥⑦も、指摘のとおりやと思うけん直したっちゃん。<br>- 11番だけは据え置いたと。どんなペースでも好位にいられる強みは、ペースの想定が変わっても揺らがんけんね。<br><br>1番, オーロラエックス, +0.1, 最近の2000m以上のレースでは後方からやったけど、このコースでは都大路Sで6-6、昨年のカシオペアSで勝ったときも中団から運べとる。最初のコーナーが遠いので1枠の利はほとんど無く、このコースで中団から運べる点だけを小さく評価する。<br><br>2番, バレエマスター, -0.1, 9〜12番手からの差し。ペースが速くなれば届く余地はあるけど、平均ペースなら後ろすぎるので、わずかなマイナスにとどめる。<br><br>3番, コルレオニス, +0.3, 内枠からハナを取れる最有力候補で、平均ペースなら粘り込める。12番・15番に外から競られてペースが速くなる展開もあり得るので、+0.4から下げた。<br><br>4番, ナムラエイハブ, +0.1, 本来は2〜3番手の先行馬で、2枠から逃げ馬の後ろの内を取れる並び。ただ前走は18-17-17と位置を取れておらず、都大路Sは2-2から7着で前残りの裏付けにもならないので、小さなプラスにとどめる。<br><br>5番, エラトー, +0.2, 3〜4番手の先行が安定していて、重馬場の巴賞でも4-4-4-4で運べた。稍重でも前目の位置を取れる確実さを評価する。<br><br>6番, ゼンダンハヤブサ, 0.0, 実際の位置取りは8-6-7-6や6-6など中団で、1番とほぼ同じ形。稍重で瞬発力が鈍る心配と、平均ペースで中団にいられる良さが打ち消し合うので中立にする。<br><br>7番, アスクカムオンモア, 0.0, 14か月の休み明けで、通過順も3-3から9-8までばらついている。3番手を楽に取れる根拠は弱いので、位置取りでは評価しない。<br><br>8番, アスクドゥポルテ, -0.3, 12〜15番手からの追い込みで、1800mでは位置が後ろすぎる。ペースが速くなる展開も考えて-0.4から少し戻すけど、届く場面はかなり限られる。<br><br>9番, アンリーロード, -0.1, 12〜14番手からの追い込み。都大路Sでは1番と同じ0.6秒差まで来ていたし、ペースが上がれば届く余地もあるので、マイナスは小さくする。<br><br>10番, オールナット, -0.1, 中団より後ろから運ぶ馬で、稍重で外を回すと苦しい。ただペースが速くなれば差し込める位置ではあるので、わずかなマイナスにとどめる。<br><br>11番, ジーティーアダマン, +0.5, 4〜5番手の好位で安定して運べるので、平均ペースでも速いペースでも理想の位置にいられる。このコースの都大路Sでもその形で3着だった。ペースの想定が変わっても揺らがない有利さ。<br><br>12番, ディールメーカー, +0.2, ラジオNIKKEI賞を逃げて2着の先行馬だけど、3番を競り落とす側に回ると自分もペースを上げる負担を負う。前走は2-5-6と飲み込まれてもいるので、+0.4から下げた。<br><br>13番, ガイアメンテ, +0.2, このコースの都大路Sを7-6の中団から勝っていて、ペースが平均でも速くても届く位置にいられる。最初のコーナーが遠いので7枠の不利はほとんど無い。<br><br>14番, サブマリーナ, -0.1, 中団より後ろからの差しで、位置取りは2番に近い。外枠の不利は小さく、稍重のポートアイランドSでも7-6から運べているので、わずかなマイナスにとどめる。<br><br>15番, タガノエルピーダ, -0.1, 1400〜1600mで逃げや先行をしてきた馬で、8枠から行けばペースを上げる役になりやすい。1800mでは最後に脚が鈍る心配がある。<br><br>16番, レディーヴァリュー, +0.2, 2〜3番手から運ぶ先行馬で、重馬場の巴賞を3-3-3-3で2着、稍重の大原Sを2-2-2-1で勝っている。渋った馬場で前に行ける点を評価する。8枠の不利はこのコースでは小さい。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: -0.1, &quot;3&quot;: 0.3, &quot;4&quot;: 0.1, &quot;5&quot;: 0.2, &quot;6&quot;: 0.0, &quot;7&quot;: 0.0, &quot;8&quot;: -0.3, &quot;9&quot;: -0.1, &quot;10&quot;: -0.1, &quot;11&quot;: 0.5, &quot;12&quot;: 0.2, &quot;13&quot;: 0.2, &quot;14&quot;: -0.1, &quot;15&quot;: -0.1, &quot;16&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;先行馬が多く稍重のため、ペースが速くなる展開も考えて、前残りの加点と差し・追込の減点をどちらも縮めた。京都外回り1800mは最初のコーナーが遠いので、枠の有利不利は全馬で小さくそろえた。競り合いの負担は3番だけでなく12番にも付けた。前走で位置を取れなかった4番と、14か月の休み明けの7番は位置取りの加点を外した。13番(都大路Sを中団から勝利)は1番より上に置き、位置取りが似ている1番と6番、2番と14番の差は詰めた。11番は好位を取る力がペースに左右されないので+0.5を据え置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、カシオペアSを体調派の目で見てみたけん、並べるね。<br><br>1番, オーロラエックス, +0.2, 前走484kg(-10)から+6kgの490kgで、昨年このレースを勝った488kgや普段の488〜494kgに戻っとる。斤量は55kgから1kg増えるけど、約3か月半休んだ後に坂路を馬なりで「まずまず仕上がる」と出とるけん、わずかにプラスやね。<br><br>2番, バレエマスター, -0.3, 472kgは新潟大賞典2着のときと同じ体重で数字に不安はなか。ただ7歳で斤量が57kgから58kgに1kg増え、調教は稍一杯に追って「反応ひと息」やけん、仕上がりにひと押し足りん。<br><br>3番, コルレオニス, +0.3, 前走勝ったときと同じ460kgを中7週で保っとって、体重がぶれとらん。斤量は58kgから57kgへ1kg減で、調教も「一息入るも上々」と言われとるけん、状態は維持できとると見る。<br><br>4番, ナムラエイハブ, 0.0, 中1週の詰まったローテで+8kgの516kgやけど、都大路Sのときと同じ体重で、太ったというより元の体に戻した範囲。坂路53.2-24.6で「力強い脚捌き」と動きはよか反面、詰まった間隔での疲れも残っとるかもしれんけん、差し引きで中立にしとる。<br><br>5番, エラトー, +0.2, -14kgと大きく減っとるけど、+16kgで太かった前2走の512kgから、壇之浦Sを勝ったときの490kgに近いところまで絞れたと読む。12週休んでの減りやけん消耗とは考えにくい。ただ調教は「特に変わらず」で、上向いとる気配までは無い。<br><br>6番, ゼンダンハヤブサ, -0.4, 普段442〜450kgの小柄な馬が+12kgの456kgで、これまでで一番重い。調教も「徐々に良化見せる」と、まだ途中の段階。小倉記念を勝ったときの52kgから6kg重い58kgで、6馬身ぶんくらいの負担になるけん、この馬格には厳しい。<br><br>7番, アスクカムオンモア, -0.4, 約13か月ぶりの休み明けで、調教コメントがはっきり「太めも良化中」と言っとる。坂路52.9-12.0を一杯に追って動いてはおるけど、498kg(+4)は普段の488〜496kgより重めで、まだ仕上がりきっとらん。<br><br>8番, アスクドゥポルテ, +0.2, 休み明けで走った前走は重馬場で6.2秒差の大敗やったけど、5週空いて体重は478kg(-2)と安定しとる。叩き2走目で「ひと叩き素軽さ出」とコメントも上向いとるけん、疲れより上がり目の方を取る。<br><br>9番, アンリーロード, -0.3, 体重は478kgから486kgへ少しずつ増えとって、調教も「仕上がり良好」と状態は安定。ただ前2走の51kgから55kgへ4kg増えて、ざっと4馬身ぶん厳しくなるけん、斤量の不利が勝る。<br><br>10番, オールナット, -0.1, 526kg(-4)はチャレンジCを勝ったときの524kgに近くて、体はちゃんと戻っとる。59kgは出走馬で一番重いけど大きい馬やけん響き方は小さめ。それでも57.5kgから1.5kg増えるし、調教は「動きまずまず」止まりやけん、わずかにマイナス。<br><br>11番, ジーティーアダマン, +0.4, 502kg(+6)はよく走った496〜512kgのちょうど真ん中で、中6週と間隔もちょうどよか。CWで1F11.4を馬なりで出して「高いレベルで安定」、斤量も前走と同じやけん、状態は安心できる。<br><br>12番, ディールメーカー, +0.3, 494〜498kgの間でぶれがなく、中7週で496kg(+2)。美浦からの長距離輸送はあるけど、「手応え十分」の馬なり調整。3歳で55kgは古馬の57〜58kgより2〜3kg軽くて、496kgの馬格なら負担は軽い。<br><br>13番, ガイアメンテ, +0.2, 492〜496kgでずっと安定しとって、都大路Sを勝ったとき(492kg)とほぼ同じ状態。「脚取り確か」で1F11.4と動きもよか。ただ斤量はそのときの56kgから2kg重い58kgで、約2馬身ぶん割り引く。<br><br>14番, サブマリーナ, 0.0, 叩き2走目で体重は478〜482kgの安定圏の480kg、CWの1F11.3も鋭い。一方で調教評価が「落ち着き欲しい」で、気持ちが入りすぎる心配があるけん、上がり目と相殺して中立。<br><br>15番, タガノエルピーダ, +0.4, 前走の490kg(+6)から-6kgの484kgに戻して、安土城S2着のときの480kg前後に近づいとる。CWで65.7を強めに追って「仕上がり良好」、斤量も前走と同じ55kgで、体調面の材料がよう揃っとる。<br><br>16番, レディーヴァリュー, +0.1, 小柄な馬やけど462kg(+2)は前走の巴賞2着のときの460kgとほぼ同じで、斤量も同じ55kg。今週の坂路60.0は軽めやけど「先週好時計」で、本追いは先週に済ませとる形。小柄な馬に55kgやけん、わずかなプラスにとどめる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.3, &quot;3&quot;: 0.3, &quot;4&quot;: 0.0, &quot;5&quot;: 0.2, &quot;6&quot;: -0.4, &quot;7&quot;: -0.4, &quot;8&quot;: 0.2, &quot;9&quot;: -0.3, &quot;10&quot;: -0.1, &quot;11&quot;: 0.4, &quot;12&quot;: 0.3, &quot;13&quot;: 0.2, &quot;14&quot;: 0.0, &quot;15&quot;: 0.4, &quot;16&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;全馬の調子矢印が→で、体調だけで抜けとる馬はおらんけん、振り幅は±0.4以内に収めた。上げたのは、よく走った体重帯で安定し調教評価も高いジーティーアダマン(+0.4)とタガノエルピーダ(+0.4)。体重を保ち斤量が1kg減るコルレオニスと、3歳で55kgと軽いディールメーカーも+0.3。下げたのは、小柄な馬が過去最高の+12kgで58kgを背負うゼンダンハヤブサ(-0.4)、13か月の休み明けで調教コメントが太めを認めとるアスクカムオンモア(-0.4)、斤量が51kgから4kg増えるアンリーロードと、調教の反応がひと息のバレエマスター(各-0.3)。エラトーの-14kgは前2走の太めが絞れたものと読み、わずかにプラスにした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①斤量の基準が馬ごとにブレている：6番ゼンダンハヤブサは前走札幌記念も58kgなのに小倉記念52kgと比べ、9番アンリーロードは福島牝馬Sで55kgを経験済みなのに51kgと比べて減点。一方で4番ナムラエイハブ(56→57kg)と12番ディールメーカー(54→55kg)の+1kgには触れていない。前走比か勝ったとき比か基準を揃えて見直してはどうか。②1番オーロラエックス(+0.2)と10番オールナット(-0.1)は休み明けの長さ・坂路馬なりの時計・『まずまず』の評価がほぼ同じで差の説明がつかない。10番は体重が538→526kgと勝ったときの524kgへ戻ってきている。③8番アスクドゥポルテは前走が重馬場で6.2秒差・上がり42.4の大敗で、反動の方を心配すべきでは。前走普通に走れて1F11.3の14番サブマリーナ(0.0)より上なのは逆ではないか。④5番エラトーの休み明け-14kgを消耗でないとする根拠がない。498kgは13着時の496kgに近く、調教も『特に変わらず』。⑤15番タガノエルピーダの484kgはしらさぎS12着と同じ体重で好材料と言い切れない。同じ『仕上がり良好』の9番との0.7差も斤量の扱い次第。⑥4番の中1週+8kg、6番の4歳+12kgを成長と読む余地、12番の長距離輸送と遅めの3F39.0、7番が出走馬中いちばん速い坂路52.9を一杯で出しているのに-0.4、も再確認を。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, オーロラエックス, +0.2, 前走は484kg(-10)で減りすぎとったけど、今回は普段の488〜494kgの範囲の490kgに戻っとる。斤量は前走比+1kgで、休み明けの坂路を馬なりで「まずまず仕上がる」やけん、わずかなプラスのままにしとくね。<br><br>2番, バレエマスター, -0.3, 472kgは新潟大賞典2着と同じ体重で、数字には不安なか。ただ7歳で斤量は前走比+1kgの58kg、調教は稍一杯に追って「反応ひと息」やけん、仕上がりにひと押し足りんと見とる。<br><br>3番, コルレオニス, +0.3, 前走勝ったときと同じ460kgを中7週で保っとる。斤量は前走比-1kgの57kgで、出走馬の中で数少ない斤量減。調教も馬なりで「一息入るも上々」やけん、状態はそのまま維持できとる。<br><br>4番, ナムラエイハブ, -0.1, 516kgは都大路Sと同じで、太め残りとは言えん範囲。ただ中1週で+8kg、斤量も前走比+1kgになっとる。坂路53.2で「力強い脚捌き」と動きはよかけど、間隔の詰まりと斤量増を合わせてわずかにマイナスにしたとよ。<br><br>5番, エラトー, 0.0, 体重の推移は490→496→512→512→498kgで、太かった512kgからは絞れとる。けど12週休んだあとの-14kgを「絞った」と言い切れる根拠は無いし、498kgは福島牝馬S13着の496kgに近い。調教も「特に変わらず」やけん、プラスを取り消して中立にしたっちゃん。<br><br>6番, ゼンダンハヤブサ, -0.2, 前走の札幌記念も58kgやけん、斤量は前走比で増えとらん。小倉記念の52kgと比べたのは基準がぶれとったけん撤回するね。それでも普段442〜450kgの馬がこれまでで一番重い456kg(+12)で、調教も「徐々に良化見せる」とまだ途中。4歳の成長分も考えて減点は小さくしたとよ。<br><br>7番, アスクカムオンモア, -0.3, 坂路52.9は出走馬で一番速くて、体はちゃんと動いとる。ただ一杯に追ってのこの時計で、コメントもはっきり「太めも良化中」。498kgは普段の488〜496kgの上限を超えとって、約13か月ぶりの休み明けとしてはまだ仕上がりきっとらん。<br><br>8番, アスクドゥポルテ, 0.0, 478kg(-2)で体重は安定しとって、調教も「ひと叩き素軽さ出」と上向き。けど前走は重馬場で上がり42.4、6.2秒差まで消耗した大敗やけん、その疲れが残っとるかもしれん。中5週の上がり目と疲れの不安で差し引きゼロにしたっちゃん。<br><br>9番, アンリーロード, -0.1, 体重は478kgから486kgへ少しずつ増えとって、調教も「仕上がり良好」と状態は安定。斤量は前走比+4kgで1〜2馬身ぶんくらいの負担増になるけど、福島牝馬Sでは55kgで0.5秒差に走れとるし486kgの馬格もあるけん、減点はわずかにとどめるね。<br><br>10番, オールナット, +0.1, 体重は538→532→530→526kgと少しずつ減って、チャレンジCを勝ったときの524kgに戻ってきとる。1番と同じく休み明けで坂路を馬なり、評価も「まずまず」の水準。斤量は前走比+1.5kgのトップハンデ59kgやけど、526kgの馬格やけん1番の56kgと比べて体重に対する割合は変わらん。1番よりわずかに下にしとる。<br><br>11番, ジーティーアダマン, +0.4, 502kg(+6)はよく走った496〜512kgのちょうど真ん中で、中6週と間隔もちょうどよか。CWで1F11.4を馬なりで出して「高いレベルで安定」、斤量も前走と同じやけん、状態は安心できる。<br><br>12番, ディールメーカー, +0.2, 494〜498kgの間でぶれがなく、今回も496kg(+2)。斤量は前走比+1kgやけど、3歳で55kgは古馬より軽くて、この馬格なら負担は小さか。ただ美浦からの長距離輸送があるし、3F39.0とゆったりした調整やけん、少し割り引いたとよ。<br><br>13番, ガイアメンテ, +0.3, 492〜496kgでずっと安定しとって、都大路Sを勝ったときの492kgとほぼ同じ状態。斤量は前走のチャレンジC(57kg)から+1kgで、前に言うた2kg増は基準の取り違えやったけん直すね。「脚取り確か」で1F11.4と動きもよかけん、少し上げたっちゃん。<br><br>14番, サブマリーナ, +0.1, 叩き2走目で体重は478〜482kgの安定圏にある480kg。前走は普通に走れとって反動の心配も無いし、CWの1F11.3は鋭か。「落ち着き欲しい」で気持ちが入りすぎる不安は残るけど、上がり目のほうを少しだけ取るね。<br><br>15番, タガノエルピーダ, +0.3, 484kgはしらさぎS12着と同じ体重やけど、睦月S4着は486kg、安土城S2着は480kgで、480〜486kgは普段の範囲。体重そのものは好材料とまでは言えん。ただCWを強めに追って65.7、「仕上がり良好」で斤量も前走と同じやけん、調教の分でプラスにしとる。<br><br>16番, レディーヴァリュー, +0.1, 小柄な馬やけど、462kg(+2)は前走の巴賞2着のときの460kgとほぼ同じで、斤量も同じ55kg。今週の坂路は軽めやけど「先週好時計」で、本追いは先週に済ませとる形やけん、わずかなプラスのままにしとくね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.3, &quot;3&quot;: 0.3, &quot;4&quot;: -0.1, &quot;5&quot;: 0.0, &quot;6&quot;: -0.2, &quot;7&quot;: -0.3, &quot;8&quot;: 0.0, &quot;9&quot;: -0.1, &quot;10&quot;: 0.1, &quot;11&quot;: 0.4, &quot;12&quot;: 0.2, &quot;13&quot;: 0.3, &quot;14&quot;: 0.1, &quot;15&quot;: 0.3, &quot;16&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;斤量の基準を前走比にそろえた。6番は前走も58kgやけん斤量の減点を撤回して体重増と調教だけで-0.2、9番は+4kgでも55kgで走れた実績と馬格を見て-0.1、13番は前走比+1kgに直して+0.3、4番と12番には+1kgを反映した。1番と10番は休み明け・調教の水準がほぼ同じで、体重も勝ったときの数字に戻っとるけん差を0.1に詰めた。8番は重馬場で大敗した疲れを見て0.0、14番は反動が無い叩き2走目として+0.1にして並びを逆にした。5番は-14kgを絞ったと言える根拠が無いけん0.0、15番は体重を好材料から外して+0.3。7番は坂路の時計の速さを認めて-0.3に緩めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>京都芝1800m外回り、稍重での血統面からの見立てです。外回りは長い直線で持続力が問われ、稍重なのでパワー型の血統がやや有利になります。馬場は稍重どまりなので、道悪への適性は控えめに補正しました。<br><br>1番, オーロラエックス, +0.3, 父サトノダイヤモンドに母父Galileoで、欧州色の濃いスタミナとパワー型の配合です。外回りの持続戦と稍重に合っており、昨年このレースを勝っているので京都1800mへの適性は実績でも裏付けられています。<br><br>2番, バレエマスター, -0.1, 父スピルバーグは東京向きの瞬発力型で、京都の稍重で上積みは見込みにくいです。7歳で、血統的にもこれから上向く時期ではありません。<br><br>3番, コルレオニス, +0.1, 父レイデオロ（キングカメハメハ系）に母父ファルブラヴでパワーが加わる配合で、1800mと稍重は許容範囲です。大きく上げるほどの要素はありません。<br><br>4番, ナムラエイハブ, +0.1, 父リアルスティールは1800mが本領の距離で、母父エンパイアメーカーの力強さは稍重で少しプラスです。ただ京都1800mの実績は平凡なので、わずかな傾きにとどめます。<br><br>5番, エラトー, +0.2, 父Saxon Warrior、母父Siyouniの欧州配合で、時計のかかる馬場は合います。重馬場の巴賞で4着もあり、稍重はわずかにプラスです。<br><br>6番, ゼンダンハヤブサ, 0.0, 父スマートオーディン（フジキセキ系）、母父アグネスタキオンです。1800〜2000mの守備範囲で、稍重への向き不向きは血統上どちらとも言えません。<br><br>7番, アスクカムオンモア, 0.0, 父ブリックスアンドモルタルに母父キングカメハメハの中距離配合で、今回の条件に特に強い傾きはありません。<br><br>8番, アスクドゥポルテ, 0.0, 父ハービンジャーは本来、京都の秋や道悪で浮上する血統です。ただ前走の重馬場で大敗していて、6歳で下降期でもあるため、プラスとマイナスが打ち消し合って中立です。<br><br>9番, アンリーロード, -0.1, 父リアルスティールなので1800mは合いますが、6歳の牝馬で上積みは薄いです。母父ジャングルポケットで稍重はこなせる程度です。<br><br>10番, オールナット, -0.1, 父サトノダイヤモンドで京都外回りの中距離は合いますが、526kgの大型馬です。稍重では七夕賞15着、新潟大賞典6着と道悪で崩れがちで、少し割り引きます。<br><br>11番, ジーティーアダマン, +0.4, 父ルーラーシップは京都外回りの持続戦と少し時計のかかる馬場が得意な系統です。晩成型でもあり、4歳秋の上昇期と噛み合っています。母父マンハッタンカフェのスタミナも1800mの稍重で生きます。<br><br>12番, ディールメーカー, +0.1, 父イスラボニータは1600〜1800m型で、母父ホワイトマズルの粘り強さから稍重の1800mもこなせます。3歳秋で古馬相手でも成長の余地があり、わずかにプラスです。<br><br>13番, ガイアメンテ, +0.4, 父ドゥラメンテはパワーと持続力に優れ、稍重も苦にしない系統です。同じ京都1800mの都大路Sを高い指数で勝っており、血統の示す適性と実績が一致しています。<br><br>14番, サブマリーナ, +0.1, 父スワーヴリチャードに母父Bernardiniでパワーが加わる配合です。2400mより1800mのほうが合い、稍重のポートアイSでも崩れなかったので、わずかにプラスです。<br><br>15番, タガノエルピーダ, -0.2, 父キズナに母父キングカメハメハで1800mも不可能ではありません。ただ近走は1400〜1600mで先行する形に適性が寄っており、距離延長はマイナスに出やすいです。稍重のしらさぎSも12着でした。<br><br>16番, レディーヴァリュー, +0.3, 父ジャスタウェイは時計のかかる馬場で浮上する血統です。重馬場の巴賞で2着、稍重の京都2000mの大原Sで勝利と道悪の実績も裏付けになっており、稍重はプラスです。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.1, &quot;3&quot;: 0.1, &quot;4&quot;: 0.1, &quot;5&quot;: 0.2, &quot;6&quot;: 0.0, &quot;7&quot;: 0.0, &quot;8&quot;: 0.0, &quot;9&quot;: -0.1, &quot;10&quot;: -0.1, &quot;11&quot;: 0.4, &quot;12&quot;: 0.1, &quot;13&quot;: 0.4, &quot;14&quot;: 0.1, &quot;15&quot;: -0.2, &quot;16&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;京都外回り1800mの稍重。持続力とパワーを持つ血統を上げた。ドゥラメンテ産駒で京都1800mの勝ち鞍がある13番と、晩成型ルーラーシップ産駒で4歳秋の上昇期にある11番を最上位(+0.4)とした。次いで道悪実績のあるジャスタウェイ産駒の16番と、母父Galileoの欧州型でこのレースの前年覇者の1番(+0.3)。マイル寄りに適性が移っているキズナ産駒の15番と、稍重で崩れがちな大型のサトノダイヤモンド産駒の10番は割り引いた。稍重どまりなので、道悪への補正は控えめにした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 13番ガイアメンテ+0.4と1番オーロラエックス+0.3は、主な根拠が良馬場の実績・指数で、血統派の軸から外れて能力評価を二重に数えていないか。13番の都大路S勝ちは良の速い時計で稍重適性の証明ではなく、母父Concorde&#x27;s Tuneにも触れていない。1番は唯一の稍重(七夕賞8着1.6秒差)で負けており、欧州パワー型で稍重向きという説明と食い違う。(2) 同じ父サトノダイヤモンドの10番オールナットは七夕賞15着で減点、1番は七夕賞8着が不問で扱いが揃っていない。10番の新潟大賞典稍重6着(指数87.1)を崩れとするのも強すぎないか。(3) 同じ父リアルスティールの4番ナムラエイハブ(+0.1)は1800m実績が7・8・9着と自分で平凡と認めながらプラスで、都大路Sで上の着順だった9番アンリーロードが年齢だけでマイナスになっている。年齢減点は2・8・9番だけで、1・16番には適用されていない。(4) 16番レディーヴァリューは稍重の中山牝馬S16着(1.8秒差)を見落としており、道悪の裏付けは割り引くべきでは。(5) 15番タガノエルピーダは忘れな草賞(2000m)を勝っており、距離延長マイナスの根拠が弱い。キズナは道悪で浮上しやすい系統でもある。(6) 8番アスクドゥポルテは2000〜3000m中心のハービンジャー×ハーツクライが1800mへ短縮される点を論じていない。(7) 付値合計が+1.5でプラスに偏っている。京都の稍重を時計がかかる馬場と見て、パワー系を一律に加点していないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, オーロラエックス, +0.1, 父サトノダイヤモンドに母父Galileoの欧州型スタミナ配合で、京都外回り1800mの持続戦には合います。ただ唯一の稍重だった七夕賞は8着（1.6秒差）で、道悪向きという見立ては実績で裏付けられていないため、+0.3から下げます。<br><br>2番, バレエマスター, -0.1, 父スピルバーグは東京向きの瞬発力型で、京都の稍重で上積みは見込みにくいです。稍重の新潟記念は0.5秒差で大崩れではありませんが、7歳で成長の上積みもないため、わずかに割り引きます。<br><br>3番, コルレオニス, +0.1, 父レイデオロに母父ファルブラヴでパワーが加わる配合で、1800mの距離は勝ち鞍とも合っています。稍重の実績はないので、わずかな傾きにとどめます。<br><br>4番, ナムラエイハブ, 0.0, 父リアルスティールなら1800mは合う距離ですが、本馬の1800m成績は7・8・9着と、血統の示す適性が着順に出ていません。母父エンパイアメーカーの力強さを含めても、プラスにする根拠が足りないため中立に直します。<br><br>5番, エラトー, +0.2, 父Saxon Warriorに母父Siyouniの欧州配合で、時計のかかる馬場は合います。重馬場の巴賞4着は近走で最もましな内容で、稍重はわずかにプラスです。<br><br>6番, ゼンダンハヤブサ, 0.0, 父スマートオーディンに母父アグネスタキオンで、1800〜2000mの守備範囲です。稍重への向き不向きは血統上どちらとも言えません。<br><br>7番, アスクカムオンモア, 0.0, 父ブリックスアンドモルタルに母父キングカメハメハの中距離配合で、今回の条件に特に強い傾きはありません。<br><br>8番, アスクドゥポルテ, -0.2, 父ハービンジャーに母父ハーツクライは2000〜3000mが中心のスタミナ型で、1800mへの短縮は血統面でマイナスです。京都の秋にハービンジャーが浮上しやすい点を差し引いても、前走の重馬場大敗と6歳という年齢を合わせて、少し下げます。<br><br>9番, アンリーロード, 0.0, 父リアルスティールで1800mは合い、母父ジャングルポケットなので稍重もこなせます（中山牝馬Sの稍重は0.7秒差）。6歳牝馬で上積みは薄いものの、距離適性で相殺されるため中立に直します。<br><br>10番, オールナット, -0.1, 父サトノダイヤモンドに母父フレンチデピュティで、526kgの大型馬です。稍重の新潟大賞典6着は崩れではありませんが、稍重の七夕賞は15着（3.2秒差）と大きく負けているので、道悪はわずかに割り引きます。同じ父の1番と差を付けたのはこの負け幅の違いです。<br><br>11番, ジーティーアダマン, +0.3, 父ルーラーシップは京都外回りの持続戦と少し時計のかかる馬場が得意な系統で、晩成型として4歳秋の上昇期とも噛み合っています。ただ稍重を走った実績はないので、+0.4から少し下げます。<br><br>12番, ディールメーカー, +0.1, 父イスラボニータは1600〜1800m型で、母父ホワイトマズルの粘り強さがあれば稍重の1800mもこなせます。3歳秋でまだ成長の余地がある点を、わずかにプラスとします。<br><br>13番, ガイアメンテ, +0.2, 父ドゥラメンテはパワーと持続力に優れ、京都外回り1800mは合います。ただ都大路S勝ちは良馬場の速い時計で、道悪への適性を示すものではありません。母父Concorde&#x27;s Tuneの米国系の血も道悪での上積み材料とまでは言えないため、+0.4から下げます。<br><br>14番, サブマリーナ, +0.1, 父スワーヴリチャードに母父Bernardiniでパワーが加わる配合で、2400mより1800mのほうが合います。稍重のポートアイSでも0.5秒差に踏みとどまったので、わずかにプラスです。<br><br>15番, タガノエルピーダ, -0.1, 父キズナに母父キングカメハメハで、忘れな草賞の2000m勝ちもあり、1800mはこなせる配合です。ただ近走は1400〜1600mの先行型に寄っており、キズナ産駒は道悪が得意な傾向があっても稍重のしらさぎSは12着だったため、わずかなマイナスに戻します。<br><br>16番, レディーヴァリュー, +0.2, 父ジャスタウェイは時計のかかる馬場で浮上する血統で、重馬場の巴賞2着と稍重の大原S勝ちがあります。一方で稍重の中山牝馬Sは16着（馬体重-10kg）で、道悪の実績は3戦中2戦の好走にとどまるため、+0.3から下げます。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>陣営派として、騎手の格、継続騎乗か乗り替わりか、厩舎の格の3つで補正を付けたっちゃん。<br><br>1番, オーロラエックス, +0.4, 昨年のこのレースを勝った松山弘平に手綱が戻り、白富士Sやエリザベス女王杯でも乗っとるけん手の内は分かっとる。杉山晴紀厩舎も格が高く、陣営の後押しははっきりしとる。<br><br>2番, バレエマスター, -0.2, 近走3戦続けて乗っとった菊沢から松若風馬に替わる。松若は春の六甲Sで乗って8着、梅田厩舎も中堅で、陣営からの上積みは乏しい。<br><br>3番, コルレオニス, +0.4, 前走の西宮Sを勝ったM.デムーロがそのまま乗る。手の内を知る継続騎乗で、友道康夫厩舎という名門の裏付けもある。<br><br>4番, ナムラエイハブ, -0.2, 近5走は毎回違う騎手で、今回は初めて乗る菱田裕二。主戦が決まらんのは陣営の決め手不足の表れで、長谷川厩舎も中堅。<br><br>5番, エラトー, -0.4, 舟山から国分優作への乗り替わりで、近走で一番の格落ちになる。上村厩舎は悪くないけど、手綱の面ではマイナス。<br><br>6番, ゼンダンハヤブサ, +0.2, 酒井学が近5走すべてで乗っとる完全な主戦で、小倉記念も勝っとる。騎手・厩舎の格は中くらいやけど、手の内を知る強みは確か。<br><br>7番, アスクカムオンモア, +0.1, 14か月ぶりの実戦でも、藤原英昭厩舎は休み明けから仕上げてくる実績がある。初めて乗る鮫島克駿は中堅上位で、プラスは小さめ。<br><br>8番, アスクドゥポルテ, -0.5, 川須栄彦は重賞級の相手やと格が足りず、近走も騎手が定まっとらん。梅田厩舎にも好転の材料が無く、陣営面ははっきり弱い。<br><br>9番, アンリーロード, -0.1, 都大路Sで5着に持ってきた田口貫太が戻るのはわずかなプラス。ただ若手騎手と小さめの茶木厩舎の組み合わせで、全体ではやや下。<br><br>10番, オールナット, +0.1, 鳴尾記念や新潟大賞典で乗った北村友一が戻り、手の内は知っとる。高野友和厩舎も堅実で、小さなプラス。<br><br>11番, ジーティーアダマン, +0.5, 前走チャレンジCで3着やった岩田望来がそのまま乗る。関西トップの騎手が継続騎乗で、上村厩舎の仕上げも安定しとる。<br><br>12番, ディールメーカー, +0.6, 美浦の大和田厩舎の3歳馬が京都に遠征して、川田将雅を確保した。トップ騎手への乗り替わりは陣営の勝負気配そのもので、はっきりプラス。<br><br>13番, ガイアメンテ, +0.6, 京都を知り尽くした武豊がチャレンジCに続けて乗り、須貝尚介厩舎は名門。騎手と厩舎の両方で格が揃っとる。<br><br>14番, サブマリーナ, -0.1, 川田・武豊と続いたトップ騎手から浜中俊に替わる。浜中は京都で実績のある堅実な騎手やけど、格は一段落ちる。<br><br>15番, タガノエルピーダ, -0.3, 斉藤崇史厩舎は格上やけど、古川吉洋への乗り替わりは騎手の格がはっきり下がる。手綱の面でマイナス。<br><br>16番, レディーヴァリュー, -0.4, 前走の巴賞で2着やった武豊から、若手の田山旺佑に替わる。大きな格落ちで、小林厩舎にもそれを補うほどの裏付けは無い。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.4, &quot;2&quot;: -0.2, &quot;3&quot;: 0.4, &quot;4&quot;: -0.2, &quot;5&quot;: -0.4, &quot;6&quot;: 0.2, &quot;7&quot;: 0.1, &quot;8&quot;: -0.5, &quot;9&quot;: -0.1, &quot;10&quot;: 0.1, &quot;11&quot;: 0.5, &quot;12&quot;: 0.6, &quot;13&quot;: 0.6, &quot;14&quot;: -0.1, &quot;15&quot;: -0.3, &quot;16&quot;: -0.4}, &quot;analysis_summary&quot;: &quot;陣営面の上位は3頭。武豊が継続騎乗し須貝厩舎の13番ガイアメンテ、美浦から遠征して川田将雅に替わる勝負気配の12番ディールメーカー、岩田望来が継続騎乗する11番ジーティーアダマン。その次が、昨年このレースを勝った松山弘平が戻る1番と、M.デムーロが継続騎乗し友道厩舎の3番。武豊から田山に替わる16番、国分に替わる5番、川須の8番、斉藤崇厩舎でも古川に替わる15番は、騎手の格落ちで下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 4番ナムラエイハブだけ『主戦不在』で減点しているが、7番アスクカムオンモア・15番タガノエルピーダも近5走は毎回違う騎手、12番ディールメーカーも騎手が回っている。基準をそろえる余地はないか。(2) 川田は11番・13番・14番、武豊は14番・16番という元お手馬を置いてそれぞれ12番・13番を選んだ。前の騎手と3戦続けた騎手の両方に別の馬を選ばれた14番サブマリーナ(-0.1)は甘くないか。16番レディーヴァリュー(-0.4)との0.3差は浜中と田山の格の差だけで説明できるか。(3) 1番オーロラエックス+0.4は去年の1勝頼みで、そのあと松山が乗った2戦は16着・9着。似た形の10番オールナット(+0.1)との差を説明できるか。根拠は『松山が11番ジーティーアダマンより1番を選んだ』ことに置き直せないか。(4) 13番ガイアメンテの『続けて乗り』は1戦(6着)だけで、同じ京都1800mの勝利は団野。+0.6の根拠は騎手が選んだことに置くべきではないか。(5) 12番ディールメーカー+0.6は騎手だけが根拠で、大和田厩舎の格と遠征の負担を評価していない。(6) 5番エラトーの舟山→国分が『一番の格落ち』と言えるかは疑問で、武豊→田山の16番と同じ-0.4は重くないか。同じ上村厩舎でも11番では加点、5番では加点なし。(7) 8番アスクドゥポルテ-0.5は普段の騎手からの格落ちが小さく、成績の印象が混ざっていないか。(8) 7番アスクカムオンモアは調教が『太め』で、仕上げの根拠と合わない。9番アンリーロードの田口は5着で、相性の実績は10番オールナットの北村より上なのに付値が逆。15番タガノエルピーダは格上の厩舎を加点せず、-0.3は重め。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, オーロラエックス, +0.4, 去年このレースを勝った松山弘平が戻ってくる。松山は自分で3回乗った11番ジーティーアダマンやなくてこっちを選んどるけん、その騎手の選択と杉山晴紀厩舎の格を根拠に据え直した。そのあと松山で16着・9着やったぶん、手の内の評価は控えめにしとる。<br><br>2番, バレエマスター, -0.2, 新潟大賞典で2着に持ってきた菊沢が3戦続けて乗っとったのに、松若風馬に替わる。松若はこの馬で六甲S8着しかなく、梅田厩舎も中堅やけん、陣営からの上積みは乏しい。<br><br>3番, コルレオニス, +0.4, 前走の西宮Sを勝ったM.デムーロがそのまま乗る継続騎乗で、友道康夫厩舎という名門の裏付けもある。<br><br>4番, ナムラエイハブ, -0.1, 主戦がおらんことで減点するのは、7番・12番・15番と基準が揃わんけん取りやめた。ここ5走の騎手と比べても菱田裕二は格落ちとまでは言えん。長谷川厩舎も中堅で、ほんの少し下に見る程度。<br><br>5番, エラトー, -0.2, 舟山は1回乗って13着やっただけで、国分優作への替わりを「一番の格落ち」と言うたのは言い過ぎやった。ただ、北村・斎藤新が乗っとった頃より騎手の格は下で、上村厩舎の加点と差し引いても小さくマイナス。<br><br>6番, ゼンダンハヤブサ, +0.2, 酒井学がここ5走すべてに乗っとる完全な主戦で、小倉記念もこのコンビで勝っとる。騎手・厩舎の格は中くらいやけど、手の内を知っとる強みは確か。<br><br>7番, アスクカムオンモア, 0.0, 藤原英昭厩舎は休み明けから仕上げてくる、という根拠は調教の「太め」と食い違うけん引っ込めた。これまで戸崎・横山武史など上位騎手が乗ってきた馬で、初めて乗る鮫島克駿はわずかに格が下。厩舎の格と相殺して中立にする。<br><br>8番, アスクドゥポルテ, -0.2, 普段乗っとる西塚・丸田・石川と比べて、川須栄彦への格落ちは小さい。成績の印象がポイントに混ざっとったけん減点を縮めた。重賞級の顔ぶれやと騎手の格が足りん点だけを小さく引く。<br><br>9番, アンリーロード, +0.1, 同じ京都1800mの都大路Sで5着に持ってきた田口貫太が戻ってくる。この条件でのコンビ実績を素直に評価した。若手騎手と小さめの茶木厩舎やけん、プラスは小さい。<br><br>10番, オールナット, 0.0, 北村友一が戻るとはいえ、このコンビは鳴尾記念10着・新潟大賞典6着で、相性の裏付けは9番より弱い。高野厩舎の堅実さと合わせても差は出んけん中立。<br><br>11番, ジーティーアダマン, +0.4, チャレンジC3着の岩田望来がそのまま乗るのは評価できる。ただ、松山・川田はどちらも別の馬を選んどるし、上村厩舎の加点を5番と揃えるために少し下げた。<br><br>12番, ディールメーカー, +0.5, 川田将雅は元お手馬の11・13・14番を置いてこの馬を選び、美浦の厩舎がわざわざ京都に遠征させてきた。勝負気配ははっきりしとる。ただ大和田厩舎そのものの格は加点できるほど高くないけん、少し下げる。<br><br>13番, ガイアメンテ, +0.6, 前に3回乗った14番、巴賞で2着やった16番を置いて、武豊がこの馬を選んだ。根拠はその選択と、名門の須貝尚介厩舎に置き直した。続けて乗るといっても1戦（6着）だけなんは認める。<br><br>14番, サブマリーナ, -0.2, 前走で乗った川田にも、3戦続けて乗った武豊にも別の馬を選ばれた。陣営にとっては痛い。浜中俊は京都で頼れる騎手やけど、格は一段落ちる。<br><br>15番, タガノエルピーダ, -0.2, 斉藤崇史厩舎の格を加点に入れて、マイナスを縮めた。それでも古川吉洋への替わりで騎手の格ははっきり下がる。<br><br>16番, レディーヴァリュー, -0.4, 巴賞で2着やった武豊が13番を選んで、若手の田山旺佑に替わる。14番の浜中と比べても格の差は大きく、小林厩舎にそれを補うほどの裏付けは無い。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.4, &quot;2&quot;: -0.2, &quot;3&quot;: 0.4, &quot;4&quot;: -0.1, &quot;5&quot;: -0.2, &quot;6&quot;: 0.2, &quot;7&quot;: 0.0, &quot;8&quot;: -0.2, &quot;9&quot;: 0.1, &quot;10&quot;: 0.0, &quot;11&quot;: 0.4, &quot;12&quot;: 0.5, &quot;13&quot;: 0.6, &quot;14&quot;: -0.2, &quot;15&quot;: -0.2, &quot;16&quot;: -0.4}, &quot;analysis_summary&quot;: &quot;批判を受けて基準を揃え直した。主戦不在の減点はやめ（4番）、同じ上村厩舎・格上の斉藤厩舎の扱いも揃えた（5・11・15番）。8番に混ざっていた成績の印象を外し、7番は調教と食い違う仕上げの根拠を撤回。9番・10番はこの条件でのコンビ実績で順位を入れ替えた。1・12・13番の加点の根拠は、トップ騎手がどの馬を選んだかに置き直した。12番は大和田厩舎の格を考えて+0.5に下げた。14番は川田・武豊の両方に選ばれなかった分を-0.2に強めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、カシオペアSの合成スコアを見直して、5頭の点数を決めたけん結果を置いとくね。<br><br>**合成スコアで引っかかったところ**<br><br>- **11番ジーティーアダマン（26.5）と13番ガイアメンテ（24.6）の順番が逆やと思う。** 2頭は直近3走でぶつかっとって、2勝1敗でガイアメンテが勝ち越しとる。<br>  - 都大路S（同じ京都芝1800m）：ガイアメンテが0.4秒先着。スピード指数95.4はこのメンバーで一番高いっちゃん。<br>  - 小倉記念：これもガイアメンテが先着。<br>  - チャレンジC：ここだけジーティーアダマンが先着（0.2秒）。<br>  - 今回の斤量差は1kgだけ（ガイアメンテ58kg、ジーティーアダマン57kg）。0.4秒差はひっくり返らんと見とる。合成はジーティーアダマンの前走3着を重く見すぎやと思う。<br>- **12番ディールメーカー（18.9）はもう少し上げてよか。** 3歳で55kgやけん、古馬の57〜58kgより2〜3kg軽い。ラジオNIKKEI賞では逃げて2着（指数90.9）しとって、古馬相手でも足りる数字が出とる。不安は2つ。<br>  - 3番コルレオニスと4番ナムラエイハブと先手争いになるかもしれんこと。<br>  - 美浦からの輸送になること。<br>- **1番オーロラエックス（14.0）は高すぎ。** 去年このレースを勝っとるけど、その後の4走は全部負けとる。同じ舞台の都大路Sでも6着（0.6秒差）やった。<br>- **6位以下の馬：** 3番コルレオニスは前走で3勝クラスの西宮Sを逃げ切って上がってきた馬で、ペース次第では残るかもしれん。ただ指数89.1は物足りんけん、上位5頭には入れんかった。<br><br>**しずくの最終スコア**<br><br>13番, ガイアメンテ, 25%, 京都芝1800mの都大路Sを指数95.4で勝っとって、この舞台での力は一番上。11番ジーティーアダマンとの直接対決も2勝1敗で、斤量1kg差なら逆転はなかと見る。<br><br>11番, ジーティーアダマン, 23%, 4歳で上り調子なうえ、調教は「高いレベルで安定」、前走チャレンジCも3着と崩れんタイプ。ただ同じ舞台の都大路Sで13番ガイアメンテに0.4秒負けとるけん2番手にした。<br><br>12番, ディールメーカー, 20%, 3歳で55kgの斤量差が効くし、ラジオNIKKEI賞2着の先行力に川田騎手が乗る。稍重でも前に行けるのは強みやけど、先手争いと輸送のぶん3番手。<br><br>14番, サブマリーナ, 15%, 大阪城Sで2着（指数93.1）がある差し馬で、京都の外回りは合っとる。ただ58kgで調教も「落ち着き欲しい」やけん、上位3頭には届かんと見る。<br><br>1番, オーロラエックス, 11%, 去年の勝ち馬で牝馬の56kgは有利。ただ都大路S6着など近走が冴えんけん、合成より下げた。<br><br>```json<br>{&quot;score&quot;: {&quot;13&quot;: 25, &quot;11&quot;: 23, &quot;12&quot;: 20, &quot;14&quot;: 15, &quot;1&quot;: 11}, &quot;analysis_summary&quot;: &quot;合成は11番ジーティーアダマンを首位にしとるが、13番ガイアメンテとの直接対決は2勝1敗でガイアメンテ優勢。同じ京都芝1800mの都大路Sでも0.4秒・指数95.4と差を付けとり、斤量差1kgでは逆転せんと見て13番を首位にした。12番ディールメーカーは3歳55kgの斤量差と先行力を評価して少し上げた。1番オーロラエックスは昨年の勝ち馬でも近4走が凡走続きのため下げた。圏外では3番コルレオニスの逃げ残りに注意。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>13番, ガイアメンテ, 17%, 5月の都大路Sを同じ京都芝1800mで勝っていて、そのスピード指数95.4はこのメンバーで一番高い。夏以降も小倉記念4着、チャレンジC6着と重賞で大きく負けておらず、58kgでも中心になる。<br><br>11番, ジーティーアダマン, 15%, チャレンジC3着（指数91.0）、都大路S3着（指数91.6）と、重賞でもリステッドでも上位の安定した走りを続けている。調教評価は「高いレベルで安定」で、好位から運べる4歳馬なので崩れにくい。<br><br>12番, ディールメーカー, 13%, ラジオNIKKEI賞で逃げて2着（指数90.9）と、1800mでの能力は古馬オープン級。3歳で55kgの斤量差が大きく、川田騎手が乗れば先行策から押し切る形も十分ある。<br><br>14番, サブマリーナ, 10%, 大阪城Sで同距離2着、指数93.1は上位レベル。前走ポートアイSも稍重で0.5秒差にまとめた。ただ58kgで、調教評価の「落ち着き欲しい」が少し気になる。<br><br>6番, ゼンダンハヤブサ, 7%, 小倉記念の勝ちは52kgの恩恵が大きく、それ以外は3勝クラスで5着続きだった。今回58kgを背負うので割り引くけれど、調教は「徐々に良化」で一変の余地はある。<br><br>1番, オーロラエックス, 6%, 昨年このレースの勝ち馬で、京都1800mは得意。ただ近走は都大路S6着（指数89.8）が一番ましで、全体に精彩を欠いている。56kgの斤量は有利。<br><br>3番, コルレオニス, 6%, 前走で西宮Sを逃げ切ったが、7頭立ての緩い流れでの勝ちだった。昇級初戦でオープンの相手は強くなるので、楽に先手を取れたときだけ粘り込みがある。<br><br>2番, バレエマスター, 4%, 新潟大賞典2着（指数91.5）は55kgでのもの。7歳で今回は58kg、調教評価も「反応ひと息」なので上積みは見込みにくい。<br><br>4番, ナムラエイハブ, 4%, 先行して小倉記念5着（指数89.3）の地力はあるが、1800mのオープンでは7〜9着が続いている。前走は最後方から13着で、立て直しが必要。<br><br>10番, オールナット, 4%, 重賞勝ち（チャレンジC）の実績は上位。ただ休み明け後は大敗が続き、トップハンデの59kgではかなり厳しい。<br><br>9番, アンリーロード, 3.5%, 都大路S5着（指数89.8）など差し脚はあるが、51kgで走っていた時の結果。今回は55kgになる。重賞では二桁着順が多い。<br><br>16番, レディーヴァリュー, 3.5%, 重馬場の巴賞で先行して2着と、渋った馬場をこなせるのは稍重の今回プラス。ただ重賞では大敗が続いていて、力関係では見劣る。<br><br>15番, タガノエルピーダ, 3%, 安土城S2着（指数92.4）など1400mでの能力は高い。1800mへの距離延長が大きな課題で、持ちこたえられるかは疑問。<br><br>7番, アスクカムオンモア, 2%, 約14か月ぶりの実戦で、調教評価も「太めも良化中」。素質はあっても初戦から勝ち切るのは難しい。<br><br>5番, エラトー, 1.5%, オープンと重賞では大敗が続いていて、馬体重-14kgの変動も不安。巴賞4着が精一杯の内容だった。<br><br>8番, アスクドゥポルテ, 1%, 近走はずっと二桁着順で、前走オールカマーは6.2秒差の大敗。上位争いに加わる材料が見当たらない。<br><br>```json<br>{&quot;score&quot;: {&quot;13&quot;: 17, &quot;11&quot;: 15, &quot;12&quot;: 13, &quot;14&quot;: 10, &quot;6&quot;: 7, &quot;1&quot;: 6, &quot;3&quot;: 6, &quot;2&quot;: 4, &quot;4&quot;: 4, &quot;10&quot;: 4, &quot;9&quot;: 3.5, &quot;16&quot;: 3.5, &quot;15&quot;: 3, &quot;7&quot;: 2, &quot;5&quot;: 1.5, &quot;8&quot;: 1}, &quot;analysis_summary&quot;: &quot;同じ京都芝1800mの都大路Sを指数95.4で勝った13番ガイアメンテを最上位に置き、重賞・リステッドで安定して上位に来ている11番ジーティーアダマン、3歳で55kgの斤量差があり1800mで重賞2着の12番ディールメーカーが続く。同距離で指数93の14番サブマリーナまでを上位とした。52kgで小倉記念を勝った6番ゼンダンハヤブサは58kgになるので割り引き、昨年の勝ち馬1番オーロラエックスと昇級初戦の3番コルレオニスは中位。斤量が重い馬、長期休み明け、近走大敗の馬は下位とした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>11</td><td class="left horse-name">ジーティーアダマン</td><td>14.2%</td><td>3.9</td><td>1</td><td class="ev-low">0.55</td></tr><tr><td>2</td><td>13</td><td class="left horse-name">ガイアメンテ</td><td>14.0%</td><td>4.0</td><td>2</td><td class="ev-low">0.56</td></tr><tr><td>3</td><td>12</td><td class="left horse-name">ディールメーカー</td><td>10.3%</td><td>10.0</td><td>3</td><td class="ev-mid">1.03</td></tr><tr><td>4</td><td>14</td><td class="left horse-name">サブマリーナ</td><td>8.6%</td><td>11.9</td><td>5</td><td class="ev-mid">1.03</td></tr><tr><td>5</td><td>1</td><td class="left horse-name">オーロラエックス</td><td>7.0%</td><td>15.2</td><td>8</td><td class="ev-mid">1.06</td></tr><tr><td>6</td><td>3</td><td class="left horse-name">コルレオニス</td><td>6.0%</td><td>11.2</td><td>4</td><td class="ev-low">0.67</td></tr><tr><td>7</td><td>15</td><td class="left horse-name">タガノエルピーダ</td><td>5.8%</td><td>13.6</td><td>6</td><td class="ev-low">0.79</td></tr><tr><td>8</td><td>4</td><td class="left horse-name">ナムラエイハブ</td><td>5.0%</td><td>17.4</td><td>9</td><td class="ev-low">0.88</td></tr><tr><td>9</td><td>16</td><td class="left horse-name">レディーヴァリュー</td><td>4.9%</td><td>13.7</td><td>7</td><td class="ev-low">0.67</td></tr><tr><td>10</td><td>6</td><td class="left horse-name">ゼンダンハヤブサ</td><td>4.9%</td><td>18.3</td><td>10</td><td class="ev-low">0.89</td></tr><tr><td>11</td><td>9</td><td class="left horse-name">アンリーロード</td><td>4.4%</td><td>56.5</td><td>16</td><td class="ev-high">2.46</td></tr><tr><td>12</td><td>2</td><td class="left horse-name">バレエマスター</td><td>4.3%</td><td>42.0</td><td>14</td><td class="ev-mid">1.81</td></tr><tr><td>13</td><td>10</td><td class="left horse-name">オールナット</td><td>4.0%</td><td>27.2</td><td>11</td><td class="ev-mid">1.09</td></tr><tr><td>14</td><td>7</td><td class="left horse-name">アスクカムオンモア</td><td>2.9%</td><td>32.1</td><td>12</td><td class="ev-low">0.93</td></tr><tr><td>15</td><td>5</td><td class="left horse-name">エラトー</td><td>2.6%</td><td>38.3</td><td>13</td><td class="ev-low">0.99</td></tr><tr><td>16</td><td>8</td><td class="left horse-name">アスクドゥポルテ</td><td>1.2%</td><td>44.4</td><td>15</td><td class="ev-low">0.52</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">11 ジーティーアダマン</td><td>14.2%</td><td>3.9</td><td class="ev-low">0.47</td></tr><tr><td>複勝</td><td class="left">11 ジーティーアダマン</td><td>39.5%</td><td>1.5</td><td class="ev-low">0.55</td></tr><tr><td>馬連</td><td class="left">11 ジーティーアダマン-13 ガイアメンテ</td><td>4.6%</td><td>6.4</td><td class="ev-low">0.25</td></tr><tr><td>ワイド</td><td class="left">11 ジーティーアダマン-13 ガイアメンテ</td><td>12.6%</td><td>2.8</td><td class="ev-low">0.31</td></tr><tr><td>馬単</td><td class="left">11 ジーティーアダマン→13 ガイアメンテ</td><td>2.3%</td><td>11.5</td><td class="ev-low">0.22</td></tr><tr><td>3連複</td><td class="left">11 ジーティーアダマン-12 ディールメーカー-13 ガイアメンテ</td><td>1.9%</td><td>13.5</td><td class="ev-low">0.21</td></tr><tr><td>3連単</td><td class="left">11 ジーティーアダマン→13 ガイアメンテ→12 ディールメーカー</td><td>0.3%</td><td>40.6</td><td class="ev-low">0.11</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 2,200円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>3連複</td><td class="left">11 ジーティーアダマン-12 ディールメーカー-13 ガイアメンテ</td><td>13.5</td><td>20</td><td style='text-align:right;font-weight:600;'>2,000円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">11 ジーティーアダマン→13 ガイアメンテ→12 ディールメーカー</td><td>40.6</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 2,200円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
