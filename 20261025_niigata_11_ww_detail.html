@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ルミエールオータムダッシュ 2026/10/25 NIIGATA 11R (10/25 14:29 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>ルミエールオータムダッシュ 2026/10/25 NIIGATA 11R (10/25 14:29 予想)</h1>
+  <div class="meta">芝1000m（直） | 不良 | 17頭立て | 4回 新潟 4日目 サラ系3歳以上 オープン （国際）（特指） ハンデ 17頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">14. カウスリップ</div>
+      <div class="pick-jockey">横山 和生</div>
+    </div>
+    <div class="pick-prob">13.6%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">11. エコロレジーナ</div>
+      <div class="pick-jockey">菊沢 一樹</div>
+    </div>
+    <div class="pick-prob">12.2%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">17. ロードトレイル</div>
+      <div class="pick-jockey">横山 琉人</div>
+    </div>
+    <div class="pick-prob">10.7%</div>
+    <div class="pick-pop">3番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">17頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">ウインアイオライト</td><td>牝6</td><td>52</td><td>野中 悠太郎</td><td>488(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">2</span></td><td class="left horse-name">スコーピオン</td><td>牡5</td><td>53</td><td>武藤 雅</td><td>480(-6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">3</span></td><td class="left horse-name">ヴェントゥーラ</td><td>牝4</td><td>51</td><td>今村 聖奈</td><td>474(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">4</span></td><td class="left horse-name">トールキン</td><td>牡6</td><td>52</td><td>亀田 温心</td><td>492(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">5</span></td><td class="left horse-name">デュガ</td><td>せん7</td><td>57</td><td>江田 照男</td><td>494(+14)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">6</span></td><td class="left horse-name">クールベイビー</td><td>牝5</td><td>50</td><td>石田 拓郎</td><td>492(+18)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">7</span></td><td class="left horse-name">フウセツ</td><td>牡4</td><td>53</td><td>丸山 元気</td><td>496(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">8</span></td><td class="left horse-name">フィオライア</td><td>牝5</td><td>55</td><td>小沢 大仁</td><td>462(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">9</span></td><td class="left horse-name">モズナナスター</td><td>牝4</td><td>54</td><td>富田 暁</td><td>458(0)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">10</span></td><td class="left horse-name">クムシラコ</td><td>牡8</td><td>56</td><td>黛 弘人</td><td>472(+2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">11</span></td><td class="left horse-name">エコロレジーナ</td><td>牝6</td><td>55</td><td>菊沢 一樹</td><td>502(-2)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">12</span></td><td class="left horse-name">ナナオ</td><td>牝5</td><td>54</td><td>小林 美駒</td><td>458(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">13</span></td><td class="left horse-name">ハートホイップ</td><td>牝7</td><td>50</td><td>丸田 恭介</td><td>494(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">14</span></td><td class="left horse-name">カウスリップ</td><td>牝4</td><td>54</td><td>横山 和生</td><td>552(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">15</span></td><td class="left horse-name">ポールセン</td><td>牡4</td><td>56</td><td>斎藤 新</td><td>488(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">16</span></td><td class="left horse-name">シュラフ</td><td>牝4</td><td>53</td><td>嶋田 純次</td><td>458(+18)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">17</span></td><td class="left horse-name">ロードトレイル</td><td>牡5</td><td>56</td><td>横山 琉人</td><td>480(+2)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">カウスリップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">カウスリップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">カウスリップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">カウスリップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">カウスリップ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.83</td>
+<td style='color:#AF52DE'>0.83</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.83</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">カウスリップ</span></td>
+<td>+0.58</td>
+<td>+0.44</td>
+<td>+0.62</td>
+<td>+0.28</td>
+<td>+0.30</td>
+<td>12.1</td>
+<td>12.7</td>
+<td>19.4</td>
+<td><b>13.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">エコロレジーナ</span></td>
+<td>+0.62</td>
+<td>+0.40</td>
+<td>+0.30</td>
+<td>+0.44</td>
+<td>+0.46</td>
+<td>12.4</td>
+<td>11.1</td>
+<td>12.6</td>
+<td><b>12.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ロードトレイル</span></td>
+<td>+0.62</td>
+<td>+0.54</td>
+<td>+0.22</td>
+<td>-0.12</td>
+<td>+0.10</td>
+<td>9.9</td>
+<td>10.7</td>
+<td>13.2</td>
+<td><b>10.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">モズナナスター</span></td>
+<td>+0.32</td>
+<td>+0.10</td>
+<td>+0.12</td>
+<td>+0.32</td>
+<td>+0.08</td>
+<td>8.4</td>
+<td>8.4</td>
+<td>8.4</td>
+<td><b>8.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">シュラフ</span></td>
+<td>+0.18</td>
+<td>+0.30</td>
+<td>-0.22</td>
+<td>+0.28</td>
+<td>+0.24</td>
+<td>6.6</td>
+<td>7.4</td>
+<td>6.6</td>
+<td><b>6.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">デュガ</span></td>
+<td>+0.10</td>
+<td>-0.18</td>
+<td>+0.20</td>
+<td>+0.20</td>
+<td>+0.28</td>
+<td>6.8</td>
+<td>6.5</td>
+<td>4.3</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">クムシラコ</span></td>
+<td>+0.08</td>
+<td>-0.02</td>
+<td>+0.12</td>
+<td>+0.18</td>
+<td>+0.00</td>
+<td>6.3</td>
+<td>-</td>
+<td>3.7</td>
+<td><b>5.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">フィオライア</span></td>
+<td>+0.22</td>
+<td>+0.10</td>
+<td>-0.28</td>
+<td>+0.20</td>
+<td>-0.12</td>
+<td>5.4</td>
+<td>-</td>
+<td>6.2</td>
+<td><b>5.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ヴェントゥーラ</span></td>
+<td>-0.14</td>
+<td>+0.14</td>
+<td>+0.40</td>
+<td>-0.02</td>
+<td>-0.10</td>
+<td>5.1</td>
+<td>-</td>
+<td>5.4</td>
+<td><b>5.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ハートホイップ</span></td>
+<td>+0.06</td>
+<td>+0.18</td>
+<td>-0.34</td>
+<td>+0.32</td>
+<td>-0.04</td>
+<td>4.7</td>
+<td>-</td>
+<td>5.2</td>
+<td><b>4.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">ポールセン</span></td>
+<td>-0.24</td>
+<td>+0.24</td>
+<td>+0.20</td>
+<td>+0.08</td>
+<td>+0.10</td>
+<td>4.7</td>
+<td>-</td>
+<td>3.7</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ウインアイオライト</span></td>
+<td>-0.12</td>
+<td>-0.34</td>
+<td>-0.06</td>
+<td>+0.16</td>
+<td>-0.16</td>
+<td>4.3</td>
+<td>-</td>
+<td>1.7</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">クールベイビー</span></td>
+<td>-0.26</td>
+<td>-0.06</td>
+<td>-0.14</td>
+<td>+0.04</td>
+<td>-0.06</td>
+<td>3.6</td>
+<td>-</td>
+<td>3.4</td>
+<td><b>3.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ナナオ</span></td>
+<td>-0.40</td>
+<td>+0.10</td>
+<td>-0.18</td>
+<td>+0.06</td>
+<td>-0.16</td>
+<td>2.8</td>
+<td>-</td>
+<td>1.7</td>
+<td><b>2.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">トールキン</span></td>
+<td>-0.48</td>
+<td>-0.26</td>
+<td>-0.02</td>
+<td>+0.14</td>
+<td>+0.02</td>
+<td>2.8</td>
+<td>-</td>
+<td>1.6</td>
+<td><b>2.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">フウセツ</span></td>
+<td>-0.52</td>
+<td>+0.02</td>
+<td>-0.14</td>
+<td>+0.12</td>
+<td>-0.04</td>
+<td>2.4</td>
+<td>-</td>
+<td>1.9</td>
+<td><b>2.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">スコーピオン</span></td>
+<td>-0.68</td>
+<td>-0.32</td>
+<td>+0.18</td>
+<td>+0.18</td>
+<td>+0.08</td>
+<td>1.8</td>
+<td>-</td>
+<td>1.2</td>
+<td><b>1.7</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ウインアイオライト, -0.2, 今年1月のサンライズS(3勝)は1着で指数85.7だった。その後はシルクロードGIIIで14着、UHB賞(OP)で13着・0.9秒差と負けが続いており、OPでは足りていない。直線1000mを走った記録もない。<br><br>2番, スコーピオン, -0.7, 3勝クラスでも直近5走は6・13・14・16・9着と全敗している。指数は56.2〜74.2どまりで、稲妻Sでも1.3秒差、駿風Sでも1.3秒差と同じコースで大きく負けた。OPでは実績面で厳しい。<br><br>3番, ヴェントゥーラ, -0.1, 前走の閃光特別(2勝)は同じ直線1000mの稍重で0.4秒差の完勝だったが、指数は81.1。今回は2勝クラスからいきなりOPへ2段階の格上挑戦で、OPの上位組が出している88〜93の指数とはまだ差がある。<br><br>4番, トールキン, -0.5, 3勝クラスで7・10・4・12・15着と勝ち切れていない。目立つのは駿風S(直線1000m)4着・0.2秒差、指数75.1くらいで、稲妻Sは1.3秒差の7着。OPの水準には届いていない。<br><br>5番, デュガ, +0.1, 春雷S(L)は0.1秒差の4着で指数90.5、昨年12月のタンザナイト1着は指数94.3と、1200mなら地力はある。ただ直線1000mでは韋駄天S10着・0.7秒差、アイビスSD11着・1.2秒差と結果が出ておらず、斤量57kgはトップハンデになる。<br><br>6番, クールベイビー, -0.3, 驀進特別(2勝・直線1000m)を1着、指数80.8で勝って昇級した。しかし3勝クラスの稲妻Sでは9着・1.5秒差、指数64.1と止まっており、OPで通用する実績はまだない。<br><br>7番, フウセツ, -0.5, 走ってきたのはダートの3勝クラスだけで、3着が2回ある程度。前走も14着・1.5秒差と崩れている。芝の実績も直線の実績もなく、OPで推せる材料がない。<br><br>8番, フィオライア, +0.4, 今年のシルクロードGIIIを勝っており、指数94.4はメンバー最高。オーシャンSも0.4秒差で指数88.8だった。その後のCBC賞13着・0.8秒差、オパールS10着・0.6秒差も重賞・Lでの負けで、格は最上位と言える。ただ直線1000mを走った実績はない。<br><br>9番, モズナナスター, +0.4, 韋駄天S(OP・直線1000m)は0.3秒差の3着で指数88.2、春雷S(L)は2着で指数91.9とOP級の数字を出している。近2走は函館SS・UHB賞でどちらも0.7秒差の11着と、格上相手でも大きくは負けていない。<br><br>10番, クムシラコ, +0.1, 安達太良S(OP)は2着・0.0秒差で指数92.0と力を見せた。一方、直線1000mでは韋駄天S9着・0.7秒差、アイビスSD13着・1.2秒差と結果が出ていない。8歳という年齢も踏まえて中立寄りにした。<br><br>11番, エコロレジーナ, +0.6, 韋駄天S(OP・直線1000m・稍重)を1着、指数93.4で勝っており、この条件の勝ち馬ではメンバー最上位の数字。アイビスSD(GIII)でも6着・0.9秒差、上がり32.1で指数81.9と崩れていない。<br><br>12番, ナナオ, -0.5, OPで13・12・14・8着と大敗が続き、着差はどれも0.8〜1.4秒。芝で走ったのはモルガナイトS13着だけで、半年ぶりの実戦になるうえ直線の実績もない。<br><br>13番, ハートホイップ, +0.1, 韋駄天S(OP)は50kgで0.3秒差の4着、指数88.2と同じコースで好走している。ただ1週前の北陸S(3勝)は18着・1.3秒差、指数63.4と大敗し、本来は3勝クラスの馬。直線1000m向きと軽ハンデの分だけ少しプラスにした。<br><br>14番, カウスリップ, +0.8, 前走の稲妻S(直線1000m)は0.7秒差の圧勝で、走破タイム54.0・上がり32.3・指数89.9。その前のアイビスSD(GIII)でも0.6秒差の3着で指数87.1と、重賞で上位に入っている。駿風Sの3着も含めると直線1000mは3戦すべて3着以内で、実績はメンバー随一。<br><br>15番, ポールセン, -0.2, ダートのOP・Lでは4〜7着、0.5〜0.7秒差、指数82.7〜88.2と安定している。ただそれはダートでの話で、芝で走った記録が近走になく、芝の直線で裏付けになる数字がない。<br><br>16番, シュラフ, +0.2, 駿風S(3勝・直線1000m)1着で指数78.5、韋駄天S(OP)は0.4秒差の5着で指数86.5と、同じコースでは安定して走っている。一方アイビスSDは17着・1.8秒差と大敗しており、重賞級の相手には足りていない。<br><br>17番, ロードトレイル, +0.6, アイビスSD(GIII)で2着・0.5秒差、走破タイム54.0・上がり32.0・指数88.8とメンバー最上位級の内容。駿風Sも0.0秒差の2着で、直線1000mでは連対を続けている。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: -0.7, &quot;3&quot;: -0.1, &quot;4&quot;: -0.5, &quot;5&quot;: 0.1, &quot;6&quot;: -0.3, &quot;7&quot;: -0.5, &quot;8&quot;: 0.4, &quot;9&quot;: 0.4, &quot;10&quot;: 0.1, &quot;11&quot;: 0.6, &quot;12&quot;: -0.5, &quot;13&quot;: 0.1, &quot;14&quot;: 0.8, &quot;15&quot;: -0.2, &quot;16&quot;: 0.2, &quot;17&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;直線1000mの実績を軸に見ると、カウスリップ(稲妻S0.7秒差圧勝・指数89.9、アイビスSD3着)が最上位。次いでアイビスSD2着・指数88.8のロードトレイルと、韋駄天S勝ち・指数93.4のエコロレジーナ。格ではシルクロードGIIIを勝ったフィオライアが最上位だが直線経験がない。OPで安定しているモズナナスターも上位評価。3勝クラスでも大敗が続くスコーピオン、トールキンと、芝直線の裏付けがないフウセツ、ナナオは下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 14番カウスリップ+0.8 &gt; 17番ロードトレイル+0.6 は、直線1000mでの直接対決2回（アイビスSD・駿風S）でいずれも17番が2kg重い斤量で先着している事実と逆ではないか。今回も斤量差は2kg。14番を押し上げている稲妻S指数89.9は3勝クラスの弱い相手（2・4・6番が1.3〜1.5秒差）でのもので、格としてGIIIでの先着より重く扱う根拠を見直す余地はないか。(2) 11番エコロレジーナはOP韋駄天Sを指数93.4で勝っており、勝った格は14番・17番より上。14番だけ抜け出す説明がつくか。(3) 今回は不良馬場なのに触れていない。渋った馬場の直線1000mの実績（11・9・13・16番の韋駄天S、3番の閃光特別）と、良馬場だけの14番・17番との読み分けはしなくてよいか。(4) 8番フィオライア+0.4は9か月前の94.4に頼っており、直近3走は二桁着順。直線1000mの『経験なし』が、5番・10番の『凡走あり』より軽く扱われていないか。7月のOPで92.0を出した10番クムシラコ+0.1との差の根拠も弱い。(5) 1番ウインアイオライト（3勝勝ち85.7・GIIIで84.3）が、最高指数81.1の3番ヴェントゥーラより下なのは『格』の物差しと合っているか。3番を稍重勝ちで上げるなら、同じ基準を14番・17番にも当てはめるべき。(6) 13番ハートホイップは韋駄天Sで9番と同じ88.2（同じ50kg）。9番と0.3差なのが連闘前の大敗のためなら、その比重を理由に明記してほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ウインアイオライト, -0.1, サンライズS(3勝)を指数85.7で勝ち、シルクロードGIIIでも0.7秒差・指数84.3と、格で見れば3番より上の実績がある。ただ前走のUHB賞(OP)は13着・0.9秒差・指数77.3で、OPでの実績は足りないため小幅なマイナスにとどめた。<br><br>2番, スコーピオン, -0.7, 3勝クラスで直近5走は6・13・14・16・9着とすべて負けており、指数は56.2〜74.2どまり。同じ直線1000mの稲妻S・駿風Sでもどちらも1.3秒差で、OPでは実績面で厳しい。<br><br>3番, ヴェントゥーラ, -0.1, 閃光特別(2勝)は直線1000m・稍重で0.4秒差の完勝だが、指数は81.1。2勝クラスから2段階の格上挑戦になるので、渋った馬場の直線で勝った点を加えても、1番と同じ小幅なマイナスとした。<br><br>4番, トールキン, -0.5, 3勝クラスで7・10・4・12・15着と勝ち切れていない。駿風S4着・0.2秒差・指数75.1が目立つ程度で、稲妻Sは1.3秒差の7着。OPの水準には届いていない。<br><br>5番, デュガ, +0.1, 1200mでは春雷S(L)が0.1秒差で指数90.5、タンザナイト1着が指数94.3と地力がある。一方、直線1000mは韋駄天S(稍重)10着・0.7秒差、アイビスSD11着・1.2秒差と結果が出ておらず、中立寄りに据え置いた。<br><br>6番, クールベイビー, -0.3, 驀進特別(2勝・直線1000m)は指数80.8で勝った。ただ3勝クラスの稲妻Sでは9着・1.5秒差・指数64.1で、OPで通用する実績はない。<br><br>7番, フウセツ, -0.5, ダートの3勝クラスで3着が2回ある程度で、前走は14着・1.5秒差と崩れている。芝や直線で裏付けになる実績はない。<br><br>8番, フィオライア, +0.3, シルクロードGIII勝ち(指数94.4)という格は上位だが、9か月前の数字。直近3走はCBC賞13着・オパールS10着などで指数82〜84に落ちており、直線1000mの実績もない。そこでR1から1段階下げた。<br><br>9番, モズナナスター, +0.4, 韋駄天S(OP・直線1000m・稍重)で0.3秒差の3着・指数88.2、春雷S(L)2着で指数91.9とOP級の数字がある。重賞でも0.7秒差にまとめており、渋った馬場の直線でも実績がある。<br><br>10番, クムシラコ, +0.1, 安達太良S(OP)は0.0秒差の2着で指数92.0を出したが、9頭立てだった。直線1000mは韋駄天S(稍重)9着・0.7秒差、アイビスSD13着・1.2秒差で、同じコースの実績では8番と同じ程度とは言えない。<br><br>11番, エコロレジーナ, +0.6, 韋駄天S(OP・直線1000m・稍重)を1着・指数93.4で勝っており、OPを勝った格と渋った馬場の直線での実績はメンバー随一。アイビスSDは14・17番に0.3〜0.4秒負けたが、0.9秒差・上がり32.1と崩れてはいない。<br><br>12番, ナナオ, -0.5, OPで13・12・14・8着と負けが続き、着差は0.8〜1.4秒。芝はモルガナイトS13着だけで、半年ぶりの実戦でもあり、裏付けになる実績はない。<br><br>13番, ハートホイップ, +0.1, 韋駄天S(稍重)4着・指数88.2は9番と同じ数字だが、9番の54kgに対して50kgで出したもので、斤量を考えると9番より下。そのうえ1週前の北陸S(3勝)は18着・1.3秒差・指数63.4と大敗しており、この直近の凡走を重く見て小幅なプラスにとどめた。<br><br>14番, カウスリップ, +0.5, 稲妻Sは0.7秒差の圧勝で指数89.9、アイビスSDも3着・指数87.1と、直線1000mは3戦すべて3着以内。ただ稲妻Sは相手が弱い3勝戦。17番には2kg軽い斤量でアイビスSD・駿風Sの2回とも先着されており、今回も斤量差は同じ2kg。良馬場しか走っていない点も考えて、17番より下にした。<br><br>15番, ポールセン, -0.2, ダートのOP・Lでは0.5〜0.7秒差・指数82.7〜88.2と安定している。ただ近走に芝の記録がなく、今回の条件で裏付けになる数字がない。<br><br>16番, シュラフ, +0.3, 駿風Sでは17番・14番を抑えて勝ち(指数78.5)、韋駄天S(稍重)でも0.4秒差の5着・指数86.5と、渋った馬場も含めて同じコースで走れている。アイビスSD17着・1.8秒差の大敗があるので、上げ幅は控えめにした。<br><br>17番, ロードトレイル, +0.6, アイビスSD(GIII)は0.5秒差の2着・指数88.8で、14番とは2回対戦して2回とも2kg重い斤量で先着している。駿風Sも0.0秒差の2着と直線1000mで連対を続けており、実績は最上位級。ただ渋った馬場での記録はない。</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>展開派として読んでみたっちゃん。<br><br>**舞台**: 新潟の芝1000m直線で、馬場は不良。コーナーが無いけん、ゲートを出てからの行き脚と、外ラチ沿いにどれだけ早く寄せられるかでほぼ決まるとよ。直線競馬は外枠が有利っちゃけど、この秋開催で外ラチ沿いはかなり使われとる。不良馬場やけん、そこが荒れて「外ラチ一辺倒」にはならん可能性も残しとるけん、外枠の評価は少し抑えめにしとる。不良で時計がかかるけん、軽い切れ味より、馬格とパワーで押し切れる先行型が向く読みたい。<br><br>**シナリオ**: 8枠のロードトレイルとポールセンが外ラチ沿いでハナを争う。そこに7枠のカウスリップが552kgの馬体で並びかけて、外の3頭で前を作る形になると思うと。6枠のエコロレジーナとナナオは馬場の真ん中から外寄りの2列目。直線ではシュラフとハートホイップが外の後ろから脚を伸ばしてきて、エコロレジーナが真ん中から割ってくる。内枠の各馬は外へ寄せる間にロスが出て、馬群の内側に閉じ込められがちになりそう。<br><br>**別のシナリオ**: 外ラチ沿いの荒れが想像以上なら、各馬は馬場の真ん中へ散る。そうなると6枠や5枠の差し・先行が浮上して、8枠の「外ラチ沿いの得」は小さくなる。<br><br>1番, ウインアイオライト, -0.4, 最内枠で直線競馬は初めて。1200mでは中団から運ぶ馬やけん、外へ寄せるまでのロスがそのまま響く形になりやすい。<br><br>2番, スコーピオン, -0.4, 1枠で外ラチまで遠く、1200mで見せた先行力も直線の1000mでは活きとらん（6着と13着）。内側で包まれる心配が大きい。<br><br>3番, ヴェントゥーラ, -0.1, 内枠は不利っちゃけど、1200mで逃げた行き脚と51kgの軽ハンデがあり、稍重の直線1000mを勝っとる。出てから外へ切り込めれば前で粘れる余地がある。<br><br>4番, トールキン, -0.4, 内枠に入ったうえ、末脚頼みの差し型。不良馬場で上がりがかかるとはいえ、内から外へ持ち出すロスが大きい。<br><br>5番, デュガ, -0.3, 直線1000mでは中団から伸びきれん競馬が続いとる（11着と10着）。内寄りの枠で57kgを背負って、不良馬場で位置を取りに行くのはきつい。<br><br>6番, クールベイビー, -0.2, 50kgの軽量で直線1000mの勝ちもあるけど、3枠からやと外の先行勢に前をふさがれやすい。わずかに不利。<br><br>7番, フウセツ, 0.0, ダートで2番手から運ぶ先行型やけん、不良芝のパワー勝負は合いそう。ただ芝の直線で同じ行き脚が出るかが読めんし、真ん中の枠やけん中立。<br><br>8番, フィオライア, 0.0, 1200mで2番手から運べる先行力はある。ただ4枠からは外の先行勢と寄せ合う形になって、直線1000mは初めてなので有利不利は打ち消し合う。<br><br>9番, モズナナスター, +0.1, 稍重の韋駄天Sで3着があり、5枠の真ん中から運べる。外ラチ沿いが荒れて真ん中が伸びるシナリオなら浮上する。<br><br>10番, クムシラコ, 0.0, 真ん中の枠で、直線1000mは13着と9着と良さが出とらん。展開で上積みを見込む材料が無い。<br><br>11番, エコロレジーナ, +0.4, 稍重の韋駄天Sを勝っとる直線1000mの実績馬で、502kgのパワー型。6枠から2列目で運べて、外ラチ沿いでも真ん中でも対応できる位置。<br><br>12番, ナナオ, +0.1, 1200mで逃げた行き脚があって、6枠から前を取りにいける。ただ芝の直線は初めてで、外の先行勢との兼ね合いがある。<br><br>13番, ハートホイップ, +0.4, 7枠に入り、50kgの軽量で稍重の韋駄天S4着と同じ条件がそろう。外の先行勢の後ろから脚を溜められる。<br><br>14番, カウスリップ, +0.6, 7枠に入った直線1000mの巧者で、稲妻S1着とアイビスSD3着の実績がある。552kgの大型でダートの経験もあり、不良馬場で外ラチ沿いを押し切る形に一番はまる。<br><br>15番, ポールセン, +0.4, 8枠からダートで逃げ・先行してきた行き脚を使って外ラチ沿いを取れる。重馬場のダートで走れとるパワーは不良芝向き。芝が初めてという分だけ割り引く。<br><br>16番, シュラフ, +0.5, 8枠で、直線1000mの駿風S1着と稍重の韋駄天S5着がある。外ラチ沿いの好位から運べる。<br><br>17番, ロードトレイル, +0.6, 大外の17番で外ラチに最短で寄せられ、アイビスSD2着と駿風S2着の直線実績がある先行型。ハナか2番手を外ラチ沿いで取れる立場。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.4, &quot;2&quot;: -0.4, &quot;3&quot;: -0.1, &quot;4&quot;: -0.4, &quot;5&quot;: -0.3, &quot;6&quot;: -0.2, &quot;7&quot;: 0.0, &quot;8&quot;: 0.0, &quot;9&quot;: 0.1, &quot;10&quot;: 0.0, &quot;11&quot;: 0.4, &quot;12&quot;: 0.1, &quot;13&quot;: 0.4, &quot;14&quot;: 0.6, &quot;15&quot;: 0.4, &quot;16&quot;: 0.5, &quot;17&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;新潟芝1000m直線の不良馬場。外枠からのラチ寄せが基本で、ロードトレイル・ポールセン・カウスリップが外ラチ沿いで前を作り、シュラフとハートホイップが外から、エコロレジーナが真ん中から追う展開を想定した。不良で時計がかかるため、馬格とパワーのある先行型（カウスリップ、ポールセン）を加点した。1〜3枠は外へ寄せるロスで減点。秋開催で外ラチ沿いが荒れて真ん中が伸びる別シナリオもあるため、外枠の加点は+0.6までに抑えた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)不良馬場＋開催最終週なのに外ラチ有利を全馬一律に当てはめとる。9番モズナナスターで自分で挙げた『外ラチが荒れて真ん中が伸びる』シナリオを7番フウセツ・8番フィオライア・10番クムシラコや内枠の減点にも反映して、上下の幅1.0を縮める余地はないか。(2)13〜17番の5頭がみんな『外ラチを取れる』で+0.4〜+0.6やけど、全員は取れん。15番ポールセンは芝が初めてで行き脚が分からず、16番・17番に行き脚で負けて挟まれる心配がある。13番ハートホイップは後ろから行く馬で、外ラチ沿いでは前が壁になる（内枠に使った『包まれる』の理屈が外でも成り立つ）うえに連闘。(3)16番シュラフは直近のアイビスSD17着(1.8秒差)が抜けとって、2番スコーピオン・10番クムシラコを直線の着順で減点した物差しとそろっとらん。(4)14番カウスリップの『押し切る』は先行の根拠が薄い（分かる通過順はダートの7-7だけ）。差し寄りなら外の渋滞の影響を受ける。(5)6番クールベイビー(-0.2)が内側の3番ヴェントゥーラ(-0.1)より低い理由と、1番ウインアイオライトを中団の馬とした根拠（5-3、4-4の走りもある）を見直してほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ウインアイオライト, -0.3, 1200mの通過順は5-3・4-4・7-7・12-11とばらつきがあって、中団と決めつけたのは言い過ぎやった。ある程度は前に行けるけど、最内枠から外へ持ち出すロスはやっぱり残るけん、少し戻して減点する。<br><br>2番, スコーピオン, -0.3, 1200mでは先行できとるけど、直線1000mは6着と13着で行き脚が活きとらん。1枠で内に包まれる心配は残るっちゃけど、最終週の不良馬場で真ん中や内が伸びる可能性もあるけん、幅を縮める。<br><br>3番, ヴェントゥーラ, -0.1, 1200mで1-1と逃げた行き脚があって、稍重の直線1000mも勝っとる。内枠でも外へ切り込むか内で粘るかを選べる馬やけん、わずかな減点にとどめる。<br><br>4番, トールキン, -0.3, 末脚頼みで、内枠から外へ持ち出すロスは大きい。ただ時計のかかった駿風Sで0.2秒差の4着があるし、真ん中が伸びるシナリオも残るけん、減点を少し縮める。<br><br>5番, デュガ, -0.2, 直線1000mでは中団から伸びきれん競馬が続いとる（11着と10着）。3枠は内すぎる枠でもないし、真ん中が伸びるシナリオも考えて、減点を少し縮める。<br><br>6番, クールベイビー, -0.1, 直線1000mを勝っとるけど、位置取りの材料（通過順）が無い。3番より低くする根拠は弱かったけん、同じわずかな減点にそろえる。<br><br>7番, フウセツ, +0.1, ダートでずっと2番手から運ぶ先行型で、4枠は真ん中が伸びる馬場ならちょうどよか位置。芝の直線で同じ行き脚が出るかは分からんけん、わずかなプラスにとどめる。<br><br>8番, フィオライア, +0.1, 1200mで2-2と運べる先行力があって、4枠は外ラチ沿いが荒れて真ん中が伸びるシナリオなら得をする。直線1000mは初めてやけん、わずかなプラスにする。<br><br>9番, モズナナスター, +0.1, 稍重の韋駄天Sで3着があって、5枠の真ん中から運べる。ただ1200mでは13-13と後ろからの競馬が多いけん、わずかなプラスのまま。<br><br>10番, クムシラコ, 0.0, 真ん中の枠で真ん中が伸びるシナリオなら損はせんけど、直線1000mは13着と9着で良さが出とらん。展開で上積みを見込む材料が無い。<br><br>11番, エコロレジーナ, +0.3, 稍重の韋駄天Sを勝っとる直線巧者で、6枠は外ラチ沿いでも真ん中でも対応できる。ただ1200mの通過順は12-14・11-11と後ろからで、2列目で運べるとした根拠は薄かったけん、少し下げる。<br><br>12番, ナナオ, +0.1, 1200mで1-1と逃げた行き脚があって、6枠から前を取りにいける。芝の直線は初めてで、外の先行勢との兼ね合いもあるけん、わずかなプラス。<br><br>13番, ハートホイップ, +0.2, 7枠で稍重の韋駄天S4着の実績はある。けど1200mでは13-14・9-12と後ろからの馬で、外ラチ沿いに寄せても前の先行勢が壁になる。内枠で使った「包まれる」理屈は外でも同じやけん、下げる。<br><br>14番, カウスリップ, +0.5, 7枠で、直線1000mは稲妻S1着・アイビスSD3着・駿風S3着と崩れとらん。先行して押し切ると言える根拠は確かに薄いけど、外寄りの枠から差しても前を捌ける位置やし、552kgのパワーは不良馬場向き。そこで少し下げる。<br><br>15番, ポールセン, +0.2, ダートで逃げ・先行してきたし、重馬場のダートで走れとるパワーは不良の芝に合う。ただ芝のスタートで行き脚が通用するかは分からんし、同じ8枠の16番・17番に先に外ラチを取られて挟まれる形もあるけん、大きく下げる。<br><br>16番, シュラフ, +0.4, 時計のかかった駿風Sの勝ちと稍重の韋駄天S5着があって、渋った直線で走れとる。アイビスSD17着は良馬場の速い時計勝負での凡走やけん、不良馬場なら大きくは響かん。ただ物差しをそろえる意味で少し下げる。<br><br>17番, ロードトレイル, +0.6, 1200mで2-2・3-3と運ぶはっきりした先行型で、大外の17番から外ラチに最短で寄せられる。アイビスSD2着・駿風S2着と直線の実績もある。外ラチ沿いがだめでも先行力で位置を選べるけん、どちらのシナリオでもぶれにくい。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.3, &quot;2&quot;: -0.3, &quot;3&quot;: -0.1, &quot;4&quot;: -0.3, &quot;5&quot;: -0.2, &quot;6&quot;: -0.1, &quot;7&quot;: 0.1, &quot;8&quot;: 0.1, &quot;9&quot;: 0.1, &quot;10&quot;: 0.0, &quot;11&quot;: 0.3, &quot;12&quot;: 0.1, &quot;13&quot;: 0.2, &quot;14&quot;: 0.5, &quot;15&quot;: 0.2, &quot;16&quot;: 0.4, &quot;17&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;不良馬場で開催最終週のため、外ラチ沿いが荒れて真ん中が伸びるシナリオも残る。そこで内枠の減点を縮め、4枠の先行馬（7番・8番）をわずかに上げた。外枠の5頭全員が外ラチを取れるわけではないので、行き脚が分からない15番と後ろから行く13番は大きく下げた。通過順を見直し、11番は2列目で運べる根拠が無かったので下げ、1番は前目に行ける分だけ減点を戻し、6番は3番と同じ値にそろえた。14番は先行の根拠が薄い分だけ下げ、16番は凡走が良馬場の速い時計のレースだったことを考えて小さく下げた。17番は先行力と大外枠の両方がそろい、どちらのシナリオでもぶれにくいので最上位のまま。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ウインアイオライト, 0.0, 近走ずっと478kgで安定していた馬が休み明けで488kg(+10)となり、自己最高体重で太め残りが心配される。一方で斤量は前走55kgから52kg(-3kg、約1.5馬身分)に軽くなり、乗り込みも入念なので、プラスとマイナスが打ち消し合う。<br><br>2番, スコーピオン, +0.3, 斤量が前走58kgから53kg(-5kg、約2.5馬身分)に大きく軽くなる。馬体重は480kg(-6)で近走の486〜490kgよりやや細いが許容範囲。坂路で一杯に追う意欲的な調教からも、気配は悪くない。<br><br>3番, ヴェントゥーラ, +0.5, 勝った閃光特別と同じ474kg(±0)をキープして8週ぶりに出走する。斤量は56kgから51kg(-5kg)に軽くなり、調教も「活気十分」で、勝ったときの状態をそのまま持ってこられそう。<br><br>4番, トールキン, 0.0, 498〜500kgで安定していた馬体が492kg(-8)と、近走で最も軽い。調教も「平凡な動き」で、上向きの材料が乏しい。ただ斤量が58kgから52kg(-6kg)に大きく軽くなるので、差し引きは中立。<br><br>5番, デュガ, +0.3, 前走480kg(-10)は細かったが、今回494kg(+14)でタンザナイト勝ち(500kg)や春雷S4着(492kg)のベスト体重帯に戻った。「久々も力強く」という評価もあり、立て直しは成功しているとみる。<br><br>6番, クールベイビー, -0.2, 近走の468〜478kgから一気に492kg(+18)で、自己最高を大きく超えている。太め残りの懸念が強い。斤量は56kgから50kg(-6kg)と恩恵が大きいが、調教は「時計平凡」で、絞れていない印象のほうが勝る。<br><br>7番, フウセツ, 0.0, 馬体は496kgで毎回変わらず、中2週でも安定している。斤量は58kgから53kgに軽くなるが、調教で「気性難見せる」とあり、精神面の不安と相殺。<br><br>8番, フィオライア, -0.3, 462kg(-4)は近走の464〜470kgの中で最も軽く、中2週の疲れがうかがえる。斤量は55kgで据え置き、調教は「動き今ひと息」。上積みは見込みにくい。<br><br>9番, モズナナスター, +0.2, 458kg(±0)は春雷S2着や韋駄天S3着のときの460kg前後とほぼ同じ。斤量も55kgから54kgに少し軽くなり、「まずまず仕上がる」状態。<br><br>10番, クムシラコ, +0.2, 472kg(+2)は安達太良S2着時の470kgに近く、8歳でも体重はぶれていない。斤量は57kgから56kgに微減、調教も「フットワーク軽快」で、状態は安定している。<br><br>11番, エコロレジーナ, +0.3, 504〜508kgで安定した馬が502kg(-2)で、韋駄天S勝ちの504kgとほぼ同じ。調教は「追って伸び上々」で、斤量55kgも大柄な馬体なら問題ない。<br><br>12番, ナナオ, -0.3, 半年の休み明けで458kg(+10)は自己最高体重。調教評価も「馬体は仕上がるも」と含みのある言い方で、中身が伴っているか疑問が残る。<br><br>13番, ハートホイップ, -0.4, 連闘で、前走は休み明けで+8kgの492kgとなり18着に大敗。叩いて絞れるどころか、今回さらに494kg(+2)に増えている。韋駄天S4着時の484kgより10kg重く、調教も連闘のため軽め。斤量-3kgの恩恵を差し引いても、状態の上昇は読み取れない。<br><br>14番, カウスリップ, +0.8, 稲妻S勝ちの550kgとほぼ同じ552kg(+2)で、2か月半ぶりでも勝ったときの体を保っている。メンバー中ただ1頭「抜群の脚捌き」の評価で調子が上向き(↗)。552kgの大型馬なので、斤量56kgから54kgへの軽減もさらに楽になる。仕上がりはメンバー中で抜けている。<br><br>15番, ポールセン, +0.2, 486〜490kgの安定した体重帯の中で488kg(-2)。6週の間隔も適度で、調教は「力強い伸び脚」。斤量も57kgから56kgに微減で、状態面の不安はない。<br><br>16番, シュラフ, -0.1, 前走440kg(-6)の細さから回復したのは良いが、458kg(+18)は駿風S勝ちの444kgより14kgも重い。回復を通り越して太め残りの可能性がある。斤量-2kgと「まずまず仕上がる」の評価でマイナス幅は小さめ。<br><br>17番, ロードトレイル, +0.3, 474〜480kgで安定しており、480kg(+2)は駿風S2着時と同じ体重。坂路で一杯に追って「丹念に乗り込む」状態で、アイビスSD2着時の好調を保っているとみる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.0, &quot;2&quot;: 0.3, &quot;3&quot;: 0.5, &quot;4&quot;: 0.0, &quot;5&quot;: 0.3, &quot;6&quot;: -0.2, &quot;7&quot;: 0.0, &quot;8&quot;: -0.3, &quot;9&quot;: 0.2, &quot;10&quot;: 0.2, &quot;11&quot;: 0.3, &quot;12&quot;: -0.3, &quot;13&quot;: -0.4, &quot;14&quot;: 0.8, &quot;15&quot;: 0.2, &quot;16&quot;: -0.1, &quot;17&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;体調面の最上位は14番カウスリップ。勝った時と同じ550kg台をキープし、調子↗と抜群の脚捌きでメンバー中ただ1頭の上昇気配。3番ヴェントゥーラも勝ち時と同じ体重のまま斤量が5kg軽くなり上位。5番デュガはベスト体重に戻って好材料。マイナスは、連闘で前走の大敗から体重がさらに増えた13番、自己最高の+18kgで太めが心配な6番と16番、休み明けで含みのある調教評価の12番、体重減と動き今ひと息の8番。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)斤量減を加点に使う基準が馬ごとにそろっていない。-5〜6kg減の2番スコーピオン+0.3/3番ヴェントゥーラ+0.5/7番フウセツ0.0/4番トールキン0.0/6番クールベイビー-0.2。2・4・7番の減量はクラス替わりによるもので、体調の材料として数えるかを統一してほしい。(2)近走で最も軽い体重を、2番スコーピオン(-6)は許容、4番トールキン(-8)はマイナス、8番フィオライア(-4、下限より2kg軽いだけ)は疲れで-0.3と読んでいて理屈が逆になっている。8番の減点の主因は調教(1F13.6が最も遅い)ではないか。(3)6番クールベイビーの調教評価は実際には『時計平凡も動き良』で、後半のプラスを落として引用している。(4)16番シュラフは440kg台で+18kg、勝ち時より14kg重く増え方の割合が最も大きいのに-0.1は軽いのではないか(1番ウインアイオライト0.0、6番-0.2との釣り合いも)。(5)5番デュガはベスト体重帯でも490〜496kgで凡走があり、12番ナナオの458kgは普段の454kgから+4kgにすぎない。体重の読み方が両馬で逆になっていないか。(6)3番ヴェントゥーラの474kgは-14kgで勝った体のままで、回復不足の可能性を検討せずに2位評価にしてよいか。(7)14番カウスリップの2位との差0.3は調子↗一点に依存しており、17番ロードトレイルの『好調維持』は3か月ぶり・調子→で裏付けが弱い。(8)不良馬場で斤量や馬体の評価を読み替える必要がないか検討の余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ウインアイオライト, -0.1, 近走はずっと478kgで安定しとったけど、2か月半ぶりの今回は488kg(+10)で、これまでの最高体重を10kg上回っとる。乗り込みは入念やけど太め残りの心配が少し勝つ。斤量-3kgはこの馬格ならわずかなプラスにとどまる。<br><br>2番, スコーピオン, +0.2, 480kg(-6)は近走の486〜490kgより少し軽いけど、トールキンと同じ基準で軽い減点にとどめた。坂路を一杯に追って5F52.3、「意欲的な攻め内容」で仕上げに不安は無い。斤量-5kgは全馬共通の小さい加点として数えとる。<br><br>3番, ヴェントゥーラ, +0.3, 474kg(±0)は閃光特別を勝ったときと同じ体重。ただ、その勝利自体が-14kgやったし、8週あいても元の480〜488kgに戻っとらんけん、回復しきっとらん可能性は残る。「活気十分」で51kgの軽ハンデは追い風やけど、上げ幅は控えめにした。<br><br>4番, トールキン, -0.1, 498〜500kgで安定しとった馬体が2か月ぶりに492kg(-8)と、近走でいちばん軽い。調教も「平凡な動き」で上向きの材料が乏しい。斤量-6kgの共通加点で、マイナス幅は小さくなる。<br><br>5番, デュガ, +0.2, 前走は480kg(-10)と細かったのが、494kg(+14)まで戻った。ただ490〜496kgでも凡走しとるけん、ベスト体重帯に戻ったことの評価は下げた。「久々も力強く」の評価から、立て直しには一定の手応えがある。<br><br>6番, クールベイビー, -0.1, 492kg(+18)は近走の468〜478kgを14kg上回る自己最高で、太め残りの懸念は大きい。それでも調教は「時計平凡も動き良」で動きは悪くないし、斤量-6kgの共通加点もあるけん、マイナスは小さめ。<br><br>7番, フウセツ, -0.1, 496kgで毎回ぶれない馬体は評価できる。ただ、14着から中1週の詰まったローテで、調教も5F55.7と遅いうえに「気性難見せる」。斤量-5kgの共通加点を足しても、わずかにマイナス。<br><br>8番, フィオライア, -0.3, 減点の主な理由は調教のほうに置き直した。1F13.6はメンバーでいちばん遅く、「動き今ひと息」。462kg(-4)は近走の下限より2kg軽いだけで、それ自体は小さいマイナス。不良馬場で、この馬格に55kgはやや重い。<br><br>9番, モズナナスター, +0.2, 458kg(±0)は春雷S2着(460kg)や韋駄天S3着(460kg)とほぼ同じ体重。「まずまず仕上がる」で状態は安定しとる。<br><br>10番, クムシラコ, +0.2, 472kg(+2)は安達太良S2着のときの470kgに近く、8歳でも体重はぶれとらん。「フットワーク軽快」で状態は安定。<br><br>11番, エコロレジーナ, +0.3, 502kg(-2)は韋駄天Sを勝ったときの504kgとほぼ同じ。G前で仕掛けて「追って伸び上々」で、大柄な馬体なら55kgでも問題ない。<br><br>12番, ナナオ, -0.2, 458kgは普段の454kgから+4kgで、前走の細かった448kgから戻した範囲内。体重の読みすぎやったと認めて、マイナス幅を縮めた。ただ半年の休み明けで、「馬体は仕上がるも」という含みのある評価が残る。<br><br>13番, ハートホイップ, -0.4, 休み明け+8kgで18着に大敗したあと、連闘でさらに494kg(+2)。叩いて絞れる上昇パターンになっとらん。韋駄天S4着時の484kgより10kg重く、調教も連闘のため軽め。<br><br>14番, カウスリップ, +0.6, 稲妻S勝ちの550kgとほぼ同じ552kg(+2)で、勝ったときの体を保っとる。唯一の「抜群の脚捌き」で調子も↗。体重に対する斤量の比率はメンバー最軽の約9.8%で、不良馬場でも負担が軽い。ただ上積みの根拠が調子↗と調教評価の2点に集中しとるけん、0.8からは下げた。<br><br>15番, ポールセン, +0.2, 486〜490kgの安定帯の中で488kg(-2)。6週という間隔もちょうどよく、「力強い伸び脚」で状態面の不安は無い。<br><br>16番, シュラフ, -0.2, 前走440kg(-6)から一気に458kg(+18)。普段の442〜450kgの上限を8kg超え、駿風S勝ちの444kgより14kg重い。もともと440kg台と小柄な馬なので、増え方の割合が大きく、太め残りの懸念は6番と同じくらいある。調教は「まずまず」止まりで、6番のように相殺してくれる材料が無い。<br><br>17番, ロードトレイル, +0.2, 474〜480kgで安定しとって、480kg(+2)は駿風S2着のときと同じ体重。一杯に追って「丹念に乗り込む」けど、3か月ぶりで調子は→やけん、「好調維持」と言い切るのはやめて上げ幅を絞った。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.1, &quot;2&quot;: 0.2, &quot;3&quot;: 0.3, &quot;4&quot;: -0.1, &quot;5&quot;: 0.2, &quot;6&quot;: -0.1, &quot;7&quot;: -0.1, &quot;8&quot;: -0.3, &quot;9&quot;: 0.2, &quot;10&quot;: 0.2, &quot;11&quot;: 0.3, &quot;12&quot;: -0.2, &quot;13&quot;: -0.4, &quot;14&quot;: 0.6, &quot;15&quot;: 0.2, &quot;16&quot;: -0.2, &quot;17&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;指摘(1)を受けて斤量減の扱いをそろえた。5kg以上の減量は全馬一律で+0.1程度の小さい加点にとどめ、評価の主軸は馬体重の推移と調教に置いた。(2)近走でいちばん軽い体重は2番・4番とも軽い減点で同じ基準にし、8番の減点理由は調教の1F13.6と『今ひと息』に置き直した。(3)6番は『動き良』を反映して-0.1に。(4)16番は小柄な馬で+18kg、増え方の割合が大きく、相殺する材料も無いので-0.2に下げた。1番も最高体重を+10kg上回るので-0.1に。(5)5番は+0.2、12番は普段比+4kgにすぎないので-0.2に縮めた。(6)3番は体重が戻っとらん懸念を入れて+0.3。(7)14番は根拠が2点に集中しとるので+0.6に、17番は+0.2に下げた。(8)不良馬場では斤量÷馬体重の比率を考慮し、大型の14番をやや後押し、小柄で斤量の重い8番をやや減点の材料にした。13番の-0.4、11番の+0.3は維持。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ウインアイオライト, +0.1, 父スクリーンヒーローはロベルト系で力の要る馬場に強く、不良馬場ではプラスになる。一方で産駒はマイル以上に良績が寄るので、直線1000mの速いダッシュ比べでは母父マイネルラヴのスプリント要素頼みとなり、わずかなプラスにとどめる。<br><br>2番, スコーピオン, +0.3, 父ビッグアーサー（サクラバクシンオー系）×母父スウェプトオーヴァーボード（米国のミスプロ系スピード）という短距離の力型配合。直線1000mと道悪の両方に合う。<br><br>3番, ヴェントゥーラ, -0.2, 父サートゥルナーリア×母父ディープインパクトで、軽い切れ味寄りの配合。稍重の1000mで勝った実績はあるが、不良まで悪化すると母父ディープの軽さがマイナスに出やすい。<br><br>4番, トールキン, +0.2, 父ダイワメジャーの産駒はパワー型で、道悪を苦にしない。母父キングカメハメハも馬場不問なので、不良馬場でわずかに上積みが見込める。<br><br>5番, デュガ, +0.3, 父Practical Joke（Into Mischief系）×母父Canadian Frontier（ゴーンウエスト系）の米国ダート系スピード配合。力の要る不良の芝ではこの手の血が浮上しやすい。7歳で早熟寄りの父系という点だけ少し割り引く。<br><br>6番, クールベイビー, +0.2, 母父ケイムホームのダートパワーと、父アルアインの持続力を併せ持つ。新潟千直の勝ちもあり、道悪はやや向く。<br><br>7番, フウセツ, +0.2, 父サンダースノー（ダンチヒ系）×母父アドマイヤムーンで、日本ではダート寄りの血。不良の芝はダート血統との差が縮む条件なので、わずかにプラス。ただ芝のスピードが未知数なので、上げ幅は抑える。<br><br>8番, フィオライア, +0.4, 父ファインニードル×母父サクラバクシンオーで、生粋のスプリント配合。直線1000mへの適性は高く、バクシンオーの血は渋った馬場もこなす。<br><br>9番, モズナナスター, +0.4, 父モズアスコット（フランケル系で芝ダートのG1を勝ったパワー型）×母父アグネスデジタル（芝ダ兼用）という馬力型の配合。道悪で浮上しやすく、韋駄天Sの稍重3着とも合っている。<br><br>10番, クムシラコ, +0.2, 父ディスクリートキャットはストームキャット系の米国スピードで、道悪の芝でも力を出しやすい。8歳という年齢を考えて、わずかなプラスにとどめる。<br><br>11番, エコロレジーナ, +0.5, 父アメリカンペイトリオット（ウォーフロント系のダンチヒ・パワー）×母父オルフェーヴル（道悪巧者）。直線1000mのスピードと重い馬場への適性がそろっている。稍重の韋駄天S勝ちは血統どおりの結果。<br><br>12番, ナナオ, +0.3, 父ロードカナロアのスプリント力に、母父オルフェーヴルの道悪適性が加わる。ダートでも走れる馬力があり、不良の千直に合う。<br><br>13番, ハートホイップ, +0.3, 父ジョーカプチーノ（マンハッタンカフェ系の短距離型）×母父クロフネで、パワーのあるスプリント配合。道悪はプラスに働きやすい。<br><br>14番, カウスリップ, +0.4, 父ロードカナロアのスピードに母父Sea The Starsの欧州的な底力が加わり、千直への適性と重い馬場への対応力を併せ持つ。552kgの大型馬なのでパワーは十分にある。<br><br>15番, ポールセン, +0.1, 父Into Mischief×母父Candy Rideの純米国ダート血統。不良の芝ならダート血統の馬力が生きる余地はあるが、芝のスピード適性が読めないため、わずかなプラスにとどめる。<br><br>16番, シュラフ, +0.5, 父フォーウィールドライブは米国の芝スプリントG1を勝った馬（アメリカンファラオ系）で、千直の速さを伝える。母父マヤノトップガンは道悪の底力を補う。条件に合った配合。<br><br>17番, ロードトレイル, -0.1, 父ロードカナロアで千直適性はあるが、母父ディープインパクトは軽い馬場向き。不良ではわずかにマイナス。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: 0.3, &quot;3&quot;: -0.2, &quot;4&quot;: 0.2, &quot;5&quot;: 0.3, &quot;6&quot;: 0.2, &quot;7&quot;: 0.2, &quot;8&quot;: 0.4, &quot;9&quot;: 0.4, &quot;10&quot;: 0.2, &quot;11&quot;: 0.5, &quot;12&quot;: 0.3, &quot;13&quot;: 0.3, &quot;14&quot;: 0.4, &quot;15&quot;: 0.1, &quot;16&quot;: 0.5, &quot;17&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;新潟直線1000mの不良馬場。スプリント力に加えて、重い馬場を苦にしない馬力の血を重視した。エコロレジーナ（ウォーフロント系×オルフェーヴル）とシュラフ（米国芝スプリント父×マヤノトップガン）が最上位。フィオライア、モズナナスター、カウスリップがこれに続く。母父ディープインパクトの軽い配合（ヴェントゥーラ、ロードトレイル）は不良でマイナス。ダート専門の血（ポールセン、フウセツ）は、芝のスピードが未知なので小幅の評価にとどめた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) ロベルト系の扱いが逆になっている。1番ウインアイオライトは父スクリーンヒーローを『マイル寄り』として+0.1に割り引く一方、16番シュラフは母父マヤノトップガン（長距離型のロベルト系）を道悪のプラスと見て+0.5。また16番の父フォーウィールドライブは米国の硬い芝のスプリント血統で、不良への適性は母父頼み。最上位タイは甘くないか。(2) 3番ヴェントゥーラと17番ロードトレイルは母父ディープをマイナスにしているのに、6番クールベイビーの父アルアイン（ディープの直仔）には触れていない。物差しをそろえるべきでは。(3) 3番ヴェントゥーラの父サートゥルナーリアはロードカナロアの仔で、17番とほぼ同じ構成。『軽い切れ味型』で-0.2とするのは父系を見落としていないか。稍重1000m勝ちを自分で認めながらマイナスにする根拠も薄い。(4) ロードカナロア産駒の14番（+0.4）、12番（+0.3）、17番（-0.1）は母父だけで最大0.5開いている。14番の『552kgでパワー十分』は血統の根拠ではない。(5) 11番エコロレジーナ（父は芝マイラーのアメリカンペイトリオット）が12番ナナオ（父ロードカナロア、母父は同じオルフェーヴル）を千直のスピードで上回る理由が血統面から説明されていない。韋駄天Sの着順に頼っているなら、3番・13番・16番にも同じ基準を当てるべき。(6) 10番クムシラコは母父ネオユニヴァースの評価が抜けている。(7) 15頭がプラスで、不良で損をする馬が母父ディープの2頭しか拾えていない。16番や8番フィオライアのような良馬場向きのスプリント血統を洗い直す余地がある。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ウインアイオライト, +0.2, 父スクリーンヒーローはロベルト系で、力の要る馬場で浮上しやすい。母父マイネルラヴのスプリント要素もあり1200m勝ちもあるので、16番の母父ロベルト系と同じ物差しにそろえてRound1から一段上げる。<br><br>2番, スコーピオン, +0.3, 父ビッグアーサー（サクラバクシンオー系）×母父スウェプトオーヴァーボード（米国のパワー型スピード）という短距離の力型配合。直線1000mと道悪の両方に合う。<br><br>3番, ヴェントゥーラ, -0.1, 父サートゥルナーリアはロードカナロアの仔で、短距離の素地は17番と同じ構成。ただ父自身は中距離型なので千直のスピードは薄まり、母父ディープの軽さも不良では少し割り引く。稍重の千直勝ちを踏まえて-0.2から戻す。<br><br>4番, トールキン, +0.1, 父ダイワメジャー×母父キングカメハメハは道悪を苦にしないパワー型。ただ産駒は1200〜1600m寄りで千直への特化は薄いので、わずかなプラスにとどめる。<br><br>5番, デュガ, +0.2, 父Practical Joke×母父Canadian Frontierの米国スピード配合で、力の要る芝なら馬力が生きる。芝1200mで勝った実績もある。ただ7歳で早熟寄りの父系なので少し割り引く。<br><br>6番, クールベイビー, +0.1, 父アルアインはディープの直仔だが、本馬は皐月賞馬らしくパワー寄り。母父ケイムホームのダート馬力もあるので、3番・17番の母父ディープとは扱いを分ける。ただディープの軽さを持つ点は物差しをそろえて割り引き、+0.2から一段下げる。<br><br>7番, フウセツ, +0.1, 父サンダースノー（ダンチヒ系）は欧州の芝G1も勝っており、母父アドマイヤムーンは芝の短距離血統。ただ本馬はダートしか使っておらず、芝の千直への適性は血統だけでは読み切れないので、わずかなプラスにとどめる。<br><br>8番, フィオライア, +0.3, 父ファインニードル×母父サクラバクシンオーで、生粋のスプリント配合。千直への適性は高い。ただ良馬場のスピード比べで真価を出す血統でもあるので、道悪の分を引いて+0.4から下げる。<br><br>9番, モズナナスター, +0.3, 父モズアスコット（芝ダートのG1を勝ったフランケル系のパワー型）×母父アグネスデジタル（芝ダ兼用）という馬力型の配合で、道悪向き。韋駄天Sの着順に寄りかかっていた分を外して+0.4から下げる。<br><br>10番, クムシラコ, +0.2, 父ディスクリートキャット（ストームキャット系）の米国スピードに、母父ネオユニヴァースの渋った馬場での粘りが加わり、道悪の芝でも力を出しやすい。母父の評価が抜けていた点を補ったうえで値は据え置く。<br><br>11番, エコロレジーナ, +0.3, 父アメリカンペイトリオット（ウォーフロント系のパワー）×母父オルフェーヴルで道悪には向く。ただ父は芝マイラーなので、千直のスピードで12番を上回る血統上の根拠は無い。着順頼みの上乗せを外して12番と同じ値にする。<br><br>12番, ナナオ, +0.3, 父ロードカナロアのスプリント力に、母父オルフェーヴルの道悪適性が加わる。ダートでも走れる馬力があり、不良の千直に合う。<br><br>13番, ハートホイップ, +0.2, 父ジョーカプチーノ（マンハッタンカフェ系の短距離型）×母父クロフネで、パワーのあるスプリント配合。韋駄天Sの着順は補正の根拠から外し、配合だけで評価して+0.3から下げる。<br><br>14番, カウスリップ, +0.3, 父ロードカナロアの千直適性に、母父Sea The Starsの欧州的な重い馬場への底力が加わる。馬体重は血統の根拠ではないので外し、母父オルフェーヴルの12番と同じ水準にそろえる。<br><br>15番, ポールセン, 0.0, 父Into Mischief×母父Candy Rideの純米国ダート血統で、芝を走った実績が無い。不良で馬力が生きる余地と芝スピードの不安が打ち消し合うので、一変を期待せず中立にする。<br><br>16番, シュラフ, +0.2, 父フォーウィールドライブは米国の硬い芝で勝ったスプリント血統で、千直の速さはあるが不良への適性は薄い。母父マヤノトップガンは長距離型のロベルト系で、千直への寄与は限られる。最上位の評価は甘かったので+0.5から大きく下げる。<br><br>17番, ロードトレイル, -0.1, 父ロードカナロアで千直適性はあるが、母父ディープインパクトは軽い馬場向きなので、不良ではわずかにマイナスとなる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.3, &quot;3&quot;: -0.1, &quot;4&quot;: 0.1, &quot;5&quot;: 0.2, &quot;6&quot;: 0.1, &quot;7&quot;: 0.1, &quot;8&quot;: 0.3, &quot;9&quot;: 0.3, &quot;10&quot;: 0.2, &quot;11&quot;: 0.3, &quot;12&quot;: 0.3, &quot;13&quot;: 0.2, &quot;14&quot;: 0.3, &quot;15&quot;: 0.0, &quot;16&quot;: 0.2, &quot;17&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;批判者の指摘7点を検証し、おおむね受け入れた。(1) ロベルト系の物差しをそろえ、1番は+0.1→+0.2、16番は+0.5→+0.2とした。16番は父が硬い芝のスプリント型で、母父マヤノトップガンも千直への寄与が薄い。(2) 6番の父アルアインにもディープの軽さを反映して-0.1した。(3) 3番は父がカナロアの仔である点と稍重の千直勝ちを踏まえ、17番と同じ-0.1にそろえた。(4)(5) 着順と馬体重に頼った上乗せを外した。母父オルフェーヴル・Sea The Starsの道悪要素で、11番・12番・14番を+0.3にそろえ、9番・13番も1段下げた。(6) 10番は母父ネオユニヴァースの粘りを根拠に加え、値は据え置いた。(7) 良馬場向きのスピードの分を引いて8番を+0.3とした。芝が未知の15番は中立に、7番は+0.1に下げた。不良はパワー型の配合に広く有利なため、プラスの馬が多い構図は残る。突出した馬はいない。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、陣営の目で全17頭に補正ポイントを付けたけん、見てね。新潟千直は騎手の得手不得手がはっきり出るコースやけん、千直での実績、継続騎乗かどうか、乗り替わりの格を中心に見とる。馬の能力の高さはここには混ぜとらんよ。<br><br>**ステップ1. 各馬の評価**<br><br>1番, ウインアイオライト, -0.2, 前走の黛騎手から野中騎手への乗り替わりで、千直で目立つ実績のある騎手でもない。継続騎乗の上積みも無く、陣営の後押しはやや弱か。<br><br>2番, スコーピオン, +0.1, 調教師の息子にあたる武藤雅騎手の継続騎乗で、千直も2回乗っとる。手の内は分かっとるけど、騎手の格としての上積みは小さか。<br><br>3番, ヴェントゥーラ, -0.2, 千直の閃光特別を勝たせた岩田望来騎手から、今村騎手への乗り替わり。勝った鞍上が降りるけん、騎手の格は一段下がる形になっとる。<br><br>4番, トールキン, 0.0, 亀田騎手は駿風Sで4着に持ってきとって、この馬での千直経験はある。継続とは言えんし格の上積みも無いけん、中立にしとる。<br><br>5番, デュガ, +0.4, 「千直の鬼」の江田照男騎手が3戦続けて乗っとって、このコースでの定評はメンバー随一。短距離馬を多く扱う森秀行厩舎とのコンビで、陣営の裏付けはしっかりしとる。<br><br>6番, クールベイビー, -0.2, 驀進特別を勝った岩田望来騎手、前走の石橋騎手と続いて、今回は石田拓郎騎手に替わる。乗り替わりが続いとって、鞍上の格も下がる形。<br><br>7番, フウセツ, -0.1, ずっとダートを走ってきた馬に初コンビの丸山騎手が乗る。丸山騎手は新潟の芝に慣れとるけど、手の内を知る強みが無いけん少しだけマイナスにしとる。<br><br>8番, フィオライア, -0.1, 重賞で乗っとった太宰騎手や松若騎手から小沢騎手に替わる。千直での実績がある騎手でもないけん、陣営面の後押しは薄か。<br><br>9番, モズナナスター, +0.1, 矢作芳人厩舎はトップ厩舎で、どこへ遠征しても仕上げてくる信頼感がある。鞍上は富田騎手への乗り替わりで格の上積みは無いけん、厩舎の分だけ小さくプラスにしとる。<br><br>10番, クムシラコ, 0.0, 黛騎手は韋駄天Sでこの馬に乗っとる（9着）けど、鞍上は毎回のように替わっとって手の内の強みは無か。厩舎の格も含めて差は付けられん。<br><br>11番, エコロレジーナ, +0.5, 調教師の息子の菊沢一樹騎手が継続騎乗で、このコンビで韋駄天Sを勝っとる。アイビスSDでも6着に来とるし、千直を分かっとる家族陣営の手の内ははっきりした強み。<br><br>12番, ナナオ, -0.2, 減量の若手、小林美駒騎手への乗り替わりで、この馬との千直経験も無か。小栗厩舎から2頭出しのうちの軽い扱いにも見えて、勝負気配は感じにくか。<br><br>13番, ハートホイップ, -0.1, 韋駄天Sで4着に持ってきた石田拓郎騎手から丸田騎手に替わって、しかも連闘。手の内を知る鞍上を手放しとるけん、少しだけマイナス。<br><br>14番, カウスリップ, +0.4, 千直で2戦続けて好走させた津村騎手から、トップ級の横山和生騎手への乗り替わりで、陣営の勝負気配が見える。中舘英二調教師は騎手時代に千直の名手やったし、横山和生騎手もこの馬に乗った経験があるけん、手の内を失う分を差し引いてもプラスやね。<br><br>15番, ポールセン, +0.1, 調教師の息子の斎藤新騎手が継続騎乗。ダートから芝へ替わるけど、陣営の手の内という面では小さく上積みがある。<br><br>16番, シュラフ, +0.2, 主戦の嶋田騎手が継続騎乗で、このコンビで千直の駿風Sを勝って韋駄天Sでも5着。騎手の格は中くらいやけど、手の内を知る強みでわずかにプラスにしとる。<br><br>17番, ロードトレイル, 0.0, アイビスSDで2着に持ってきた大野騎手から横山琉人騎手に替わる。横山琉人騎手も駿風Sで2着に来とるけん、プラスマイナスゼロ。藤岡健一厩舎はしっかりした厩舎やけど、千直での上積みとまでは言えん。<br><br>**ステップ2. JSON**<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.1, &quot;3&quot;: -0.2, &quot;4&quot;: 0.0, &quot;5&quot;: 0.4, &quot;6&quot;: -0.2, &quot;7&quot;: -0.1, &quot;8&quot;: -0.1, &quot;9&quot;: 0.1, &quot;10&quot;: 0.0, &quot;11&quot;: 0.5, &quot;12&quot;: -0.2, &quot;13&quot;: -0.1, &quot;14&quot;: 0.4, &quot;15&quot;: 0.1, &quot;16&quot;: 0.2, &quot;17&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;新潟千直は騎手の得手不得手が出やすいので、千直での実績と継続騎乗を重く見た。菊沢一樹騎手が父の厩舎の馬に継続騎乗し、韋駄天Sを勝ったエコロレジーナを最上位にした。千直の名手の江田照男騎手が継続騎乗するデュガと、千直の名手だった中舘英二調教師の厩舎でトップ級の横山和生騎手に乗り替わるカウスリップ（勝負気配）が続く。千直で勝たせた騎手から格の下がる騎手へ替わるヴェントゥーラとクールベイビー、若手に替わるナナオは少しマイナス。全体として陣営で大きく差が付くレースではなく、振り幅は±0.5以内に収めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①乗り替わりの扱いが逆向き：14番カウスリップは千直で勝たせた津村騎手が降りるのに+0.4、3番ヴェントゥーラ・6番クールベイビーは勝たせた岩田望来騎手が降りて-0.2。しかも14番の横山和生騎手が乗った経験はダート1200mの10着1回だけで、千直の手の内とは言いにくい。②6番クールベイビーの新しい鞍上の石田拓郎騎手は、13番ハートホイップでは『千直で4着に持ってきた騎手』と評価しとるのに、6番では『格が下がる』と減点。同じ騎手の評価が食い違っとる。③12番ナナオを小栗厩舎2頭出しの『軽い扱い』と見るなら、本線の3番ヴェントゥーラと同じ-0.2なのは筋が通らん。④5番デュガ+0.4は、江田照男騎手との千直2戦が11着・10着で手の内が結果に出とらん。千直を勝たせた継続騎乗の16番シュラフ+0.2より上になる理由は弱くないか。⑤17番ロードトレイル(横山琉人騎手は千直2着の手の内あり)0.0と14番の+0.4の差は、騎手の格だけで説明できるか。⑥13番ハートホイップの連闘・50kgでのオープン挑戦を、陣営の勝負気配として読む余地はないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ウインアイオライト, -0.2, 前走の黛騎手から野中騎手に替わって、野中騎手は千直で目立つ実績がある騎手でもなか。継続騎乗の上積みも無いけん、陣営の後押しはやや弱いままにしとる。<br><br>2番, スコーピオン, +0.1, 調教師の息子の武藤雅騎手が継続騎乗で、この馬の千直も2回乗っとる。手の内は分かっとるけど、騎手の格としての上積みは小さか。<br><br>3番, ヴェントゥーラ, -0.1, 閃光特別を勝たせた岩田望来騎手が降りるのはマイナス。ただ岩田騎手が乗ったのはその1回だけで、ほかの鞍上も毎回替わっとる。失う手の内は小さいけん、-0.2から-0.1に緩めとる。<br><br>4番, トールキン, 0.0, 亀田騎手は駿風Sでこの馬を4着に持ってきとって、千直での手の内はある。継続騎乗とは言えんし格の上積みも無いけん、中立のままにしとる。<br><br>5番, デュガ, +0.3, 江田照男騎手の「千直の名手」という定評と、森秀行厩舎とのコンビという裏付けは変わらん。ただこの馬との千直2戦は11着・10着で、継続騎乗の手の内が結果に出とらんけん、+0.4から+0.3に下げとる。<br><br>6番, クールベイビー, -0.1, 石田拓郎騎手は韋駄天Sで4着に持ってきとって、千直の腕は13番と同じ基準で認めるけん、「格が下がる」という見方は取り消すね。鞍上が毎回替わって手の内の積み上げが無い分だけ、小さくマイナスにしとる。<br><br>7番, フウセツ, -0.1, ずっとダートを走ってきた馬に、初めて組む丸山騎手が乗る。丸山騎手は新潟の芝に慣れとるけど、手の内を知る強みが無いけん少しだけマイナス。<br><br>8番, フィオライア, -0.1, 重賞で乗っとった太宰騎手や松若騎手から小沢騎手に替わる。小沢騎手は千直で実績がある騎手でもないけん、陣営面の後押しは薄か。<br><br>9番, モズナナスター, +0.1, 矢作芳人厩舎はトップ厩舎で、遠征先でも仕上げてくる信頼感がある。富田騎手への乗り替わりで鞍上の上積みは無いけん、厩舎の分だけ小さくプラス。<br><br>10番, クムシラコ, 0.0, 黛騎手は韋駄天Sでこの馬に乗っとる（9着）けど、鞍上が毎回のように替わっとって手の内の強みは無か。厩舎の格を含めても差は付けられん。<br><br>11番, エコロレジーナ, +0.5, 調教師の息子の菊沢一樹騎手が継続騎乗で、このコンビで千直の韋駄天Sを勝っとる。アイビスSDでも6着に来とって、千直を分かっとる親子陣営の手の内ははっきりした強み。<br><br>12番, ナナオ, -0.2, 減量の若手の小林美駒騎手に替わって、この馬で千直に乗った経験も無か。小栗厩舎の2頭出しでは3番が本線と見て、そっちを-0.1に緩めた分、軽い扱いのこっちとの差をはっきりさせとる。<br><br>13番, ハートホイップ, 0.0, 石田騎手が降りたのは6番に乗るためで、陣営が手放したわけやなか。連闘で50kgのオープン挑戦には陣営の意欲も見えるけん、マイナスを取り消して差し引きゼロにしとる。<br><br>14番, カウスリップ, +0.2, トップ級の横山和生騎手への乗り替わりで、陣営の勝負気配はある。ただ千直で2回続けて好走させた津村騎手が降りるし、横山和生騎手がこの馬に乗ったのはダートで10着の1回だけ。手の内が無い分を重く見て、+0.4から+0.2に下げとる。<br><br>15番, ポールセン, +0.1, 調教師の息子の斎藤新騎手が継続騎乗。ダートから芝に替わるけど、陣営の手の内という面で小さく上積みがある。<br><br>16番, シュラフ, +0.3, 主戦の嶋田騎手が継続騎乗で、このコンビで千直の駿風Sを勝って韋駄天Sでも5着。千直を勝たせた手の内が結果で裏付けられとるけん、5番と並ぶ+0.3に上げとる。<br><br>17番, ロードトレイル, +0.1, 駿風Sでこの馬を2着に持ってきた横山琉人騎手が戻ってくるけん、千直での手の内はある。アイビスSDで2着の大野騎手が降りる分と差し引いて、わずかにプラス。14番との差は騎手の格の分だけにしとる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.1, &quot;3&quot;: -0.1, &quot;4&quot;: 0.0, &quot;5&quot;: 0.3, &quot;6&quot;: -0.1, &quot;7&quot;: -0.1, &quot;8&quot;: -0.1, &quot;9&quot;: 0.1, &quot;10&quot;: 0.0, &quot;11&quot;: 0.5, &quot;12&quot;: -0.2, &quot;13&quot;: 0.0, &quot;14&quot;: 0.2, &quot;15&quot;: 0.1, &quot;16&quot;: 0.3, &quot;17&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;批判者の指摘のうち①②④⑤は筋が通っとるけん受け入れた。乗り替わりは『千直を勝たせた騎手が降りる』『手の内がある騎手が乗る』を同じ基準でそろえて、14番は+0.4から+0.2、3番は-0.2から-0.1、17番は0.0から+0.1にした。石田拓郎騎手の評価は13番と6番で統一して、6番は-0.2から-0.1。デュガは江田騎手との千直の結果が出とらんけん+0.4から+0.3、千直を勝たせた継続騎乗のシュラフは+0.2から+0.3で並べた。③の小栗厩舎2頭出しは、3番を緩めて12番との差を付けて解消した。⑥は、鞍上が替わったのが石田騎手が6番に回ったための不可抗力で、連闘に陣営の意欲も見えるけん13番を0.0にした。11番エコロレジーナ（親子陣営の継続騎乗で千直勝ち）が陣営面で一番上なのは変わらん。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、新潟11Rルミエールオータムダッシュの合成スコアを見直して、点数を決めたけんね。<br><br>**合成スコアのどこがおかしいと思ったか**<br>- **11番エコロレジーナが1位なのは高すぎると思う。** 根拠は韋駄天S（稍重）の勝ちやけど、同距離のアイビスSDでは14番カウスリップに0.3秒、17番ロードトレイルに0.5秒負けとる。斤量も55kgで、14番より1kg重い。<br>- **14番カウスリップはもっと上でよか。** 稲妻Sを0.7秒差で勝ってスピード指数89.9、アイビスSDも3着。調教は唯一の「↗・抜群の脚捌き」で、斤量も56kgから54kgに減る。552kgの大型でダートも走れるけん、不良馬場の力勝負に一番向いとる。<br>- **17番ロードトレイルは3番手より上やと思う。** 直線1000mで有利な大外の17番。アイビスSD2着（57kg・指数88.8）から56kgに減るけん、11番より上に置いた。<br>- **16番シュラフ**は駿風Sの勝ちはあるけど、アイビスSDで17着。馬体重+18kgも絞れとらんように見えるけん、5番手のままでよか。<br>- **6位以下で気になる馬**は15番ポールセン。8枠で、ダートのオープンで先行しとる。父Into Mischiefのパワー型で、不良の芝ならダートに近い力勝負になるけん、紐には入れたい。<br><br>**最終的な判断:** ◎は14番、○は17番、▲は11番。1位と3位を入れ替えて、9番と16番は合成と同じ並びにしたっちゃん。<br><br>14番, カウスリップ, 26%, 稲妻S圧勝とアイビスSD3着で、同距離では一番安定しとる。調教上昇・斤量減・大型のパワー型で、不良馬場の外枠なら軸にしてよか。<br><br>17番, ロードトレイル, 21%, アイビスSD2着で、11番に0.5秒先着しとる。大外17番で斤量も1kg減るけん、直線1000mの条件は一番よか。<br><br>11番, エコロレジーナ, 20%, 韋駄天S（稍重）の勝ちで道悪は問題なし。ただアイビスSDでは14番・17番に負けとって55kgもあるけん、1位までは推せん。<br><br>9番, モズナナスター, 15%, 韋駄天S（稍重）3着で同距離・道悪はこなせる。最近の1200mは凡走が続いとって、中枠の5枠も少し不利。<br><br>16番, シュラフ, 12%, 8枠で駿風Sの勝ち・韋駄天S5着がある。アイビスSD17着と馬体重+18kgで信頼度は下がるけん、5番手が妥当。<br><br>```json<br>{&quot;score&quot;: {&quot;14&quot;: 26, &quot;17&quot;: 21, &quot;11&quot;: 20, &quot;9&quot;: 15, &quot;16&quot;: 12}, &quot;analysis_summary&quot;: &quot;合成は11番エコロレジーナを1位にしとるが、同距離のアイビスSDで14番カウスリップと17番ロードトレイルに負けとり、斤量も55kgあるので3位に下げた。14番は稲妻S圧勝・アイビスSD3着・調教上昇・斤量54kg・大型のパワー型で不良の外枠に最適と見て◎。17番は大外でアイビスSD2着、1kg減で○。9番・16番は合成と同じ並び。6位以下では8枠でダートのパワー型の15番ポールセンを不良馬場の穴として注意。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>14番, カウスリップ, 20%, 千直では稲妻S1着（SI89.9）とアイビスSD3着（87.1）があって、メンバー中いちばん安定しとる。552kgの大型でダート経験もあるけん不良馬場のパワー勝負は合いそうやし、7枠で調教も「抜群の脚捌き↗」やけん本命にしとるとよ。<br><br>17番, ロードトレイル, 13%, アイビスSD2着（SI88.8）と駿風S2着で千直の適性は上位。大外17番は千直では有利な枠やけん、56kgでも十分勝ち負けになると見とる。<br><br>11番, エコロレジーナ, 12%, 稍重の韋駄天SをSI93.4で勝っとって、時計のかかる千直の実績はメンバー中最上位。502kgで馬格もあるし、調教の「追って伸び上々」も良か材料っちゃん。<br><br>9番, モズナナスター, 8%, 稍重の韋駄天Sで3着（SI88.2）、春雷S2着の力もある。ただ最近の1200m戦は後ろからで届いとらんけん、千直での前進待ちという評価になるとよ。<br><br>16番, シュラフ, 7%, 駿風S1着と韋駄天S5着（SI86.5）で千直は得意。8枠も良か。でもアイビスSDは17着で大敗しとるし、今回+18kgの中身が読めんけん少し割り引いとる。<br><br>13番, ハートホイップ, 6%, 50kgで出た韋駄天Sで4着（SI88.2）。今回も50kgの軽ハンデで7枠やけん穴の候補。ただ前走18着からの連闘で調教も軽めなのが不安やね。<br><br>15番, ポールセン, 5%, ダートのOPでSI86〜88を安定して出しとるスピード馬。不良の芝ならダートで培ったパワーが活きるかもしれんし、8枠でテンも速い。ただ芝千直は未知数やけん押さえ程度にしとる。<br><br>5番, デュガ, 5%, 1200mではSI90以上を出した地力があって調教も「久々も力強く」。でも千直は10着と11着止まりで、トップハンデの57kgと3枠の内寄りもマイナスやね。<br><br>8番, フィオライア, 4%, シルクロードSを勝ったGIII馬で地力は上位。ただ今回が初めての千直で、4枠の真ん中と調教の「動き今ひと息」が重なっとるけん評価は控えめにしとる。<br><br>3番, ヴェントゥーラ, 4%, 稍重の閃光特別（2勝クラス）を勝っとって、時計がかかる馬場は苦にせん。51kgの軽ハンデは魅力やけど、オープン相手で2枠の内寄りやけん厳しい条件っちゃん。<br><br>10番, クムシラコ, 4%, 安達太良Sの2着（SI92.0）で力は示しとる。ただ千直は9着と13着で決め手が足りんし、8歳で56kgも楽やない。<br><br>6番, クールベイビー, 3%, 驀進特別を勝っとるけど3勝クラスの稲妻Sで9着やけん、このクラスでは力が足りん印象。50kgの軽ハンデでの一発はあるかもしれん程度。<br><br>7番, フウセツ, 2.5%, ダート3勝クラスで先行して粘るタイプで、芝は未知数。不良馬場のダート的な要素はプラスやけど、調教で「気性難見せる」のが気になるとよ。<br><br>4番, トールキン, 2%, 千直は駿風S4着が最高で、最近は着差が大きい負けが続いとる。調教も「平凡な動き」やけん上積みは見込みにくい。<br><br>1番, ウインアイオライト, 1.5%, 3勝クラスを勝ったあとはオープンで13〜14着と崩れとる。千直は初めてで1枠も不利やけん厳しいね。<br><br>2番, スコーピオン, 1.5%, 3勝クラスの千直でも6着と13着で、オープンでは力が足りん。1枠の最内も不利っちゃん。<br><br>12番, ナナオ, 1.5%, 6か月ぶりで近走は二桁着順ばかり、芝千直も初めて。リステッド勝ちはあるけど今の状態では狙いにくい。<br><br>```json<br>{&quot;score&quot;: {&quot;14&quot;: 20, &quot;17&quot;: 13, &quot;11&quot;: 12, &quot;9&quot;: 8, &quot;16&quot;: 7, &quot;13&quot;: 6, &quot;15&quot;: 5, &quot;5&quot;: 5, &quot;8&quot;: 4, &quot;3&quot;: 4, &quot;10&quot;: 4, &quot;6&quot;: 3, &quot;7&quot;: 2.5, &quot;4&quot;: 2, &quot;1&quot;: 1.5, &quot;2&quot;: 1.5, &quot;12&quot;: 1.5}, &quot;analysis_summary&quot;: &quot;不良馬場の新潟直線1000mで外枠有利という前提。千直実績と馬格・パワーを最優先にした。14番カウスリップは千直で連続好走していて552kgの大型、7枠で調教も上向きなので軸。続くのは千直重賞2着で大外の17番ロードトレイルと、稍重の韋駄天SをSI93.4で勝った11番エコロレジーナ。4番手以下は韋駄天Sで好走した9番・16番・13番。穴はダートOPで実績があり不良の芝が合いそうな8枠の15番ポールセン。千直未経験や内枠の馬、近走の大敗が続く馬は低く評価した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>14</td><td class="left horse-name">カウスリップ</td><td>13.6%</td><td>3.1</td><td>1</td><td class="ev-low">0.42</td></tr><tr><td>2</td><td>11</td><td class="left horse-name">エコロレジーナ</td><td>12.2%</td><td>5.8</td><td>2</td><td class="ev-low">0.71</td></tr><tr><td>3</td><td>17</td><td class="left horse-name">ロードトレイル</td><td>10.7%</td><td>7.2</td><td>3</td><td class="ev-low">0.77</td></tr><tr><td>4</td><td>9</td><td class="left horse-name">モズナナスター</td><td>8.4%</td><td>8.9</td><td>4</td><td class="ev-low">0.75</td></tr><tr><td>5</td><td>16</td><td class="left horse-name">シュラフ</td><td>6.6%</td><td>14.7</td><td>8</td><td class="ev-low">0.97</td></tr><tr><td>6</td><td>5</td><td class="left horse-name">デュガ</td><td>6.3%</td><td>55.3</td><td>14</td><td class="ev-high">3.46</td></tr><tr><td>7</td><td>10</td><td class="left horse-name">クムシラコ</td><td>5.8%</td><td>41.8</td><td>12</td><td class="ev-high">2.43</td></tr><tr><td>8</td><td>8</td><td class="left horse-name">フィオライア</td><td>5.5%</td><td>21.2</td><td>9</td><td class="ev-mid">1.17</td></tr><tr><td>9</td><td>3</td><td class="left horse-name">ヴェントゥーラ</td><td>5.2%</td><td>13.2</td><td>6</td><td class="ev-low">0.68</td></tr><tr><td>10</td><td>13</td><td class="left horse-name">ハートホイップ</td><td>4.8%</td><td>37.6</td><td>10</td><td class="ev-mid">1.81</td></tr><tr><td>11</td><td>15</td><td class="left horse-name">ポールセン</td><td>4.5%</td><td>9.8</td><td>5</td><td class="ev-low">0.44</td></tr><tr><td>12</td><td>1</td><td class="left horse-name">ウインアイオライト</td><td>3.8%</td><td>61.1</td><td>15</td><td class="ev-high">2.32</td></tr><tr><td>13</td><td>6</td><td class="left horse-name">クールベイビー</td><td>3.6%</td><td>53.0</td><td>13</td><td class="ev-mid">1.88</td></tr><tr><td>14</td><td>12</td><td class="left horse-name">ナナオ</td><td>2.6%</td><td>14.1</td><td>7</td><td class="ev-low">0.37</td></tr><tr><td>15</td><td>4</td><td class="left horse-name">トールキン</td><td>2.5%</td><td>127.1</td><td>17</td><td class="ev-high">3.22</td></tr><tr><td>16</td><td>7</td><td class="left horse-name">フウセツ</td><td>2.3%</td><td>38.3</td><td>11</td><td class="ev-low">0.88</td></tr><tr><td>17</td><td>2</td><td class="left horse-name">スコーピオン</td><td>1.7%</td><td>107.5</td><td>16</td><td class="ev-mid">1.83</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">14 カウスリップ</td><td>13.6%</td><td>3.1</td><td class="ev-low">0.36</td></tr><tr><td>複勝</td><td class="left">14 カウスリップ</td><td>37.9%</td><td>1.4</td><td class="ev-low">0.50</td></tr><tr><td>馬連</td><td class="left">11 エコロレジーナ-14 カウスリップ</td><td>3.8%</td><td>7.8</td><td class="ev-low">0.25</td></tr><tr><td>ワイド</td><td class="left">11 エコロレジーナ-14 カウスリップ</td><td>10.5%</td><td>3.7</td><td class="ev-low">0.33</td></tr><tr><td>馬単</td><td class="left">14 カウスリップ→11 エコロレジーナ</td><td>1.9%</td><td>12.5</td><td class="ev-low">0.20</td></tr><tr><td>3連複</td><td class="left">11 エコロレジーナ-14 カウスリップ-17 ロードトレイル</td><td>1.6%</td><td>10.1</td><td class="ev-low">0.13</td></tr><tr><td>3連単</td><td class="left">14 カウスリップ→11 エコロレジーナ→17 ロードトレイル</td><td>0.3%</td><td>32.2</td><td class="ev-low">0.07</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
