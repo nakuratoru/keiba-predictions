@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第174回天皇賞(秋) 2026/11/01 TOKYO 11R (10/31 21:13 予想 馬体重なし) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>第174回天皇賞(秋) 2026/11/01 TOKYO 11R (10/31 21:13 予想 馬体重なし)</h1>
+  <div class="meta">芝2000m（左） | 良 | 17頭立て | 4回 東京 11日目 サラ系3歳以上 オープン （国際）（指定） 定量 17頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">7. マスカレードボール</div>
+      <div class="pick-jockey">C.ルメール</div>
+    </div>
+    <div class="pick-prob">14.5%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">1. クロワデュノール</div>
+      <div class="pick-jockey">C.デムーロ</div>
+    </div>
+    <div class="pick-prob">14.0%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">17. ダノンデサイル</div>
+      <div class="pick-jockey">戸崎 圭太</div>
+    </div>
+    <div class="pick-prob">8.6%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">17頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">クロワデュノール</td><td>牡4</td><td>58</td><td>C.デムーロ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">2</span></td><td class="left horse-name">エルトンバローズ</td><td>牡6</td><td>58</td><td>松若 風馬</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">3</span></td><td class="left horse-name">レガレイラ</td><td>牝5</td><td>56</td><td>岩田 望来</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">4</span></td><td class="left horse-name">レディネス</td><td>牡4</td><td>58</td><td>横山 典弘</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">5</span></td><td class="left horse-name">シャンパンカラー</td><td>牡6</td><td>58</td><td>内田 博幸</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">6</span></td><td class="left horse-name">セイウンハーデス</td><td>牡7</td><td>58</td><td>幸 英明</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">7</span></td><td class="left horse-name">マスカレードボール</td><td>牡4</td><td>58</td><td>C.ルメール</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">8</span></td><td class="left horse-name">ジュンブロッサム</td><td>牡7</td><td>58</td><td>杉原 誠人</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">9</span></td><td class="left horse-name">ホウオウビスケッツ</td><td>牡6</td><td>58</td><td>岩田 康誠</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">10</span></td><td class="left horse-name">ネブラディスク</td><td>牡4</td><td>58</td><td>川田 将雅</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">11</span></td><td class="left horse-name">シェイクユアハート</td><td>牡6</td><td>58</td><td>古川 吉洋</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">12</span></td><td class="left horse-name">コスモキュランダ</td><td>牡5</td><td>58</td><td>丹内 祐次</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">13</span></td><td class="left horse-name">リアライズシリウス</td><td>牡3</td><td>56</td><td>津村 明秀</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">14</span></td><td class="left horse-name">タガノデュード</td><td>牡5</td><td>58</td><td>M.デムーロ</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">15</span></td><td class="left horse-name">サクラファレル</td><td>牡4</td><td>58</td><td>佐々木 大輔</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">16</span></td><td class="left horse-name">ジョバンニ</td><td>牡4</td><td>58</td><td>松山 弘平</td><td>未発表</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">17</span></td><td class="left horse-name">ダノンデサイル</td><td>牡5</td><td>58</td><td>戸崎 圭太</td><td>未発表</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">マスカレードボール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">クロワデュノール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ダノンデサイル</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">マスカレードボール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">クロワデュノール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ダノンデサイル</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">マスカレードボール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">クロワデュノール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ダノンデサイル</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">マスカレードボール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">クロワデュノール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ダノンデサイル</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">クロワデュノール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">マスカレードボール</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ダノンデサイル</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.80</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#AF52DE'>0.80</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">マスカレードボール</span></td>
+<td>+0.75</td>
+<td>+0.32</td>
+<td>-0.08</td>
+<td>+0.60</td>
+<td>+0.86</td>
+<td>12.5</td>
+<td>11.7</td>
+<td>24.1</td>
+<td><b>14.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">クロワデュノール</span></td>
+<td>+0.85</td>
+<td>+0.38</td>
+<td>+0.02</td>
+<td>+0.36</td>
+<td>+0.14</td>
+<td>11.7</td>
+<td>12.4</td>
+<td>23.0</td>
+<td><b>14.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">ダノンデサイル</span></td>
+<td>+0.53</td>
+<td>-0.24</td>
+<td>+0.02</td>
+<td>+0.20</td>
+<td>+0.48</td>
+<td>8.5</td>
+<td>8.2</td>
+<td>9.6</td>
+<td><b>8.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">セイウンハーデス</span></td>
+<td>+0.26</td>
+<td>+0.28</td>
+<td>+0.12</td>
+<td>+0.12</td>
+<td>+0.08</td>
+<td>7.5</td>
+<td>8.4</td>
+<td>6.1</td>
+<td><b>7.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">シェイクユアハート</span></td>
+<td>+0.26</td>
+<td>+0.00</td>
+<td>+0.00</td>
+<td>+0.18</td>
+<td>+0.10</td>
+<td>6.9</td>
+<td>6.9</td>
+<td>5.1</td>
+<td><b>6.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">ジョバンニ</span></td>
+<td>+0.24</td>
+<td>-0.32</td>
+<td>+0.28</td>
+<td>+0.16</td>
+<td>+0.22</td>
+<td>6.6</td>
+<td>6.1</td>
+<td>4.8</td>
+<td><b>6.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">レガレイラ</span></td>
+<td>+0.14</td>
+<td>+0.20</td>
+<td>+0.14</td>
+<td>-0.06</td>
+<td>+0.04</td>
+<td>6.4</td>
+<td>6.7</td>
+<td>4.8</td>
+<td><b>6.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">レディネス</span></td>
+<td>+0.00</td>
+<td>+0.26</td>
+<td>+0.14</td>
+<td>+0.20</td>
+<td>+0.10</td>
+<td>6.0</td>
+<td>-</td>
+<td>3.4</td>
+<td><b>5.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">リアライズシリウス</span></td>
+<td>+0.08</td>
+<td>-0.22</td>
+<td>+0.16</td>
+<td>-0.04</td>
+<td>+0.04</td>
+<td>5.4</td>
+<td>-</td>
+<td>4.8</td>
+<td><b>5.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">サクラファレル</span></td>
+<td>-0.02</td>
+<td>-0.36</td>
+<td>+0.04</td>
+<td>+0.20</td>
+<td>+0.12</td>
+<td>4.9</td>
+<td>-</td>
+<td>2.7</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">タガノデュード</span></td>
+<td>+0.04</td>
+<td>-0.20</td>
+<td>-0.02</td>
+<td>-0.14</td>
+<td>+0.04</td>
+<td>4.9</td>
+<td>-</td>
+<td>2.2</td>
+<td><b>4.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ホウオウビスケッツ</span></td>
+<td>-0.14</td>
+<td>+0.04</td>
+<td>+0.04</td>
+<td>-0.18</td>
+<td>+0.02</td>
+<td>4.4</td>
+<td>-</td>
+<td>2.6</td>
+<td><b>4.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">コスモキュランダ</span></td>
+<td>+0.16</td>
+<td>-0.24</td>
+<td>-0.30</td>
+<td>-0.26</td>
+<td>-0.22</td>
+<td>4.2</td>
+<td>-</td>
+<td>1.8</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ネブラディスク</span></td>
+<td>-0.52</td>
+<td>+0.06</td>
+<td>+0.06</td>
+<td>+0.04</td>
+<td>+0.32</td>
+<td>2.7</td>
+<td>-</td>
+<td>2.3</td>
+<td><b>2.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">エルトンバローズ</span></td>
+<td>-0.40</td>
+<td>-0.10</td>
+<td>-0.04</td>
+<td>-0.16</td>
+<td>+0.00</td>
+<td>2.9</td>
+<td>-</td>
+<td>1.0</td>
+<td><b>2.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">ジュンブロッサム</span></td>
+<td>-0.54</td>
+<td>+0.00</td>
+<td>+0.04</td>
+<td>-0.08</td>
+<td>-0.14</td>
+<td>2.3</td>
+<td>-</td>
+<td>0.9</td>
+<td><b>2.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">シャンパンカラー</span></td>
+<td>-0.54</td>
+<td>-0.02</td>
+<td>+0.00</td>
+<td>-0.34</td>
+<td>-0.24</td>
+<td>2.1</td>
+<td>-</td>
+<td>0.7</td>
+<td><b>1.8</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、天皇賞(秋)を実績の軸で見たけん、結果を書くね。<br><br>ステップ1.<br><br>1番, クロワデュノール, +0.9, 大阪杯(GI・同距離)を1:57.6で1着、天皇賞(春)も1着、重馬場の宝塚記念は0.1差の2着で、GIで3戦続けて連対しとる。ここ1年の古馬GIの成績はこのメンバーで一番やけん、上限手前まで上げるね。<br><br>2番, エルトンバローズ, -0.4, しらさぎS(GIII・1600m)の勝ちが最高で、主戦場はマイル。前哨戦の毎日王冠は0.6差の9着、2000mのGIで通用する実績は無いっちゃん。<br><br>3番, レガレイラ, +0.2, 昨年のエリザベス女王杯1着、有馬記念4着(0.2差)は格上の実績。ただ宝塚記念7着(1.6差)、オールカマー4着(0.5差)と近2走は内容が落ちとるけん、少しだけ上げにとどめるね。<br><br>4番, レディネス, 0.0, 毎日王冠3着(0.2差)、札幌記念3着(0.6差)とGIIで3着が続いとるけど、勝ちはリステッドまで。毎日王冠ではセイウンハーデスとホウオウビスケッツに先着されとって、GIでは中立の評価になるとよ。<br><br>5番, シャンパンカラー, -0.7, NHKマイル以降は低迷しとって、近5走は東京新聞杯4着の他は全部9着以下(毎日王冠13着、安田記念12着)。2000mのGIで上位に来る根拠は実績から見当たらんけん、はっきり下げるね。<br><br>6番, セイウンハーデス, +0.3, 前走の毎日王冠を1:45.5で勝って、安田記念は0.0差の4着、大阪杯(同距離)は0.4差の5着。GIで差の無いところまで来た実績が続いとるけん、少し上げるね。<br><br>7番, マスカレードボール, +0.8, 昨年のこのレースを上がり32.3で制して、ジャパンCも0.0差の2着、QE2世Cは0.2差の2着。キングジョージ7着は61kgの遠征やけん度外視してよかと思う。東京2000mのGIを勝っとる実績は抜けとるっちゃん。<br><br>8番, ジュンブロッサム, -0.6, 前走オクトーバーS(リステッド)は0.1差の3着やけど、今年はGIIIで9着、9着、11着と重賞では足りとらん。GIの相手では実績面で大きく見劣りするね。<br><br>9番, ホウオウビスケッツ, -0.1, 毎日王冠は逃げて0.0差の2着やったけど、その前は札幌記念10着(1.3差)、金鯱賞12着、ジャパンC16着。好走が一回きりの可能性が高いけん、少し割り引くね。<br><br>10番, ネブラディスク, -0.5, 9戦4勝で連対率は高いけど、勝ったのは3勝クラスの博多Sまでで、重賞は一度も走っとらん。いきなりGIは格の差が大きいっちゃん。<br><br>11番, シェイクユアハート, +0.3, 札幌記念(0.4差)、金鯱賞、中日新聞杯と2000mの重賞を3勝しとって、同距離の安定感は上位。ただ唯一のGI挑戦だった宝塚記念は14着(2.8差、重馬場)で、GIの実績がまだ無いけん少しの上げにとどめるね。<br><br>12番, コスモキュランダ, +0.1, 有馬記念は0.1差の2着、宝塚記念は0.5差の4着とGIで格上の好走がある。ただ前走オールカマーは5.0差の11着で、ジャパンCも9着。成績にムラがあって、ほぼ中立やね。<br><br>13番, リアライズシリウス, +0.2, 皐月賞(同距離)は1:56.7で0.2差の2着と時計の裏付けがあって、ダービー、毎日王冠はどちらも0.4差の7着で大きく負けとらん。3歳で斤量56kgのぶん、少し上げるね。<br><br>14番, タガノデュード, 0.0, 大阪杯は0.3差の4着、宝塚記念5着、天皇賞(春)6着とGIで掲示板前後。ただ前走チャレンジCで11着(1.0差)やけん、プラスマイナスで中立になるとよ。<br><br>15番, サクラファレル, -0.1, 札幌記念は0.4差の2着やけど、重賞は未勝利でエプソムCは5着。GIは初挑戦で、相手が一気に強くなる分を少し割り引くね。<br><br>16番, ジョバンニ, +0.3, チャレンジC1着、小倉記念2着(0.1差)、金鯱賞2着(0.0差)と2000mの重賞で崩れとらん。QE2世CではマスカレードボールとTの差0.3で5着やったし、安定感を少し評価するね。<br><br>17番, ダノンデサイル, +0.6, ジャパンC(0.5差)、有馬記念(0.1差)、大阪杯(0.3差)、宝塚記念(0.5差)とGIで4戦続けて3着。ドバイシーマとダービーの勝ち馬で、トップクラスで崩れん実績ははっきり上位やね。<br><br>ステップ2.<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.9, &quot;2&quot;: -0.4, &quot;3&quot;: 0.2, &quot;4&quot;: 0.0, &quot;5&quot;: -0.7, &quot;6&quot;: 0.3, &quot;7&quot;: 0.8, &quot;8&quot;: -0.6, &quot;9&quot;: -0.1, &quot;10&quot;: -0.5, &quot;11&quot;: 0.3, &quot;12&quot;: 0.1, &quot;13&quot;: 0.2, &quot;14&quot;: 0.0, &quot;15&quot;: -0.1, &quot;16&quot;: 0.3, &quot;17&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;実績で一番上はクロワデュノール。大阪杯・天皇賞(春)を勝ち、宝塚記念も0.1差の2着で、GI3戦連続連対。次がマスカレードボールで、昨年の天皇賞(秋)を上がり32.3で勝ち、ジャパンCも0.0差の2着と東京実績が抜けている。ダノンデサイルはGIで4戦連続3着と崩れない。その下は2000m重賞で安定しているシェイクユアハートとジョバンニ、安田記念0.0差の4着からの毎日王冠勝ちがあるセイウンハーデス。重賞で足りないシャンパンカラー、ジュンブロッサム、重賞未出走のネブラディスク、マイルが主戦場のエルトンバローズは下げる。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>同じレースを走った馬どうしで、付値が直接対決の結果と食い違っとる箇所を見直してほしい。(1) 大阪杯で14番タガノデュードは17番ダノンデサイルと同じ1:57.9、6番セイウンハーデスにも先着しとるのに0.0で、6番(+0.3)より下。6番の中山記念12着・ジャパンC12着は減点に入っとらんけん、大敗の扱いが揃っとらんのでは。(2) 毎日王冠で13番リアライズシリウスは2kg軽い55kgで7着0.4差、4番レディネス(3着)と9番ホウオウビスケッツ(2着)に負けとるのに+0.2で2頭より上。皐月賞の時計は中山のもので、今回56kgなのは条件であって素の能力ではないのでは。(3) 札幌記念で15番サクラファレル(2着)は4番レディネス(3着)に先着しとるのに付値は逆。GI初挑戦なのは4番も同じ。(4) 重馬場の宝塚記念を11番シェイクユアハートでは割り引き、3番レガレイラでは減点材料に使っとる。3番の近2走はどっちも重馬場で、12番コスモキュランダは有馬記念・宝塚記念と続けて3番に先着しとる。(5) 5番シャンパンカラーはマイラーズC・毎日王冠で2番エルトンバローズとほぼ同じ着差(0.4〜0.7)なのに最下位の−0.7。着順を着差より重く見すぎとるのでは。(6) ジャパンCで7番マスカレードボールが1番クロワデュノールに0.6先着しとる点も、1番を上に置く順番の説明に入れてほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ確かめたけん、納得したところだけ直すね。<br><br>- (1) 大阪杯でタガノデュードは1:57.9で、ダノンデサイルと同タイム、セイウンハーデスには0.1先着しとる。ここはもっと評価してよかった。ただ前走チャレンジCの11着(1.0差)は直近の重賞での大敗やけん、0.0を+0.1にするだけにするね。セイウンハーデスの12着2回は8か月以上前で、そのあとGIIを勝って安田記念も0.0差の4着やけん、+0.3のままにする。<br>- (2) 「斤量56kgやけん上げる」は今回の条件の話で、実績やなかった。指摘のとおりやね。毎日王冠では2kg軽い55kgで4番と9番に負けとるし、皐月賞のタイムも中山で出したものやけん、+0.2を+0.1に下げる。皐月賞2着という格上の実績は残すね。<br>- (3) 札幌記念はサクラファレルが2着でレディネスに先着、レディネスはそのあと毎日王冠で0.2差の3着やった。重賞勝ちが無いのもGIが初めてなのも同じやけん、2頭とも0.0にそろえる。<br>- (4) 重馬場の扱いがそろっとらんかった。ここは納得したけん、重馬場の結果は全馬割り引くことにする。レガレイラは+0.3に上げる。コスモキュランダは有馬記念と宝塚記念で続けてレガレイラに先着しとって、オールカマーの5.0差も重馬場やけん、+0.2に上げる。<br>- (5) マイラーズCでは2頭とも0.4差、毎日王冠では0.6差と0.7差で、ほぼ同じやった。シャンパンカラーの-0.7は下げすぎやけん、-0.5に戻す。エルトンバローズは今年GIIIを1つ勝っとるぶん、-0.4のままにする。<br>- (6) ジャパンCで7番が1番に0.6先着しとるのは事実やね。ただダービーでは1番が勝って7番が2着で、直接対決は1勝1敗。今年のGI成績は1番が1着、1着、2着、7番が2着と7着(キングジョージ)やけん、1番を上に置く順番は変えんよ。理由の文にこのことを書き足すね。<br><br>1番, クロワデュノール, +0.9, 大阪杯(GI・同距離)を1:57.6で勝って、天皇賞(春)1着、宝塚記念0.1差2着と今年のGIで3戦続けて連対しとる。ジャパンCではマスカレードボールに0.6負けたけど、ダービーでは先着しとって直接対決は1勝1敗やけん、今年の成績で上に置くね。<br><br>2番, エルトンバローズ, -0.4, しらさぎS(GIII・1600m)の勝ちが一番上で、主戦場はマイル。前哨戦の毎日王冠も0.6差の9着で、2000mのGIで通用した実績は無いっちゃん。<br><br>3番, レガレイラ, +0.3, エリザベス女王杯1着、有馬記念4着(0.2差)と、良馬場のGIで格上の実績がある。近2走は宝塚記念7着もオールカマー4着もどっちも重馬場やけん、ほかの馬とそろえて割り引いて、少し上げに直すね。<br><br>4番, レディネス, 0.0, 毎日王冠3着(0.2差)、札幌記念3着(0.6差)とGIIで3着が続いとるけど、勝ちはリステッドまで。札幌記念ではサクラファレルに先着されとるけん、同じ中立にそろえるとよ。<br><br>5番, シャンパンカラー, -0.5, 近5走は東京新聞杯4着の他は全部9着以下で、安田記念は1.0差の12着。マイラーズCと毎日王冠ではエルトンバローズとほぼ同じ着差やけん、下げ幅をそれと近いところに戻すね。<br><br>6番, セイウンハーデス, +0.3, 前走の毎日王冠を1:45.5で勝って、安田記念も0.0差の4着と直近の内容がよか。中山記念とジャパンCの12着は8か月以上前で、そのあと持ち直しとるけん、少し上げるね。<br><br>7番, マスカレードボール, +0.8, 昨年のこのレースを上がり32.3で勝って、ジャパンCは0.0差の2着でクロワデュノールに0.6先着、QE2世Cも0.2差の2着。キングジョージ7着は61kgの遠征やけん度外視で、東京2000mのGIを勝っとる実績は抜けとるっちゃん。<br><br>8番, ジュンブロッサム, -0.6, 前走オクトーバーS(リステッド)は0.1差の3着やけど、今年は重賞で9着、9着、11着と足りとらん。GIの相手やと実績で大きく見劣りするね。<br><br>9番, ホウオウビスケッツ, -0.1, 毎日王冠は逃げて0.0差の2着やったけど、その前は札幌記念10着(1.3差)、金鯱賞12着(1.0差)、ジャパンC16着。好走は一回きりの可能性が高いけん、少し割り引くね。<br><br>10番, ネブラディスク, -0.5, 9戦4勝で連対率は高いけど、勝ったのは3勝クラスの博多Sまでで重賞は一度も走っとらん。いきなりGIやと格の差が大きいっちゃん。<br><br>11番, シェイクユアハート, +0.3, 札幌記念(0.4差)、金鯱賞、中日新聞杯と2000mの重賞を3勝して、京都記念も0.4差の4着で安定しとる。唯一のGIやった宝塚記念14着は重馬場で割り引くけど、良馬場でGIを走った実績はまだ無いけん、少しの上げにするね。<br><br>12番, コスモキュランダ, +0.2, 有馬記念0.1差の2着、宝塚記念0.5差の4着とGIで格上の好走があって、どっちもレガレイラに先着しとる。オールカマーの5.0差は重馬場やけん割り引くけど、ジャパンC9着と日経賞7着(1.0差)もあるけん、少し上げにとどめるね。<br><br>13番, リアライズシリウス, +0.1, 皐月賞(GI)で0.2差の2着と格上の実績はある。ただ毎日王冠は2kg軽い55kgでも0.4差の7着で、レディネスとホウオウビスケッツに負けとるけん、ほぼ中立まで下げるね。<br><br>14番, タガノデュード, +0.1, 大阪杯ではダノンデサイルと同じ1:57.9の4着(0.3差)で、セイウンハーデスにも先着しとる。前走チャレンジCは11着(1.0差)と重賞で大きく負けとるけん、ほんの少しの上げやね。<br><br>15番, サクラファレル, 0.0, 札幌記念で0.4差の2着で、レディネスに先着しとる。重賞は勝っとらんし、エプソムCは0.3差の5着やけん、レディネスと同じ中立にそろえるとよ。<br><br>16番, ジョバンニ, +0.3, チャレンジC1着、小倉記念2着(0.1差)、金鯱賞2着(0.0差)と2000mの重賞で崩れとらん。QE2世CではマスカレードボールにWO.3差の5着やったけん、安定感を少し評価するね。<br><br>17番, ダノンデサイル, +0.6, ジャパンC(0.5差)、有馬記念(0.1差)、大阪杯(0.3差)、宝塚記念(0.5差)とGIで4戦続けて3着。ドバイシーマとダービーの勝ち馬で、トップクラス相手に崩れん実績ははっきり上位やね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.9, &quot;2&quot;: -0.4, &quot;3&quot;: 0.3, &quot;4&quot;: 0.0, &quot;5&quot;: -0.5, &quot;6&quot;: 0.3, &quot;7&quot;: 0.8, &quot;8&quot;: -0.6, &quot;9&quot;: -0.1, &quot;10&quot;: -0.5, &quot;11&quot;: 0.3, &quot;12&quot;: 0.2, &quot;13&quot;: 0.1, &quot;14&quot;: 0.1, &quot;15&quot;: 0.0, &quot;16&quot;: 0.3, &quot;17&quot;: 0.6}, &quot;analysis_summary&quot;: &quot;重馬場は全馬そろえて割り引き、レガレイラを+0.3、コスモキュランダを+0.2に上げた。リアライズシリウスは斤量を理由に使わず、毎日王冠で4番と9番に負けとるけん+0.1に下げた。サクラファレルとレディネスは札幌記念の結果から同じ0.0にそろえた。タガノデュードは大阪杯でダノンデサイルと同タイムやけん+0.1。シャンパンカラーはエルトンバローズと着差がほぼ同じやけん-0.5に戻した。クロワデュノールとマスカレードボールは直接対決が1勝1敗で、今年のGIの連対実績から順番はそのままにした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、天皇賞(秋)を展開の目で読んでみたけん、まとめるね。<br><br>**想定シナリオ（良馬場想定）**<br>東京芝2000mはスタートしてすぐ2コーナーがくるけん、外枠は位置を取りにいけば外を回され、控えれば後ろになるっちゃん。ハナは9番ホウオウビスケッツが濃厚。毎日王冠でも1-1-1で2着に残っとる。外から13番リアライズシリウスが2番手に寄せて、12番コスモキュランダはその外。6番セイウンハーデスと4番レディネスは内でポケットを取るやろうね。1番クロワデュノールは5〜6番手の内、7番マスカレードボールは中団、3番レガレイラと11番シェイクユアハートはその後ろ。先行型は多いけど、9番以外はハナに執着するタイプやなかけん、ペースは平均かやや緩めが本線と思っとる。直線525mの瞬発力勝負で、内の好位から中団にいる馬が有利になると読んどるとよ。<br>別シナリオもあるけん書いとくね。13番と12番が外から9番を突ついて流れが速くなったら、後ろから行く3・7・11番が浮上して、9番は札幌記念みたいに止まると思う。<br><br>1番, クロワデュノール, +0.5, 最内枠から5〜6番手の内をロスなく取れて、平均ペースなら一番運びやすい形になる。内で包まれる心配はあるけど、自分から動ける先行型やけん致命的にはならんと思う。<br><br>2番, エルトンバローズ, -0.1, 近走は後方から行っとって、内枠で後ろからやと直線で進路を探すことになる。平均ペースの前有利な流れでは届きにくい。<br><br>3番, レガレイラ, +0.2, 内枠で中団の後ろにロスなく付けられて、長い直線で末脚を生かしやすい。流れが速くなる別シナリオなら評価がもう一段上がる。<br><br>4番, レディネス, +0.4, 毎日王冠の7-5-5や札幌記念の3-3-4のように好位につける脚質で、2枠から先行集団のポケットに入れる。前有利の展開にいちばん合う一頭。<br><br>5番, シャンパンカラー, 0.0, 中団の真ん中で脚質も枠も平凡。展開で得も損もしにくい。<br><br>6番, セイウンハーデス, +0.4, 毎日王冠を4-3-3で勝った好位抜け出しの形が、3枠からそのまま再現できる。9番を前に見る理想的な位置が取れる。<br><br>7番, マスカレードボール, +0.3, 4枠から中団、去年このレースを上がり32.3で勝ったように、緩い流れからの瞬発力勝負は合っとる。流れが速くても遅くても対応できる位置取り。<br><br>8番, ジュンブロッサム, -0.1, 中団より後ろから行くタイプで、平均ペースの前有利な流れでは仕掛けが遅れやすい。<br><br>9番, ホウオウビスケッツ, +0.3, 内の先行型たちより外、外の先行型たちより内という並びでハナを取りやすく、毎日王冠と同じ東京で逃げ残った実績もある。ただ、外から突つかれて流れが速くなれば札幌記念のように止まる危険がある。<br><br>10番, ネブラディスク, 0.0, 好位か中団で器用に運べるけど、5枠で展開による有利不利はとくに無い。<br><br>11番, シェイクユアハート, -0.1, 中団後方から差すタイプで6枠。平均ペースでは前をとらえきれん可能性があって、届くのは流れが速くなる別シナリオのときだけ。<br><br>12番, コスモキュランダ, -0.3, 6枠の外目から前に行くには脚を使わんといかんし、長く脚を使って粘るタイプやけん、東京の長い直線での瞬発力勝負は合わん。<br><br>13番, リアライズシリウス, -0.2, 先行したいのに7枠で、2番手を取るには外から脚を使う必要がある。毎日王冠でも2-2-2から7着に沈んだ。<br><br>14番, タガノデュード, -0.4, 最後方から行く追込型で、外枠やけん後ろからになるのは確定的。前が止まらん平均ペースの想定では届く絵が描けん。<br><br>15番, サクラファレル, -0.4, 2番手あたりで運ぶ先行型なのに大外寄りの8枠で、東京2000mでは前に行けば外を回され、控えれば持ち味が消える。<br><br>16番, ジョバンニ, -0.4, 5番手前後から運ぶ好位型やけど、8枠からやと2コーナーまでに内へ入れず外を回されるロスが大きい。<br><br>17番, ダノンデサイル, -0.4, 大外17番は東京2000mでいちばん厳しい枠。中団から行くタイプなので控えて内に入れることはできるけど、位置が下がる分は割り引く。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: -0.1, &quot;3&quot;: 0.2, &quot;4&quot;: 0.4, &quot;5&quot;: 0.0, &quot;6&quot;: 0.4, &quot;7&quot;: 0.3, &quot;8&quot;: -0.1, &quot;9&quot;: 0.3, &quot;10&quot;: 0.0, &quot;11&quot;: -0.1, &quot;12&quot;: -0.3, &quot;13&quot;: -0.2, &quot;14&quot;: -0.4, &quot;15&quot;: -0.4, &quot;16&quot;: -0.4, &quot;17&quot;: -0.4}, &quot;analysis_summary&quot;: &quot;東京芝2000mはスタートから2コーナーまでが短く、外枠が不利になりやすい。ハナは9番ホウオウビスケッツが濃厚で、13番と12番が外から続く。ほかの先行型はハナにこだわらないため、平均かやや緩いペースからの直線瞬発力勝負が本線。内の好位をロスなく取れる1番・4番・6番を上げ、中団の7番も上げる。8枠の15・16・17番と追込の14番は下げる。別シナリオとして13番・12番が9番を突ついてペースが速くなれば、差し追込の3・7・11番が浮上し9番は失速する。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①本線の『平均ペースで前有利』を見直してほしい。前に行きたい12番コスモキュランダ・13番リアライズシリウス・15番サクラファレル・16番ジョバンニの4頭は外枠からで、2コーナーまでに内へ寄ってくるけん流れは締まりやすい。担当自身も9番・3番・11番の理由で速い流れに触れとるのに、付値は前有利の一本に寄っとらんか。②同じ出力の中で想定ペースが食い違っとる。本線は平均ペースやのに、12番コスモキュランダと7番マスカレードボールは『瞬発力勝負』を根拠にしとる。平均ペースなら12番は持続力が生きる側では？12番は流れを作る側として扱ってほしい。③4番レディネスを『前有利にいちばん合う』と書きながら、1番クロワデュノール（+0.5）を上にしとる。1番の通過順は大阪杯8-8-6-4で中団の前くらいやけど、展開以外の理由が混ざっとらんか。1番・4番・6番セイウンハーデスが同じ内の好位を取り合う分も見込んどらん。④10番ネブラディスクは好位で運べる馬で9番のすぐ外。前有利が本線なら、6番と同じ理屈で0.0より上では？⑤9番ホウオウビスケッツの+0.3は甘くないか。2000mで逃げた最近2戦は札幌記念10着・金鯱賞12着で、今回は競りかける相手も多い。⑥14〜17番の-0.4が横並びになっとる。17番ダノンデサイルは控えて内に入れられるし中団でも運べる、16番ジョバンニは前にも行ける。追込一辺倒の14番タガノデュードと同じ値でよいか、差をつけられんか。⑦13番リアライズシリウスの減点根拠の『毎日王冠7着』は着順の話で、位置は2-2-2で取れとる。展開の材料にはならんのでは？皐月賞は2000mを2-2-2-2で2着しとるし、斤量も56kg。⑧速い流れの見込みを上げるなら、11番シェイクユアハートと3番レガレイラ（オールカマーは3-5-3-3と前目も可能）の評価も見直してほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ確かめて、納得できたところは P を直したけん、その内容で出すね。<br><br>まず本線の展開を描き直したと。9番ホウオウビスケッツがハナに行って、外から13番・15番・12番が2コーナーまでに寄ってきて番手を取りに行く。外の先行馬が脚を使う分だけ流れは締まって、本線は「平均〜やや速め」にした。こうなると中団の前から中団の馬が直線で一番動きやすいと。ただ、外の馬たちが無理せず控えて9番の楽逃げになる別シナリオも残るけん、どっちの極端にも振りすぎんようにしたと。<br><br>1番, クロワデュノール, +0.3, 最内から5〜6番手の内を取れる形は変わらんけど、4番・6番と同じ内の好位を取り合うし、流れが締まると前の位置の得は小さくなるけん+0.5から下げた。内で包まれる心配もあって、+0.3が妥当と思う。<br><br>2番, エルトンバローズ, 0.0, 内枠の後方から直線で進路を探す不安は残るけど、流れが締まれば前が止まる分だけ追い上げる余地が出る。展開の損得は打ち消し合って中立にした。<br><br>3番, レガレイラ, +0.3, オールカマーの3-5-3-3のように前目にも中団にも付けられて、内枠でロスなく好きな位置を選べる。締まった流れなら中団の内でためられるけん一段上げた。<br><br>4番, レディネス, +0.3, 2枠から好位のポケットに入れる強みはあるけど、1番・6番と内の好位を取り合うし、速めの流れでは好位の得が少し目減りする。<br><br>5番, シャンパンカラー, 0.0, 中団の真ん中で脚質も枠も平凡やけん、どの流れになっても展開での得も損もしにくい。<br><br>6番, セイウンハーデス, +0.3, 3枠から好位の内に付けられるけど、内の好位を取り合う3頭の一頭で、締まった流れでは前の位置にいる分の得が少し減る。<br><br>7番, マスカレードボール, +0.4, 4枠から中団で運べて、前が締まって緩む流れでも楽に逃げる流れでも位置を合わせやすい。理由は位置取りの柔らかさと流れへの合い方に絞って、本線の締まる流れで中団が一番動ける分を足した。<br><br>8番, ジュンブロッサム, 0.0, 中団の後ろから行くタイプで、前有利の想定を緩めたぶん届かんとまでは言えん。展開の損得はほぼ無いけん中立にした。<br><br>9番, ホウオウビスケッツ, 0.0, 5枠からハナは取りやすいけど、13番・15番・12番に突つかれる形になりやすい。2000mで逃げて止まった札幌記念・金鯱賞と同じ流れになる危険があるけん、楽逃げの別シナリオの分と打ち消して中立にした。<br><br>10番, ネブラディスク, +0.1, 9番のすぐ外の5枠から好位か中団に器用に付けられる。外の先行馬が寄ってくる前に位置を決められる分だけわずかに上げた。<br><br>11番, シェイクユアハート, +0.1, 中団後方から差すタイプで、本線を締まる流れに直したけん前をとらえる絵が描きやすくなった。6枠で外を回るロスがあるけん上げ幅は小さめにした。<br><br>12番, コスモキュランダ, -0.2, 流れを作る側の一頭で、平均以上に締まった流れなら長く脚を使える持ち味が生きる。6枠から前に行くには脚を使わんといかんし、東京の長い直線で粘り切るのは楽やないけん小さな減点は残した。<br><br>13番, リアライズシリウス, -0.2, 皐月賞の2-2-2-2のように位置を取る力はあって、毎日王冠の着順は展開の材料から外した。それでも7枠から番手を取るには外から脚を使うし、締まった流れでは番手グループが一番苦しくなる。<br><br>14番, タガノデュード, -0.2, 最後方からの追込で外枠は不利やけど、流れが締まれば届く余地が出てくるけん減点を緩めた。<br><br>15番, サクラファレル, -0.4, 2番手で運びたい先行型が8枠におって、前に行けば外を回されるうえに先行争いの中心にもなる。控えれば持ち味が消えるけん、どっちを選んでも展開の不利がはっきりしとる。<br><br>16番, ジョバンニ, -0.3, 金鯱賞の1-3-4-4のように前にも行けるし好位で控えることもできて、選べる分だけ15番よりはまし。でも8枠から2コーナーまでに内へ入りにくいロスは残る。<br><br>17番, ダノンデサイル, -0.2, 大外枠は不利やけど、中団型やけん控えて内に入れられるし、締まった流れなら中団からの競馬は不利になりにくい。前に行きたい外枠の馬よりは軽い減点にした。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.0, &quot;3&quot;: 0.3, &quot;4&quot;: 0.3, &quot;5&quot;: 0.0, &quot;6&quot;: 0.3, &quot;7&quot;: 0.4, &quot;8&quot;: 0.0, &quot;9&quot;: 0.0, &quot;10&quot;: 0.1, &quot;11&quot;: 0.1, &quot;12&quot;: -0.2, &quot;13&quot;: -0.2, &quot;14&quot;: -0.2, &quot;15&quot;: -0.4, &quot;16&quot;: -0.3, &quot;17&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;外枠の先行馬4頭（12・13・15・16）が2コーナーまでに寄ってくるけん、本線を前有利の平均ペースから平均〜やや速めに直した。9番は突つかれる危険を見て0.0、1番は内の好位の取り合いと展開以外の理由を外して+0.3に下げ、4番・6番も揃えた。12番は流れを作る持続型として減点を緩めて、7番は位置取りの柔らかさを根拠に+0.4。13番は毎日王冠の着順を根拠から外した。14〜17番は脚質で差をつけて、締まる流れで得をする3・10・11番を少し上げた。外の馬が控えて9番が楽に逃げる別シナリオもあるけん、振り幅は抑えめにした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>前提として、当日の馬体重は未発表なので全馬「前走から増減ゼロ」として扱った。調教データも無いため、評価の材料は体重の推移、出走間隔、叩き何走目か、斤量の変化だけ。斤量は 1kg ≒ 0.1 秒 ≒ 約半馬身で換算している。<br><br>**ステップ1. 全馬の評価**<br><br>1番, クロワデュノール, 0.0, 宝塚記念から約20週の休み明け。ただし体重は514kgで変わらず、ベストの514〜522kgの範囲にいる。4か月ぶりの大阪杯を+10kgで勝っており、休み明けでも走れる型なので、体調面で上げる材料も下げる材料も無い。<br><br>2番, エルトンバローズ, 0.0, 叩き3走目で体重は516kg、近走の516〜522kgの範囲で安定している。前走から斤量が57kgから58kgへ1kg重くなる（約半馬身の損）が、516kgの大型馬なので影響は小さい。目立った上昇サインも見当たらない。<br><br>3番, レガレイラ, +0.2, オールカマーから6週の間隔で、叩き2走目として理想的なローテーション。ただ前走490kgは自己最重量で、勝ったときの472kg・480kgより重い。増減ゼロとすると太め残りの懸念が残るので、上積みはやや控えめに見る。<br><br>4番, レディネス, +0.2, 巴賞では-22kg（484kg）で崩れたが、その後500kgで3着、494kgで3着と、490kg台後半に戻ってから着順が安定している。叩き3走目で上向き。斤量が1kg増えるのは小さなマイナス。<br><br>5番, シャンパンカラー, 0.0, 体重は512〜516kgでずっと平行線、叩き2走目でも上昇を示す変化が無い。体調面では良くも悪くもない。<br><br>6番, セイウンハーデス, +0.2, 体重は472kgから480kgへ少しずつ増えており、健康的な推移。休み明けで毎日王冠を勝った後、中4週の叩き2走目になる。7歳なので、全力で勝った後の反動と、斤量+1kgを480kgの馬が背負う点には少し注意が要る。<br><br>7番, マスカレードボール, -0.2, 英国遠征で61kgを背負って7着に敗れ、そこから約14週。今回は帰国初戦にあたる。470kg前後の中型馬で、昨年このレースを勝ったときより2kg重い58kgを背負う（約1馬身分）。遠征疲れも完全には読み切れない。<br><br>8番, ジュンブロッサム, +0.1, 叩き4走目で体重は472〜476kgで安定。中3週だが連戦の疲れを示す体重減は無く、着順も9着→3着と上向いている。斤量+0.5kgはほぼ影響なし。<br><br>9番, ホウオウビスケッツ, +0.1, 札幌記念で-8kgと絞れた後、502kgで落ち着いており、毎日王冠の2着で状態の上向きを示した。中4週で間隔も無理がない。斤量+1kgは大型馬なので許容範囲。<br><br>10番, ネブラディスク, 0.0, 体重が440kgから456kgへ右肩上がりで、4歳馬としての成長がはっきり出ている。4か月の休み明けだが、過去も10〜12週明けで1着・2着と走れている。456kgとやや小柄なのに58kgを背負うのは前走と同じ条件。上げ下げどちらの材料も無い。<br><br>11番, シェイクユアハート, -0.2, 体重が462kgから456kg、450kgと続けて減っている。勝った時期の458〜462kgを下回っている。11週空けて回復していると見る余地はあるが、450kgの小柄な馬に58kgは負担が大きい（体重比12.9%）。<br><br>12番, コスモキュランダ, -0.3, オールカマーでの5.0秒差・上がり41.6秒は、重馬場だけでは説明しにくい失速。体重も522kgから514kgへじわじわ減っている。中6週の叩き2走目でも、体調面での上積みより不安が先に立つ。<br><br>13番, リアライズシリウス, +0.2, 毎日王冠は休み明けで+10kgの538kg、近走の528〜530kgより重く、太め残りで7着だった。中4週の叩き2走目で上昇が見込める一方、増減ゼロとすると重さは残るので評価は控えめにする。<br><br>14番, タガノデュード, +0.1, 体重が498kgから508kgへ毎回少しずつ増えており、前走は自己最重量の508kgで11着。叩き2走目の上積みはあるが、増減ゼロとすると重め残りの懸念が消えない。<br><br>15番, サクラファレル, +0.1, 9戦しか走っておらず、使い減りしていない4歳馬。体重は510〜520kgの範囲で安定している。札幌記念で2着と好走した後、11週しっかり間隔を取っており、疲れの心配が少ない。<br><br>16番, ジョバンニ, +0.4, 香港遠征の-12kg（470kg）から474kg、478kgと戻り、本来の480kg前後に近づいている。立て直しが順調で、着順も5着→2着→1着と叩くごとに上向き。中7週の間隔も理想的で、仕上がりは今回のメンバーで最も良さそう。<br><br>17番, ダノンデサイル, 0.0, 20週の休み明けだが、体重は508kgから520kgへ順調に増えている。過去も14〜15週明けで3着を外しておらず、休み明けで崩れる型ではない。体調面では中立。<br><br>**ステップ2. JSON**<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.0, &quot;2&quot;: 0.0, &quot;3&quot;: 0.2, &quot;4&quot;: 0.2, &quot;5&quot;: 0.0, &quot;6&quot;: 0.2, &quot;7&quot;: -0.2, &quot;8&quot;: 0.1, &quot;9&quot;: 0.1, &quot;10&quot;: 0.0, &quot;11&quot;: -0.2, &quot;12&quot;: -0.3, &quot;13&quot;: 0.2, &quot;14&quot;: 0.1, &quot;15&quot;: 0.1, &quot;16&quot;: 0.4, &quot;17&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;馬体重は未発表のため全馬増減ゼロ、調教データも無いので、体重推移・間隔・叩き何走目か・斤量差だけで判断した。最も上げたのは、香港遠征での体重減から順調に戻し、叩くごとに着順も上がっているジョバンニ(+0.4)。叩き2〜3走目で上積みが見込めるレガレイラ・レディネス・セイウンハーデス・リアライズシリウスは小幅にプラス。ただしレガレイラとリアライズシリウスは前走が重く、増減ゼロだと太め残りになるので控えめにした。下げたのは、5.0秒差の失速と体重減が続くコスモキュランダ(-0.3)、450kgまで減った小柄な馬に58kgのシェイクユアハート(-0.2)、61kgでの英国遠征帰りで斤量も昨年より2kg重いマスカレードボール(-0.2)。クロワデュノールとダノンデサイルは休み明けでも走れる実績があり体重も安定しているので中立(0.0)。全体として体調面の差は小さいレースで、大半の馬を±0.2以内に収めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 10番ネブラディスクは15番サクラファレルと同じ4歳・9戦で、間隔はより長く、体重の成長も明確なのに0.0で、+0.1の15番より低い。根拠を見直す余地はないか。(2) 11番シェイクユアハートは前走の札幌記念を450kg・58kgで勝っており、今回と同条件。10番には『前走と同条件』で斤量を減点していないのと矛盾しないか。9番のマイナス体重は『絞れた』とプラスに読み、11番は悪く読んでいて向きが逆。同じ札幌記念から11週の15番が+0.1で11番が-0.2なのも説明が要る。(3) 7番マスカレードボールは、古馬は全頭58kgの定量なのに昨年の自分と比べて減点している。8番(472kg)は斤量の影響ほぼなしとされている。昨年は5か月空けてこのレースを勝っており、1番・17番と同じ『休み明けで走れる型』なのに、より短い14週で-0.2は重すぎないか。(4) 3番・13番は『太め残りで控えめ』と書きながら、懸念のない4番と同じ+0.2で、控えめが数字に表れていない。自己最重量を6番は好材料、3番・14番は懸念と読み分けた理由も書いた方がよい。(5) 2番エルトンバローズは522→516kgと漸減していて、12番を減点した理由と同じ形なのに『安定』で0.0なのは甘くないか。(6) 9番の502kgは12着・16着のときと同じ体重で、体調上向きの根拠になるか疑わしい。(7) 4番は484→500→494kgと上下に振れ、前走は-6kgで勝ったときの体重を下回っており、『490kg台後半で安定・上向き』と言い切れるか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, クロワデュノール, +0.0, 宝塚記念から約20週の休み明けだが、体重514kgは勝った時の514〜522kgの範囲内です。大阪杯は4か月ぶり・+10kgで勝っており休み明けも苦にしないので、体調面で上げる材料も下げる材料もありません。<br><br>2番, エルトンバローズ, -0.1, 522→520→520→516kgと小幅ながら減り続けており、12番と同じ「漸減」の形なのに「安定」とした読みは甘かったので、わずかに下げます。叩き3走目でも上昇サインは無く、斤量57→58kg（約半馬身）は516kgの大型馬なので小さい扱いにとどめます。<br><br>3番, レガレイラ, +0.1, 中6週の叩き2走目で間隔は理想的です。ただ前走490kgは自己最重量で、勝った時の472・480kgより10kg以上重いので、太め残りの懸念を差し引いて上積みは小さく見ます。<br><br>4番, レディネス, +0.1, 巴賞の484kg（-22）からは戻りましたが、500→494kgと上下に振れており「安定」とは言い切れません。494kgで3着に走れているので不安ではなく、叩き3走目の上積みをわずかに見ます。<br><br>5番, シャンパンカラー, +0.0, 512〜516kgで平行線、叩き2走目でも上昇を示す変化がありません。体調面では良くも悪くもない中立です。<br><br>6番, セイウンハーデス, +0.2, 1年かけて472→480kgと2kg刻みで増え、最重量の480kgで毎日王冠を勝っているので、3番や14番の最重量と違い「その体重で走れる」と結果で確かめられています。中4週の叩き2走目ですが、7歳の勝ち上がり後で反動も少しあり得るので+0.2にとどめます。<br><br>7番, マスカレードボール, -0.1, 58kgは古馬の定量で全馬同じ条件なので、昨年の自分（3歳56kg）と比べて減点したのは取り消します。昨年は5か月空けてこのレースを勝った休み明けの利く型ですが、英国で61kgを背負った遠征の帰国初戦で、体重も計不のため推移を読めない分だけわずかに下げます。<br><br>8番, ジュンブロッサム, +0.1, 叩き4走目で体重は472〜476kgと安定し、中3週でも連戦の疲れを示す体重減はありません。着順も9着→3着と上向いており、斤量+0.5kgはほぼ影響なしです。<br><br>9番, ホウオウビスケッツ, +0.0, 502kgは12着・16着の時と同じ体重で、この馬の平常値にすぎず「絞れて上向き」の根拠にはならないので取り下げます。中4週の間隔に無理はなく、体調面は中立です。<br><br>10番, ネブラディスク, +0.1, 440→448→452→456kgと右肩上がりで、4歳馬の成長がはっきり体に出ています。17週の休み明けでも過去に10〜12週明けで1着・2着があり、456kgで58kgを背負って前走を勝っているので、15番と同じく休養十分の分をわずかに上げます。<br><br>11番, シェイクユアハート, +0.0, 462→456→450kgと減ってはいますが、450kg・58kgで札幌記念を勝っており、その体重を消耗と読んだのは誤りでした。今回も同じ体重・斤量の条件で11週空いているので中立に戻し、体重がまだ減り続けている点だけで、体重が安定している15番より半歩下に置きます。<br><br>12番, コスモキュランダ, -0.3, オールカマーの5.0秒差・上がり41.6秒は重馬場だけでは説明しにくい失速で、体重も522→514kgとじわじわ減っています。2番との違いはこの大崩れで、中6週の叩き2走目でも上積みより不安が先に立ちます。<br><br>13番, リアライズシリウス, +0.1, 毎日王冠は休み明けで+10kgの538kgと、近走の528〜530kgより重い太め残りでした。中4週の叩き2走目で絞れる見込みはありますが、増減ゼロだと重さが残るので上積みは小さく見ます。<br><br>14番, タガノデュード, +0.0, 498→508kgと毎回増え続け、最重量の508kgで11着でした。叩き2走目の上積みと重め残りの懸念が相殺するので中立とします。<br><br>15番, サクラファレル, +0.1, 9戦しか走っておらず使い減りの無い4歳馬で、体重は510〜520kgで安定しています。札幌記念2着から11週しっかり空けており、疲れの心配が少ない分をわずかに上げます。<br><br>16番, ジョバンニ, +0.4, 香港遠征の470kg（-12）から474→478kgと戻り、金鯱賞2着時の480〜482kgに近づいていて、立て直しは順調です。着順も5着→2着→1着と叩くごとに上向き、中7週の間隔も理想的で、仕上がりはこのメンバーで最も良さそうです。<br><br>17番, ダノンデサイル, +0.0, 20週の休み明けですが、体重は508→520kgと順調に増えています。過去も14〜15週明けで3着を外しておらず、休み明けで崩れる型ではないので中立です。</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ステップ1. 全馬の評価（血統派の補正）<br><br>1番, クロワデュノール, +0.4, 父キタサンブラックはイクイノックスを出した系統で、東京2000mで持続力のある脚を使える配合っちゃん。母父Cape Crossが底力を足しとって、4歳秋は父系がちょうど充実する時期。ダービーと大阪杯の勝ちが血統の向きと合っとる。<br><br>2番, エルトンバローズ, -0.3, 父ディープブリランテは自身が東京2400を勝っとるけど、この馬は近走マイルに寄っとる。母父ブライアンズタイムで底力はあっても、府中2000mのG1で最後まで止まらん持続力は血統からも見えにくい。<br><br>3番, レガレイラ, 0.0, 父スワーヴリチャードはハーツクライ系で東京の長い直線に向くけど、母父ハービンジャーで重心は2200〜2500m寄り。速い時計の府中2000mでは、プラス材料とマイナス材料が打ち消し合う形になるね。<br><br>4番, レディネス, +0.2, スワーヴリチャード×Shamardalで、東京向きの父系に母父のスピードが入っとる。1800〜2000mのレンジに合った配合で、毎日王冠3着からの距離延長は血統的にも無理がない。<br><br>5番, シャンパンカラー, -0.4, ドゥラメンテ×Reckless Abandonで、母父がスプリント寄りのぶんマイラーの色が強い。NHKマイルの勝ち馬がG1の2000mでは、6歳になったこともあって距離面の不安が大きか。<br><br>6番, セイウンハーデス, 0.0, 父シルバーステートの産駒は1600〜2000mが中心で、母父マンハッタンカフェがスタミナを補っとる。2000mは守備範囲やけど、7歳でシルバーステート産駒の成長余地は小さく、上げ下げの材料が無いけん中立。<br><br>7番, マスカレードボール, +0.6, ドゥラメンテ×ディープインパクトは、府中の中距離で瞬発力と持続力を兼ね備えた典型的な東京2000m向きの配合。昨年のこのレースを上がり32.3で勝っとって、適性の裏付けは実績にもはっきり出とる。良馬場ならいちばん噛み合う血統っちゃん。<br><br>8番, ジュンブロッサム, -0.2, ワールドエース×クロフネで、本質はマイル〜1800m型。東京2000mのリステッドで3着はあるけど、G1の持続力勝負になると距離の壁が少し出ると思う。<br><br>9番, ホウオウビスケッツ, -0.3, 父マインドユアビスケッツは米国の短距離ダート系で、スピードを先行力に活かすタイプ。母父ルーラーシップでスタミナを補っても、G1の2000mで最後まで粘り切るには血統面の上積みが乏しか。<br><br>10番, ネブラディスク, +0.2, 父ドゥラメンテの産駒は4歳で本格化する傾向で、2000mの適性も高い。母父American Postは欧州マイラー系で、軽いスピードが入っとる。格上挑戦やけど、条件そのものは血統的に合っとる。<br><br>11番, シェイクユアハート, +0.2, 父ハーツクライは晩成型で東京の長い直線向き。6歳でも衰えにくい系統で、2000mのG2を2勝しとる実績とも一致しとる。<br><br>12番, コスモキュランダ, -0.3, アルアイン×Southern Imageはパワーで押し切る小回りの中山型で、有馬記念2着もその適性からきとる。府中の速い上がり勝負には血統的に不向きっちゃん。<br><br>13番, リアライズシリウス, -0.1, 父ポエティックフレアはマイラー系で、母父ステイゴールドがスタミナを足しとる。皐月賞2着で2000mはこなせるけど、府中2000mのG1で最後の一伸びまでは見込みにくか。<br><br>14番, タガノデュード, -0.2, ヤマカツエース×ハーツクライはパワーとスタミナ寄りで、時計のかかる馬場や長めの距離で持ち味が出る。良馬場の府中2000mは少し速すぎる舞台になるね。<br><br>15番, サクラファレル, +0.2, 父サートゥルナーリアは2000m前後が得意な系統で、母父シンボリクリスエスは自身が天皇賞(秋)の勝ち馬で東京適性を伝えとる。東京2000mの3勝クラスを勝っとる点も血統の向きと合っとる。<br><br>16番, ジョバンニ, 0.0, 父エピファネイアの2000m適性はあるけど、母父Footstepsinthesandはマイラー寄り。チャレンジCを含む2000m重賞で安定して走っとって、血統から上げ下げする材料は無いけん中立。<br><br>17番, ダノンデサイル, +0.2, エピファネイア×Congratsで、2000〜2400mの持続力型。東京ダービーの勝ち馬で、府中への適性は血統と実績の両方で一致しとる。エピファネイア産駒は早めにピークを迎えやすいけど、近走も崩れとらんけん小幅のプラス。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.4, &quot;2&quot;: -0.3, &quot;3&quot;: 0.0, &quot;4&quot;: 0.2, &quot;5&quot;: -0.4, &quot;6&quot;: 0.0, &quot;7&quot;: 0.6, &quot;8&quot;: -0.2, &quot;9&quot;: -0.3, &quot;10&quot;: 0.2, &quot;11&quot;: 0.2, &quot;12&quot;: -0.3, &quot;13&quot;: -0.1, &quot;14&quot;: -0.2, &quot;15&quot;: 0.2, &quot;16&quot;: 0.0, &quot;17&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;東京芝2000m良馬場を想定。府中の中距離で瞬発力と持続力を兼ね備えたドゥラメンテ×ディープインパクトのマスカレードボールを最上位、キタサンブラック産駒の4歳秋で充実期にあるクロワデュノールを次位に置いた。ハーツクライ系、エピファネイア系、母父シンボリクリスエスなど東京中距離に向く血統は小幅のプラス。シャンパンカラーやエルトンバローズなどのマイラー血統、ホウオウビスケッツの米短距離系、コスモキュランダの小回りパワー型はマイナスにした。馬場が渋ればタガノデュードとコスモキュランダの評価は上がる。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 3番レガレイラを母父ハービンジャーの『重心2200〜2500m』で0.0に割り引くなら、天皇賞(春)3200m勝ちのスタミナ型配合(キタサン×Cape Cross)の1番クロワデュノールが+0.4なのは物差しが逆ではないか。東京・良のJCでは17番・7番より下だった。(2) 1番クロワデュノール(+0.4)と17番ダノンデサイル(+0.2)の差は年齢の成長曲線だけが根拠で、配合の適性(母父Congratsのスピード)で比べると逆転の余地はないか。(3) 同じドゥラメンテ産駒で、5番シャンパンカラーは母父のスピードをマイナス、10番ネブラディスクは母父のマイル系をプラス寄りに扱い0.6差。10番の『2000m適性が高い』も2000m出走1回で、父の一般論頼みではないか。(4) 9番ホウオウビスケッツ(−0.3)は母父ルーラーシップでスタミナを補う構図が6番セイウンハーデス(0.0)と同じで、毎日王冠でも0.0秒差。函館記念(2000m)勝ちもあるのに父系だけで0.3差は妥当か。(5) 11番シェイクユアハートは母父Sri Pekanに触れておらず、東京適性も実績の裏付けがない(2000m G2勝ちは札幌・中京)。(6) 良馬場の条件を7番マスカレードボールにだけ付けているが、12番・14番・1番は渋ると浮く側。今の付値が良馬場前提であることを全体で揃えて意識しては。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, クロワデュノール, +0.3, キタサンブラック×Cape Crossは天皇賞(春)3200mを勝てるスタミナ型で、東京2000mで速い上がりを競う形が一番合う配合とは言えんけん、Round1で混ぜとった「G1を勝っとる強さ」の分を外して下げたっちゃん。それでもダービーと東スポ2歳Sで府中の勝ちがあって、大阪杯1:57.6で2000mのスピードも見せとるけん、プラスは残すね。<br><br>2番, エルトンバローズ, -0.3, ディープブリランテ×ブライアンズタイムで、近走はマイルに寄った成績しか無いと。府中2000mのG1で最後まで止まらん持続力は、血統からも見えにくか。<br><br>3番, レガレイラ, +0.1, 父スワーヴリチャードは自身がジャパンCを勝っとって東京の長い直線に向く系統で、母父ハービンジャーも府中の中距離はこなす血っちゃん。母父のスタミナ寄りを理由に割り引くなら1番も同じ物差しで見んといかんけん、わずかなプラスに直すね。<br><br>4番, レディネス, +0.2, スワーヴリチャード×Shamardalで、東京向きの父系に母父のスピードが入っとる。東京2000mの白富士S4着、毎日王冠3着と府中の実績も配合の向きと合っとるけん、距離延長に無理は無か。<br><br>5番, シャンパンカラー, -0.3, ドゥラメンテ×Reckless Abandonで、母父は2歳スプリントG1の勝ち馬やけん、短い距離に寄る力がいちばん強か。近走も1600〜1800mだけで2000mの裏付けが無いと。6歳という年齢は血統の理由やないけん外して、少し戻したっちゃん。<br><br>6番, セイウンハーデス, 0.0, シルバーステート×マンハッタンカフェは1600〜2000mが守備範囲で、七夕賞の勝ちや大阪杯5着とも合っとる。上げる材料も下げる材料も無いけん中立にするね。<br><br>7番, マスカレードボール, +0.6, ドゥラメンテ×ディープインパクトは、瞬発力と持続力の両方を持つ府中中距離の典型的な配合っちゃん。昨年のこのレースを上がり32.3で勝って、ジャパンCとダービーも2着と、東京の適性が実績にはっきり出とる。良馬場が前提の評価やけん。<br><br>8番, ジュンブロッサム, -0.2, ワールドエース×クロフネで、本質は1600〜1800m型。東京2000mのリステッドで3着はあるけど、G1の持続力勝負では距離の壁が少し出ると思う。<br><br>9番, ホウオウビスケッツ, -0.2, 父マインドユアビスケッツは米国ダートのスプリントG1を勝った馬で、6番より短い距離に寄る度合いは強いけん、マイナスは残すね。それでも母父ルーラーシップでスタミナを補っとって、函館記念で2000mを勝っとるけん、父系だけで決めた−0.3は強すぎたっちゃん。<br><br>10番, ネブラディスク, 0.0, 5番と同じドゥラメンテ産駒で、母父American Postもマイラー系やけん、同じ物差しで見るとプラスにする根拠が無かったと。2000mは1回しか走っとらんで、「2000mの適性が高い」は父の産駒傾向に頼った見方やったけん、中立に直すね。<br><br>11番, シェイクユアハート, +0.1, 父ハーツクライは晩成で、6歳でも2000mのG2を勝っとるのと合っとる。ただ母父Sri Pekanはマイラー寄りで、東京の実績も無いけん、「東京の直線向き」は産駒傾向の推測でしかないと。それでプラス幅を小さくしたっちゃん。<br><br>12番, コスモキュランダ, -0.3, アルアイン×Southern Imageはパワーで押し切る中山型で、有馬記念2着もその向きからきとる。良馬場の府中で速い上がりを競う形には不向き（今回は良馬場を前提にした評価）。<br><br>13番, リアライズシリウス, -0.1, ポエティックフレア×ステイゴールドで、皐月賞2着のとおり2000mはこなせる。ただ府中のG1で最後のひと伸びまでは見込みにくいけん、わずかなマイナス。<br><br>14番, タガノデュード, -0.2, ヤマカツエース×ハーツクライはパワーとスタミナ寄りで、時計のかかる馬場向き。良馬場の府中2000mだと速すぎる舞台になるね（今回は良馬場を前提にした評価）。<br><br>15番, サクラファレル, +0.2, サートゥルナーリアは2000m前後が得意な父系で、母父シンボリクリスエスは天皇賞(秋)の勝ち馬っちゃん。東京2000mの3勝クラスを勝っとって、血統の向きと実績が合っとる。<br><br>16番, ジョバンニ, 0.0, 父エピファネイアはエフフォーリアで天皇賞(秋)を勝っとる系統やけど、母父Footstepsinthesandはマイラー寄り。2000m重賞で安定して走っとって、上げ下げする材料は無いけん中立にするね。<br><br>17番, ダノンデサイル, +0.3, 父エピファネイアはエフフォーリアで東京2000mのG1を勝っとる系統で、母父Congratsが米国のスピードを足しとるけん、府中2000mへの向きは1番と同じくらいと見直したっちゃん。「エピファネイア産駒はピークが早い」と割り引いとったけど、5歳になってもG1で3着を続けとるけん、その理由は外すね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: -0.3, &quot;3&quot;: 0.1, &quot;4&quot;: 0.2, &quot;5&quot;: -0.3, &quot;6&quot;: 0.0, &quot;7&quot;: 0.6, &quot;8&quot;: -0.2, &quot;9&quot;: -0.2, &quot;10&quot;: 0.0, &quot;11&quot;: 0.1, &quot;12&quot;: -0.3, &quot;13&quot;: -0.1, &quot;14&quot;: -0.2, &quot;15&quot;: 0.2, &quot;16&quot;: 0.0, &quot;17&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;批判を受けて見直した。(1) 1番はスタミナ型の配合で、能力の高さを混ぜとった分を外して+0.4→+0.3。3番も同じ物差しで見て0.0→+0.1にした。(2) 17番はエピファネイア産駒の天皇賞(秋)の実績と母父Congratsのスピードを評価し、5歳でも崩れとらんけん早熟の割引を外して+0.2→+0.3とし、1番と同じ値にした。(3) 同じドゥラメンテ産駒で母父がマイラー系の10番は、2000mが1走だけで父の一般論頼みやったけん+0.2→0.0。5番は年齢分を外して-0.4→-0.3にし、母父がスプリンターの分だけ10番より低くした。(4) 9番は母父ルーラーシップと函館記念(2000m)勝ちを踏まえて-0.3→-0.2。父がダートのスプリント系の分だけ6番より下に残した。(5) 11番は母父Sri Pekanがマイラー寄りで東京の実績も無いけん+0.2→+0.1。(6) 全体の付値は良馬場を前提にしとる。道悪になったら12番・14番・1番の評価を上げる余地がある。7番+0.6は府中の実績と配合の向きが合っとるけん据え置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, クロワデュノール, +0.4, 斉藤崇史厩舎はGIで勝ち切る仕上げに定評があって、5か月の休み明けでも心配は小さいっちゃん。ずっと乗っとった北村友一からC.デムーロへの乗り替わりで手の内は一から知ることになるけど、一流の外国人騎手を据えたのは陣営の勝負気配と見るね。<br><br>2番, エルトンバローズ, -0.1, 杉山晴紀厩舎は格上で松若風馬の継続騎乗でもあるけど、松若にはGIの大舞台、特に東京の中距離で頼れる実績が乏しいけん少し割り引くね。<br><br>3番, レガレイラ, +0.2, 木村哲也厩舎は休み明けの東京GIにきっちり仕上げてくる名門っちゃん。戸崎・ルメールから岩田望来への乗り替わりで手の内は浅いけど、腕の立つ若手やけん小幅なプラスにしとくね。<br><br>4番, レディネス, +0.1, 横山典弘の継続騎乗で手の内は完全に分かっとるし、東京の中距離での老練な騎乗も心強いとよ。昆貢厩舎は格では中くらいやけん、上げ幅は小さめにしとくね。<br><br>5番, シャンパンカラー, -0.3, 内田博幸と田中剛厩舎の組み合わせは、今のGIで後押しになる材料が見当たらんっちゃん。<br><br>6番, セイウンハーデス, 0.0, 幸英明はずっと継続騎乗で手の内を知っとるのはプラスやけど、東京GIでの騎手の格と橋口慎介厩舎の格を考えると差し引きゼロやね。<br><br>7番, マスカレードボール, +0.9, 東京で一番頼れるC.ルメールの継続騎乗で、去年のこのレースもこのコンビで勝っとるけん手の内は完璧っちゃん。手塚貴久厩舎も東京の大レースに実績のある名門で、陣営の後押しはこのメンバーで抜けとるね。<br><br>8番, ジュンブロッサム, -0.3, 友道康夫厩舎は名門やけど、杉原誠人にはGIで勝ち負けした実績が乏しいけん、陣営全体の勝負度合いは低く見るね。<br><br>9番, ホウオウビスケッツ, -0.1, 岩田康誠は前走でこの馬を逃がして手の内を知っとるけど、奥村武厩舎がGIで勝ち負けした実績は薄いけん少しマイナスにしとくね。<br><br>10番, ネブラディスク, +0.5, 3勝クラスを勝ったばかりの馬に川田将雅がまた乗って天皇賞に挑むのは、はっきりした勝負気配っちゃん。川田とは勝ったレースでも組んどって手の内も分かっとるし、トップ騎手が手綱を取る後押しは大きいとよ。<br><br>11番, シェイクユアハート, 0.0, 古川吉洋とは重賞を3勝しとる継続コンビで手の内は十分やけど、東京GIでの騎手の格と宮徹厩舎の格を考えると中立やね。<br><br>12番, コスモキュランダ, -0.3, 主戦の横山武史から丹内祐次への乗り替わりで、騎手の格が下がるけん陣営の後押しは弱まるっちゃん。<br><br>13番, リアライズシリウス, +0.1, 津村明秀はデビューからずっと乗っとって手の内は分かっとるし、手塚貴久厩舎の東京での実績もあるけん小さくプラスにしとくね。<br><br>14番, タガノデュード, 0.0, M.デムーロはGIを多く勝っとるベテランやけど、初めての騎乗で手の内はなくて、宮徹厩舎の格も中くらいやけん差し引きゼロやね。<br><br>15番, サクラファレル, +0.2, 堀宣行厩舎は秋の東京中距離に強い名門で、佐々木大輔は札幌記念2着の継続騎乗で手の内を知っとるけん、少し上げとくね。<br><br>16番, ジョバンニ, +0.2, 杉山晴紀厩舎は格上で、松山弘平は重賞を勝ったコンビの継続騎乗やけん、手の内を知っとる強みでわずかにプラスにしとくね。<br><br>17番, ダノンデサイル, +0.4, 戸崎圭太は東京で上位の騎手で、ほとんどの近走に乗っとって手の内を分かっとるっちゃん。安田翔伍厩舎もこの馬で海外GIを勝つまで仕上げとる実績があって、しっかりした後押しになるとよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.4, &quot;2&quot;: -0.1, &quot;3&quot;: 0.2, &quot;4&quot;: 0.1, &quot;5&quot;: -0.3, &quot;6&quot;: 0.0, &quot;7&quot;: 0.9, &quot;8&quot;: -0.3, &quot;9&quot;: -0.1, &quot;10&quot;: 0.5, &quot;11&quot;: 0.0, &quot;12&quot;: -0.3, &quot;13&quot;: 0.1, &quot;14&quot;: 0.0, &quot;15&quot;: 0.2, &quot;16&quot;: 0.2, &quot;17&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;陣営の軸ではマスカレードボールが抜けとる。東京で一番頼れるルメールの継続騎乗で、去年このレースを勝ったコンビ、厩舎も名門の手塚。次はネブラディスクで、3勝クラスを勝ったばかりの馬に川田将雅がまた乗るのは勝負気配。クロワデュノールは名門の斉藤崇史厩舎がC.デムーロを起用、ダノンデサイルは戸崎の継続騎乗でしっかりした後押し。マイナスは横山武史から丹内に替わったコスモキュランダ、騎手の格が落ちるジュンブロッサム、陣営の後押しが乏しいシャンパンカラー。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 乗り替わりの扱いが馬によって逆になっとらんか。1番クロワデュノールはGI3勝コンビの北村友一から初騎乗のC.デムーロへの交代を勝負気配と読んで+0.4、14番タガノデュードはM.デムーロの初騎乗を手の内なしで0.0、12番コスモキュランダは乗り替わりで-0.3。継続騎乗の17番ダノンデサイルと1番が同じ+0.4なのも説明が要る。(2) 10番ネブラディスク+0.5は福永祐一厩舎の評価が丸ごと抜けとる。9番で奥村厩舎のGI実績の薄さを減点した物差しを当てれば割り引く材料になるし、川田と岩田望来が交互に乗っとって完全な継続でもない。GI勝ち馬の陣営より上に置く根拠はあるか。(3) 名門厩舎＋GI実績の薄い騎手という同じ形で、8番ジュンブロッサムは-0.3、15番サクラファレルは+0.2と逆になっとる。佐々木大輔の継続は1戦だけ。8番が材料なしの5番シャンパンカラーと同じ-0.3なのも理屈と合わん。(4) ベテランの継続騎乗の扱いがそろっとらん。4番の横山典弘はプラスなのに、9番ホウオウビスケッツの岩田康誠（継続騎乗で前走2着）は騎手のプラスがほとんどない。6番セイウンハーデスの幸英明は継続騎乗で毎日王冠を勝っとるのに0.0。(5) 2番エルトンバローズは松若のGI実績の薄さで減点しとるのに、13番リアライズシリウスの津村は同じ点を問わずに+0.1。13番は手塚厩舎の2頭目（本命は7番）という位置づけも考えたほうがよい。(6) 12番の丹内はジャパンCでこの馬に騎乗経験があり、加藤士津八厩舎の評価も抜けとる。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, クロワデュノール, +0.2, 斉藤崇史厩舎はGIで勝ち切る仕上げの実績があるけん、5か月の休み明けでも心配は小さいっちゃん。ただGIを3勝した北村友一から初騎乗のC.デムーロに替わって手の内は一からになるけん、勝負気配と見とった分は取り下げて小幅なプラスにしとくね。<br><br>2番, エルトンバローズ, 0.0, 杉山晴紀厩舎は格上やけど、松若風馬はGIの大舞台、特に東京の中距離で頼れる実績が乏しいけん、プラスとマイナスで差し引きゼロにしとくね。<br><br>3番, レガレイラ, +0.2, 木村哲也厩舎は休み明けの東京GIにきっちり仕上げてくる名門っちゃん。戸崎・ルメールから岩田望来への乗り替わりで手の内は浅いけん、小幅なプラスのままにしとくね。<br><br>4番, レディネス, +0.1, 横山典弘の継続騎乗で手の内は分かっとるし、東京の中距離での老練な騎乗も心強いとよ。昆貢厩舎は格では中くらいやけん、上げ幅は小さめにしとくね。<br><br>5番, シャンパンカラー, -0.2, 内田博幸は今回この馬に乗り直したばかりで、田中剛厩舎も今のGIで後押しになる実績が見当たらんけん、少しマイナスにしとくね。<br><br>6番, セイウンハーデス, +0.1, 幸英明はずっと継続騎乗で、前走の毎日王冠もこのコンビで勝っとって手の内は十分っちゃん。橋口慎介厩舎の格は中くらいやけん、わずかなプラスにしとくね。<br><br>7番, マスカレードボール, +0.9, 東京で一番頼れるC.ルメールの継続騎乗で、去年のこのレースもこのコンビで勝っとるけん手の内は完璧っちゃん。手塚貴久厩舎も東京の大レースに実績のある名門で、陣営の後押しはこのメンバーで抜けとるね。<br><br>8番, ジュンブロッサム, -0.1, 友道康夫厩舎は名門で杉原誠人も2戦続けて乗っとるけど、杉原にはGIで勝ち負けした実績が乏しいけん少しだけ割り引くね。<br><br>9番, ホウオウビスケッツ, 0.0, 岩田康誠は継続騎乗で前走2着に導いとって、ベテランが手の内を知っとるのはプラスっちゃん。奥村武厩舎のGI実績は薄いけん、差し引きゼロやね。<br><br>10番, ネブラディスク, +0.3, 3勝クラスを勝ったばかりの馬に川田将雅が乗って天皇賞に挑むのは勝負気配で、川田とは勝った2戦で組んどるとよ。ただ福永祐一厩舎にはまだGIで勝ち負けした実績がなくて、岩田望来と交互の騎乗やけん上げ幅は抑えるね。<br><br>11番, シェイクユアハート, 0.0, 古川吉洋とは重賞を3勝しとる継続コンビで手の内は十分やけど、東京GIでの騎手の格と宮徹厩舎の格を考えると中立やね。<br><br>12番, コスモキュランダ, -0.2, 主戦の横山武史から丹内祐次への乗り替わりで騎手の格は下がるっちゃん。丹内はジャパンCでこの馬に乗った経験があって、加藤士津八厩舎も格では中くらいやけん、下げ幅は小さくするね。<br><br>13番, リアライズシリウス, 0.0, 津村明秀はデビューからずっと乗っとって手の内は分かっとるけど、GIで頼れる実績は乏しくて、手塚貴久厩舎もこのレースは7番が本命の2頭目やけん中立にしとくね。<br><br>14番, タガノデュード, +0.1, 初騎乗で手の内はないけど、古川吉洋からGIを何度も勝っとるM.デムーロへの乗り替わりは騎手の格が上がるけん、わずかなプラスにしとくね。宮徹厩舎の格は中くらいやね。<br><br>15番, サクラファレル, +0.1, 堀宣行厩舎は秋の東京の中距離に強い名門っちゃん。佐々木大輔の継続騎乗はまだ1戦だけでGI実績も薄いけん、上げ幅は小さくしとくね。<br><br>16番, ジョバンニ, +0.2, 杉山晴紀厩舎は格上で、松山弘平とは重賞を勝ったコンビの継続騎乗やけん、手の内を知っとる強みでわずかにプラスにしとくね。<br><br>17番, ダノンデサイル, +0.4, 戸崎圭太は東京で上位の騎手で、近走のほとんどに乗っとって手の内を分かっとるっちゃん。安田翔伍厩舎もこの馬を海外GIを勝てるまで仕上げた実績があって、しっかりした後押しになるとよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.0, &quot;3&quot;: 0.2, &quot;4&quot;: 0.1, &quot;5&quot;: -0.2, &quot;6&quot;: 0.1, &quot;7&quot;: 0.9, &quot;8&quot;: -0.1, &quot;9&quot;: 0.0, &quot;10&quot;: 0.3, &quot;11&quot;: 0.0, &quot;12&quot;: -0.2, &quot;13&quot;: 0.0, &quot;14&quot;: 0.1, &quot;15&quot;: 0.1, &quot;16&quot;: 0.2, &quot;17&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;批判者の指摘で乗り替わりと継続騎乗の物差しをそろえ直した。1番はGI3勝の北村友一から初騎乗のC.デムーロへの交代で手の内を失うけん+0.2に下げ、継続騎乗の17番(+0.4)より下に置いた。14番は騎手の格が上がるけん+0.1、12番は丹内に騎乗経験があるけん-0.2に緩めた。10番は福永厩舎にGI実績がなく、川田と岩田望来の交互騎乗やけん+0.3に下げた。名門厩舎＋GI実績の薄い騎手という同じ形の8番(-0.1)と15番(+0.1)は差を縮めた。ベテランの継続騎乗は6番+0.1、9番0.0にそろえ、2番と13番はどちらも0.0にした。7番ルメール＋手塚厩舎の+0.9は変えとらん。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>合成スコアに対して、うちが引っかかったところは3つあるとよ。<br><br>- **首位が逆やと思う。** 7番マスカレードボールは去年の天皇賞(秋)を勝ったけん首位に置かれとるけど、今年はQE2世Cで2着、キングジョージで7着（2.4秒差）。前哨戦を使わずに海外帰りで臨むところも割り引かんといかん。今年の実績は1番クロワデュノールが一段上で、大阪杯と天皇賞(春)を勝って、宝塚記念(重)も0.1秒差の2着。1枠1番で東京2000mの内を取れるのも有利やけん、首位を入れ替えたと。<br>- **17番ダノンデサイルが高すぎる。** GIで3着が4回続いて安定はしとるけど、勝ち切る決め手が足りん。8枠17番は東京2000mでは明確に不利な枠やし、5か月ぶりでもある。3番手は譲れんと判断したとよ。<br>- **3番レガレイラは下げるべき。** ここ2走は4着、7着と下降気味。中距離より長めでこそのタイプで、東京2000mの瞬発力勝負は合っとらんと思う。<br><br>6位以下では、11番シェイクユアハート（札幌記念と金鯱賞を勝っとる）と16番ジョバンニ（チャレンジCを勝ち、金鯱賞2着）が3番レガレイラと同じくらいの評価やと思っとる。ただ、点数を付けるのは提示された5頭に絞ったと。<br><br>1番, クロワデュノール, 27%, 大阪杯・天皇賞(春)を連勝して宝塚記念(重)も0.1秒差2着と、今年の実績はメンバーで一番やけん◎にしたと。5か月ぶりでも1枠1番から好位で運べるのが東京2000mでは強みになるとよ。<br><br>7番, マスカレードボール, 25%, 去年の天皇賞(秋)を上がり32.3で勝っとって、ジャパンCも0.0秒差2着と東京適性は最上位っちゃん。ただキングジョージ7着の後に前哨戦なしの海外帰りになるけん、首位からは一枚落としたと。<br><br>6番, セイウンハーデス, 17%, 同じ東京の毎日王冠を好位から勝ったばっかりで、安田記念も0.0秒差4着と状態の良さは上位勢の中でも抜けとるとよ。3枠6番から前で運べるけん、7歳でも▲に上げてよかと判断したと。<br><br>17番, ダノンデサイル, 16%, 4戦続けてGIで3着内に来とる地力は認めるけど、その間1つも勝てとらんけん決め手に欠けると見とるとよ。8枠17番の外枠と5か月ぶりが重なるけん、合成より下げて4番手にしたと。<br><br>3番, レガレイラ, 12%, エリザベス女王杯や有馬記念を勝った実力馬やけど、ここ2走は4着、7着と下り坂になっとる。中距離より長めでこそのタイプやけん、東京2000mの瞬発力勝負では合成の15.9は高すぎると思うとよ。<br><br>```json<br>{&quot;score&quot;: {&quot;1&quot;: 27, &quot;7&quot;: 25, &quot;6&quot;: 17, &quot;17&quot;: 16, &quot;3&quot;: 12}, &quot;analysis_summary&quot;: &quot;合成は7番マスカレードボールを首位にしとるけど、キングジョージ7着・海外帰りで前哨戦なしを割り引いて、今年GI2勝で1枠を引いた1番クロワデュノールを◎に入れ替えた。17番ダノンデサイルは3着続きで勝ち切れんうえに8枠17番が不利やけん、毎日王冠を勝って好位で運べる6番セイウンハーデスを▲に上げた。3番レガレイラは近走が下降気味で東京2000mも合っとらんけん下げた。6位以下では11番シェイクユアハートと16番ジョバンニがレガレイラと同等の評価。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、天皇賞(秋)の全馬評価を出したけんね。調教データは無かったけん、近走の中身と東京2000mのコース形態、それに枠と斤量を合わせて決めとる。<br><br>7番, マスカレードボール, 27%, 去年のこのレースを上がり32.3で勝っとって、JCも0.0秒差の2着やけん東京2000mでの実績は一番。英国の7着は61kgの遠征やけん度外視してよかし、ルメール騎手続投で本命っちゃん。<br><br>1番, クロワデュノール, 24%, 大阪杯と天皇賞(春)を勝って宝塚記念も0.1秒差の2着。今いちばん安定しとるGI馬で、1枠1番から好位で運べるけん逆転も十分あると。<br><br>17番, ダノンデサイル, 10%, JC・有馬記念・大阪杯・宝塚記念と4戦続けて3着で、地力はGI上位で間違いなか。ただ東京2000mの大外8枠は距離ロスが痛いし、勝ち切れん内容も続いとるけん3番手にしとる。<br><br>11番, シェイクユアハート, 6%, 札幌記念を0.4秒差で完勝して金鯱賞も勝っとって、2000mでの成績はほんとに堅実。ただGIは宝塚記念14着だけで、相手が強くなるのが課題になっとる。<br><br>6番, セイウンハーデス, 5%, 毎日王冠を好位から勝って安田記念も0.0秒差の4着と調子は上向き。大阪杯5着で2000mにも対応できとるけど、7歳でGIを勝つとなると一枚足りん印象。<br><br>16番, ジョバンニ, 5%, チャレンジCを勝って小倉記念2着・金鯱賞2着と2000mでは崩れとらん。8枠で外を回らされるのとGIでの実績の薄さで割り引いとる。<br><br>3番, レガレイラ, 4%, エリザベス女王杯と有馬記念を勝っとるし斤量56kgなのも有利。ただ前走の重馬場4着も含めて勝ち切れんレースが続いとって、東京2000mの速い流れも少し忙しいかもしれん。<br><br>13番, リアライズシリウス, 4%, 3歳で斤量56kg、皐月賞は0.2秒差の2着で先行力は上の世代相手でも通じとる。ダービーと毎日王冠がどっちも7着で、古馬GIで勝つまではまだ届かんと見とる。<br><br>4番, レディネス, 3%, 毎日王冠3着・札幌記念3着と重賞で連続して好走しとる上がり馬。横山典弘騎手の一発には怖さがあるけど、勝ち切れるかどうかではまだ足りん。<br><br>9番, ホウオウビスケッツ, 2.5%, 毎日王冠は逃げて0.0秒差の2着やったけど、2000mの札幌記念と金鯱賞は逃げてバテとる。この距離のGIで最後まで粘り切るのは難しそうっちゃん。<br><br>15番, サクラファレル, 2.5%, 札幌記念2着で重賞でも通用することは見せとる。ただ0.4秒離されとって、大外8枠にGI初挑戦の重なりが厳しか。<br><br>12番, コスモキュランダ, 2%, 有馬記念2着・宝塚記念4着と大舞台で残れる先行力はあるけど、前走オールカマーの5.0秒差大敗が気がかり。東京で上がりの速い勝負になると分も悪いと。<br><br>14番, タガノデュード, 2%, 大阪杯4着・宝塚記念5着と後方からの差しでGIでもそこそこ走れとる。ただ前走のチャレンジC11着で勢いが落ちとって、上位入りまでがせいぜい。<br><br>10番, ネブラディスク, 1.5%, 3勝クラスを勝ったばかりで底を見せとらん4歳、川田騎手が乗るのも魅力。とはいえ重賞を一度も走らんまま天皇賞(秋)に挑むのは、さすがに相手が強すぎるっちゃん。<br><br>2番, エルトンバローズ, 1%, しらさぎSは勝ったけど主戦場はマイルで、毎日王冠は9着。2000mのGIでは厳しかね。<br><br>8番, ジュンブロッサム, 0.8%, オクトーバーSで3着とこの舞台でまずまず走ったけど、重賞では9着続き。7歳でGIは荷が重かよ。<br><br>5番, シャンパンカラー, 0.7%, NHKマイルC以降は勝ち星が無くて、近走は二桁着順ばっかり。距離延長もプラスには働かんけん最下位にしとる。<br><br>```json<br>{&quot;score&quot;: {&quot;7&quot;: 27, &quot;1&quot;: 24, &quot;17&quot;: 10, &quot;11&quot;: 6, &quot;6&quot;: 5, &quot;16&quot;: 5, &quot;3&quot;: 4, &quot;13&quot;: 4, &quot;4&quot;: 3, &quot;9&quot;: 2.5, &quot;15&quot;: 2.5, &quot;12&quot;: 2, &quot;14&quot;: 2, &quot;10&quot;: 1.5, &quot;2&quot;: 1, &quot;8&quot;: 0.8, &quot;5&quot;: 0.7}, &quot;analysis_summary&quot;: &quot;東京2000mの前年覇者でJCも0.0秒差の7番マスカレードボールと、大阪杯・天皇賞(春)を連勝して宝塚記念2着の1番クロワデュノールの二強。GIで4戦連続3着の17番ダノンデサイルは地力上位でも大外枠で割り引いて3番手。その下に2000mの重賞で堅実な11番シェイクユアハートと16番ジョバンニ、毎日王冠を勝った6番セイウンハーデス、56kgの3番レガレイラと13番リアライズシリウスが続く。マイル寄りの馬と近走で大敗が続く馬は低評価。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>7</td><td class="left horse-name">マスカレードボール</td><td>14.5%</td><td>2.4</td><td>1</td><td class="ev-low">0.35</td></tr><tr><td>2</td><td>1</td><td class="left horse-name">クロワデュノール</td><td>14.0%</td><td>2.5</td><td>2</td><td class="ev-low">0.35</td></tr><tr><td>3</td><td>17</td><td class="left horse-name">ダノンデサイル</td><td>8.6%</td><td>11.1</td><td>4</td><td class="ev-low">0.96</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">セイウンハーデス</td><td>7.4%</td><td>26.5</td><td>6</td><td class="ev-mid">1.96</td></tr><tr><td>5</td><td>11</td><td class="left horse-name">シェイクユアハート</td><td>6.5%</td><td>11.5</td><td>5</td><td class="ev-low">0.75</td></tr><tr><td>6</td><td>16</td><td class="left horse-name">ジョバンニ</td><td>6.2%</td><td>58.2</td><td>10</td><td class="ev-high">3.63</td></tr><tr><td>7</td><td>3</td><td class="left horse-name">レガレイラ</td><td>6.1%</td><td>9.7</td><td>3</td><td class="ev-low">0.59</td></tr><tr><td>8</td><td>4</td><td class="left horse-name">レディネス</td><td>5.5%</td><td>50.1</td><td>9</td><td class="ev-high">2.78</td></tr><tr><td>9</td><td>13</td><td class="left horse-name">リアライズシリウス</td><td>5.3%</td><td>35.9</td><td>7</td><td class="ev-mid">1.89</td></tr><tr><td>10</td><td>15</td><td class="left horse-name">サクラファレル</td><td>4.5%</td><td>102.9</td><td>12</td><td class="ev-high">4.63</td></tr><tr><td>11</td><td>14</td><td class="left horse-name">タガノデュード</td><td>4.4%</td><td>119.9</td><td>14</td><td class="ev-high">5.26</td></tr><tr><td>12</td><td>9</td><td class="left horse-name">ホウオウビスケッツ</td><td>4.1%</td><td>64.4</td><td>11</td><td class="ev-high">2.62</td></tr><tr><td>13</td><td>12</td><td class="left horse-name">コスモキュランダ</td><td>3.8%</td><td>109.3</td><td>13</td><td class="ev-high">4.11</td></tr><tr><td>14</td><td>10</td><td class="left horse-name">ネブラディスク</td><td>2.7%</td><td>46.8</td><td>8</td><td class="ev-mid">1.25</td></tr><tr><td>15</td><td>2</td><td class="left horse-name">エルトンバローズ</td><td>2.6%</td><td>228.0</td><td>16</td><td class="ev-high">5.83</td></tr><tr><td>16</td><td>8</td><td class="left horse-name">ジュンブロッサム</td><td>2.0%</td><td>234.7</td><td>17</td><td class="ev-high">4.79</td></tr><tr><td>17</td><td>5</td><td class="left horse-name">シャンパンカラー</td><td>1.8%</td><td>171.3</td><td>15</td><td class="ev-high">3.14</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">7 マスカレードボール</td><td>14.5%</td><td>2.4</td><td class="ev-low">0.31</td></tr><tr><td>複勝</td><td class="left">7 マスカレードボール</td><td>40.1%</td><td>1.2</td><td class="ev-low">0.46</td></tr><tr><td>馬連</td><td class="left">1 クロワデュノール-7 マスカレードボール</td><td>4.7%</td><td>2.9</td><td class="ev-low">0.12</td></tr><tr><td>ワイド</td><td class="left">1 クロワデュノール-7 マスカレードボール</td><td>12.8%</td><td>1.6</td><td class="ev-low">0.19</td></tr><tr><td>馬単</td><td class="left">7 マスカレードボール→1 クロワデュノール</td><td>2.4%</td><td>5.1</td><td class="ev-low">0.10</td></tr><tr><td>3連複</td><td class="left">1 クロワデュノール-7 マスカレードボール-17 ダノンデサイル</td><td>1.6%</td><td>5.9</td><td class="ev-low">0.08</td></tr><tr><td>3連単</td><td class="left">7 マスカレードボール→1 クロワデュノール→17 ダノンデサイル</td><td>0.3%</td><td>17.0</td><td class="ev-low">0.04</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 300円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">7 マスカレードボール</td><td>2.4</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連複</td><td class="left">1 クロワデュノール-7 マスカレードボール-17 ダノンデサイル</td><td>5.9</td><td>2</td><td style='text-align:right;font-weight:600;'>200円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 300円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
