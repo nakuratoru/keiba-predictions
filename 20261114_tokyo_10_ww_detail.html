@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>奥多摩ステークス 2026/11/14 TOKYO 10R (11/14 14:10 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>奥多摩ステークス 2026/11/14 TOKYO 10R (11/14 14:10 予想)</h1>
+  <div class="meta">芝1400m（左） | 良 | 17頭立て | 5回 東京 3日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 17頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">1. モンドデラモーレ</div>
+      <div class="pick-jockey">大野 拓弥</div>
+    </div>
+    <div class="pick-prob">9.2%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">5. ヒシアマン</div>
+      <div class="pick-jockey">西村 淳也</div>
+    </div>
+    <div class="pick-prob">9.1%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">6. レッドキングリー</div>
+      <div class="pick-jockey">C.ルメール</div>
+    </div>
+    <div class="pick-prob">8.8%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">17頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">モンドデラモーレ</td><td>牡4</td><td>58</td><td>大野 拓弥</td><td>484(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">2</span></td><td class="left horse-name">フクチャンショウ</td><td>牡3</td><td>57</td><td>A.プーシャン</td><td>454(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">3</span></td><td class="left horse-name">ロケベンドラ</td><td>牝4</td><td>56</td><td>津村 明秀</td><td>448(+2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">4</span></td><td class="left horse-name">ボンヌソワレ</td><td>牝4</td><td>56</td><td>T.マーカンド</td><td>470(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">5</span></td><td class="left horse-name">ヒシアマン</td><td>牡4</td><td>58</td><td>西村 淳也</td><td>474(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">6</span></td><td class="left horse-name">レッドキングリー</td><td>牡4</td><td>58</td><td>C.ルメール</td><td>510(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">7</span></td><td class="left horse-name">ポッドロワール</td><td>牡4</td><td>58</td><td>荻野 極</td><td>514(+6)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">8</span></td><td class="left horse-name">スティールブルー</td><td>牝5</td><td>56</td><td>三浦 皇成</td><td>466(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">9</span></td><td class="left horse-name">ドゥカート</td><td>牡4</td><td>58</td><td>原 優介</td><td>486(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">10</span></td><td class="left horse-name">トライアンフパス</td><td>牝3</td><td>55</td><td>横山 武史</td><td>492(0)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">11</span></td><td class="left horse-name">エフォートレス</td><td>牡5</td><td>58</td><td>横山 和生</td><td>486(+6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">12</span></td><td class="left horse-name">ブラックジェダイト</td><td>牡4</td><td>58</td><td>佐々木 大輔</td><td>470(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">13</span></td><td class="left horse-name">テンミラクルスター</td><td>牝4</td><td>56</td><td>岩田 康誠</td><td>456(0)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">14</span></td><td class="left horse-name">エヴァンスウィート</td><td>牝5</td><td>56</td><td>内田 博幸</td><td>450(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">15</span></td><td class="left horse-name">グーテンベルク</td><td>牡4</td><td>58</td><td>戸崎 圭太</td><td>484(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">16</span></td><td class="left horse-name">コートアリシアン</td><td>牝4</td><td>56</td><td>菅原 明良</td><td>454(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">17</span></td><td class="left horse-name">レオアジャイル</td><td>牝3</td><td>55</td><td>田辺 裕信</td><td>486(+8)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">モンドデラモーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヒシアマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">フクチャンショウ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヒシアマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">モンドデラモーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">フクチャンショウ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">モンドデラモーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヒシアマン</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">レッドキングリー</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">レッドキングリー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">モンドデラモーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヒシアマン</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">モンドデラモーレ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">フクチャンショウ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヒシアマン</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#8E8E93'>0.53</td>
+<td style='color:#8E8E93'>0.57</td>
+<td style='color:#8E8E93'>0.33</td>
+<td style='color:#8E8E93'>0.37</td>
+<td style='color:#8E8E93'>0.17</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">モンドデラモーレ</span></td>
+<td>+0.42</td>
+<td>+0.20</td>
+<td>+0.08</td>
+<td>+0.26</td>
+<td>+0.24</td>
+<td>8.7</td>
+<td>8.8</td>
+<td>11.5</td>
+<td><b>9.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ヒシアマン</span></td>
+<td>+0.42</td>
+<td>+0.18</td>
+<td>+0.38</td>
+<td>+0.18</td>
+<td>+0.26</td>
+<td>9.2</td>
+<td>9.3</td>
+<td>8.6</td>
+<td><b>9.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">レッドキングリー</span></td>
+<td>+0.28</td>
+<td>+0.32</td>
+<td>+0.22</td>
+<td>+0.24</td>
+<td>+0.68</td>
+<td>8.9</td>
+<td>7.8</td>
+<td>9.3</td>
+<td><b>8.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">フクチャンショウ</span></td>
+<td>+0.38</td>
+<td>+0.14</td>
+<td>+0.06</td>
+<td>+0.30</td>
+<td>+0.20</td>
+<td>8.3</td>
+<td>8.2</td>
+<td>10.9</td>
+<td><b>8.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">コートアリシアン</span></td>
+<td>+0.50</td>
+<td>+0.04</td>
+<td>-0.18</td>
+<td>+0.26</td>
+<td>-0.10</td>
+<td>7.1</td>
+<td>8.3</td>
+<td>10.9</td>
+<td><b>8.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ボンヌソワレ</span></td>
+<td>+0.26</td>
+<td>+0.36</td>
+<td>+0.08</td>
+<td>+0.20</td>
+<td>+0.36</td>
+<td>8.1</td>
+<td>7.7</td>
+<td>6.6</td>
+<td><b>7.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">グーテンベルク</span></td>
+<td>+0.22</td>
+<td>-0.04</td>
+<td>+0.24</td>
+<td>+0.18</td>
+<td>+0.38</td>
+<td>7.4</td>
+<td>-</td>
+<td>7.5</td>
+<td><b>7.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ポッドロワール</span></td>
+<td>+0.20</td>
+<td>-0.04</td>
+<td>+0.00</td>
+<td>+0.12</td>
+<td>+0.10</td>
+<td>6.4</td>
+<td>-</td>
+<td>6.1</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ブラックジェダイト</span></td>
+<td>-0.02</td>
+<td>+0.06</td>
+<td>+0.12</td>
+<td>-0.10</td>
+<td>+0.28</td>
+<td>5.5</td>
+<td>-</td>
+<td>4.2</td>
+<td><b>5.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ロケベンドラ</span></td>
+<td>-0.12</td>
+<td>+0.20</td>
+<td>+0.38</td>
+<td>+0.14</td>
+<td>+0.22</td>
+<td>5.7</td>
+<td>-</td>
+<td>3.0</td>
+<td><b>5.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">トライアンフパス</span></td>
+<td>-0.10</td>
+<td>+0.16</td>
+<td>-0.10</td>
+<td>+0.18</td>
+<td>+0.40</td>
+<td>5.2</td>
+<td>-</td>
+<td>5.0</td>
+<td><b>5.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">17</span><span style="display:inline-block;margin-left:0.5em;">レオアジャイル</span></td>
+<td>-0.13</td>
+<td>-0.06</td>
+<td>+0.00</td>
+<td>+0.18</td>
+<td>+0.06</td>
+<td>4.6</td>
+<td>-</td>
+<td>5.1</td>
+<td><b>4.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">エヴァンスウィート</span></td>
+<td>-0.16</td>
+<td>+0.04</td>
+<td>-0.08</td>
+<td>+0.06</td>
+<td>-0.04</td>
+<td>4.3</td>
+<td>-</td>
+<td>3.1</td>
+<td><b>4.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">エフォートレス</span></td>
+<td>-0.34</td>
+<td>-0.02</td>
+<td>+0.36</td>
+<td>-0.08</td>
+<td>+0.20</td>
+<td>3.8</td>
+<td>-</td>
+<td>3.5</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">スティールブルー</span></td>
+<td>-0.44</td>
+<td>-0.24</td>
+<td>-0.02</td>
+<td>-0.06</td>
+<td>-0.04</td>
+<td>2.6</td>
+<td>-</td>
+<td>1.6</td>
+<td><b>2.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">ドゥカート</span></td>
+<td>-0.44</td>
+<td>-0.34</td>
+<td>-0.06</td>
+<td>-0.44</td>
+<td>-0.16</td>
+<td>2.2</td>
+<td>-</td>
+<td>1.6</td>
+<td><b>2.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">テンミラクルスター</span></td>
+<td>-0.48</td>
+<td>-0.26</td>
+<td>-0.04</td>
+<td>-0.50</td>
+<td>-0.04</td>
+<td>2.1</td>
+<td>-</td>
+<td>1.7</td>
+<td><b>2.1</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行3</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行3の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、奥多摩Sを実績派の目で見たけん、置いとくね。<br><br>1番, モンドデラモーレ, +0.5, 3勝クラスで2着(0.1差・指数84.3)と湘南S2着(0.0差・指数88.4)。東京芝1400では4着・2着と崩れとらん。今のクラスで勝ち負けできる力は着差と指数で裏付けられとる。<br><br>2番, フクチャンショウ, +0.5, ファルコンS(GIII)3着0.2差・指数89.5、クロッカスS(L)3着・指数90.2、京王杯2歳S(GII)2着。同距離の重賞で好走しとって、指数はメンバー最上位っちゃん。直近2走の大敗はGIと重馬場1200mなので割り引いてよかよ。<br><br>3番, ロケベンドラ, -0.2, 前走は牝馬限定の2勝クラスを重馬場で勝った(指数83.4)。とはいえ昇級初戦で、1400mは初めて。指数も3勝クラス上位には届いとらん。<br><br>4番, ボンヌソワレ, +0.2, 3勝クラスで3着0.1差と5着0.3差(指数85.2)。東京芝1400では2勝クラスを勝っとる。大崩れせんけど、決め手は一枚足りん。<br><br>5番, ヒシアマン, +0.4, 前走の白秋Sは4着0.2差で上がり32.8・指数84.4。幕張S2着(指数87.6)、紅葉S3着(指数86.9)と、3勝クラスでずっと僅差に来とる。<br><br>6番, レッドキングリー, +0.3, 多摩川S2着0.1差(指数85.6)、東京芝1400で2勝クラス勝ち。前走の白秋Sは8着やけど差は0.4秒だけ。<br><br>7番, ポッドロワール, +0.2, 新潟日報賞は2着0.0差で指数88.8が光る。ほかの近走は3勝クラスで4〜5着、0.3〜0.4差どまり。20戦3勝で、勝ち切れるかは疑問。<br><br>8番, スティールブルー, -0.6, 3勝クラスでは5・9・9・12着で、直近の指数は70〜80。このクラスの壁にはっきり当たっとる。<br><br>9番, ドゥカート, -0.6, 3勝クラスで7・11・12・10着、0.7〜0.9差の完敗が続いとる。1800m前後が主戦場やったし、1400mでの実績も無い。<br><br>10番, トライアンフパス, 0.0, 2勝クラスを1分19秒6で勝った(指数83.5)。白秋Sは9着0.4差で上がり32.5やけど、51kgの軽ハンデやった。今回は4kg増えるけん、プラスとマイナスで打ち消し合う。<br><br>11番, エフォートレス, -0.3, 3勝クラスでは3着0.6差が最高で、5着・8着と指数72〜79にとどまる。このクラスでは力が足りとらん。<br><br>12番, ブラックジェダイト, -0.1, 2勝クラスを勝って(指数83.3)、9戦3勝と安定しとる。ただ昇級初戦で、東京芝1400の2勝クラスでも4着やった。<br><br>13番, テンミラクルスター, -0.6, 3勝クラスで6・11・9着、前走は2.1差の大敗(指数59.9)。1800〜2000mからの大幅な距離短縮で、1400mの実績も無い。<br><br>14番, エヴァンスウィート, -0.2, 3勝クラスで4・7・5・7着、指数は80前後。前走0.3差は斤量52kgでのもの。上位との差は詰まっとらん。<br><br>15番, グーテンベルク, +0.2, フリーウェイS3着0.1差(指数87.7)、白秋S6着0.2差(指数84.4)。同じ舞台で通用はしとるけど、多摩川S10着もあってムラがある。<br><br>16番, コートアリシアン, +0.5, 3勝クラスで3・2・4・5着。フリーウェイS2着0.0差・指数88.9、湘南S3着と東京芝1400で実績がある。安定感はメンバー随一っちゃん。<br><br>17番, レオアジャイル, -0.2, 前走は2勝クラス勝ちやけど、稍重の1分22秒0で指数81.9と時計の裏付けが薄い。昇級初戦で、東京芝1400では7着1.0差の凡走もある。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: 0.5, &quot;3&quot;: -0.2, &quot;4&quot;: 0.2, &quot;5&quot;: 0.4, &quot;6&quot;: 0.3, &quot;7&quot;: 0.2, &quot;8&quot;: -0.6, &quot;9&quot;: -0.6, &quot;10&quot;: 0.0, &quot;11&quot;: -0.3, &quot;12&quot;: -0.1, &quot;13&quot;: -0.6, &quot;14&quot;: -0.2, &quot;15&quot;: 0.2, &quot;16&quot;: 0.5, &quot;17&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;実績上位は、重賞で指数89〜90を出しているフクチャンショウ、東京芝1400の3勝クラスで連対したモンドデラモーレ(指数88.4)とコートアリシアン(指数88.9)。3勝クラスで僅差を続けるヒシアマンとレッドキングリーがこれに続く。2勝クラスからの昇級組(ロケベンドラ、ブラックジェダイト、レオアジャイル)は時計の裏付けが足りず、やや割り引き。3勝クラスで大敗が続くスティールブルー、ドゥカート、テンミラクルスターは明確に下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>直接対決と付値の並びが合っとらん箇所がないか見直してほしいっちゃん。(1) 2番フクチャンショウの根拠は8〜10か月前の3歳戦の指数で、3勝クラスで唯一走ったセプテンバーSは9頭中9着(1.0差)。同じレースで7番ポッドロワールが同じ斤量で0.6秒先着しとる。指数最上位を信じるなら+0.5で止める理由がないし、今のクラスの結果を重く見るなら甘い。どっちつかずの+0.5になっとらんかな。(2) 新潟日報賞では7番が16番コートアリシアンに斤量2kg重くて0.3秒先着、湘南Sでは1番モンドデラモーレが16番に同じ条件で0.3秒先着しとる。16番も3勝クラスで未勝利なのに『安定感随一』で+0.5、7番だけ勝率で減点されとるのは基準が揃っとらんのでは。(3) 多摩川Sで6番レッドキングリーは1番に同じ斤量で0.3秒先着しとるのに、付値は1番より0.2低い。(4) 白秋Sで5番ヒシアマンと15番グーテンベルクは同じ時計・同じ指数84.4。5番の高指数は1600mの数字で、他の馬には『1400m実績なし』で減点しとるのと扱いが違う。(5) 2番の重馬場は割り引いとるのに、13番テンミラクルスターと11番エフォートレスの秋風S(重)は割り引いとらん。17番レオアジャイルの稍重の時計を指数とは別に減点すると二重減点にならんかな。(6) 11番の3勝クラスの指数(72.5〜79.5)と着差は、8番スティールブルー(82.3、0.3差)や9番ドゥカート(81台)と比べて上とは言いにくい。−0.3と−0.6の差は3着が1回あるという着順だけで説明しとらんかな。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モンドデラモーレ, +0.5, 湘南S(3勝)2着0.0差・指数88.4では16番に同じ条件で0.3秒先着しとって、日高S2着0.1差・指数84.3もある。多摩川Sで6番に0.3秒負けとるけど、最高指数と着差の安定で今のクラスで勝ち負けできる力は据え置くね。<br><br>2番, フクチャンショウ, +0.3, ファルコンS(GIII)3着0.2差・指数89.5とクロッカスS3着・指数90.2は、8〜10か月前の3歳限定戦の数字っちゃん。古馬3勝クラスで唯一走ったセプテンバーSは9着1.0差で、同じ斤量の7番に0.6秒負けとる。重馬場の1200mやけん全部は鵜呑みにせんけど、+0.5は甘かったけん下げるね。<br><br>3番, ロケベンドラ, -0.2, 前走は牝馬限定の2勝クラスを重馬場で勝った(指数83.4)。とはいえ昇級初戦で1400mは初めてやし、指数も3勝クラス上位には届いとらん。<br><br>4番, ボンヌソワレ, +0.3, 長篠S(3勝)3着0.1差では7番に0.2秒先着、新潟日報賞5着0.3差では16番と同じ1分19秒7・指数85.2。3勝クラスで崩れとらんけん少し上げるね。指数の水準は80〜85で、決め手は一枚足りん。<br><br>5番, ヒシアマン, +0.4, 白秋S4着0.2差・上がり32.8(指数84.4)は15番と同じ時計やけど、15番より1kg重い57kgで走っとる。1600mで幕張S2着(指数87.6)、雲雀S5着0.3差、紅葉S3着と、3勝クラスでずっと0.4差以内に来とる。この安定感は評価してよかよ。<br><br>6番, レッドキングリー, +0.4, 多摩川S(3勝)2着0.1差・指数85.6では、同じ斤量の1番に0.3秒先着しとる。前走の白秋Sは8着やけど差は0.4秒だけ。直接対決を踏まえて1番との差を詰めるね。<br><br>7番, ポッドロワール, +0.3, 新潟日報賞2着0.0差・指数88.8では、16番より2kg重くて0.3秒先着しとる。セプテンバーSでも2番に0.6秒先着。ほかの3勝クラスは4〜5着の0.3〜0.4差で崩れとらんけん、勝率で減点するのはやめて上げるね。<br><br>8番, スティールブルー, -0.5, 3勝クラスでは船橋S5着0.3差(指数82.3)が最高で、ほかは9・9・12着の0.6〜0.8差。直近の指数は70〜80どまりで、このクラスの壁に当たっとる。11番と同じくらいの水準やけん少し戻すね。<br><br>9番, ドゥカート, -0.5, 3勝クラスは7・11・12・10着で0.7〜0.9差、指数は77〜82。1800〜2000mが主戦場で、1600m以下の3勝クラスも10着0.7差やけん、1400mでの裏付けは無い。8番や11番と同じ水準として少し戻すね。<br><br>10番, トライアンフパス, 0.0, 2勝クラスを1分19秒6で勝った(指数83.5)。白秋Sは9着0.4差で上がり32.5やけど、51kgの軽ハンデやった。今回は4kg増えるけん、プラスとマイナスで打ち消し合う。<br><br>11番, エフォートレス, -0.4, 3勝クラスは日高S3着0.6差(指数78.8)と多摩川S8着0.6差(指数79.5)。重馬場の秋風S(指数72.5)は割り引くけど、着差も指数も8番・9番と変わらん水準やけん、そろえて下げるね。<br><br>12番, ブラックジェダイト, -0.1, 2勝クラスを勝って(指数83.3)、9戦3勝と安定しとる。ただ昇級初戦で、東京芝1400の2勝クラスでも4着やった。<br><br>13番, テンミラクルスター, -0.5, 重馬場の秋風S2.1差は割り引くね。ただ良馬場でも佐渡S11着1.1差、むらさき賞は53kgで6着0.4差と、3勝クラスでは通用しとらん。1800〜2000mからの大幅な距離短縮で、1400mの実績も無い。<br><br>14番, エヴァンスウィート, -0.2, 3勝クラスで4・7・5・7着、指数は80前後。前走の白秋S0.3差は斤量52kgでのもので、上位との差は詰まっとらん。<br><br>15番, グーテンベルク, +0.3, フリーウェイS(東京芝1400)3着0.1差・指数87.7、白秋Sは5番と同じ1分20秒6・指数84.4。多摩川S10着0.8差はあるけど、それは稍重の一戦。5番との差を詰めて上げるね。<br><br>16番, コートアリシアン, +0.5, 3勝クラスで3・2・4・5着、いつも0.3差以内で指数は84.8〜88.9とそろっとる。フリーウェイS2着0.0差・指数88.9。直接対決では1番と7番に0.3秒負けとるけど、指数の水準が高いところで安定しとるのは素の能力として評価するね。<br><br>17番, レオアジャイル, -0.15, 前走の2勝クラス勝ちは指数81.9で、12番や10番の2勝クラス勝ち(83台)より下。昇級初戦で、東京芝1400の1勝クラスでも7着1.0差・指数70.4がある。稍重の時計で別に減点するのは二重減点やけん、そこは外したね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: 0.3, &quot;3&quot;: -0.2, &quot;4&quot;: 0.3, &quot;5&quot;: 0.4, &quot;6&quot;: 0.4, &quot;7&quot;: 0.3, &quot;8&quot;: -0.5, &quot;9&quot;: -0.5, &quot;10&quot;: 0.0, &quot;11&quot;: -0.4, &quot;12&quot;: -0.1, &quot;13&quot;: -0.5, &quot;14&quot;: -0.2, &quot;15&quot;: 0.3, &quot;16&quot;: 0.5, &quot;17&quot;: -0.15}, &quot;analysis_summary&quot;: &quot;批判を検証して次を見直した。(1)2番の高指数は古い3歳戦の数字で、古馬3勝クラスはセプテンバーS9着1.0差(7番に0.6秒負け)しかないため+0.5→+0.3。(2)7番は新潟日報賞で16番に斤量2kg重くて0.3秒先着、セプテンバーSでも2番に先着しているので、勝率での減点をやめて+0.2→+0.3。4番も長篠Sで7番に先着、新潟日報賞で16番と同タイム・同指数なので+0.3。16番と1番は指数の水準と安定感で+0.5のまま。(3)6番は多摩川Sで1番に同斤量で0.3秒先着しているので+0.4に上げて差を詰めた。(4)15番は白秋Sで5番と同タイム・同指数のため+0.3に上げた。5番は1kg重い斤量と1600mでの0.4差以内の安定で+0.4を維持。(5)重馬場の割引をそろえ、13番を-0.5に、17番は稍重の時計による二重減点を外して-0.15にした。(6)11番・8番・9番は着差・指数とも同じ水準なので、-0.4/-0.5/-0.5にそろえた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>**展開予想（東京芝1400m・良・17頭）**<br><br>はっきりした逃げ馬はいない。ハナ候補は3つ考えられる。まず内からロケベンドラ（3番）が主張する形。マイルで3-2-2、5-1-2と前に行っている。次に1200m組のエヴァンスウィート（14番）。前走の白秋Sは2-2だった。最後に前走でハナを切ったエフォートレス（11番）。3頭とも「絶対に逃げたい」型ではない。そのため序盤の主導権争いはおとなしくなりそうで、ペースは平均かやや緩い想定。<br><br>東京1400mは向正面からのスタートで、最初のコーナーまで距離がある。8枠でもスムーズに前を取れれば致命的な不利にはならない。ただ17頭立てなので、外枠で中団に構える馬は3〜4コーナーで外を回る距離ロスが出る。<br><br>想定隊列は次のとおり。<br>- 先頭: ロケベンドラ（3番）<br>- 外から: エヴァンスウィート（14番）とエフォートレス（11番）<br>- インの3〜4番手: レッドキングリー（6番）<br>- その直後: ボンヌソワレ（4番）、フクチャンショウ（2番）、コートアリシアン（16番）<br>- 中団の内: モンドデラモーレ（1番）<br><br>直線525mの決め手勝負では、好位〜中団前めから33秒台前半で上がれる馬が一番有利。最後方の追込勢は、平均ペースだと届ききらない場面が多いと見る。<br><br>**別シナリオ**：レオアジャイル（17番）が外から積極的に行った場合や、エヴァンスウィートが飛ばした場合は、ペースが締まって中団差し（1番・15番・5番）の出番が増える。どちらのシナリオでも大きく崩れにくい「好位〜中団前め」の馬を上位に置いた。<br><br>---<br><br>1番, モンドデラモーレ, +0.3, 最内枠から中団の内で脚をためられる。東京1400mで6-5→上がり32.6で2着の実績があり、平均ペースの直線勝負向き。17頭立ての内で詰まる危険はあるので控えめのプラス。<br><br>2番, フクチャンショウ, +0.2, 1枠2番から6〜8番手の好位〜中団に収まる脚質で、東京1400mではロスなく運べる。前走はスプリントの重馬場で、距離が戻るのは位置取り面で問題なし。<br><br>3番, ロケベンドラ, +0.3, 内枠の先行馬で、楽にハナか2番手を取れる可能性が一番高い。初の1400mで序盤のペースはマイルより速くなるが、他に強く主張する馬がいないので平均ペースの逃げ・番手でロスなく運べる。<br><br>4番, ボンヌソワレ, +0.4, 2枠4番から3〜6番手の好位を安定して取れる。東京1400mの好位差しの型にぴったりで、前崩れでも前残りでも対応できる位置取り。<br><br>5番, ヒシアマン, +0.2, 内めの枠で先行も差しもできる自在型。前走は東京1400mで中団から32.8の脚を使っており、ペースが締まるシナリオではさらに浮上する。<br><br>6番, レッドキングリー, +0.5, 3枠6番から3〜4番手のインを取れる先行力がある。東京1400mでは4-4から1着、3-2から2着と、この舞台で理想的な位置取りを再現できる。今回の想定隊列で一番おいしいポジション。<br><br>7番, ポッドロワール, 0.0, 1400mでは8〜10番手の中団待機。1200mからの延長で位置はやや取りやすくなるが、直線で外を回す形になりやすく、展開面では有利も不利も小さい。<br><br>8番, スティールブルー, -0.3, 近走は15-15、11-11と後方からの競馬が続いている。平均ペース想定の東京では差し届きにくく、多頭数で外を回す距離ロスも大きい。<br><br>9番, ドゥカート, -0.4, 1800〜2000mからの大幅な距離短縮で、1400mの序盤のスピードについていけず後方になる可能性が高い。前走も13-13で、展開面ではかなり厳しい。<br><br>10番, トライアンフパス, 0.0, 3-3や4-4で勝った先行力がある一方、前走は16-16と出遅れ気味の後方だった。5枠10番は中立で、今回どちらの位置になるか読み切れない。<br><br>11番, エフォートレス, -0.1, 前走は重馬場で逃げたが、本来は中団〜後方の差しが多い。6枠からハナを争うと中途半端な形になるおそれがあり、わずかにマイナス。<br><br>12番, ブラックジェダイト, 0.0, 6〜8番手の中団につける馬で、6枠12番も中立。展開の恩恵も不利も特にない。<br><br>13番, テンミラクルスター, -0.4, 前走までの先行は1800〜2000mでのもの。初の1400mでは序盤のペースに戸惑い、7枠からポジションを取りにいけば脚を使わされる。<br><br>14番, エヴァンスウィート, 0.0, 1200m組のスピードで2〜4番手は取れる。白秋Sの2-2・0.3差も悪くない。ただ7枠14番から先行すると序盤に外を回る分があり、プラスとマイナスが相殺。<br><br>15番, グーテンベルク, -0.1, 末脚は確かだが、8枠15番から中団待機だとコーナーで外を回るロスが出る。ペースが締まれば浮上するので、マイナスは小さめ。<br><br>16番, コートアリシアン, 0.0, 3-3〜9-9で運べる好位差し型で、東京1400mでの好走歴は脚質と噛み合っている。ただ8枠16番では内に入れにくく、相殺して中立。<br><br>17番, レオアジャイル, -0.2, もともとは先行型だが、大外17番から前を取りにいくと外々を回らされる。控えれば前走（10-11）のように後方からの競馬になり、どちらにしても大外枠の不利が残る。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.2, &quot;3&quot;: 0.3, &quot;4&quot;: 0.4, &quot;5&quot;: 0.2, &quot;6&quot;: 0.5, &quot;7&quot;: 0.0, &quot;8&quot;: -0.3, &quot;9&quot;: -0.4, &quot;10&quot;: 0.0, &quot;11&quot;: -0.1, &quot;12&quot;: 0.0, &quot;13&quot;: -0.4, &quot;14&quot;: 0.0, &quot;15&quot;: -0.1, &quot;16&quot;: 0.0, &quot;17&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;明確な逃げ馬が不在で、内のロケベンドラ（3）、1200m組のエヴァンスウィート（14）、前走で逃げたエフォートレス（11）が前に行く平均〜やや緩いペースを想定。東京の長い直線での決め手勝負なので、好位〜中団前めで33秒台の脚を使える馬が有利。3〜4番手のインを取れるレッドキングリー（6）が最も恵まれ、好位安定のボンヌソワレ（4）、内枠のモンドデラモーレ（1）とロケベンドラ（3）がこれに続く。後方一辺倒のスティールブルー（8）、大幅な距離短縮のドゥカート（9）とテンミラクルスター（13）、大外のレオアジャイル（17）はマイナス。ペースが締まるシナリオでは中団差しの1・5・15が浮上する余地を残す。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 6番レッドキングリー+0.5は東京1400mの4-4・3-2が根拠だが、6週前の同じ舞台の白秋Sは7-6で好位のインを取れておらず、5番・15番に先着されている。2〜5番が内めに集まる隊列で大型馬が3〜4番手のインを取りにいけば詰まる危険があり、1番に当てた詰まりの割引を6番にも当てるべきではないか。(2) 3番ロケベンドラ+0.3と13番テンミラクルスター-0.4はどちらも初1400mなのに評価が逆で、0.7差の説明が足りない。3番の前々走は5-1-2で道中に上がった形であり、『楽にハナか2番手を取れる』の根拠は弱くないか。(3) 『他に主張する馬がいない』という前提は、14番（白秋S 2-2）、11番（前走ハナ）、17番、10番、13番の先行歴や、自分で書いた理由（11番がハナ争い、13番が脚を使わされる）と食い違う。前が流れるシナリオを想定し直し、3番・8番などの付値を確かめてはどうか。(4) 外枠の割引が大きすぎないか。16番は東京1400mで3-3から2着・9-9から3着と4番と同じ型なのに0.4差、12番も1番と同じ位置取りなのに0.3差で、どちらも枠だけが理由になっている。(5) 17番レオアジャイルの前走10-11は同じ舞台での勝ちであり、不利として数えるのは筋が逆ではないか。(6) 10番トライアンフパスは前でも後ろでも結果を出しているので、中立で済ませずに位置取りの幅を評価してはどうか。(7) 2番フクチャンショウにも1番と同じ内枠の詰まりリスクを当てるべきではないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を一つずつ見直したけん、Round2 の補正ポイントを出すね。(1)(2)(3)(5)(7) は納得したので値を下げたり上げたりしとる。(4)(6) は一部だけ取り入れとる。<br><br>1番, モンドデラモーレ, +0.2, 最内枠から中団の内で脚をためる形は東京1400mの平均ペースに合う。ただ2〜6番の内めの馬が固まる隊列で直線が詰まるおそれがあるので、Round1 より少し下げた。<br><br>2番, フクチャンショウ, +0.1, 1枠から好位〜中団の内でロスなく運べる。ただ1番と同じで内で詰まるおそれがあり、近走は17-17や4-3と位置取りが定まらないので小さめのプラスにした。<br><br>3番, ロケベンドラ, +0.2, マイルで3-2-2や5-3と先行できており、内枠から2〜4番手には付けられる。ただ前々走は5-1-2で道中に上がった形で、14番・11番・17番も前に行ける今回は「楽にハナ」とまでは言えないので下げた。<br><br>4番, ボンヌソワレ, +0.4, 2枠から3〜6番手の好位をいつも取れており、内で詰まるほど後ろではない。前が流れても落ち着いても対応できる位置で、東京1400mの好位差しの型に合っている。<br><br>5番, ヒシアマン, +0.3, 内めの枠から先行も差しもでき、白秋Sでは10-11から上がり32.8を出している。先行できる馬が多くペースが締まりやすい今回の想定では、中団から差す形が向く。<br><br>6番, レッドキングリー, +0.3, 東京1400mで4-4から1着、3-2から2着と好位のインで結果を出している。ただ直近の白秋Sは7-6で好位を取れておらず、内めの馬が固まる中で大型馬がインを狙うと詰まるおそれもあるので割り引いた。<br><br>7番, ポッドロワール, 0.0, 1400mでは8〜10番手の中団で待ち、直線は外に出す形になりやすい。展開による有利も不利も小さい。<br><br>8番, スティールブルー, -0.2, 近走は15-15や11-11と後方からの競馬が続き、17頭立てで外を回るロスが大きい。前が流れるシナリオもあり得るので、Round1 よりマイナスを小さくした。<br><br>9番, ドゥカート, -0.4, 1800〜2000mからの大きな距離短縮で、1400mの序盤のスピードについていけず後方になる可能性が高い。前走も13-13で、展開面では厳しい。<br><br>10番, トライアンフパス, +0.1, 3-3や4-4で勝った一方、9-9や16-16の位置からも走っており、どこからでも運べる。この位置取りの幅を小さめのプラスと見たが、前走の後方は出遅れの可能性があり、どの位置になるかは読み切れない。<br><br>11番, エフォートレス, -0.1, 前走は重馬場で逃げたが本来は中団の差しが多い。6枠から前を争うと中途半端な形になるおそれがある。<br><br>12番, ブラックジェダイト, +0.1, 東京1400mで6-7から上がり33.1と、1番と同じような中団からの競馬ができる。6枠は不利というほどではないので、Round1 の0.0から小さめのプラスに直した。<br><br>13番, テンミラクルスター, -0.3, 1-1-1や3-3-3-3の先行は1800〜2000mでのもので、初の1400mでは同じ位置を取りにいくと脚を使わされる。3番より距離短縮の幅が大きく外枠でもあるが、差は詰めた。<br><br>14番, エヴァンスウィート, 0.0, 白秋Sでは2-2で0.3差と先行力はある。ただ7枠から先行すると外を回る分があり、今回は前に行く馬も多いので、プラスとマイナスが打ち消し合う。<br><br>15番, グーテンベルク, 0.0, 8枠からの中団待機でコーナーは外を回る。ただ東京1400mでは5-6から上がり32.6で3着があり、ペースが締まれば届くので中立にした。<br><br>16番, コートアリシアン, +0.1, 東京1400mで3-3から2着、9-9から3着と、4番と同じ好位差しの型がこの舞台に合っている。8枠で内に入れにくい分は残るが、枠だけで中立にしていたのは割り引きすぎだった。<br><br>17番, レオアジャイル, -0.1, 3週前に同じ舞台で10-11から勝っており、控えても届くことは示している。ただ17頭立ての大外で、前に行っても控えても外を回るロスは残るので、マイナスは小さめにした。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.1, &quot;3&quot;: 0.2, &quot;4&quot;: 0.4, &quot;5&quot;: 0.3, &quot;6&quot;: 0.3, &quot;7&quot;: 0.0, &quot;8&quot;: -0.2, &quot;9&quot;: -0.4, &quot;10&quot;: 0.1, &quot;11&quot;: -0.1, &quot;12&quot;: 0.1, &quot;13&quot;: -0.3, &quot;14&quot;: 0.0, &quot;15&quot;: 0.0, &quot;16&quot;: 0.1, &quot;17&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;前に行ける馬（3・14・11・17・10・13・6）が多いので、『他に主張する馬がいない平均ペース』という前提を外し、平均からやや速めのペースを想定し直した。これで3番は+0.2、差しの5番は+0.3、追込の8番は-0.2とした。白秋Sで7-6だったことと内で詰まるおそれから、6番は+0.3に下げた。内枠で詰まるおそれは1番と2番の両方に当てた。外枠の割り引きは大きすぎたので、16番・12番・15番・17番は控えめにし、位置取りの幅がある10番は小さめのプラスにした。初の1400mの3番と13番は、距離短縮の幅と枠の違いで差を残しつつ、差を0.5に縮めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モンドデラモーレ, +0.1, 前走480kgから+4kgで、2着2回のときと同じ480kg前後に収まっとる。2か月半空いたあとの増え方としては問題なし。強めに追って「直線の伸び良」やけん、仕上がりは平常どおり。<br><br>2番, フクチャンショウ, 0.0, 454kg（増減0）で、好走したときの450〜456kgの中に入っとる。追い切りは馬なりで「時計以上の動き」、調子は横ばい。プラスにもマイナスにも振る材料が無い。<br><br>3番, ロケベンドラ, +0.4, 448kg（+2）で、連勝したときの446kgとほぼ同じ。9週の間隔で体重が安定しとる。坂路の追い切りは「動きキビキビ」で調子も上向き、仕上がりに不安は見当たらん。<br><br>4番, ボンヌソワレ, +0.1, 456→460→466→468→470kgと少しずつ増えとって、走りの内容も良くなっとるけん、成長の増え方と見る。2か月半ぶりやけど「久々も動き軽快」で仕上がりは悪くない。<br><br>5番, ヒシアマン, +0.5, 半年休んだあとの1走目（白秋S）を476kgで使って、今回は474kg（-2）。叩き2走目で体重がしっかり絞れとる。追い切りは馬なりで「動きハツラツ」、調子も上向き。斤量は57kgから58kgに1kg増えるけど、474kgの馬なら問題にならん。<br><br>6番, レッドキングリー, +0.2, 3か月半休んだあとの1走目から体重変わらずの510kgで叩き2走目。勝ったり2着になったりしたときの510〜514kgの範囲にある。強めに追って「脚取り確か」。斤量1kg増も510kgの大きな馬なら気にせんでよか。<br><br>7番, ポッドロワール, 0.0, 4週の間隔で514kg（+6）。2着になったときの512kgに近いけん、太すぎとまでは言えん。ただ7月から数えて5走目の連戦で、調子は横ばいのまま。斤量は56kgから58kgに2kg増えるけど、514kgの馬格で吸収できる範囲。プラスとマイナスが打ち消し合う。<br><br>8番, スティールブルー, -0.2, 466kg（-2）で体重は安定。追い切りも最後の1F 11.3秒で動きはスムーズ。ただ前走の53kgから56kgに3kg増える（1400mで1馬身半くらいの不利）。466kgの牝馬には少しこたえる。<br><br>9番, ドゥカート, 0.0, 前2走は478kgで凡走、今回は486kg（+8）に戻した。勝ったときの482〜488kgの範囲やけん、戻ったと見られる。5F 65.6秒と時計は出とるけど、評価が「まずまず仕上がる」と控えめやけん、中立にとどめる。<br><br>10番, トライアンフパス, -0.4, 492kg（増減0）、6週の間隔で体重には問題なし。ただ斤量が前走の51kgから55kgに一気に4kg増える（2馬身くらいの不利）。勝った2戦も53〜55kgやった。492kgの大きめの馬でも、この増え方ははっきり不利。<br><br>11番, エフォートレス, +0.4, 前走480kgから486kg（+6）で、2勝クラスを勝ったときの488kgに近い。減っていた分を戻しとる。追い切りは「1ハロンの伸び目立つ」で最後の1F 11.2秒、調子も上向き。体の作り直しがうまくいっとる。<br><br>12番, ブラックジェダイト, +0.2, 直近の5走、体重がずっと466〜470kgのとても安定した馬で、今回も470kg（増減0）。3か月ぶりでも先週に好調教を積んで、今週は馬なりで仕上げとる。休み明けでも体はできとる。<br><br>13番, テンミラクルスター, 0.0, +12kg、-12kgと上下したあと、今回は456kg（増減0）。勝ったときの456kgに戻っとるけん、減り続けて消耗しとる心配はひとまず無い。ただ追い切りは最後の1F 12.4秒と目立たん。前走の重馬場での大敗から回復しとるかは、まだ判断がつかん。<br><br>14番, エヴァンスウィート, -0.4, 前走+8kg、今回-8kgの450kgで、近走は438〜460kgと体重の上下が大きい。そこへ前走の52kgから56kgに4kg増える。450kgの牝馬にはかなり重い。「馬体の張り上々」で少し差し引いても、マイナスは残る。<br><br>15番, グーテンベルク, +0.4, 3か月半休んだあとの1走目から叩き2走目。480kgから484kg（+4）で、3着になったとき（指数87.7）と同じ484kgに戻った。強めに追って3F 36.7秒・最後の1F 11.3秒と時計がしっかり出とる。叩いて上がってくる形。<br><br>16番, コートアリシアン, -0.3, ずっと442〜446kgで安定しとったのに、3か月ぶりで454kg（+10）とこれまでで一番重い。4歳秋の成長の可能性はあるけど、小柄な牝馬が休み明けで+10kgやけん、太め残りが心配。坂路で「フットワーク軽快」なので少しだけ差し引いた。<br><br>17番, レオアジャイル, -0.2, 466→474→478kgと増えてきて、中3週で486kg（+8）。春に凡走した482kgを上回った。3歳の成長分を差し引いても、短い間隔での+8kgは少し重め。追い切りは5F 65.0秒で「好調持続」、斤量1kg増は小さい。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: 0.0, &quot;3&quot;: 0.4, &quot;4&quot;: 0.1, &quot;5&quot;: 0.5, &quot;6&quot;: 0.2, &quot;7&quot;: 0.0, &quot;8&quot;: -0.2, &quot;9&quot;: 0.0, &quot;10&quot;: -0.4, &quot;11&quot;: 0.4, &quot;12&quot;: 0.2, &quot;13&quot;: 0.0, &quot;14&quot;: -0.4, &quot;15&quot;: 0.4, &quot;16&quot;: -0.3, &quot;17&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;体調面で一番上げるのはヒシアマン。半年休み明けの次の叩き2走目で-2kgと絞れ、調子も上向き。続いてグーテンベルク（叩き2走目、好走時と同じ484kgに戻り、時計も鋭い）、エフォートレス（勝ったときの体重に戻し、伸びが目立つ）、ロケベンドラ（連勝時と同じ体重で、調子も上向き）。下げるのは、斤量が4kg増えるトライアンフパス（51→55kg）とエヴァンスウィート（52→56kg、450kgの牝馬で体重の上下も大きい）、休み明けで+10kgとこれまでで一番重いコートアリシアン。ほかの馬は体重が安定していて追い切りも平常どおりなので、0付近にした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①11番エフォートレスと13番テンミラクルスターは同じ9/26秋風S（重）で止まっとるのに、回復を疑っとるのは13番だけ。基準をそろえるべきでは。②9番ドゥカートの『勝ったときの482〜488kg』は誤り。勝ったのは482kgだけで、484kgは11着、488kgは7着。実際は中8週+8kgで、16番コートアリシアンや17番レオアジャイルと同じ形なのに0.0なのは甘くないか。③7番ポッドロワールは近走で一番重い514kg・中3週+6kg・斤量+2kg・中1週を含む5連戦・調子横ばいとマイナスばかりで、プラス材料が無いのに0.0。17番レオアジャイル（-0.2）と釣り合わない。④5番ヒシアマンの474kgは好走時の466〜470kgよりまだ重く『絞れた』とは言いにくい。58kgでは5・6着、57kgでは2〜4着と斤量増に弱い実績があり、追い切りも3Fだけで5Fの時計が無い。+0.5で最上位にする根拠は強すぎないか。⑤15番グーテンベルクは評価『遅れ心配なし』（併せ馬で遅れた含み）と調子→を読み落としとる。484kgと486kg（8・10・10着）の2kg差で良し悪しを分けるのも無理がある。⑥8番スティールブルー・10番トライアンフパス・14番エヴァンスウィートの斤量減点は、前走ハンデ戦の軽い斤量と比べただけ。8番は56kgの方が成績が良く、10番は55kgで勝ち、14番は56kgが普段の斤量。-0.4は重すぎないか。体調面の材料なら10番の坂路終い12.4秒の方が妥当。⑦4番ボンヌソワレの『内容向上』は指数85.2→80.4の低下と合わず、勝ったのも一番軽い460kg。⑧17番レオアジャイルは出走馬最速の5F 65.0と『好調持続』の重みが小さすぎないか。12番ブラックジェダイトは今週5F 70.0が最も遅く、+0.2を『先週好調教』だけで支えきれるか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モンドデラモーレ, +0.1, 前走480kgから+4kgの484kgで、2着2回のときの480kg前後に収まっとる。2か月半空いたあとの増え方としては許容範囲で、強めに追って「直線の伸び良」やけん平常どおりの仕上がり。<br><br>2番, フクチャンショウ, 0.0, 454kg（増減0）で、好走したときの450〜456kgの中に入っとる。馬なりで「時計以上の動き」、調子は横ばいで、プラスにもマイナスにも振る材料が無い。<br><br>3番, ロケベンドラ, +0.4, 448kg（+2）で、連勝したときの446kgとほぼ同じ。9週の間隔で体重は安定、坂路は「動きキビキビ」で調子も上向きやけん、仕上がりに不安は見当たらん。<br><br>4番, ボンヌソワレ, 0.0, 体重は470kgでこれまでで一番重く、勝ったのは一番軽い460kgのとき。466→468kgの間に指数も85.2→80.4と下がっとるけん「成長の増え方」とは言い切れん。「久々も動き軽快」と+2kgの小さい増え方で差し引きゼロ。<br><br>5番, ヒシアマン, +0.3, 叩き2走目で476→474kg（-2）と減ってきたのはプラス。ただ好走したときの466〜470kgよりはまだ重いし、58kgでは5・6着、57kgでは2〜4着やけん、1kg増もいくらか割り引く。追い切りが3Fだけなのも含めて+0.3にとどめる。<br><br>6番, レッドキングリー, +0.2, 3か月半休んだあとの1走目から叩き2走目で、体重は変わらず510kg。勝ったり2着になったりしたときの510〜514kgの範囲にある。強めに追って5F 66.5秒「脚取り確か」、1kg増も510kgの大きな馬なら問題にならん。<br><br>7番, ポッドロワール, -0.1, 514kg（+6）は近走で一番重い。中1週を含む7月からの5走目で、調子も横ばいのまま。58kgは1400mでいつも背負っとる斤量（2着のときも58kg）やけん、斤量増はほとんど割り引かず、体重と連戦の分だけ小さく引く。<br><br>8番, スティールブルー, 0.0, 466kg（-2）で体重は安定。53kgと比べると3kg増えるけど、56kgのときの方が成績は上やけん、この馬には不利にならん。最後の1F 11.3秒「動きスムーズ」で、体調面のプラスマイナスは無し。<br><br>9番, ドゥカート, -0.1, 勝ったときは482kgで、484kgは11着、488kgは7着やった。「勝ったときの体重に戻った」とした読みは間違いやった。中8週で+8kgの486kgは、3月以来いちばん重い。5F 65.6秒と時計は出とるけど、評価は「まずまず」と控えめで、わずかに割り引く。<br><br>10番, トライアンフパス, -0.2, 492kg（増減0）で6週の間隔、体重は問題なし。斤量は51kgと比べると4kg増えるけど、55kgで勝ったこともあるけん、引くのは小さめにする。坂路で最後の1Fが12.4秒とかかっとるのが、体調面ではいちばん気になるところ。<br><br>11番, エフォートレス, +0.3, 480kgから486kg（+6）で、2勝クラスを勝ったときの488kgに近づいた。1F 11.2秒「1ハロンの伸び目立つ」で調子も上向き。ただ13番と同じ秋風S（重馬場）で逃げて止まったあとやけん、疲れが残っとる心配は同じように割り引く。<br><br>12番, ブラックジェダイト, +0.1, 直近の5走、体重がずっと466〜470kgのとても安定した馬で、3か月ぶりでも470kg（増減0）。ただ今週の5F 70.0秒は出走馬でいちばん遅く、「先週好調教」だけでは強くは押せん。<br><br>13番, テンミラクルスター, 0.0, -12kgで大敗した重馬場の秋風Sから、勝ったときと同じ456kg（増減0）に戻っとる。減り続けて消耗しとる心配は無い。ただ追い切りは最後の1F 12.4秒で調子も横ばい。上積みを示す材料も無いけん中立。<br><br>14番, エヴァンスウィート, -0.1, 56kgはこの馬が普段背負っとる斤量やけん、斤量増の減点はやめる。450kg（-8）自体は近走の範囲内やけど、+20、-10、+8、-8と体重の上下が大きく、体調が安定しとらん分だけわずかに引く。<br><br>15番, グーテンベルク, +0.2, 叩き2走目で480→484kg（+4）。強めに追って3F 36.7秒・最後の1F 11.3秒と時計は出とる。ただ評価の「遅れ心配なし」は併せ馬で遅れたということやし、調子も横ばい。484kgと486kgの2kg差で良し悪しを分けた読みも取り下げる。<br><br>16番, コートアリシアン, -0.3, ずっと442〜446kgで安定しとった小柄な牝馬が、3か月ぶりで454kg（+10）とこれまでで一番重い。休み明けの太め残りが心配で、坂路の「フットワーク軽快」の分だけ少し差し引く。<br><br>17番, レオアジャイル, 0.0, 中2週で478→486kg（+8）と増え方は短い間隔のわりに大きい。ただ増えながら勝っとる3歳牝馬の成長の流れで、5F 65.0秒は出走馬で最速、評価も「好調持続」。体重の不安を調教の良さが打ち消す。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: 0.0, &quot;3&quot;: 0.4, &quot;4&quot;: 0.0, &quot;5&quot;: 0.3, &quot;6&quot;: 0.2, &quot;7&quot;: -0.1, &quot;8&quot;: 0.0, &quot;9&quot;: -0.1, &quot;10&quot;: -0.2, &quot;11&quot;: 0.3, &quot;12&quot;: 0.1, &quot;13&quot;: 0.0, &quot;14&quot;: -0.1, &quot;15&quot;: 0.2, &quot;16&quot;: -0.3, &quot;17&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;批判者の指摘はほとんど納得できたけん反映した。9番は勝ったときの体重を読み違えとったので-0.1に直した。8・10・14番の斤量の減点は、前走のハンデ戦と比べただけで過去の実績を見とらんかったので軽くした（8番は0.0、14番は-0.1、10番は坂路の終いの遅さを理由に-0.2）。5番は好走したときより体重がまだ重く、58kgで成績が落ちる実績もあるので+0.3、15番は併せ馬の遅れと調子横ばいを読み落としとったので+0.2、4番は指数が下がっとるのに『内容向上』とした誤りを直して0.0、7番は一番重い体重と連戦を理由に-0.1、17番は最速の調教を評価して0.0、12番は今週の時計が一番遅いので+0.1。11番は13番と同じ重馬場の疲れを考えて+0.3に下げた。13番は判断がつかんという理由を直したけど、Pは0.0のまま。3番の+0.4（勝ったときと同じ体重・調子上向き）がいちばん上。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ステップ1. 各馬の評価<br><br>1番, モンドデラモーレ, +0.2, 父ワールドエースはディープ系でマイルまでの切れ脚を伝え、母父クロフネがスピードの持続力を足す配合。東京1400の良馬場で2着（指数88.4）があり、血統と実績が合っているので軽く上げる。<br><br>2番, フクチャンショウ, +0.5, 父イスラボニータの産駒は東京の1400〜1600が得意な傾向がはっきりしていて、本馬も京王杯2歳S2着、クロッカスS3着と東京1400で結果を出している。前走の中山1200重馬場での大敗は血統的にも合わない条件だったので、得意条件に戻る今回ははっきり上げる。<br><br>3番, ロケベンドラ, +0.3, 父イスラボニータに母父Smart Strikeでスピードとパワーが合わさった配合で、1400への短縮は血統的に合う。ただ東京1400は初めてで、勝ち鞍はマイルに偏っているため、上げ幅は控えめにする。<br><br>4番, ボンヌソワレ, +0.1, 父レイデオロは中距離寄りだが、母父Kendargentがフランスの短距離血統でスピードを補っている。東京1400で勝っており、長い直線ならレイデオロのスタミナも活きるので、わずかにプラス。<br><br>5番, ヒシアマン, +0.4, 父モーリスの産駒は東京のマイル前後に強く、古馬になってから本格化する傾向がある。4歳秋の今と時期が合っている。前走の東京1400で上がり32.8を出しており、母父マンハッタンカフェの持続力も東京の長い直線向き。<br><br>6番, レッドキングリー, +0.3, 父サートゥルナーリアに母父Smart Strikeでスピードがあり、510kgの大型馬でも東京1400で1着と2着がある。血統と実績から東京1400への適性は確かと見る。<br><br>7番, ポッドロワール, 0.0, 父レイデオロ×母父Multiplex（欧州血統）でパワー型の大型馬。新潟の外回り1400で好走した実績はあるが、東京1400で血統面の上積みがあるとは言えないので中立。<br><br>8番, スティールブルー, -0.1, 父ルーラーシップに母父スマートファルコンというダート色のある配合で、1200ではスピードが足りていない。東京1400で勝った実績はあるが、3勝クラスの速い時計の決着では血統的にわずかに不利。<br><br>9番, ドゥカート, -0.6, 父レイデオロに母父ステイゴールドで中長距離に寄った配合。勝ち鞍は1800で、前走のマイルでも追走に苦しんだ。1400への大幅な短縮は血統面ではっきりマイナス。<br><br>10番, トライアンフパス, +0.2, 父ベンバトル（Dubawi系）×母父マツリダゴッホで、1400向きのパワーとスピードを持つ。3歳秋で成長している時期でもあり、東京1400で勝ち、前走は上がり32.5を出しているので軽く上げる。<br><br>11番, エフォートレス, -0.2, 父エピファネイア×母父ダイワメジャーで、勝ち鞍の中心はマイル。東京1400では稍重とはいえ8着に終わっており、血統的にも1ハロン短いとみてわずかに下げる。<br><br>12番, ブラックジェダイト, -0.4, 父キタサンブラックに母父Monsunでスタミナ寄りの重い配合。1500〜1600で勝っているが、東京1400は2勝クラスでも4着止まりだった。3勝クラスの速い流れでは忙しく、血統的に不利。<br><br>13番, テンミラクルスター, -0.6, 父エピファネイア×母父ディープブリランテで中距離向きの配合。勝ち鞍は2000mに集中していて、1400への600mもの短縮は血統面ではっきりマイナス。<br><br>14番, エヴァンスウィート, +0.2, 父スワーヴリチャードは東京向きの血統で、母父Machiavellianがスピードを足す。1200ばかり使われてきたが、1400への延長は血統的にはプラス。前走の東京1400でも0.3秒差まで粘っている。<br><br>15番, グーテンベルク, +0.1, 父リアルスティール×母父スクリーンヒーローでマイル前後が合う配合。東京1400で3着があり、適性は普通かやや良い程度なので、わずかにプラス。<br><br>16番, コートアリシアン, +0.3, 父サートゥルナーリア×母父ハーツクライで、東京の長い直線で末脚を活かせる血統。東京1400では2着、3着と安定している。<br><br>17番, レオアジャイル, +0.4, 父ダノンスマッシュ（ロードカナロア系）は1200〜1400のスピード血統で、母父ステイゴールドが東京の直線を走り切るスタミナを補う。3歳秋で成長している時期でもあり、前走は東京1400で勝っている。<br><br>ステップ2.<br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.5, &quot;3&quot;: 0.3, &quot;4&quot;: 0.1, &quot;5&quot;: 0.4, &quot;6&quot;: 0.3, &quot;7&quot;: 0.0, &quot;8&quot;: -0.1, &quot;9&quot;: -0.6, &quot;10&quot;: 0.2, &quot;11&quot;: -0.2, &quot;12&quot;: -0.4, &quot;13&quot;: -0.6, &quot;14&quot;: 0.2, &quot;15&quot;: 0.1, &quot;16&quot;: 0.3, &quot;17&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;東京芝1400の良馬場では、マイルまでのスピードと東京の長い直線での末脚を兼ねた血統が有利。イスラボニータ産駒で東京1400の重賞好走があり、前走の中山1200重馬場から得意条件に戻るフクチャンショウを最も上げる。古馬で本格化するモーリス産駒のヒシアマンと、カナロア系で3歳秋の成長期にあるレオアジャイルも上位。中長距離血統で大幅な距離短縮になるドゥカートとテンミラクルスター、スタミナ寄りのキタサンブラック×Monsunのブラックジェダイトは下げる。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)根拠の当てはめ方が馬によって違う: 11番エフォートレスは『マイル中心→1F短い』で減点、一方で3番ロケベンドラ(1400未経験・勝ちは全部マイル)と5番ヒシアマン(近走ほぼ1600)は短縮を問題にせず加点している。母父ダイワメジャーのスピードを評価しなくてよいか。父レイデオロについて4番ボンヌソワレには『長い直線でスタミナが活きる』と書いたのに、新潟外回り1400(左回り・長い直線)で3勝クラス2着(指数88.8)の7番ポッドロワールは0.0。成長曲線を5・10・17番には使い、2番フクチャンショウ(2歳で好走→NHKマイル15着・セプテンバーS9着)には早熟の可能性を検討していない。(2)最上位の2番フクチャンショウは母父Thewayyouareに触れておらず、『イスラボニータは東京1600も得意』と言いながら同じ東京1600のNHKマイル15着を説明していない。(3)実績が近い馬どうしの差の根拠が不明: 1番モンドデラモーレ(+0.2)は湘南Sで16番コートアリシアン(+0.3)に先着し指数88.4。5番ヒシアマン(+0.4)と15番グーテンベルク(+0.1)は白秋Sで同じ指数84.4、15番には東京1400で3着・指数87.7もある。12番ブラックジェダイト(-0.4)は東京1400で0.1秒差4着、11番エフォートレス(-0.2)の0.6秒差8着より内容が上で、中山1600では1:32台にも対応している。17番レオアジャイル(+0.4、東京1400良は7着・4着)が10番トライアンフパス(+0.2、出走すべて1400で上がり32.5)を上回る理由が見えない。(4)理由と付値の向き: 8番スティールブルーの『1200ではスピード不足』は1400への延長ならむしろプラス材料ではないか。1400で実証済みの4番ボンヌソワレ(+0.1)が、推測だけの3番ロケベンドラ(+0.3)より下になっている。9番ドゥカートと13番テンミラクルスターが同じ-0.6なのは、短縮幅も実績も違うので粗くないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, モンドデラモーレ, +0.3, 父ワールドエース（ディープ系）のマイルまでの切れ脚に、母父クロフネのスピードの持続力が加わった配合です。東京1400の良馬場で2着（指数88.4）があり、湘南Sでは16番に先着しているので、16番と同じ評価に上げます。<br><br>2番, フクチャンショウ, +0.3, 父イスラボニータの産駒は東京1400が得意で、本馬も京王杯2歳S2着とクロッカスS3着でそれを裏付けています。ただ、3歳になってからは2歳時ほど走れておらず早熟の可能性が否定できないこと、母父Thewayyouare（Kingmambo系）がスピードを強く足す血ではないことから、上げ幅を縮めます。<br><br>3番, ロケベンドラ, +0.2, 父イスラボニータに母父Smart Strikeで、1400〜1600向きのスピードとパワーを持つ配合です。ただ1400は未経験で勝ち鞍はすべてマイルなので、血統からの推測にとどまる分、1400で結果を出している馬よりは控えめにします。<br><br>4番, ボンヌソワレ, +0.3, 父レイデオロは中距離寄りですが、母父Kendargentがフランスの短距離のスピードを補っています。1400ばかり使われて東京1400で1着と3着があり、血統と実績が合っているので上げます。<br><br>5番, ヒシアマン, +0.2, 父モーリスの産駒は東京のマイル前後が得意で、母父マンハッタンカフェの持続力も長い直線に向いています。ただ近走は1600が中心で、1400では前走の4着（指数84.4）しかないため、15番と同じ評価に下げます。<br><br>6番, レッドキングリー, +0.3, 父サートゥルナーリアに母父Smart Strikeでスピードがあります。510kgの大型馬ですが東京1400で1着と2着があり、血統どおりの適性が確認できています。<br><br>7番, ポッドロワール, +0.2, 父レイデオロに母父Multiplexでパワー型の配合です。左回りで直線の長い新潟外回り1400で3勝クラス2着（指数88.8）があり、東京1400でも同じ形が通用する血統と見直してわずかに上げます。<br><br>8番, スティールブルー, +0.1, 父ルーラーシップに母父スマートファルコンで、1200ではスピードが足りない配合です。今回の1400への延長はむしろ合っていて、東京1400の八王子特別を勝っているので、わずかにプラスへ修正します。<br><br>9番, ドゥカート, -0.4, 父レイデオロに母父ステイゴールドで中距離向きの配合です。前走でマイルを経験しているので短縮幅は13番より小さいものの、マイルでも後方からの追走になっていたことから、1400はマイナスです。<br><br>10番, トライアンフパス, +0.3, 父ベンバトル（Dubawi系）に母父マツリダゴッホで、1400向きのパワーとスピードを持ちます。出走はすべて1400で、東京1400を勝ち、前走は上がり32.5を出しており、適性ははっきりしているので上げます。<br><br>11番, エフォートレス, -0.1, 父エピファネイアで勝ち鞍はマイル中心ですが、母父ダイワメジャーのスピードを考えると、1400がはっきり苦しいとまでは言えません。東京1400の8着は稍重でのものなので、減点は小さくします。<br><br>12番, ブラックジェダイト, -0.1, 父キタサンブラックに母父Monsunでスタミナ寄りの配合です。ただ東京1400では0.1秒差の4着で上がり33.1を出し、中山1600でも1:32台に対応しているので、血統から想像するほど速い流れに弱くはないと見て、わずかなマイナスにとどめます。<br><br>13番, テンミラクルスター, -0.6, 父エピファネイアに母父ディープブリランテで中距離向きの配合です。勝ち鞍は2000mだけで、1600未満は一度も走っておらず、600mの短縮は血統の面ではっきりマイナスです。<br><br>14番, エヴァンスウィート, +0.2, 父スワーヴリチャードは東京向きの血統で、母父Machiavellianがスピードを足しています。1200中心から1400への延長は血統的に合っていて、前走の東京1400でも0.3秒差まで粘りました。<br><br>15番, グーテンベルク, +0.2, 父リアルスティールに母父スクリーンヒーローで、マイル前後が合う配合です。東京1400で3着（指数87.7）があり、白秋Sでは5番と同じ指数だったので、5番と同じ評価に上げます。<br><br>16番, コートアリシアン, +0.3, 父サートゥルナーリアに母父ハーツクライで、東京の長い直線で末脚を活かせる血統です。東京1400で2着と3着があり安定しています。<br><br>17番, レオアジャイル, +0.2, 父ダノンスマッシュ（ロードカナロア系）のスピードを、母父ステイゴールドのスタミナが支える配合です。ただ東京1400の良馬場では7着と4着にとどまり、勝ったのは稍重のときなので、10番より下に修正します。</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, モンドデラモーレ, +0.1, 大野拓弥騎手は3戦続けての騎乗で、2着が2回あり、この馬の癖をよく分かっている。ただ騎手も千葉厩舎も格は中堅なので、上げるのは小幅にとどめる。<br><br>2番, フクチャンショウ, +0.2, 北村友一騎手からA.プーシャン騎手に替わる。勢いのある短期免許の外国人騎手を確保したことに加え、加藤征弘厩舎は東京芝で堅実な実績があり、わずかに上げる。<br><br>3番, ロケベンドラ, +0.2, 前走で勝った津村明秀騎手がそのまま乗る。津村騎手は東京芝で安定して乗れる騎手で、関西の若手厩舎が東京へ遠征するのに合う人選なのも好材料。<br><br>4番, ボンヌソワレ, +0.5, 短期免許で来ているトップ級の外国人騎手、T.マーカンド騎手を迎える。勢いのある宮田敬介厩舎がこの騎手を用意したのは勝負気配とみて、はっきり上げる。<br><br>5番, ヒシアマン, +0.4, 名門の堀宣行厩舎は東京芝の短い距離からマイルで実績が厚い。大野騎手から関西の上位騎手である西村淳也騎手に替える起用にも陣営の意欲が見える。<br><br>6番, レッドキングリー, +0.8, 東京芝で最も頼れるC.ルメール騎手が5戦続けて乗り、手の内を知り尽くしている。トップ厩舎の木村哲也厩舎との組み合わせで、陣営の力では今回はっきり抜けている。<br><br>7番, ポッドロワール, +0.1, 新潟日報賞で2着に導いた荻野極騎手に戻る。相性のよい騎手に戻るのは小さなプラスだが、騎手・畠山厩舎ともに格は中堅。<br><br>8番, スティールブルー, 0.0, 三浦皇成騎手は東京で一定の実績があるものの、近走は毎回騎手が替わっていて陣営の狙いが見えにくい。田中勝春厩舎の格も考えると中立。<br><br>9番, ドゥカート, -0.2, 宮田敬介厩舎は好調だが、同じ厩舎のトップ騎手は4番に回り、こちらは若手の原優介騎手。厩舎の中での優先度は低いと読んで、わずかに下げる。<br><br>10番, トライアンフパス, +0.4, 松岡騎手から横山武史騎手というトップ騎手に替わる。関西の宮徹厩舎が東京へ遠征してこの騎手を確保したのは勝負気配で、上げる。<br><br>11番, エフォートレス, +0.2, 主戦の横山和生騎手が続けて乗り、2勝クラスを勝ったときの手綱も取っている。手の内を知る上位騎手が乗ることを評価する。嘉藤厩舎の格は中堅。<br><br>12番, ブラックジェダイト, +0.2, 伸び盛りの佐々木大輔騎手が5戦続けて乗っていて、人馬の呼吸は合っている。大竹正博厩舎も堅実で、わずかに上げる。<br><br>13番, テンミラクルスター, 0.0, ベテランの岩田康誠騎手が続けて乗るが、前走は大敗していて、続投がプラスになるとは言いにくい。辻哲英厩舎も実績はまだ浅く、中立。<br><br>14番, エヴァンスウィート, -0.1, 友道康夫厩舎は名門だが、東京への遠征で乗るのはピークを過ぎた内田博幸騎手。厩舎の格と比べて騎手の起用に勝負気配が薄く、わずかに下げる。<br><br>15番, グーテンベルク, +0.4, 東京で最上位クラスの戸崎圭太騎手が3戦続けて乗り、癖をよく分かっている。この条件での騎手の安定感は大きなプラス。<br><br>16番, コートアリシアン, -0.1, これまで田辺・戸崎・津村といった東京で実績のある騎手が乗ってきたが、今回は菅原明良騎手で、近走より格の落ちる乗り替わりになる。わずかに下げる。<br><br>17番, レオアジャイル, +0.1, 前走で勝った大野騎手から、東京で実績のある田辺裕信騎手に替わる。騎手の格は少し上がるが、継続騎乗の利点がなくなるので、ほぼ相殺してわずかなプラス。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①4番ボンヌソワレ+0.5: 近5走で毎回騎手が替わっている(8番スティールブルーはこれを理由に中立)。前走が川田騎手なのでマーカンド騎手は格の横滑りで、17番レオアジャイルで差し引いた継続騎乗の喪失も引いていない。物差しが揃っていないのではないか。ここが下がると9番ドゥカート-0.2の根拠(厩舎内の優先度)も見直しになる。②6番レッドキングリー+0.8: ルメール騎手の継続5戦でも3勝クラスは2着・8着。継続の効果が結果に出ておらず、2位に+0.3差をつける説明が弱い。③15番グーテンベルク+0.4と1番モンドデラモーレ+0.1: どちらも3戦継続で、継続中の結果は1番の方が良い。1・7・11番では中堅厩舎を理由に上げ幅を抑えたのに、15番は金成厩舎の格に触れていない。④13番テンミラクルスター0.0: 騎手がルメール・武豊から格落ちしていて、大敗後の続投で厩舎実績も浅い。16番コートアリシアン(格落ちで-0.1)、14番エヴァンスウィート(ベテラン起用で-0.1)と同じ理屈ならマイナス側ではないか。⑤2番フクチャンショウ+0.2: 重賞で乗っていた横山武史騎手が10番を選んだ点が付値に入っていない。⑥5番ヒシアマン+0.4: 普段はルメール・レーン・キングを乗せる堀厩舎として見ると、西村騎手の起用を『意欲』と読むのは甘くないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, モンドデラモーレ, +0.2, 大野拓弥騎手は3戦続けての騎乗で、そのうち2着が2回あり、この馬の癖をよく分かっている。騎手も千葉厩舎も格は中堅だが、15番と同じ物差しで見て継続騎乗の分を少し上乗せした。<br><br>2番, フクチャンショウ, +0.1, 北村友一騎手から短期免許のA.プーシャン騎手に替わり、加藤征弘厩舎も東京芝で堅実なのはプラス。ただ、重賞で乗っていた横山武史騎手が10番を選んでいて、陣営の中での評価は控えめに見る。<br><br>3番, ロケベンドラ, +0.2, 前走で勝った津村明秀騎手がそのまま乗る。津村騎手は東京芝で安定して乗れる騎手で、関西の若手厩舎が東京へ遠征するのに合う人選なのも好材料。<br><br>4番, ボンヌソワレ, +0.3, トップ級の短期免許騎手T.マーカンド騎手を迎えるので、騎手の格はプラス。ただ前走は川田騎手で格は横並び、近走は毎回騎手が替わっていて継続騎乗の利点もないため、勝負気配と読むのはやめて上げ幅を抑えた。<br><br>5番, ヒシアマン, +0.3, 名門の堀宣行厩舎は東京芝の短い距離からマイルで実績が厚く、厩舎の格はプラス。ただ、普段ルメール・レーン・キングを乗せる厩舎としては西村淳也騎手の起用を意欲とは読めないので、その分を差し引いた。<br><br>6番, レッドキングリー, +0.6, 東京芝で最も頼れるC.ルメール騎手が5戦続けて乗り、トップ厩舎の木村哲也厩舎と組む。陣営の力ではこのレースで一番上だが、2番手との差を広げすぎていたので少し下げた。<br><br>7番, ポッドロワール, +0.1, 新潟日報賞で2着に導いた荻野極騎手に戻る。相性のよい騎手に戻るのは小さなプラスだが、騎手も畠山厩舎も格は中堅。<br><br>8番, スティールブルー, 0.0, 三浦皇成騎手は東京で一定の実績があるものの、近走は毎回騎手が替わっていて継続騎乗の利点がない。田中勝春厩舎の格も考えると中立。<br><br>9番, ドゥカート, -0.2, 同じ宮田敬介厩舎のトップ騎手は4番に回り、こちらは若手の原優介騎手。厩舎の中での優先度が低いという読みは4番の上げ幅とは関係なく成り立つので、据え置く。<br><br>10番, トライアンフパス, +0.5, 松岡騎手からトップ騎手の横山武史騎手に替わり、関西の宮徹厩舎が東京遠征でこの騎手を確保した。横山武史騎手が前に乗っていた2番ではなくこちらを選んだことも後押しになり、少し上げた。<br><br>11番, エフォートレス, +0.2, 主戦の横山和生騎手が続けて乗り、2勝クラスを勝ったときの手綱も取っている。手の内を知る上位騎手が乗ることを評価するが、嘉藤厩舎の格は中堅。<br><br>12番, ブラックジェダイト, +0.2, 伸び盛りの佐々木大輔騎手が5戦続けて乗っていて、人馬の呼吸が合っている。大竹正博厩舎も堅実で、わずかに上げる。<br><br>13番, テンミラクルスター, -0.1, ルメール騎手や武豊騎手が乗っていた頃と比べると騎手の格が落ちていて、大敗した後の続投でもあり、辻哲英厩舎も実績は浅い。14番・16番と同じ物差しに揃えて、わずかに下げる。<br><br>14番, エヴァンスウィート, -0.1, 友道康夫厩舎は名門だが、東京への遠征で乗るのはピークを過ぎた内田博幸騎手。厩舎の格と比べて騎手の起用に勝負気配が薄く、わずかに下げる。<br><br>15番, グーテンベルク, +0.3, 東京で最上位クラスの戸崎圭太騎手が3戦続けて乗るのは、この条件では大きな安定材料。ただ金成厩舎の格は中堅なので、1番・7番・11番と同じ物差しで上げ幅を少し抑えた。<br><br>16番, コートアリシアン, -0.1, これまで田辺・戸崎・津村と東京で実績のある騎手が乗ってきたが、今回は菅原明良騎手で、近走より格の落ちる乗り替わりになる。わずかに下げる。<br><br>17番, レオアジャイル, +0.1, 前走で勝った大野騎手から、東京で実績のある田辺裕信騎手に替わる。騎手の格は少し上がるが継続騎乗の利点がなくなるので、ほぼ相殺してわずかなプラス。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>## 合成スコアへの疑問点<br><br>**1. 6番レッドキングリーの1位は人気とルメール騎乗に引っ張られすぎ**<br>東京芝1400は[1-1-0-1]で相性は良い。ただ前走の白秋S(3勝)は8着で、スピード指数は80.6〜85.6と、このクラスで抜けた数字ではない。同じ白秋Sでは5番ヒシアマン(4着0.2差)と15番グーテンベルク(6着0.2差)に先着されている。単独1位にする根拠は弱い。<br><br>**2. 4番ボンヌソワレは数字の裏付けが薄い**<br>長篠S3着は0.1差だが、指数は80.4にとどまる。近5走の指数は79〜85で、3勝クラスで勝ち切る水準にはまだ届いていない。T.マーカンドへの乗り替わりが評価を押し上げすぎている。<br><br>**3. 16番コートアリシアンの取りこぼしが最大の問題**<br>東京芝1400の3勝クラスでフリーウェイS2着(指数88.9・上がり32.9)、湘南S3着(上がり32.4)がある。さらに新潟日報賞4着(85.2)と長岡S5着(85.9)もあり、3勝クラスで常に0.3差以内に走っている。指数の安定感は出走馬中トップクラスで、6位以下に置くのは過小評価。+10kgは休み明けの回復と見る。<br><br>**4. 2番フクチャンショウも妙味枠として上位に入れたい**<br>東京芝1400のクロッカスS3着(指数90.2)とファルコンS3着(89.5)は、メンバー中最高の指数。近2走の大敗は、GIの後方ままと重馬場の1200mという条件不向きで説明がつく。条件が戻る今回、1枠から巻き返す余地がある。<br><br>**5. 15番グーテンベルクは外枠の割引が足りない**<br>大外寄りの8枠15番で17頭立て。脚質も中団からなので、外を回されるロスが大きい。上位5頭から外す。<br><br>## 確定スコア<br><br>5番, ヒシアマン, 22%, 前走白秋Sは東京1400で上がり32.8の4着(0.2差)と距離短縮が合っていた。幕張S2着(指数87.6)の地力もあり、叩き2戦目で調教も上向き(↗)なので最上位とする。<br><br>1番, モンドデラモーレ, 21%, 湘南Sで0.0差2着(指数88.4)、日高Sで0.1差2着と3勝クラスで連対を続けている。1枠1番で先行・中団から内を立ち回れる点も東京1400では好材料。<br><br>16番, コートアリシアン, 20%, 東京1400の3勝クラスでフリーウェイS2着(88.9)・湘南S3着と実績十分で、近5走すべて0.3差以内と安定している。合成で圏外なのは明らかな見落としで、◎○▲の一角に入れる。<br><br>6番, レッドキングリー, 18%, 東京1400で2勝クラス勝ちと多摩川S2着があり、ルメール継続騎乗で崩れにくい。ただ前走8着で指数も突出しておらず、1位評価は過大なので4番手に下げる。<br><br>2番, フクチャンショウ, 15%, クロッカスS3着(指数90.2)・ファルコンS3着(89.5)は今回のメンバーで最高水準。近2走は条件不向きで度外視でき、3歳57kgで1枠なら一発の妙味がある。</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキー、奥多摩Sの全馬評価をまとめたっちゃん。東京1400の3勝クラスで実績がある馬と、上がり馬の地力を比べて付けとるとよ。<br><br>16番, コートアリシアン, 11%, 東京1400の3勝クラスでフリーウェイS2着（指数88.9）、湘南S3着と堅実やし、新潟でも4・5着と崩れとらん。8枠と+10kgは気になるけど、3か月ぶりの成長分と見て最上位にしたとよ。<br><br>1番, モンドデラモーレ, 10%, 湘南Sではハナ差2着（指数88.4）、前走の日高Sも0.1秒差2着で、3勝クラスでの安定感は上位。1枠から脚をためられる形が合いそうで、追い切りの直線の伸びも良かったっちゃん。<br><br>2番, フクチャンショウ, 10%, クロッカスS（指数90.2）とファルコンS（指数89.5）の3着が、この中では一番高い指数やけん地力は最上位級。前走は重馬場の1200で度外視してよかけど、3歳で57kgを背負って半年ぶりの東京という点を割り引いたとよ。<br><br>6番, レッドキングリー, 9%, 東京1400では1着と2着があって、前走の白秋Sも0.4秒差。ルメール騎手が継続して乗るのと強めに追った調教で、上積みが見込めると思うとよ。<br><br>5番, ヒシアマン, 8.5%, 前走の白秋Sは後方から上がり32.8の脚で0.2秒差4着。叩き2戦目で調子も↗、マイル実績からも東京1400は守備範囲っちゃん。<br><br>15番, グーテンベルク, 7.5%, 白秋Sは0.2秒差6着、フリーウェイSは上がり32.6で3着（指数87.7）。東京1400で切れる脚は確かやけど、8枠で勝ち切るまでには一押し要る印象とよ。<br><br>4番, ボンヌソワレ, 7%, 1400ばかり使われて長篠S3着、新潟日報賞5着と3勝クラスでも差のない競馬をしとる。マーカンド騎手に替わるのは魅力やけど、決め手がもう少し欲しいっちゃん。<br><br>7番, ポッドロワール, 6.5%, 新潟日報賞では0.0秒差2着（指数88.8）とトップクラスの数字を出したことがある。1200を使った後の距離延長で1400に戻るのは歓迎やけど、2着の後は詰め切れん競馬が続いとるとよ。<br><br>10番, トライアンフパス, 6%, 3歳で55kg。前走の白秋Sは51kgとはいえ最後方から上がり32.5を出して0.4秒差やった。横山武史騎手に替わるのは魅力やけど、斤量が4kg増えるのが課題っちゃん。<br><br>17番, レオアジャイル, 5.5%, 前走は東京1400の2勝クラスを差し切って昇級初戦。3歳55kgの恩恵はあるけど、指数81.9は3勝クラスやと物足りんとよ。<br><br>12番, ブラックジェダイト, 5%, 2勝クラスを勝って昇級。東京1400の高尾特別でも0.1秒差4着と、ずっと崩れとらんのは好感が持てる。ただ相手が一気に強くなるけん中位評価にしたっちゃん。<br><br>11番, エフォートレス, 4.5%, 追い切りのラスト1Fが11.2で調子↗。でも日高Sでは1番に0.5秒負けとるし、東京1400の多摩川Sも8着で、勝ち切るイメージは湧きにくいとよ。<br><br>14番, エヴァンスウィート, 3.5%, 白秋Sは先行して0.3秒差7着やったけど、52kgの恩恵込み。今回56kgに戻るのと、1200中心の戦績から見ると距離も微妙っちゃん。<br><br>3番, ロケベンドラ, 3%, 牝馬限定の2勝クラスを連勝して勢いはあるし、調子も↗。ただマイル中心の戦績で指数は83止まり。混合の3勝クラスで1400への短縮はハードルが高いとよ。<br><br>13番, テンミラクルスター, 1.5%, 中距離で勝ってきた馬で1400は短すぎるし、近2走も大敗。前走で-12kgだった馬体も不安っちゃん。<br><br>9番, ドゥカート, 1.5%, 3勝クラスで4戦続けて二桁着順か大差の負け。1800以上で実績を積んだ馬やけん、1400への短縮で変わる材料が乏しいとよ。<br><br>8番, スティールブルー, 1.5%, 3勝クラスでは9着・12着と結果が出とらんし、前走も後方のまま。調教はスムーズやけど上位との差は大きいっちゃん。<br><br>```json<br>{&quot;score&quot;: {&quot;16&quot;: 11, &quot;1&quot;: 10, &quot;2&quot;: 10, &quot;6&quot;: 9, &quot;5&quot;: 8.5, &quot;15&quot;: 7.5, &quot;4&quot;: 7, &quot;7&quot;: 6.5, &quot;10&quot;: 6, &quot;17&quot;: 5.5, &quot;12&quot;: 5, &quot;11&quot;: 4.5, &quot;14&quot;: 3.5, &quot;3&quot;: 3, &quot;13&quot;: 1.5, &quot;9&quot;: 1.5, &quot;8&quot;: 1.5}, &quot;analysis_summary&quot;: &quot;東京1400の3勝クラスで好走実績があり指数85-89を出している16番コートアリシアンと1番モンドデラモーレを上位に置き、重賞好走で地力が最上位級の2番フクチャンショウを斤量と休み明けで少し割り引いて同格とした。東京1400実績のあるルメール騎乗の6番レッドキングリー、前走で鋭く追い込んだ5番ヒシアマンが続く。昇級組の17番・12番・3番は中位から下位、距離適性や近走内容に乏しい13番・9番・8番は下位評価。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>1</td><td class="left horse-name">モンドデラモーレ</td><td>9.2%</td><td>11.1</td><td>6</td><td class="ev-mid">1.02</td></tr><tr><td>2</td><td>5</td><td class="left horse-name">ヒシアマン</td><td>9.1%</td><td>6.8</td><td>2</td><td class="ev-low">0.62</td></tr><tr><td>3</td><td>6</td><td class="left horse-name">レッドキングリー</td><td>8.8%</td><td>5.0</td><td>1</td><td class="ev-low">0.44</td></tr><tr><td>4</td><td>2</td><td class="left horse-name">フクチャンショウ</td><td>8.8%</td><td>20.0</td><td>12</td><td class="ev-mid">1.75</td></tr><tr><td>5</td><td>16</td><td class="left horse-name">コートアリシアン</td><td>8.0%</td><td>7.4</td><td>3</td><td class="ev-low">0.59</td></tr><tr><td>6</td><td>4</td><td class="left horse-name">ボンヌソワレ</td><td>7.8%</td><td>16.1</td><td>8</td><td class="ev-mid">1.26</td></tr><tr><td>7</td><td>15</td><td class="left horse-name">グーテンベルク</td><td>7.4%</td><td>8.9</td><td>4</td><td class="ev-low">0.66</td></tr><tr><td>8</td><td>7</td><td class="left horse-name">ポッドロワール</td><td>6.3%</td><td>12.6</td><td>7</td><td class="ev-low">0.80</td></tr><tr><td>9</td><td>12</td><td class="left horse-name">ブラックジェダイト</td><td>5.3%</td><td>18.1</td><td>10</td><td class="ev-low">0.95</td></tr><tr><td>10</td><td>3</td><td class="left horse-name">ロケベンドラ</td><td>5.2%</td><td>19.3</td><td>11</td><td class="ev-low">0.99</td></tr><tr><td>11</td><td>10</td><td class="left horse-name">トライアンフパス</td><td>5.1%</td><td>9.8</td><td>5</td><td class="ev-low">0.50</td></tr><tr><td>12</td><td>17</td><td class="left horse-name">レオアジャイル</td><td>4.7%</td><td>17.3</td><td>9</td><td class="ev-low">0.81</td></tr><tr><td>13</td><td>14</td><td class="left horse-name">エヴァンスウィート</td><td>4.1%</td><td>57.5</td><td>16</td><td class="ev-high">2.34</td></tr><tr><td>14</td><td>11</td><td class="left horse-name">エフォートレス</td><td>3.8%</td><td>30.4</td><td>13</td><td class="ev-mid">1.15</td></tr><tr><td>15</td><td>8</td><td class="left horse-name">スティールブルー</td><td>2.4%</td><td>57.9</td><td>17</td><td class="ev-mid">1.40</td></tr><tr><td>16</td><td>9</td><td class="left horse-name">ドゥカート</td><td>2.1%</td><td>39.3</td><td>14</td><td class="ev-low">0.82</td></tr><tr><td>17</td><td>13</td><td class="left horse-name">テンミラクルスター</td><td>2.1%</td><td>44.9</td><td>15</td><td class="ev-low">0.92</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">1 モンドデラモーレ</td><td>9.2%</td><td>11.1</td><td class="ev-low">0.84</td></tr><tr><td>複勝</td><td class="left">1 モンドデラモーレ</td><td>26.9%</td><td>3.5</td><td class="ev-low">0.81</td></tr><tr><td>馬連</td><td class="left">1 モンドデラモーレ-5 ヒシアマン</td><td>1.9%</td><td>28.3</td><td class="ev-low">0.42</td></tr><tr><td>ワイド</td><td class="left">1 モンドデラモーレ-5 ヒシアマン</td><td>5.4%</td><td>11.4</td><td class="ev-low">0.50</td></tr><tr><td>馬単</td><td class="left">1 モンドデラモーレ→5 ヒシアマン</td><td>0.9%</td><td>59.4</td><td class="ev-low">0.44</td></tr><tr><td>3連複</td><td class="left">1 モンドデラモーレ-5 ヒシアマン-6 レッドキングリー</td><td>0.6%</td><td>46.1</td><td class="ev-low">0.22</td></tr><tr><td>3連単</td><td class="left">1 モンドデラモーレ→5 ヒシアマン→6 レッドキングリー</td><td>0.1%</td><td>284.7</td><td class="ev-low">0.23</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 600円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">1 モンドデラモーレ</td><td>11.1</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連複</td><td class="left">1 モンドデラモーレ-5 ヒシアマン-6 レッドキングリー</td><td>46.1</td><td>4</td><td style='text-align:right;font-weight:600;'>400円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">1 モンドデラモーレ→5 ヒシアマン→6 レッドキングリー</td><td>284.7</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 600円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
