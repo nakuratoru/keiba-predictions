@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フルーツラインカップ 2026/11/14 FUKUSHIMA 11R (11/14 14:34 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>フルーツラインカップ 2026/11/14 FUKUSHIMA 11R (11/14 14:34 予想)</h1>
+  <div class="meta">ダート1150m（右） | 良 | 16頭立て | 3回 福島 3日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 16頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">2. ローズカリス</div>
+      <div class="pick-jockey">吉田 隼人</div>
+    </div>
+    <div class="pick-prob">9.6%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">9. イリフィ</div>
+      <div class="pick-jockey">斎藤 新</div>
+    </div>
+    <div class="pick-prob">9.0%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">3. アスタールフナ</div>
+      <div class="pick-jockey">富田 暁</div>
+    </div>
+    <div class="pick-prob">8.8%</div>
+    <div class="pick-pop">7番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">モーゲンセン</td><td>牡3</td><td>57</td><td>小崎 綾也</td><td>518(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">2</span></td><td class="left horse-name">ローズカリス</td><td>牝3</td><td>55</td><td>吉田 隼人</td><td>432(-4)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">3</span></td><td class="left horse-name">アスタールフナ</td><td>牝4</td><td>56</td><td>富田 暁</td><td>462(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">4</span></td><td class="left horse-name">タカネノハナコサン</td><td>牝6</td><td>56</td><td>高杉 吏麒</td><td>492(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">5</span></td><td class="left horse-name">ラストシャリナ</td><td>牡4</td><td>58</td><td>石川 裕紀人</td><td>494(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">6</span></td><td class="left horse-name">クロナ</td><td>牡3</td><td>57</td><td>小沢 大仁</td><td>462(+2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">7</span></td><td class="left horse-name">モリノセピア</td><td>牡5</td><td>58</td><td>小林 美駒</td><td>498(0)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">8</span></td><td class="left horse-name">キャリーグレイス</td><td>牝4</td><td>56</td><td>今村 聖奈</td><td>452(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">9</span></td><td class="left horse-name">イリフィ</td><td>牝4</td><td>56</td><td>斎藤 新</td><td>432(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">10</span></td><td class="left horse-name">ゴールデンバランス</td><td>牡3</td><td>57</td><td>和田 陽希</td><td>524(+6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">11</span></td><td class="left horse-name">ルージュアズライト</td><td>牝6</td><td>56</td><td>杉原 誠人</td><td>456(+6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">12</span></td><td class="left horse-name">キーガッツ</td><td>牡4</td><td>58</td><td>鮫島 克駿</td><td>472(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">13</span></td><td class="left horse-name">アイアムイチバン</td><td>牡4</td><td>58</td><td>丹内 祐次</td><td>508(-14)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">14</span></td><td class="left horse-name">サウスバンク</td><td>牝4</td><td>56</td><td>横山 琉人</td><td>494(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">15</span></td><td class="left horse-name">ワークソング</td><td>牡5</td><td>58</td><td>国分 恭介</td><td>484(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">16</span></td><td class="left horse-name">テセラリアン</td><td>牝5</td><td>56</td><td>菊沢 一樹</td><td>444(-4)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ローズカリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">アスタールフナ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">イリフィ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ローズカリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">イリフィ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">アスタールフナ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ローズカリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">イリフィ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">アスタールフナ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ローズカリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">イリフィ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">アスタールフナ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ローズカリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">イリフィ</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">アスタールフナ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>0.90</td>
+<td style='color:#AF52DE'>0.67</td>
+<td style='color:#AF52DE'>0.67</td>
+<td style='color:#0040DD'>0.97</td>
+<td style='color:#AF52DE'>0.67</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ローズカリス</span></td>
+<td>+0.34</td>
+<td>-0.18</td>
+<td>+0.08</td>
+<td>+0.48</td>
+<td>+0.10</td>
+<td>8.9</td>
+<td>8.5</td>
+<td>12.9</td>
+<td><b>9.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">イリフィ</span></td>
+<td>+0.36</td>
+<td>+0.30</td>
+<td>+0.02</td>
+<td>-0.16</td>
+<td>-0.18</td>
+<td>8.5</td>
+<td>8.6</td>
+<td>11.1</td>
+<td><b>9.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">アスタールフナ</span></td>
+<td>+0.30</td>
+<td>-0.12</td>
+<td>+0.26</td>
+<td>+0.20</td>
+<td>-0.28</td>
+<td>8.1</td>
+<td>7.9</td>
+<td>12.1</td>
+<td><b>8.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ゴールデンバランス</span></td>
+<td>+0.18</td>
+<td>-0.10</td>
+<td>-0.02</td>
+<td>+0.04</td>
+<td>+0.18</td>
+<td>7.3</td>
+<td>7.8</td>
+<td>9.3</td>
+<td><b>7.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">モーゲンセン</span></td>
+<td>+0.10</td>
+<td>-0.10</td>
+<td>+0.06</td>
+<td>+0.32</td>
+<td>-0.12</td>
+<td>6.9</td>
+<td>7.4</td>
+<td>8.3</td>
+<td><b>7.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">クロナ</span></td>
+<td>+0.14</td>
+<td>-0.18</td>
+<td>+0.12</td>
+<td>+0.06</td>
+<td>+0.20</td>
+<td>7.2</td>
+<td>8.0</td>
+<td>6.4</td>
+<td><b>7.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">モリノセピア</span></td>
+<td>-0.12</td>
+<td>+0.30</td>
+<td>+0.44</td>
+<td>+0.30</td>
+<td>+0.20</td>
+<td>7.1</td>
+<td>7.2</td>
+<td>6.6</td>
+<td><b>7.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">ルージュアズライト</span></td>
+<td>+0.08</td>
+<td>+0.32</td>
+<td>+0.10</td>
+<td>+0.02</td>
+<td>-0.24</td>
+<td>7.1</td>
+<td>7.9</td>
+<td>6.0</td>
+<td><b>7.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">キャリーグレイス</span></td>
+<td>-0.06</td>
+<td>-0.20</td>
+<td>+0.22</td>
+<td>+0.28</td>
+<td>-0.02</td>
+<td>6.1</td>
+<td>-</td>
+<td>4.6</td>
+<td><b>5.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ラストシャリナ</span></td>
+<td>-0.10</td>
+<td>+0.20</td>
+<td>-0.02</td>
+<td>+0.00</td>
+<td>+0.20</td>
+<td>6.0</td>
+<td>-</td>
+<td>4.6</td>
+<td><b>5.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">アイアムイチバン</span></td>
+<td>-0.02</td>
+<td>+0.06</td>
+<td>-0.32</td>
+<td>+0.26</td>
+<td>+0.40</td>
+<td>5.1</td>
+<td>-</td>
+<td>3.6</td>
+<td><b>4.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">テセラリアン</span></td>
+<td>-0.12</td>
+<td>-0.24</td>
+<td>+0.00</td>
+<td>-0.14</td>
+<td>+0.08</td>
+<td>4.9</td>
+<td>-</td>
+<td>3.2</td>
+<td><b>4.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">ワークソング</span></td>
+<td>-0.23</td>
+<td>+0.18</td>
+<td>-0.02</td>
+<td>+0.32</td>
+<td>-0.04</td>
+<td>5.2</td>
+<td>-</td>
+<td>1.7</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">サウスバンク</span></td>
+<td>+0.00</td>
+<td>-0.14</td>
+<td>-0.24</td>
+<td>-0.10</td>
+<td>-0.20</td>
+<td>4.3</td>
+<td>-</td>
+<td>5.5</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">キーガッツ</span></td>
+<td>-0.24</td>
+<td>+0.00</td>
+<td>-0.14</td>
+<td>-0.06</td>
+<td>-0.02</td>
+<td>4.2</td>
+<td>-</td>
+<td>2.2</td>
+<td><b>3.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">タカネノハナコサン</span></td>
+<td>-0.29</td>
+<td>-0.32</td>
+<td>-0.22</td>
+<td>-0.18</td>
+<td>-0.04</td>
+<td>3.0</td>
+<td>-</td>
+<td>2.0</td>
+<td><b>2.8</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行2</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行2の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキー、福島11R フルーツラインカップ（3勝クラス・ダ1150m）を実績派として見たけん、結果を書くね。出走16頭のうち、3勝クラスで力を見せとる馬はほとんどおらん。目立つほど抜けた馬もおらんかったけん、振り幅は小さめにしとる。<br><br>1番, モーゲンセン, +0.1, 前走は中山の2勝クラスを1着（1:10.4・重・指数83.1）で、福島1150mの1勝クラスも勝っとる。ただ浦安特別では3着で、勝った3番から1.0秒離されとった。昇級初戦としては平均くらいの評価にしとる。<br><br>2番, ローズカリス, +0.35, 前走の外房S（3勝クラス）で3着、0.5秒差・指数85.4。この格でもう通用しとるし、その前の雲仙特別も勝っとる（指数84.7）。ただ前走は52kgで今回は55kg、3kg増えるぶん少し割り引いた。<br><br>3番, アスタールフナ, +0.3, 浦安特別（2勝クラス）を0.9秒差で圧勝、指数86.0はメンバーで上位。ただ不良馬場での逃げ切りやし、その前は15着・8着もある。一発の可能性を考えて上げ幅は控えめにした。<br><br>4番, タカネノハナコサン, -0.4, 3勝クラスで4戦続けて7〜11着、1秒前後負けとる。指数も75〜79どまりで、7か月ぶりの休み明け。この格では力が足りとらん。<br><br>5番, ラストシャリナ, -0.1, 同じコースのTUF杯（3勝クラス）で3着だけど0.8秒差、ブラッドストーンSも0.7秒差の4着。3勝クラスで勝ち切るには少し足りん。<br><br>6番, クロナ, +0.3, ダートの短距離で3連勝（噴火湾特別は指数82.6）、底を見せとらん。ただ全部函館の1000mで、150m延びるのと3勝クラスが初めてなのは割り引いた。<br><br>7番, モリノセピア, -0.1, 汐留特別（2勝クラス）を0.2秒差で勝っとるけど、不良馬場で指数81.0。同じコースの2勝クラスでも3着が2回（指数74〜76）で、昇級してすぐ通用するとは言いにくい。<br><br>8番, キャリーグレイス, 0.0, 前走の妙高特別（2勝クラス）は逃げて0.3秒差の完勝（指数81.2）。ただ大通公園特別で7着、函館で11着と崩れることが多くて、安定感がない。<br><br>9番, イリフィ, +0.45, 3勝クラスで4着（0.1秒差・指数87.8）、2着（同じコースのTUF杯で0.4秒差・指数82.1）、5着、5着と、ずっと僅差で走っとる。この格での実績がメンバーで一番安定しとるけん、最上位にした。<br><br>10番, ゴールデンバランス, +0.2, 前走の2勝クラス勝ちは指数85.4で優秀。ただこの時は減量騎手で53kg、今回は57kgと4kg重くなる。雲仙特別では2番に0.3秒負けとるけん、少しだけ上げた。<br><br>11番, ルージュアズライト, +0.1, 同じコースの福島中央TV賞（3勝クラス）で0.2秒差の2着、福島1150mでは勝ち鞍もある。ほかの3勝クラスは6着と13着で、7か月ぶりの休み明け。コース実績のぶんだけ少し上げた。<br><br>12番, キーガッツ, -0.3, 2勝クラス勝ちは札幌1000mで指数77.4と低いし、福島1150mの1勝クラス勝ちも指数76.1。3勝クラスで戦えるだけの数字が出とらん。<br><br>13番, アイアムイチバン, 0.0, 2勝クラスを勝った時は指数80.9、東京の3着は0.2秒差で指数81.6。でも15着（2.8秒差）の大敗もあるし、同じコースでは4着（指数75.2）。上も下もあるけん中立にした。<br><br>14番, サウスバンク, 0.0, 芝の3勝クラスでは朱雀Sで0.2秒差の2着（指数87.4）と力を見せとる。ただ直近5走は全部芝で、ダートでの実績が確かめられん。上げも下げもせんかった。<br><br>15番, ワークソング, -0.3, 3勝クラスでは9着・6着・10着・13着と負けが続いとって、指数も73〜77。同じコースの3着は少頭数（11頭）で0.4秒差やったし、決め手が足りとらん。<br><br>16番, テセラリアン, -0.2, 3勝クラスのTUF杯で逃げて0.8秒差の4着（指数77.7）。2勝クラス勝ちも指数78.7で、この格ではまだ少し力が足りとらん。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: 0.35, &quot;3&quot;: 0.3, &quot;4&quot;: -0.4, &quot;5&quot;: -0.1, &quot;6&quot;: 0.3, &quot;7&quot;: -0.1, &quot;8&quot;: 0.0, &quot;9&quot;: 0.45, &quot;10&quot;: 0.2, &quot;11&quot;: 0.1, &quot;12&quot;: -0.3, &quot;13&quot;: 0.0, &quot;14&quot;: 0.0, &quot;15&quot;: -0.3, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;3勝クラスで実績のある馬が少なく、飛び抜けた馬はいない。3勝クラスでずっと僅差のイリフィ（指数87.8・82.1）を最上位、外房Sで0.5秒差の3着だったローズカリス（指数85.4、ただし斤量3kg増）を次点とした。浦安特別を不良馬場で圧勝したアスタールフナ（指数86.0）と、ダート短距離3連勝のクロナはプラス評価だが、一発の可能性や距離延長・初の3勝クラスを割り引いた。3勝クラスで負けが続くタカネノハナコサン・ワークソング・キーガッツは下げた。芝で実績を積んだサウスバンクはダートでの裏付けがないため中立。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)斤量の割引が馬によってバラバラ：10番ゴールデンバランスと2番ローズカリスは割り引いとるのに、9番イリフィの指数87.8（54kg→今回56kg）と6番クロナの82.6（55kg→今回57kg）は割り引いとらん。(2)9番イリフィは3勝クラスの直近2走が5着（0.7秒差・0.3秒差）で、指数も87.8→82.1→76.0→78.5と下がっとる。『ずっと僅差』『一番安定』で単独トップ+0.45は甘くないか。(3)実績の数字では1番モーゲンセン（16頭立て中山2勝クラス・56kgで指数83.1）が6番クロナ（12頭立て函館・55kgで82.6）と同じかそれ以上。『底を見せとらん』は見込みであって実績やない。1番モーゲンセンは同じ日に勝った10番ゴールデンバランスと斤量を揃えるとほぼ同じ水準で、+0.1は低すぎないか。(4)7番モリノセピア・8番キャリーグレイス・13番アイアムイチバンは2勝クラス勝ちの指数がほぼ同じ81前後で、3頭とも昇級初戦。7番モリノセピアだけ−0.1で、崩れが大きい13番アイアムイチバンと8番キャリーグレイスが0.0なのは理由とずれとる。(5)15番ワークソングの3着は少頭数で割り引いとるのに、同じレースで0.2秒差2着の11番ルージュアズライトや、10頭立てで2着の9番イリフィには割引がない。3勝クラスの指数がほぼ同じ5番ラストシャリナとの0.2差も説明がつかん。(6)4番タカネノハナコサンの3勝クラスの指数（75〜79）は5番ラストシャリナ・16番テセラリアン・11番ルージュアズライトと同じかそれ以上で、2勝クラス勝ちの88.0はメンバー最高。単独最低の−0.4は下げすぎではないか。(7)14番サウスバンクはダートの実績がわからんのに0.0（平均）で、実際のダートの数字がある8番キャリーグレイス・13番アイアムイチバンと同じ扱いでいいのか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モーゲンセン, +0.2, 前走は16頭立ての中山2勝クラスを逃げ切って1着、1:10.4（重）で指数83.1。56kgから57kgで1kg増えるぶんを引いても82前後あって、福島1150mの1勝クラス勝ちもあるけん、+0.1から上げたとよ。<br><br>2番, ローズカリス, +0.35, 外房S（3勝クラス）で3着、0.5秒差・指数85.4。52kgから55kgで3kg増えるぶん引いても82台は残るし、このクラスで実際に馬券に絡んだ実績はメンバーで一番確かやけん、最上位に据えとる。<br><br>3番, アスタールフナ, +0.3, 浦安特別（2勝クラス）を0.9秒差で圧勝、指数86.0。斤量は56kgで変わらんけん、数字はそのまま使えるっちゃん。ただ不良馬場の逃げ切りやし、その前には15着・8着もあるけん、上げ幅は据え置きにしとる。<br><br>4番, タカネノハナコサン, -0.25, 3勝クラスで7〜11着が4回続いとって、着差は0.9〜1.1秒。それでも指数75〜79は5番・16番・11番と変わらん水準やけん、ひとりだけ一番下にするのは下げすぎやった。2勝クラス勝ちの88.0は14か月前、しかも7か月ぶりの休み明けやけん、まだマイナスにしとる。<br><br>5番, ラストシャリナ, -0.2, 3勝クラスはTUF杯3着（0.8秒差・10頭立て・指数77.7）、ブラッドストーンS4着（0.7秒差）。前走も同じ58kgやけん数字はそのまま使えるけど、勝ち負けまでは届いとらん。15番と同じくらいの力と見直したとよ。<br><br>6番, クロナ, +0.2, 3連勝で最後の噴火湾特別は指数82.6。でも12頭立ての函館1000m・不良馬場で、55kgから57kgの2kg増を引くと80台の前半。「底を見せとらん」は見込みであって実績やないけん、1番と同じくらいに下げたとよ。<br><br>7番, モリノセピア, -0.1, 汐留特別（2勝クラス）を0.2秒差で勝って指数81.0やけど、不良馬場。ほかの2勝クラスは74〜76か、それより下で、23戦しとって数字に伸びしろは見えん。昇級してすぐ通用するとは言いにくいけん、据え置きにしとる。<br><br>8番, キャリーグレイス, -0.1, 前走の妙高特別は逃げて0.3秒差、指数81.2。でもほかは67.7・77.3・56.4・69.7で、80を超えたのは前走の1回だけ。7番と同じ扱いに下げたとよ。<br><br>9番, イリフィ, +0.3, 3勝クラスで4着（0.1秒差・87.8）と2着（0.4秒差・82.1）がある。でも87.8は54kgの時の数字やし、2着は10頭立て。直近2走は5着・5着（0.7秒差・0.3秒差）で、指数も76〜78まで落ちとる。「一番安定」は言いすぎやったけん、上げ幅を縮めたとよ。<br><br>10番, ゴールデンバランス, +0.2, 前走の2勝クラス勝ちは指数85.4。ただ減量騎手の53kgで、今回は57kg。4kg分引くと81台になる。雲仙特別では2番に0.3秒負けとるし、1番・6番と同じくらいの評価にしとる。<br><br>11番, ルージュアズライト, 0.0, 同じコースの福島中央TV賞（3勝クラス）で0.2秒差の2着（指数79.0）。でも11頭立てやけん、15番の3着と同じだけ割り引いたとよ。ほかの3勝クラスは6着と13着、7か月ぶりの休み明けもあって、プラスにはできん。<br><br>12番, キーガッツ, -0.3, 2勝クラス勝ちは札幌1000mで指数77.4、福島1150mの1勝クラス勝ちも76.1。3勝クラスでは一度も走っとらんし、下のクラスでこの数字やけん、3勝クラスの数字がある4番より下に置いとる。<br><br>13番, アイアムイチバン, 0.0, 2勝クラス勝ちの80.9に加えて、東京の2勝クラスでも0.2秒差3着で81.6。80台を2回出しとるのが7番・8番との違いやけん、15着（43.7）は度外視して、この中では一段上に置いとる。<br><br>14番, サウスバンク, 0.0, 芝の3勝クラスでは朱雀S2着（0.2秒差・87.4）を筆頭に好走が続いとって、クラスで戦える力はある。ただダートの数字がひとつも無いけん、実績からはプラスにもマイナスにもできん。0.0は「わからん」の意味で付けとるとよ。<br><br>15番, ワークソング, -0.2, 3勝クラスは9着・6着（0.4秒差）・10着、同じコースで3着（0.4秒差・11頭立て）。指数73〜77で5番とほぼ同じやけん、そろえて-0.3から少し戻したとよ。<br><br>16番, テセラリアン, -0.2, TUF杯（3勝クラス）で逃げて0.8秒差の4着、指数77.7。同じレースで3着やった5番とほぼ同じ内容やし、2勝クラス勝ちも78.7。3勝クラスではまだ少し足りとらん。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.35, &quot;3&quot;: 0.3, &quot;4&quot;: -0.25, &quot;5&quot;: -0.2, &quot;6&quot;: 0.2, &quot;7&quot;: -0.1, &quot;8&quot;: -0.1, &quot;9&quot;: 0.3, &quot;10&quot;: 0.2, &quot;11&quot;: 0.0, &quot;12&quot;: -0.3, &quot;13&quot;: 0.0, &quot;14&quot;: 0.0, &quot;15&quot;: -0.2, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;前走から斤量が増えた分（目安1kg≒指数1）を全馬に同じ基準で差し引き、指数を比べ直した。9番は直近2走の5着と指数の下降を反映して+0.45→+0.3にし、最上位は3勝クラス3着の2番に。斤量を揃えた数字で1番（+0.1→+0.2）と6番（+0.3→+0.2）を同水準にした。2勝クラス勝ちの3頭は、80台を2回出している13番を上に置き、80超えが1回だけの8番は7番と同じ-0.1に。少頭数レースの好走は11番・15番・9番に同じ割引をかけ、11番+0.1→0.0、15番-0.3→-0.2（5番と同等）とした。4番は3勝クラスの指数が5番・16番・11番と同等なので-0.4→-0.25とし、3勝クラスの実績がない12番より上に。14番はダートの数字が無く判断できないため0.0のまま。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>**展開シナリオ**<br><br>福島ダート1150mは平坦の小回りで、直線は約295mと短い。普通なら先行馬が残りやすいコースです。ただ今回は、近走で通過1-1（スタートからハナ）の競馬をした馬がとても多い。4番タカネノハナコサン、10番ゴールデンバランス、16番テセラリアン、2番ローズカリス、8番キャリーグレイス、14番サウスバンク、1番モーゲンセン、3番アスタールフナの8頭です。<br><br>想定する流れは次のとおりです。<br>- 内から4番が出て、2番と1番も内で並ぶ。<br>- 10番が外から並びかけ、大外の16番は脚を使って前へ取り付く。<br>- 14番は初ダートでも芝のスピードで押していく。<br>- 結果、前半3Fは速くなり、ハイペース寄りになりやすい。<br>- 4角では先行勢が苦しくなり、6〜7番手付近で脚をためた好位〜中団の馬（11番、7番、9番）が外から差を詰める。<br>- 後方の5番と15番は、ハイペースになった場合だけ届く。<br><br>別シナリオも残しておきます。4番が久々（7か月ぶり）でハナを取れず、各馬が控え合えば平均ペースの前残りになります。そのため差し・追込馬の加点は±0.5以内に抑え、ハイペースと決めつけていません。枠の差は小さいと見て、主な補正はペースと位置取りから付けています。<br><br>---<br><br>1番, モーゲンセン, -0.1, 1枠の先行馬です。内の2〜3番手で運べばロスはありませんが、外から速い馬に被せられてハイペースの前に巻き込まれやすく、砂も被りやすい位置です。<br><br>2番, ローズカリス, -0.2, 前走はハナで3着でしたが、今回は内で4番と1番に挟まれてハナ争いになります。432kgの小柄な牝馬なので、揉まれたり砂を被ったりすると脆さが出やすいと見ます。<br><br>3番, アスタールフナ, -0.1, 前に行けるタイプですが、2枠では内の先行争いの真っただ中です。番手で我慢できても、速いペースで脚が上がるリスクがあります。<br><br>4番, タカネノハナコサン, -0.4, 毎回逃げる馬で、控える形を持っていません。今回はハナ争いが激しく、3勝クラスでは逃げて失速する競馬が続いています。速いペースを自分で作って沈むパターンが濃いと見ます。<br><br>5番, ラストシャリナ, +0.3, 同じ福島1150mの3勝クラスで、7-7の位置から3着に来た差し馬です。ハイペースは追い風ですが、3枠から差すと小回りで進路が詰まる心配もあり、加点は控えめにしました。<br><br>6番, クロナ, -0.1, 1000mで2番手から押し切ってきた先行型です。今回は前の速い流れにのまれやすく、3勝クラスのペースで1150mを持つかに不安が残ります。<br><br>7番, モリノセピア, +0.3, 4-4の好位から差す形が板についていて、福島1150mでも3着が2回あります。前が競り合えば、ちょうど良い位置から抜け出せます。<br><br>8番, キャリーグレイス, +0.1, 逃げても中団でも競馬ができる自在型です。無理にハナを主張しなければ、4枠からハイペースの好位で待てます。<br><br>9番, イリフィ, +0.3, 2番手から8番手までどこでも運べ、福島1150mでは2番手から2着の実績があります。5枠から先行勢を見ながら好位〜中団で脚をためられ、ハイペースでも平均ペースでも対応できます。<br><br>10番, ゴールデンバランス, -0.2, 逃げて結果を出してきた馬ですが、内に4番と2番、外に16番と14番がいてハナ争いに加わることになります。単騎で逃げた前走のような展開は望みにくいです。<br><br>11番, ルージュアズライト, +0.4, 福島1150mで1着と2着があり、5-3や3-3と好位の少し後ろから差す形が合っています。6枠から外目をスムーズに追走でき、先行勢が崩れたときに最も恩恵を受けやすい一頭です。<br><br>12番, キーガッツ, 0.0, 3〜2番手に付ける先行馬です。6枠から先行集団の外で運べますが、速いペースで番手を追いかける形になり、プラスとマイナスが相殺されて中立とします。<br><br>13番, アイアムイチバン, 0.0, 前にも好位にも付けられるタイプです。7枠から先行集団の後ろに付ければ悪くありませんが、外を回る距離損もあり中立とします。<br><br>14番, サウスバンク, -0.3, 芝で逃げてきた馬が初めてのダートで、ハナ争いに加わる見込みです。ハナを取れなければ砂を被る不安があり、7枠から脚を使って先行するのは厳しい流れです。<br><br>15番, ワークソング, +0.3, 10番手前後から差す馬で、福島1150mの3勝クラスでも後方から3着があります。8枠から外を砂を被らずに追えるのは好材料です。ただ直線が短いので、平均ペースなら届かず、加点は控えめにしました。<br><br>16番, テセラリアン, -0.4, 逃げて結果を出す馬が大外枠に入りました。前に行くには脚を使って内へ切れ込む必要があり、ハナ争いの多いメンバーでは負担が大きく、速いペースの直接の被害を受けやすいと見ます。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 福島ダ1150mは芝スタートで外枠ほど行き脚がつきやすいと言われるが、理由づけに出てこない。14番サウスバンク(芝で逃げてきたスピードがある)、16番テセラリアン、13番アイアムイチバンの外枠での減点・中立は逆になっていないか。内の1〜4番のハナ争いの激しさも見直す余地がある。(2) TUF杯で5番ラストシャリナ(7-7から3着)と16番テセラリアン(逃げて4着)は同じ1:07.9、勝ち負けしたのは2-2の9番イリフィ。差し有利の根拠にしにくく、+0.3と-0.4の差は説明できるか。喜多方特別では7番モリノセピア(6-6から3着0.2秒差)と13番アイアムイチバン(4-4から4着0.3秒差)がほぼ同じなのに0.3差がある。(3) 11番ルージュアズライト(+0.4で最高)の好走は3-3・5-3の好位からで、控えた中山では負けている。同じような位置の12番キーガッツ・13番アイアムイチバンを『番手を追いかける』で中立にしているのと筋が合わない。(4) 8番キャリーグレイスは『自在型』としているが、勝ちは逃げのときだけで、中団では7着・11着。中団から4着に来た10番ゴールデンバランスがマイナスで8番がプラスなのは逆ではないか。(5) 『432kgで揉まれると脆い』を2番ローズカリスにだけ使い、同じ体重で馬群の中を運ぶ9番イリフィには使っていない。『進路が詰まる』も5番ラストシャリナだけで、7番モリノセピアには触れていない。(6) 3番アスタールフナは前走逃げて0.9秒差の圧勝。控える前提でよいか、ハナ争いの一頭として数えるべきでないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>**見直し後の展開シナリオ**<br>福島ダ1150mは芝スタートなので、外枠ほど芝を走る距離が長く、行き脚がつきやすいコースです。Round1 ではこの点を外していたので、指摘(1)を受け入れます。<br><br>逃げ候補は内に4番・3番・2番・1番、中ほどに8番・10番、外に14番・16番と、8頭もいます。内の先行馬が出遅れずにハナを主張しても、外から14番と16番が芝の加速を生かして被せてきます。そのため最初のコーナーまで競り合いが続くハイペースが本線です。平均ペースに落ち着くには、このうち何頭もが揃って控える必要があります。その可能性は低いと見ます。<br><br>隊列は、ハナ争いのすぐ後ろの好位に9番・11番・13番、中団に7番・5番、後方に15番という並びを想定します。直線では、好位〜中団で脚をためた組と外から追い込む15番が、止まりかけた前の組を差してくる絵を描きます。<br><br>**指摘を受けて直したところ**<br>- **(2) TUF杯の比較**：5番と16番は同じタイム、勝ち負けしたのは2番手の9番でした。差し有利の根拠としては弱いので、5番と16番の差を縮めます。<br>- **(3) 好位の馬の扱い**：11番と同じような位置で運べる13番を中立にしていたのは筋が通りませんでした。13番を上げ、11番は少し下げます。<br>- **(4) 8番キャリーグレイス**：勝ちは逃げのときだけで、中団では7着と11着です。自在型ではなく逃げ馬として扱い、ハナ争いに加えます。10番は中団から4着に来た実績を評価します。<br>- **(5) 体重の理由**：「432kgで揉まれると脆い」は根拠が薄いので取り下げます。9番は8番手から0.1秒差の4着があり、馬群は苦にしていません。進路が詰まる心配は7番にも当てはめます。<br>- **(6) 3番アスタールフナ**：前走は逃げて0.9秒差の圧勝でした。ハナ争いの一頭として数え直します。<br><br>1番, モーゲンセン, -0.2, 前走は逃げ切っており、内のハナ争いに加わる一頭です。1枠は芝の区間が短く行き脚で外に劣るので、外から被せられながら速いペースに付き合う形になりやすいと見ます。<br><br>2番, ローズカリス, -0.2, 前走は逃げて3着で、内で3番・4番・1番とのハナ争いになります。2番手でも運べる馬ですが、内枠の先行馬はハイペースの中心に巻き込まれます。<br><br>3番, アスタールフナ, -0.2, 前走は逃げて圧勝しており、今回もハナを主張する一頭と見直しました。2枠から競り合えば、ペースを上げる側に回ります。<br><br>4番, タカネノハナコサン, -0.4, 毎回逃げる馬で、控える形を持っていません。内枠から無理にでもハナを取りに行くしかなく、外から被されてペースを上げる役回りになりやすいです。<br><br>5番, ラストシャリナ, +0.2, 中団から差す形なので、ハイペースは追い風です。ただTUF杯では逃げた16番と同じタイムで、差し有利の決め手にはなりません。3枠からでは小回りで進路が詰まる心配もあります。<br><br>6番, クロナ, -0.2, 1000mで2番手から押し切ってきた先行型です。3枠からでは速い流れの内に入りやすく、1150mのハイペースで最後まで持つかが疑問です。<br><br>7番, モリノセピア, +0.2, 4〜6番手から差す形が板についており、福島1150mで3着が2回あります。ハイペースなら合う位置ですが、4枠で馬群の内に入ると進路取りの不安があり、Round1 より少し下げました。<br><br>8番, キャリーグレイス, -0.2, 勝ちは逃げたときだけで、中団からでは崩れています。逃げ馬が揃ったこのメンバーで前に行けばハナ争いに加わり、控えれば持ち味が出ないので、自在型としての加点は取り消しました。<br><br>9番, イリフィ, +0.3, 2番手から8番手までどこでも運べ、福島1150mでは2番手から2着の実績があります。5枠から先行争いを見ながら好位〜中団に収まれるので、ハイペースでも平均ペースでも対応できます。<br><br>10番, ゴールデンバランス, -0.1, 勝ちは逃げたときが中心ですが、雲仙特別では4〜5番手から0.3秒差の4着に来ており、控える形も取れます。5枠からハナ争いに深入りせずに済む分、マイナス幅を縮めました。<br><br>11番, ルージュアズライト, +0.3, 福島1150mで3-3から1着、5-3から2着と、この舞台で好位の少し後ろから差す形が合っています。6枠から先行争いの後ろを追走できて最も恩恵を受けやすい一頭ですが、同じタイプの13番との差を詰めて少し下げました。<br><br>12番, キーガッツ, 0.0, 主に2〜3番手に付ける先行馬です。6枠なら芝スタートで楽に好位を取れますが、ハイペースの番手は消耗します。プラスとマイナスが相殺されて中立とします。<br><br>13番, アイアムイチバン, +0.1, 喜多方特別では4番手から0.3秒差の4着で、7番や11番と同じ好位〜中団で運ぶタイプです。7枠は芝スタートで位置を取りやすい一方、小回りのコーナーで外を回るロスがあります。<br><br>14番, サウスバンク, -0.1, 芝で逃げてきたスピードがあり、7枠からの芝スタートで行き脚はつきやすいです。ただハナに立てばハイペースを自分で作る形になり、立てなければ初めてのダートで砂を被る不安が残ります。<br><br>15番, ワークソング, +0.3, 10番手前後から差す馬で、福島1150mの3勝クラスでも後方から3着があります。8枠から砂を被らずに外を回れて、ハイペースが濃い分は追い風です。ただ直線が短いので、平均ペースなら届きません。<br><br>16番, テセラリアン, -0.2, 大外は芝の区間が長く、行き脚はつきやすい枠です。脚を使って内へ切れ込むという Round1 の減点は弱めました。それでも逃げてこそのタイプで、このメンバーではハナを取ってもハイペースの直接の被害を受けます。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: -0.2, &quot;3&quot;: -0.2, &quot;4&quot;: -0.4, &quot;5&quot;: 0.2, &quot;6&quot;: -0.2, &quot;7&quot;: 0.2, &quot;8&quot;: -0.2, &quot;9&quot;: 0.3, &quot;10&quot;: -0.1, &quot;11&quot;: 0.3, &quot;12&quot;: 0.0, &quot;13&quot;: 0.1, &quot;14&quot;: -0.1, &quot;15&quot;: 0.3, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;芝スタートで外枠ほど行き脚がつく点を加え、14番・16番の減点を弱めて13番を加点した。3番(前走逃げ圧勝)と8番(勝ちは逃げだけ)をハナ争いの一頭に数え直し、8番の加点を取り消した。10番は中団から4着があるので減点を縮めた。TUF杯で5番と16番が同じタイムだったので両者の差を縮め、同じ好位タイプの11番と13番の扱いを揃えた。体重による減点は根拠が薄いので取り下げた。逃げ候補8頭のハイペースが本線という見立ては変えていない。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モーゲンセン, +0.2, 518kg(+8)は7週の間隔なら戻った範囲で、同じ福島1150mを勝ったときの518kgとぴったり同じ。3歳なので斤量は前走から+1kgの57kgやけど、518kgの大きな体なら負担は小さく、調教も好調持続で状態はキープできとる。<br><br>2番, ローズカリス, -0.1, 432kg(-4)は前走436kgから少し絞れた形で、体重の推移には問題なし。ただ前走は減量騎手で52kgやったのが今回55kgで+3kg（約1.5馬身ぶん）、432kgの小柄な馬には重い。調教のスピード感十分↗で一部は打ち消せるけど、差し引きでわずかにマイナス。<br><br>3番, アスタールフナ, +0.3, 体重は444→448→456→462→462と右肩上がりで、増えるほど成績も上がっとる。今回462kg(0)は浦安特別を0.9秒差で圧勝したときと同じ体重。斤量も56kgのまま変わらず、一杯に追って攻量の割に仕上がっとる評価なので、いい状態が続いとると見る。<br><br>4番, タカネノハナコサン, -0.4, 7か月ぶりの6歳牝馬。492kg(+2)と体重は勝ったときの498kgに近く太め残りはない。ただ前走53kgから56kgへ+3kgで、長い休み明けと斤量増が重なる。調教は脚取り確か→どまりで上向きの材料も乏しい。<br><br>5番, ラストシャリナ, -0.1, 4か月半ぶりで494kg(+6)。この馬は488kgのときに1着・3着、494〜500kgのときは4着・9着・13着で、軽いほうが走れるタイプ。今回は少し重め寄り。調教は久々も動き軽快↗と上向きなので、マイナスは小さめにとどめる。<br><br>6番, クロナ, +0.1, 4か月ぶりで462kg(+2)。458〜462kgで3連勝しとる体重帯にきっちり収まっとって、休み明けでも体は崩れとらん。調教は強めに追って好仕上がりの評価。ただ3歳の定量で前走55kgから57kgへ+2kgなので、プラスは小幅にする。<br><br>7番, モリノセピア, +0.5, 体重は492〜498kgの間でずっと安定しとって、今回498kg(0)は前走の汐留特別を勝ったときと同じ。8週の間隔、斤量58kgも据え置き。調教は馬体充実動き目立↗と上向きで、仕上がりの良さははっきり言える。<br><br>8番, キャリーグレイス, +0.3, 2か月空けたあと1回叩いて、中4週の2戦目。452kg(-4)は好走した448〜456kgの範囲。逆に464kg(+16)のときは11着に大敗しとるので、太らせてこなかったのはプラス。斤量56kgも同じで、調教は元気一杯。<br><br>9番, イリフィ, 0.0, 432kg(-2)と体重は430〜434kgで安定、斤量も近走と同じ56kgで、9週の間隔も普通。小柄な馬に56kgの負担は前走から変わっとらんし、調教も終いの伸び良→で現状維持。体調面で上げ下げする材料はない。<br><br>10番, ゴールデンバランス, -0.1, 前走は減量騎手で53kgやったのが今回57kgで+4kg、この中で一番大きい斤量増。524kgの大きな体なので、斤量を体重比で見ると影響は小さめになる。体重524kg(+6)はいつもの518〜530kgの範囲で、調教も力強い伸び脚↗。斤量増の不安が少し上回る。<br><br>11番, ルージュアズライト, +0.1, 7か月ぶりの6歳牝馬やけど、456kg(+6)は福島放送賞を勝ったときの456kgと同じ体重。昨年も4か月ぶりに+8kgで出てきて勝っとって、休み明けをこなせるタイプ。調教は仕上がり良好↗で、休み明けでマイナスにはしない。<br><br>12番, キーガッツ, -0.1, 3か月ぶりで472kg(+2)。勝ったときの470〜472kgと同じで体重は申し分ない。ただ調教は5F57.4・1F13.0と時計が平凡で、評価も徐々に良化見せるにとどまっとる。まだ途中段階の仕上がりと見る。<br><br>13番, アイアムイチバン, -0.4, ここ5走はずっと516〜522kgで安定しとったのに、3か月半ぶりで508kg(-14)とキャリアで一番軽い。休み明けは体が増えて出てくることが多い中で大きく減っとるので、消耗か、絞りすぎの心配がある。調教はゴール前で仕掛けて反応良し→やけど、体重の異常のほうを重く見る。<br><br>14番, サウスバンク, -0.2, 4か月ぶりで494kg(+6)は、近走で一番重い体重。一番走った朱雀S（スピード指数87.4）は486kgやった。調教は動き軽快の評価でも、1Fが14.2と時計は物足りず、少し太め残りの心配がある。<br><br>15番, ワークソング, 0.0, 484kg(-8)は、前走492kgで9着に負けたところから絞れた形。同じ福島1150mで3着に入った476kgに近づいとるのはプラス。ただ斤量は前走55kgから58kgへ+3kgで、プラスとマイナスが相殺。調教も動きスムーズ→で特に変化なし。<br><br>16番, テセラリアン, 0.0, 4か月半ぶりで444kg(-4)。いつもの438〜454kgの範囲で、斤量も56kgのまま。強めに追った意欲的な調教で、休み明けの不安は消えとる。ただ上向きと言い切れるほどの材料はない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: 0.3, &quot;4&quot;: -0.4, &quot;5&quot;: -0.1, &quot;6&quot;: 0.1, &quot;7&quot;: 0.5, &quot;8&quot;: 0.3, &quot;9&quot;: 0.0, &quot;10&quot;: -0.1, &quot;11&quot;: 0.1, &quot;12&quot;: -0.1, &quot;13&quot;: -0.4, &quot;14&quot;: -0.2, &quot;15&quot;: 0.0, &quot;16&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;体調面で一番上げるのはモリノセピア（前走勝利時と同じ498kg、斤量も同じ、調教は馬体充実↗）。次点はアスタールフナ（体重が増えるほど成績が上がっとって、今回も圧勝時と同じ462kg）とキャリーグレイス（休み明けを1回叩いた中4週で、好走時の体重帯）。モーゲンセンも福島で勝ったときと同じ518kgでわずかにプラス。下げるのはアイアムイチバン（休み明けなのにキャリアで一番軽い-14kg）と、タカネノハナコサン（7か月ぶりの6歳牝馬で斤量+3kg）。減量騎手が外れて斤量が増えるゴールデンバランス（+4kg、ただ524kgの大型）とローズカリス（+3kg、432kgの小柄）は小幅なマイナス。休み明けの馬はそれだけで嫌わず、体重がベストに戻っとるかで個別に判断した（ルージュアズライトとクロナは中立〜わずかにプラス）。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 4番タカネノハナコサンは近3走とも高杉騎手で56kgを背負っとって、53kgだったのは前走だけ。15番ワークソングも58kgがいつもの斤量で、前走55kgが例外。どっちも『斤量+3kg』は起点の取り違えやないか。直すと4番タカネノハナコサンの-0.4（13番アイアムイチバンと同じ最下位）は重すぎるかもしれん。(2) 調教時計の物差しが揃っとらん。15番ワークソング（坂路57.3-27.7-13.8）は、マイナスにした12番キーガッツ（57.4-27.1-13.0）より遅いのにマイナスなし。(3) 1番モーゲンセンは直近の518→514→510で成績が上がって、一番いい内容（指数83.1）は前走510kg。+8kgを『戻った』と読むのは都合のいい体重を選んどらんか。13番アイアムイチバンの-14kgとは見方の厳しさが違う。5番ラストシャリナも494kgのときは4着（0.7秒差）で、『重め』とまとめるのは雑かもしれん。(4) 3番アスタールフナの『攻量の割に仕上る』は調教量が少ないという注意書きで、10週の間隔とあわせて+0.3で妥当か。13番アイアムイチバンは調教1F11.4が鋭く『消耗』とは合わんけん、狙って絞った可能性も見てほしい。(5) 7番モリノセピアと1番モーゲンセンの0.3差、4番タカネノハナコサンと11番ルージュアズライトの0.5差は、理由の中身に比べて大きすぎんか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モーゲンセン, +0.1, 指摘どおり、一番いい走り（指数83.1）は前走の510kgで、518→514→510と絞れながら上がってきとった。今回518kg(+8)は同じ福島1150mを勝った体重やけど、「戻った」とは言い切れんけん、好調持続の調教があってもプラスは小幅にとどめるね。<br><br>2番, ローズカリス, -0.1, 432kg(-4)は前走436kgから少し絞れた形で、体重の推移には問題なし。好走した2戦は52〜53kgで、今回55kgは小柄な馬には実際に重くなっとる（起点の取り違えやない）。スピード感十分↗で一部は打ち消せるけど、差し引きでわずかにマイナス。<br><br>3番, アスタールフナ, +0.2, 462kg(0)で、浦安特別を圧勝したときと同じ体重。斤量も56kgのまま。ただ「攻量の割に仕上る」は調教の量が少なめという意味もあって、10週空いとることも考えて少し下げた。<br><br>4番, タカネノハナコサン, -0.2, 指摘を受け入れる。近3走はいつも56kgで、53kgやったのは前走だけ。斤量増としてマイナスにしたのは取り違えやった。残る不安は7か月ぶりの6歳牝馬ということと、調教が脚取り確か→どまりで上向きの材料が乏しいことだけ。体重492kgは勝ったときの498kgに近いけん、マイナスは小さくするね。<br><br>5番, ラストシャリナ, 0.0, 494kgのときにも4着(0.7秒差)があって、「重め」とまとめるのは雑やった。488kgのほうが走れとる傾向はわずかにあるけど、久々も動き軽快↗の調教で打ち消せる範囲と見て中立にするね。<br><br>6番, クロナ, +0.1, 4か月ぶりで462kg(+2)は、3連勝したときの458〜462kgにきっちり収まっとる。調教は久々も好仕上がり。前走55kgから57kgに増えるけど、57kgで未勝利を勝った実績もあるけん、小幅のプラス。<br><br>7番, モリノセピア, +0.4, 体重は492〜498kgで安定しとって、今回498kg(0)は汐留特別を勝ったときと同じ。8週の間隔、斤量58kgも据え置きで、馬体充実動き目立↗。体調面の材料は一番そろっとるけど、他の馬との差は理由の中身に見合うくらいまで縮めた。<br><br>8番, キャリーグレイス, +0.3, 中4週の2戦目で、452kg(-4)は好走した448〜456kgの範囲。464kg(+16)のときは11着に大敗しとるけん、太らせてこなかったのはプラス。斤量56kgも変わらず、調教は元気一杯。<br><br>9番, イリフィ, 0.0, 432kg(-2)と体重は430〜434kgで安定しとって、斤量56kgも近走と同じ。間隔9週も普通で、調教は終いの伸び良→の現状維持。体調面で上げ下げする材料はない。<br><br>10番, ゴールデンバランス, -0.1, 前走は減量騎手で53kg、今回57kgで+4kg。57kgのときは8着・6着にとどまっとって、勝ったのは53〜55kg。524kgの大きな体なので影響は割り引けるし、体重はいつもの範囲、調教も力強い伸び脚↗。それでも斤量増の不安がわずかに上回る。<br><br>11番, ルージュアズライト, +0.1, 7か月ぶりの6歳牝馬やけど、456kg(+6)は福島放送賞を勝ったときと同じ体重。昨年も4か月ぶりの+8kgで勝っとって休み明けをこなせるタイプで、調教も仕上がり良好↗。同じ7か月ぶりの4番タカネノハナコサンとは、休み明けの実績と調教の上向き方で差をつけとる。<br><br>12番, キーガッツ, -0.1, 3か月ぶりで472kg(+2)は勝ったときと同じで、体重は申し分ない。ただ調教評価が「徐々に良化見せる」で、まだ仕上がりの途中と読める。時計の5F57.4・1F13.0も平凡で、わずかにマイナス。<br><br>13番, アイアムイチバン, -0.3, 3か月半ぶりで508kg(-14)は、これまでの最低体重516kgをさらに8kg下回るキャリア最軽量。ただ指摘どおり、ゴール前で仕掛けて1F11.4と反応は鋭く、消耗と決めつけるよりは狙って絞った可能性もある。体重の異常は残るけん、マイナスは少し小さくするね。<br><br>14番, サウスバンク, -0.2, 4か月ぶりで494kg(+6)は近走で一番重く、一番走った朱雀Sは486kgやった。調教も1F14.2と時計が物足りず、少し太め残りの心配がある。<br><br>15番, ワークソング, 0.0, 58kgがいつもの斤量で前走55kgが例外やったけん、斤量増のマイナスは取り消す。そのかわり調教の5F57.3・1F13.8は12番キーガッツより遅く、ここをマイナスにする。体重484kg(-8)は、福島1150mで3着に入った476kgに近づいたプラス。プラスとマイナスで差し引きゼロ。<br><br>16番, テセラリアン, 0.0, 4か月半ぶりで444kg(-4)はいつもの438〜454kgの範囲。斤量56kgも同じ。強めに追った意欲的な調教で、休み明けの不安は消えとる。ただ上向きと言い切れる材料まではない。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: -0.1, &quot;3&quot;: 0.2, &quot;4&quot;: -0.2, &quot;5&quot;: 0.0, &quot;6&quot;: 0.1, &quot;7&quot;: 0.4, &quot;8&quot;: 0.3, &quot;9&quot;: 0.0, &quot;10&quot;: -0.1, &quot;11&quot;: 0.1, &quot;12&quot;: -0.1, &quot;13&quot;: -0.3, &quot;14&quot;: -0.2, &quot;15&quot;: 0.0, &quot;16&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;斤量の比べ方の間違いを直した。4番と15番は近走の斤量がいつもどおりで、前走だけ軽かった（例外）ので、4番は-0.4→-0.2、15番は斤量増のマイナスを取り消した。かわりに15番は調教時計が遅いことをマイナスにして、12番と同じ物差しにそろえ、差し引き0のまま。2番と10番は好走時より実際に重くなっているので据え置き。体重の読みは、1番は一番いい内容だった510kgから+8kgで『戻った』とは言えず+0.2→+0.1、5番は494kgでも4着があるので0に。13番は調教の反応が鋭く狙って絞った可能性もあるので-0.4→-0.3。3番は調教量の少なさと10週の間隔を見て+0.3→+0.2。7番は理由の中身に合わせて+0.5→+0.4に縮めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、福島ダ1150mの3勝クラス、血統で見ていくね。良馬場の小回りダート短距離やけん、米国ダート短距離の血をどれだけ持っとるかを一番の物差しにしたっちゃん。<br><br>1番, モーゲンセン, +0.4, 父MendelssohnはScat Daddy系の米国ダート短距離血統で、母父Pioneerof the Nileもダートのスピードとパワーを足しとる。福島1150mを良馬場で勝っとって、3歳秋の成長期とも噛み合っとるとよ。<br><br>2番, ローズカリス, +0.4, 父カリフォルニアクローム、母父ヘニーヒューズで、ダート短距離に特化した配合。1000〜1200mのダートで結果が出とって、血統の向きと実績がそろっとる。<br><br>3番, アスタールフナ, +0.1, 父ジョーカプチーノ、母父More Than Readyでスプリントのスピードはある。ただ芝寄りの父系で、強い勝ち方は不良馬場の高速決着やけん、良馬場での上積みは小さめに見とる。<br><br>4番, タカネノハナコサン, -0.2, 父カレンブラックヒルはダイワメジャー系で芝マイル寄り、ダート短距離の血の裏付けは薄い。6歳牝馬で早めにピークが来る系統やけん、上積みも期待しにくいっちゃん。<br><br>5番, ラストシャリナ, 0.0, 父アルアインは芝中距離のディープ系、母父Vicarが米国ダートの血を補っとる配合。福島1150mで3着はあるけど、血統で上げる理由も下げる理由も弱いけん中立にしとる。<br><br>6番, クロナ, +0.1, 父スワーヴリチャードは芝中距離やけど、母父Exchange RateがDanzig系の米国ダートスプリンターで、ダート短距離のスピードは母方からもらっとる。3歳秋で伸びる系統やし、1000mから50m延びるのは配合的に問題なか。<br><br>7番, モリノセピア, +0.3, 父エスポワールシチーはゴールドアリュール系のダート血統、母父AldebaranはMr. Prospector系の米国スプリンター。純粋なダート配合で、ゴールドアリュール系は息が長いけん5歳でも衰えにくいとよ。<br><br>8番, キャリーグレイス, +0.2, 父カリフォルニアクロームでダートの適性は確か。母父キングカメハメハが入っとって短距離に特化した色はローズカリスより薄いけん、上げ幅は控えめにしとる。<br><br>9番, イリフィ, -0.2, 父Too Darn Hot（Dubawi系）、母父Invincible Spiritで欧州の芝マイル〜スプリント配合。ダートの実績はあるけど、指数が一番高かったのは重馬場で、パワーが要る良馬場のダートは血統的にちょっと割り引くね。<br><br>10番, ゴールデンバランス, 0.0, 父レイデオロは芝中距離、母父Medaglia d&#x27;Oroがダートの底力を補っとる配合。短距離に特化した血統やないけど実績は出しとるし、3歳の成長期でもあるけん中立にしとる。<br><br>11番, ルージュアズライト, 0.0, 父リオンディーズ（キングカメハメハ系）は産駒がダート短距離でもそこそこ走るタイプで、母父ハーツクライ。福島ダートとの相性は実績が示しとるけど血統で足す要素は弱くて、6歳牝馬やけん上積みも見込みにくか。<br><br>12番, キーガッツ, -0.2, 父シュヴァルグランはハーツクライ系のステイヤーで、短距離に向く血統とは言いにくい。母父リンドシェーバーのダートスピードで補っとるけん、大きくは下げんことにしたっちゃん。<br><br>13番, アイアムイチバン, +0.3, 父パイロはPulpit系で、ダートの短距離〜マイルで産駒の好走率が高か。ダート1000〜1300mで安定して走っとって、血統の向きどおりの成績やけん上げとる。<br><br>14番, サウスバンク, -0.3, 父グレーターロンドンはディープ系の芝マイラーで、近走は芝1200mばっかりやけんダート替わりが課題。母父アフリートのダートの血で一変する余地はあるけど、確信が持てるほどの根拠はなかとよ。<br><br>15番, ワークソング, +0.3, 父モーニンはヘニーヒューズ系のダート短距離血統、母父フレンチデピュティもダートの血。差しに回るタイプでも配合はダート短距離にぴったりで、福島1150mでも3着があるっちゃん。<br><br>16番, テセラリアン, -0.2, 父リアルスティール（ディープ系）、母父ファルブラヴで芝寄りの配合。ダートで結果は出しとるけど、血統で後押しする要素は無くて少し割り引いとる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.4, &quot;2&quot;: 0.4, &quot;3&quot;: 0.1, &quot;4&quot;: -0.2, &quot;5&quot;: 0.0, &quot;6&quot;: 0.1, &quot;7&quot;: 0.3, &quot;8&quot;: 0.2, &quot;9&quot;: -0.2, &quot;10&quot;: 0.0, &quot;11&quot;: 0.0, &quot;12&quot;: -0.2, &quot;13&quot;: 0.3, &quot;14&quot;: -0.3, &quot;15&quot;: 0.3, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;良馬場の福島ダ1150mは米国ダート短距離の血が活きる舞台。Scat Daddy系×Pioneerof the Nileのモーゲンセンと、カリフォルニアクローム×ヘニーヒューズのローズカリスを最上位に置き、純ダート配合のモリノセピア・アイアムイチバン(パイロ)・ワークソング(モーニン)が続く。欧州芝配合のイリフィ、芝中長距離の父を持つキーガッツ・テセラリアン、芝からダートに替わるサウスバンクは割り引き。全体に血統差は中程度で、振り幅は±0.4以内に収めた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 馬場の割引が一部の馬だけにかかっとらんか：3番アスタールフナ・9番イリフィは「道悪で一番強かった」として割り引いとるが、1番モーゲンセン（一番の指数は重の83.1、良馬場では78.5以下）、2番ローズカリス・6番クロナ・7番モリノセピア（どれも不良で一番いい内容）には同じ見方を当てとらん。米国ダート血統なら良馬場でも心配いらんという前提なら、それを理由に書くか付値を見直してはどうか。(2) 母父の扱いのばらつき：8番キャリーグレイスは母父キングカメハメハで上げ幅を抑えたのに、13番アイアムイチバン（+0.3）は芝の母父アグネスタキオンに触れとらん。4番タカネノハナコサンも母父デザートキングを見ないまま判断しとる。(3) 14番サウスバンク（-0.3で最下位）：母父アフリートはダート短距離で実績があり、本人も一変の余地を認めとる。最下位の中身はダート未経験による分からなさの割引で、血統の評価ではないのでは。12番キーガッツ（ステイヤーの父）や16番テセラリアン（芝の母父）より下にする血統上の説明が足りない。(4) 似た配合の付値のずれ：5番ラストシャリナ（0.0）・6番クロナ（+0.1）・10番ゴールデンバランス（0.0）はどれも芝中距離の父×米国ダートの母父。福島1150mの3着は15番ワークソングでは加点で5番では加点なし。3歳の成長期の加点が2番ローズカリスだけ付いとらんのも基準がそろっとらん。(5) 13番アイアムイチバン：パイロ産駒は1400〜1800mが中心で、本馬も福島1150mは4着。+0.3が上げすぎではないか確かめては。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モーゲンセン, +0.3, 父Mendelssohn（Scat Daddy系）×母父Pioneerof the Nileは米国ダートのパワー型やけん、良馬場の日本のダートでも血統的な不安はなかとよ。ただ良馬場の指数は78.5以下で重馬場の83.1と差があるけん、血統を実績より強く押し出さんように少し下げたっちゃん。<br><br>2番, ローズカリス, +0.5, 父カリフォルニアクローム×母父ヘニーヒューズで、この中ではいちばんダート短距離に寄った配合になっとる。米国ダートのパワー型やけん良馬場でも問題なかし、父は本人も古馬になってから伸びた晩成寄りの血やけん、3歳秋の成長分も足したとよ。<br><br>3番, アスタールフナ, +0.1, 父ジョーカプチーノは芝寄りで、母父More Than Readyのスピードも芝とダートの両方に出る血やけん、時計の速い道悪のほうが合う配合っちゃん。実際に良馬場の指数は61.5〜78.0にとどまっとって、良馬場で上げる分は小さめにしとる。<br><br>4番, タカネノハナコサン, -0.2, 父カレンブラックヒル（ダイワメジャー系）も母父デザートキング（Danehill系の欧州芝血統）も芝寄りで、ダート短距離の裏付けは薄いとよ。早めにピークが来る系統の6歳牝馬やけん、上積みも見込みにくか。<br><br>5番, ラストシャリナ, 0.0, 父アルアインは芝中距離、母父Vicarは米国ダートのマイラー寄りで、短距離に特化した配合やなかけん中立にしとる。福島1150mの3着は実績の話で、血統で足す材料にはしとらんとよ。<br><br>6番, クロナ, +0.1, 父スワーヴリチャードは芝中距離やけど、母父Exchange RateはDanzig系のダートスプリンターで短距離のスピードを母方から受け継いどる。3歳秋の成長期で、良馬場の函館1000mでも82.5を出しとるけん、良馬場への不安もなかっちゃん。<br><br>7番, モリノセピア, +0.3, 父エスポワールシチー（ゴールドアリュール系）×母父Aldebaran（Mr. Prospector系）は混じりけのないダート配合で、良馬場の福島1150mでも3着がある。ゴールドアリュール系は長く走れる血やけん、5歳でも衰えの心配は小さかとよ。<br><br>8番, キャリーグレイス, +0.2, 父カリフォルニアクロームでダート適性は確かやし、良馬場で勝った実績もある。母父キングカメハメハが入っとるぶん短距離に寄った色はローズカリスより薄いけん、上げ幅は控えめにしとる。<br><br>9番, イリフィ, -0.2, 父Too Darn Hot（Dubawi系）×母父Invincible Spiritは欧州の芝スプリント〜マイル配合で、米国ダートのパワーの血を持っとらん。時計の速い道悪で走れても乾いた砂は割り引く理屈で、良馬場の指数76.0と重馬場の87.8の差もそれと合っとる。<br><br>10番, ゴールデンバランス, +0.1, 父レイデオロは芝中距離、母父Medaglia d&#x27;Oroがダートの底力を足しとって、クロナと同じ形（芝の父×米国ダートの母父）になっとる。3歳秋の成長期という基準をそろえて、少しだけ上げることにしたとよ。<br><br>11番, ルージュアズライト, 0.0, 父リオンディーズ（キングカメハメハ系）はダート短距離でもそこそこ走る産駒を出すけど、母父ハーツクライは芝の中長距離寄りで、血統で足す要素は弱か。6歳牝馬で成長の上積みも見込みにくいけん、中立のままにしとる。<br><br>12番, キーガッツ, -0.2, 父シュヴァルグランはハーツクライ系のステイヤーで、1150mは血統の向きと合っとらん。母父リンドシェーバーのダートのスピードで補えとって、実際に1000mと1150mで勝っとるけん、下げ幅は小さめにしたっちゃん。<br><br>13番, アイアムイチバン, +0.1, 父パイロの産駒はダート1400〜1800mが中心で、母父アグネスタキオンは芝の血やけん、1150mにぴったり合う配合とは言いにくか。本人も福島1150mは4着やけん、Round1の+0.3は上げすぎやったと見て下げたとよ。<br><br>14番, サウスバンク, -0.2, 父グレーターロンドン（ディープ系の芝マイラー）は芝寄りやけど、母父アフリートはダート短距離で実績がある血で、配合だけ見ればプラスとマイナスが半分ずつっちゃん。芝でしか走っとらん実績も踏まえて少し下げるけど、ダートを走ったことがない分からなさを血統の割引に混ぜとったけん、12番・16番と同じ幅に戻したとよ。<br><br>15番, ワークソング, +0.3, 父モーニン（ヘニーヒューズ系）×母父フレンチデピュティはダート短距離に合った配合で、上げとるのはこの血統の中身が理由っちゃん。福島1150mの3着は、それと実績が食い違っとらんことを確かめた材料として見とるだけとよ。<br><br>16番, テセラリアン, -0.2, 父リアルスティール（ディープ系）×母父ファルブラヴで父方も母方も芝の血やけん、ダート短距離を血統から後押しする要素は無か。ダートで勝っとる実績があるけん、大きくは下げとらん。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.5, &quot;3&quot;: 0.1, &quot;4&quot;: -0.2, &quot;5&quot;: 0.0, &quot;6&quot;: 0.1, &quot;7&quot;: 0.3, &quot;8&quot;: 0.2, &quot;9&quot;: -0.2, &quot;10&quot;: 0.1, &quot;11&quot;: 0.0, &quot;12&quot;: -0.2, &quot;13&quot;: 0.1, &quot;14&quot;: -0.2, &quot;15&quot;: 0.3, &quot;16&quot;: -0.2}, &quot;analysis_summary&quot;: &quot;馬場の割引は「米国ダートのパワー型は良馬場の日本のダートでも問題ない／欧州芝や芝寄りのスピード型は時計の速い道悪に寄る」という血統上の基準を理由として明記し、9番・3番の割引はそのまま残した。ただ1番は良馬場と重馬場の指数差を考えて+0.4から+0.3に下げた。母父も見るようにして、13番は芝の母父アグネスタキオンと父パイロの得意距離が1400m以上なことから+0.3を+0.1に、4番は母父デザートキングも芝寄りなことを確かめて-0.2のままにした。14番はダートを走ったことがない分からなさを血統の割引から外し、母父アフリートとのプラスマイナスで-0.2に戻した。3歳秋の成長分の基準をそろえて、2番（晩成寄りのカリフォルニアクローム×ヘニーヒューズ、この中でいちばんダート短距離寄り）を+0.5、10番を+0.1に上げた。福島1150mでの着順は加点に使わず、血統と実績が食い違っていないかを確かめる材料にとどめた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, モーゲンセン, -0.2, 前走Vの丹内祐次が13番に回ったため、小崎綾也への乗り替わり。斎藤誠厩舎はしっかりしているが、戸崎・ルメール・丹内と続いた鞍上からは格が下がる。<br><br>2番, ローズカリス, +0.1, 前走は減量騎手の小林美駒で52kgだったが、今回はベテランの吉田隼人に替わる。斤量面の恩恵はなくなる一方、鞍上の経験値はわずかに上がる。<br><br>3番, アスタールフナ, -0.3, 北村友一・岩田望来・鮫島克駿と上位騎手が続いていたが、今回は富田暁。前走を逃げ切った北村友一から替わるので、鞍上の格ははっきり下がる。<br><br>4番, タカネノハナコサン, +0.1, 主戦の高杉吏麒が継続騎乗で手の内を知っている点はプラス。ただ7か月の休み明けで、緒方努厩舎にもこの条件で目立つ実績はない。<br><br>5番, ラストシャリナ, +0.2, 主戦の石川裕紀人が継続騎乗。同じ福島ダ1150mのTUF杯でも騎乗して3着に来ており、コースでの手の内も分かっている。<br><br>6番, クロナ, +0.2, 3勝のうち2勝を挙げた小沢大仁が継続騎乗。人馬の呼吸ができており、高橋亮厩舎の久々でも好仕上がりという評価とも合う。<br><br>7番, モリノセピア, +0.2, 前走の汐留特別を勝った小林美駒が継続騎乗。福島1150mでも騎乗して3着があり、何度も乗って癖を分かっている点を評価する。<br><br>8番, キャリーグレイス, -0.1, 前走Vの小崎綾也が1番に回り、今村聖奈に戻る。今村は以前この馬で2着に来ているが、勝った騎手が他の馬を選んだのはわずかにマイナス。寺島良厩舎の地力で大きくは下げない。<br><br>9番, イリフィ, -0.3, 川田将雅・坂井瑠星・西村淳也・ルメールと一流騎手が続いていたが、今回は斎藤新。高野友和厩舎は名門でも、鞍上の格は大きく下がる。<br><br>10番, ゴールデンバランス, +0.4, 前走の2勝クラスを逃げ切った和田陽希が継続騎乗。杉山晴紀厩舎はトップクラスで、昇級初戦でも陣営の後押しは強い。<br><br>11番, ルージュアズライト, -0.3, 福島放送賞の勝利も含め、5走中4走で乗ってきた主戦の荻野極から杉原誠人に替わる。福島1150mで手の内を知る騎手を失うのは痛い。<br><br>12番, キーガッツ, 0.0, 西村淳也から鮫島克駿への乗り替わりで、格はほぼ同じ。杉山佳明厩舎にもこの条件で目立つ材料はなく、中立にする。<br><br>13番, アイアムイチバン, +0.5, 2勝を共にした丹内祐次が継続騎乗。福島を得意にしている騎手で、前走Vのモーゲンセンではなくこちらを選んだことにも陣営と騎手の手応えが見える。<br><br>14番, サウスバンク, -0.2, 前走の横山武史から横山琉人に替わり、鞍上の格は下がる。吉岡辰弥厩舎についても、この条件での裏付けは乏しい。<br><br>15番, ワークソング, -0.2, 岩田望来・三浦皇成・M.ディーと続いた鞍上から国分恭介に替わる。国分は福島1150mで3着に導いた実績があるので、下げ幅は小さめにする。<br><br>16番, テセラリアン, +0.1, 同じコースのTUF杯で乗った菊沢一樹が継続騎乗で、手の内を知っている点はわずかにプラス。鈴木慎太郎厩舎の格は平凡。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.1, &quot;3&quot;: -0.3, &quot;4&quot;: 0.1, &quot;5&quot;: 0.2, &quot;6&quot;: 0.2, &quot;7&quot;: 0.2, &quot;8&quot;: -0.1, &quot;9&quot;: -0.3, &quot;10&quot;: 0.4, &quot;11&quot;: -0.3, &quot;12&quot;: 0.0, &quot;13&quot;: 0.5, &quot;14&quot;: -0.2, &quot;15&quot;: -0.2, &quot;16&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;陣営の観点で一番上げたのは13番アイアムイチバン。福島に強い丹内祐次が継続騎乗し、前走Vのモーゲンセンより先にこちらを選んだ。次が10番ゴールデンバランスで、トップクラスの杉山晴紀厩舎に、前走Vの和田陽希が継続騎乗する。5・6・7・16番も手の内を知る騎手が続けて乗るので小さく上げた。逆に9番イリフィ（川田などの一流騎手から斎藤新）、3番アスタールフナ（北村友一などから富田暁）、11番ルージュアズライト（福島で実績のある主戦の荻野極から杉原誠人）は、鞍上の格が下がるか主戦を失うため下げた。1番と8番は、前走Vの騎手が他の馬に移ったので少し下げた。全体として、陣営の差はそれほど大きくないレースで、大半の馬は±0.3以内に収まる。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①『前走Vの騎手がどの馬を選んだか』の扱いが揃っていない。13番アイアムイチバンでは丹内の選択を大きなプラスにしているのに、前走Vの小崎が8番キャリーグレイスではなく選んだ1番モーゲンセンにはそのプラスがない。12番キーガッツ（福島1150mで勝った斎藤新が9番イリフィへ移る）にも反映されていない。13番アイアムイチバンは丹内が2勝した馬に戻っただけとも読めるので、+0.5は割り引く余地がないか。②9番イリフィの斎藤新は12番キーガッツで同じコースを勝っているので、-0.3を戻す余地がないか（15番ワークソングの国分では下げ幅を緩める理由にしている）。③9番イリフィ（入れ替わる一流騎手を失った＝格だけ）と11番ルージュアズライト（4/5走に乗りコースで勝った主戦を失った＝手の内）が同じ-0.3なのは、継続騎乗を重く見る軸とずれていないか。④10番ゴールデンバランスは前走が▲減量の53kgで今回57kg。2番ローズカリスでは減量の恩恵がなくなる点を挙げているのに、こちらでは触れていない。若手鞍上で、厩舎の格頼みの+0.4は高すぎないか。⑤小林美駒を2番ローズカリスでは格下扱いしているのに、7番モリノセピアでは差し引きなしで+0.2にしていて一貫していない。⑥4番タカネノハナコサンの前走は菱田で、高杉は乗り戻り（継続騎乗ではない）。しかも高杉とは3勝クラスで7〜11着が続いている。⑦15番ワークソングが失ったのは1回ずつ乗った騎手だけで、同じコースで好走した騎手が戻る。似た状況の8番キャリーグレイス(-0.1)と比べて-0.2は重くないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, モーゲンセン, -0.1, 前走で勝った丹内祐次が13番に回り、初騎乗の小崎綾也に替わるので鞍上の格は下がる。ただ前走Vの8番ではなくこちらを選んだ小崎の判断は少し後押しになるので、下げ幅を小さくする。<br><br>2番, ローズカリス, +0.1, 減量騎手の小林美駒から、ベテランの吉田隼人に替わる。斤量の恩恵はなくなるが、鞍上の経験値はわずかに上がる。<br><br>3番, アスタールフナ, -0.3, 北村友一・岩田望来・鮫島克駿と上位騎手が続いていたが、今回は富田暁。前走を逃げ切った北村友一から替わるので、鞍上の格ははっきり下がる。<br><br>4番, タカネノハナコサン, 0.0, 前走は菱田裕二で、高杉吏麒は乗り戻りになる。継続騎乗ではないうえ、高杉とは3勝クラスで7〜11着が続いている。7か月の休み明けで、緒方努厩舎にもこの条件の裏付けがないので中立にする。<br><br>5番, ラストシャリナ, +0.2, 主戦の石川裕紀人が継続騎乗。同じ福島ダ1150mのTUF杯でも騎乗して3着に来ており、コースでの手の内も分かっている。<br><br>6番, クロナ, +0.2, 3勝のうち2勝を挙げた小沢大仁が継続騎乗で、人馬の呼吸ができている。高橋亮厩舎が久々でもきちんと仕上げてきた点とも合う。<br><br>7番, モリノセピア, +0.1, 汐留特別を勝ち、福島1150mでも3着がある小林美駒が継続騎乗で、手の内を知っている点はプラス。ただ鞍上の格は2番と同じ物差しで見て高くないので、上げ幅を抑える。<br><br>8番, キャリーグレイス, -0.1, 前走Vの小崎綾也が1番に回り、今村聖奈に戻る。勝った騎手に他の馬を選ばれた点はわずかにマイナス。ただ今村は同じ福島1150mでこの馬を2着に導いているので、大きくは下げない。<br><br>9番, イリフィ, -0.2, 川田将雅・坂井瑠星・西村淳也・ルメールと続いた一流騎手から、斎藤新に替わるので格は下がる。ただ斎藤新は12番キーガッツで同じコースを勝っており、失うのも入れ替わりで乗っていた騎手なので、下げ幅は小さめにする。<br><br>10番, ゴールデンバランス, +0.2, 前走を逃げ切った和田陽希の継続騎乗と、トップクラスの杉山晴紀厩舎は後押しになる。ただ前走は▲減量の53kgで、今回は57kg。若手を起用する利点が薄れるので、上げ幅を抑える。<br><br>11番, ルージュアズライト, -0.4, 福島放送賞の勝利も含め、5走中4走で乗ってきた主戦の荻野極から杉原誠人に替わる。同じコースで手の内を知る騎手を失うのは、格の低下より重いマイナス。<br><br>12番, キーガッツ, -0.1, 前走Vの西村淳也から、格がほぼ同じ鮫島克駿に替わる。同じコースで勝たせた斎藤新が9番を選んだこともあり、わずかにマイナスとする。<br><br>13番, アイアムイチバン, +0.4, 2戦2勝の丹内祐次が継続騎乗。丹内は福島を得意にしており、手の内も知っている。前走Vのモーゲンセンではなくこちらを選んだ点は、もともとの主戦が戻っただけとも読めるので、少し割り引く。<br><br>14番, サウスバンク, -0.2, 前走の横山武史から横山琉人に替わり、鞍上の格は下がる。吉岡辰弥厩舎も、この条件での裏付けは乏しい。<br><br>15番, ワークソング, -0.1, 失うのは1回ずつ乗っただけの騎手で、手の内という面での損失は小さい。福島1150mで3着に導いた国分恭介が戻るので、格が下がる分だけ小さく下げる。<br><br>16番, テセラリアン, +0.1, 同じコースのTUF杯で乗った菊沢一樹が継続騎乗で、手の内を知っている点はわずかにプラス。鈴木慎太郎厩舎の格は平凡。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、合成スコアを見て気になったところを先にまとめるね。<br><br>**合成スコアへの疑問点**<br>- **上位5頭の差が 18.9〜21.7 しかない。** 合成が誰も強く推せとらん状態で、2番ローズカリスがトップに来とるのは「前走3勝クラス3着＋調教↗」を素直に足しただけに見える。ただ前走は 52kg で、今回は 55kg。+3kg の割引が足りとらんと思う。<br>- **展開の織り込みが甘い。** 前に行きたい馬が多いっちゃん。1番モーゲンセン、2番ローズカリス、3番アスタールフナは前走 1-1 か 2-2 の逃げ・先行で、8番キャリーグレイス、16番テセラリアン、4番タカネノハナコサン、10番ゴールデンバランスも同じ型。しかも内枠の 1番・2番が隣同士で、ハナ争いが激化しやすい。福島ダ1150 は前が有利な舞台やけど、ここまで先行馬が揃うと、中団でも競馬ができる馬の価値が上がる。<br>- **3番アスタールフナの浦安特別（0.9秒差の圧勝・指数86.0）は不良馬場の数字。** 良馬場では 78.0〜72.9 にとどまっとって、良で行われる今回にそのまま当てはめるのは危ない。<br>- **6番クロナは3連勝中やけど、勝ちはすべて函館ダ1000m。** 今回は +150m、4か月ぶり、初の3勝クラス、斤量 57kg（前走比 +2kg）。条件が重なりすぎとって、合成の 19.3 は少し高い。<br>- **9番イリフィは「勝ち切れん馬」として割り引かれすぎとる。** 3勝クラスでずっと掲示板に載っとって、同じ舞台の TUF杯（福島ダ1150）で2着、リボン賞では指数87.8。先行争いが激しくなれば、位置を問わず走れるこの馬が一番崩れにくい。騎手が川田将雅から斎藤新に替わるのはマイナスやけど、それを考えてもトップ評価にしてよかよ。<br>- 6位以下では、11番ルージュアズライト（同じ舞台の3勝クラスで0.2秒差の2着、福島ダ1150 で連対多数）と、14番サウスバンク（芝の3勝クラスで指数87.4、血統的にダートもこなせそう）が穴として気になる。ただどちらも不確定要素が大きいけん、上位5頭の入れ替えまではせん。<br><br>**最終判断**<br><br>9番, イリフィ, 22%, 同じ舞台の3勝クラスで2着があり、指数80台後半を出せる地力は上位5頭で一番安定しとる。先行馬が揃って前が厳しくなりそうな展開で、好位から中団どこからでも運べる強みが活きる。<br><br>2番, ローズカリス, 21%, 3勝クラスで3着の実績と内枠からのスピードは本物で、調教も↗。ただ前走から +3kg のうえ、1番モーゲンセンとのハナ争いが避けにくいため、トップからは一段下げた。<br><br>3番, アスタールフナ, 18%, 前走の圧勝は不良馬場の恩恵が大きく、良馬場の指数は2勝クラスでも 78 前後にとどまる。騎手が北村友一から富田暁に替わるのもマイナスで、前に行けても粘り切れるかは五分。<br><br>6番, クロナ, 18%, 3連勝の勢いと3歳の上積みは魅力。ただ勝ちはすべて函館ダ1000mで、+150m・4か月ぶり・初の3勝クラスと課題が重なるため、合成より少し割り引いた。<br><br>1番, モーゲンセン, 17%, 福島ダ1150 での勝ちがあり、最内枠からハナも狙える。ただ昇級初戦で、2勝クラスの勝ちは重馬場での0.0秒差。外から先行馬が殺到する形になると苦しい。<br><br>```json<br>{&quot;score&quot;: {&quot;9&quot;: 22, &quot;2&quot;: 21, &quot;3&quot;: 18, &quot;6&quot;: 18, &quot;1&quot;: 17}, &quot;analysis_summary&quot;: &quot;合成は上位5頭が2.8pt差に詰まっていて決め手を欠く。2番ローズカリスは前走52kgから+3kg、1番モーゲンセンとの内枠同士のハナ争いがあるので首位から下げた。3番アスタールフナは不良馬場で出た指数を割り引き、6番クロナは距離延長・休み明け・昇級が重なるので減点。先行馬が多く前が厳しくなる想定で、同じ舞台の3勝クラス2着があり位置取りの自由度が高い9番イリフィを首位にした。1番モーゲンセンは昇級初戦で外からの先行圧を受けるため5位。6位以下では11番ルージュアズライト（同じ舞台の3勝クラス2着）と14番サウスバンク（芝3勝で指数87.4、ダート替わり）が穴候補。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>福島ダ1150mの3勝クラスやね。逃げ・先行型が8頭くらいおって、前半はかなり速くなりそうっちゃん。内枠で行ける馬を上に見つつ、昇級組の勢いと3勝で実績のある馬を天秤にかけて点を付けたとよ。<br><br>3番, アスタールフナ, 13%, 前走の浦安特別を0.9秒差で逃げ切り、指数86.0はメンバー最上位級。内枠から楽にハナか2番手を取れる形で、昇級でも通用する力があるとみる。<br><br>2番, ローズカリス, 12%, 前走の外房Sで3勝クラス3着（指数85.4）と、すでにこの級で走れとる。52kgから55kgへの斤量増は気になるけど、1枠1番から行ける先行力と調教の上昇気配で上位評価。<br><br>9番, イリフィ, 11%, 3勝クラスで掲示板を外さず、同じ舞台のTUF杯2着や指数87.8の実績がある。勝ちきれん面はあるけど、先行勢が競り合えば好位から差せる展開利が見込める。<br><br>10番, ゴールデンバランス, 10%, 2勝クラスを逃げ切った前走の指数85.4は優秀。ただ減量が利いた53kgから57kgへ4kg増えるうえ、先行争いも激しいので4番手評価。<br><br>1番, モーゲンセン, 8%, 2勝クラスを逃げ切って連勝の流れがあり、福島1150mでも勝っとる。指数はまだ3勝の上位とは差があり、内の先行馬同士で潰し合うリスクもある。<br><br>6番, クロナ, 7%, ダ1000mで3連勝中の上り馬。ただ4か月ぶりで距離も150m延び、3勝の速い流れで先行できるかは未知数。<br><br>14番, サウスバンク, 6%, 芝の3勝クラスで2着（指数87.4）がある能力馬。初ダートで血統的にこなせる下地はあるけど、適性が読めんので割り引いた。<br><br>7番, モリノセピア, 6%, 前走の汐留特別を勝ち、福島1150mでも3着が2回と舞台は合う。調教は動き目立つけど、昇級と58kgで指数81前後では上位とまだ差がある。<br><br>11番, ルージュアズライト, 5%, 福島1150mで2勝クラス勝ちと3勝クラス2着がある舞台巧者。7か月ぶりの休み明けが割引材料。<br><br>8番, キャリーグレイス, 5%, 前走で妙高特別を逃げ切ったけど指数は81.2止まり。外寄りの枠から内の速い馬を交わしてハナを取るのは難しそう。<br><br>13番, アイアムイチバン, 4%, 2勝クラスを勝った札幌1000mの指数80.9は悪くないけど、着順にムラがあり、前走から馬体重が-14kgなのも不安。<br><br>5番, ラストシャリナ, 4%, TUF杯でこの舞台の3勝3着がある差し馬で、ハイペースになれば浮上の余地はある。4か月ぶりで58kgを背負うので、勝ちきるまでは厳しい。<br><br>16番, テセラリアン, 3%, 同舞台のTUF杯は逃げて4着。8枠から先行するのはロスが大きく、今回はさらに先行馬が揃っとる。<br><br>12番, キーガッツ, 3%, 1000mで2勝クラスを勝ったけど指数は77.4と低め。58kgで3勝クラスに上がると壁がありそう。<br><br>4番, タカネノハナコサン, 2%, 3勝クラスで逃げても7〜11着が続き、7か月ぶりの休み明け。能力的にも状態的にも厳しい。<br><br>15番, ワークソング, 2%, 3勝クラスで掲示板にもなかなか届かず、後方からの競馬で決め手も足りん。<br><br>```json<br>{&quot;score&quot;: {&quot;3&quot;: 13, &quot;2&quot;: 12, &quot;9&quot;: 11, &quot;10&quot;: 10, &quot;1&quot;: 8, &quot;6&quot;: 7, &quot;14&quot;: 6, &quot;7&quot;: 6, &quot;11&quot;: 5, &quot;8&quot;: 5, &quot;13&quot;: 4, &quot;5&quot;: 4, &quot;16&quot;: 3, &quot;12&quot;: 3, &quot;4&quot;: 2, &quot;15&quot;: 2}, &quot;analysis_summary&quot;: &quot;先行馬が多くハイペースが濃厚。内枠から先行でき指数も最上位級の3番アスタールフナと、3勝クラスで3着実績のある2番ローズカリスを上位にした。3勝クラスで安定して走れて差しの展開利もある9番イリフィ、昇級の勢いがある10番ゴールデンバランスと1番モーゲンセンが続く。6番クロナは上り馬だが距離延長と休み明けが課題で、14番サウスバンクは初ダートの未知数として中位に置いた。休み明けや3勝クラスで頭打ちの4番・15番は低評価。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>2</td><td class="left horse-name">ローズカリス</td><td>9.6%</td><td>5.9</td><td>1</td><td class="ev-low">0.56</td></tr><tr><td>2</td><td>9</td><td class="left horse-name">イリフィ</td><td>9.0%</td><td>9.1</td><td>4</td><td class="ev-low">0.82</td></tr><tr><td>3</td><td>3</td><td class="left horse-name">アスタールフナ</td><td>8.8%</td><td>12.5</td><td>7</td><td class="ev-mid">1.11</td></tr><tr><td>4</td><td>10</td><td class="left horse-name">ゴールデンバランス</td><td>7.7%</td><td>13.8</td><td>8</td><td class="ev-mid">1.06</td></tr><tr><td>5</td><td>1</td><td class="left horse-name">モーゲンセン</td><td>7.2%</td><td>18.7</td><td>11</td><td class="ev-mid">1.34</td></tr><tr><td>6</td><td>6</td><td class="left horse-name">クロナ</td><td>7.1%</td><td>15.1</td><td>9</td><td class="ev-mid">1.07</td></tr><tr><td>7</td><td>7</td><td class="left horse-name">モリノセピア</td><td>7.0%</td><td>8.3</td><td>3</td><td class="ev-low">0.58</td></tr><tr><td>8</td><td>11</td><td class="left horse-name">ルージュアズライト</td><td>7.0%</td><td>7.0</td><td>2</td><td class="ev-low">0.49</td></tr><tr><td>9</td><td>8</td><td class="left horse-name">キャリーグレイス</td><td>5.8%</td><td>19.5</td><td>12</td><td class="ev-mid">1.13</td></tr><tr><td>10</td><td>5</td><td class="left horse-name">ラストシャリナ</td><td>5.7%</td><td>16.4</td><td>10</td><td class="ev-low">0.94</td></tr><tr><td>11</td><td>13</td><td class="left horse-name">アイアムイチバン</td><td>4.8%</td><td>20.4</td><td>13</td><td class="ev-low">0.99</td></tr><tr><td>12</td><td>16</td><td class="left horse-name">テセラリアン</td><td>4.6%</td><td>30.2</td><td>15</td><td class="ev-mid">1.39</td></tr><tr><td>13</td><td>15</td><td class="left horse-name">ワークソング</td><td>4.5%</td><td>11.7</td><td>6</td><td class="ev-low">0.53</td></tr><tr><td>14</td><td>14</td><td class="left horse-name">サウスバンク</td><td>4.5%</td><td>11.0</td><td>5</td><td class="ev-low">0.50</td></tr><tr><td>15</td><td>12</td><td class="left horse-name">キーガッツ</td><td>3.8%</td><td>34.6</td><td>16</td><td class="ev-mid">1.32</td></tr><tr><td>16</td><td>4</td><td class="left horse-name">タカネノハナコサン</td><td>2.8%</td><td>23.8</td><td>14</td><td class="ev-low">0.67</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">2 ローズカリス</td><td>9.6%</td><td>5.9</td><td class="ev-low">0.47</td></tr><tr><td>複勝</td><td class="left">2 ローズカリス</td><td>27.8%</td><td>2.3</td><td class="ev-low">0.57</td></tr><tr><td>馬連</td><td class="left">2 ローズカリス-9 イリフィ</td><td>1.9%</td><td>17.5</td><td class="ev-low">0.27</td></tr><tr><td>ワイド</td><td class="left">2 ローズカリス-9 イリフィ</td><td>5.5%</td><td>7.8</td><td class="ev-low">0.36</td></tr><tr><td>馬単</td><td class="left">2 ローズカリス→9 イリフィ</td><td>1.0%</td><td>29.4</td><td class="ev-low">0.23</td></tr><tr><td>3連複</td><td class="left">2 ローズカリス-3 アスタールフナ-9 イリフィ</td><td>0.6%</td><td>46.9</td><td class="ev-low">0.23</td></tr><tr><td>3連単</td><td class="left">2 ローズカリス→9 イリフィ→3 アスタールフナ</td><td>0.1%</td><td>192.7</td><td class="ev-low">0.16</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
