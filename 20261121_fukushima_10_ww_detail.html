@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福島放送賞 2026/11/21 FUKUSHIMA 10R (11/21 14:03 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>福島放送賞 2026/11/21 FUKUSHIMA 10R (11/21 14:03 予想)</h1>
+  <div class="meta">ダート1150m（右） | 不良 | 16頭立て | 3回 福島 5日目 サラ系3歳以上 2勝クラス （混合）［指定］ 定量 16頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">11. クインズポラリス</div>
+      <div class="pick-jockey">田辺 裕信</div>
+    </div>
+    <div class="pick-prob">12.1%</div>
+    <div class="pick-pop">4番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">1. ソニックブレイカー</div>
+      <div class="pick-jockey">横山 武史</div>
+    </div>
+    <div class="pick-prob">12.0%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">14. ゼファーテソーロ</div>
+      <div class="pick-jockey">T.マーカンド</div>
+    </div>
+    <div class="pick-prob">11.4%</div>
+    <div class="pick-pop">8番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">16頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">ソニックブレイカー</td><td>牡3</td><td>57</td><td>横山 武史</td><td>434(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">2</span></td><td class="left horse-name">ショウナンラリー</td><td>せん4</td><td>58</td><td>鮫島 克駿</td><td>484(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">3</span></td><td class="left horse-name">ビーマックス</td><td>牡4</td><td>58</td><td>浜中 俊</td><td>502(-2)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">4</span></td><td class="left horse-name">インディゴアスール</td><td>牡4</td><td>58</td><td>丹内 祐次</td><td>542(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">5</span></td><td class="left horse-name">ニシノラヴァンダ</td><td>牝4</td><td>56</td><td>丸田 恭介</td><td>440(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">6</span></td><td class="left horse-name">ペルセポネ</td><td>牝3</td><td>55</td><td>河原田 菜々</td><td>484(-8)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">7</span></td><td class="left horse-name">モズオウンゴール</td><td>牝3</td><td>55</td><td>永島 まなみ</td><td>456(-2)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">8</span></td><td class="left horse-name">パルプフィクション</td><td>牝5</td><td>56</td><td>富田 暁</td><td>444(+6)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">9</span></td><td class="left horse-name">レイアポポ</td><td>牝4</td><td>56</td><td>原 優介</td><td>484(-8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">10</span></td><td class="left horse-name">フェデルミエール</td><td>牝4</td><td>56</td><td>横山 琉人</td><td>498(-6)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">11</span></td><td class="left horse-name">クインズポラリス</td><td>牝5</td><td>56</td><td>田辺 裕信</td><td>502(0)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">12</span></td><td class="left horse-name">ペイシャヴァルツー</td><td>牝4</td><td>56</td><td>井上 敏樹</td><td>456(+14)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">13</span></td><td class="left horse-name">ビーグラッド</td><td>牝5</td><td>56</td><td>戸崎 圭太</td><td>444(-6)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">14</span></td><td class="left horse-name">ゼファーテソーロ</td><td>牡3</td><td>57</td><td>T.マーカンド</td><td>490(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">15</span></td><td class="left horse-name">コックピットサイト</td><td>牡3</td><td>57</td><td>荻野 極</td><td>490(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">16</span></td><td class="left horse-name">ナムラモモ</td><td>牝4</td><td>56</td><td>小沢 大仁</td><td>438(0)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ソニックブレイカー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">クインズポラリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ゼファーテソーロ</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">クインズポラリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ソニックブレイカー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ゼファーテソーロ</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ソニックブレイカー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">クインズポラリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ゼファーテソーロ</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ソニックブレイカー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">クインズポラリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ゼファーテソーロ</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">クインズポラリス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ソニックブレイカー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ゼファーテソーロ</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.40</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#8E8E93'>0.40</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">クインズポラリス</span></td>
+<td>+0.50</td>
+<td>+0.18</td>
+<td>+0.24</td>
+<td>+0.32</td>
+<td>+0.32</td>
+<td>12.2</td>
+<td>11.5</td>
+<td>12.1</td>
+<td><b>12.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">ソニックブレイカー</span></td>
+<td>+0.44</td>
+<td>+0.20</td>
+<td>+0.14</td>
+<td>+0.18</td>
+<td>+0.46</td>
+<td>11.2</td>
+<td>11.2</td>
+<td>15.5</td>
+<td><b>12.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">ゼファーテソーロ</span></td>
+<td>+0.40</td>
+<td>+0.18</td>
+<td>+0.04</td>
+<td>+0.24</td>
+<td>+0.38</td>
+<td>10.7</td>
+<td>11.2</td>
+<td>13.9</td>
+<td><b>11.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">ビーマックス</span></td>
+<td>+0.34</td>
+<td>+0.18</td>
+<td>+0.12</td>
+<td>+0.30</td>
+<td>+0.06</td>
+<td>10.1</td>
+<td>10.1</td>
+<td>9.3</td>
+<td><b>9.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">モズオウンゴール</span></td>
+<td>+0.19</td>
+<td>+0.26</td>
+<td>+0.06</td>
+<td>+0.22</td>
+<td>+0.30</td>
+<td>9.1</td>
+<td>9.6</td>
+<td>10.5</td>
+<td><b>9.4</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ペルセポネ</span></td>
+<td>+0.00</td>
+<td>+0.28</td>
+<td>+0.22</td>
+<td>+0.46</td>
+<td>+0.06</td>
+<td>8.3</td>
+<td>8.3</td>
+<td>6.6</td>
+<td><b>7.9</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">コックピットサイト</span></td>
+<td>+0.28</td>
+<td>-0.06</td>
+<td>-0.36</td>
+<td>+0.38</td>
+<td>+0.16</td>
+<td>6.6</td>
+<td>-</td>
+<td>7.4</td>
+<td><b>6.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ビーグラッド</span></td>
+<td>-0.04</td>
+<td>+0.04</td>
+<td>+0.14</td>
+<td>+0.08</td>
+<td>+0.30</td>
+<td>6.9</td>
+<td>-</td>
+<td>5.0</td>
+<td><b>6.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">16</span><span style="display:inline-block;margin-left:0.5em;">ナムラモモ</span></td>
+<td>-0.14</td>
+<td>-0.16</td>
+<td>+0.16</td>
+<td>+0.30</td>
+<td>+0.08</td>
+<td>6.2</td>
+<td>-</td>
+<td>3.8</td>
+<td><b>5.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">インディゴアスール</span></td>
+<td>-0.02</td>
+<td>+0.14</td>
+<td>-0.34</td>
+<td>+0.06</td>
+<td>-0.06</td>
+<td>4.4</td>
+<td>-</td>
+<td>4.6</td>
+<td><b>4.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">パルプフィクション</span></td>
+<td>-0.42</td>
+<td>-0.16</td>
+<td>+0.04</td>
+<td>-0.06</td>
+<td>-0.12</td>
+<td>3.4</td>
+<td>-</td>
+<td>2.0</td>
+<td><b>3.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">ペイシャヴァルツー</span></td>
+<td>-0.20</td>
+<td>-0.14</td>
+<td>-0.54</td>
+<td>+0.28</td>
+<td>-0.06</td>
+<td>2.6</td>
+<td>-</td>
+<td>2.7</td>
+<td><b>2.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">レイアポポ</span></td>
+<td>-0.59</td>
+<td>+0.00</td>
+<td>+0.02</td>
+<td>+0.10</td>
+<td>-0.14</td>
+<td>2.6</td>
+<td>-</td>
+<td>1.9</td>
+<td><b>2.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">ショウナンラリー</span></td>
+<td>-0.60</td>
+<td>-0.06</td>
+<td>-0.20</td>
+<td>-0.08</td>
+<td>-0.04</td>
+<td>2.0</td>
+<td>-</td>
+<td>2.4</td>
+<td><b>2.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">フェデルミエール</span></td>
+<td>-0.60</td>
+<td>-0.20</td>
+<td>+0.04</td>
+<td>-0.32</td>
+<td>-0.20</td>
+<td>2.0</td>
+<td>-</td>
+<td>1.1</td>
+<td><b>1.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ニシノラヴァンダ</span></td>
+<td>-0.52</td>
+<td>-0.14</td>
+<td>-0.40</td>
+<td>+0.00</td>
+<td>-0.16</td>
+<td>1.7</td>
+<td>-</td>
+<td>1.1</td>
+<td><b>1.5</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行2</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行2の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ソニックブレイカー, +0.5, 前走は1勝クラス重馬場のダ1200mで0.3秒差の1着、指数78.5。同じ福島ダ1150mの1勝クラスでは0.0秒差の2着が2回あり、指数は80.1と78.8。指数が78〜81で安定していて、2勝クラスでも通用する水準にある。<br><br>2番, ショウナンラリー, -0.6, 2勝クラスでは11着・15着・13着で、どれも1.4〜1.5秒差。指数も58.0〜66.6にとどまっていて、このクラスでは能力が足りていない。<br><br>3番, ビーマックス, +0.4, 2勝クラスのダ1000mで3着・4着・3着と崩れていない。特に不良馬場の噴火湾特別は0.2秒差で指数76.6。ただ2勝クラスのダ1200mでは13着・6着なので、距離が50m延びるのはわずかに割り引く。<br><br>4番, インディゴアスール, 0.0, 2勝クラスで0.2秒差の4着（指数75.6）はあるが、前走の2勝クラスは1.9秒差の11着で指数60.0。好走と凡走が交互に出ていて、評価は中立。<br><br>5番, ニシノラヴァンダ, -0.6, 2勝クラスでは芝で9着・14着・14着、ダ1700mでは6.4秒差の大敗。ダート短距離での実績はなく、クラスの壁にはっきり当たっている。<br><br>6番, ペルセポネ, +0.1, 前走は牝馬限定1勝クラスの不良ダ1200mを0.2秒差で勝ち、指数75.8。1勝クラス3着の指数76.0もあり、能力は一定ある。ただ前走は51kgの軽量で、今回は55kgに増える。1勝クラスで16着の大敗もあり、上げ幅は小さくする。<br><br>7番, モズオウンゴール, +0.3, 福島ダ1150mで2戦2勝（未勝利は0.7秒差で指数78.0、前走の1勝クラスは0.1秒差で指数72.4）とコース実績は完璧。ただ前走の指数は53kgでの72.4なので、2勝クラス相手では素の能力はまだ中位とみる。<br><br>8番, パルプフィクション, -0.4, 2勝クラスでは9着・9着・9着・13着と掲示板に一度も載っていない。指数は65〜72で頭打ちになっていて、昨年の福島放送賞も2.1秒差の13着だった。<br><br>9番, レイアポポ, -0.6, 2勝クラスは近2走が16着・16着で2.4〜3.0秒差の大敗。1勝クラスを勝ったときの指数も66.0と低く、この相手では厳しい。<br><br>10番, フェデルミエール, -0.7, 2勝クラスで8着・14着・11着・10着・14着と、5走続けて着外に負けている。指数も62〜71で、自分の軸では最も下にいる1頭。<br><br>11番, クインズポラリス, +0.5, 前走は2勝クラス重馬場のダ1200mで0.2秒差の4着、指数78.7。2勝クラスでの5着（0.6秒差、指数74.2）もあり、1勝クラスは0.9秒差の楽勝で指数80.1。すでに2勝クラスで通用する実績がある。<br><br>12番, ペイシャヴァルツー, -0.3, 不良馬場ダ1000mの雲仙特別で0.4秒差の5着（指数76.0）が唯一の好走。ほかは芝での大敗、3勝クラスで1.8秒差の10着、2勝クラスのダ1200mで15着と、内容が不安定。<br><br>13番, ビーグラッド, -0.2, 前走は1勝クラス不良馬場のダ1200mを0.1秒差で勝ち、指数75.8。ただその前の1勝クラスは1.7秒差の15着で、25戦2勝と勝ち切れない成績が続いている。今回は昇級で、わずかに割り引く。<br><br>14番, ゼファーテソーロ, +0.4, 前走は1勝クラスのダ1200mを0.1秒差で勝ち、指数79.4。福島ダ1150mの1勝クラスでも0.3秒差の3着が2回（指数77.0と75.0）あり、ダート短距離での成績が安定している3歳馬。<br><br>15番, コックピットサイト, +0.3, 1勝クラス稍重のダ1200mを0.2秒差で勝った指数81.2はメンバーで最も高い。ダ1200m前後の成績も1着・3着・1着と堅い。ただ葵S（GIII）は芝で16着、前走はレース中止で、そこから5か月ぶりになるので上げ幅は抑える。<br><br>16番, ナムラモモ, -0.1, 前走は1勝クラスを勝ったが、7頭立ての札幌ダ1000mで指数74.9。福島ダ1150mでは0.1秒差の3着がある一方、1勝クラスで9着・11着もあり、2勝クラスではやや見劣りする。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: -0.6, &quot;3&quot;: 0.4, &quot;4&quot;: 0.0, &quot;5&quot;: -0.6, &quot;6&quot;: 0.1, &quot;7&quot;: 0.3, &quot;8&quot;: -0.4, &quot;9&quot;: -0.6, &quot;10&quot;: -0.7, &quot;11&quot;: 0.5, &quot;12&quot;: -0.3, &quot;13&quot;: -0.2, &quot;14&quot;: 0.4, &quot;15&quot;: 0.3, &quot;16&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;2勝クラスですでに好走実績があるのは11番クインズポラリス（前走2勝クラス0.2秒差4着、指数78.7）と3番ビーマックス（2勝クラスのダ1000mで3着・4着・3着、不良で指数76.6）。昇級組では1番ソニックブレイカーが福島ダ1150mで0.0秒差2着が2回、指数78〜81と安定していて最上位。14番ゼファーテソーロも指数79.4で上位。15番コックピットサイトは指数81.2がメンバー最高だが、前走中止と5か月の休み明けで割り引く。7番モズオウンゴールは福島ダ1150mで2戦2勝だが指数は中位。2勝クラスで着外が続く10番・2番・5番・9番・8番は下げる。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①15番コックピットサイトの指数81.2を「メンバー最高」としているが、1番ソニックブレイカーが未勝利で81.3を出している。また15番の81.2は3歳限定の1勝クラスとみられ、割り引くなら休み明けや中止ではなく相手の格を根拠にする方が軸と合うのではないか。②1番ソニックブレイカーは2勝クラスを走っておらず、2勝クラスで0.2秒差・指数78.7の11番クインズポラリスと同じ+0.5になる根拠が見えない。③7番モズオウンゴール(+0.3)は1勝クラスの指数が72.4で、6番ペルセポネ(76.0／75.8)、13番ビーグラッド(75.8)、16番ナムラモモ(74.9)より低い。評価文も「中位」と書いており、コース実績だけで上に置くのは食い違っていないか。55kgへの斤量増も6番だけ割り引いている。④6番ペルセポネと13番ビーグラッドは前走の指数75.8も直前の大敗も同じで、0.3差の根拠が通算成績だけに見える。⑤10番フェデルミエールを最下位にしたが、ダート2勝クラスの指数64.4／62.2は9番レイアポポ(53.1／49.3)や2番ショウナンラリー(58.0〜66.6)より上。5番ニシノラヴァンダは「ダート短距離の実績なし」で判断材料が無いだけで、芝2勝クラスの指数は8番パルプフィクションと同程度。-0.6は下げすぎではないか。⑥12番ペイシャヴァルツーの減点材料は芝と3勝クラスでの負けが中心。ダート2勝クラスの指数76.0は4番インディゴアスールの75.6と並び、ダートの凡走(44.4)も4番の前走(60.0)と荒れ方が似ている。0.3差は見直す余地がないか。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ソニックブレイカー, +0.4, 1勝クラスでは0.3秒差の1着（指数78.5）と、福島ダ1150mで0.0秒差の2着が2回（指数80.1と78.8）。未勝利でも指数81.3を出していて水準は高いが、2勝クラスはまだ走っていないので、2勝クラスで実績がある11番より一段下に置く。<br><br>2番, ショウナンラリー, -0.6, 2勝クラスでは11着・15着・13着で、どれも1.4〜1.5秒差、指数は58.0〜66.6。同じコース・同じ距離の彦星賞でも13着で、このクラスでは能力が足りていない。<br><br>3番, ビーマックス, +0.4, 2勝クラスのダ1000mで3着・4着・3着。不良馬場の噴火湾特別は0.2秒差で指数76.6。ただ2勝クラスのダ1200mでは13着・6着なので、距離が延びる分をわずかに割り引く。<br><br>4番, インディゴアスール, 0.0, 2勝クラスで0.2秒差の4着（指数75.6）と1勝クラスの勝ち（指数77.4）がある。一方で前走の2勝クラスは1.9秒差の11着（指数60.0）。好走と凡走が交互に出ていて中立とみる。<br><br>5番, ニシノラヴァンダ, -0.4, 芝の2勝クラスでは9着・14着・14着で、指数は63.4〜70.8。8番パルプフィクションと同じくらいの水準で、ダ1700mの大敗は距離が合わなかった分として差し引く。ダート短距離の実績が無いので、下げ幅は8番と同じにとどめる。<br><br>6番, ペルセポネ, +0.1, 前走は牝馬限定1勝クラスの不良ダ1200mを0.2秒差で勝って指数75.8、その前の1勝クラス3着も指数76.0で、ダート短距離では指数75〜76が2回続いている。ただ前走は51kgで、今回は55kgに増えるので上げ幅は小さくする。<br><br>7番, モズオウンゴール, +0.1, 福島ダ1150mで2戦2勝（未勝利は0.7秒差で指数78.0）と同じコースでの実績はある。ただ前走の1勝クラスは53kgで指数72.4にとどまり、6番・13番・16番より低い。今回55kgに増えることも踏まえて、わずかに上げるだけにする。<br><br>8番, パルプフィクション, -0.4, 2勝クラスでは9着・9着・9着・13着と、一度も掲示板に載っていない。指数も65〜72で頭打ちで、昨年の福島放送賞も2.1秒差の13着だった。<br><br>9番, レイアポポ, -0.6, 2勝クラスの近2走は16着・16着で、2.4〜3.0秒差・指数49.3〜53.1の大敗。1勝クラスを勝ったときの指数も66.0と低く、この相手では厳しい。<br><br>10番, フェデルミエール, -0.5, 2勝クラスで5走続けて着外。ただダートの2勝クラスでの指数64.4と62.2は、9番や2番の近走よりは上で、最下位からは外す。<br><br>11番, クインズポラリス, +0.5, 前走は2勝クラスの重馬場ダ1200mで0.2秒差の4着、指数78.7。2勝クラスの5着（指数74.2）もあり、1勝クラスは0.9秒差で勝って指数80.1。このクラスでもう通用している実績は、メンバーの中で上位。<br><br>12番, ペイシャヴァルツー, -0.1, ダートの2勝クラスでは、不良馬場の雲仙特別で0.4秒差の5着・指数76.0がある。4番の2勝クラス最高（75.6）と同じくらいの水準。芝の大敗と格上の3勝クラスでの負けは割り引いて考える。ただ2勝クラスのダ1200mで15着（指数44.4）もあり、安定感で4番よりわずかに劣る。<br><br>13番, ビーグラッド, -0.1, 前走は1勝クラスの不良ダ1200mを0.1秒差で勝ち、指数75.8。ただダートの直前走は1勝クラスで1.7秒差の15着（指数55.6）。ダートで指数75前後を出したのは1回だけで、6番ほどの裏付けは無い。<br><br>14番, ゼファーテソーロ, +0.4, 前走は1勝クラスのダ1200mを0.1秒差で勝って指数79.4。福島ダ1150mの1勝クラスでも0.3秒差の3着が2回（指数77.0と75.0）あり、ダート短距離では安定している。<br><br>15番, コックピットサイト, +0.3, 1勝クラス稍重のダ1200mを0.2秒差で勝ち、指数81.2と水準は高い。ただこれは3歳限定の1勝クラスで、古馬と走った実績が無いので相手の格の分を割り引く。葵Sは芝なので、前走の中止は能力の証拠にならないので、どちらも評価には入れない。<br><br>16番, ナムラモモ, -0.1, 前走は1勝クラスの勝ちで指数74.9だが、7頭立ての札幌ダ1000mだった。福島ダ1150mでは0.1秒差の3着がある一方、1勝クラスで9着・11着もあり、2勝クラスではやや見劣りする。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.4, &quot;2&quot;: -0.6, &quot;3&quot;: 0.4, &quot;4&quot;: 0.0, &quot;5&quot;: -0.4, &quot;6&quot;: 0.1, &quot;7&quot;: 0.1, &quot;8&quot;: -0.4, &quot;9&quot;: -0.6, &quot;10&quot;: -0.5, &quot;11&quot;: 0.5, &quot;12&quot;: -0.1, &quot;13&quot;: -0.1, &quot;14&quot;: 0.4, &quot;15&quot;: 0.3, &quot;16&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;批判者の指摘は6点とも検証して受け入れた。①15番は割り引く理由を、休み明けや中止から『3歳限定1勝クラスでの指数81.2』という相手の格に変えた（+0.3は据え置き）。②2勝クラスを走っていない1番を+0.4に下げ、2勝クラスで0.2秒差・指数78.7の11番より下に置いた。③7番は1勝クラスの指数72.4が6・13・16番より低く斤量も増えるので、+0.1に下げた。④6番と13番は、ダートで指数75台を出した回数（2回と1回）で差をつけ、差を0.2に縮めた。⑤ダート2勝クラスの指数を見直して10番を-0.5に上げ、5番は芝2勝クラスの指数が8番と同じくらいなので-0.4に上げた。⑥12番は芝と格上での負けを割り引いて-0.1に上げ、4番との差を安定感の分の0.1にした。上位は11番、続いて1・3・14番。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、福島ダ1150mの不良馬場を展開の目で読んでみたけん、見てね。<br><br>**展開の見立て**<br>- 福島ダ1150mはコーナーが2つで、直線は約300mと短いっちゃん。不良馬場で時計の速い脚抜きのいいダートになるけん、基本は前が有利になるとよ。<br>- 逃げ・先行の馬がかなり多いと。2番ショウナンラリーが内からハナを切って、外から12番ペイシャヴァルツーと16番ナムラモモが競りかけるけん、ペースは平均より速めになると見とる。<br>- 想定する並び：2番が先頭。その後ろに7番モズオウンゴール、14番ゼファーテソーロ、8番パルプフィクション、11番クインズポラリスが2番手グループで続く。さらに15番、6番、4番、1番がその後ろ。<br>- 直線では、2〜5番手で脚をためた先行勢（7・14・11・6）が抜け出す形が本線っちゃん。<br>- 別のシナリオ：競り合いで前崩れになったら、中団の内で脚をためた1番ソニックブレイカーや3番ビーマックスが差してくる余地もあると。だけん「前残り」と決めつけて極端には振っとらんよ。<br><br>**各馬の補正**<br><br>1番, ソニックブレイカー, +0.2, 福島1150では4-3からも10-10からも2着がある自在型で、内枠から中団の内で脚をためられるけん、前が崩れても前に残っても対応しやすいとよ。<br><br>2番, ショウナンラリー, +0.2, 純粋な逃げ馬が最内枠に入ったけん、ロスなくハナを取りやすいと。ただ外から逃げ・先行馬に絡まれるけん、楽な単騎逃げにはならんと見て控えめにしとる。<br><br>3番, ビーマックス, +0.1, 中団からの立ち回り型で、不良馬場の1000mで上がり34.6を出して3着の実績があるっちゃん。速めのペースで内を立ち回れれば少し向くよ。<br><br>4番, インディゴアスール, +0.1, 3〜5番手につける先行型で、内寄りの2枠なけん位置取りに困らんと。脚抜きのいい馬場で先行集団の内に入れるのはわずかにプラスっちゃん。<br><br>5番, ニシノラヴァンダ, -0.1, 主に芝のスプリントを走っとる馬で、ダートで前に行った1700m戦では大きく失速しとるけん、今回どの位置で運ぶかがはっきりせんとよ。<br><br>6番, ペルセポネ, +0.3, 不良の新潟1200mを5-4の好位から勝っとる。先行馬が多い流れでその直後に控えられる脚質で、展開がはっきり向くっちゃん。<br><br>7番, モズオウンゴール, +0.4, 福島1150で2-2から2戦2勝のコース巧者やけん。今回も逃げ馬を前に置いて2〜3番手で運べるはずで、前有利の不良馬場と一番かみ合う脚質やと見とるよ。<br><br>8番, パルプフィクション, 0.0, 前の位置は取れる馬やけど、昨年の同じレースは2-2から失速しとって、不良の小倉でも4-4から伸びんかったと。位置取りの面でプラスもマイナスも付けにくいね。<br><br>9番, レイアポポ, -0.1, 福島1150を4-3から勝ったことはあるけど、前走は15-16と後ろからになっとって、行き脚が鈍っとるとよ。前有利の条件では少し不利っちゃん。<br><br>10番, フェデルミエール, -0.3, ダートでも8-7、芝では11-13と中団より後ろで運ぶ馬やけん、直線の短い不良の福島で後方からはかなり厳しいと。<br><br>11番, クインズポラリス, +0.3, 2-2や3-3で運ぶ先行型で、前走は重の中山で3-3から0.2秒差の4着と馬場をこなしとる。先行集団の外目で揉まれずに運べる形が想定できるとよ。<br><br>12番, ペイシャヴァルツー, -0.1, 不良の1000mで1-1から粘ったスピード型やけど、6枠からハナを主張すると2番とのハナ争いで脚を使うし、1150mの最後の50mも課題になるっちゃん。<br><br>13番, ビーグラッド, 0.0, 不良の新潟を7-6の中団から差し切っとるけど、7枠から中団の外を回ると距離のロスが出るけん、差し引きで中立にしとるよ。<br><br>14番, ゼファーテソーロ, +0.3, 福島1150で2-3からも7-6からも3着があって、前走は2-2から勝っとる先行型と。外枠からでも揉まれず好位に取りつける形で、前有利の馬場に合うっちゃん。<br><br>15番, コックピットサイト, 0.0, ダートでは2〜4番手で運ぶ先行型やけど、8枠からやとコーナーで外を回るロスが出るけん、好位で運べる良さと打ち消し合って中立っちゃん。<br><br>16番, ナムラモモ, -0.1, 2-2で運ぶ先行型で福島1150の3着もあるけど、大外枠から前に取りつくには脚を使うし、3〜4コーナーも外を回されやすいけん、少し割り引いとるよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.2, &quot;3&quot;: 0.1, &quot;4&quot;: 0.1, &quot;5&quot;: -0.1, &quot;6&quot;: 0.3, &quot;7&quot;: 0.4, &quot;8&quot;: 0.0, &quot;9&quot;: -0.1, &quot;10&quot;: -0.3, &quot;11&quot;: 0.3, &quot;12&quot;: -0.1, &quot;13&quot;: 0.0, &quot;14&quot;: 0.3, &quot;15&quot;: 0.0, &quot;16&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;福島ダ1150mの不良馬場は時計が速く、直線も短いけん前有利。逃げ・先行馬が多くペースは速めと見て、逃げ争いより2〜5番手で脚をためる好位勢（7モズオウンゴール、14ゼファーテソーロ、11クインズポラリス、6ペルセポネ）を上げた。最内の逃げ馬2番と自在型1番は小さくプラス。後方待機の10番と、外枠から先行争いに加わる12・16番は割り引き。競り合いで前が崩れた場合は中団の内の1・3番が浮上するシナリオも残しとる。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①先行馬が8頭以上（2・12・7・11・14・16・8・15）おるのに、7・11・14は『前有利』で上げ、6は『前がやり合う流れの直後に控える』で上げとって、ペースの前提が両立しとらん。ハイペースなら2-2組の上積みを削って1・13・3を見直す、前残りなら6の根拠が弱まる。②外枠の扱いが逆転しとる：14（7枠）は『揉まれず』で+0.3、同じ7枠の13や8枠の15・16は外ロスで減点。14と16は同じ型なのに差が0.4ある。③2は2勝クラス3戦で1-1/2-2から1.4秒以上負けとるのに+0.2。同じ『位置は取れるが失速』の8は0.0で基準が揃っとらん。④7の+0.4は4枠で先行馬に挟まれても楽に2〜3番手が取れる前提。2-2争いへの巻き込まれと1400での失速を割り引いとらん。⑤6と13は同じ日の新潟不良1200勝ちで、13のほうが時計が速く位置も自在なのに差が0.3。⑥10は芝1400で2-2もあり、後方脚質と言い切るのは早い。ハイペース想定なら-0.3の最低評価は見直せる。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘を確認したね。いちばん大きいのは①のペースの前提がそろっとらんかったところで、これは納得したけん、シナリオを一本にまとめ直したと。<br><br>**見直し後のシナリオ**: 2番が最内からハナを主張して、12番が6枠から競りかけ、7・16・8も2番手を取りに行くけん、前半は速くなる。ただ不良馬場は時計が速くて止まりにくいけん、追込が一気に届くとこまでは行かんと見とる。一番いいのは、ハナ争いに加わらんで済む**好位〜中団前の直後（4〜7番手）**やね。2-2でしか運べん馬は割り引いて、位置の融通が利く馬を上に取るっちゃん。<br><br>- ③の「2番は2勝クラスで1.4秒負けとる」は能力の話やけん、自軸の材料にはしとらん。ただ上のシナリオだと逃げ馬が一番厳しい立場になるけん、その理由で下げたと。<br>- ⑤の「13番のほうが時計が速い」も能力の話やけん採らん。それでも、同じ中団待機型が展開の恩恵を受ける点は認めて、差を縮めたとよ。<br><br>1番, ソニックブレイカー, +0.3, 4-3からも10-10からも福島1150で2着がある自在型で、前半が速くなるなら内枠から中団の内で脚をためて直線で割って来られるっちゃん。前が残る形でも4-3で運べるけん、どっちのペースでも崩れにくいとよ。<br><br>2番, ショウナンラリー, 0.0, 最内枠からハナは取りやすいけど、12・7・16らに外から絡まれる形が濃くて、ハナ争いの矢面に立つのはこの馬やけん。ロスの無さと被される不利が打ち消し合って中立にしたと。<br><br>3番, ビーマックス, +0.2, 4-4や6-5の中団前で運ぶ型で、不良の1000mで上がり34.6を出して3着しとるっちゃん。前が流れて内の好位直後が空く展開ならかみ合うとよ。<br><br>4番, インディゴアスール, +0.2, 3〜5番手で運ぶ型で、2枠からハナ争いの一列後ろの内に収まれるけん、今回のシナリオで一番おいしい位置を取りやすいっちゃん。<br><br>5番, ニシノラヴァンダ, -0.1, 主に芝のスプリントを使っとって、ダートで前に行った1700m戦では大きく失速しとるけん、今回どの位置で運ぶかの見通しが立たんとよ。<br><br>6番, ペルセポネ, +0.3, 不良の新潟1200を5-4から勝った好位差し型で、3枠から先行集団の直後の内に控えられるけん、前が流れる展開とかみ合うっちゃん。ハナに行った阪神では大敗しとって、控えるほうが合う馬やね。<br><br>7番, モズオウンゴール, +0.3, 福島1150を2-2で2戦2勝しとるけん、コースと位置取りの適性ははっきりしとる。ただ今回は4枠で両側に先行馬がおって、2番手争いに巻き込まれて脚を使う分を割り引いたと。<br><br>8番, パルプフィクション, -0.1, 2-2や3-2でしか運べん型で、昨年のこのレースも2-2から失速しとるっちゃん。4枠から先行争いに加わる形になりやすくて、速い流れでは少し不利とよ。<br><br>9番, レイアポポ, -0.1, 福島1150を4-3で勝った実績はあるけど、前走は15-16の最後方からで行き脚が鈍っとる。前が速くなっても、後方から短い直線で届くのは厳しいっちゃん。<br><br>10番, フェデルミエール, -0.2, 芝1400で2-2もあるけど、ダートでは8-7で運んどって、今回も中団より後ろになりそうやけん。前が流れるなら最低評価までは要らんけど、直線の短い福島で後ろからはやっぱり不利とよ。<br><br>11番, クインズポラリス, +0.2, 2-2も3-3もこなす先行型で、重の中山で3-3から0.2秒差に粘っとるっちゃん。6枠から一列控えて外目で揉まれずに運べるけど、ハナ争いのすぐ外におる分は控えめにしたとよ。<br><br>12番, ペイシャヴァルツー, -0.2, 1-1でしか持ち味が出んスピード型で、6枠からハナを取るには最内の2番を外から叩かんといけん。今回のシナリオで一番脚を使わされる立場で、1150mの最後の50mも響くっちゃん。<br><br>13番, ビーグラッド, +0.1, 不良の新潟1200を7-6の中団から差し切っとって、前が流れる展開は向くとよ。ただ7枠から中団の外を回るロスがあるけん、同じ型で内枠の6番よりは下にしとる。<br><br>14番, ゼファーテソーロ, +0.2, 福島1150で2-3からも7-6からも3着がある位置取りの融通が利く型やけん、7枠でもハナ争いに付き合わんで好位の外に収まれるっちゃん。外枠のロスは同じやけん、16番との差は融通が利く分だけに縮めたと。<br><br>15番, コックピットサイト, 0.0, 2-2も4-3もある先行型で、一列控える選択肢はあるけど、8枠からやとコーナーで外を回るロスが出る。好位で運べる良さと打ち消し合って中立っちゃん。<br><br>16番, ナムラモモ, -0.1, 2-2で運ぶ型で福島1150の3着もあるけど、大外から前に取りつくには脚を使うし、控えた小倉では7-9から伸びとらんけん、位置の融通が利かんとよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.0, &quot;3&quot;: 0.2, &quot;4&quot;: 0.2, &quot;5&quot;: -0.1, &quot;6&quot;: 0.3, &quot;7&quot;: 0.3, &quot;8&quot;: -0.1, &quot;9&quot;: -0.1, &quot;10&quot;: -0.2, &quot;11&quot;: 0.2, &quot;12&quot;: -0.2, &quot;13&quot;: 0.1, &quot;14&quot;: 0.2, &quot;15&quot;: 0.0, &quot;16&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;ペースの前提を『先行馬が多くて前半は速いが、不良で前も止まりにくい』の一本にそろえ、ハナ争いに加わらずに好位〜中団前の直後に収まれる馬を上に取った。2・12・8の2-2/1-1でしか運べん型と7の2番手争いへの巻き込まれを割り引き、1・3・4・13を引き上げた。外枠は位置の融通が利くかどうかで差を付け、14(+0.2)と16(-0.1)の差を縮めた。6と13の差は内外の枠差の分だけにした。10は芝での先行歴と速い流れを踏まえて-0.2に戻した。2の能力的な大敗と13の時計の速さは能力の話なので自軸の材料には採らなかった。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>体調派としての補正ポイント、付けたけんね。<br><br>1番, ソニックブレイカー, +0.1, 前走436kgから-2kgの434kgで、好走した430〜436kgの範囲に収まっとる。調教は「一息入るも仕上る」でほぼ仕上がっとるけど、小柄な馬に斤量+1kg(57kg)はわずかに割り引くけん、プラスは小さめにしとる。<br><br>2番, ショウナンラリー, -0.3, 4か月ぶりで484kg(0)。勝ったときの496kgより10kg以上軽い状態から戻っとらん。調教評価も「元気はいいが」と含みがあって、休み明けで上積みは薄い。<br><br>3番, ビーマックス, +0.2, 3か月ぶりで502kg(-2)。好走した496〜506kgの真ん中にある。「乗り込み入念」で、休み明けでも乗り込み量は足りとる。斤量58kgも前走と同じ。<br><br>4番, インディゴアスール, -0.4, 542kg(+10)はキャリアで一番重い。好走した530〜534kgより約10kg重くて、太め残りが心配。一杯に追って「この一追いで良化」の評価やけん、まだ仕上がり途上と読む。<br><br>5番, ニシノラヴァンダ, -0.4, 440kg(+10)で、これまでの428〜434kgから一気に増えとって最高体重。成長分と言える材料が無いうえ、調教は「動き今ひと息」で、余分な肉と見る。<br><br>6番, ペルセポネ, +0.3, 前走+18kgの492kgから-8kgの484kg。これまでの474〜482kgに近い数字に絞れてきとる。「ますます快調」で調子↗、状態は上向き。ただ減量の効いた51kgから55kgへ+4kg(スプリントで約1.5〜2馬身ぶん)になるけん、プラスは控えめにする。<br><br>7番, モズオウンゴール, +0.2, 中1週で456kg(-2)。勝った前走の体重をそのまま保てとって、詰めて使った疲れは見えん。「好調持続」で状態は高いまま。斤量+2kg(53→55kg)のぶんだけ控えめにしとる。<br><br>8番, パルプフィクション, +0.1, 3か月半ぶりで444kg(+6)。これまで434〜454kgと上下が大きかった馬で、今回はその真ん中。調教は「仕上がり良好」で、仕上がりにはわずかにプラス。<br><br>9番, レイアポポ, -0.1, 叩き2走目で484kg(-8)。勝ったときの482kgに近づいて体重の形は悪くない。ただ調教が「あまり変わり身無」で、叩いた上積みは期待しにくい。<br><br>10番, フェデルミエール, +0.1, 3か月ぶりで498kg(-6)。これまでの491〜504kgの範囲内。「余裕ある手応え」で状態は普通以上やけど、目立つ上昇材料は無い。<br><br>11番, クインズポラリス, +0.4, 休み明けを叩いて2走目、502kg(0)は勝ったときと同じで体重がずっと安定しとる。調教は「太めも力強い」で調子↗。数字の上では太めは見えんので、叩き2走目で上向いとるサインと読む。<br><br>12番, ペイシャヴァルツー, -0.6, 456kg(+14)。これまでの428〜442kgを大きく超える最高体重で、前回+14kgの442kgで出たときは17着やった。調教も「動き今ひと息」で、重め残りの不安ははっきりしとる。<br><br>13番, ビーグラッド, +0.2, 中3週で444kg(-6)。勝った前走の+6kgが戻っただけで、ふだんの444〜450kgの範囲。「活気十分」でラスト1F11.4秒とシャープに動けて、勝った勢いを保っとる。<br><br>14番, ゼファーテソーロ, 0.0, 3か月半ぶりで490kg(+8)。勝ったときの482kgより重いけど、秋の3歳馬なら成長分として許容できる。「フットワーク軽快」も、斤量+1kgと休み明けで相殺して中立にする。<br><br>15番, コックピットサイト, -0.5, 前走は競走中止で、そこから5か月ぶり。490kg(+4)は勝ったときの474kgより16kg重い。調教も「もう一追い欲しい」で、仕上がり途上のうえ中止明けの不安が残る。<br><br>16番, ナムラモモ, +0.2, 4か月ぶりで438kg(0)。勝ったときとまったく同じ体重で、「仕上がり良好」。小柄やけど斤量は前と同じ56kgなので負担は増えとらん。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.1, &quot;2&quot;: -0.3, &quot;3&quot;: 0.2, &quot;4&quot;: -0.4, &quot;5&quot;: -0.4, &quot;6&quot;: 0.3, &quot;7&quot;: 0.2, &quot;8&quot;: 0.1, &quot;9&quot;: -0.1, &quot;10&quot;: 0.1, &quot;11&quot;: 0.4, &quot;12&quot;: -0.6, &quot;13&quot;: 0.2, &quot;14&quot;: 0.0, &quot;15&quot;: -0.5, &quot;16&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;体調面で上位は、叩き2走目で体重が安定し調子↗のクインズポラリス、体重が絞れて快調だが斤量+4kgのペルセポネ、勝ったときの体重を保つビーグラッド・モズオウンゴール・ナムラモモ。不安は、最高体重+14kgで動きも今ひと息のペイシャヴァルツー、競走中止明けで調教も物足りないコックピットサイト、最高体重で太め残りが懸念されるインディゴアスールとニシノラヴァンダ。抜けて良い馬はおらず、全体の振り幅は控えめ。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①11番クインズポラリス+0.4: 『太めも力強い』を数字で打ち消しとるが、4番・12番では短評を減点根拠にしとって基準が揃わん。叩き2走目なのに502kg(0)で絞れとらん点は太め残りとも読める。同じ叩き2走目で勝ったときの体重に近づいた9番レイアポポ(-0.1)との0.5差は説明が要る。②13番ビーグラッド+0.2: 勝ったのは450kgで、今回の444kgは15着・11着のときと同じ。他馬で使う『勝ったときの体重』の基準なら割引材料やないか。③6番ペルセポネの+18kg(勝ち)を余分とみなし、14番ゼファーテソーロの+8kgは3歳の成長分とする読みが食い違っとる。④休み明けの減点が14番だけで、3・8・10・16番には無い。⑤8番パルプフィクションと10番フェデルミエールは好走した範囲ではなく全体の範囲と比べとる(直近は全部凡走)。8番の±16〜20kgの振れも不安定材料。⑥1番ソニックブレイカーは57kgで勝った実績があって斤量割引の根拠が弱い。強めに追って1F11.8は上げる余地あり。⑦7番モズオウンゴールは栗坂3F26.9が他より明らかに遅く、『疲れなし』と断定できるか。⑧最下位は、中止明け5か月で勝ち時+16kg・『もう一追い欲しい』の15番コックピットサイトと、17着が芝の12番ペイシャヴァルツーのどちらが下か再確認を。4番インディゴアスールの減点は短評より一杯追いで1F13.3の時計を根拠にするほうが筋が通る。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>批判者の指摘は一つずつ数字と照らして確かめたけん、納得したところだけ直したよ。主な見直しは次のとおりやね。<br><br>- **⑥ 1番**は 57kg で勝った実績があるけん、斤量の割引をやめて上げた。<br>- **②③ 13番・6番**は「勝ったときの体重」の基準をそろえて読み直した。<br>- **④ 14番**は休み明けの扱いを他の馬とそろえた。<br>- **⑤ 8番・10番**は好走したときの体重と結びつかんけん、中立に戻した。<br>- **4番・12番・15番**は減点の根拠を組み直した。<br><br>1番, ソニックブレイカー, +0.2, 434kg(-2)は前走で勝った436kgとほぼ同じで、430〜436kgの好走帯に収まっとる。57kgでも4月に430kgで勝っとるけん、斤量の割引は取り下げた。強めに追ってラスト1F11.8秒、「一息入るも仕上る」で、8週あけた仕上がりに不安は無いっちゃん。<br><br>2番, ショウナンラリー, -0.3, 4か月ぶりで484kg(0)。勝ったときの496kgより12kg軽いまま戻っとらん。調教も「元気はいいが」と含みのある評価で、休み明けの上積みは薄いと見とる。<br><br>3番, ビーマックス, +0.2, 3か月ぶりで502kg(-2)。3着が2回あった496〜506kgのちょうど真ん中やね。休み明けでも「乗り込み入念」で乗り込みの量は足りとって、斤量58kgも据え置き。<br><br>4番, インディゴアスール, -0.4, 542kg(+10)はキャリアで一番重くて、好走した530〜534kgより約10kg重い。一杯に追ってもラスト1F13.3秒しか出とらんのが、重め残りの裏付けになっとる。「この一追いで良化」の評価からも、まだ仕上がり途上と読む。<br><br>5番, ニシノラヴァンダ, -0.4, 440kg(+10)で、これまでの428〜434kgを超える最高体重。4歳牝馬で成長分と言える材料が無いうえに「動き今ひと息」で、余分な肉と見る。<br><br>6番, ペルセポネ, +0.2, 前走は+18kgの492kgで勝っとるけん、3歳牝馬の成長分と読み直した。今回の484kg(-8)が「絞れたサイン」という読みは取り下げる。「ますます快調」で調子↗は良い材料やけど、減量の効いた51kgから55kgへ+4kg(スプリントで約1.5〜2馬身ぶん)になるけん、プラスは小さめにしとる。<br><br>7番, モズオウンゴール, +0.1, 中1週で456kg(-2)。勝った前走の体重をほぼ保てとる。ただ栗東坂路の3F26.9秒は他の馬より明らかに軽めで、中1週の調整としては普通でも「疲れなし」とまでは言い切れん。斤量も+2kg(53→55kg)になるけん、プラスは下げた。<br><br>8番, パルプフィクション, 0.0, 444kg(+6)は直近5走の434〜454kgの範囲内。でもその5走は全部9着以下で、好走した体重の目安が無い。前々走+20kg・前走-16kgと体重の振れも大きいけん、「仕上がり良好」があっても中立にする。<br><br>9番, レイアポポ, 0.0, 叩き2走目で484kg(-8)と、勝ったときの482kgに近づいた体重の形はプラスやね。ただ調教の評価は「あまり変わり身無」でマイナス材料。体重と調教で打ち消し合うけん中立にする。<br><br>10番, フェデルミエール, 0.0, 498kg(-6)は491〜504kgの範囲内。ただこの範囲で走った直近5走はどれも凡走で、好走と結びつく体重やない。「余裕ある手応え」も上がり目の決め手にはならんけん中立。<br><br>11番, クインズポラリス, +0.3, 502kg(0)は勝ったときと同じ体重で、4走続けて502〜504kgの「この馬の普通」やけん、数字の上では太め残りとは読まん。調子↗はプラス材料。ただ叩き2走目で絞れたわけやないし「太め」の短評も引っかかるけん、プラスは下げた。9番との差は、調子↗か「あまり変わり身無」かの違いやね。<br><br>12番, ペイシャヴァルツー, -0.5, 456kg(+14)は、これまで428〜442kgの馬が平常より約20kg重い最高体重で、増え幅は今回のメンバーで一番大きい。前回+14kgで17着やったのは芝のレースやけん、そこへの結び付けは弱めた。それでも「動き今ひと息」と合わせて、重め残りの不安ははっきりしとる。<br><br>13番, ビーグラッド, +0.1, 勝った前走は450kg(+6)。今回の444kgは15着・11着だったときと同じ体重で、勝ったときの基準で見れば少し割り引く材料やね。「活気十分」でラスト1F11.4秒と鋭く動けとるけん、プラスは残すけど小さくした。<br><br>14番, ゼファーテソーロ, +0.1, 3か月半ぶりで490kg(+8)。勝ったときの482kgより重いけど、3歳牡馬の成長分と見て許容する(6番・15番も同じ基準で見とる)。休み明けの減点は他の馬とそろえて外して、「フットワーク軽快」のぶんだけわずかにプラス。57kgも以前に経験済み。<br><br>15番, コックピットサイト, -0.4, 490kg(+4)は直近の484〜486kgからの増え方としては、3歳牡馬の成長分として14番と同じ基準で許容する。それでも競走中止から5か月の休み明けで、「もう一追い欲しい」と仕上がり途上がはっきりしとる。体重の不安は12番ほど大きくないけん、12番の一段上に置く。<br><br>16番, ナムラモモ, +0.2, 4か月ぶりで438kg(0)は勝ったときとまったく同じ体重で、「仕上がり良好」。小柄な馬やけど斤量は前と同じ56kgで、負担は増えとらん。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.3, &quot;3&quot;: 0.2, &quot;4&quot;: -0.4, &quot;5&quot;: -0.4, &quot;6&quot;: 0.2, &quot;7&quot;: 0.1, &quot;8&quot;: 0.0, &quot;9&quot;: 0.0, &quot;10&quot;: 0.0, &quot;11&quot;: 0.3, &quot;12&quot;: -0.5, &quot;13&quot;: 0.1, &quot;14&quot;: 0.1, &quot;15&quot;: -0.4, &quot;16&quot;: 0.2}, &quot;analysis_summary&quot;: &quot;批判を受けて、好走したときの体重を基準にする読み方を全馬でそろえた。13番は勝ったときの450kgから凡走時の444kgに戻ったので+0.1へ下げた。6番の+18kg勝ちは14番・15番と同じく3歳馬の成長分と読み直し、絞れたサインの読みを取り下げて+0.2にした。休み明けの減点は乗り込み評価がよい馬に一律でかけず、14番は+0.1にそろえた。8番と10番は直近が全部凡走で好走体重の目安が無いので0.0。1番は57kgでの勝ち実績から斤量割引をやめて+0.2。7番は坂路の時計が軽めで疲れ無しと断定できないので+0.1。11番は平常の体重で調子↗だが絞れてはいないので+0.3、9番は体重の形と調教の評価が打ち消し合うので0.0。4番の減点は一杯追いでラスト1F13.3秒という時計を根拠に組み直した。最下位は約20kg増で動き今ひと息の12番(-0.5)とし、成長分を考えた15番(-0.4)を一段上に置いた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、福島ダ1150mの不良馬場を、血統の面だけで見たけん出すね。脚抜きのいい不良馬場になると、先行力とスピードがある血統がそのまま生きるっちゃん。そこで、ダート短距離のスピード血統（サウスヴィグラス系、米国型ダート血統）を上げて、長距離型の血統は下げたとよ。実績から読める適性とぶつからんよう、補正は控えめにしとる。<br><br>1番, ソニックブレイカー, +0.2, 父モーリスは芝寄りやけど、母父サクラバクシンオーから短距離のスピードを受け継いどる。重馬場のダ1200で勝っとるけん、脚抜きのいい馬場が合う下地はあるとよ。<br><br>2番, ショウナンラリー, -0.1, 父ナダルの産駒はダ1400〜1800で力を出す型で、母父ハーツクライも中距離型やけん、1150mは少し短いっちゃん。重馬場では11着やったけん、道悪で浮上する根拠もなか。<br><br>3番, ビーマックス, +0.4, 母父サウスヴィグラスはダート短距離スピードの代表格で、父サトノアラジンのスピードとも噛み合う配合になっとる。函館ダ1000の不良で近走一番の指数を出しとるけん、血統面の裏付けもあるとよ。<br><br>4番, インディゴアスール, +0.1, 父リオンディーズの産駒はダート短距離をこなすけん、条件は合っとる。ただ母父フジキセキに道悪を強く推す材料はなく、上げるのはわずかにしとる。<br><br>5番, ニシノラヴァンダ, 0.0, 父サトノアラジンと母父Sidney&#x27;s Candyで米国型のスピードは持っとるけど、走っとるのはほとんど芝やし、ダートで適性を示した結果もなか。条件が替わって一変すると言える根拠は薄いけん中立にしとる。<br><br>6番, ペルセポネ, +0.4, 父ナダルのダートの力に、母父サウスヴィグラスの短距離スピードが加わった配合で、ダート短距離に合う形になっとる。前走の新潟ダ1200不良で勝っとって、道悪への適性が血統どおりに出とるとよ。<br><br>7番, モズオウンゴール, +0.2, 父モズアスコットの産駒はダートの成績がよくて、3歳秋の成長期とも合っとる。母父Cape Blancoはスタミナ寄りやけど、稍重の福島1150で勝っとるけん、少し上げとる。<br><br>8番, パルプフィクション, 0.0, 父ミッキーアイルは短距離型やけど芝寄りで、母父ステイゴールドもダート短距離の後押しにはならん。小倉ダ1000の不良も9着やったけん中立にしとる。<br><br>9番, レイアポポ, +0.1, シニスターミニスターにワイルドラッシュを重ねた生粋のダート血統で、ダートへの適性自体は十分あるとよ。ただ力で押すタイプで、不良の高速馬場で強みが増す型ではなかけん、上げるのはわずかにしとる。<br><br>10番, フェデルミエール, -0.4, 父ゴールドアクターは芝の長距離型で、ダート1150mのスピード勝負とは方向がはっきり逆っちゃん。母父アルデバランIIのスピードを足しても、この適性のずれは埋まりきらんと見とる。<br><br>11番, クインズポラリス, +0.3, シニスターミニスターに母父Seeking the Goldの米国型ダートスピードが入った配合で、短距離の先行力を支えとる。中山ダ1200の重で4着、指数78.7が出とって、道悪がプラスに働くタイプやね。<br><br>12番, ペイシャヴァルツー, +0.3, 母父サウスヴィグラスからダート短距離のスピードを受け継いどる。小倉ダ1000の不良で近走一番の内容やったけん、脚抜きのいい馬場は合う方に出とるとよ。<br><br>13番, ビーグラッド, 0.0, エピファネイアにディープインパクトの芝中距離の配合で、本来ならダート短距離はマイナスっちゃん。ただ新潟ダ1200の不良で勝っとって、芝血統のスピードが不良の高速ダートで生きる面もあるけん、相殺して中立にしとる。<br><br>14番, ゼファーテソーロ, +0.1, 父モズアスコットの産駒はダートに合っとって、3歳の今は伸び盛りの時期やね。母父ダイワメジャーのスピードもあるけど、ダートの道悪では実績がなかけん、上げるのはわずかにしとる。<br><br>15番, コックピットサイト, +0.5, ドレフォンにTapitを重ねた本格的な米国型ダートスピード血統で、ダート短距離と脚抜きのいい馬場の両方にはっきり合っとる。稍重のダ1200で指数81.2を出して勝っとって、血統どおりの適性が実績にも出とるとよ。<br><br>16番, ナムラモモ, +0.4, 父ダノンレジェンド（Macho Uno系）はダート短距離のスピードが持ち味で、母父ヨハネスブルグも短距離の速さを足しとる。1000〜1150mの短い距離に向く配合で、このコースにぴったり合っとる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: 0.4, &quot;4&quot;: 0.1, &quot;5&quot;: 0.0, &quot;6&quot;: 0.4, &quot;7&quot;: 0.2, &quot;8&quot;: 0.0, &quot;9&quot;: 0.1, &quot;10&quot;: -0.4, &quot;11&quot;: 0.3, &quot;12&quot;: 0.3, &quot;13&quot;: 0.0, &quot;14&quot;: 0.1, &quot;15&quot;: 0.5, &quot;16&quot;: 0.4}, &quot;analysis_summary&quot;: &quot;福島ダ1150mの不良馬場は脚抜きがよく、先行力とスピードがある血統が生きる。米国型ダートスピード血統のドレフォン×Tapit（15番）を最上位にし、母父サウスヴィグラス系（3・6・12番）とダノンレジェンド×ヨハネスブルグ（16番）を上げた。長距離型のゴールドアクター産駒（10番）と中距離寄りの2番は下げた。芝血統でもダートの不良馬場で実績がある13番は中立にした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①15番コックピットサイト+0.5は根拠が稍重1戦(1勝クラス)だけで不良の実績は無く、母父Tapitは中距離寄り。不良で勝っとる6番ペルセポネや13番ビーグラッドより上に置く理由を見直す余地はないか。②16番ナムラモモ+0.4は道悪に一言も触れとらず近走は全部良。14番ゼファーテソーロや4番インディゴアスールを『道悪の材料が無い』で抑えた基準と食い違っとらんか。1150の実績も指数67.8の3着だけ。③13番ビーグラッド0.0と6番ペルセポネ+0.4は同じ日の新潟ダ1200不良で勝ち、指数は同じ75.8。『芝スピードが不良で生きる』は今日の条件では加点の材料で、相殺に使うのは理屈が逆ではないか。④同じシニスターミニスター産駒で、9番レイアポポは『不良で強みが増す型ではない』、11番クインズポラリスは『道悪がプラス』と見方が逆。11番の指数は良馬場の方が高い。⑤父モズアスコットの7番モズオウンゴールと14番ゼファーテソーロは、母父がスピード寄りの14番の方が配合は条件に合うのに付値が逆。父サトノアラジンの3番ビーマックスと5番ニシノラヴァンダでも父の扱いが揃っとらず、ダート短距離を走っとらん5番を血統から拾う余地はないか。12番ペイシャヴァルツーは父オーヴァルエースの評価が抜けとる。3番ビーマックスは重で13着の方にも触れた方がよい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ソニックブレイカー, +0.2, 父モーリスは芝寄りやけど、母父サクラバクシンオーから短距離のスピードを受け継いどる。中山ダ1200の重で勝っとって、脚抜きのいい馬場が合う下地はあるけん据え置きにしとる。<br><br>2番, ショウナンラリー, -0.1, 父ナダルはダ1400〜1800で力を出す型で、母父ハーツクライも中距離型やけん、1150mは少し短いっちゃん。中山ダ1200の重で11着、福島1150の稍重で13着やけん、道悪で浮上する根拠もなか。<br><br>3番, ビーマックス, +0.3, 母父サウスヴィグラスのダート短距離スピードで、芝マイル型の父サトノアラジンをダートに寄せとる配合やね。函館ダ1000の不良では指数76.6を出したけど、阪神ダ1200の重では13着もあって道悪の結果が揃っとらんけん、少し下げたとよ。<br><br>4番, インディゴアスール, +0.1, 父リオンディーズの産駒はダート短距離をこなすけん、条件は合っとる。ただ母父フジキセキに道悪を推す材料はなく、上げるのはわずかにしとる。<br><br>5番, ニシノラヴァンダ, +0.1, 父サトノアラジンは芝のスピード型やけど、母父Sidney&#x27;s Candyで米国型の速さは入っとる。ダートは距離が長すぎた1700mの1戦だけで適性はまだ分からんけん、不良の速いダートで芝スピードが生きる余地をわずかに見る程度にしとる。<br><br>6番, ペルセポネ, +0.4, 父ナダルのダートの力に母父サウスヴィグラスの短距離スピードが加わった配合で、ダート短距離に合う形になっとる。新潟ダ1200の不良で勝っとって、道悪への適性が血統どおりに出とるとよ。<br><br>7番, モズオウンゴール, +0.2, 父モズアスコットの産駒はダートでよく走るし、3歳秋の成長期とも合っとる。母父Cape Blancoはスタミナ寄りで配合だけなら14番より短距離向きやないけど、福島1150を良と稍重で2勝しとる実績があるけん据え置きにしとる。<br><br>8番, パルプフィクション, 0.0, 父ミッキーアイルは短距離型やけど芝寄りで、母父ステイゴールドもダート短距離の後押しにはならん。小倉ダ1000の不良も9着やったけん中立にしとる。<br><br>9番, レイアポポ, +0.1, シニスターミニスターに母父ワイルドラッシュを重ねたパワー型のダート血統で、ダートへの適性自体は十分あるとよ。ただ母父がスピードより持続力寄りで、短距離の不良で強みが増す型とは言いにくいけん、上げるのはわずかにしとる。<br><br>10番, フェデルミエール, -0.4, 父ゴールドアクターは芝の長距離型で、ダート1150mのスピード勝負とは方向がはっきり逆っちゃん。母父アルデバランIIのスピードを足しても、この適性のずれは埋まりきらんと見とる。<br><br>11番, クインズポラリス, +0.2, 9番と同じ父シニスターミニスターでも、母父Seeking the Goldの米国型スピードが入っとって短距離の先行力はこっちが上やね。ただ指数は良の方が高くて道悪がプラスとまでは言えんけん、少し下げたとよ。<br><br>12番, ペイシャヴァルツー, +0.3, 父オーヴァルエースは産駒が少なくて傾向を言い切れんけん、評価の中心は母父サウスヴィグラスのダート短距離スピードにしとる。芝1000では大敗、小倉ダ1000の不良で5着・指数76.0が近走一番やけん、ダートの脚抜きのいい馬場が合う方に出とるとよ。<br><br>13番, ビーグラッド, +0.2, エピファネイアにディープインパクトの芝血統で、ダートの良では阪神ダ1200で15着と合わんかった。そのぶん新潟ダ1200の不良での勝ちは、芝のスピードが速い不良ダートで生きた形と見られて、今日の馬場ならプラスやけん引き上げたとよ。<br><br>14番, ゼファーテソーロ, +0.2, 父モズアスコットに母父ダイワメジャーのスピードが入っとって、配合は7番より短距離寄りやね。ダートの道悪では実績が無いけど、福島1150で3着2回と距離適性は出とるけん、7番と同じ値にそろえたとよ。<br><br>15番, コックピットサイト, +0.4, 父ドレフォンは米国のダート短距離王で、母父Tapitも米国ダートの主流血統やけん、ダート短距離への適性ははっきりあるとよ。ただ道悪で走ったのは中山ダ1200の稍重での勝ち1回だけで不良は走っとらんけん、6番と同じ値に下げたとよ。<br><br>16番, ナムラモモ, +0.3, 父ダノンレジェンド（Macho Uno系）はダート短距離のスピードが持ち味で、母父ヨハネスブルグも速さを足した1000〜1150m向きの配合やね。ただ近走は全部良で道悪の裏付けが無く、1150も3着が1回だけやけん、4番・14番と同じ基準で少し下げたとよ。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: -0.1, &quot;3&quot;: 0.3, &quot;4&quot;: 0.1, &quot;5&quot;: 0.1, &quot;6&quot;: 0.4, &quot;7&quot;: 0.2, &quot;8&quot;: 0.0, &quot;9&quot;: 0.1, &quot;10&quot;: -0.4, &quot;11&quot;: 0.2, &quot;12&quot;: 0.3, &quot;13&quot;: 0.2, &quot;14&quot;: 0.2, &quot;15&quot;: 0.4, &quot;16&quot;: 0.3}, &quot;analysis_summary&quot;: &quot;批判を受けて道悪の扱いを揃えた。不良を走っとらん15番は+0.5から+0.4、道悪の裏付けが無い16番は+0.4から+0.3に下げた。13番は芝血統のスピードが不良ダートで生きるのを今日の条件では加点と見て、0.0から+0.2に上げた。11番は指数が良馬場の方が高いので+0.2、3番は重での13着を踏まえて+0.3に下げた。14番は母父のスピードを評価して7番と同じ+0.2、5番は米国型の母父を見て+0.1を付けた。12番は父オーヴァルエースの傾向が読めんので、母父サウスヴィグラスを中心に+0.3のまま。6番が+0.4で、15番と並んでこのレースの血統上位。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, ソニックブレイカー, +0.5, 前走で勝たせた横山武史がそのまま乗る。手の内を知る関東トップ騎手で、福島の小回りにも定評がある。稲垣厩舎もこの馬で横山武史を軸にしてきており、信頼できる組み合わせ。<br><br>2番, ショウナンラリー, -0.1, 池添から鮫島克駿に替わる。手の内を知る騎手ではなく、嘉藤厩舎もこの条件で目立つ実績はないため、陣営面での後押しは薄い。<br><br>3番, ビーマックス, +0.1, 川田から浜中俊に戻る。格は一枚落ちるが、2走前・3走前に乗って2勝クラスで好走させており、癖は分かっている。<br><br>4番, インディゴアスール, 0.0, 5走続けて乗った松山弘平の手を離れるのはマイナス。ただ、替わる丹内祐次はローカル開催の福島を得意にしており、差し引きで中立。<br><br>5番, ニシノラヴァンダ, -0.2, 毎走のように騎手が替わり、今回の丸田恭介も初めて乗る。陣営に一貫した戦略が見えず、後押しする材料がない。<br><br>6番, ペルセポネ, +0.1, 前走で勝たせた河原田菜々の継続騎乗。前走の51kg（減量込み）から今回は55kgの定量になり、その恩恵は消えるが、手の内を知る点はわずかにプラス。<br><br>7番, モズオウンゴール, +0.3, 永島まなみの継続騎乗で、このコンビは福島ダ1150mで2戦2勝。コースを知り尽くした組み合わせの信頼度は高い。前2走より斤量が2kg重い点は割り引く。<br><br>8番, パルプフィクション, -0.1, 富田暁が乗り、昨年の同レースは13着。同じ陣営・同じ騎手で上積みの裏付けがない。<br><br>9番, レイアポポ, -0.2, 原優介の継続騎乗だが、前走は16着の大敗。2勝クラスでは騎手の格がやや足りず、青木厩舎の後押しも乏しい。<br><br>10番, フェデルミエール, -0.2, 毎走騎手が替わり、横山琉人も初騎乗。中川厩舎は地方遠征も含めて試行錯誤が続いており、陣営の勝負気配は読み取れない。<br><br>11番, クインズポラリス, +0.4, ベテランの田辺裕信が4走続けて乗っており、勝ち鞍を挙げたのも田辺。上原厩舎の勝負パターンが固まっていて、手の内を知る名手の継続騎乗は信頼できる。<br><br>12番, ペイシャヴァルツー, -0.1, 井上敏樹は不良馬場の雲仙特別で5着に導いた騎手。ただ騎手の格・吉田厩舎の実績とも強調材料に乏しい。<br><br>13番, ビーグラッド, +0.4, 前走で勝たせた小沢大仁から戸崎圭太へ、トップ騎手への乗り替わり。リーディング上位の騎手を確保したことに、岡田厩舎の昇級初戦への勝負気配がうかがえる。<br><br>14番, ゼファーテソーロ, +0.6, 菊沢一樹から、短期免許で来ている世界的名手T.マーカンドへの乗り替わり。栗田厩舎がテソーロの馬で一流騎手を用意しており、はっきりした勝負気配。<br><br>15番, コックピットサイト, +0.2, 荻野極が6戦中5戦で乗っており、2勝ともこのコンビ。鹿戸厩舎の格もあり、手の内を知る継続騎乗はわずかにプラス。<br><br>16番, ナムラモモ, +0.1, 前走で勝たせた小沢大仁の継続騎乗。13番と小沢のお手馬がかち合う中でこちらを選んでおり、陣営との結びつきはわずかにプラス。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.5, &quot;2&quot;: -0.1, &quot;3&quot;: 0.1, &quot;4&quot;: 0.0, &quot;5&quot;: -0.2, &quot;6&quot;: 0.1, &quot;7&quot;: 0.3, &quot;8&quot;: -0.1, &quot;9&quot;: -0.2, &quot;10&quot;: -0.2, &quot;11&quot;: 0.4, &quot;12&quot;: -0.1, &quot;13&quot;: 0.4, &quot;14&quot;: 0.6, &quot;15&quot;: 0.2, &quot;16&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;陣営面で最も強いのは14番ゼファーテソーロ。栗田厩舎が名手T.マーカンドを確保しており、はっきりした勝負気配がある。次いで1番ソニックブレイカーは、福島に定評のある横山武史が勝った前走に続いて乗る。11番クインズポラリスは田辺裕信の継続騎乗、13番ビーグラッドは戸崎圭太へのトップ騎手乗り替わりで、どちらも上げる。7番モズオウンゴールは永島まなみとのコンビで同コース2戦2勝。一方、騎手が毎走替わる5番・10番と、格が足りない9番は下げる。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)継続騎乗と乗り替わりで物差しがぶれていないか。4番インディゴアスールは松山の手を離れる分を引いたのに、14番ゼファーテソーロは前走で勝たせ福島3着2回の菊沢、13番ビーグラッドは不良で勝たせた小沢の手を離れる分を引いていない。2番ショウナンラリーで下げた『手の内を知らない』は戸崎・マーカンドにも当てはまる。14番+0.6と13番+0.4は差し引いて付け直す余地がないか。マーカンドの福島小回り・不良ダートの経験も、丹内の『福島得意』と同じ基準で見たか。(2)1番ソニックブレイカーの福島2着2回は戸崎騎乗で、横山武史とのコンビに福島実績はない。その戸崎は13番に回っている。16番ナムラモモで『小沢が選んだ』と読むなら13番は主戦に選ばれなかった側になり、13番+0.4と矛盾する。どちらの解釈を取るか決めて揃えてほしい。(3)今回は不良馬場。12番ペイシャヴァルツーの井上は不良の雲仙特別で5着、8番パルプフィクションの富田は同レース9着・昨年同レース13着なのに同じ-0.1でよいか。6番ペルセポネの河原田の不良勝ちも加点材料になりうる。(4)7番モズオウンゴールの2戦2勝は減量53kgでのもので、減量が効かない特別戦で続けて乗せる意味をもう一段割り引く余地はないか。(5)11番クインズポラリス(田辺とは1勝クラス1勝のみ)と15番コックピットサイト(荻野で2勝・6戦中5戦騎乗)の0.2差は騎手の格だけで説明できるか。15番は前走が荻野で競走中止、そこから5か月空けての始動である点も整理してほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1番, ソニックブレイカー, +0.4, 横山武史が5走中3走で乗っていて、2勝はどちらも横山武史の騎乗。手の内を知る主戦の継続騎乗で、横山武史自身も福島の小回りに定評がある。ただ福島での2着2回は戸崎が乗ったときで、横山武史とのコンビでは福島の実績がないので少し割り引く。<br><br>2番, ショウナンラリー, -0.1, 池添から鮫島克駿への乗り替わりで、鮫島克駿はこの馬に初めて乗る。嘉藤厩舎もこの条件で目立つ実績がなく、陣営からの後押しは薄い。<br><br>3番, ビーマックス, +0.1, 川田から浜中俊に戻る。騎手の格は一枚落ちるが、2走前と3走前に乗って2勝クラスで好走させている。3走前の函館は不良馬場での3着で、癖は分かっている。<br><br>4番, インディゴアスール, 0.0, 5走続けて乗った松山弘平の手を離れるのはマイナス。替わる丹内祐次はこの馬に初めて乗るが、ローカル開催の福島を得意にしている。差し引きで中立とする。<br><br>5番, ニシノラヴァンダ, -0.2, 毎走のように騎手が替わり、今回の丸田恭介も初めて乗る。陣営の戦略に一貫性が見えず、後押しする材料がない。<br><br>6番, ペルセポネ, +0.2, 前走で勝たせた河原田菜々の継続騎乗。前走の51kgは減量込みで、今回は55kgの定量になるのでその恩恵は消える。それでも前走は不良馬場を勝たせており、今日の不良馬場で同じ手綱を続けるのはわずかにプラス。<br><br>7番, モズオウンゴール, +0.2, 永島まなみの継続騎乗で、このコンビは福島ダ1150mで2戦2勝とコースを知り尽くしている。ただ2勝とも減量の53kgでのもの。減量が効かない特別戦で55kgを背負うので、もう一段割り引く。<br><br>8番, パルプフィクション, -0.2, 富田暁の騎乗。富田は不良馬場の雲仙特別でこの馬に乗って9着、昨年の同レースも13着。今日の不良馬場でも同じレースでも、このコンビで上積みが見込める裏付けがない。<br><br>9番, レイアポポ, -0.2, 原優介の継続騎乗だが、前走は16着の大敗。2勝クラスでは騎手の格がやや足りず、青木厩舎の後押しも乏しい。<br><br>10番, フェデルミエール, -0.2, 毎走騎手が替わり、横山琉人も初騎乗。中川厩舎は地方遠征も含めて試行錯誤が続いており、陣営の勝負気配は読み取れない。<br><br>11番, クインズポラリス, +0.3, 田辺裕信が4走続けて乗っている。勝ち鞍は1勝クラスの1勝だけだが、前走の重馬場4着もこのコンビで、上原厩舎の勝負パターンは固まっている。15番とは継続騎乗という点で同じ扱いにし、差は騎手の格の分だけにとどめる。<br><br>12番, ペイシャヴァルツー, 0.0, 井上敏樹が戻る。井上は不良馬場の雲仙特別でこの馬を逃がして5着に導いており、今日の不良馬場ならその手綱は下げる材料にならない。ただ騎手の格も吉田厩舎の実績も強調材料に乏しく、中立とする。<br><br>13番, ビーグラッド, +0.3, 前走で不良馬場を勝たせた小沢大仁から戸崎圭太への乗り替わり。手の内を知る騎手を外す分は割り引くが、戸崎は関東リーディング上位で福島にも定評がある。昇級初戦にトップ騎手を押さえた岡田厩舎の勝負気配はプラスに取る。<br><br>14番, ゼファーテソーロ, +0.4, 前走で勝たせ、福島でも3着が2回ある菊沢一樹を外す分と、T.マーカンドがこの馬に初めて乗る分を差し引く。マーカンドは福島の小回りと不良ダートでの実績も確認できない。それでも、栗田厩舎が短期免許で来ている世界的名手を用意したことには、はっきりした勝負気配がある。<br><br>15番, コックピットサイト, +0.2, 荻野極が6戦中5戦で乗っており、2勝ともこのコンビ。前走の競走中止のあとも同じ騎手を据えて5か月ぶりの始動を任せており、鹿戸厩舎の信頼が見える。ただ休み明けの仕上げを裏付ける陣営の材料までは見えず、わずかなプラスにとどめる。<br><br>16番, ナムラモモ, +0.1, 小沢大仁が5走中3走で乗り、前走で勝たせた主戦の継続騎乗。13番は主戦を外されたのではなく陣営がトップ騎手に上げた形と読むので、16番は単純にお手馬が続くだけのわずかなプラスとする。</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>合成スコアは上位4頭が20.0〜22.1にほぼ横並びで、差がついとらんのが気になったとよ。不良馬場の福島ダ1150mは前に行ける馬が有利になりやすいけん、その観点で順番を組み直すね。<br><br>**合成への疑問点**<br><br>- **1番ソニックブレイカーが2位は高すぎ**。前走の勝ちは9-9からの差し切りで、福島の2着2回のうち1回も10-10からの差し。不良の小回り1150mで434kgの小柄な馬が最内枠から包まれると厳しいっちゃん。指数80.1は魅力やけど、2勝クラスでの実績はまだ無か。<br>- **6番ペルセポネは斤量増を割り引いとらん**。不良の新潟で勝った前走は51kgで、今回は55kgと4kg重くなる。調教の「ますます快調↗」が評価を押し上げとるけど、阪神ダ1200で逃げて16着と崩れた前科もあって、5位に置く根拠は弱かと思うよ。<br>- **7番モズオウンゴールの取りこぼし**。福島ダ1150mで2戦2勝、どちらも2-2の先行策。2週前にも同じコースで勝っとる。不良で前が止まらん想定なら、上位5頭に入れるべき馬やと思う。斤量は53kgから55kgに増えて指数72.4も平凡やけん、上位3頭までは押し上げんけど、6番ペルセポネよりは上に見るね。<br>- **14番ゼファーテソーロが4位は低い**。新潟で2-2から抜け出した前走の指数79.4は今回の上位勢と同等。福島ダ1150mでも3着が2回あるし、先行できてマーカンド騎手が乗る。不良の前残り傾向に一番合う臨戦やと思うとよ。<br><br>**確定スコア**<br><br>14番, ゼファーテソーロ, 23%, 前走の指数79.4は上位と同格で福島1150m3着2回とコース適性もある。不良で先行できる脚質が噛み合うし鞍上強化もあって最上位に置く。<br><br>11番, クインズポラリス, 21%, 前走は中山重の2勝クラスで0.2秒差4着(指数78.7)と、このクラスで通用することを示した唯一に近い存在。3-3の位置も取れて大崩れしにくいけど勝ち切れん戦績なので2番手。<br><br>3番, ビーマックス, 19%, 2勝クラスで3・4・3着と安定しとって函館不良の1000mでも0.2秒差3着がある。1150mへの延長はこなせる範囲で軸の相手として堅い。<br><br>1番, ソニックブレイカー, 17%, 能力指数は高いけど差し脚質で不良の前残り想定とは噛み合わん。最内枠で小柄な馬が揉まれる懸念もあって合成より一段下げる。<br><br>7番, モズオウンゴール, 12%, 福島ダ1150mで2戦2勝・ともに2-2の先行策という完全なコース巧者。斤量2kg増と指数の低さはあるけど不良の先行有利を考えて上位5頭に加える。<br><br>6番, ペルセポネ, 8%, 不良勝ちは51kgの恩恵が大きく今回は4kg増の55kg。調教の上昇気配は認めるけど2勝クラス初戦で先行争いに加わる不安もあって割り引く。<br><br>```json<br>{&quot;score&quot;: {&quot;14&quot;: 23, &quot;11&quot;: 21, &quot;3&quot;: 19, &quot;1&quot;: 17, &quot;7&quot;: 12, &quot;6&quot;: 8}, &quot;analysis_summary&quot;: &quot;不良の福島ダ1150mは先行有利と見て、先行できて指数79.4・コース3着2回の14番ゼファーテソーロを最上位に引き上げた。2勝クラス実績のある11番クインズポラリスと安定型の3番ビーマックスが続く。合成2位の1番ソニックブレイカーは差し脚質で最内枠・小柄という不安から4位に下げた。6番ペルセポネは前走の不良勝ちが51kgの恩恵によるもので、今回は4kg増を割り引いた。代わりに福島1150mで2戦2勝の先行馬7番モズオウンゴールを6位圏外から上位5頭に加えた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>福島ダート1150mの不良馬場は時計が速うなって、前に行ける馬と同じ舞台での実績がある馬が有利になりやすいっちゃん。そこを軸に、指数・近走の内容・昇級の壁・調教を合わせて全馬を見たとよ。<br><br>1番, ソニックブレイカー, 15%, 福島1150mで2着が2回あって指数は80前後、前走は中山の重馬場を差して勝っとる。3歳の昇級でも、横山武史騎手とこの舞台への適性で一番手に見とるっちゃん。<br><br>14番, ゼファーテソーロ, 14%, 前走は新潟で先行して勝ち、指数79.4。福島1150mでも3着が2回あって舞台は合っとる。マーカンド騎手を確保できたのも大きいし、外枠から好位を取れそうやけん有力とよ。<br><br>11番, クインズポラリス, 12%, 前走は中山の重馬場の2勝クラスで0.2秒差の4着、指数78.7。このクラスでもう通用しとる数少ない1頭で、調子は上向き、田辺騎手の継続騎乗なのも好材料っちゃん。<br><br>7番, モズオウンゴール, 11%, 福島1150mは2戦2勝で、どっちも2番手から押し切っとる。前が止まりにくい不良馬場で先行できるのは魅力やけど、2勝クラスの相手関係で指数がもう少し欲しいところやね。<br><br>3番, ビーマックス, 9%, 2勝クラスで3着・4着・3着と崩れとらん。函館の不良馬場では指数76.6を出しとるけん、時計の速い馬場は合っとる。ただ1000mでの好走が中心で、50m延びるのが少し気になるっちゃん。<br><br>15番, コックピットサイト, 7%, 1勝クラスを指数81.2で勝った地力は上位やけど、前走は競走中止で5か月ぶり。調教の評価も「もう一追い欲しい」やけん、割り引いて見とるとよ。<br><br>6番, ペルセポネ, 7%, 前走は新潟の不良馬場で勝って指数75.8、調教は「ますます快調」で上向き。ただ前走は51kgで、今回は55kgと斤量がかなり増えるけん中位に置いたっちゃん。<br><br>13番, ビーグラッド, 5%, 前走は新潟の不良馬場で勝ち、指数75.8。重い馬場は合うけど、その前は大敗もあって安定感に欠けるけん、昇級戦で評価は控えめにしとるとよ。<br><br>4番, インディゴアスール, 5%, 京都の2勝クラスで0.2秒差の4着がある力はある。ただ前走は11着で、馬体も大きく、小回りの1150mへの対応は未知数やね。<br><br>16番, ナムラモモ, 3%, 前走の1勝クラス勝ちは7頭立てで、4か月ぶりの休み明け。2勝クラスでは力の裏付けが足らんっちゃん。<br><br>12番, ペイシャヴァルツー, 3%, 小倉の不良馬場で逃げて0.4秒差の5着があって、速い馬場での先行力はある。けど、それ以外の近走は大敗続きやけん厳しいとよ。<br><br>8番, パルプフィクション, 2%, 2勝クラスでは9着が続いとって、去年のこのレースも13着。仕上がりは良好でも、上位に食い込むのは難しいっちゃん。<br><br>2番, ショウナンラリー, 2%, 逃げ・先行はできるけど、2勝クラスでは3戦続けて二桁着順。4か月の休み明けで、上積みも見込みにくいとよ。<br><br>9番, レイアポポ, 2%, 福島1150mで1勝クラスを勝った実績はあるけど、2勝クラスでは2戦続けて16着の大敗。調教も「あまり変わり身無」やね。<br><br>10番, フェデルミエール, 1%, 芝とダートを行き来して、どれも大敗が続いとる。好走できる材料がほとんど見当たらんっちゃん。<br><br>5番, ニシノラヴァンダ, 1%, 芝中心の戦績で、ダートの前走は6.4秒差の大敗。調教も「動き今ひと息」で、一番下の評価にしとるとよ。<br><br>```json<br>{&quot;score&quot;: {&quot;1&quot;: 15, &quot;14&quot;: 14, &quot;11&quot;: 12, &quot;7&quot;: 11, &quot;3&quot;: 9, &quot;15&quot;: 7, &quot;6&quot;: 7, &quot;13&quot;: 5, &quot;4&quot;: 5, &quot;16&quot;: 3, &quot;12&quot;: 3, &quot;8&quot;: 2, &quot;2&quot;: 2, &quot;9&quot;: 2, &quot;10&quot;: 1, &quot;5&quot;: 1}, &quot;analysis_summary&quot;: &quot;不良馬場の福島ダート1150mで、先行力と同じ舞台での実績を重視した。福島1150mで2着が2回ある1番ソニックブレイカーと、先行して勝ち指数79.4の14番ゼファーテソーロの3歳昇級馬2頭が上位。2勝クラスで0.2秒差4着の11番クインズポラリス、福島1150mで2戦2勝の先行馬7番モズオウンゴールが続く。不良馬場で好走歴がある3番ビーマックス、地力はあるが休み明けで割り引いた15番コックピットサイト、斤量が4kg増える6番ペルセポネが中位。2勝クラスで大敗が続く馬は低評価にした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>11</td><td class="left horse-name">クインズポラリス</td><td>12.1%</td><td>8.1</td><td>4</td><td class="ev-low">0.98</td></tr><tr><td>2</td><td>1</td><td class="left horse-name">ソニックブレイカー</td><td>12.0%</td><td>5.2</td><td>2</td><td class="ev-low">0.63</td></tr><tr><td>3</td><td>14</td><td class="left horse-name">ゼファーテソーロ</td><td>11.4%</td><td>13.4</td><td>8</td><td class="ev-mid">1.53</td></tr><tr><td>4</td><td>3</td><td class="left horse-name">ビーマックス</td><td>9.9%</td><td>8.6</td><td>5</td><td class="ev-low">0.86</td></tr><tr><td>5</td><td>7</td><td class="left horse-name">モズオウンゴール</td><td>9.4%</td><td>4.9</td><td>1</td><td class="ev-low">0.46</td></tr><tr><td>6</td><td>6</td><td class="left horse-name">ペルセポネ</td><td>7.9%</td><td>11.2</td><td>6</td><td class="ev-low">0.89</td></tr><tr><td>7</td><td>15</td><td class="left horse-name">コックピットサイト</td><td>6.8%</td><td>7.1</td><td>3</td><td class="ev-low">0.48</td></tr><tr><td>8</td><td>13</td><td class="left horse-name">ビーグラッド</td><td>6.5%</td><td>14.9</td><td>9</td><td class="ev-low">0.97</td></tr><tr><td>9</td><td>16</td><td class="left horse-name">ナムラモモ</td><td>5.7%</td><td>23.2</td><td>10</td><td class="ev-mid">1.33</td></tr><tr><td>10</td><td>4</td><td class="left horse-name">インディゴアスール</td><td>4.5%</td><td>26.1</td><td>11</td><td class="ev-mid">1.17</td></tr><tr><td>11</td><td>8</td><td class="left horse-name">パルプフィクション</td><td>3.1%</td><td>68.1</td><td>15</td><td class="ev-high">2.13</td></tr><tr><td>12</td><td>12</td><td class="left horse-name">ペイシャヴァルツー</td><td>2.6%</td><td>71.5</td><td>16</td><td class="ev-mid">1.87</td></tr><tr><td>13</td><td>9</td><td class="left horse-name">レイアポポ</td><td>2.5%</td><td>47.0</td><td>13</td><td class="ev-mid">1.17</td></tr><tr><td>14</td><td>2</td><td class="left horse-name">ショウナンラリー</td><td>2.0%</td><td>43.3</td><td>12</td><td class="ev-low">0.88</td></tr><tr><td>15</td><td>10</td><td class="left horse-name">フェデルミエール</td><td>1.8%</td><td>67.0</td><td>14</td><td class="ev-mid">1.23</td></tr><tr><td>16</td><td>5</td><td class="left horse-name">ニシノラヴァンダ</td><td>1.5%</td><td>12.5</td><td>7</td><td class="ev-low">0.19</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">11 クインズポラリス</td><td>12.1%</td><td>8.1</td><td class="ev-low">0.81</td></tr><tr><td>複勝</td><td class="left">11 クインズポラリス</td><td>34.6%</td><td>2.6</td><td class="ev-low">0.79</td></tr><tr><td>馬連</td><td class="left">1 ソニックブレイカー-11 クインズポラリス</td><td>3.3%</td><td>16.6</td><td class="ev-low">0.44</td></tr><tr><td>ワイド</td><td class="left">1 ソニックブレイカー-11 クインズポラリス</td><td>9.4%</td><td>6.7</td><td class="ev-low">0.52</td></tr><tr><td>馬単</td><td class="left">11 クインズポラリス→1 ソニックブレイカー</td><td>1.6%</td><td>38.1</td><td class="ev-low">0.51</td></tr><tr><td>3連複</td><td class="left">1 ソニックブレイカー-11 クインズポラリス-14 ゼファーテソーロ</td><td>1.5%</td><td>47.6</td><td class="ev-low">0.56</td></tr><tr><td>3連単</td><td class="left">11 クインズポラリス→1 ソニックブレイカー→14 ゼファーテソーロ</td><td>0.2%</td><td>284.7</td><td class="ev-low">0.56</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 0円</span>
+</div>
+<div class="section-body">
+<p style="font-size:14px;color:#8E8E93;">今回は購入見送り</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
