@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>比叡ステークス 2026/11/21 KYOTO 10R (11/21 14:19 予想) — CCレポート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: #F5F5F7; color: #1D1D1F; font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  .race-header {
+    background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 100%);
+    color: white; border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+  }
+  .race-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .race-header .meta { font-size: 13px; color: #EBEBF5; opacity: 0.8; }
+  .agent-section {
+    background: white; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .section-body { padding: 20px; }
+  .round-header {
+    background: #007AFF; color: white; padding: 12px 20px;
+    font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .round-header.critic { background: #AF52DE; }
+  .round-header.final { background: #1D1D1F; }
+  .round-header.ev { background: #FF9500; }
+  .round-header.diff { background: #34C759; }
+  .round-header .badge {
+    background: rgba(255,255,255,0.25); border-radius: 6px; padding: 2px 8px; font-size: 11px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F2F2F7; padding: 8px 10px; text-align: center;
+    font-weight: 600; font-size: 12px; color: #3A3A3C;
+    border-bottom: 1px solid #E5E5EA; white-space: nowrap;
+  }
+  td {
+    padding: 8px 10px; border-bottom: 1px solid #F2F2F7;
+    text-align: center; vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F9F9FB; }
+  td.left { text-align: left; }
+  .horse-name { font-weight: 600; }
+  .waku-badge {
+    display: inline-block; min-width: 22px; height: 22px; border-radius: 4px;
+    padding: 0 3px; box-sizing: border-box;
+    font-size: 11px; font-weight: 700; text-align: center; line-height: 22px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .conf-bar { display: flex; align-items: center; gap: 6px; }
+  .conf-fill { height: 6px; border-radius: 3px; background: #007AFF; min-width: 2px; }
+  .conf-val { font-size: 12px; font-weight: 600; color: #3A3A3C; min-width: 32px; text-align: right; }
+  .trust-high { color: #34C759; font-weight: 600; }
+  .trust-mid { color: #FF9500; font-weight: 600; }
+  .trust-low { color: #FF3B30; font-weight: 600; }
+  .final-prediction {
+    background: #1D1D1F; color: white; border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .final-prediction h2 { font-size: 16px; margin-bottom: 16px; color: #EBEBF5; }
+  .pick-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .pick-row:last-child { border-bottom: none; }
+  .pick-mark { font-size: 20px; width: 28px; text-align: center; }
+  .pick-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pick-jockey { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .pick-prob {
+    background: #007AFF; border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 700;
+  }
+  .pick-pop {
+    background: rgba(255,255,255,0.12); border-radius: 8px; padding: 4px 10px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+  .ev-high { color: #34C759; font-weight: 700; }
+  .ev-mid { color: #FF9500; font-weight: 600; }
+  .ev-low { color: #8E8E93; }
+  .analysis-text {
+    font-size: 14px; line-height: 1.8; color: #3A3A3C;
+    white-space: pre-wrap; margin-bottom: 16px;
+  }
+  .agent-section h3 {
+    font-size: 15px; font-weight: 600; color: #1D1D1F;
+    margin: 20px 0 8px;
+  }
+  .agent-section h3:first-of-type { margin-top: 12px; }
+  .diff-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .diff-card {
+    flex: 1; min-width: 200px; background: #F9F9FB;
+    border-radius: 10px; padding: 14px;
+  }
+  .diff-card .label { font-size: 11px; color: #8E8E93; margin-bottom: 4px; }
+  .diff-card .value { font-size: 15px; font-weight: 700; }
+  .diff-card .sub { font-size: 12px; color: #3A3A3C; margin-top: 2px; }
+  @media (max-width: 640px) {
+    .race-header { padding: 20px; }
+    .race-header h1 { font-size: 18px; }
+    .section-body { padding: 14px; }
+    td, th { padding: 6px 6px; font-size: 12px; }
+    .pick-name { font-size: 14px; }
+  }
+  .footer-version {
+    text-align: right; font-size: 11px; color: #999;
+    padding: 16px 0 0; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="race-header">
+  <h1>比叡ステークス 2026/11/21 KYOTO 10R (11/21 14:19 予想)</h1>
+  <div class="meta">芝2400m（右 外） | 良 | 15頭立て | 5回 京都 5日目 サラ系3歳以上 3勝クラス （混合）（特指） 定量 15頭</div>
+</div>
+
+<div class="final-prediction">
+  <h2>最終予想</h2>
+  <div class="pick-row">
+    <div class="pick-mark">◎</div>
+    <div>
+      <div class="pick-name">5. ベトルス</div>
+      <div class="pick-jockey">岩田 望来</div>
+    </div>
+    <div class="pick-prob">13.6%</div>
+    <div class="pick-pop">2番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">○</div>
+    <div>
+      <div class="pick-name">13. ウインデイジー</div>
+      <div class="pick-jockey">岩田 康誠</div>
+    </div>
+    <div class="pick-prob">11.5%</div>
+    <div class="pick-pop">6番人気</div>
+  </div>  <div class="pick-row">
+    <div class="pick-mark">▲</div>
+    <div>
+      <div class="pick-name">7. ロードフィレール</div>
+      <div class="pick-jockey">坂井 瑠星</div>
+    </div>
+    <div class="pick-prob">10.1%</div>
+    <div class="pick-pop">1番人気</div>
+  </div>
+</div>
+
+<div class="agent-section">
+<div class="round-header"><span>出馬表</span><span class="badge">15頭</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>馬体重</th></tr></thead>
+<tbody>
+<tr><td><span class="waku-badge" style="background:#FFFFFF;color:#000000;">1</span></td><td class="left horse-name">アットアブラスト</td><td>せん6</td><td>58</td><td>田口 貫太</td><td>460(0)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">2</span></td><td class="left horse-name">サトノパトリオット</td><td>せん4</td><td>58</td><td>C.ルメール</td><td>476(-6)</td></tr><tr><td><span class="waku-badge" style="background:#000000;color:#FFFFFF;">3</span></td><td class="left horse-name">サトノクローク</td><td>牡6</td><td>58</td><td>池添 謙一</td><td>486(+10)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">4</span></td><td class="left horse-name">ナムラフッカー</td><td>牡5</td><td>58</td><td>田山 旺佑</td><td>498(+4)</td></tr><tr><td><span class="waku-badge" style="background:#FF0000;color:#FFFFFF;">5</span></td><td class="left horse-name">ベトルス</td><td>せん5</td><td>58</td><td>岩田 望来</td><td>510(-4)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">6</span></td><td class="left horse-name">ロードガレリア</td><td>牡4</td><td>58</td><td>M.バルザローナ</td><td>460(+10)</td></tr><tr><td><span class="waku-badge" style="background:#0000FF;color:#FFFFFF;">7</span></td><td class="left horse-name">ロードフィレール</td><td>牡3</td><td>56</td><td>坂井 瑠星</td><td>524(+8)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">8</span></td><td class="left horse-name">キントリヒ</td><td>牡7</td><td>58</td><td>幸 英明</td><td>476(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FFFF00;color:#000000;">9</span></td><td class="left horse-name">オメガナビゲーター</td><td>せん5</td><td>58</td><td>北村 友一</td><td>500(+12)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">10</span></td><td class="left horse-name">ルクスビッグスター</td><td>牡6</td><td>58</td><td>吉村 誠之助</td><td>486(-4)</td></tr><tr><td><span class="waku-badge" style="background:#00CC00;color:#FFFFFF;">11</span></td><td class="left horse-name">キーパフォーマー</td><td>牝5</td><td>56</td><td>松若 風馬</td><td>462(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">12</span></td><td class="left horse-name">リーティアコナル</td><td>牡4</td><td>58</td><td>小崎 綾也</td><td>486(-4)</td></tr><tr><td><span class="waku-badge" style="background:#FF8C00;color:#000000;">13</span></td><td class="left horse-name">ウインデイジー</td><td>牝5</td><td>56</td><td>岩田 康誠</td><td>458(+2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">14</span></td><td class="left horse-name">スピードリッチ</td><td>牡5</td><td>58</td><td>松山 弘平</td><td>486(-2)</td></tr><tr><td><span class="waku-badge" style="background:#FF69B4;color:#000000;">15</span></td><td class="left horse-name">クルミナーレ</td><td>牡5</td><td>58</td><td>J.モレイラ</td><td>514(+2)</td></tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>モンテカルロ各試行</span><span class="badge">5モンテ試行</span></div>
+<div class="section-body">
+<p>◎○▲のばらつきが予想の揺らぎ。</p>
+<table><thead><tr><th>モンテ試行</th><th>◎</th><th>○</th><th>▲</th></tr>
+</thead><tbody>
+<tr><td>0</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ベトルス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ウインデイジー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロードフィレール</span></td></tr>
+<tr><td>1</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ベトルス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ウインデイジー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロードフィレール</span></td></tr>
+<tr><td>2</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ベトルス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ウインデイジー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロードフィレール</span></td></tr>
+<tr><td>3</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ベトルス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ウインデイジー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロードフィレール</span></td></tr>
+<tr><td>4</td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ベトルス</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ウインデイジー</span></td><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロードフィレール</span></td></tr>
+</tbody></table>
+<p style="margin-top:1.5em;">
+券種別の一致度（◎○▲の組がどれだけ揃ったか、0〜1）。</p>
+<table><thead><tr>
+<th>単勝</th>
+<th>馬連</th>
+<th>馬単</th>
+<th>3連複</th>
+<th>3連単</th>
+</tr></thead><tbody><tr>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>1.00</td>
+<td style='color:#0040DD'>0.97</td>
+<td style='color:#0040DD'>0.97</td>
+</tr></tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>エージェント別評価（全モンテ試行平均）</span></div>
+<div class="section-body">
+<p>実績/展開/体調/血統/陣営=補正P(-1〜+1)、基本=実績Pを(100/N)×(1+P)で%化、合成=基本×(1+Σ補正P·係数)を全馬で正規化した%、批判=σ合わせ後の批判者単体評価を合成スケールで全馬正規化した%(上位5頭のみ)、純粋=レース情報だけ見た pure の独立採点を全馬で正規化した%、最終=合成→批判→純粋を合成→正規化した CC推定勝率%。</p>
+<table><thead><tr><th>馬</th>
+<th>実績</th>
+<th>展開</th>
+<th>体調</th>
+<th>血統</th>
+<th>陣営</th>
+<th>合成</th><th>批判</th><th>純粋</th><th>最終</th></tr></thead><tbody>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">5</span><span style="display:inline-block;margin-left:0.5em;">ベトルス</span></td>
+<td>+0.56</td>
+<td>+0.24</td>
+<td>+0.30</td>
+<td>+0.46</td>
+<td>+0.52</td>
+<td>13.3</td>
+<td>13.0</td>
+<td>15.4</td>
+<td><b>13.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">13</span><span style="display:inline-block;margin-left:0.5em;">ウインデイジー</span></td>
+<td>+0.48</td>
+<td>+0.02</td>
+<td>+0.36</td>
+<td>+0.00</td>
+<td>+0.22</td>
+<td>10.7</td>
+<td>10.8</td>
+<td>14.6</td>
+<td><b>11.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">7</span><span style="display:inline-block;margin-left:0.5em;">ロードフィレール</span></td>
+<td>+0.24</td>
+<td>-0.02</td>
+<td>+0.30</td>
+<td>+0.20</td>
+<td>+0.44</td>
+<td>9.4</td>
+<td>9.7</td>
+<td>12.8</td>
+<td><b>10.1</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">6</span><span style="display:inline-block;margin-left:0.5em;">ロードガレリア</span></td>
+<td>+0.26</td>
+<td>+0.08</td>
+<td>-0.04</td>
+<td>+0.36</td>
+<td>+0.32</td>
+<td>9.1</td>
+<td>8.5</td>
+<td>8.0</td>
+<td><b>8.8</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">2</span><span style="display:inline-block;margin-left:0.5em;">サトノパトリオット</span></td>
+<td>-0.02</td>
+<td>+0.30</td>
+<td>-0.04</td>
+<td>+0.32</td>
+<td>+0.58</td>
+<td>7.6</td>
+<td>7.9</td>
+<td>10.8</td>
+<td><b>8.2</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">14</span><span style="display:inline-block;margin-left:0.5em;">スピードリッチ</span></td>
+<td>+0.36</td>
+<td>+0.02</td>
+<td>-0.26</td>
+<td>+0.26</td>
+<td>+0.34</td>
+<td>7.7</td>
+<td>8.3</td>
+<td>8.8</td>
+<td><b>8.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">15</span><span style="display:inline-block;margin-left:0.5em;">クルミナーレ</span></td>
+<td>+0.04</td>
+<td>-0.04</td>
+<td>+0.12</td>
+<td>+0.08</td>
+<td>+0.52</td>
+<td>7.4</td>
+<td>-</td>
+<td>6.8</td>
+<td><b>7.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">3</span><span style="display:inline-block;margin-left:0.5em;">サトノクローク</span></td>
+<td>+0.10</td>
+<td>+0.04</td>
+<td>-0.16</td>
+<td>+0.40</td>
+<td>+0.14</td>
+<td>7.0</td>
+<td>-</td>
+<td>5.2</td>
+<td><b>6.7</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">9</span><span style="display:inline-block;margin-left:0.5em;">オメガナビゲーター</span></td>
+<td>-0.08</td>
+<td>+0.10</td>
+<td>+0.42</td>
+<td>+0.20</td>
+<td>-0.02</td>
+<td>6.9</td>
+<td>-</td>
+<td>4.0</td>
+<td><b>6.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">1</span><span style="display:inline-block;margin-left:0.5em;">アットアブラスト</span></td>
+<td>-0.24</td>
+<td>+0.22</td>
+<td>+0.24</td>
+<td>+0.30</td>
+<td>+0.20</td>
+<td>5.9</td>
+<td>-</td>
+<td>4.0</td>
+<td><b>5.5</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">12</span><span style="display:inline-block;margin-left:0.5em;">リーティアコナル</span></td>
+<td>-0.40</td>
+<td>-0.20</td>
+<td>+0.16</td>
+<td>-0.22</td>
+<td>+0.02</td>
+<td>3.6</td>
+<td>-</td>
+<td>1.9</td>
+<td><b>3.3</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">8</span><span style="display:inline-block;margin-left:0.5em;">キントリヒ</span></td>
+<td>-0.32</td>
+<td>+0.00</td>
+<td>-0.20</td>
+<td>-0.18</td>
+<td>-0.16</td>
+<td>3.3</td>
+<td>-</td>
+<td>1.8</td>
+<td><b>3.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">10</span><span style="display:inline-block;margin-left:0.5em;">ルクスビッグスター</span></td>
+<td>-0.44</td>
+<td>-0.08</td>
+<td>+0.02</td>
+<td>+0.12</td>
+<td>-0.22</td>
+<td>3.4</td>
+<td>-</td>
+<td>1.1</td>
+<td><b>3.0</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">4</span><span style="display:inline-block;margin-left:0.5em;">ナムラフッカー</span></td>
+<td>-0.30</td>
+<td>-0.08</td>
+<td>-0.46</td>
+<td>+0.28</td>
+<td>-0.08</td>
+<td>2.4</td>
+<td>-</td>
+<td>3.1</td>
+<td><b>2.6</b></td>
+</tr>
+<tr><td class='left'><span style="display:inline-block;width:1.6em;text-align:right;">11</span><span style="display:inline-block;margin-left:0.5em;">キーパフォーマー</span></td>
+<td>-0.50</td>
+<td>-0.06</td>
+<td>-0.26</td>
+<td>+0.14</td>
+<td>-0.24</td>
+<td>2.3</td>
+<td>-</td>
+<td>1.6</td>
+<td><b>2.2</b></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class="agent-section">
+<div class="round-header"><span>各エージェントの思考</span><span class="badge">モンテ試行1</span></div>
+<div class="section-body">
+<p>確定◎○▲に最も近いモンテ試行1の全文。クリックで展開。</p>
+<details><summary>実績</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, アットアブラスト, -0.2, 前走は京都芝2400mの2勝クラスを勝ち（指数83.2）、昇級初戦になる。それまでの2勝クラスは4着・8着・9着と負けが多く、3勝クラスで通用する指数の裏付けはまだ無い。<br><br>2番, サトノパトリオット, +0.2, 芝2400mは青嵐賞1着（2:24.1）を含めて[2-1-0-0]。3勝クラス初挑戦の日本海Sは6着（0.8差、指数83.0）で、この組で上位と言える水準まではあと一歩。<br><br>3番, サトノクローク, +0.1, 同じ京都2400mの烏丸Sで2着（差0.0、指数88.6）があり、能力の上限は高い。ただ前走は16着（3.4差）、その前も6着・10着と波が大きく、安定感に欠ける。<br><br>4番, ナムラフッカー, -0.3, 烏丸S4着（指数86.5）のあと、3勝クラスで15着・11着・7着・18着と崩れが続く。近走の指数も75〜82にとどまる。<br><br>5番, ベトルス, +0.6, 3勝クラスで2着（0.3差、指数88.7）、3着（0.2差、87.2）、4着（0.1差、88.0）。指数は87〜88をほぼ毎回出しており、この組でいちばん安定している。京都芝2400mの烏丸Sでも3着があり、条件の裏付けもある。<br><br>6番, ロードガレリア, +0.2, 3勝クラスで3着（0.6差）、6着（0.4差）、7着（0.4差）。指数は84.7〜85.7で揃っていて大きく崩れないが、勝ち切るまでの決め手は数字に表れていない。<br><br>7番, ロードフィレール, +0.4, 若葉S（L）2着で指数89.8、阿賀野川特別は0.3差の完勝で指数89.0と、指数の絶対値は上位。昇級初戦の大原Sは9着（0.5差）、2400mは未経験なので割り引く。斤量56kgは有利。<br><br>8番, キントリヒ, -0.3, 3勝クラスは8着・4着・14着・12着。2400mの江の島Sは3.0差の大敗で、7歳になって指数も80前後で頭打ち。<br><br>9番, オメガナビゲーター, -0.1, 3勝クラスは烏丸S7着（0.5差、指数85.1）、昇仙峡S8着（1.2差）。2勝クラスでの好走はあるが、このクラスではまだ足りない。<br><br>10番, ルクスビッグスター, -0.6, 近3走はダートの3勝クラスで11着・7着・10着。芝も1800mで11着・15着と、芝2400mの3勝クラスで通用する根拠が無い。<br><br>11番, キーパフォーマー, -0.5, 近5走は10着・7着・11着・5着・14着で、斤量53kgでも指数74前後の凡走が続く。<br><br>12番, リーティアコナル, -0.4, 3勝クラスは7着・9着（1.9差）・17着（1.2差）と、走るたびに内容が悪くなっている。2400mの実績も無い。<br><br>13番, ウインデイジー, +0.7, 前走は新潟牝馬S（L）で2着（0.1差、指数90.6）。3勝クラスも2着（指数87.3）・3着（89.1）と、この組の最高指数を続けて出している。格上の重賞級で好走しての3勝クラス戻りで、斤量も56kg。2400mは烏丸S11着の1回だけなので、満点にはしない。<br><br>14番, スピードリッチ, +0.4, 札幌日経賞（L、芝2600m）5着で指数90.5、松籟S3着（指数87.0）、六社S2着（芝2400m、0.2差）。長い距離での実績が厚く、通算[3-6-5-9]と安定している。前走5着の指数79.3は物足りない。<br><br>15番, クルミナーレ, +0.1, 3勝クラスは4着（0.4差、指数85.4）、8着（0.4差）で、大きくは負けていない。ただ半年ぶりで、3勝クラスでの上積みも見えないので小幅のプラスにとどめる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.2, &quot;3&quot;: 0.1, &quot;4&quot;: -0.3, &quot;5&quot;: 0.6, &quot;6&quot;: 0.2, &quot;7&quot;: 0.4, &quot;8&quot;: -0.3, &quot;9&quot;: -0.1, &quot;10&quot;: -0.6, &quot;11&quot;: -0.5, &quot;12&quot;: -0.4, &quot;13&quot;: 0.7, &quot;14&quot;: 0.4, &quot;15&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;実績の上位はウインデイジー（L2着で指数90.6、3勝クラスでも2着・3着と高い指数が続く）とベトルス（3勝クラスで指数87〜88を毎回出し、京都2400mの烏丸S3着もある）。その次がロードフィレール（指数89台を出しているが2400mは未経験）とスピードリッチ（Lで指数90.5、長い距離に強い）。ルクスビッグスター、キーパフォーマー、リーティアコナルは3勝クラスで凡走が続いており大きく下げた。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>13番ウインデイジー(+0.7)を最上位にするのは強すぎないか。最高指数は14番スピードリッチ90.5・7番ロードフィレール89.8とほぼ並ぶ。89.1は53kg・重馬場、90.6は牝馬限定Lの55kgで出したもので、今回の56kgは牝馬の減量なので有利材料にならない。同じ条件の烏丸Sでは3番88.6・5番87.2・4番86.5・9番85.1を下回る11着82.4で、一番下。新潟牝馬Sも重賞ではなくL。5番ベトルスは江の島S6着(0.9差・83.0)が理由から抜けていて、同じレースで14番は82.3とほぼ同じ水準。7番ロードフィレールは唯一の3勝クラスが9着79.8。1番を『3勝クラスでの裏付け無し』で減点した基準と合わず、3勝クラスで84.7〜85.7を続ける6番ロードガレリア(+0.2)より上の理由が見えない。2番サトノパトリオット(+0.2)は最高指数83.0で、1番アットアブラストの2勝クラス勝ち83.2より低く、15番85.4・9番85.1より下。0.4差と順番を指数で説明できるか。14番の90.5は牡馬混合L・57kgで13番と同等以上なのに0.3差あるのは、前走1走だけでは弱い。3番の88.6は54kg(今回58kg)で、斤量の物差しは13番にも当てるべき。10番ルクスビッグスターは芝の3勝クラスで83.7があり、4番・8番と同じかそれ以上なので、最低の-0.6は指数と合わないのでは。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, アットアブラスト, -0.2, 前走は京都芝2400mの2勝クラス勝ち（指数83.2）で、今回が昇級初戦。それまでの2勝クラスは4着・8着・9着で、3勝クラスで通用する指数の裏付けはまだ無い。<br><br>2番, サトノパトリオット, 0.0, 芝2400mは青嵐賞1着（2:24.1）を含めて[2-1-0-0]と相性は良い。ただ最高指数は日本海S6着（0.8差）の83.0で、15番の85.4や9番の85.1より下。この組で上に取る根拠にはならないので中立に下げる。<br><br>3番, サトノクローク, 0.0, 京都2400mの烏丸S2着（差0.0、指数88.6）は54kgでの数字で、今回は58kg。58kgで走った関ケ原Sは6着・82.9で、前走は16着（3.4差）。斤量を考えると上限の高さは割り引くしかなく、中立にする。<br><br>4番, ナムラフッカー, -0.3, 烏丸S4着（指数86.5、55kg）のあと、3勝クラスで15着・11着・7着・18着と崩れが続く。58kgで出した指数は75.7〜82.2にとどまる。<br><br>5番, ベトルス, +0.5, 3勝クラスで2着（0.3差、指数88.7、58kg）・3着（0.2差、87.2）・4着（0.1差、88.0、57kg）と、重い斤量で87〜88を続けている。江の島S6着（0.9差、83.0）の取りこぼしはあるが、2400mの3勝クラスでいちばん安定しているのは変わらない。<br><br>6番, ロードガレリア, +0.3, 3勝クラス3戦は3着（0.6差）・6着（0.4差）・7着（0.4差）で、指数は84.7〜85.7。58kgでもこの水準が揃っていて、3勝クラスで続けて走れている実績は7番より上に置く。<br><br>7番, ロードフィレール, +0.2, 若葉S（L）2着で89.8、阿賀野川特別は0.3差勝ちで89.0と、指数の絶対値は高い。ただ唯一の3勝クラスは大原S9着（79.8）で、ここでの裏付けはまだ無く、2400mも走ったことが無いので小幅にとどめる。<br><br>8番, キントリヒ, -0.3, 3勝クラスは8着・4着・14着・12着。2400mの江の島Sは3.0差の大敗（指数68.8）で、7歳になって指数も80前後で頭打ち。<br><br>9番, オメガナビゲーター, -0.1, 3勝クラスは烏丸S7着（0.5差、指数85.1、56kg）、昇仙峡S8着（1.2差、80.6）。2勝クラスでの好走はあるが、このクラスではまだ一歩足りない。<br><br>10番, ルクスビッグスター, -0.4, 近3走はダートの3勝クラスで11着・7着・10着。芝の弥彦Sで83.7があり4番・8番の近走と同じくらいなので、下げ幅を縮める。ただ芝でも1800mで11着・15着で、2400mでの実績は無い。<br><br>11番, キーパフォーマー, -0.5, 近5走は10着・7着・11着・5着・14着。斤量53kgでも指数74前後の凡走が多く、83.9の1回も53kg・重馬場で出したもの。<br><br>12番, リーティアコナル, -0.4, 3勝クラスは7着・9着（1.9差）・17着（1.2差）で、走るたびに中身が悪くなっている。2400mの実績も無い。<br><br>13番, ウインデイジー, +0.4, 新潟牝馬S（L）2着（0.1差、90.6）と日本海S2着（0.2差、87.3、56kg）で、近走の内容は良い。ただ90.6は牝馬限定戦、89.1は53kg・重馬場での数字。同じ京都2400mの烏丸Sは11着（82.4）なので、14番と同じ程度まで下げる。<br><br>14番, スピードリッチ, +0.4, 札幌日経賞（L・牡馬混合・57kg・芝2600m）で5着・指数90.5、松籟S3着（87.0）、六社S2着（芝2400m、0.2差、85.5）と、長い距離での実績が厚い。前走の79.3と江の島S7着（82.3）は物足りない。<br><br>15番, クルミナーレ, +0.1, 3勝クラスは垂水S4着（0.4差、85.4）、美浦S8着（0.4差）と、大きくは負けていない。ただ半年ぶりで、3勝クラスで上積みも見えないので小幅のプラスにとどめる。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: -0.2, &quot;2&quot;: 0.0, &quot;3&quot;: 0.0, &quot;4&quot;: -0.3, &quot;5&quot;: 0.5, &quot;6&quot;: 0.3, &quot;7&quot;: 0.2, &quot;8&quot;: -0.3, &quot;9&quot;: -0.1, &quot;10&quot;: -0.4, &quot;11&quot;: -0.5, &quot;12&quot;: -0.4, &quot;13&quot;: 0.4, &quot;14&quot;: 0.4, &quot;15&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;指摘のうち納得した点を反映した。13番は90.6が牝馬限定L、89.1が53kg・重馬場で、同じ京都2400mの烏丸Sは11着(82.4)なので+0.7から+0.4に下げ、14番と並べた。7番は唯一の3勝クラスが9着(79.8)で、1番を減点した基準に合わせて+0.2に下げ、3勝クラスで84.7〜85.7を続ける6番を+0.3に上げた。2番は最高指数83.0で上に取る根拠が無いので0.0。3番の88.6は54kgでの数字で、58kgでは82.9なので0.0。10番は芝の3勝クラスで83.7があり、4番・8番と同じくらいなので-0.4に戻した。5番は江の島S6着(83.0)を理由に書き足して+0.5に少し下げたが、2400mの3勝クラスでいちばん安定しているという判断は変えていない。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>展開</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>展開のシナリオ: 京都芝2400m外回りは、スタンド前の発走から1コーナーまで約600mあるけん、枠の有利不利は小さめに見とる。いちばん大きいのは逃げたい馬の多さ。7番ロードフィレール（直近3走とも通過1-1-1-1）と13番ウインデイジー（直近2走1-1-1-1）がハナを狙って、内から3番サトノクロークと外から12番リーティアコナルもついていきそう。先頭グループが4頭で、平均より少し速いペースを本線にしとる。<br>3コーナーの下り坂で中団から勢いをつけて、平坦な直線404mを長く脚を使える馬が向く形。ただ13番が控えて7番の単騎逃げになると、スローの前残りになる。こっちの別シナリオもあるけん、先行勢を大きくは下げとらん。<br><br>1番, アットアブラスト, +0.3, 1枠から3〜4番手の内でロスなく運べる先行馬で、2週前に同じ京都2400mを3-3-7-4で勝っとる。先頭グループのすぐ後ろのポケットに入れそうで、ペースが速くても遅くても対応しやすい。<br><br>2番, サトノパトリオット, +0.3, 2-2からも11-12からも競馬できる自在型で、内枠から先頭グループを見る好位を取りやすい。逃げ争いに巻き込まれずに運べる位置取りが合う。<br><br>3番, サトノクローク, -0.2, 烏丸Sでは同じコースを逃げて2着やけど、今回は7番・13番・12番とハナを争う形になる。前走も逃げて大きく失速しとって、競り合いになる展開はマイナス。<br><br>4番, ナムラフッカー, +0.1, 12〜15番手からの追込型で、先頭グループが多くペースが流れれば少し向く。ただ内枠の後方は外に出すまで手間取る心配があって、上げ幅は小さめ。<br><br>5番, ベトルス, +0.4, 好位も中団も取れる自在型で、烏丸Sでは同じコースの11-11-8-8から上がり33.8で3着。3コーナーの下りから進出して長い直線で脚を伸ばす競馬がこのコースにぴったり合っとって、速めのペースならさらに向く。<br><br>6番, ロードガレリア, +0.2, 中団後方から上がり34秒前半を安定して出す差し馬。先頭グループが多くペースが流れる本線のシナリオは追い風。<br><br>7番, ロードフィレール, -0.2, 単騎逃げの経験しかない逃げ馬で、今回は13番などに外からつつかれそう。初めての2400mで息を入れにくいのはマイナス。ただ単騎で行かせてもらえれば残る余地もあるけん、下げ幅はこれくらいにとどめる。<br><br>8番, キントリヒ, 0.0, 中団の7〜10番手で運ぶ馬で、ペースが流れても落ち着いても展開による損得ははっきりせん。<br><br>9番, オメガナビゲーター, 0.0, 京都2400mでは2〜5番手の先行策が多いけど、最近は後ろからの競馬もあって位置取りが読みにくい。先頭グループの直後になれば速いペースの影響も受けるけん、差し引きで中立。<br><br>10番, ルクスビッグスター, -0.1, 最近はダート戦が続いとって、久々の芝2400mでどの位置を取るかが読めん。流れに乗れず中途半端な位置になる心配がある。<br><br>11番, キーパフォーマー, 0.0, 中団後方の差し馬。6枠でも1コーナーまで距離があるけんロスは小さく、展開による上げ下げは無い。<br><br>12番, リーティアコナル, -0.3, 逃げか2番手の馬で、7枠から先頭グループに加わると競り合いで消耗しやすい。直近2走も前で運んで失速しとって、今回の隊形はさらに厳しい。<br><br>13番, ウインデイジー, -0.2, 逃げて重賞級の相手に2着と好調やけど、7番との先頭争いは避けにくく、2400mでペースを落とせん形になる。外からかぶせる立場で主導権は握れそうやけん、下げ幅は小さめにしとる。<br><br>14番, スピードリッチ, +0.1, 好位も後方も取れる自在型で、3000mや2600mも走れるスタミナ型。ペースが流れて持久力勝負になれば少し向く。8枠はコーナーで外を回るロスがあって、その分は差し引いとる。<br><br>15番, クルミナーレ, -0.1, 3〜7番手の先行・中団型やけど、8枠から先頭グループの外を回らされやすい。速めのペースで外を追走するのはわずかに不利。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.3, &quot;3&quot;: -0.2, &quot;4&quot;: 0.1, &quot;5&quot;: 0.4, &quot;6&quot;: 0.2, &quot;7&quot;: -0.2, &quot;8&quot;: 0.0, &quot;9&quot;: 0.0, &quot;10&quot;: -0.1, &quot;11&quot;: 0.0, &quot;12&quot;: -0.3, &quot;13&quot;: -0.2, &quot;14&quot;: 0.1, &quot;15&quot;: -0.1}, &quot;analysis_summary&quot;: &quot;京都芝2400m外回りは1コーナーまで長く、枠の差は小さい。7ロードフィレールと13ウインデイジーの逃げ馬2頭に3と12も先行し、先頭グループ4頭で平均より少し速いペースを本線とする。3コーナーの下りから中団で勢いをつけ、平坦な直線で脚を長く使える5ベトルスを最上位に、内の好位でロスなく運べる1と2、差しの6を上げた。先行争いに加わる12・3・7・13は下げるが、7の単騎スローで前残りになる別シナリオもあるため下げ幅は小さめにした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1) 1番アットアブラストの3-4番手は9番オメガナビゲーターを0.0にした理由『先頭グループ直後は速いペースの影響を受ける』と同じ位置なのに+0.3で、2番サトノパトリオット(青嵐賞2-2)の+0.3も速いペース本線と噛み合わないのではないか。(2) 6番ロードガレリア(+0.2)と11番キーパフォーマー(0.0)は近走の位置取りがほぼ同じ中団後方で、展開面で差を付ける根拠が見えない。4番ナムラフッカーは同じコースの烏丸Sで4着で、京都外回りは直線で馬群がばらけやすく、内枠の減点は大きすぎないか。(3) 11番キーパフォーマーでは『1コーナーまで遠いので外枠ロスは小さい』としたのに、14番スピードリッチと15番クルミナーレは外枠で下げており、基準が揃っていない。(4) 12番リーティアコナルは直近2走ハナに行っておらず、3番サトノクロークも前走で逃げて大敗しており、先頭争いの頭数を多く見すぎていないか。逆に10番ルクスビッグスターは前回の芝を逃げており、先行候補に数えていない。7番ロードフィレールの『単騎逃げの経験しかない』は皐月賞8-9-11-10と食い違う。13番ウインデイジーはストークS2-2で3着と番手でも競馬ができ、7番ロードフィレールの外の2番手がありそうで、本人も『主導権を握れそう』と書いているのに-0.2は理由と逆ではないか。(5) 実際の先行争いが2頭だけならスローペースになる筋もあり、その場合は差し馬へのプラスと前の馬へのマイナスが崩れる。本線への確信の度合いが付値に反映されているか見直してほしい。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, アットアブラスト, +0.3, 1枠から3〜4番手の内ポケットに入れる先行馬で、2週前に同じ京都2400mを3-3-7-4で勝っとる。9番と同じような位置でも、こっちは内枠でロスなくその位置を取れるけん、ペースが落ち着いても流れても損をしにくい。<br><br>2番, サトノパトリオット, +0.3, 青嵐賞の2-2からも1勝クラスの11-12からも競馬できる自在型。7番が逃げて13番が2番手に収まる平均ペースが本線になったけん、内枠からその直後の好位を取れるのはそのまま有利に働く。<br><br>3番, サトノクローク, -0.1, 烏丸Sでは同じコースを逃げて2着やけど、今回は7番がハナを取りそうで、先頭争いに加わるか控えるかの判断を迫られる。内枠なので控えて3番手につける手もあるけん、下げ幅は小さくした。<br><br>4番, ナムラフッカー, 0.0, 12〜15番手からの追込型。京都外回りは直線で馬群がばらけやすいけん内枠の減点は取り下げた。ただペースが極端に流れる見込みも薄くなって、追込の上積みも無いので中立にした。<br><br>5番, ベトルス, +0.3, 好位も中団も取れる自在型で、烏丸Sでは同じコースの11-11-8-8から上がり33.8で3着。3コーナーの下りから動いて長い直線で伸ばす形がこのコースに合う。ハイペースを当てにした分は外して、少し下げた。<br><br>6番, ロードガレリア, +0.1, 中団後方の9番手前後から運ぶ差し馬。平均ペースなら後方待機の利はわずかなので、上げ幅を縮めた。<br><br>7番, ロードフィレール, 0.0, 直近3走はすべて逃げとって、今回もハナを取る最有力（皐月賞は8-9-11-10の中団で、逃げ一辺倒ではなかった）。13番が2番手に控えれば単騎でマイペースに持ち込めるけど、3番や12番に絡まれる筋も残る。初めての2400mで息を入れられるかも読み切れんので、プラスとマイナスが打ち消し合って中立とした。<br><br>8番, キントリヒ, 0.0, 中団の7〜10番手で運ぶ馬で、ペースが流れても落ち着いても展開による損得ははっきりせん。<br><br>9番, オメガナビゲーター, +0.1, 京都2400mでは2〜5番手の先行策が多い。平均ペースが本線なら先頭グループの直後は不利にならんので、少しだけ上げる。前走は後ろからの競馬で位置取りが読みにくい分、小幅にとどめた。<br><br>10番, ルクスビッグスター, -0.1, 前回の芝1800mでは逃げとるけど、その後はダート戦が続いとって、久々の芝2400mでハナを主張するとは考えにくい。中途半端な位置で流れに乗れん心配は残る。<br><br>11番, キーパフォーマー, 0.0, 中団後方が多いけど5-5で運んだこともある。6枠でも1コーナーまで距離があってロスは小さく、展開による上げ下げは無い。<br><br>12番, リーティアコナル, -0.1, 直近2走は5-5と2-2でハナに行っとらんけん、先頭争いの頭数に数えたのは多すぎた。7枠から前に取りつく分だけわずかに脚を使う、くらいの不利にとどめる。<br><br>13番, ウインデイジー, +0.2, 近2走は逃げとるけど、ストークSでは2-2で3着と番手でも競馬ができる。7番の外の2番手につけて、プレッシャーを受けずに前を見ながら運べる形はむしろ有利。下げとった理由とも矛盾するけん、プラスに改めた。<br><br>14番, スピードリッチ, 0.0, 好位も後方も取れる自在型のスタミナ型やけど、持久力勝負になるハイペースの本線を取り下げたけん、上積みは消した。1コーナーまで遠いコースなので、8枠のロスも11番と同じ基準で小さいと見る。<br><br>15番, クルミナーレ, 0.0, 3〜7番手の先行・中団型。1コーナーまで距離があって外枠からでも好位に収まりやすく、平均ペースなら外を追走する不利も小さい。外枠の減点は11番と基準をそろえて取り消した。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.3, &quot;3&quot;: -0.1, &quot;4&quot;: 0.0, &quot;5&quot;: 0.3, &quot;6&quot;: 0.1, &quot;7&quot;: 0.0, &quot;8&quot;: 0.0, &quot;9&quot;: 0.1, &quot;10&quot;: -0.1, &quot;11&quot;: 0.0, &quot;12&quot;: -0.1, &quot;13&quot;: 0.2, &quot;14&quot;: 0.0, &quot;15&quot;: 0.0}, &quot;analysis_summary&quot;: &quot;先頭争いの頭数を見直した。ハナを主張するのは実質7番だけで、13番は番手に控えられる。12番は近2走ハナに行っておらず、10番もダート続きで逃げとは考えにくい。そこでハイペースの本線を取り下げ、7番逃げ・13番2番手の平均ペースを本線にした。差し・追込の上積み（4・6・14番）と、前の馬の消耗による減点（3・12・13番）は縮小または撤回した。13番は外の2番手で楽に運べるのでプラスに転じた。好位の内を取れる1・2番、下りから長い直線で伸ばせる5番は、平均ペースでも有利なので上位を維持した。外枠の扱いは、1コーナーまで遠いコース形態を理由に11・14・15番で基準をそろえ、ロスは小さいとした。7番は単騎逃げの利と、絡まれる筋・初距離の不安が打ち消し合うので中立とした。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>体調</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, アットアブラスト, +0.3, 460kg(0)で、458〜466kgの狭い幅にずっと収まっています。前走1着時の460kgとも同じ数字です。叩き4走目で中1週ですが体重は減っておらず、調教も馬なり余力で「好調持続」と出ているので、デキは維持できていると見ます。<br><br>2番, サトノパトリオット, +0.1, 3か月の休み明けで476kg(-6)です。490→484→482→476と右肩下がりで、青嵐賞1着時の484kgより8kg軽く、消耗が少し気になります。それでも美浦Wのラスト1F11.9で「久々も好仕上がり」という評価なので、マイナスは絞れた結果とも読め、差し引きでわずかに上げます。<br><br>3番, サトノクローク, -0.4, 468→476→486kgと2走で18kg増えています。好走した烏丸S(480kg)より6kg重く、太め残りが心配です。+8kgで臨んだ前走は16着の大敗でした。斤量も55→58kgで3kg増え、2400mなら1.5馬身前後の上積みになります。調教は「多少上向く」止まりです。<br><br>4番, ナムラフッカー, -0.5, 472→474→474→486→494→498kgと増え続けていて、烏丸S4着時より26kg重い状態です。体重が増えるのに合わせて着順も悪くなっています。調教も「鋭さひと息」で、締まりきっていないと判断します。<br><br>5番, ベトルス, +0.3, 510kg(-4)で、好走した508〜514kg(御堂筋S2着508kg、烏丸S3着512kg)の真ん中にいます。休み明けを叩いた後の2か月ぶりで、調教は栗CWのラスト1F11.4、「徐々に良化見せる」と上向きです。斤量57→58kgの1kg増は、510kg台の馬格なら影響は小さいと見ます。<br><br>6番, ロードガレリア, -0.1, 普段は448〜454kgの馬が、中1週で460kg(+10)になっています。初めて見る重さで、東京から京都への輸送をはさんだ4連戦目というのも引っかかります。調教の「シャープな脚捌き」は好材料ですが、小柄な馬が58kgを背負うことも合わせて、少しだけ下げます。<br><br>7番, ロードフィレール, +0.4, 516kgまで減って9着だった前走から、524kg(+8)に戻しました。阿賀野川特別1着(522kg)や若葉S2着(524kg)と同じ水準です。7週あけて立て直せた形で、調教も馬なり余力の「デキ落ちなし」です。3歳の56kgは58kg勢より2kg(約1馬身)軽く、524kgの大型馬には楽な負担です。<br><br>8番, キントリヒ, -0.2, 476kg(+2)で、474〜482kgの範囲から外れておらず、体重面の不安はありません。ただ一杯に追ったのに「ジリッぽさ目立つ」という評価で、7歳秋の上積みは見込みにくいです。<br><br>9番, オメガナビゲーター, +0.4, 5か月ぶりの前走は488kg(-8)と細く、8着でした。今回は500kg(+12)に戻り、比良山特別1着や烏丸Sの496kgに近づいています。叩き2走目で体が戻るという上昇パターンで、調教も馬なり余力の「上昇気配窺える」と合っています。<br><br>10番, ルクスビッグスター, 0.0, 486kg(-4)は482〜492kgの範囲内で、中2週でも体重は安定しています。調教は「順調に乗り込む」と平凡で、体調の面で上げる材料も下げる材料もありません。<br><br>11番, キーパフォーマー, -0.5, 466kgで3走続いた後の462kg(-4)で、近走では一番軽い数字です。そこへ斤量が53→56kgと3kg(約1.5馬身)増え、460kg台前半の牝馬には負担が大きいです。調教も「ハミ受けひと息」で気配は物足りません。<br><br>12番, リーティアコナル, +0.2, +6kgの490kgで臨んだ前走は17着でした。今回は486kg(-4)に絞れ、連勝した時期の480kgに近づいています。3か月の休み明けを叩いた2走目で、調教も馬なり余力の「手応え十分」なので、わずかに上げます。<br><br>13番, ウインデイジー, +0.4, 458kg(+2)で454〜462kgの安定した範囲にいます。自己最高のスピード指数90.6を出した前走の456kgとほぼ同じです。間隔も5週と程よく、調教は栗CWで5F64.4と全体時計が一番速く、併せ馬に遅れても時計は優秀です。斤量55→56kgの1kg増は気にするほどではありません。<br><br>14番, スピードリッチ, -0.4, 3か月の休み明けで486kg(-2)です。体重は488〜492kgの範囲から少し軽い程度で問題ありません。ただ、休み明けなのに一杯に追って「脚いろ見劣る」という評価で、仕上がりが遅れている心配があります。<br><br>15番, クルミナーレ, +0.1, 5か月半の長い休み明けですが、514kg(+2)は千里山特別1着時と同じ数字で、508〜514kgの範囲を保っています。一杯に追って「仕上がり良好」なので、久々を割り引いてもわずかにプラスです。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①斤量を馬ごとに違う基準で扱っていないか: 11番キーパフォーマーの56kgは牝馬定量の標準で、シドニーT(56kg)では0.3秒差の5着。体重462kgもいつもの範囲から4kg下なだけで、4番ナムラフッカーと同じ-0.5にする根拠は足りるか。6番ロードガレリアは直近2走とも58kgなので、58kgの減点は二重に数えていないか。13番ウインデイジーと7番ロードフィレールは同じ56kgなのに、13番は自分の前走と、7番は58kg勢と比べている。②調教の時計: 7番ロードフィレールの坂路59.4-14.2の馬なりは全頭で一番軽く、+0.4(トップタイ)と合うか。1番アットアブラストは勝った後の中1週で8週4戦目、1F13.8も遅いのに、6番では減点した同じ条件を見ていない。14番スピードリッチ(-0.4)と15番クルミナーレ(+0.1)はどちらもCW一杯で1F11.4と同じ。差は評価コメントの言葉だけで、休み明けの期間は15番の方が長い。3番サトノクロークの1F11.3(全頭最速)を見ていない。③体重の比較の基準: 3番の『18kg増』は落ち込んだ468kgから数えた数字で、いつもの480kgと比べれば+6kg。16着の時の476kgはむしろ軽く、大敗を体重増に結びつけるのは苦しい。12番リーティアコナルの486kgは7着・9着の時と同じ水準で、良くなった材料と言えるか。2番サトノパトリオットは3か月休んでも体重が戻らず過去最低の476kgで、警戒材料ではないか。④13番ウインデイジーは前走の自己最高指数90.6による反動と、併せ馬での遅れを検討していない。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, アットアブラスト, +0.2, 体重は460kg(0)で、458〜466kgの狭い幅から外れていません。中1週・8週で4戦目でも体重が減っていないので、疲れは表に出ていないと見ます。ただ、1F13.8の馬なりは時計として軽く、6番と同じく連戦の条件を割り引いて少し下げます。<br><br>2番, サトノパトリオット, 0.0, 3か月休んでも体重が戻らず、476kg(-6)は過去最低です。青嵐賞1着時の484kgより8kg軽いので、警戒材料として重く見直しました。一方で美浦Wの1F11.9で「久々も好仕上がり」と評価されているので、プラスとマイナスが打ち消し合って中立にします。<br><br>3番, サトノクローク, -0.1, いつもの体重は480kgで、468kgは落ち込んだ時の数字でした。そこから測れば今回の486kgは+6kgにすぎず、16着は逃げてバテたもので体重とは結びつけられないので、太め残りの減点を大きく削ります。58kgも関ケ原Sで経験済みです。1F11.3は全頭最速ですが、それでも自己最重量なので少しだけ下げます。<br><br>4番, ナムラフッカー, -0.5, 472→474→474→486→494→498kgと増え続けていて、烏丸S4着時より26kg重い状態です。体重が増えるのに合わせて着順も悪くなっています。強めに追って「鋭さひと息」という評価なので、まだ絞り切れていないと判断します。<br><br>5番, ベトルス, +0.3, 510kg(-4)は、好走した508〜514kg(御堂筋S2着508kg、烏丸S3着512kg)の真ん中です。休み明けを叩いた後の2か月ぶりで、栗CWのラスト1F11.4で「徐々に良化見せる」と上向きです。斤量の1kg増は、510kg台の馬格と58kgでの好走歴からみて影響は小さいです。<br><br>6番, ロードガレリア, -0.1, 58kgは直近2走でも背負っているので、斤量による減点は取り下げます。それでも、448〜454kgで走ってきた馬が中1週で460kg(+10)と初めての重さになっていて、東京から京都への輸送をはさんだ9週で4戦目です。「シャープな脚捌き」は好材料なので、少し下げるだけにします。<br><br>7番, ロードフィレール, +0.3, 516kgで9着だった前走から524kg(+8)に戻り、阿賀野川特別1着(522kg)や若葉S2着(524kg)と同じ水準になったのは好材料です。ただ、坂路59.4-14.2の馬なりは全頭で一番軽く、評価も「デキ落ちなし」の維持止まりです。斤量の56kgも自分の過去の55〜57kgと変わらないので、上げ幅を縮めます。<br><br>8番, キントリヒ, -0.2, 476kg(+2)は474〜482kgの範囲内で、体重面の不安はありません。ただ一杯に追って「ジリッぽさ目立つ」という評価なので、仕上がりの上積みは見込みにくいです。<br><br>9番, オメガナビゲーター, +0.4, 5か月ぶりの前走は488kg(-8)と細く、8着でした。叩き2走目の今回は500kg(+12)で、比良山特別1着や烏丸Sの496kgに近づいています。馬なり余力で「上昇気配窺える」と調教も合っていて、叩いて上昇するパターンが一番はっきりしています。<br><br>10番, ルクスビッグスター, 0.0, 486kg(-4)は482〜492kgの範囲内で、中2週でも体重は安定しています。調教も「順調に乗り込む」と平凡で、体調面で上げる材料も下げる材料もありません。<br><br>11番, キーパフォーマー, -0.2, 56kgは定量戦での牝馬の標準で、シドニーTでも56kgで0.3秒差の5着に来ています。53kgとの比較で減点したのは基準の取り違えだったので取り下げます。462kg(-4)もいつもの範囲から少し軽いだけなので、残る減点は「ハミ受けひと息」という気配の物足りなさだけです。<br><br>12番, リーティアコナル, +0.1, 486kg(-4)は前走の490kgよりは絞れていますが、7着の時の486kgや9着の時の484kgと同じ水準です。連勝した時の480kgまでは戻っていないので、上昇材料としては弱いと見直しました。叩き2走目で「手応え十分」という調教だけを、わずかに評価します。<br><br>13番, ウインデイジー, +0.3, 458kg(+2)は454〜462kgの安定した範囲で、5週の間隔も適度です。栗CWの5F64.4は全体時計で一番速いです。ただ、自己最高の指数90.6を出した直後で、89.1の次走に81.5まで落ちた過去もあるので、反動を考えます。併せ馬に遅れたことも合わせて、上げ幅を縮めます。<br><br>14番, スピードリッチ, -0.2, 3か月の休み明けで486kg(-2)と、体重は488〜492kgの範囲から少し軽いだけです。CWで一杯に追って1F11.4は15番と同じなので、仕上がりの遅れを示すのは「脚いろ見劣る」という評価の言葉だけです。そのため減点を半分にします。<br><br>15番, クルミナーレ, +0.1, 5か月半の長い休み明けですが、514kg(+2)は千里山特別1着時と同じで、508〜514kgの範囲を保っています。CWで一杯に追った1F11.4は14番と同じでも、5F66.4・3F37.2と全体の時計はこちらが速く、「仕上がり良好」という評価です。休み明けの長さを割り引いて、わずかにプラスとします。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.0, &quot;3&quot;: -0.1, &quot;4&quot;: -0.5, &quot;5&quot;: 0.3, &quot;6&quot;: -0.1, &quot;7&quot;: 0.3, &quot;8&quot;: -0.2, &quot;9&quot;: 0.4, &quot;10&quot;: 0.0, &quot;11&quot;: -0.2, &quot;12&quot;: 0.1, &quot;13&quot;: 0.3, &quot;14&quot;: -0.2, &quot;15&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;斤量はどの馬も自分の過去の斤量と比べる基準にそろえ、11番の牝馬定量56kgと6番の58kgの二重減点を取り下げた。3番は普段の480kgを基準に測り直して+6kgとし、大敗との結びつけもやめて-0.4から-0.1へ。2番は休み明けでも体重が戻らない過去最低体重を警戒材料として重く見て0.0、12番は486kgが凡走時と同じ水準なので+0.1。調教の時計では、7番の坂路の軽さと1番の連戦を割り引いてそれぞれ0.1下げた。14番は15番と時計が同じで差が評価の言葉だけなので-0.2に縮め、13番は指数の反動と併せ遅れを考えて+0.3とした。叩き2走目で体重が戻った9番を最上位、体重の推移が悪化し続ける4番を最下位とする判断は変えない。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>血統</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>ナッキ〜、比叡Sを血統の目で見たけん、まとめるね。京都外回りの芝2400mで馬場は良。3コーナーの下りから長い直線まで、スタミナと長く続く末脚の両方が要るコースっちゃん。今回は中長距離向きの血統が多くて差が付きにくいけん、ほとんどの馬は ±0.4 以内に収めとるよ。<br><br>1番, アットアブラスト, +0.3, 父ゼンノロブロイも母父タニノギムレット（ロベルト系）も中長距離でスタミナを伝える組み合わせで、2400mに合う血統っちゃん。2週前に京都2400mを勝っとって、実績も血統の読みと合っとる。<br><br>2番, サトノパトリオット, +0.3, 父レイデオロの産駒は2400m前後でいちばん走るし、母父Street Cryが持続力のある速さを足しとる。東京2400mで2勝しとるけん、広くて直線の長い京都外回りでも適性は高いと見とる。<br><br>3番, サトノクローク, +0.3, 父サトノクラウン（欧州のマルジュ系）のスタミナと母父ディープインパクトの切れが合わさった、中長距離向きの配合。烏丸Sの京都2400mで2着しとるけん、この舞台への適性ははっきりしとる。<br><br>4番, ナムラフッカー, +0.4, 父スワーヴリチャード（ハーツクライ系）×母父ルーラーシップは、典型的な2400m向きの配合。2000〜2200mでは追走に忙しかったけど、京都2400mの烏丸Sでは4着で指数86.5を出しとって、距離延長は血統的にプラスっちゃん。<br><br>5番, ベトルス, +0.5, ハーツクライ産駒らしく、スタミナで粘る中長距離型に育っとる。2400mで2着と3着があって2600mでも勝っとるけん、京都外回り2400mはこの血統にいちばん合う条件と言ってよかよ。<br><br>6番, ロードガレリア, +0.3, 父フィエールマンはディープ系の中でもスタミナ寄りで、母父ロードカナロアがスピードを補っとる。京都2400mで勝っとって東京2400mでも3着やけん、距離への不安は無かよ。<br><br>7番, ロードフィレール, +0.2, 父キズナ×母父オルフェーヴルなら、2400mも十分こなせるスタミナがある。初めての2400mやけど、3歳秋は伸びてくる時期やけん、少しだけ上げとるよ。<br><br>8番, キントリヒ, -0.1, 父ゴールドシップの産駒は力の要る馬場や消耗戦で良さが出るタイプで、京都の良馬場で速い時計の決着になると持ち味が出にくいっちゃん。7歳で、東京2400mでも大敗しとるけん、わずかに下げとる。<br><br>9番, オメガナビゲーター, +0.2, 父スクリーンヒーロー（ロベルト系）は持続力とスタミナを伝える血統で、京都2400mでも勝っとる。舞台の適性にはわずかにプラスを付けとるよ。<br><br>10番, ルクスビッグスター, +0.2, 父キタサンブラック×母父ジャングルポケット（トニービン系）は、本来は芝の中長距離向きの配合。ダートや芝1800mからの2400m替わりは血統的に向くけど、芝の長距離で結果を出した実績はまだ無いけん、少しだけにしとる。<br><br>11番, キーパフォーマー, +0.2, 父キタサンブラック×母父ネオユニヴァースはスタミナ寄りの配合で、2000m中心の今までより距離が延びるのは血統的に合う方向っちゃん。ただ、2400mで実際に走った実績が無いけん、わずかなプラスに留めとる。<br><br>12番, リーティアコナル, -0.4, 父Kingmanは欧州のマイル血統（インヴィンシブルスピリット系）で、2000mで逃げる形がいちばん合っとる。2200mでも失速しとるけん、2400mは血統的にはっきりマイナスと見とるよ。<br><br>13番, ウインデイジー, +0.1, 父ゴールドシップ×母父コンデュイット（ダラカニ系）は、スタミナが豊富な配合。2200mで先行して粘る形は合っとるけど、京都2400mでは11着やけん、ほぼ中立にしとる。<br><br>14番, スピードリッチ, 0.0, 父ドレフォンはダートの短中距離の種牡馬やけど、母父ハーツクライのスタミナが前に出て、実際に2400〜3000mで好走しとる。血統の読みと実績が逆向きで打ち消し合うけん、中立にしとる。<br><br>15番, クルミナーレ, +0.1, 父ブラックタイドはディープインパクトの全兄で中長距離に対応できるし、母父フレンチデピュティが力強さを足しとる。2400mで2着があるけん、わずかなプラスっちゃん。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.3, &quot;3&quot;: 0.3, &quot;4&quot;: 0.4, &quot;5&quot;: 0.5, &quot;6&quot;: 0.3, &quot;7&quot;: 0.2, &quot;8&quot;: -0.1, &quot;9&quot;: 0.2, &quot;10&quot;: 0.2, &quot;11&quot;: 0.2, &quot;12&quot;: -0.4, &quot;13&quot;: 0.1, &quot;14&quot;: 0.0, &quot;15&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;京都外回り芝2400m良馬場はスタミナと持続力の血統が合う舞台。ハーツクライ産駒で2400mの実績が厚いベトルスを最上位に置き、スワーヴリチャード×ルーラーシップで距離延長がプラスのナムラフッカーがそれに次ぐ。父マイラーKingmanのリーティアコナルは距離延長でマイナス、ゴールドシップ産駒のキントリヒは速い時計の決着がわずかに不向き。ドレフォン産駒のスピードリッチは母父ハーツクライのスタミナと実績が打ち消し合って中立。中長距離血統がそろったレースのため、全体の振り幅は小さめ。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>批判:</b><br>(1)3番サトノクロークは烏丸Sで4番ナムラフッカーに先着(2着・指数88.6)しとって、母父ディープは京都外回りに合う系統。4番ナムラフッカーは直近4走が大敗で根拠が1走だけやけん、3番と4番の並びは逆やない？ (2)8番キントリヒには『ゴールドシップは京都の速い決着が苦手』で減点しとるのに、同じ父の13番ウインデイジーには当てはめとらん。差を付けるなら母父(ボストンハーバーとコンデュイット)で説明したらどうかな。 (3)12番リーティアコナルは母父English Channel(米国芝12Fの王者)のスタミナを無視しとって、14番スピードリッチでは母父を重く見たのと扱いがそろっとらん。2200mも逃げて0.3秒差やけん、-0.4(最下位)は強すぎん？ (4)14番スピードリッチは血統と実績(3000m3着、2600mで指数90.5)が同じ方向やのに0.0で、実績の無い7番ロードフィレール・10番ルクスビッグスター・11番キーパフォーマー(+0.2)より下になっとる。 (5)5番ベトルス(+0.5、いちばん上)の理由がほぼ実績だけで、母父To Honor and Serveにも触れとらん。9番オメガナビゲーター・2番サトノパトリオットも母父の評価が抜けとる。 (6)15頭中12頭がプラスで差が付いとらん。京都外回りの下り坂・平坦な直線・良馬場の速い決着にどの血統が合うかで差を付ける余地はなかかな。7番ロードフィレールの『3歳秋』は血統の根拠やないよ。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, アットアブラスト, +0.3, 父ゼンノロブロイも母父タニノギムレット（ロベルト系）も、中長距離でしぶとく粘るスタミナを伝える配合っちゃん。2週前に京都2400mを勝っとって、血統の読みと実績がそろっとるけん、そのまま据え置くね。<br><br>2番, サトノパトリオット, +0.3, 父レイデオロの産駒は2400m前後がいちばん合うし、母父Street Cry（ミスプロ系マキャヴェリアン）は芝の中距離で長く脚を使う持続力を足す血統。東京2400mで2勝しとるとも、この配合の向きと合っとるよ。<br><br>3番, サトノクローク, +0.4, 父サトノクラウン（欧州マルジュ系）のスタミナに、京都外回りの下り坂から平坦な直線で活きる母父ディープインパクトの切れが加わった配合。烏丸Sの京都2400mでは指数88.6で2着しとって、血統と舞台の噛み合いは4番より根拠が厚いけん、一段上げるね。<br><br>4番, ナムラフッカー, +0.3, 父スワーヴリチャード（ハーツクライ系）×母父ルーラーシップは、2400mで持続力を活かす典型的な配合。ただ、距離延長でプラスになった根拠は烏丸Sの4着1走だけで、3番より劣るけん、一段下げとる。<br><br>5番, ベトルス, +0.4, 父ハーツクライの長く良い脚に、母父To Honor and Serve（A.P.インディ系の米国中距離血統）のパワーと持続力が加わって、下り坂から長く脚を使う京都外回り2400mに向く構成っちゃん。2400〜2600mの好走で血統の向きも裏付けられとるけど、母父には芝の切れが無いけん、少しだけ下げとる。<br><br>6番, ロードガレリア, +0.3, 父フィエールマンはディープ系の中でもスタミナ寄りで、母父ロードカナロアがスピードを補っとるけん、京都外回りの速い決着にも対応できる配合。京都2400mで勝っとって、東京2400mでも3着やけん、据え置くね。<br><br>7番, ロードフィレール, +0.1, 父キズナ×母父オルフェーヴルなら2400mをこなせるスタミナはあるけど、キズナの産駒は2000m前後が中心で、この馬も2000〜2200mの逃げで結果を出しとる。2400mは初めてやけん、わずかなプラスに留めるね（「3歳秋」の理由は血統の根拠やないけん外した）。<br><br>8番, キントリヒ, -0.2, 父ゴールドシップの産駒は力の要る馬場の消耗戦向きで、京都の良馬場で速い時計の決着になるのは合わんっちゃん。母父ボストンハーバーは米国の短距離スピード血統でスタミナを補えんけん、2400mで大敗しとる実績とも合っとって、少し下げを強めとる。<br><br>9番, オメガナビゲーター, +0.2, 父スクリーンヒーロー（ロベルト系）のスタミナと持続力に、母父Encosta De Lago（豪州のノーザンダンサー系）がスピードを足した配合。京都2400mで勝ちと3着があるけん、舞台への適性はわずかにプラスっちゃん。<br><br>10番, ルクスビッグスター, +0.1, 父キタサンブラック×母父ジャングルポケット（トニービン系）は本来、芝の中長距離に向く配合。ただ、ここ最近はダートや芝1800mを走っとって、芝の長距離で結果を出したことが無いけん、一変を期待するのは控えめにするね。<br><br>11番, キーパフォーマー, +0.1, 父キタサンブラック×母父ネオユニヴァースはスタミナ寄りの配合で、距離延長は血統的には合う方向。でも2400mを走った実績が無くて、2000mでも勝ち切れとらんけん、ごくわずかなプラスに下げるね。<br><br>12番, リーティアコナル, -0.2, 父Kingman（インヴィンシブルスピリット系）はマイルから2000mが中心の血統やけど、母父English Channelは米国の芝12Fの王者で、スタミナを補っとる。2200mも逃げて0.3秒差やけん、2400mは「少し長い」くらいと見直して、マイナスを弱めとる。<br><br>13番, ウインデイジー, 0.0, 父ゴールドシップは8番と同じで、京都の速い決着はマイナス材料。ただ、母父コンデュイット（ダラカニ系）は欧州の12Fのスタミナ血統で距離への裏付けになるけん、8番とは母父の差で分けて、プラスとマイナスが相殺して中立にするね。<br><br>14番, スピードリッチ, +0.2, 父ドレフォンはダートの短中距離血統やけど、この馬は母父ハーツクライのスタミナが前に出とって、3000mで3着、2600mで指数90.5、2400mで2着と実績もそろっとる。血統の読みと実績が同じ方向を向いとるけん、0.0から上げとる。<br><br>15番, クルミナーレ, +0.1, 父ブラックタイド（ディープの全兄）は中長距離に対応できるし、母父フレンチデピュティがパワーを足しとる。2400mで2着はあるけど2600mでは6着やけん、わずかなプラスのままにするね。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.3, &quot;2&quot;: 0.3, &quot;3&quot;: 0.4, &quot;4&quot;: 0.3, &quot;5&quot;: 0.4, &quot;6&quot;: 0.3, &quot;7&quot;: 0.1, &quot;8&quot;: -0.2, &quot;9&quot;: 0.2, &quot;10&quot;: 0.1, &quot;11&quot;: 0.1, &quot;12&quot;: -0.2, &quot;13&quot;: 0.0, &quot;14&quot;: 0.2, &quot;15&quot;: 0.1}, &quot;analysis_summary&quot;: &quot;批判を検証して見直した。①3番の母父ディープが京都外回りに合うこと、2400mでの実績の厚さを見て、3番を+0.4、4番を+0.3に入れ替えた。②ゴールドシップの速い決着への不向きは8番と13番の両方に当てはめ、母父で差を付けた（8番はボストンハーバーで-0.2、13番はコンデュイットのスタミナで相殺して0.0）。③12番は母父English Channelのスタミナを認めて-0.4から-0.2に弱めた。④14番は血統と長距離実績が同じ方向を向いとるけん、0.0から+0.2に上げた。⑤5番の理由に母父の評価を足して、切れが無い分を見て+0.4にした。⑥2400m実績の無い7・10・11番は+0.1に下げ、7番から『3歳秋』の理由を外した。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>陣営</summary>
+<p style="margin:4px 0;"><b>R1:</b><br>1番, アットアブラスト, +0.2, 前走は田口貫太騎手のまま同じ京都芝2400mを勝っています。手の内を知った騎手が続けて乗るのはプラスですが、若手騎手で厩舎も中堅のため、小さめの上積みにとどめました。<br><br>2番, サトノパトリオット, +0.7, 木村哲也厩舎の馬に、以前この馬で1勝クラスを勝ったC.ルメール騎手が戻ってきます。トップ騎手とトップ厩舎の組み合わせで美浦から関西へ遠征してくるのは、陣営の勝負気配と読めます。<br><br>3番, サトノクローク, +0.2, 池添騎手が続けて乗ります。この条件の京都芝2400mの烏丸Sでは、池添騎手の逃げで2着の実績があります。乗り方の形を分かっている継続騎乗として少し上げます。<br><br>4番, ナムラフッカー, -0.3, 田山騎手は若手で、3勝クラスの騎手の中では格が下がります。長谷川浩大厩舎にもこの条件で後押しになる実績が乏しく、陣営としては見劣りします。<br><br>5番, ベトルス, +0.5, 友道厩舎は中長距離の芝で定評のある名門です。岩田望来騎手は御堂筋Sで2着に導いた継続騎乗で、陣営の信頼度ははっきり高いです。<br><br>6番, ロードガレリア, +0.4, 短期免許のM.バルザローナ騎手を起用してきました。藤岡健一厩舎の勝負気配と見ます。ただ近走は毎回騎手が替わっていて、手の内を知った騎手ではない分、上積みは控えめにしました。<br><br>7番, ロードフィレール, +0.5, 香嵐渓特別を勝ち、若葉Sで2着だったときの坂井瑠星騎手に戻ります。上位騎手で、しかもこの馬で結果を出した騎手の再騎乗なのは心強いです。<br><br>8番, キントリヒ, -0.3, ベテランの幸騎手で、厩舎は美浦の矢野英一厩舎です。関西への遠征で陣営の後押しは弱く、7歳の馬を上積みさせる材料が見当たりません。<br><br>9番, オメガナビゲーター, 0.0, 岩田康誠騎手から北村友一騎手への乗り替わりです。騎手の格はほぼ同等で、安田翔伍厩舎もこの軸では中立と見ます。<br><br>10番, ルクスビッグスター, -0.3, 吉村騎手が続けて乗りますが若手です。清水久詞厩舎がダートから芝に戻してくるのも陣営の迷いに見え、後押しは乏しいです。<br><br>11番, キーパフォーマー, -0.3, 松若騎手への乗り替わりです。近走は毎回騎手が定まっておらず、辻野厩舎にもこの条件の実績が乏しいため下げます。<br><br>12番, リーティアコナル, -0.1, 小崎騎手が5走続けて乗っていて、手の内は知り尽くしています。ただ騎手・厩舎とも格は下位で、ほぼ相殺してわずかなマイナスです。<br><br>13番, ウインデイジー, +0.1, 日本海Sでこの馬を逃げさせて2着に導いた岩田康誠騎手に戻ります。ベテランが癖を知っている点を小さく評価しました。<br><br>14番, スピードリッチ, +0.3, 松山騎手は関西の上位騎手で、厩舎は藤岡健一厩舎です。継続騎乗ではないものの、騎手の格で少し上げます。<br><br>15番, クルミナーレ, +0.7, 池江泰寿厩舎が6か月ぶりの馬にJ.モレイラ騎手を確保してきました。名門厩舎がトップ騎手に乗り替えるのははっきりした勝負気配で、休み明けでも仕上げてくると見ます。</p>
+<p style="margin:4px 0;"><b>批判:</b><br>①13番ウインデイジー(+0.1)は、3勝クラスの日本海S2着に導いた岩田康誠騎手が戻る。1勝クラスを勝った坂井騎手が戻る7番ロードフィレール(+0.5)と同じ型で、実績のクラスはむしろ近い。9番の理由では岩田康誠≒北村友一と高く見ており、13番を選んだ騎手の選択も含めて見直す余地はないか。②4番ナムラフッカー(-0.3)は、田山騎手が同じ京都芝2400mの烏丸Sで4着に導いた継続騎乗の材料を見落としていないか。3番サトノクロークの烏丸S評価と扱いが違う。③6番ロードガレリアは手の内がないとして割り引いたのに、15番クルミナーレ(+0.7)は初騎乗で休み明けでも割り引いていない。15番は手の内を知る松山騎手が14番に移った材料も抜けている。④遠征を2番サトノパトリオットでは勝負気配、8番キントリヒでは後押しが弱いと正反対に読んでいる。2番のルメール騎手の実績は12か月前の1勝クラスで、3勝クラスの近走は川田騎手だった。⑤6番と14番は同じ藤岡健一厩舎の2頭出しで、使い分けの視点がない。⑥12番(5走続けて継続騎乗で-0.1)と1番(2走続けて+0.2)、10番で、手の内と若手・格の減点の重さが揃っているか。1・7・12・13番は厩舎の評価が抜けている。</p>
+<p style="margin:4px 0;"><b>R2(見直し):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>1番, アットアブラスト, +0.2, 前走は田口貫太騎手のまま同じ京都芝2400mを勝っていて、手の内を知った騎手が続けて乗ります。若手騎手で、小椋研介厩舎もこの軸で押し上げる材料がないため、小さめの上積みのまま据え置きます。<br><br>2番, サトノパトリオット, +0.5, 3勝クラスの近走は川田騎手で、ルメール騎手の勝利は12か月前の1勝クラスだという指摘はもっともなので、手の内の評価は弱めます。それでも木村哲也厩舎が、過去に2戦して連対したトップ騎手を確保してきたことは、はっきりした後押しと見ます。<br><br>3番, サトノクローク, +0.2, 池添騎手が続けて乗ります。同じ京都芝2400mの烏丸Sでは、池添騎手の逃げで2着でした。形を知っている騎手の継続騎乗として少し上げます。<br><br>4番, ナムラフッカー, -0.1, 田山騎手は烏丸Sで同じ京都芝2400mを4着に導いていて、関ケ原Sでも乗っています。手の内を知る騎手が戻る点を見落としていたので見直しました。若手で格が下がる分と相殺して、わずかなマイナスにとどめます。<br><br>5番, ベトルス, +0.5, 友道厩舎は中長距離の芝で定評のある名門です。岩田望来騎手は御堂筋Sで2着に導き、前走でも乗った継続騎乗で、陣営の信頼度ははっきり高いです。<br><br>6番, ロードガレリア, +0.3, 藤岡健一厩舎は2頭出しで、こちらには短期免許のM.バルザローナ騎手、14番には松山騎手と、両方に上位騎手を配しています。どちらかを捨てた使い分けには見えません。ただ、この馬は毎回騎手が替わっていて手の内を知る騎手ではないため、14番と同じ程度にとどめます。<br><br>7番, ロードフィレール, +0.5, 香嵐渓特別を勝ち、リステッドの若葉Sで2着に導いた坂井瑠星騎手が戻ります。上位騎手がこの馬で結果を出していて、手の内も知っている再騎乗です。吉岡辰弥厩舎は中立と見ます。<br><br>8番, キントリヒ, -0.2, 遠征そのものを減点材料にしたのは2番との扱いが矛盾していたので、その理由は外します。ベテランの幸騎手はこの馬で初めての騎乗で、矢野英一厩舎にもこの条件で後押しになる材料が見当たりません。そのため小さなマイナスとします。<br><br>9番, オメガナビゲーター, 0.0, 岩田康誠騎手から北村友一騎手への乗り替わりで、騎手の格はほぼ同等です。安田翔伍厩舎もこの軸では中立と見ます。<br><br>10番, ルクスビッグスター, -0.2, 吉村騎手の継続は、ダートで11着だった1戦だけです。手の内という点での上積みは薄いです。若手騎手で、清水久詞厩舎が芝に戻してくる迷いもありますが、12番との釣り合いを取って減点を少し軽くします。<br><br>11番, キーパフォーマー, -0.3, 松若騎手への乗り替わりです。近走は毎回騎手が定まっておらず、手の内を知る騎手がいません。辻野厩舎にもこの条件の実績が乏しいため、下げたままにします。<br><br>12番, リーティアコナル, 0.0, 小崎騎手が5走続けて乗っていて、2勝クラスを勝たせた手の内があります。1番の継続を+0.2としたこととの釣り合いを見直しました。騎手と高橋一哉厩舎の格が下位という減点と、ちょうど相殺して中立とします。<br><br>13番, ウインデイジー, +0.3, 3勝クラスの日本海Sでこの馬を逃げさせて2着に導いた岩田康誠騎手が戻ります。7番と同じ型の再騎乗で、実績のクラスも今回に近いため、上積みを引き上げました。宮徹厩舎は中立と見ます。<br><br>14番, スピードリッチ, +0.3, 関西の上位騎手の松山騎手が藤岡健一厩舎の馬に乗ります。手の内を知る15番を離れてこちらを選んだ形で、陣営の期待がうかがえます。ただ、この馬への騎乗は初めてなので、少し上げる程度にします。<br><br>15番, クルミナーレ, +0.5, 池江泰寿厩舎が6か月ぶりの馬にJ.モレイラ騎手を確保したのは、勝負気配と見ます。それでも、千里山特別を勝たせた松山騎手が14番に移って手の内を知る騎手を失った点と、初騎乗の割引を反映して下げました。<br><br>```json<br>{&quot;points&quot;: {&quot;1&quot;: 0.2, &quot;2&quot;: 0.5, &quot;3&quot;: 0.2, &quot;4&quot;: -0.1, &quot;5&quot;: 0.5, &quot;6&quot;: 0.3, &quot;7&quot;: 0.5, &quot;8&quot;: -0.2, &quot;9&quot;: 0.0, &quot;10&quot;: -0.2, &quot;11&quot;: -0.3, &quot;12&quot;: 0.0, &quot;13&quot;: 0.3, &quot;14&quot;: 0.3, &quot;15&quot;: 0.5}, &quot;analysis_summary&quot;: &quot;批判を受けて、手の内の扱いを揃えた。13番は岩田康誠騎手が3勝クラスで2着に導いた馬への再騎乗なので+0.3に上げ、4番は田山騎手が同条件の烏丸Sで4着の継続材料があるので-0.1に戻した。15番は松山騎手が14番に移って初騎乗となる割引で+0.5、2番はルメール騎手の実績が古い1勝クラスなので+0.5に下げた。8番は遠征を減点理由にするのをやめて-0.2とした。藤岡厩舎の2頭出しは両方に上位騎手を配しているので、6番と14番をともに+0.3に揃えた。継続騎乗と格の減点の重さは、12番を0.0、10番を-0.2として釣り合わせた。5番・7番・3番・1番・9番・11番は据え置き。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+<details><summary>全体批判・純粋予想</summary>
+<p style="margin:4px 0;"><b>全体批判・裁定(critic_gousei):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>## 合成スコアへの疑問点<br><br>- **13番ウインデイジーの2位は少し高か。** 近3走の指数は90.6・87.3・89.1で一番高いけど、全部2200mの逃げで出したもの。2400mは烏丸Sで11着しかなかとよ。今回は7番ロードフィレール・3番サトノクローク・12番リーティアコナルと逃げ馬が揃っとって、京都外回り2400でハナを楽に取れる保証もなか。<br>- **7番ロードフィレールは低すぎると思う。** 3歳で56kgの2kg得がある。若葉S(L)2着の指数89.8、阿賀野川特別を逃げて89.0。大原Sの9着は稍重のハイペースを逃げての0.5差やけん、悲観するほどやなかよ。上がり目は一番あるっちゃん。<br>- **6番ロードガレリアの3位は過大。** 3勝クラスでは3着・6着・7着、指数は84〜85止まりで勝ち切る材料が足りん。中2週で東京から京都への輸送もある。<br>- **5番ベトルスの1位は妥当。** 3勝クラスの2400mで2着・3着、指数は88前後で安定しとる。京都2400の烏丸Sで上がり33.8を出しとって、舞台適性も一番。<br>- **6位以下では2番サトノパトリオットに注意。** ルメール騎乗で、東京2400の青嵐賞を勝っとる。ただ日本海Sではウインデイジーに0.6秒負けとるし3か月ぶりやけん、上位5頭には入れんかった。<br><br>## しずくの最終評価<br><br>5番, ベトルス, 25%, 3勝クラスの2400mで2着・3着と崩れず、京都2400の烏丸Sでも上がり33.8で0.2差やけん舞台適性は最上位。調教も「徐々に良化」で、勝ち切れん面はあっても軸として一番信頼できるっちゃん。<br><br>7番, ロードフィレール, 21%, 3歳56kgの斤量差と若葉S2着・阿賀野川特別89.0の能力はメンバー上位で、前走の大原Sはハイペースを逃げての0.5差。2400mは未経験でもキズナ×オルフェーヴルなら延長はこなせると見て、合成より一段上げとるよ。<br><br>13番, ウインデイジー, 19%, 指数90.6・87.3・89.1は最上位で地力は認めるけど、2400mは烏丸Sの11着だけ。逃げ馬が3頭おって楽な単騎逃げは望みにくかけん、合成の2位からは少し下げたと。<br><br>14番, スピードリッチ, 17%, 札幌日経賞(L)5着の90.5、松籟S3着、六社S2着と長距離での安定感はある。ただ3か月ぶりで調教が「脚いろ見劣る」けん、3着候補の扱いにしとるよ。<br><br>6番, ロードガレリア, 13%, 3勝クラスでは3着・6着・7着で指数は84〜85止まり、バルザローナ騎乗でも上積みは限られる。中2週の京都への輸送もあるけん、合成の3位は高すぎると見て5番手にしたと。<br><br>```json<br>{&quot;score&quot;: {&quot;5&quot;: 25, &quot;7&quot;: 21, &quot;13&quot;: 19, &quot;14&quot;: 17, &quot;6&quot;: 13}, &quot;analysis_summary&quot;: &quot;5番ベトルスは京都2400適性と3勝クラスでの安定感から本命維持。合成は13番ウインデイジーを指数の高さで2位に置いたが、2400実績が烏丸S11着のみで逃げ馬が3頭いるため下げた。7番ロードフィレールは3歳56kgの斤量利と若葉S2着級の能力、前走敗因の明確さから過小評価と判断して2位に上げた。6番ロードガレリアは3勝クラスで勝ち切る指数がなく過大評価として5位に下げた。6位以下では2番サトノパトリオット(ルメール騎乗、東京2400勝ち)が要注意。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+<p style="margin:4px 0;"><b>純粋予想(pure):</b><br>1111111111111111111111111111111111111111111111111111111111111111111111<br><br>5番, ベトルス, 16%, 3勝クラスで指数88前後を安定して出しとって、京都2400の烏丸S3着、阪神2400の御堂筋S2着と同じ距離の実績が一番そろっとるけん軸に見たよ。前走4着も0.1秒差で、調教も徐々に良化しとるっちゃん。<br><br>13番, ウインデイジー, 15%, 前走のリステッドで2着、指数90.6が出とって、ここ4走のうち3走で指数87以上の上位争いをしとる充実ぶりが目立つと。56kgで逃げられるのも強みやけど、京都2400の烏丸S11着があるけん距離だけは少し割り引いとるよ。<br><br>7番, ロードフィレール, 14%, 若葉S2着の指数89.8、阿賀野川特別の89.0と能力の高さは一番で、3歳の56kgは有利になっとる。前走は稍重の18頭立てで逃げて9着やけん大きくは嫌わんけど、2400は初めてで、そこが未知数やね。<br><br>14番, スピードリッチ, 10%, 札幌日経賞の指数90.5、松籟S3着と長い距離の能力は上位で、六社S2着もあって2400は守備範囲になっとる。[3-6-5-9]で勝ち切れん傾向があるのと、調教の「脚いろ見劣る」が気になるけん少し下げたよ。<br><br>2番, サトノパトリオット, 10%, 東京2400で2連勝しとって距離の適性は十分あるし、キャリア8戦で上積みも見込めるっちゃん。3勝クラス初戦の6着は指数83.0やったけど、ルメール騎手が乗ることと、調教が久々でも好仕上がりなのを評価したよ。<br><br>6番, ロードガレリア, 8%, 3勝クラスでずっと指数85前後を出しとって、昇仙峡S3着と崩れが少ないと。ただ勝ち切るにはあと一押し足りん感じで、バルザローナ騎手とシャープな調教の分だけ上乗せしとるよ。<br><br>3番, サトノクローク, 5%, 京都2400の烏丸Sで逃げて2着、指数88.6を出しとるけんコースは合っとる。でも前走は逃げて16着と大敗しとって、出来の波が大きいのが不安やね。<br><br>15番, クルミナーレ, 5%, 垂水S4着の指数85.4と3勝クラスでも通用する力はあるし、モレイラ騎手に替わるのもプラスっちゃん。半年ぶりで、2400の実績も2勝クラスまでしかないけん中くらいの評価にしたよ。<br><br>9番, オメガナビゲーター, 4%, 京都2400の烏丸Sで7着、指数85.1と大きくは負けとらんし、調教も上昇気配が見えとる。それでも3勝クラスでは決め手が足りん印象やね。<br><br>1番, アットアブラスト, 4%, 京都2400の2勝クラスを勝ったばかりで勢いはあるけど、そのときの指数83.2は今回の相手やと見劣りすると。38戦3勝やけん、昇級してすぐ通用するかは疑問やね。<br><br>4番, ナムラフッカー, 3%, 京都2400の烏丸Sで4着、指数86.5を出しとるけど、そのあと4走は後方のまま凡走が続いとる。調教も鋭さがひと息やけん低めにしたよ。<br><br>12番, リーティアコナル, 2%, 先行して2勝クラスを勝った力はあるけど、3勝クラスで最近2走が二桁着順と大敗しとって、2400の実績も無いけん厳しいっちゃん。<br><br>8番, キントリヒ, 2%, 7歳で、近走は大きく崩れんけど上位に届いとらん。2400の江の島Sは14着の大敗で、調教もジリっぽいけん評価は低めやね。<br><br>11番, キーパフォーマー, 1.5%, 3勝クラスで着順も指数も伸びんで、調教もハミ受けがひと息やけん上位は難しいと見とるよ。<br><br>10番, ルクスビッグスター, 1%, 最近3走はダートで二桁着順もあって、芝に戻っても1800の実績しかなかけん2400では厳しいっちゃん。<br><br>```json<br>{&quot;score&quot;: {&quot;5&quot;: 16, &quot;13&quot;: 15, &quot;7&quot;: 14, &quot;14&quot;: 10, &quot;2&quot;: 10, &quot;6&quot;: 8, &quot;3&quot;: 5, &quot;15&quot;: 5, &quot;9&quot;: 4, &quot;1&quot;: 4, &quot;4&quot;: 3, &quot;12&quot;: 2, &quot;8&quot;: 2, &quot;11&quot;: 1.5, &quot;10&quot;: 1}, &quot;analysis_summary&quot;: &quot;3勝クラスで安定して指数88前後を出し、京都・阪神2400で実績のある5番ベトルスを最上位にした。リステッド2着で充実しとる13番ウインデイジーと、能力最上位の3歳56kgの7番ロードフィレールが続く。長距離適性の高い14番スピードリッチと、東京2400で2連勝しとって上積みのある2番サトノパトリオットが次のグループ。6番ロードガレリアは安定しとるけど決め手が足りん。ダートからの転戦の10番、低迷しとる11番・8番・12番は下位。&quot;}<br>```<br><br>1111111111111111111111111111111111111111111111111111111111111111111111</p>
+</details>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final"><span>期待値分析 — CC推定勝率 vs 市場オッズ（単勝）</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>順位</th><th>馬番</th><th>馬名</th><th>CC推定勝率</th><th>単勝オッズ</th><th>人気</th><th>期待値</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>5</td><td class="left horse-name">ベトルス</td><td>13.6%</td><td>4.3</td><td>2</td><td class="ev-low">0.59</td></tr><tr><td>2</td><td>13</td><td class="left horse-name">ウインデイジー</td><td>11.5%</td><td>12.5</td><td>6</td><td class="ev-mid">1.43</td></tr><tr><td>3</td><td>7</td><td class="left horse-name">ロードフィレール</td><td>10.1%</td><td>3.2</td><td>1</td><td class="ev-low">0.32</td></tr><tr><td>4</td><td>6</td><td class="left horse-name">ロードガレリア</td><td>8.8%</td><td>14.2</td><td>7</td><td class="ev-mid">1.24</td></tr><tr><td>5</td><td>2</td><td class="left horse-name">サトノパトリオット</td><td>8.2%</td><td>8.5</td><td>5</td><td class="ev-low">0.70</td></tr><tr><td>6</td><td>14</td><td class="left horse-name">スピードリッチ</td><td>8.0%</td><td>22.1</td><td>9</td><td class="ev-mid">1.77</td></tr><tr><td>7</td><td>15</td><td class="left horse-name">クルミナーレ</td><td>7.3%</td><td>7.6</td><td>3</td><td class="ev-low">0.56</td></tr><tr><td>8</td><td>3</td><td class="left horse-name">サトノクローク</td><td>6.7%</td><td>47.7</td><td>11</td><td class="ev-high">3.18</td></tr><tr><td>9</td><td>9</td><td class="left horse-name">オメガナビゲーター</td><td>6.3%</td><td>19.4</td><td>8</td><td class="ev-mid">1.23</td></tr><tr><td>10</td><td>1</td><td class="left horse-name">アットアブラスト</td><td>5.5%</td><td>8.2</td><td>4</td><td class="ev-low">0.45</td></tr><tr><td>11</td><td>12</td><td class="left horse-name">リーティアコナル</td><td>3.3%</td><td>81.4</td><td>14</td><td class="ev-high">2.65</td></tr><tr><td>12</td><td>8</td><td class="left horse-name">キントリヒ</td><td>3.0%</td><td>43.8</td><td>10</td><td class="ev-mid">1.33</td></tr><tr><td>13</td><td>10</td><td class="left horse-name">ルクスビッグスター</td><td>3.0%</td><td>91.2</td><td>15</td><td class="ev-high">2.69</td></tr><tr><td>14</td><td>4</td><td class="left horse-name">ナムラフッカー</td><td>2.6%</td><td>51.3</td><td>12</td><td class="ev-mid">1.31</td></tr><tr><td>15</td><td>11</td><td class="left horse-name">キーパフォーマー</td><td>2.2%</td><td>58.6</td><td>13</td><td class="ev-mid">1.28</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header ev"><span>券種別実質期待値</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>券種</th><th>組合せ</th><th>確率</th><th>オッズ</th><th>NetEV</th></tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">5 ベトルス</td><td>13.6%</td><td>4.3</td><td class="ev-low">0.50</td></tr><tr><td>複勝</td><td class="left">5 ベトルス</td><td>38.2%</td><td>1.5</td><td class="ev-low">0.53</td></tr><tr><td>馬連</td><td class="left">5 ベトルス-13 ウインデイジー</td><td>3.6%</td><td>16.5</td><td class="ev-low">0.48</td></tr><tr><td>ワイド</td><td class="left">5 ベトルス-13 ウインデイジー</td><td>10.0%</td><td>6.4</td><td class="ev-low">0.53</td></tr><tr><td>馬単</td><td class="left">5 ベトルス→13 ウインデイジー</td><td>1.8%</td><td>26.6</td><td class="ev-low">0.39</td></tr><tr><td>3連複</td><td class="left">5 ベトルス-7 ロードフィレール-13 ウインデイジー</td><td>1.4%</td><td>17.2</td><td class="ev-low">0.20</td></tr><tr><td>3連単</td><td class="left">5 ベトルス→13 ウインデイジー→7 ロードフィレール</td><td>0.2%</td><td>111.7</td><td class="ev-low">0.22</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:#8E8E93;margin-top:8px;">※ハーヴィル公式による的中確率 / NetEV = 税引後期待値</p>
+</div></div>
+
+<div class="agent-section">
+<div class="round-header final">
+<span>私はこう買う</span>
+<span class="badge">予算 800円</span>
+</div>
+<div class="section-body">
+<table>
+<thead><tr>
+<th>券種</th><th>組合せ</th><th>オッズ</th><th>口数</th><th>金額</th><th>根拠</th>
+</tr></thead>
+<tbody>
+<tr><td>単勝</td><td class="left">5 ベトルス</td><td>4.3</td><td>3</td><td style='text-align:right;font-weight:600;'>300円</td><td style="font-size:11px;color:#8E8E93;">単勝◎</td></tr><tr><td>3連複</td><td class="left">5 ベトルス-7 ロードフィレール-13 ウインデイジー</td><td>17.2</td><td>4</td><td style='text-align:right;font-weight:600;'>400円</td><td style="font-size:11px;color:#8E8E93;">3連複◎○▲</td></tr><tr><td>3連単</td><td class="left">5 ベトルス→13 ウインデイジー→7 ロードフィレール</td><td>111.7</td><td>1</td><td style='text-align:right;font-weight:600;'>100円</td><td style="font-size:11px;color:#8E8E93;">3連単◎→○→▲</td></tr>
+</tbody></table>
+<p style="margin-top:12px;font-size:14px;font-weight:700;text-align:right;">
+合計: 800円
+</p>
+</div></div>
+
+<div class="footer-version">v4.1</div>
+</div>
+</body>
+</html>
